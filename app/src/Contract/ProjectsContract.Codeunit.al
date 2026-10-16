@@ -18,6 +18,21 @@ codeunit 10078489 "Projects Contract ori"
             Result.Add(DecorateParameter(ContractMgt.Parameter('operation', 'string', false, 'Create by default; Update explicitly targets an existing nested record.'), 'string', 0, 'Create,Update'));
         if not Nested then
             Result.Add(DecorateParameter(ContractMgt.Parameter('projectNo', 'string', true, ''), 'string', 20, ''));
+        if Kind = 'Usage' then begin
+            Result.Add(DecorateParameter(ContractMgt.Parameter('taskNo', 'string', true, 'Exact posting task number.'), 'string', 20, ''));
+            if Operation = 'Link' then begin
+                Result.Add(ContractMgt.Parameter('entryNo', 'integer', true, 'Exact posted usage entry; already linked entries are rejected.'));
+                Result.Add(ContractMgt.Parameter('lineNo', 'integer', false, 'Existing positive planning line number unless creating from usage.'));
+                Result.Add(ContractMgt.Parameter('createPlanningLine', 'boolean', false, 'Create through native transfer instead of linking an existing line. Default false.'));
+                Result.Add(DecorateParameter(ContractMgt.Parameter('lineType', 'string', false, 'Used only when creating from usage; Budget by default.'), 'string', 0, 'Budget,Billable,Both Budget and Billable'));
+            end;
+            exit;
+        end;
+        if Kind in ['Statistics', 'BudgetVsActual'] then begin
+            if Kind = 'BudgetVsActual' then
+                Result.Add(DecorateParameter(ContractMgt.Parameter('taskNo', 'string', false, 'Optional exact posting task number for the task breakdown.'), 'string', 20, ''));
+            exit;
+        end;
         if Kind = 'WIP' then begin
             if Operation <> 'Get' then begin
                 Result.Add(ContractMgt.Parameter('postingDate', 'date', true, 'Explicit ISO posting date YYYY-MM-DD.'));

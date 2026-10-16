@@ -77,6 +77,8 @@ codeunit 10078499 "Projects Write ori"
     procedure RunNative(var Argument: Record "Message Argument ori")
     var
         WIP: Codeunit "Projects WIP ori";
+        Statistics: Codeunit "Projects Statistics ori";
+        Usage: Codeunit "Projects Usage ori";
         Request: JsonObject;
         Response: JsonObject;
         ProjectNo: Code[20];
@@ -85,7 +87,15 @@ codeunit 10078499 "Projects Write ori"
     begin
         Request := Argument.GetRequestJson();
         ProjectNo := CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(ProjectNo));
-        if Argument.Type in ["Message Type ori"::"Projects.WIP.Get", "Message Type ori"::"Projects.WIP.Calculate"] then begin
+        if Argument.Type in ["Message Type ori"::"Projects.Usage.Get", "Message Type ori"::"Projects.Usage.Link"] then begin
+            Usage.Execute(Argument);
+            exit;
+        end;
+        if Argument.Type in ["Message Type ori"::"Projects.Statistics.Get", "Message Type ori"::"Projects.BudgetVsActual.Get"] then begin
+            Statistics.Execute(Argument);
+            exit;
+        end;
+        if Argument.Type in ["Message Type ori"::"Projects.WIP.Get", "Message Type ori"::"Projects.WIP.Calculate", "Message Type ori"::"Projects.WIP.Post"] then begin
             WIP.Execute(Argument);
             exit;
         end;

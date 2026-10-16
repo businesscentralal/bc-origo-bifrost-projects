@@ -3,6 +3,18 @@
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Projects">
     <body>
       <group id="body">
+        <trans-unit id="Table 2276660535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>BIFROST ProjPost ori</source>
+          <target>Bifröst bókun verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bifröst bókun verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Posting ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2276660535 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Primary Key</source>
+          <target>Aðallykill</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Posting ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4158522199 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Setup</source>
           <target>Uppsetning verkefna</target>
@@ -20,6 +32,24 @@
           <target>Aðallykill</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 197225938 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Returns native project totals and posting-task budget versus actual statistics in LCY.</source>
+          <target>Skilar innbyggðum heildarfjárhæðum verkefnis og samanburði áætlunar og rauntalna eftir verkhlutum í heimamynt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skilar innbyggðum heildarfjárhæðum verkefnis og samanburði áætlunar og rauntalna eftir verkhlutum í heimamynt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Budget Actual Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 197225938 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, budget, actual, statistics</source>
+          <target>verkefni, áætlun, rauntölur, tölfræði</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, áætlun, rauntölur, tölfræði</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Budget Actual Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 197225938 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Read-only native statistics in LCY. Invoiced amounts use the standard BC sign convention. BudgetVsActual returns only posting tasks, so total rows are not double counted.</source>
+          <target>Innbyggð tölfræði í heimamynt, aðeins til lestrar. Reikningsfærðar fjárhæðir nota formerkjareglu BC. BudgetVsActual skilar aðeins bókunarverkhlutum svo samtölur tvíteljist ekki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innbyggð tölfræði í heimamynt, aðeins til lestrar. Reikningsfærðar fjárhæðir nota formerkjareglu BC. BudgetVsActual skilar aðeins bókunarverkhlutum svo samtölur tvíteljist ekki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Budget Actual Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2223901892 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Copies a project with a task range and budget or billable planning lines.</source>
@@ -111,6 +141,30 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1348305406 - Method 3527532202 - NamedType 842664886" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posting denied: missing '%1' permission set.</source>
+          <target>Bókun hafnað: vantar '%1' heimildasett.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = permission set name, is-IS=Bókun hafnað: vantar '%1' heimildasett.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Posting Gate ori - Method AssertCanPost - NamedType PostingDeniedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 533419340 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Returns native project budget, actual, billable and invoiced statistics in LCY.</source>
+          <target>Skilar innbyggðri áætlun, raunkostnaði, reikningshæfum og reikningsfærðum fjárhæðum verkefnis í heimamynt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skilar innbyggðri áætlun, raunkostnaði, reikningshæfum og reikningsfærðum fjárhæðum verkefnis í heimamynt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Statistics Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 533419340 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, budget, actual, statistics</source>
+          <target>verkefni, áætlun, rauntölur, tölfræði</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, áætlun, rauntölur, tölfræði</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Statistics Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 533419340 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Read-only native statistics in LCY. Invoiced amounts use the standard BC sign convention. BudgetVsActual returns only posting tasks, so total rows are not double counted.</source>
+          <target>Innbyggð tölfræði í heimamynt, aðeins til lestrar. Reikningsfærðar fjárhæðir nota formerkjareglu BC. BudgetVsActual skilar aðeins bókunarverkhlutum svo samtölur tvíteljist ekki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innbyggð tölfræði í heimamynt, aðeins til lestrar. Reikningsfærðar fjárhæðir nota formerkjareglu BC. BudgetVsActual skilar aðeins bókunarverkhlutum svo samtölur tvíteljist ekki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Statistics Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 146361251 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Changes project status or blocking through native Business Central validation.</source>
           <target>Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.</target>
@@ -183,6 +237,42 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 280312290 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads project task usage links and remaining planning quantities.</source>
+          <target>Les notkunartengingar verkhluta og eftirstandandi magn áætlunarlína.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les notkunartengingar verkhluta og eftirstandandi magn áætlunarlína.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Get Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 280312290 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, usage, link, planning, remaining</source>
+          <target>verkefni, notkun, tengja, áætlun, eftirstöðvar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, notkun, tengja, áætlun, eftirstöðvar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Get Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 280312290 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get is read-only. Link requires Apply Usage Link on the project. An already linked entry is rejected. Existing lines must match the usage identity. createPlanningLine uses native transfer, with Budget as default lineType. No financial posting is performed.</source>
+          <target>Get er aðeins til lestrar. Link krefst notkunartengingar á verkefninu. Þegar tengdri færslu er hafnað. Núverandi línur verða að passa við notkunina. createPlanningLine notar innbyggðan flutning með Budget sem sjálfgefna línugerð. Engin fjárhagsbókun fer fram.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Get er aðeins til lestrar. Link krefst notkunartengingar á verkefninu. Þegar tengdri færslu er hafnað. Núverandi línur verða að passa við notkunina. createPlanningLine notar innbyggðan flutning með Budget sem sjálfgefna línugerð. Engin fjárhagsbókun fer fram.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Get Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1075546932 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Links posted project usage to a planning line or creates planning lines from usage through native BC.</source>
+          <target>Tengir bókaða verkefnanotkun við áætlunarlínu eða stofnar áætlunarlínur úr notkun með innbyggðu BC.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tengir bókaða verkefnanotkun við áætlunarlínu eða stofnar áætlunarlínur úr notkun með innbyggðu BC.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Link Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1075546932 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, usage, link, planning, remaining</source>
+          <target>verkefni, notkun, tengja, áætlun, eftirstöðvar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, notkun, tengja, áætlun, eftirstöðvar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Link Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1075546932 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Get is read-only. Link requires Apply Usage Link on the project. An already linked entry is rejected. Existing lines must match the usage identity. createPlanningLine uses native transfer, with Budget as default lineType. No financial posting is performed.</source>
+          <target>Get er aðeins til lestrar. Link krefst notkunartengingar á verkefninu. Þegar tengdri færslu er hafnað. Núverandi línur verða að passa við notkunina. createPlanningLine notar innbyggðan flutning með Budget sem sjálfgefna línugerð. Engin fjárhagsbókun fer fram.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Get er aðeins til lestrar. Link krefst notkunartengingar á verkefninu. Þegar tengdri færslu er hafnað. Núverandi línur verða að passa við notkunina. createPlanningLine notar innbyggðan flutning með Budget sem sjálfgefna línugerð. Engin fjárhagsbókun fer fram.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Link Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4130552506 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Calculates project work in progress through the native WIP engine.</source>
           <target>Reiknar verk í vinnslu með innbyggðum verkefnisreikningi.</target>
@@ -219,6 +309,24 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Skilar innbyggðum VÍV-færslum og VÍV-fjárhagsfærslum eins verkefnis. Calculate krefst skýrrar bókunardagsetningar og fylgiskjalsnúmers. Get bókar ekki eða breytir færslum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Get Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3445775645 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Posts calculated project WIP to the general ledger through native BC posting.</source>
+          <target>Bókar reiknuð verk í vinnslu í fjárhag með innbyggðri bókun BC.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bókar reiknuð verk í vinnslu í fjárhag með innbyggðri bókun BC.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3445775645 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, work in progress, WIP, post</source>
+          <target>verkefni, verk, verk í vinnslu, VÍV, bóka</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verk í vinnslu, VÍV, bóka</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3445775645 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Uses native project WIP validation and posting. Post additionally requires BIFROST ProjPost ori and native business permissions. New G/L entries keep the document number of the calculated WIP entries. No licensing setup is changed.</source>
+          <target>Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST ProjPost ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST ProjPost ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 30800967 - Method 1513833081 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects messages are disabled for this company.</source>
           <target>Verkefnaskilaboð eru óvirk fyrir þetta fyrirtæki.</target>
@@ -248,6 +356,24 @@
           <target>Nauðsynlegt viðfang verkefnis vantar eða er tómt.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlegt viðfang verkefnis vantar eða er tómt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Input ori - Method AddMissing - NamedType MissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 22400809 - Method 1561766673 - NamedType 3177803720" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The usage entry and planning line must belong to the requested project/task and match type, number, unit, location, variant and work type.</source>
+          <target>Notkunarfærsla og áætlunarlína verða að tilheyra umbeðnu verkefni og verkhluta og passa í gerð, númeri, einingu, staðsetningu, afbrigði og verkgerð.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notkunarfærsla og áætlunarlína verða að tilheyra umbeðnu verkefni og verkhluta og passa í gerð, númeri, einingu, staðsetningu, afbrigði og verkgerð.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Usage ori - Method Execute - NamedType InvalidErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 22400809 - Method 1561766673 - NamedType 258279806" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This usage entry is already linked. Read its existing links instead of applying it again.</source>
+          <target>Þessi notkunarfærsla er þegar tengd. Lestu tengingarnar í stað þess að tengja hana aftur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Þessi notkunarfærsla er þegar tengd. Lestu tengingarnar í stað þess að tengja hana aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Usage ori - Method Execute - NamedType AlreadyLinkedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 22400809 - Method 1561766673 - NamedType 666514337" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send a positive lineNo or set createPlanningLine to true.</source>
+          <target>Sendu jákvætt lineNo eða stilltu createPlanningLine á true.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu jákvætt lineNo eða stilltu createPlanningLine á true.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Usage ori - Method Execute - NamedType MissingLineErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4253862177 - Method 1797619284 - NamedType 2239992694" size-unit="char" translate="yes" xml:space="preserve">
           <source>The first task number must not exceed the last task number.</source>
@@ -296,6 +422,12 @@
           <target>Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control Enabled - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 2987968320 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Proj. Posting Gate</source>
+          <target>Bókunarhlið verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bókunarhlið verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST ProjPost ori - Property Caption</note>
         </trans-unit>
       </group>
     </body>

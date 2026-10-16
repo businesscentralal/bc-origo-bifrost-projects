@@ -124,3 +124,35 @@ WIP, statistics and usage link remain in issues #5, #6 and #8. Issue #7 was
 closed as not planned, with Gunnar's recorded skip comment; no query implementation
 is claimed. Invoice helpers and other medium/low gaps stay in tracking #9 pending
 Gunnar's decision. No acceptance or delivery is implied by this contract text.
+
+## WIP posting and statistics
+
+`Projects.WIP.Post` takes the same `projectNo`, ISO `postingDate` and `documentNo`
+as Calculate. It invokes native BC WIP posting, retaining native checks and transaction
+rollback. New ledger entries retain the calculated WIP document number. The caller
+must explicitly hold `BIFROST ProjPost ori` as well as native business permissions;
+Foundation Read/Full never grants the posting token. The token table stores no data.
+
+`Projects.Statistics.Get` takes `projectNo` and returns `currency: "LCY"` and
+`statistics` with `budget`, `actual`, `billable`, `invoiced`. Each contains `resource`,
+`item`, `glAccount`, `total`, each with `cost` and `price`. These are native BC
+statistics amounts, including the native invoice sign convention.
+`Projects.BudgetVsActual.Get` returns the same project totals plus `tasks[]` with
+`taskNo` and the same `statistics` shape. Optional exact `taskNo` filters the task
+breakdown only. Only posting tasks are included, avoiding total-task double counting.
+Both operations are read-only and require native read permissions.
+
+## Usage links
+
+`Projects.Usage.Get` requires `projectNo` and `taskNo`, returning `links[]`
+(`entryNo`, `lineNo`) and `planningLines[]` (`lineNo`, `quantity`,
+`remainingQuantity`, `usageLink`). It does not change quantities.
+
+`Projects.Usage.Link` additionally requires the exact usage `entryNo`. Supply a
+positive existing `lineNo`, or `createPlanningLine: true` to use BC transfer from
+usage. Creation accepts `lineType` Budget (default), Billable or Both Budget and
+Billable; native BC may split budget and billable lines. The project must have
+Apply Usage Link enabled. An entry from another project/task or an already linked
+entry is rejected before changes. Existing planning lines must match the entry's
+type, number, unit, location, variant and work type. Native validation and
+rollback are retained. No journal or financial entry is posted by this message.

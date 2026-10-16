@@ -13,6 +13,7 @@ codeunit 10078505 "Projects WIP ori"
     var
         Project: Record Job;
         WIP: Codeunit "Job Calculate WIP";
+        PostingGate: Codeunit "Proj. Posting Gate ori";
         Request: JsonObject;
         Response: JsonObject;
         ProjectNo: Code[20];
@@ -28,6 +29,12 @@ codeunit 10078505 "Projects WIP ori"
             case Argument.Type of
                 "Message Type ori"::"Projects.WIP.Calculate":
                     WIP.JobCalcWIP(Project, PostingDate, DocumentNo);
+                "Message Type ori"::"Projects.WIP.Post":
+                    begin
+                        if not PostingGate.AssertCanPost(Argument) then
+                            exit;
+                        WIP.CalcGLWIP(ProjectNo, false, DocumentNo, PostingDate, true);
+                    end;
             end;
         end;
         Response.Add('status', 'Success');

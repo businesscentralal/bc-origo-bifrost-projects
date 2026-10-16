@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_ElevenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_SixteenTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -116,7 +116,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(11, Count, 'Catalogue must contain the nine lifecycle types and WIP Get/Calculate; WIP Post is not registered');
+        Assert.AreEqual(16, Count, 'Catalogue must contain the nine lifecycle types and WIP Get/Calculate; WIP Post is not registered');
     end;
 
     [Test]

@@ -16,8 +16,15 @@
   Update operations and inherit planning-line task keys from their parent.
 - Add WIP Get and native Calculate contracts (#5 partial; codeunits 10078502,
   10078503 and 10078505; enum values 10078494–10078495; test codeunit 97106).
-  WIP Post is not registered: supported Foundation posting-gate dependency is #18.
-  Nonzero WIP and shipping acceptance remain pending.
+  Add WIP Post with a Projects-owned internal permission token/gate and separate
+  assignable `BIFROST ProjPost ori` (#5/#18; objects 10078504, 10078506–10078508;
+  tests 97106–97107). Add nonzero native WIP calculation/posting and gate tests.
+- Add native Statistics and BudgetVsActual contracts (#6; objects 10078509–10078511;
+  enum values 10078497–10078498; tests 97108). Return LCY cost/price totals and
+  type splits using the BC statistics engine, with posting-task breakdown.
+- Add Usage Get/Link with exact project/task and identity checks, duplicate-link refusal,
+  native remaining-quantity updates and planning-from-usage (#8; objects
+  10078512–10078514, enum values 10078499–10078500; tests 97109).
 - Add scaffold, permission, input-boundary and native write component tests
   (test codeunits 97100–97106). Runtime/UI/MCP and independent verification remain pending.
 

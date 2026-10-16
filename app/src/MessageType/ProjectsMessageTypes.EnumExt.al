@@ -65,4 +65,29 @@ enumextension 10078485 "Projects Message Types ori" extends "Message Type ori"
     }
 
 
+    value(10078496; "Projects.WIP.Post")
+    {
+        Caption = 'Projects.WIP.Post', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Post Impl ori", "Msg Discovery ori" = "Proj. WIP Post Impl ori", "Msg Contract ori" = "Proj. WIP Post Impl ori";
+    }
+    value(10078497; "Projects.Statistics.Get")
+    {
+        Caption = 'Projects.Statistics.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Statistics Impl ori", "Msg Discovery ori" = "Proj. Statistics Impl ori", "Msg Contract ori" = "Proj. Statistics Impl ori";
+    }
+    value(10078498; "Projects.BudgetVsActual.Get")
+    {
+        Caption = 'Projects.BudgetVsActual.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Budget Actual Impl ori", "Msg Discovery ori" = "Proj. Budget Actual Impl ori", "Msg Contract ori" = "Proj. Budget Actual Impl ori";
+    }
+    value(10078499; "Projects.Usage.Get")
+    {
+        Caption = 'Projects.Usage.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Usage Get Impl ori", "Msg Discovery ori" = "Proj. Usage Get Impl ori", "Msg Contract ori" = "Proj. Usage Get Impl ori";
+    }
+    value(10078500; "Projects.Usage.Link")
+    {
+        Caption = 'Projects.Usage.Link', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Usage Link Impl ori", "Msg Discovery ori" = "Proj. Usage Link Impl ori", "Msg Contract ori" = "Proj. Usage Link Impl ori";
+    }
 }
