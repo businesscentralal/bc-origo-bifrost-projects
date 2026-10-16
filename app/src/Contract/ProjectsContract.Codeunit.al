@@ -18,6 +18,13 @@ codeunit 10078489 "Projects Contract ori"
             Result.Add(DecorateParameter(ContractMgt.Parameter('operation', 'string', false, 'Create by default; Update explicitly targets an existing nested record.'), 'string', 0, 'Create,Update'));
         if not Nested then
             Result.Add(DecorateParameter(ContractMgt.Parameter('projectNo', 'string', true, ''), 'string', 20, ''));
+        if Kind = 'WIP' then begin
+            if Operation <> 'Get' then begin
+                Result.Add(ContractMgt.Parameter('postingDate', 'date', true, 'Explicit ISO posting date YYYY-MM-DD.'));
+                Result.Add(DecorateParameter(ContractMgt.Parameter('documentNo', 'string', true, 'Document number passed to the native WIP engine. New WIP G/L entries retain the calculated WIP document number.'), 'string', 20, ''));
+            end;
+            exit;
+        end;
         if Operation = 'Copy' then begin
             Result.Add(DecorateParameter(ContractMgt.Parameter('targetProjectNo', 'string', true, 'New project number; must not exist.'), 'string', 20, ''));
             Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'New description; omitted keeps the source description.'), 'string', 100, ''));

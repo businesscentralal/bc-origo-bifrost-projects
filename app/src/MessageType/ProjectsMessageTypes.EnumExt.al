@@ -52,4 +52,17 @@ enumextension 10078485 "Projects Message Types ori" extends "Message Type ori"
         Implementation = "Msg Interface ori" = "Proj. Status Impl ori", "Msg Discovery ori" = "Proj. Status Impl ori", "Msg Contract ori" = "Proj. Status Impl ori";
     }
 
+    value(10078494; "Projects.WIP.Get")
+    {
+        Caption = 'Projects.WIP.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Get Impl ori", "Msg Discovery ori" = "Proj. WIP Get Impl ori", "Msg Contract ori" = "Proj. WIP Get Impl ori";
+    }
+
+    value(10078495; "Projects.WIP.Calculate")
+    {
+        Caption = 'Projects.WIP.Calculate', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Calc Impl ori", "Msg Discovery ori" = "Proj. WIP Calc Impl ori", "Msg Contract ori" = "Proj. WIP Calc Impl ori";
+    }
+
+
 }

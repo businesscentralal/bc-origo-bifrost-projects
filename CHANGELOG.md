@@ -14,8 +14,12 @@
 - Preserve temporary test argument blobs before public Foundation reads; scope
   catalogue tests to this app's assigned enum range. Support explicit nested
   Update operations and inherit planning-line task keys from their parent.
+- Add WIP Get and native Calculate contracts (#5 partial; codeunits 10078502,
+  10078503 and 10078505; enum values 10078494–10078495; test codeunit 97106).
+  WIP Post is not registered: supported Foundation posting-gate dependency is #18.
+  Nonzero WIP and shipping acceptance remain pending.
 - Add scaffold, permission, input-boundary and native write component tests
-  (test codeunits 97100–97105). Runtime/UI/MCP and independent verification remain pending.
+  (test codeunits 97100–97106). Runtime/UI/MCP and independent verification remain pending.
 
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 10078485..10078584, tests 97100..97199.

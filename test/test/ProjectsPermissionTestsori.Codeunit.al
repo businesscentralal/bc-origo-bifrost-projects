@@ -16,7 +16,7 @@ codeunit 97103 "Projects Permission Tests ori"
     var
         Assert: Codeunit "Library Assert";
     [Test]
-    procedure Scenario_AC01_ReadRole_AllWritesDenied()
+    procedure Scenario_AC01_ReadRole_WithoutNativeRights_Denied()
     var
         TempArgument: Record "Message Argument ori" temporary;
         LowerPermissions: Codeunit "Library - Lower Permissions";
@@ -42,7 +42,7 @@ codeunit 97103 "Projects Permission Tests ori"
                 TempArgument.Insert(true);
                 Impl := MessageType;
                 // [WHEN] Each shipping implementation is called.
-                Assert.IsFalse(Impl.IsEnabled(), 'Read role must not advertise enabled writes: ' + Name);
+                Assert.IsFalse(Impl.IsEnabled(), 'Without native rights the role must not advertise enabled operations: ' + Name);
                 Impl.ExecuteBifrostTask(TempArgument);
                 Response := TempArgument.GetResponseJson();
                 // [THEN] PermissionDenied is returned before licensing or input processing.

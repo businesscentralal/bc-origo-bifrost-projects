@@ -136,6 +136,7 @@ codeunit 97104 "Projects Copy Tests ori"
         exit(CopyStr('X' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, 20));
     end;
     [Test]
+    [HandlerFunctions('DimensionConfirmHandler')]
     procedure Scenario_AC01_CopyPlanOptions_FiltersQuantityAndDimensions()
     var
         PlanningLine: Record "Job Planning Line";
@@ -194,6 +195,13 @@ codeunit 97104 "Projects Copy Tests ori"
         Assert.AreEqual(PlanningLine."Line Type"::Billable, PlanningLine."Line Type", 'Billable line must be copied');
         Assert.AreEqual(0, PlanningLine.Quantity, 'Disabled quantity option must clear copied quantity');
         Assert.IsFalse(DefaultDimension.Get(Database::Job, TargetNo, DimensionCode), 'Disabled dimensions option must not copy the owned dimension');
+    end;
+
+    [ConfirmHandler]
+    procedure DimensionConfirmHandler(Question: Text[1024]; var Reply: Boolean)
+    begin
+        Assert.IsTrue(StrPos(LowerCase(Question), 'dimension') > 0, 'Only the native owned-dimension update confirmation is expected');
+        Reply := true;
     end;
 
 }

@@ -183,6 +183,42 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4130552506 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calculates project work in progress through the native WIP engine.</source>
+          <target>Reiknar verk í vinnslu með innbyggðum verkefnisreikningi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Reiknar verk í vinnslu með innbyggðum verkefnisreikningi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Calc Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4130552506 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, work in progress, WIP, calculate</source>
+          <target>verkefni, verk, verk í vinnslu, VÍV, reikna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verk í vinnslu, VÍV, reikna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Calc Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4130552506 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Returns native WIP and WIP G/L entries for one project. Calculate requires an explicit posting date and document number. Get does not post or change records.</source>
+          <target>Skilar innbyggðum VÍV-færslum og VÍV-fjárhagsfærslum eins verkefnis. Calculate krefst skýrrar bókunardagsetningar og fylgiskjalsnúmers. Get bókar ekki eða breytir færslum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skilar innbyggðum VÍV-færslum og VÍV-fjárhagsfærslum eins verkefnis. Calculate krefst skýrrar bókunardagsetningar og fylgiskjalsnúmers. Get bókar ekki eða breytir færslum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Calc Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 265466543 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads calculated and posted project WIP entries.</source>
+          <target>Les reiknaðar og bókaðar færslur verka í vinnslu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les reiknaðar og bókaðar færslur verka í vinnslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Get Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 265466543 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, work in progress, WIP, get</source>
+          <target>verkefni, verk, verk í vinnslu, VÍV, lesa</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verk í vinnslu, VÍV, lesa</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Get Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 265466543 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Returns native WIP and WIP G/L entries for one project. Calculate requires an explicit posting date and document number. Get does not post or change records.</source>
+          <target>Skilar innbyggðum VÍV-færslum og VÍV-fjárhagsfærslum eins verkefnis. Calculate krefst skýrrar bókunardagsetningar og fylgiskjalsnúmers. Get bókar ekki eða breytir færslum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skilar innbyggðum VÍV-færslum og VÍV-fjárhagsfærslum eins verkefnis. Calculate krefst skýrrar bókunardagsetningar og fylgiskjalsnúmers. Get bókar ekki eða breytir færslum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Get Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 30800967 - Method 1513833081 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects messages are disabled for this company.</source>
           <target>Verkefnaskilaboð eru óvirk fyrir þetta fyrirtæki.</target>

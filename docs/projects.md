@@ -99,6 +99,25 @@ The operation uses BC field validation, including native completion/WIP handling
 it does not assign status directly or bypass WIP requirements. Success returns
 `status: "Success"` and `projectNo`. Native validation errors roll back both changes.
 
+## Read or calculate WIP
+
+```json
+{"type":"Projects.WIP.Calculate","version":"1.0","data":{"projectNo":"XPROJECT","postingDate":"2026-10-16","documentNo":"XCALC"}}
+```
+
+`Projects.WIP.Get` requires only `projectNo`. Calculate also requires an explicit ISO
+posting date and document number. It invokes the native WIP engine and its method,
+blocked-project and field validations. Success returns `projectNo`, `entries` and
+`glEntries`; each entry includes its number, document/date, accounts, amount, type
+and completion state. Posted entries also include reversal state and G/L entry no.
+Get reads one project and does not change or post its entries.
+
+Current native coverage includes self-seeded read fixtures, an empty-project
+calculation baseline, required options and native missing-method validation.
+Nonzero economic WIP calculation and posting acceptance remain pending.
+`Projects.WIP.Post` is not registered; its supported posting-permission API is
+tracked in #18. Shipping queue acceptance remains blocked separately in #17.
+
 ## Pending scope
 
 WIP, statistics and usage link remain in issues #5, #6 and #8. Issue #7 was

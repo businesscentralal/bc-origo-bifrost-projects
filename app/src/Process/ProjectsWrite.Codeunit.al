@@ -76,6 +76,7 @@ codeunit 10078499 "Projects Write ori"
     /// <summary>Executes validated input inside the process codeunit's rollback boundary.</summary>
     procedure RunNative(var Argument: Record "Message Argument ori")
     var
+        WIP: Codeunit "Projects WIP ori";
         Request: JsonObject;
         Response: JsonObject;
         ProjectNo: Code[20];
@@ -84,6 +85,10 @@ codeunit 10078499 "Projects Write ori"
     begin
         Request := Argument.GetRequestJson();
         ProjectNo := CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(ProjectNo));
+        if Argument.Type in ["Message Type ori"::"Projects.WIP.Get", "Message Type ori"::"Projects.WIP.Calculate"] then begin
+            WIP.Execute(Argument);
+            exit;
+        end;
         case Argument.Type of
             "Message Type ori"::"Projects.Project.SetStatus":
                 ChangeStatus(Request, ProjectNo);

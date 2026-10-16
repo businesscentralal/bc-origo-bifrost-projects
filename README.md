@@ -17,6 +17,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Task.Update` | `projectNo`, `taskNo`, changed fields, optional `planningLines[]` | Updates a task; preserves omitted fields. |
 | `Projects.PlanningLine.Create` | `projectNo`, `taskNo`, positive `lineNo`, fields | Creates a native resource, item, G/L account or text planning line. |
 | `Projects.PlanningLine.Update` | `projectNo`, `taskNo`, `lineNo`, changed fields | Updates supplied native fields. |
+| `Projects.WIP.Get` | `projectNo` | Reads calculated and posted WIP entries. |
+| `Projects.WIP.Calculate` | `projectNo`, `postingDate`, `documentNo` | Runs native WIP calculation and returns entry state. |
 | `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with a selected task range. |
 | `Projects.Project.SetStatus` | `projectNo`, `status` and/or `blocked` | Validates native status, completion and blocking. |
 | `Projects.PlanningLine.Delete` | `projectNo`, `taskNo`, `lineNo` | Deletes through native BC checks. |
@@ -31,5 +33,5 @@ See [Projects contracts](docs/projects.md) for fields, nested behavior and error
 
 Scaffold and lifecycle implementation are under development. Native component tests
 are separate from queue API, licensing, bilingual Web Client and MCP acceptance.
-Template/workflow restoration is retained by human PR #10. Issues #5, #6 and #8 remain
+Template/workflow restoration is retained by human PR #10. Issue #5 remains partial (nonzero calculation/posting acceptance pending; Post is not registered). Issues #6 and #8 remain
 pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.
