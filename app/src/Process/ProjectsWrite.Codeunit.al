@@ -95,6 +95,15 @@ codeunit 10078499 "Projects Write ori"
         Argument."Content Type" := Argument.GetContentTypeJson();
     end;
 
+    local procedure IsNestedCreate(Request: JsonObject): Boolean
+    var
+        Token: JsonToken;
+    begin
+        if not Request.Get('operation', Token) then
+            exit(true);
+        exit(Token.AsValue().AsText() = 'Create');
+    end;
+
     local procedure WriteProject(Request: JsonObject; ProjectNo: Code[20]; CreateNew: Boolean)
     var
         Project: Record Job;
@@ -117,7 +126,7 @@ codeunit 10078499 "Projects Write ori"
             foreach Child in Token.AsArray() do begin
                 TaskRequest := Child.AsObject();
                 TaskNo := CopyStr(TaskRequest.GetText('taskNo'), 1, MaxStrLen(TaskNo));
-                WriteTask(TaskRequest, ProjectNo, TaskNo, true);
+                WriteTask(TaskRequest, ProjectNo, TaskNo, IsNestedCreate(TaskRequest));
             end;
     end;
 
@@ -144,7 +153,10 @@ codeunit 10078499 "Projects Write ori"
         if Request.Get('planningLines', Token) then
             foreach Child in Token.AsArray() do begin
                 PlanningRequest := Child.AsObject();
-                WritePlanningLine(PlanningRequest, ProjectNo, TaskNo, PlanningRequest.GetInteger('lineNo'), "Message Type ori"::"Projects.PlanningLine.Create");
+                if IsNestedCreate(PlanningRequest) then
+                    WritePlanningLine(PlanningRequest, ProjectNo, TaskNo, PlanningRequest.GetInteger('lineNo'), "Message Type ori"::"Projects.PlanningLine.Create")
+                else
+                    WritePlanningLine(PlanningRequest, ProjectNo, TaskNo, PlanningRequest.GetInteger('lineNo'), "Message Type ori"::"Projects.PlanningLine.Update");
             end;
     end;
 

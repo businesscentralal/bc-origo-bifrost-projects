@@ -58,6 +58,7 @@ codeunit 97102 "Projects Test Library ori"
         TempArgument.ID := CreateGuid();
         TempArgument.Type := MessageType;
         TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.Insert(true);
         TempArgument.SetRequestJson(Request);
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();

@@ -12,9 +12,9 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | Type | Data | Result |
 | --- | --- | --- |
 | `Projects.Project.Create` | `projectNo`, optional fields, `tasks[]` | Creates a project and optional nested tasks/planning lines atomically. |
-| `Projects.Project.Update` | `projectNo`, changed fields, optional new `tasks[]` | Updates supplied fields and creates supplied nested records. |
+| `Projects.Project.Update` | `projectNo`, changed fields, optional `tasks[]` | Updates supplied fields; nested records explicitly create or update. |
 | `Projects.Task.Create` | `projectNo`, `taskNo`, fields, `planningLines[]` | Creates a task and optional planning lines. |
-| `Projects.Task.Update` | `projectNo`, `taskNo`, changed fields, optional new `planningLines[]` | Updates a task; preserves omitted fields. |
+| `Projects.Task.Update` | `projectNo`, `taskNo`, changed fields, optional `planningLines[]` | Updates a task; preserves omitted fields. |
 | `Projects.PlanningLine.Create` | `projectNo`, `taskNo`, positive `lineNo`, fields | Creates a native resource, item, G/L account or text planning line. |
 | `Projects.PlanningLine.Update` | `projectNo`, `taskNo`, `lineNo`, changed fields | Updates supplied native fields. |
 | `Projects.PlanningLine.Delete` | `projectNo`, `taskNo`, `lineNo` | Deletes through native BC checks. |

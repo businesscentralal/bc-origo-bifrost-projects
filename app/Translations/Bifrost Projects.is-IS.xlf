@@ -34,9 +34,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Create Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 759381675 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Create Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1663075262 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -52,9 +52,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Create Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1663075262 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Create Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3087127345 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -70,9 +70,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Delete Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3087127345 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Delete Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3680531121 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -88,9 +88,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Update Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3680531121 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2908891376 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -106,9 +106,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Task Create Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2908891376 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Task Create Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3692095307 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -124,9 +124,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Task Update Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3692095307 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Task Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 529400816 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -142,9 +142,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Update Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 529400816 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
+          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
+          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 30800967 - Method 1513833081 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">

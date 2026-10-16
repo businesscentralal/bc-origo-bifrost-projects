@@ -243,4 +243,93 @@ codeunit 97101 "Projects Write Tests ori"
         Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Update", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Null identifier must be a format error');
     end;
+    [Test]
+    procedure Scenario_AC01_NestedUpdate_PreservesOtherFields()
+    var
+        Task: Record "Job Task";
+        PlanningLine: Record "Job Planning Line";
+        Request: JsonObject;
+        TaskRequest: JsonObject;
+        PlanRequest: JsonObject;
+        UpdateRequest: JsonObject;
+        Tasks: JsonArray;
+        PlanningLines: JsonArray;
+    begin
+        // Story #2, AC01 | Time: no planning date for text line | Risk: None
+        Request := Library.NewProjectRequest();
+        PlanRequest.Add('lineNo', 10000);
+        PlanRequest.Add('type', 'Text');
+        PlanRequest.Add('description', 'X Original plan');
+        PlanningLines.Add(PlanRequest);
+        TaskRequest.Add('taskNo', 'X100');
+        TaskRequest.Add('description', 'X Original task');
+        TaskRequest.Add('planningLines', PlanningLines);
+        Tasks.Add(TaskRequest);
+        Request.Add('tasks', Tasks);
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
+        PlanRequest.Add('operation', 'Update');
+        PlanRequest.Replace('description', 'X Updated plan');
+        Clear(PlanningLines);
+        PlanningLines.Add(PlanRequest);
+        TaskRequest.Add('operation', 'Update');
+        TaskRequest.Replace('planningLines', PlanningLines);
+        Clear(Tasks);
+        Tasks.Add(TaskRequest);
+        UpdateRequest.Add('projectNo', Request.GetText('projectNo'));
+        UpdateRequest.Add('tasks', Tasks);
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Update", UpdateRequest), 'Success');
+        Task.Get(Request.GetText('projectNo'), 'X100');
+        PlanningLine.Get(Task."Job No.", Task."Job Task No.", 10000);
+        Assert.AreEqual('X Original task', Task.Description, 'Omitted change must preserve task description');
+        Assert.AreEqual('X Updated plan', PlanningLine.Description, 'Explicit nested update must persist');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_WrongTasksShape_ReturnsFormatError()
+    var
+        Request: JsonObject;
+        TasksObject: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #2, AC01 | Time: no date dependency | Risk: root data arrays require shipping queue verification
+        Request := Library.NewProjectRequest();
+        TasksObject.Add('taskNo', 'X100');
+        Request.Add('tasks', TasksObject);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request);
+        Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'An object where tasks[] is required must fail before writing');
+        Assert.AreEqual('tasks', Response.GetText('parameter'), 'Error must identify the payload key');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_InvalidDate_ReturnsFormatError()
+    var
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #2, AC01 | Time: fixed invalid ISO date; Today ignored | Risk: None
+        Library.Initialize();
+        Request.Add('projectNo', 'XDOESNOTEXIST');
+        Request.Add('startingDate', '2026-02-30');
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Update", Request);
+        Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Impossible dates must fail before record lookup');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_FractionalAndZeroLine_RejectBeforeLookup()
+    var
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #2, AC01 | Time: no date dependency | Risk: None
+        Library.Initialize();
+        Request.Add('projectNo', 'XDOESNOTEXIST');
+        Request.Add('taskNo', 'X100');
+        Request.Add('lineNo', 1.5);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", Request);
+        Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Fractional primary key must fail validation');
+        Request.Replace('lineNo', 0);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", Request);
+        Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Zero planning line number must fail validation');
+    end;
+
 }

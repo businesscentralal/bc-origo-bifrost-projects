@@ -33,8 +33,9 @@ Create operations fail if the key already exists; they do not silently update it
 - Planning line deletion uses only `projectNo`, `taskNo`, `lineNo`.
 
 Nested tasks inherit their project number; nested planning lines inherit both
-parent keys. They are **new records**, including when supplied to an update call.
-An existing nested key produces a native error and rolls back the entire operation.
+parent keys. Nested `operation` defaults to `Create`. Use `operation: "Update"` to
+change an existing nested task or planning line atomically with the parent. A missing
+update key or duplicate create key produces a native error and rolls back the entire operation.
 BC validates task totaling/indentation and resource, item and G/L planning fields.
 Normal BC prerequisites (including a bill-to customer for tasks) still apply.
 

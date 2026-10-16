@@ -145,7 +145,7 @@ codeunit 10078496 "Proj. Plan Delete Impl ori" implements "Msg Interface ori", "
     /// <summary>Documents nested write behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     var
-        NotesLbl: Label 'Only supplied fields change. Nested tasks and planning lines are created with the project or task; an existing nested key is an error. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=Aðeins innsendar upplýsingar breytast. Innfelldir verkþættir og áætlunarlínur eru stofnuð með verkefni eða verkþætti; fyrirliggjandi lykill veldur villu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
+        NotesLbl: Label 'Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
     begin
         Notes := NotesLbl;
         exit(true);

@@ -14,6 +14,8 @@ codeunit 10078489 "Projects Contract ori"
         ContractMgt: Codeunit "Msg Contract Mgt ori";
         Entry: JsonObject;
     begin
+        if Nested then
+            Result.Add(DecorateParameter(ContractMgt.Parameter('operation', 'string', false, 'Create by default; Update explicitly targets an existing nested record.'), 'string', 0, 'Create,Update'));
         if not Nested then
             Result.Add(DecorateParameter(ContractMgt.Parameter('projectNo', 'string', true, ''), 'string', 20, ''));
         case Kind of

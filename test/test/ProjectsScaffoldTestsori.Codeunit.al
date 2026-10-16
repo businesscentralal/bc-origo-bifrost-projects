@@ -45,6 +45,9 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Setup.Get();
         Setup.Enabled := false;
         Setup.Modify(true);
+        TempArgument.Type := "Message Type ori"::"Projects.Project.Create";
+        TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.Insert(true);
         Impl := "Message Type ori"::"Projects.Project.Create";
         Assert.IsFalse(Impl.IsEnabled(), 'Disabled type should not be advertised as enabled');
         Impl.ExecuteBifrostTask(TempArgument);
@@ -98,7 +101,8 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if Name.StartsWith('Projects.') then begin
+            if (Ordinals.Get(Names.IndexOf(Name)) >= 10078485) and (Ordinals.Get(Names.IndexOf(Name)) <= 10078584) then begin
+                Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
                 Impl := MessageType;
                 Discovery := MessageType;
@@ -130,7 +134,8 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if Name.StartsWith('Projects.') then begin
+            if (Ordinals.Get(Names.IndexOf(Name)) >= 10078485) and (Ordinals.Get(Names.IndexOf(Name)) <= 10078584) then begin
+                Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 Clear(Contract);
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
                 Assert.IsTrue(ContractMgt.GetContract(MessageType, Contract), 'Contract missing for ' + Name);
