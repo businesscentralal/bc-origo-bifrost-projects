@@ -125,6 +125,7 @@ codeunit 97106 "Projects WIP Tests ori"
     end;
 
     [Test]
+    [HandlerFunctions('DeclineGlobalDimensionFilterUpdate')]
     procedure Scenario_AC01_NonzeroUsage_CalculatesEconomicWIP()
     var
         Request: JsonObject;
@@ -145,6 +146,7 @@ codeunit 97106 "Projects WIP Tests ori"
     end;
 
     [Test]
+    [HandlerFunctions('DeclineGlobalDimensionFilterUpdate')]
     procedure Scenario_AC01_CalculatedWIP_PostsNativeGLEntries()
     var
         GLEntry: Record "G/L Entry";
@@ -162,6 +164,15 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(Entries.GetObject(0).GetInteger('glEntryNo') > 0, 'WIP references a real G/L entry');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.IsTrue(GLEntry.Count() > 0, 'Native posting must create real financial entries');
+    end;
+
+    [ConfirmHandler]
+    procedure DeclineGlobalDimensionFilterUpdate(Question: Text[1024]; var Reply: Boolean)
+    begin
+        Assert.IsTrue(Question.Contains('Allowed Values Filter'), 'Only native dimension filter-update confirmation is expected');
+        Assert.IsTrue(Question.Contains('dimension value X'), 'Only the unique owned dimension value is involved');
+        // The fixture creates project-specific defaults; never broaden global template filters.
+        Reply := false;
     end;
 
     local procedure SeedEntries(ProjectNo: Code[20]; Amount: Decimal)
