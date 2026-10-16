@@ -1,0 +1,56 @@
+{
+  "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+  "name": "Bifrost Projects",
+  "publisher": "Origo",
+  "version": "28.1.0.0",
+  "brief": "Bifrost Projects - project lifecycle message types",
+  "description": "Bifrost Projects: project lifecycle, tasks, planning lines, WIP, budget vs actual, invoicing and project query message types on top of Bifrost Foundation.",
+  "url": "https://www.origo.is/",
+  "help": "https://businesscentralal.github.io/bifrost/en-us/projects/",
+  "privacyStatement": "https://businesscentralal.github.io/bifrost/en-us/foundation/privacy/",
+  "EULA": "https://businesscentralal.github.io/bifrost/en-us/foundation/eula/",
+  "logo": "assets/Logo250x250.png",
+  "contextSensitiveHelpUrl": "https://businesscentralal.github.io/bifrost/{0}/help/projects/",
+  "supportedLocales": [
+    "en-US",
+    "is-IS"
+  ],
+  "dependencies": [
+    {
+      "id": "7505e808-6e52-4b96-a328-82573391297a",
+      "name": "Bifrost Foundation",
+      "publisher": "Origo",
+      "version": "28.0.5.0"
+    }
+  ],
+  "screenshots": [],
+  "application": "28.0.0.0",
+  "platform": "28.0.0.0",
+  "internalsVisibleTo": [
+    {
+      "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+      "name": "Bifrost Projects - Tests",
+      "publisher": "Origo"
+    }
+  ],
+  "idRanges": [
+    {
+      "from": 10078485,
+      "to": 10078584
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "target": "Cloud",
+  "features": [
+    "NoImplicitWith",
+    "TranslationFile"
+  ],
+  "runtime": "17.0",
+  "suppressWarnings": [
+    "AS0081"
+  ]
+}
