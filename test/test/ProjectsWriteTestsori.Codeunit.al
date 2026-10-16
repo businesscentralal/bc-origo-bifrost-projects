@@ -351,4 +351,41 @@ codeunit 97101 "Projects Write Tests ori"
         Assert.AreEqual(Request.GetText('billToCustomerNo'), Project."Bill-to Customer No.", 'Uncommitted caller data must remain visible');
     end;
 
+    [Test]
+    procedure Scenario_AC01_ResourceLine_ValidatesQuantityCostAndPrice()
+    begin
+        // Story #2, AC01 | Time: fixed2026-10-16 planning date | Risk: all resource/UOM/posting groups are self-created
+        AssertPlanningType('Resource', "Job Planning Line Type"::Resource);
+    end;
+
+    [Test]
+    procedure Scenario_AC01_ItemLine_ValidatesQuantityCostAndPrice()
+    begin
+        // Story #2, AC01 | Time: fixed2026-10-16 planning date | Risk: all item/UOM/posting groups are self-created
+        AssertPlanningType('Item', "Job Planning Line Type"::Item);
+    end;
+
+    [Test]
+    procedure Scenario_AC01_GLLine_ValidatesQuantityCostAndPrice()
+    begin
+        // Story #2, AC01 | Time: fixed2026-10-16 planning date | Risk: all accounts/posting groups are self-created; nothing posts
+        AssertPlanningType('G/L Account', "Job Planning Line Type"::"G/L Account");
+    end;
+
+    local procedure AssertPlanningType(Kind: Text; ExpectedType: Enum "Job Planning Line Type")
+    var
+        PlanningLine: Record "Job Planning Line";
+        Request: JsonObject;
+    begin
+        Request := Library.NewPlanningRequest(Kind);
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Request), 'Success');
+        PlanningLine.Get(Request.GetText('projectNo'), 'X100', 10000);
+        Assert.AreEqual(ExpectedType, PlanningLine.Type, 'Native line type must match the request');
+        Assert.AreEqual(3, PlanningLine.Quantity, 'Native quantity must persist');
+        Assert.AreEqual(7, PlanningLine."Unit Cost", 'Native cost must validate');
+        Assert.AreEqual(11, PlanningLine."Unit Price", 'Native price must validate');
+        Assert.AreEqual(21, PlanningLine."Total Cost", 'Native total cost must recalculate');
+        Assert.AreEqual(33, PlanningLine."Total Price", 'Native total price must recalculate');
+    end;
+
 }

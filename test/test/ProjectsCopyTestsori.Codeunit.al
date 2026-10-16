@@ -7,6 +7,7 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Project.Setup;
 using Microsoft.Sales.Customer;
 using System.TestLibraries.Utilities;
+using Microsoft.Finance.Dimension;
 
 /// <summary>Issue #3 copy component tests use native Copy Job with isolated source and target records.</summary>
 codeunit 97104 "Projects Copy Tests ori"
@@ -134,4 +135,65 @@ codeunit 97104 "Projects Copy Tests ori"
     begin
         exit(CopyStr('X' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, 20));
     end;
+    [Test]
+    procedure Scenario_AC01_CopyPlanOptions_FiltersQuantityAndDimensions()
+    var
+        PlanningLine: Record "Job Planning Line";
+        Dimension: Record Dimension;
+        DimensionValue: Record "Dimension Value";
+        DefaultDimension: Record "Default Dimension";
+        PlanRequest: JsonObject;
+        CopyRequest: JsonObject;
+        TargetNo: Code[20];
+        DimensionCode: Code[20];
+    begin
+        // Story #3, AC01 | Time: fixed2026-10-16 planning date | Risk: all business fixtures/dimensions self-created; no ledger posts
+        PlanRequest := Library.NewPlanningRequest('Resource');
+        PlanRequest.Replace('lineType', 'Budget');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", PlanRequest), 'Success');
+        PlanRequest.Replace('lineNo', 20000);
+        PlanRequest.Replace('lineType', 'Billable');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", PlanRequest), 'Success');
+        DimensionCode := NewTargetNo();
+        Dimension.Init();
+        Dimension.Code := DimensionCode;
+        Dimension.Name := 'X Projects copy dimension';
+        Dimension.Insert(true);
+        DimensionValue.Init();
+        DimensionValue."Dimension Code" := DimensionCode;
+        DimensionValue.Code := 'XVALUE';
+        DimensionValue.Name := 'X Projects copy value';
+        DimensionValue.Insert(true);
+        DefaultDimension.Init();
+        DefaultDimension."Table ID" := Database::Job;
+        DefaultDimension."No." := CopyStr(PlanRequest.GetText('projectNo'), 1, 20);
+        DefaultDimension."Dimension Code" := DimensionCode;
+        DefaultDimension."Dimension Value Code" := DimensionValue.Code;
+        DefaultDimension.Insert(true);
+        TargetNo := NewTargetNo();
+        CopyRequest.Add('projectNo', PlanRequest.GetText('projectNo'));
+        CopyRequest.Add('targetProjectNo', TargetNo);
+        CopyRequest.Add('planningLineType', 'Budget');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Copy", CopyRequest), 'Success');
+        PlanningLine.SetRange("Job No.", TargetNo);
+        Assert.AreEqual(1, PlanningLine.Count(), 'Budget filter must exclude billable planning lines');
+        PlanningLine.FindFirst();
+        Assert.AreEqual(PlanningLine."Line Type"::Budget, PlanningLine."Line Type", 'Budget line must be copied');
+        Assert.AreEqual(3, PlanningLine.Quantity, 'Default quantity option must copy quantity');
+        Assert.AreEqual(11, PlanningLine."Unit Price", 'Default price option must copy source price');
+        Assert.IsTrue(DefaultDimension.Get(Database::Job, TargetNo, DimensionCode), 'Default dimensions option must copy the owned dimension');
+        TargetNo := NewTargetNo();
+        CopyRequest.Replace('targetProjectNo', TargetNo);
+        CopyRequest.Replace('planningLineType', 'Billable');
+        CopyRequest.Add('copyQuantity', false);
+        CopyRequest.Add('copyDimensions', false);
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Copy", CopyRequest), 'Success');
+        PlanningLine.SetRange("Job No.", TargetNo);
+        Assert.AreEqual(1, PlanningLine.Count(), 'Billable filter must exclude budget planning lines');
+        PlanningLine.FindFirst();
+        Assert.AreEqual(PlanningLine."Line Type"::Billable, PlanningLine."Line Type", 'Billable line must be copied');
+        Assert.AreEqual(0, PlanningLine.Quantity, 'Disabled quantity option must clear copied quantity');
+        Assert.IsFalse(DefaultDimension.Get(Database::Job, TargetNo, DimensionCode), 'Disabled dimensions option must not copy the owned dimension');
+    end;
+
 }
