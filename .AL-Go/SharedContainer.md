@@ -5,8 +5,8 @@ CI/CD and pull request builds create one COSMO Alpaca Default container per proj
 Test must reuse the physical container ID returned by Default.
 
 Default retains its release artifact, signing settings and previous-release upgrade checks.
-Test recompiles **Bifrost Inventory** (`02701c94-c962-4825-92c7-ef9f70311a2b`) with the internals grant for
-its test extension (`a886b2cb-7da0-4784-8163-42956dbdd5ec`), republishes that compiled app before the test
+Test recompiles **Bifrost Projects** (`c847bab7-2525-4ff5-93c4-15512b3be1e5`) with the internals grant for
+its test extension (`f8c2c4ed-28c1-4a34-af45-61d25968298b`), republishes that compiled app before the test
 extension, and skips previous-release upgrade deployment. Dependency app IDs and versions
 remain unchanged. Final cleanup runs after both phases, including failure and cancellation.
 
