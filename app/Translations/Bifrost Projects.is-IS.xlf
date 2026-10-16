@@ -21,6 +21,24 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Primary Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2223901892 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Copies a project with a task range and budget or billable planning lines.</source>
+          <target>Afritar verkefni með bili verkþátta og áætlunar- eða reikningsfærslulínum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Afritar verkefni með bili verkþátta og áætlunar- eða reikningsfærslulínum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Copy Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2223901892 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, task, planning line, copy</source>
+          <target>verkefni, verk, verkþáttur, áætlunarlína, afrita</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verkþáttur, áætlunarlína, afrita</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Copy Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2223901892 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Uses Business Central Copy Job and its native options. The target project must be new. No time sheets or postings are created. A native failure rolls back the whole copy.</source>
+          <target>Notar innbyggða afritun verkefna og valkosti hennar. Markverkefnið verður að vera nýtt. Engar tímaskýrslur eða bókanir eru stofnaðar. Innbyggð villa afturkallar alla afritunina.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notar innbyggða afritun verkefna og valkosti hennar. Markverkefnið verður að vera nýtt. Engar tímaskýrslur eða bókanir eru stofnaðar. Innbyggð villa afturkallar alla afritunina.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Copy Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 759381675 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Creates project headers with optional tasks and planning lines.</source>
           <target>Býr til verkefnum með valfrjálsum verkþáttum og áætlunarlínum.</target>
@@ -92,6 +110,24 @@
           <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Update Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 146361251 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Changes project status or blocking through native Business Central validation.</source>
+          <target>Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Status Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 146361251 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, task, planning line, status, block, unblock</source>
+          <target>verkefni, verk, verkþáttur, áætlunarlína, staða, loka, opna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verkþáttur, áætlunarlína, staða, loka, opna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Status Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 146361251 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send status, blocked, or both. Native status validation handles completion and its WIP requirements. None unblocks a project. Errors roll back both changes.</source>
+          <target>Sendu status, blocked eða hvort tveggja. Innbyggð stöðusannprófun sér um lokun og kröfur um verk í vinnslu. None opnar lokað verkefni. Villur afturkalla báðar breytingar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu status, blocked eða hvort tveggja. Innbyggð stöðusannprófun sér um lokun og kröfur um verk í vinnslu. None opnar lokað verkefni. Villur afturkalla báðar breytingar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Status Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2908891376 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Creates project tasks with optional planning lines.</source>
@@ -177,11 +213,23 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlegt viðfang verkefnis vantar eða er tómt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Input ori - Method AddMissing - NamedType MissingErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 4253862177 - Method 1797619284 - NamedType 2239992694" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The first task number must not exceed the last task number.</source>
+          <target>Fyrsta verkþáttanúmerið má ekki vera hærra en það síðasta.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyrsta verkþáttanúmerið má ekki vera hærra en það síðasta.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Write ori - Method CopyProject - NamedType RangeErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 4253862177 - Method 1561766673 - NamedType 3177803720" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects data must be a JSON object.</source>
           <target>Verkefnisgögn verða að vera JSON-hlutur.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefnisgögn verða að vera JSON-hlutur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Write ori - Method Execute - NamedType InvalidErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4253862177 - Method 1561766673 - NamedType 2566309009" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send status or blocked to change the project state.</source>
+          <target>Sendu status eða blocked til að breyta stöðu verkefnis.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu status eða blocked til að breyta stöðu verkefnis.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Write ori - Method Execute - NamedType MissingChangeErr</note>
         </trans-unit>
         <trans-unit id="Codeunit 4253862177 - Method 1561766673 - NamedType 2547116611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Correct the invalid Projects parameters.</source>

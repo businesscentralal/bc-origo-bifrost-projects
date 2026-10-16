@@ -102,6 +102,9 @@ codeunit 10078497 "Projects Input ori"
                             AddBad(Argument, Path);
                     end;
                 end;
+            'boolean':
+                if not (Raw in ['true', 'false']) then
+                    AddBad(Argument, Path);
             'integer', 'number':
                 begin
                     if Raw.StartsWith('"') or not Evaluate(NumberValue, Raw, 9) then begin

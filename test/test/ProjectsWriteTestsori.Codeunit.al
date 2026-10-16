@@ -332,4 +332,23 @@ codeunit 97101 "Projects Write Tests ori"
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Zero planning line number must fail validation');
     end;
 
+    [Test]
+    [CommitBehavior(CommitBehavior::Error)]
+    procedure Scenario_AC01_OmitCommit_UsesCallerTransaction()
+    var
+        Project: Record Job;
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #2, AC01 | Time: native Today creation fields only | Risk: no explicit or implicit process commit allowed
+        // [GIVEN] A self-created customer still inside this test's write transaction.
+        Request := Library.NewProjectRequest();
+        // [WHEN] The native process is run with the caller's Omit Commit flag.
+        Response := Library.ExecuteNativeInTransaction("Message Type ori"::"Projects.Project.Create", Request);
+        // [THEN] The process can see uncommitted caller data and succeeds without committing it.
+        Library.AssertStatus(Response, 'Success');
+        Project.Get(Request.GetText('projectNo'));
+        Assert.AreEqual(Request.GetText('billToCustomerNo'), Project."Bill-to Customer No.", 'Uncommitted caller data must remain visible');
+    end;
+
 }

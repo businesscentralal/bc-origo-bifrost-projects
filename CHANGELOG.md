@@ -9,8 +9,13 @@
   10078489–10078499). Use native field/table triggers and atomic rollback on failure.
 - Teach the inherited permission coverage guard to resolve feature extensions of known
   Foundation roles, retaining source-table checks and adding negative self-tests.
+- Add native Copy Job options and validated status/blocking messages (#3/#4;
+  codeunits 10078500–10078501, enum values 10078492–10078493; tests 97104–97105).
+- Preserve temporary test argument blobs before public Foundation reads; scope
+  catalogue tests to this app's assigned enum range. Support explicit nested
+  Update operations and inherit planning-line task keys from their parent.
 - Add scaffold, permission, input-boundary and native write component tests
-  (test codeunits 97100–97103). Runtime/UI/MCP and independent verification remain pending.
+  (test codeunits 97100–97105). Runtime/UI/MCP and independent verification remain pending.
 
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 10078485..10078584, tests 97100..97199.

@@ -50,7 +50,9 @@ nested arrays return `InvalidParameterFormat`; missing/empty identifiers return
 `MissingParameter`. Multiple problems return `MultipleErrors` with every parameter
 path. Native validation and duplicate/missing records return `BusinessCentralError`.
 Permission checks return `PermissionDenied` before licensing or writes. All native
-writes use validation and table triggers in one rollback boundary.
+writes use validation and table triggers in one rollback boundary. Foundation's
+`Omit Commit` flag preserves the caller transaction: errors then propagate to the
+outer dispatcher rather than forcing a nested commit.
 
 ## Example
 
@@ -69,8 +71,37 @@ After creating your own customer `XCUSTOMER`, send:
 }
 ```
 
+## Copy a project
+
+```json
+{"type":"Projects.Project.Copy","version":"1.0","data":{"projectNo":"XSOURCE","targetProjectNo":"XTARGET","fromTaskNo":"X100","toTaskNo":"X900","copyQuantity":true,"copyPrices":true,"copyDimensions":true,"planningLineType":"Both"}}
+```
+
+`projectNo` identifies the source. `targetProjectNo` is a new project number (20
+characters maximum). Optional `description`, `sellToCustomerNo` and
+`billToCustomerNo` override copied header fields. Both task-range endpoints are
+inclusive and may be omitted. `planningLineType` is `Both` (default), `Budget` or
+`Billable`. Quantity, price and dimension flags default to true and must be JSON
+Booleans. Native Copy Job creates the target in Planning status and applies the
+selected options. Success returns the new `projectNo` and `sourceProjectNo`.
+An existing target or a native copy error rolls back the whole copy.
+
+## Change status or blocking
+
+```json
+{"type":"Projects.Project.SetStatus","version":"1.0","data":{"projectNo":"XPROJECT","status":"Open","blocked":"None"}}
+```
+
+Send `status`, `blocked`, or both. Status accepts `Planning`, `Quote`, `Open` or
+`Completed`. Blocking accepts `None` (unblock), `Posting` or `All`. Omitted state
+fields are preserved. A call with neither state field returns `MissingParameter`.
+The operation uses BC field validation, including native completion/WIP handling;
+it does not assign status directly or bypass WIP requirements. Success returns
+`status: "Success"` and `projectNo`. Native validation errors roll back both changes.
+
 ## Pending scope
 
-Project copy, status, WIP, statistics, queries and usage link remain in issues
-#3–#8. Invoice helpers and other medium/low gaps stay in tracking #9 pending
+WIP, statistics and usage link remain in issues #5, #6 and #8. Issue #7 was
+closed as not planned, with Gunnar's recorded skip comment; no query implementation
+is claimed. Invoice helpers and other medium/low gaps stay in tracking #9 pending
 Gunnar's decision. No acceptance or delivery is implied by this contract text.

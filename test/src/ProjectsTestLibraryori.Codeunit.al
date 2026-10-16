@@ -70,6 +70,23 @@ codeunit 97102 "Projects Test Library ori"
         Dispatch.Execute(TempArgument, Kind, Operation);
         Response := TempArgument.GetResponseJson();
     end;
+    /// <summary>Executes the native component inside the caller's transaction without a Commit.</summary>
+    procedure ExecuteNativeInTransaction(MessageType: Enum "Message Type ori"; Request: JsonObject) Response: JsonObject
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Dispatch: Codeunit "Projects Write ori";
+    begin
+        TempArgument.Init();
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := MessageType;
+        TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument."Omit Commit" := true;
+        TempArgument.Insert(true);
+        TempArgument.SetRequestJson(Request);
+        Dispatch.Execute(TempArgument, 'Project', 'Create');
+        Response := TempArgument.GetResponseJson();
+    end;
+
     /// <summary>Requires the expected status from the actual JSON response.</summary>
     procedure AssertStatus(Response: JsonObject; Expected: Text)
     var

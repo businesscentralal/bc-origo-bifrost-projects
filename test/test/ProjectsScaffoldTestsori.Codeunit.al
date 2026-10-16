@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_SevenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_NineTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -116,7 +116,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(7, Count, 'Catalogue must contain exactly the seven #2 write types at this phase');
+        Assert.AreEqual(9, Count, 'Catalogue must contain exactly the nine #2-#4 lifecycle types');
     end;
 
     [Test]
@@ -143,4 +143,21 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Assert.IsTrue(Parameters.AsArray().Count() > 0, 'Project identifier must be declared');
             end;
     end;
+    [Test]
+    procedure Scenario_AC01_RegistryEvent_ExposesOwnSetupPage()
+    var
+        TempApps: Record "Registered App ori" temporary;
+        Registry: Codeunit "App Registry ori";
+        ProjectsAppId: Guid;
+    begin
+        // Story #1, AC01 | Time: no date dependency | Risk: installed app registry only; no license or backend changes
+        // [WHEN] Foundation builds the registry through its actual subscriber event.
+        Registry.GetApps(TempApps);
+        Evaluate(ProjectsAppId, 'c847bab7-2525-4ff5-93c4-15512b3be1e5');
+        // [THEN] The Projects module resolves to its own setup page.
+        Assert.IsTrue(TempApps.Get(ProjectsAppId), 'Projects must register with Foundation');
+        Assert.AreEqual('Bifrost Projects', TempApps."App Name", 'Registry must expose this module name');
+        Assert.AreEqual(Page::"Projects Setup ori", TempApps."Setup Page Id", 'Registry must expose the owned setup page');
+    end;
+
 }

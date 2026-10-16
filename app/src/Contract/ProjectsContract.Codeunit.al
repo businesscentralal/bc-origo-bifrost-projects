@@ -18,6 +18,24 @@ codeunit 10078489 "Projects Contract ori"
             Result.Add(DecorateParameter(ContractMgt.Parameter('operation', 'string', false, 'Create by default; Update explicitly targets an existing nested record.'), 'string', 0, 'Create,Update'));
         if not Nested then
             Result.Add(DecorateParameter(ContractMgt.Parameter('projectNo', 'string', true, ''), 'string', 20, ''));
+        if Operation = 'Copy' then begin
+            Result.Add(DecorateParameter(ContractMgt.Parameter('targetProjectNo', 'string', true, 'New project number; must not exist.'), 'string', 20, ''));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'New description; omitted keeps the source description.'), 'string', 100, ''));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('billToCustomerNo', 'string', false, 'Optional replacement bill-to customer.'), 'string', 20, ''));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('sellToCustomerNo', 'string', false, 'Optional replacement sell-to customer.'), 'string', 20, ''));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('fromTaskNo', 'string', false, 'First included task number.'), 'string', 20, ''));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('toTaskNo', 'string', false, 'Last included task number.'), 'string', 20, ''));
+            Result.Add(ContractMgt.Parameter('copyQuantity', 'boolean', false, 'Copy quantities; default true.'));
+            Result.Add(ContractMgt.Parameter('copyPrices', 'boolean', false, 'Copy prices; default true.'));
+            Result.Add(ContractMgt.Parameter('copyDimensions', 'boolean', false, 'Copy dimensions; default true.'));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('planningLineType', 'string', false, 'Both by default, or only Budget or Billable planning lines.'), 'string', 0, 'Both,Budget,Billable'));
+            exit;
+        end;
+        if Operation = 'SetStatus' then begin
+            Result.Add(DecorateParameter(ContractMgt.Parameter('status', 'string', false, 'Native project status; send status or blocked.'), 'string', 0, 'Planning,Quote,Open,Completed'));
+            Result.Add(DecorateParameter(ContractMgt.Parameter('blocked', 'string', false, 'None unblocks; Posting or All applies the native block.'), 'string', 0, 'None,Posting,All'));
+            exit;
+        end;
         case Kind of
             'Project':
                     if Operation <> 'Delete' then begin
@@ -46,7 +64,8 @@ codeunit 10078489 "Projects Contract ori"
                 end;
             'PlanningLine':
                 begin
-                    Result.Add(DecorateParameter(ContractMgt.Parameter('taskNo', 'string', true, ''), 'string', 20, ''));
+                    if not Nested then
+                        Result.Add(DecorateParameter(ContractMgt.Parameter('taskNo', 'string', true, ''), 'string', 20, ''));
                     Result.Add(DecorateParameter(ContractMgt.Parameter('lineNo', 'integer', true, ''), 'integer', 0, ''));
                     if Operation <> 'Delete' then begin
                         Result.Add(DecorateParameter(ContractMgt.Parameter('lineType', 'string', false, ''), 'string', 0, 'Budget,Billable,Both Budget and Billable'));
