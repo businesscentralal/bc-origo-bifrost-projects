@@ -169,9 +169,13 @@ codeunit 97106 "Projects WIP Tests ori"
     [ConfirmHandler]
     procedure DeclineGlobalDimensionFilterUpdate(Question: Text[1024]; var Reply: Boolean)
     begin
-        Assert.IsTrue(Question.Contains('Allowed Values Filter'), 'Only native dimension filter-update confirmation is expected');
-        Assert.IsTrue(Question.Contains('dimension value X'), 'Only the unique owned dimension value is involved');
-        // The fixture creates project-specific defaults; never broaden global template filters.
+        if Question.Contains('Allowed Values Filter') then
+            Assert.IsTrue(Question.Contains('dimension value X'), 'Only the unique owned dimension value is involved: ' + Question)
+        else begin
+            Assert.IsTrue(Question.Contains('You have changed a dimension.'), 'Unexpected native confirmation: ' + Question);
+            Assert.IsTrue(Question.Contains('Do you want to update the lines?'), 'Unexpected native confirmation: ' + Question);
+        end;
+        // The fixture explicitly sets its own task dimensions; never broaden global filters or update unrelated lines.
         Reply := false;
     end;
 

@@ -307,12 +307,17 @@ codeunit 97102 "Projects Test Library ori"
                     OwnedDefault.Validate("Dimension Value Code", Value.Code);
                     OwnedDefault.Validate("Value Posting", Required."Value Posting");
                     OwnedDefault.Insert(true);
-                    TaskDimension.Init();
-                    TaskDimension.Validate("Job No.", ProjectNo);
-                    TaskDimension.Validate("Job Task No.", TaskNo);
-                    TaskDimension.Validate("Dimension Code", Required."Dimension Code");
-                    TaskDimension.Validate("Dimension Value Code", Value.Code);
-                    TaskDimension.Insert(true);
+                    if TaskDimension.Get(ProjectNo, TaskNo, Required."Dimension Code") then begin
+                        TaskDimension.Validate("Dimension Value Code", Value.Code);
+                        TaskDimension.Modify(true);
+                    end else begin
+                        TaskDimension.Init();
+                        TaskDimension.Validate("Job No.", ProjectNo);
+                        TaskDimension.Validate("Job Task No.", TaskNo);
+                        TaskDimension.Validate("Dimension Code", Required."Dimension Code");
+                        TaskDimension.Validate("Dimension Value Code", Value.Code);
+                        TaskDimension.Insert(true);
+                    end;
                 end;
             until Required.Next() = 0;
     end;
