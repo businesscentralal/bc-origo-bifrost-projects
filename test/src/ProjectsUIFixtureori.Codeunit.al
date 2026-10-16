@@ -2,6 +2,8 @@ namespace Origo.Bifrost.Projects.Test;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using Microsoft.Projects.Project.Job;
+using Microsoft.Projects.Project.Planning;
+using Microsoft.Projects.Project.Ledger;
 /// <summary>Explicit native-component Web Client fixture seeder, invoked only in the worker-owned verification container. This is not shipping licensing or MCP proof.</summary>
 codeunit 97110 "Projects UI Fixture ori"
 {
@@ -9,13 +11,17 @@ codeunit 97110 "Projects UI Fixture ori"
     trigger OnRun()
     var
         Project: Record Job;
+        PlanningLine: Record "Job Planning Line";
+        Ledger: Record "Job Ledger Entry";
         Library: Codeunit "Projects Test Library ori";
         Request: JsonObject;
         CopyRequest: JsonObject;
         StatusRequest: JsonObject;
         WIPRequest: JsonObject;
+        EntryNo: Integer;
         MasterNo: Code[20];
         Planning: JsonObject;
+        LinkRequest: JsonObject;
         Task: JsonObject;
         Tasks: JsonArray;
         Lines: JsonArray;
@@ -47,6 +53,36 @@ codeunit 97110 "Projects UI Fixture ori"
         StatusRequest.Add('projectNo', 'XW4-COPY-UI');
         StatusRequest.Add('status', 'Open');
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.SetStatus", StatusRequest), 'Success');
+        Project.Get('XW4-PROJECT-UI');
+        Project.Validate("Apply Usage Link", true);
+        Project.Modify(true);
+        PlanningLine.Get('XW4-PROJECT-UI', 'X100', 10000);
+        PlanningLine.Validate("Usage Link", true);
+        PlanningLine.Modify(true);
+        if Ledger.FindLast() then
+            EntryNo := Ledger."Entry No.";
+        Ledger.Init();
+        Ledger."Entry No." := EntryNo + 1;
+        Ledger."Job No." := 'XW4-PROJECT-UI';
+        Ledger."Job Task No." := 'X100';
+        Ledger."Entry Type" := Ledger."Entry Type"::Usage;
+        Ledger.Type := Ledger.Type::Resource;
+        Ledger."No." := PlanningLine."No.";
+        Ledger."Unit of Measure Code" := PlanningLine."Unit of Measure Code";
+        Ledger."Qty. per Unit of Measure" := 1;
+        Ledger.Quantity := 1;
+        Ledger."Quantity (Base)" := 1;
+        Ledger."Posting Date" := DMY2Date(16, 10, 2026);
+        Ledger."Total Cost" := 7;
+        Ledger."Total Cost (LCY)" := 7;
+        Ledger."Line Amount" := 14;
+        Ledger."Line Amount (LCY)" := 14;
+        Ledger.Insert(true);
+        LinkRequest.Add('projectNo', 'XW4-PROJECT-UI');
+        LinkRequest.Add('taskNo', 'X100');
+        LinkRequest.Add('entryNo', Ledger."Entry No.");
+        LinkRequest.Add('lineNo', 10000);
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Usage.Link", LinkRequest), 'Success');
         WIPRequest := Library.NewEconomicWIPRequest();
         Project.Get(WIPRequest.GetText('projectNo'));
         Project.Description := 'X Projects UI WIP';
