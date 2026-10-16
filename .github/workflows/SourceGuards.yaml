@@ -11,6 +11,8 @@ name: Source Guards
 # The Icelandic xlf check (tools/Test-IcelandicXlfInSync.ps1) needs a build and is run by hand before a PR.
 # NoClientCallstack and PermissionCoverage read app/src. Until that folder exists they pass as
 # not applicable. The checks run and gate as soon as app/src is present.
+# ValidatedTableView and IcelandicKeywordCounts likewise pass as not applicable while app/src
+# or any .al source is absent, and gate as soon as that source exists.
 
 on:
   pull_request:
@@ -55,9 +57,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Detect app source
+        id: appSource
+        shell: pwsh
+        run: |
+          $appSrc = Join-Path $env:GITHUB_WORKSPACE 'app/src'
+          $alCount = 0
+          if (Test-Path -LiteralPath $appSrc -PathType Container) {
+            $alCount = @(Get-ChildItem -LiteralPath $appSrc -Recurse -Filter '*.al' -File -ErrorAction SilentlyContinue).Count
+          }
+          $present = $alCount -gt 0
+          Write-Host "app/src present: $(Test-Path -LiteralPath $appSrc -PathType Container). AL files: $alCount."
+          Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "present=$($present.ToString().ToLowerInvariant())"
+
       - name: Every applied tableView is validated first
+        if: steps.appSource.outputs.present == 'true'
         shell: pwsh
         run: ./tools/Test-ValidatedTableView.ps1
+
+      - name: Not applicable without app source
+        if: steps.appSource.outputs.present != 'true'
+        shell: pwsh
+        run: Write-Host 'app/src or its .al source is absent. ValidatedTableView is not applicable until app code exists.'
 
 
   NoObsolete:
@@ -110,10 +131,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Detect app source
+        id: appSource
+        shell: pwsh
+        run: |
+          $app = Join-Path $env:GITHUB_WORKSPACE 'app'
+          $alCount = 0
+          if (Test-Path -LiteralPath $app) {
+            $alCount = @(Get-ChildItem -LiteralPath $app -Recurse -Filter '*.al' -File -ErrorAction SilentlyContinue).Count
+          }
+          $present = $alCount -gt 0
+          Write-Host "AL files under app/: $alCount."
+          Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "present=$($present.ToString().ToLowerInvariant())"
+
       - name: The guard checks itself
         shell: pwsh
         run: ./tools/Test-IcelandicKeywordCounts.ps1 -SelfTest
 
       - name: Every Icelandic keyword list is complete
+        if: steps.appSource.outputs.present == 'true'
         shell: pwsh
         run: ./tools/Test-IcelandicKeywordCounts.ps1
+
+      - name: Not applicable without app source
+        if: steps.appSource.outputs.present != 'true'
+        shell: pwsh
+        run: Write-Host 'app/src or any .al source is absent. IcelandicKeywordCounts is not applicable until app code exists.'
