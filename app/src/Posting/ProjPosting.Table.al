@@ -1,15 +1,15 @@
 namespace Origo.Bifrost.Projects;
 
 /// <summary>
-/// Permission token for BIFROST ProjPost ori.
+/// Permission token for the Projects Read/Full role extensions.
 /// No records are stored. WritePermission() on this table is the project posting gate
-/// for Projects.TransferOrder.Post and Projects.AssemblyOrder.Post.
+/// for Projects.WIP.Post. Projects Full grants write; Projects Read grants only read.
 /// </summary>
 table 10078506 "Proj. Posting ori"
 {
     Extensible = false;
     Access = Internal;
-    Caption = 'BIFROST ProjPost ori', Comment = 'is-IS=Bifröst bókun verkefna';
+    Caption = 'Projects Posting Rights', Comment = 'is-IS=Bifröst bókun verkefna';
     DataClassification = SystemMetadata;
 
     fields

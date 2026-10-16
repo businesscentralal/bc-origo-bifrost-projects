@@ -112,15 +112,18 @@ blocked-project and field validations. Success returns `projectNo`, `entries` an
 and completion state. Posted entries also include reversal state and G/L entry no.
 Get reads one project and does not change or post its entries.
 
-Current native coverage includes self-seeded read fixtures, an empty-project
-calculation baseline, required options and native missing-method validation.
-Nonzero economic WIP calculation and posting acceptance remain pending.
-`Projects.WIP.Post` is not registered; its supported posting-permission API is
-tracked in #18. Shipping queue acceptance remains blocked separately in #17.
+Native component coverage includes self-seeded read fixtures, an empty-project
+calculation baseline, nonzero economic calculation and native G/L posting fixtures,
+required options and native missing-method validation. Component tests are distinct
+from shipping queue, bilingual Web Client and independent acceptance.
+`Projects.WIP.Post` uses the Projects-owned gate mapped to the Read/Full role
+extensions under the #18 decision. Shipping queue acceptance remains blocked
+separately in #17.
 
 ## Pending scope
 
-WIP, statistics and usage link remain in issues #5, #6 and #8. Issue #7 was
+WIP, statistics and usage link are implemented for issues #5, #6 and #8; shipping
+acceptance and delivery remain pending. Issue #7 was
 closed as not planned, with Gunnar's recorded skip comment; no query implementation
 is claimed. Invoice helpers and other medium/low gaps stay in tracking #9 pending
 Gunnar's decision. No acceptance or delivery is implied by this contract text.
@@ -130,8 +133,8 @@ Gunnar's decision. No acceptance or delivery is implied by this contract text.
 `Projects.WIP.Post` takes the same `projectNo`, ISO `postingDate` and `documentNo`
 as Calculate. It invokes native BC WIP posting, retaining native checks and transaction
 rollback. New ledger entries retain the calculated WIP document number. The caller
-must explicitly hold `BIFROST ProjPost ori` as well as native business permissions;
-Foundation Read/Full never grants the posting token. The token table stores no data.
+must hold the Projects Full role extension via `BIFROST Full ori` as well as native
+business permissions. Projects Read grants no posting token write. The token table stores no data.
 
 `Projects.Statistics.Get` takes `projectNo` and returns `currency: "LCY"` and
 `statistics` with `budget`, `actual`, `billable`, `invoiced`. Each contains `resource`,

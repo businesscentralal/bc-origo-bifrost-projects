@@ -20,7 +20,7 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Usage.Get` | `projectNo`, `taskNo` | Native usage links and planning-line remaining quantities. |
 | `Projects.Usage.Link` | `projectNo`, `taskNo`, `entryNo`, `lineNo` or `createPlanningLine: true` | Applies usage through native BC or transfers usage to planning lines. |
 | `Projects.WIP.Get` | `projectNo` | Reads calculated and posted WIP entries. |
-| `Projects.WIP.Post` | `projectNo`, `postingDate`, `documentNo` | Posts calculated WIP through native BC and the separate `BIFROST ProjPost ori` gate. |
+| `Projects.WIP.Post` | `projectNo`, `postingDate`, `documentNo` | Posts calculated WIP through native BC and the Projects Full permission gate. |
 | `Projects.Statistics.Get` | `projectNo` | LCY budget/actual/billable/invoiced cost and price by resource/item/G/L and total. |
 | `Projects.BudgetVsActual.Get` | `projectNo`, optional exact `taskNo` | Project totals plus posting-task detail; total/heading tasks excluded. |
 | `Projects.WIP.Calculate` | `projectNo`, `postingDate`, `documentNo` | Runs native WIP calculation and returns entry state. |
@@ -30,7 +30,7 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 
 Calls use version `1.0` and a JSON object in `data`; `subject` is not used.
 All writes require the native BC table permissions in addition to the Foundation role.
-WIP posting also requires explicit `BIFROST ProjPost ori`; Foundation Full/Read do not grant that token.
+WIP posting also requires the Projects Full role extension (via `BIFROST Full ori`); Projects Read does not grant posting.
 Projects Setup is a company-wide switch; generic `Data.Records.Set` cannot change it.
 
 See [Projects contracts](docs/projects.md) for fields, nested behavior and errors.

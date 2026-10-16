@@ -100,7 +100,7 @@ codeunit 97108 "Projects Statistics Tests ori"
         Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Missing native project error surfaced');
         Clear(Request);
         Response := Library.ExecuteNative("Message Type ori"::"Projects.Statistics.Get", Request);
-        Assert.AreEqual('MissingParameter', Response.GetArray('errors').GetObject(0).GetText('code'), 'Missing project key validated');
+        Assert.AreEqual('MissingParameter', Response.GetText('code'), 'Missing project key validated');
     end;
 
     local procedure NewStatisticsProject(): Code[20]

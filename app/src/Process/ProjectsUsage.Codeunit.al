@@ -75,6 +75,14 @@ codeunit 10078514 "Projects Usage ori"
                    (Planning."Work Type Code" <> Ledger."Work Type Code")
                 then
                     Error(ErrorInfo.Create(InvalidErr));
+                Journal."Job No." := Ledger."Job No.";
+                Journal."Job Task No." := Ledger."Job Task No.";
+                Journal.Type := Ledger.Type;
+                Journal."No." := Ledger."No.";
+                Journal.Quantity := Ledger.Quantity;
+                Journal."Unit of Measure Code" := Ledger."Unit of Measure Code";
+                Journal."Qty. per Unit of Measure" := Ledger."Qty. per Unit of Measure";
+                Journal."Posting Date" := Ledger."Posting Date";
                 Journal."Job Planning Line No." := Planning."Line No.";
                 Journal."Quantity (Base)" := Ledger."Quantity (Base)";
                 Journal."Remaining Qty. (Base)" := Planning."Remaining Qty. (Base)" - Ledger."Quantity (Base)";

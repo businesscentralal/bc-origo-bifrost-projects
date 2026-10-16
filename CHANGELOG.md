@@ -16,8 +16,8 @@
   Update operations and inherit planning-line task keys from their parent.
 - Add WIP Get and native Calculate contracts (#5 partial; codeunits 10078502,
   10078503 and 10078505; enum values 10078494–10078495; test codeunit 97106).
-  Add WIP Post with a Projects-owned internal permission token/gate and separate
-  assignable `BIFROST ProjPost ori` (#5/#18; objects 10078504, 10078506–10078508;
+  Add WIP Post with a Projects-owned internal permission token/gate mapped to
+  Projects Read/Full extensions (#5/#18; objects 10078504, 10078506–10078507;
   tests 97106–97107). Add nonzero native WIP calculation/posting and gate tests.
 - Add native Statistics and BudgetVsActual contracts (#6; objects 10078509–10078511;
   enum values 10078497–10078498; tests 97108). Return LCY cost/price totals and

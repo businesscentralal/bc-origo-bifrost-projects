@@ -4,7 +4,7 @@ using Origo.Bifrost;
 
 /// <summary>
 /// Posting gate for Bifrost Projects.
-/// Transfer Order Post and Assembly Order Post both require write permission on Proj. Posting ori.
+/// WIP Post requires the Projects Full extension token write permission and native business rights.
 /// </summary>
 codeunit 10078507 "Proj. Posting Gate ori"
 {
@@ -12,12 +12,12 @@ codeunit 10078507 "Proj. Posting Gate ori"
 
     /// <summary>
     /// Returns false and writes the denial on Argument when the caller cannot post.
-    /// Returns true and leaves Argument unchanged when the caller holds BIFROST ProjPost ori.
+    /// Returns true and leaves Argument unchanged when the caller holds BIFROST Full ori.
     /// </summary>
     procedure AssertCanPost(var Argument: Record "Message Argument ori"): Boolean
     var
         PostingDeniedErr: Label 'Posting denied: missing ''%1'' permission set.', Comment = '%1 = permission set name, is-IS=Bókun hafnað: vantar ''%1'' heimildasett.';
-        PermissionSetNameTok: Label 'BIFROST ProjPost ori', Locked = true;
+        PermissionSetNameTok: Label 'BIFROST Full ori', Locked = true;
     begin
         if HasPostingPermission() then
             exit(true);

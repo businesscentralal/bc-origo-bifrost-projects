@@ -102,7 +102,7 @@ codeunit 97109 "Projects Usage Tests ori"
         Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Disabled native project usage link rejected');
         Request.Replace('entryNo', 'bad');
         Response := Library.ExecuteNative("Message Type ori"::"Projects.Usage.Link", Request);
-        Assert.AreEqual('InvalidParameterFormat', Response.GetArray('errors').GetObject(0).GetText('code'), 'Typed input validation precedes writes');
+        Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Typed input validation precedes writes');
     end;
 
     local procedure NewUsageRequest(var EntryNo: Integer) Request: JsonObject

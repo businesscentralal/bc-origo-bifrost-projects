@@ -145,7 +145,7 @@ codeunit 10078504 "Proj. WIP Post Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Documents nested write behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     var
-        NotesLbl: Label 'Uses native project WIP validation and posting. Post additionally requires BIFROST ProjPost ori and native business permissions. New G/L entries keep the document number of the calculated WIP entries. No licensing setup is changed.', Comment = 'is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST ProjPost ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.';
+        NotesLbl: Label 'Uses native project WIP validation and posting. Post additionally requires BIFROST Full ori and native business permissions. New G/L entries keep the document number of the calculated WIP entries. No licensing setup is changed.', Comment = 'is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST Full ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.';
     begin
         Notes := NotesLbl;
         exit(true);

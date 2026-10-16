@@ -4,7 +4,7 @@
     <body>
       <group id="body">
         <trans-unit id="Table 2276660535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>BIFROST ProjPost ori</source>
+          <source>Projects Posting Rights</source>
           <target>Bifröst bókun verkefna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Bifröst bókun verkefna</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Posting ori - Property Caption</note>
@@ -322,9 +322,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3445775645 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Uses native project WIP validation and posting. Post additionally requires BIFROST ProjPost ori and native business permissions. New G/L entries keep the document number of the calculated WIP entries. No licensing setup is changed.</source>
-          <target>Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST ProjPost ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST ProjPost ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</note>
+          <source>Uses native project WIP validation and posting. Post additionally requires BIFROST Full ori and native business permissions. New G/L entries keep the document number of the calculated WIP entries. No licensing setup is changed.</source>
+          <target>Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST Full ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST Full ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 30800967 - Method 1513833081 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">
@@ -422,12 +422,6 @@
           <target>Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control Enabled - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PermissionSet 2987968320 - Property 2879900210" maxwidth="30" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Proj. Posting Gate</source>
-          <target>Bókunarhlið verkefna</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Bókunarhlið verkefna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet BIFROST ProjPost ori - Property Caption</note>
         </trans-unit>
       </group>
     </body>

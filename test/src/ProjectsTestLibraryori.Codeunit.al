@@ -12,6 +12,9 @@ using Microsoft.Inventory.Item;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Finance.Dimension;
+using Microsoft.Projects.Project.WIP;
+using Microsoft.Projects.Project.Ledger;
 
 /// <summary>Owns isolated native unit-test data. These component tests do not assert feature licensing or shipping MCP acceptance.</summary>
 codeunit 97102 "Projects Test Library ori"
@@ -202,6 +205,116 @@ codeunit 97102 "Projects Test Library ori"
         PlanningRequest.Add('quantity', 3);
         PlanningRequest.Add('unitCost', 7);
         PlanningRequest.Add('unitPrice', 11);
+    end;
+
+    /// <summary>Creates isolated economic WIP data with owned posting accounts and required dimensions; never changes licence state.</summary>
+    procedure NewEconomicWIPRequest() Request: JsonObject
+    var
+        Project: Record Job;
+        Task: Record "Job Task";
+        Method: Record "Job WIP Method";
+        Group: Record "Job Posting Group";
+        Ledger: Record "Job Ledger Entry";
+        Account: Record "G/L Account";
+        Account2: Record "G/L Account";
+        GLSetup: Record "General Ledger Setup";
+        ProjectRequest: JsonObject;
+        TaskRequest: JsonObject;
+        CodeValue: Code[20];
+    begin
+        ProjectRequest := NewProjectRequest();
+        AssertStatus(ExecuteNative("Message Type ori"::"Projects.Project.Create", ProjectRequest), 'Success');
+        CodeValue := CopyStr(ProjectRequest.GetText('projectNo'), 1, 20);
+        Method.Code := CodeValue;
+        Method.Description := 'X native economic WIP';
+        Method.Valid := true;
+        Method."Recognized Costs" := Method."Recognized Costs"::"Usage (Total Cost)";
+        Method."Recognized Sales" := Method."Recognized Sales"::"Usage (Total Price)";
+        Method.Insert(true);
+        Account."No." := CodeValue;
+        Account.Name := 'X WIP expense';
+        Account.Insert(true);
+        Account2."No." := CopyStr('Y' + CodeValue, 1, 20);
+        Account2.Name := 'X WIP balance';
+        Account2.Insert(true);
+        Group.Code := CodeValue;
+        Group."WIP Costs Account" := Account2."No.";
+        Group."WIP Accrued Costs Account" := Account2."No.";
+        Group."Job Costs Applied Account" := Account."No.";
+        Group."Job Costs Adjustment Account" := Account."No.";
+        Group."Recognized Costs Account" := Account."No.";
+        Group."Recognized Sales Account" := Account."No.";
+        Group."Job Sales Applied Account" := Account."No.";
+        Group."Job Sales Adjustment Account" := Account."No.";
+        Group."WIP Accrued Sales Account" := Account2."No.";
+        Group."WIP Invoiced Sales Account" := Account2."No.";
+        Group.Insert(true);
+        Project.Get(CodeValue);
+        Project.Validate("WIP Method", Method.Code);
+        Project.Validate("Job Posting Group", Group.Code);
+        Project."WIP Posting Method" := Project."WIP Posting Method"::"Per Job";
+        Project.Modify(true);
+        TaskRequest.Add('projectNo', CodeValue);
+        TaskRequest.Add('taskNo', 'X100');
+        AssertStatus(ExecuteNative("Message Type ori"::"Projects.Task.Create", TaskRequest), 'Success');
+        Task.Get(CodeValue, 'X100');
+        Task."WIP-Total" := Task."WIP-Total"::Total;
+        Task.Modify(true);
+        SeedRequiredDimensions(CodeValue, 'X100');
+        if Ledger.FindLast() then;
+        Ledger."Entry No." += 1;
+        Ledger.Init();
+        Ledger."Job No." := CodeValue;
+        Ledger."Job Task No." := 'X100';
+        Ledger."Entry Type" := Ledger."Entry Type"::Usage;
+        Ledger.Type := Ledger.Type::Resource;
+        Ledger."Posting Date" := DMY2Date(16, 10, 2026);
+        Ledger.Quantity := 3;
+        Ledger."Total Cost (LCY)" := 21;
+        Ledger."Total Price (LCY)" := 42;
+        Ledger.Insert(true);
+        GLSetup.Get();
+        GLSetup."Allow Posting From" := DMY2Date(1, 1, 2026);
+        GLSetup."Allow Posting To" := DMY2Date(31, 12, 2026);
+        GLSetup.Modify(true);
+        Request.Add('projectNo', CodeValue);
+        Request.Add('postingDate', '2026-10-16');
+        Request.Add('documentNo', CodeValue);
+    end;
+
+    local procedure SeedRequiredDimensions(ProjectNo: Code[20]; TaskNo: Code[20])
+    var
+        Required: Record "Default Dimension";
+        OwnedDefault: Record "Default Dimension";
+        Value: Record "Dimension Value";
+        TaskDimension: Record "Job Task Dimension";
+    begin
+        // Respect native mandatory-dimension setup without borrowing demo values or weakening its rules.
+        Required.SetRange("Table ID", Database::Job);
+        Required.SetRange("No.", '');
+        if Required.FindSet() then
+            repeat
+                if Required."Value Posting" in [Required."Value Posting"::"Code Mandatory", Required."Value Posting"::"Same Code"] then begin
+                    Value.Init();
+                    Value.Validate("Dimension Code", Required."Dimension Code");
+                    Value.Validate(Code, ProjectNo);
+                    Value.Name := 'X owned WIP posting dimension';
+                    Value.Insert(true);
+                    OwnedDefault.Init();
+                    OwnedDefault.Validate("Table ID", Database::Job);
+                    OwnedDefault.Validate("No.", ProjectNo);
+                    OwnedDefault.Validate("Dimension Code", Required."Dimension Code");
+                    OwnedDefault.Validate("Dimension Value Code", Value.Code);
+                    OwnedDefault.Validate("Value Posting", Required."Value Posting");
+                    OwnedDefault.Insert(true);
+                    TaskDimension.Init();
+                    TaskDimension.Validate("Job No.", ProjectNo);
+                    TaskDimension.Validate("Job Task No.", TaskNo);
+                    TaskDimension.Validate("Dimension Code", Required."Dimension Code");
+                    TaskDimension.Validate("Dimension Value Code", Value.Code);
+                    TaskDimension.Insert(true);
+                end;
+            until Required.Next() = 0;
     end;
 
 }
