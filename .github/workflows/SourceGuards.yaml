@@ -9,6 +9,8 @@ name: Source Guards
 # the shared contract chapters declare keys individual list types do not read, and several Locked
 # telemetry and refusal labels predate the Foundation rule. Enabling those two jobs would fail on main.
 # The Icelandic xlf check (tools/Test-IcelandicXlfInSync.ps1) needs a build and is run by hand before a PR.
+# NoClientCallstack and PermissionCoverage read app/src. Until that folder exists they pass as
+# not applicable. The checks run and gate as soon as app/src is present.
 
 on:
   pull_request:
@@ -29,9 +31,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Detect app source
+        id: appSource
+        shell: pwsh
+        run: |
+          $present = Test-Path -LiteralPath (Join-Path $env:GITHUB_WORKSPACE 'app/src') -PathType Container
+          Write-Host "app/src present: $present"
+          Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "present=$($present.ToString().ToLowerInvariant())"
+
       - name: No call stack in client responses
+        if: steps.appSource.outputs.present == 'true'
         shell: pwsh
         run: ./tools/Test-NoClientCallstack.ps1
+
+      - name: Not applicable without app source
+        if: steps.appSource.outputs.present != 'true'
+        shell: pwsh
+        run: Write-Host 'app/src is absent. NoClientCallstack is not applicable until app code exists.'
 
   ValidatedTableView:
     runs-on: ubuntu-latest
@@ -64,13 +80,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Detect app source
+        id: appSource
+        shell: pwsh
+        run: |
+          $present = Test-Path -LiteralPath (Join-Path $env:GITHUB_WORKSPACE 'app/src') -PathType Container
+          Write-Host "app/src present: $present"
+          Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "present=$($present.ToString().ToLowerInvariant())"
+
       - name: The guard checks itself
         shell: pwsh
         run: ./tools/Test-PermissionCoverage.ps1 -SelfTest
 
       - name: Every page and query is granted by a permission set
+        if: steps.appSource.outputs.present == 'true'
         shell: pwsh
         run: ./tools/Test-PermissionCoverage.ps1
+
+      - name: Not applicable without app source
+        if: steps.appSource.outputs.present != 'true'
+        shell: pwsh
+        run: Write-Host 'app/src is absent. PermissionCoverage is not applicable until app code exists.'
 
 
 
