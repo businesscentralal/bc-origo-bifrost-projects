@@ -2,6 +2,11 @@
 
 ## 28.1.0.0 - Unreleased
 
+- Fix Claude #17 D1-D3: complete public parameter help (10078489), correct Icelandic
+  discovery/help and posting-rights caption, and return localized RecordNotFound for
+  unknown BudgetVsActual task (10078511). Add recursive help and bilingual/task-isolation
+  regressions (97100, 97108).
+
 - Add Projects company enablement, administrative page, Foundation app registration,
   permission-set extensions and generic setup-write protection (#1; objects 10078485–10078488).
 - Register project/task/planning-line create and update, plus planning-line delete,

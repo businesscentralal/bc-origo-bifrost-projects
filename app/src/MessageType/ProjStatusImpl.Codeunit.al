@@ -30,7 +30,7 @@ codeunit 10078501 "Proj. Status Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, status, block, unblock', Comment = 'is-IS=verkefni, verk, verkþáttur, áætlunarlína, staða, loka, opna';
+        KeywordsLbl: Label 'project, job, task, planning line, status, block, unblock', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, staða, loka, opna';
     begin
         exit(KeywordsLbl);
     end;

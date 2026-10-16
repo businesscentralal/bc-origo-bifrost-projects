@@ -23,14 +23,14 @@ codeunit 10078493 "Proj. Task Update Impl ori" implements "Msg Interface ori", "
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Updates project tasks with optional planning lines.', Comment = 'is-IS=Uppfærir verkþáttum með valfrjálsum áætlunarlínum.';
+        DescriptionLbl: Label 'Updates project tasks with optional planning lines.', Comment = 'is-IS=Uppfærir verkhluta og valfrjálsar áætlunarlínur.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkþáttur, áætlunarlína, uppfæra';
+        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra';
     begin
         exit(KeywordsLbl);
     end;
@@ -140,7 +140,7 @@ codeunit 10078493 "Proj. Task Update Impl ori" implements "Msg Interface ori", "
     /// <summary>Documents nested write behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     var
-        NotesLbl: Label 'Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkþætti eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
+        NotesLbl: Label 'Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
     begin
         Notes := NotesLbl;
         exit(true);

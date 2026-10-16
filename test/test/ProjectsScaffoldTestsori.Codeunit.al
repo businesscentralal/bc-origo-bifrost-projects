@@ -116,7 +116,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(16, Count, 'Catalogue must contain the nine lifecycle types and WIP Get/Calculate; WIP Post is not registered');
+        Assert.AreEqual(16, Count, 'Catalogue must contain all sixteen owned Projects types');
     end;
 
     [Test]
@@ -141,8 +141,25 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Assert.IsTrue(ContractMgt.GetContract(MessageType, Contract), 'Contract missing for ' + Name);
                 Assert.IsTrue(Contract.Get('parameters', Parameters), 'Parameter chapter missing for ' + Name);
                 Assert.IsTrue(Parameters.AsArray().Count() > 0, 'Project identifier must be declared');
+                AssertParameterDescriptions(Parameters.AsArray(), Name + '.');
             end;
     end;
+    local procedure AssertParameterDescriptions(Parameters: JsonArray; Path: Text)
+    var
+        Parameter: JsonToken;
+        Entry: JsonObject;
+        Children: JsonToken;
+        ParameterPath: Text;
+    begin
+        foreach Parameter in Parameters do begin
+            Entry := Parameter.AsObject();
+            ParameterPath := Path + Entry.GetText('name');
+            Assert.IsTrue(Entry.GetText('description').Trim() <> '', 'Public help description missing: ' + ParameterPath);
+            if Entry.Get('children', Children) then
+                AssertParameterDescriptions(Children.AsArray(), ParameterPath + '[].');
+        end;
+    end;
+
     [Test]
     procedure Scenario_AC01_RegistryEvent_ExposesOwnSetupPage()
     var

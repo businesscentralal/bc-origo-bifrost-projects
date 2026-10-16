@@ -16,6 +16,7 @@ codeunit 10078511 "Projects Statistics ori"
         Tasks: JsonArray;
         TaskResult: JsonObject;
         TaskToken: JsonToken;
+        MissingTaskErr: Label 'The requested posting task does not exist in this project.', Comment = 'is-IS=Umbeðinn bókunarverkhluti er ekki til í þessu verkefni.';
     begin
         Request := Argument.GetRequestJson();
         Project.Get(CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(Project."No.")));
@@ -28,8 +29,13 @@ codeunit 10078511 "Projects Statistics ori"
         if Argument.Type = "Message Type ori"::"Projects.BudgetVsActual.Get" then begin
             Task.SetRange("Job No.", Project."No.");
             Task.SetRange("Job Task Type", Task."Job Task Type"::Posting);
-            if Request.Get('taskNo', TaskToken) then
+            if Request.Get('taskNo', TaskToken) then begin
                 Task.SetRange("Job Task No.", CopyStr(TaskToken.AsValue().AsText(), 1, MaxStrLen(Task."Job Task No.")));
+                if Task.IsEmpty() then begin
+                    Argument.RespondWithError("Bifrost Error Code ori"::RecordNotFound, MissingTaskErr, 'taskNo', TaskToken.AsValue().AsText(), '', '');
+                    exit;
+                end;
+            end;
             if Task.FindSet() then
                 repeat
                     Clear(Calculate);

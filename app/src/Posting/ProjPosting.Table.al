@@ -9,7 +9,7 @@ table 10078506 "Proj. Posting ori"
 {
     Extensible = false;
     Access = Internal;
-    Caption = 'Projects Posting Rights', Comment = 'is-IS=Bifröst bókun verkefna';
+    Caption = 'Projects Posting Rights', Comment = 'is-IS=Bókunarréttindi verkefna';
     DataClassification = SystemMetadata;
 
     fields

@@ -167,7 +167,7 @@ codeunit 10078499 "Projects Write ori"
         CopyJob: Codeunit "Copy Job";
         PlanType: Option " ",Budget,Billable;
         Token: JsonToken;
-        RangeErr: Label 'The first task number must not exceed the last task number.', Comment = 'is-IS=Fyrsta verkþáttanúmerið má ekki vera hærra en það síðasta.';
+        RangeErr: Label 'The first task number must not exceed the last task number.', Comment = 'is-IS=Fyrsta verkhlutanúmerið má ekki vera hærra en það síðasta.';
     begin
         SourceProject.Get(SourceProjectNo);
         if (GetOptionalText(Request, 'fromTaskNo') <> '') and (GetOptionalText(Request, 'toTaskNo') <> '') then

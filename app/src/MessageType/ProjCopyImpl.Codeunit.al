@@ -23,14 +23,14 @@ codeunit 10078500 "Proj. Copy Impl ori" implements "Msg Interface ori", "Msg Dis
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Copies a project with a task range and budget or billable planning lines.', Comment = 'is-IS=Afritar verkefni með bili verkþátta og áætlunar- eða reikningsfærslulínum.';
+        DescriptionLbl: Label 'Copies a project with a task range and budget or billable planning lines.', Comment = 'is-IS=Afritar verkefni með bili verkhluta og áætlunar- eða reikningsfærslulínum.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, copy', Comment = 'is-IS=verkefni, verk, verkþáttur, áætlunarlína, afrita';
+        KeywordsLbl: Label 'project, job, task, planning line, copy', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, afrita';
     begin
         exit(KeywordsLbl);
     end;

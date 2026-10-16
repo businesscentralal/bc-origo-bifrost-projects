@@ -103,6 +103,51 @@ codeunit 97108 "Projects Statistics Tests ori"
         Assert.AreEqual('MissingParameter', Response.GetText('code'), 'Missing project key validated');
     end;
 
+    [Test]
+    procedure Scenario_D3_UnknownTask_ReturnsLocalizedNotFound()
+    var
+        Request: JsonObject;
+        Response: JsonObject;
+        OriginalLanguage: Integer;
+        English: Text;
+    begin
+        // Review #17 D3 | Time: no dependency | Risk: explicit missing task must differ from an empty project.
+        Request.Add('projectNo', NewStatisticsProject());
+        Request.Add('taskNo', 'X-NO-SUCH-TASK');
+        OriginalLanguage := GlobalLanguage();
+        GlobalLanguage(1033);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.BudgetVsActual.Get", Request);
+        Assert.AreEqual('RecordNotFound', Response.GetText('code'), 'Unknown task must refuse, not return empty Success');
+        Assert.AreEqual('taskNo', Response.GetText('parameter'), 'The refusal identifies the exact task key');
+        Assert.IsFalse(Response.Contains('tasks'), 'Refusal must not expose a success task array');
+        English := Response.GetText('message');
+        GlobalLanguage(1039);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.BudgetVsActual.Get", Request);
+        Assert.AreEqual('RecordNotFound', Response.GetText('code'), 'Icelandic request has the same stable error code');
+        Assert.AreNotEqual(English, Response.GetText('message'), 'Task-not-found explanation is localized');
+        GlobalLanguage(OriginalLanguage);
+    end;
+
+    [Test]
+    procedure Scenario_D3_OtherProjectTask_IsNotAValidTarget()
+    var
+        Task: Record "Job Task";
+        Request: JsonObject;
+        Response: JsonObject;
+        OtherNo: Code[20];
+    begin
+        // Review #17 D3 | Time: no dependency | Risk: task lookup must retain project scope.
+        Request.Add('projectNo', NewStatisticsProject());
+        OtherNo := NewStatisticsProject();
+        Task.Init();
+        Task."Job No." := OtherNo;
+        Task."Job Task No." := 'X-OTHER-TASK';
+        Task.Insert(true);
+        Request.Add('taskNo', Task."Job Task No.");
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.BudgetVsActual.Get", Request);
+        Assert.AreEqual('RecordNotFound', Response.GetText('code'), 'A task belonging to another project is not found');
+    end;
+
     local procedure NewStatisticsProject(): Code[20]
     var
         Request: JsonObject;
