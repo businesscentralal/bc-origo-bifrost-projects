@@ -25,6 +25,8 @@
 - Add Usage Get/Link with exact project/task and identity checks, duplicate-link refusal,
   native remaining-quantity updates and planning-from-usage (#8; objects
   10078512–10078514, enum values 10078499–10078500; tests 97109).
+- Add owned native Web Client fixture helpers in the test app only (97110–97111);
+  keep shipping licensing and MCP evidence separate.
 - Add scaffold, permission, input-boundary and native write component tests
   (test codeunits 97100–97106). Runtime/UI/MCP and independent verification remain pending.
 
