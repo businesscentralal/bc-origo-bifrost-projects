@@ -120,11 +120,11 @@ codeunit 97108 "Projects Statistics Tests ori"
         Assert.AreEqual('RecordNotFound', Response.GetText('code'), 'Unknown task must refuse, not return empty Success');
         Assert.AreEqual('taskNo', Response.GetText('parameter'), 'The refusal identifies the exact task key');
         Assert.IsFalse(Response.Contains('tasks'), 'Refusal must not expose a success task array');
-        English := Response.GetText('message');
+        English := Response.GetText('error');
         GlobalLanguage(1039);
         Response := Library.ExecuteNative("Message Type ori"::"Projects.BudgetVsActual.Get", Request);
         Assert.AreEqual('RecordNotFound', Response.GetText('code'), 'Icelandic request has the same stable error code');
-        Assert.AreNotEqual(English, Response.GetText('message'), 'Task-not-found explanation is localized');
+        Assert.AreNotEqual(English, Response.GetText('error'), 'Task-not-found explanation is localized');
         GlobalLanguage(OriginalLanguage);
     end;
 
