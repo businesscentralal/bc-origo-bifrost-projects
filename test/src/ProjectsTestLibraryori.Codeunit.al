@@ -300,6 +300,13 @@ codeunit 97102 "Projects Test Library ori"
                     Value.Validate(Code, ProjectNo);
                     Value.Name := 'X owned WIP posting dimension';
                     Value.Insert(true);
+                    // Configure this owned test company's native constraint with self-created values.
+                    // Keep Same Code / Code Mandatory unchanged, and narrow an existing allowed filter to this exact value.
+                    if Required."Value Posting" = Required."Value Posting"::"Same Code" then
+                        Required.Validate("Dimension Value Code", Value.Code);
+                    if Required."Allowed Values Filter" <> '' then
+                        Required.Validate("Allowed Values Filter", Value.Code);
+                    Required.Modify(true);
                     OwnedDefault.Init();
                     OwnedDefault.Validate("Table ID", Database::Job);
                     OwnedDefault.Validate("No.", ProjectNo);

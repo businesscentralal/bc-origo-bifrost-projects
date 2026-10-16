@@ -166,6 +166,27 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(GLEntry.Count() > 0, 'Native posting must create real financial entries');
     end;
 
+    [Test]
+    [HandlerFunctions('DeclineGlobalDimensionFilterUpdate')]
+    procedure Scenario_AC01_MissingDimensions_RefusesNativePosting()
+    var
+        WIPEntry: Record "Job WIP Entry";
+        GLEntry: Record "G/L Entry";
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #5, AC01 | Time: explicit 2026-10-16 | Risk: mandatory dimensions must remain enforced, no weakened native gate.
+        Request := Library.NewEconomicWIPRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
+        WIPEntry.SetRange("Job No.", Request.GetText('projectNo'));
+        WIPEntry.ModifyAll("Dimension Set ID", 0, true);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.WIP.Post", Request);
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native mandatory-dimension posting refusal');
+        Assert.IsTrue(Response.GetText('error').ToLower().Contains('dimension'), 'Native dimension error must be surfaced');
+        GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
+        Assert.AreEqual(0, GLEntry.Count(), 'Rejected posting must not create financial entries');
+    end;
+
     [ConfirmHandler]
     procedure DeclineGlobalDimensionFilterUpdate(Question: Text[1024]; var Reply: Boolean)
     begin
