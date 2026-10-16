@@ -69,13 +69,14 @@ codeunit 97105 "Projects Status Tests ori"
     end;
 
     [Test]
+    [HandlerFunctions('CompletionMessageHandler')]
     procedure Scenario_AC01_Complete_InvokesNativeCompleteFlag()
     var
         Project: Record Job;
         Request: JsonObject;
         ChangeRequest: JsonObject;
     begin
-        // Story #4, AC01 | Time: no WIP or ledger fixtures, native Today fields only | Risk: None
+        // Story #4, AC01 | Time: native WorkDate for default Ending Date; no WIP or ledger fixtures | Risk: None
         Request := Library.NewProjectRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
         ChangeRequest.Add('projectNo', Request.GetText('projectNo'));
@@ -84,6 +85,7 @@ codeunit 97105 "Projects Status Tests ori"
         Project.Get(Request.GetText('projectNo'));
         Assert.AreEqual(Project.Status::Completed, Project.Status, 'Completed must persist');
         Assert.IsTrue(Project.Complete, 'Status validation must execute native completion, not only assign the enum');
+        Assert.IsTrue(Project."Ending Date" >= WorkDate(), 'Native completion must set its ending date');
     end;
 
     [Test]
@@ -112,4 +114,12 @@ codeunit 97105 "Projects Status Tests ori"
         Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.SetStatus", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Unknown native status must fail before lookup');
     end;
+    [MessageHandler]
+    procedure CompletionMessageHandler(MessageText: Text[1024])
+    var
+        Project: Record Job;
+    begin
+        Assert.IsTrue(StrPos(MessageText, Project.FieldCaption("Ending Date")) > 0, 'Native completion must report its ending date change');
+    end;
+
 }

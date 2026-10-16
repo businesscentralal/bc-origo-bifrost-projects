@@ -34,8 +34,9 @@ codeunit 97104 "Projects Copy Tests ori"
         TaskRequest.Add('taskNo', 'X100');
         TaskRequest.Add('description', 'X First task');
         Tasks.Add(TaskRequest);
-        TaskRequest.Replace('taskNo', 'X200');
-        TaskRequest.Replace('description', 'X Selected task');
+        Clear(TaskRequest);
+        TaskRequest.Add('taskNo', 'X200');
+        TaskRequest.Add('description', 'X Selected task');
         Tasks.Add(TaskRequest);
         SourceRequest.Add('tasks', Tasks);
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", SourceRequest), 'Success');
