@@ -1,7 +1,75 @@
-# Projects help
+# Projects contracts
 
-Local help target for the Bifrost Projects message types. The external documentation site is still owned by the documentation team. This page is the in-repo target for HelpLinks until that site publishes `help/projects`.
+Projects owns projects, tasks, planning lines and the project lifecycle. Time sheets
+and Clockify stay in Timesheets. The app depends only on Bifrost Foundation.
 
-## Message types
+## Setup and discovery
 
-None yet. Planned (see issues #1-#9): Projects.Project.Create/Update/Copy/SetStatus, Projects.Task.*, Projects.PlanningLine.*, Projects.WIP.Calculate/Post/Get, Projects.Statistics.Get, Projects.BudgetVsActual.Get, Projects.Ledger.Get, Projects.Usage.*.
+Open **Projects Setup** from Foundation's registered applications. `Enabled` is on by
+default. Disabling it hides enabled write operations and returns an explicit error
+when a caller invokes one. Setup is company-specific. The Read role can read the
+switch; the Full role can administer it. Neither extension grants Foundation Setup
+tabledata, a new assignable role, or native project table privileges.
+
+`Help.MessageTypes` discovers the seven registered `Projects.*` write types.
+`Help.Implementation.Get` describes each version 1.0 operation and its nested schema.
+Descriptions, selection help and keywords support en-US and is-IS.
+
+## Request fields
+
+All calls require a JSON object in `data`, containing `projectNo` (maximum 20
+characters). `subject` is not used. Update operations change only supplied fields.
+Create operations fail if the key already exists; they do not silently update it.
+
+- Project: `description` (100), `billToCustomerNo` (20), `personResponsible` (20),
+  `startingDate`, `endingDate` (ISO dates), `currencyCode` (10), optional `tasks[]`.
+- Task: required `taskNo` (20); optional `description` (100), `taskType`
+  (`Posting`, `Heading`, `Total`, `Begin-Total`, `End-Total`), `totaling` (250),
+  nonnegative integer `indentation`, optional `planningLines[]`.
+- Planning line: required `taskNo` (20), positive integer `lineNo`; optional `type`
+  (`Resource`, `Item`, `G/L Account`, `Text`), `lineType` (`Budget`, `Billable`,
+  `Both Budget and Billable`), `no` (20), `description` (100), `planningDate`,
+  `unitOfMeasureCode` (10), numeric `quantity`, `unitCost`, `unitPrice`.
+- Planning line deletion uses only `projectNo`, `taskNo`, `lineNo`.
+
+Nested tasks inherit their project number; nested planning lines inherit both
+parent keys. They are **new records**, including when supplied to an update call.
+An existing nested key produces a native error and rolls back the entire operation.
+BC validates task totaling/indentation and resource, item and G/L planning fields.
+Normal BC prerequisites (including a bill-to customer for tasks) still apply.
+
+## Responses and errors
+
+Success returns `status: "Success"` and `projectNo`; task and planning-line calls
+also return `taskNo`, and planning-line calls return `lineNo`. There are no posts
+or time sheet operations in these seven types.
+
+Malformed or null values, overlong codes, invalid dates/enums and wrong-shaped
+nested arrays return `InvalidParameterFormat`; missing/empty identifiers return
+`MissingParameter`. Multiple problems return `MultipleErrors` with every parameter
+path. Native validation and duplicate/missing records return `BusinessCentralError`.
+Permission checks return `PermissionDenied` before licensing or writes. All native
+writes use validation and table triggers in one rollback boundary.
+
+## Example
+
+After creating your own customer `XCUSTOMER`, send:
+
+```json
+{
+  "type": "Projects.Project.Create",
+  "version": "1.0",
+  "data": {
+    "projectNo": "XPROJECT",
+    "billToCustomerNo": "XCUSTOMER",
+    "description": "Example project",
+    "tasks": [{"taskNo": "X100", "description": "First task"}]
+  }
+}
+```
+
+## Pending scope
+
+Project copy, status, WIP, statistics, queries and usage link remain in issues
+#3–#8. Invoice helpers and other medium/low gaps stay in tracking #9 pending
+Gunnar's decision. No acceptance or delivery is implied by this contract text.

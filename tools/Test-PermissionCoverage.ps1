@@ -41,7 +41,7 @@ $script:OrdinarySets = @('BIFROST Read ori', 'BIFROST API ori')
 $script:LicenseAdminSet = 'BIFROST LicAdm ori'
 $script:ExecutableKinds = @('page', 'query', 'report', 'xmlport')
 
-$objectHeader = [regex]::new('^\s*(page|query|report|xmlport|table|permissionset)\s+\d+\s+("([^"]+)"|(\w+))', 'IgnoreCase')
+$objectHeader = [regex]::new('^\s*(page|query|report|xmlport|table|permissionsetextension|permissionset)\s+\d+\s+("([^"]+)"|(\w+))', 'IgnoreCase')
 $grantLine = [regex]::new('\b(table|tabledata|page|query|report|xmlport)\s+("([^"]+)"|\*|(\w+))\s*=\s*([A-Za-z]*)', 'IgnoreCase')
 $sourceTable = [regex]::new('^\s*SourceTable\s*=\s*("([^"]+)"|(\w+))\s*;', 'IgnoreCase')
 $included = [regex]::new('IncludedPermissionSets\s*=\s*(?<list>[^;]*);', 'IgnoreCase')
@@ -64,6 +64,7 @@ function Read-Objects([string]$AppFolder) {
             Name        = $name
             File        = [System.IO.Path]::GetRelativePath($AppFolder, $file.FullName)
             Text        = $text
+            BaseSet     = $null
             Source      = $null
             Temporary   = $false
             Assignable  = ($text -match '(?i)Assignable\s*=\s*true')
@@ -80,7 +81,13 @@ function Read-Objects([string]$AppFolder) {
         if ($kind -eq 'table') {
             $object.Temporary = ($text -match '(?i)TableType\s*=\s*Temporary')
         }
-        if ($kind -eq 'permissionset') {
+        if ($kind -eq 'permissionsetextension') {
+            $baseMatch = [regex]::Match($text, 'extends\s+("([^"]+)"|(\w+))', 'IgnoreCase')
+            if ($baseMatch.Success) {
+                $object.BaseSet = if ($baseMatch.Groups[2].Success) { $baseMatch.Groups[2].Value } else { $baseMatch.Groups[3].Value }
+            }
+        }
+        if ($kind -in @('permissionset', 'permissionsetextension')) {
             foreach ($line in $lines) {
                 foreach ($m in $grantLine.Matches($line)) {
                     $target = if ($m.Groups[3].Success) { $m.Groups[3].Value } elseif ($m.Groups[4].Success) { $m.Groups[4].Value } else { '*' }
@@ -129,6 +136,26 @@ function Find-Problems([string]$AppFolder) {
     foreach ($o in $objects) {
         if ($o.Kind -eq 'permissionset') { $sets[$o.Name] = $o }
         if ($o.Kind -eq 'table') { $tables[$o.Name] = $o }
+    }
+    # Feature apps extend Foundation roles instead of creating assignable sets. Resolve
+    # those known external roles only when the manifest declares the Foundation dependency;
+    # arbitrary external/nonassignable sets must never make a page look covered.
+    $manifestPath = Join-Path $AppFolder 'app.json'
+    $hasFoundation = $false
+    if (Test-Path -LiteralPath $manifestPath) {
+        $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
+        $hasFoundation = @($manifest.dependencies | Where-Object { $_.id -eq '7505e808-6e52-4b96-a328-82573391297a' }).Count -gt 0
+    }
+    foreach ($extension in $objects | Where-Object { $_.Kind -eq 'permissionsetextension' }) {
+        $base = $extension.BaseSet
+        if (-not $sets.ContainsKey($base) -and $hasFoundation -and $base -in @('BIFROST Read ori', 'BIFROST Full ori', 'BIFROST LicAdm ori')) {
+            $sets[$base] = [pscustomobject]@{
+                Assignable = $true
+                Grants = [System.Collections.Generic.List[object]]::new()
+                Includes = [System.Collections.Generic.List[string]]::new()
+            }
+        }
+        if ($sets.ContainsKey($base)) { $sets[$base].Grants.AddRange($extension.Grants) }
     }
     $effective = @{}
     foreach ($name in $sets.Keys) {
@@ -226,6 +253,24 @@ function Invoke-SelfTest {
         Write-SyntheticApp (Join-Path $root 'clean') $clean
         $found = @(Find-Problems (Join-Path $root 'clean'))
         if ($found.Count -ne 0) { Write-Host "SelfTest FAILED: a clean app must pass, got: $($found -join '; ')"; $failed = $true }
+
+        $feature = @{
+            'tab.al' = $tableOk; 'page.al' = $pageOk
+            'ext.al' = "permissionsetextension 200 ""Feature Full ori"" extends ""BIFROST Full ori""`n{`n    Permissions =`n        tabledata ""Real Tab ori"" = R,`n        page ""Ok Page ori"" = X;`n}"
+        }
+        $featurePath = Join-Path $root 'feature'
+        Write-SyntheticApp $featurePath $feature
+        Set-Content -LiteralPath (Join-Path $featurePath 'app.json') -Value '{"dependencies":[{"id":"7505e808-6e52-4b96-a328-82573391297a"}]}'
+        $found = @(Find-Problems $featurePath)
+        if ($found.Count -ne 0) { Write-Host "SelfTest FAILED: Foundation feature extension must cover its page: $($found -join '; ')"; $failed = $true }
+        Remove-Item -LiteralPath (Join-Path $featurePath 'app.json')
+        $found = @(Find-Problems $featurePath)
+        if ($found.Count -ne 1 -or -not $found[0].StartsWith('not-granted:')) { Write-Host 'SelfTest FAILED: unresolved external base must not count as assignable'; $failed = $true }
+        Set-Content -LiteralPath (Join-Path $featurePath 'app.json') -Value '{"dependencies":[{"id":"7505e808-6e52-4b96-a328-82573391297a"}]}'
+        $feature['ext.al'] = $feature['ext.al'].Replace('tabledata "Real Tab ori" = R,', '')
+        Write-SyntheticApp $featurePath $feature
+        $found = @(Find-Problems $featurePath)
+        if ($found.Count -ne 1 -or -not $found[0].StartsWith('source-table:')) { Write-Host 'SelfTest FAILED: feature extension must also grant its page source table'; $failed = $true }
 
         $wild = @{
             'p3.al' = $pageNoGrant; 'q1.al' = $queryNoGrant

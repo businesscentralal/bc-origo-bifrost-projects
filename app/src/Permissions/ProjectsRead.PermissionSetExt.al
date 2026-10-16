@@ -1,0 +1,24 @@
+namespace Origo.Bifrost.Projects;
+
+using Origo.Bifrost;
+
+/// <summary>Extends the Foundation Read role with Projects objects; no Foundation Setup tabledata grant.</summary>
+permissionsetextension 10078485 "Projects Read ori" extends "BIFROST Read ori"
+{
+    Permissions =
+        codeunit "Projects Contract ori" = X,
+        codeunit "Projects Input ori" = X,
+        codeunit "Projects Write ori" = X,
+        codeunit "Projects Write Process ori" = X,
+        codeunit "Proj. Create Impl ori" = X,
+        codeunit "Proj. Update Impl ori" = X,
+        codeunit "Proj. Task Create Impl ori" = X,
+        codeunit "Proj. Task Update Impl ori" = X,
+        codeunit "Proj. Plan Create Impl ori" = X,
+        codeunit "Proj. Plan Update Impl ori" = X,
+        codeunit "Proj. Plan Delete Impl ori" = X,
+        tabledata "Projects Setup ori" = R,
+        codeunit "Projects Gate ori" = X,
+        codeunit "Projects Registration ori" = X,
+        codeunit "Projects Setup Restrict ori" = X;
+}
