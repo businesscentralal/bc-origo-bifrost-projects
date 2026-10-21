@@ -41,3 +41,7 @@
 
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 70009200..70009249, tests 97100..97199.
+
+## Unreleased — project archives (verification candidate)
+
+- Add native project archive creation and version reads (codeunits 70009230, 70009234, 70009236, 70009239, 70009240), with native snapshot and permission regression tests 97122–97123. Registry, permissions, translations and shipping queue acceptance remain pending serialized integration.
