@@ -1,6 +1,12 @@
 namespace Origo.Bifrost.Projects.Test;
 
+using Microsoft.Finance.GeneralLedger.Account;
+using Microsoft.Finance.GeneralLedger.Setup;
 using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Posting;
+using Microsoft.Inventory.Tracking;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Project.Planning;
@@ -236,6 +242,128 @@ codeunit 97125 "Projects Item Usage Tests ori"
             TotalQuantity += Ledger.Quantity;
         end;
         Assert.AreEqual(3, TotalQuantity, 'Both native quantities accounted for');
+    end;
+
+    /// <summary>A real tracked receipt is consumed through native project posting with no leftover task reservations.</summary>
+    [Test]
+    procedure TrackedLot_FromOwnedInventory_PreservesTrackingAndQuantity()
+    begin
+        AssertTrackedInventoryPost(false);
+    end;
+
+    /// <summary>One self-received serial unit is consumed exactly once and retains its serial on both ledgers.</summary>
+    [Test]
+    procedure TrackedSerial_FromOwnedInventory_PreservesTrackingAndQuantity()
+    begin
+        AssertTrackedInventoryPost(true);
+    end;
+
+    local procedure AssertTrackedInventoryPost(Serial: Boolean)
+    var
+        ItemLedger: Record "Item Ledger Entry";
+        ProjectLedger: Record "Job Ledger Entry";
+        Reservation: Record "Reservation Entry";
+        Request: JsonObject;
+        Response: JsonObject;
+        Line: JsonObject;
+        Lines: JsonArray;
+        TrackingNo: Code[50];
+        Quantity: Decimal;
+    begin
+        Request := NewRequest();
+        Line := Request.GetArray('lines').GetObject(0);
+        TrackingNo := CopyStr(DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(TrackingNo));
+        Quantity := 2;
+        if Serial then begin
+            Quantity := 1;
+            Line.Add('serialNo', TrackingNo);
+        end else
+            Line.Add('lotNo', TrackingNo);
+        Line.Replace('quantity', Quantity);
+        SeedTrackedInventory(CopyStr(Line.GetText('itemNo'), 1, 20), Serial, TrackingNo, Quantity);
+        ItemLedger.SetRange("Item No.", Line.GetText('itemNo'));
+        ItemLedger.CalcSums(Quantity);
+        Assert.AreEqual(Quantity, ItemLedger.Quantity, 'Self-created stock was received by native item journal');
+        Lines.Add(Line);
+        Request.Replace('lines', Lines);
+        Response := Execute(Request);
+        Library.AssertStatus(Response, 'Success');
+        Assert.AreEqual(1, Response.GetArray('entryNos').Count(), 'One native project consumption entry');
+        ProjectLedger.Get(Response.GetInteger('firstEntryNo'));
+        Assert.AreEqual(Request.GetText('projectNo'), ProjectLedger."Job No.", 'Owned project');
+        Assert.AreEqual(Quantity, ProjectLedger.Quantity, 'Exact consumed quantity');
+        ItemLedger.SetRange("Entry Type", ItemLedger."Entry Type"::"Negative Adjmt.");
+        Assert.AreEqual(1, ItemLedger.Count(), 'One native stock consumption entry');
+        ItemLedger.FindFirst();
+        Assert.AreEqual(-Quantity, ItemLedger.Quantity, 'Consumption reduces real inventory');
+        if Serial then begin
+            Assert.AreEqual(TrackingNo, ItemLedger."Serial No.", 'Item ledger serial preserved');
+            Assert.AreEqual(TrackingNo, ProjectLedger."Serial No.", 'Project ledger serial preserved');
+        end else begin
+            Assert.AreEqual(TrackingNo, ItemLedger."Lot No.", 'Item ledger lot preserved');
+            Assert.AreEqual(TrackingNo, ProjectLedger."Lot No.", 'Project ledger lot preserved');
+        end;
+        ItemLedger.SetRange("Entry Type");
+        ItemLedger.CalcSums(Quantity, "Remaining Quantity");
+        Assert.AreEqual(0, ItemLedger.Quantity, 'Receipt less consumption is zero');
+        Assert.AreEqual(0, ItemLedger."Remaining Quantity", 'No owned stock left');
+        Reservation.SetRange("Item No.", Line.GetText('itemNo'));
+        Assert.IsTrue(Reservation.IsEmpty(), 'Native posting consumed all task tracking reservations');
+    end;
+
+    local procedure SeedTrackedInventory(ItemNo: Code[20]; Serial: Boolean; TrackingNo: Code[50]; Quantity: Decimal)
+    var
+        Item: Record Item;
+        TrackingCode: Record "Item Tracking Code";
+        InventoryGroup: Record "Inventory Posting Group";
+        InventorySetup: Record "Inventory Posting Setup";
+        GeneralSetup: Record "General Posting Setup";
+        Account: Record "G/L Account";
+        TempJournal: Record "Item Journal Line" temporary;
+        Tracking: Record "Reservation Entry";
+        PostItem: Codeunit "Item Jnl.-Post Line";
+        CreateEntry: Codeunit "Create Reserv. Entry";
+    begin
+        Item.Get(ItemNo);
+        TrackingCode.Code := CopyStr(ItemNo, 1, MaxStrLen(TrackingCode.Code));
+        TrackingCode."SN Specific Tracking" := Serial;
+        TrackingCode."Lot Specific Tracking" := not Serial;
+        TrackingCode.Insert(true);
+        InventoryGroup.Code := ItemNo;
+        InventoryGroup.Insert(true);
+        Account."No." := ItemNo;
+        Account.Name := 'X owned inventory posting account';
+        Account."Direct Posting" := true;
+        Account.Insert(true);
+        InventorySetup."Invt. Posting Group Code" := InventoryGroup.Code;
+        InventorySetup."Inventory Account" := Account."No.";
+        InventorySetup."Inventory Account (Interim)" := Account."No.";
+        InventorySetup.Insert(true);
+        GeneralSetup.SetRange("Gen. Prod. Posting Group", Item."Gen. Prod. Posting Group");
+        GeneralSetup.FindFirst();
+        GeneralSetup."Inventory Adjmt. Account" := Account."No.";
+        GeneralSetup."Direct Cost Applied Account" := Account."No.";
+        GeneralSetup."COGS Account" := Account."No.";
+        GeneralSetup.Modify(true);
+        Item.Validate(Type, Item.Type::Inventory);
+        Item.Validate("Inventory Posting Group", InventoryGroup.Code);
+        Item.Validate("Item Tracking Code", TrackingCode.Code);
+        Item.Modify(true);
+        TempJournal."Line No." := 10000;
+        TempJournal."Entry Type" := TempJournal."Entry Type"::"Positive Adjmt.";
+        TempJournal.Validate("Posting Date", WorkDate());
+        TempJournal.Validate("Document No.", ItemNo);
+        TempJournal.Validate("Item No.", ItemNo);
+        TempJournal.Validate("Gen. Bus. Posting Group", GeneralSetup."Gen. Bus. Posting Group");
+        TempJournal.Validate(Quantity, Quantity);
+        TempJournal.Validate("Unit Cost", 7);
+        if Serial then
+            Tracking."Serial No." := TrackingNo
+        else
+            Tracking."Lot No." := TrackingNo;
+        CreateEntry.CreateReservEntryFor(Database::"Item Journal Line", TempJournal."Entry Type".AsInteger(), TempJournal."Journal Template Name", TempJournal."Journal Batch Name", 0, TempJournal."Line No.", TempJournal."Qty. per Unit of Measure", Quantity, TempJournal."Quantity (Base)", Tracking);
+        CreateEntry.CreateEntry(ItemNo, '', '', Item.Description, 0D, WorkDate(), 0, "Reservation Status"::Surplus);
+        PostItem.RunWithCheck(TempJournal);
     end;
 
     local procedure NewRequest() Request: JsonObject

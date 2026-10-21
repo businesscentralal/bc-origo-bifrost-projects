@@ -1,6 +1,7 @@
 namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Purchases.Document;
+using Microsoft.Inventory.Tracking;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
@@ -56,4 +57,33 @@ codeunit 97129 "Proj. Purchase Usage Perm ori"
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Refusal before licensing or argument read');
         Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Names Full permission set');
     end;
+    /// <summary>The full feature role and every other guarded native right cannot replace tracking write permission.</summary>
+    [Test]
+    procedure FullWithoutReservationRights_DeniesBeforePosting()
+    var
+        Reservation: Record "Reservation Entry";
+        TempArgument: Record "Message Argument ori" temporary;
+        Library: Codeunit "Projects Test Library ori";
+        Usage: Codeunit "Projects Item Usage ori";
+        Impl: Codeunit "Proj. Item Usage Impl ori";
+        Lower: Codeunit "Library - Lower Permissions";
+        Assert: Codeunit "Library Assert";
+        Response: JsonObject;
+    begin
+        Library.Initialize();
+        Lower.PushPermissionSetWithoutDefaults('BIFROST Full ori');
+        Lower.AddPermissionSet('ProjUsageTest ori');
+        Assert.IsFalse(Reservation.WritePermission(), 'The omitted native reservation right is actually absent');
+        Assert.IsFalse(Usage.IsEnabled(), 'Every native posting right is required');
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Impl.ExecuteBifrostTask(TempArgument);
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Denied before input, licensing or native posting');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Actionable permission guidance');
+        Lower.AddPermissionSet('ProjUsageResTest ori');
+        Assert.IsTrue(Reservation.WritePermission(), 'Native reservation right now actually present');
+        Assert.IsTrue(Usage.IsEnabled(), 'Completing native rights makes the permission gate available');
+    end;
+
 }
