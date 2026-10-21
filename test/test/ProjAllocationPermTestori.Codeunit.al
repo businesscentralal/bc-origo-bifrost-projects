@@ -15,14 +15,14 @@ codeunit 97121 "Proj. Allocation Perm Test ori"
     procedure NoNativePermissions_RefusesBeforeReadingInput()
     var
         TempArgument: Record "Message Argument ori" temporary;
+        Setup: Record "Projects Setup ori";
         Impl: Codeunit "Proj. Allocation Impl ori";
-        Library: Codeunit "Projects Test Library ori";
         LowerPermissions: Codeunit "Library - Lower Permissions";
         Assert: Codeunit "Library Assert";
         Response: JsonObject;
     begin
-        Library.Initialize();
         LowerPermissions.PushPermissionSetWithoutDefaults('ProjAllocTest ori');
+        Assert.IsTrue(Setup.IsEnabled(), 'Owned test company Projects setup is enabled; the refusal must come from missing native rights');
         TempArgument.ID := CreateGuid();
         TempArgument.Type := "Message Type ori"::"Projects.ResourceAllocation.Get";
         TempArgument.Version := "Message Version ori"::"1.0";
