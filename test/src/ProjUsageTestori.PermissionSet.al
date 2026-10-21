@@ -33,7 +33,7 @@ permissionset 97129 "ProjUsageTest ori"
         tabledata Item = RIMD,
         tabledata "Item Variant" = R,
         tabledata Location = R,
-        tabledata Bin = R,
+        tabledata Bin = RIMD,
         tabledata "Item Unit of Measure" = R,
         tabledata "Item Ledger Entry" = RIMD,
         tabledata "Item Register" = RIMD,

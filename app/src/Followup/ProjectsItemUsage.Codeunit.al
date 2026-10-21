@@ -72,7 +72,7 @@ codeunit 70009233 "Projects Item Usage ori"
              Gate.IsEnabled(Database::"Job Ledger Entry", true) and Gate.IsEnabled(Database::"Job Register", true) and
              Gate.IsEnabled(Database::"Job Planning Line", true) and Gate.IsEnabled(Database::Item, false) and
              Gate.IsEnabled(Database::"Item Variant", false) and Gate.IsEnabled(Database::Location, false) and
-             Gate.IsEnabled(Database::Bin, false) and Gate.IsEnabled(Database::"Item Unit of Measure", false) and
+             Gate.IsEnabled(Database::Bin, false) and Gate.IsEnabled(Database::Bin, true) and Gate.IsEnabled(Database::"Item Unit of Measure", false) and
              Gate.IsEnabled(Database::Item, true) and Gate.IsEnabled(Database::"Item Ledger Entry", true) and
              Gate.IsEnabled(Database::"Item Register", true) and Gate.IsEnabled(Database::"Value Entry", true) and
              Gate.IsEnabled(Database::"Item Application Entry", true) and Gate.IsEnabled(Database::"Reservation Entry", true) and

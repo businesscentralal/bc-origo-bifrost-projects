@@ -2,6 +2,7 @@ namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Purchases.Document;
 using Microsoft.Inventory.Tracking;
+using Microsoft.Warehouse.Structure;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
@@ -86,6 +87,39 @@ codeunit 97129 "Proj. Purchase Usage Perm ori"
         Lower.AddPermissionSet('ProjUsageResTest ori');
         Assert.IsTrue(Reservation.WritePermission(), 'Native reservation right now actually present');
         Assert.IsTrue(Usage.IsEnabled(), 'Completing native rights makes the permission gate available');
+    end;
+
+    /// <summary>Native warehouse registration can modify bins, so read-only bin access must refuse before posting.</summary>
+    [Test]
+    procedure FullWithReadOnlyBins_RefusesUntilNativeBinWriteGranted()
+    var
+        Bin: Record Bin;
+        Setup: Record "Projects Setup ori";
+        TempArgument: Record "Message Argument ori" temporary;
+        Usage: Codeunit "Projects Item Usage ori";
+        Impl: Codeunit "Proj. Item Usage Impl ori";
+        Lower: Codeunit "Library - Lower Permissions";
+        Assert: Codeunit "Library Assert";
+        Response: JsonObject;
+    begin
+        Lower.PushPermissionSetWithoutDefaults('BIFROST Full ori');
+        Lower.AddPermissionSet('ProjUsageBinTest ori');
+        Lower.AddPermissionSet('ProjUsageResTest ori');
+        Setup.InsertIfNotExists();
+        Setup.Enabled := true;
+        Setup.Modify(true);
+        Assert.IsTrue(Bin.ReadPermission(), 'Native bin read actually present');
+        Assert.IsFalse(Bin.WritePermission(), 'Native bin write actually absent');
+        Assert.IsFalse(Usage.IsEnabled(), 'Read-only bins cannot enable native warehouse posting');
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Impl.ExecuteBifrostTask(TempArgument);
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Missing bin write denied before licensing or writes');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Actionable permission remedy');
+        Lower.AddPermissionSet('ProjUsageTest ori');
+        Assert.IsTrue(Bin.WritePermission(), 'Native bin write actually restored');
+        Assert.IsTrue(Usage.IsEnabled(), 'Complete guarded native rights enable the adapter');
     end;
 
 }

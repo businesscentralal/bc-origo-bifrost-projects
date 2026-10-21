@@ -5,6 +5,10 @@ using Microsoft.Finance.GeneralLedger.Setup;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Location;
+using Microsoft.Warehouse.Journal;
+using Microsoft.Warehouse.Ledger;
+using Microsoft.Warehouse.Structure;
 using Microsoft.Inventory.Posting;
 using Microsoft.Inventory.Tracking;
 using Microsoft.Projects.Project.Job;
@@ -258,6 +262,60 @@ codeunit 97125 "Projects Item Usage Tests ori"
         AssertTrackedInventoryPost(true);
     end;
 
+    /// <summary>Self-received lot stock in a required bin is consumed by native project and warehouse posting together.</summary>
+    [Test]
+    procedure TrackedWarehouseBin_ConsumesOwnedBinStock()
+    var
+        Location: Record Location;
+        Bin: Record Bin;
+        WarehouseEntry: Record "Warehouse Entry";
+        BinContent: Record "Bin Content";
+        ItemLedger: Record "Item Ledger Entry";
+        Request: JsonObject;
+        Line: JsonObject;
+        Lines: JsonArray;
+        Response: JsonObject;
+        TrackingNo: Code[50];
+    begin
+        Request := NewRequestWithInventory(true);
+        Line := Request.GetArray('lines').GetObject(0);
+        Location.Code := CopyStr(DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Location.Code));
+        Location."Bin Mandatory" := true;
+        Location.Insert(true);
+        Bin."Location Code" := Location.Code;
+        Bin.Code := 'OWN-STOCK';
+        Bin.Insert(true);
+        TrackingNo := CopyStr(DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(TrackingNo));
+        Line.Add('locationCode', Location.Code);
+        Line.Add('binCode', Bin.Code);
+        Line.Add('lotNo', TrackingNo);
+        SeedTrackedInventoryAtLocation(CopyStr(Line.GetText('itemNo'), 1, 20), false, TrackingNo, 2, Location.Code, Bin.Code);
+        BinContent.SetRange("Location Code", Location.Code);
+        BinContent.SetRange("Bin Code", Bin.Code);
+        BinContent.SetRange("Item No.", Line.GetText('itemNo'));
+        BinContent.FindFirst();
+        BinContent.CalcFields("Quantity (Base)");
+        Assert.AreEqual(2, BinContent."Quantity (Base)", 'Native warehouse receipt created the owned stock');
+        Lines.Add(Line);
+        Request.Replace('lines', Lines);
+        Response := Execute(Request);
+        Library.AssertStatus(Response, 'Success');
+        BinContent.FindFirst();
+        BinContent.CalcFields("Quantity (Base)");
+        Assert.AreEqual(0, BinContent."Quantity (Base)", 'Native project posting consumed the exact required bin stock');
+        WarehouseEntry.SetRange("Location Code", Location.Code);
+        WarehouseEntry.SetRange("Bin Code", Bin.Code);
+        WarehouseEntry.SetRange("Item No.", Line.GetText('itemNo'));
+        WarehouseEntry.CalcSums("Qty. (Base)");
+        Assert.AreEqual(0, WarehouseEntry."Qty. (Base)", 'Warehouse receipt and project consumption balance');
+        WarehouseEntry.SetRange("Entry Type", WarehouseEntry."Entry Type"::"Negative Adjmt.");
+        Assert.IsFalse(WarehouseEntry.IsEmpty(), 'Native warehouse consumption was actually posted');
+        ItemLedger.SetRange("Item No.", Line.GetText('itemNo'));
+        ItemLedger.SetRange("Location Code", Location.Code);
+        ItemLedger.CalcSums(Quantity);
+        Assert.AreEqual(0, ItemLedger.Quantity, 'Native inventory receipt and project consumption balance');
+    end;
+
     local procedure AssertTrackedInventoryPost(Serial: Boolean)
     var
         ItemLedger: Record "Item Ledger Entry";
@@ -312,6 +370,11 @@ codeunit 97125 "Projects Item Usage Tests ori"
     end;
 
     local procedure SeedTrackedInventory(ItemNo: Code[20]; Serial: Boolean; TrackingNo: Code[50]; Quantity: Decimal)
+    begin
+        SeedTrackedInventoryAtLocation(ItemNo, Serial, TrackingNo, Quantity, '', '');
+    end;
+
+    local procedure SeedTrackedInventoryAtLocation(ItemNo: Code[20]; Serial: Boolean; TrackingNo: Code[50]; Quantity: Decimal; LocationCode: Code[10]; BinCode: Code[20])
     var
         Item: Record Item;
         TrackingCode: Record "Item Tracking Code";
@@ -321,6 +384,8 @@ codeunit 97125 "Projects Item Usage Tests ori"
         Account: Record "G/L Account";
         TempJournal: Record "Item Journal Line" temporary;
         Tracking: Record "Reservation Entry";
+        TempSpecification: Record "Tracking Specification" temporary;
+        PostBatch: Codeunit "Item Jnl.-Post Batch";
         PostItem: Codeunit "Item Jnl.-Post Line";
         CreateEntry: Codeunit "Create Reserv. Entry";
     begin
@@ -328,6 +393,10 @@ codeunit 97125 "Projects Item Usage Tests ori"
         TrackingCode.Code := CopyStr(ItemNo, 1, MaxStrLen(TrackingCode.Code));
         TrackingCode."SN Specific Tracking" := Serial;
         TrackingCode."Lot Specific Tracking" := not Serial;
+        if LocationCode <> '' then begin
+            TrackingCode."SN Warehouse Tracking" := Serial;
+            TrackingCode."Lot Warehouse Tracking" := not Serial;
+        end;
         TrackingCode.Insert(true);
         InventoryGroup.Code := ItemNo;
         InventoryGroup.Insert(true);
@@ -335,6 +404,7 @@ codeunit 97125 "Projects Item Usage Tests ori"
         Account.Name := 'X owned inventory posting account';
         Account."Direct Posting" := true;
         Account.Insert(true);
+        InventorySetup."Location Code" := LocationCode;
         InventorySetup."Invt. Posting Group Code" := InventoryGroup.Code;
         InventorySetup."Inventory Account" := Account."No.";
         InventorySetup."Inventory Account (Interim)" := Account."No.";
@@ -355,6 +425,10 @@ codeunit 97125 "Projects Item Usage Tests ori"
         TempJournal.Validate("Document No.", ItemNo);
         TempJournal.Validate("Item No.", ItemNo);
         TempJournal.Validate("Gen. Bus. Posting Group", GeneralSetup."Gen. Bus. Posting Group");
+        if LocationCode <> '' then
+            TempJournal.Validate("Location Code", LocationCode);
+        if BinCode <> '' then
+            TempJournal.Validate("Bin Code", BinCode);
         TempJournal.Validate(Quantity, Quantity);
         TempJournal.Validate("Unit Cost", 7);
         if Serial then
@@ -362,8 +436,12 @@ codeunit 97125 "Projects Item Usage Tests ori"
         else
             Tracking."Lot No." := TrackingNo;
         CreateEntry.CreateReservEntryFor(Database::"Item Journal Line", TempJournal."Entry Type".AsInteger(), TempJournal."Journal Template Name", TempJournal."Journal Batch Name", 0, TempJournal."Line No.", TempJournal."Qty. per Unit of Measure", Quantity, TempJournal."Quantity (Base)", Tracking);
-        CreateEntry.CreateEntry(ItemNo, '', '', Item.Description, 0D, WorkDate(), 0, "Reservation Status"::Surplus);
+        CreateEntry.CreateEntry(ItemNo, '', LocationCode, Item.Description, 0D, WorkDate(), 0, "Reservation Status"::Surplus);
         PostItem.RunWithCheck(TempJournal);
+        if BinCode <> '' then begin
+            PostItem.CollectTrackingSpecification(TempSpecification);
+            PostBatch.PostWhseJnlLine(TempJournal, Quantity, TempJournal."Quantity (Base)", TempSpecification);
+        end;
     end;
 
     local procedure NewRequest(): JsonObject
