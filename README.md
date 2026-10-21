@@ -39,4 +39,4 @@ See [Projects contracts](docs/projects.md) for fields, nested behavior and error
 
 Scaffold and lifecycle implementation are under development. Native component tests
 are separate from queue API, licensing, bilingual Web Client and MCP acceptance.
-Template/workflow restoration is retained by human PR #10. Issues #5 and #6 have native implementation and component tests; shipping MCP, business UI and independent acceptance remain pending. Issue #8 has native implementation and component tests with runtime acceptance pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.
+Template/workflow restoration from merged PR #10 is integrated. Issues #5 and #6 have native implementation and component tests; current-candidate runtime and independent acceptance remain pending. Issue #8 has native implementation and component tests with runtime acceptance pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.
