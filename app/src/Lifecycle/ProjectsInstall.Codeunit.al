@@ -1,7 +1,7 @@
 namespace Origo.Bifrost.Projects;
 
 /// <summary>Creates the initial company switch on installation.</summary>
-codeunit 10078487 "Projects Install ori"
+codeunit 70009202 "Projects Install ori"
 {
     Access = Internal;
     Subtype = Install;

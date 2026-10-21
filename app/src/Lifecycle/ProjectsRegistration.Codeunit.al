@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Registers the Projects setup page in Foundation's application registry.</summary>
-codeunit 10078486 "Projects Registration ori"
+codeunit 70009201 "Projects Registration ori"
 {
     Access = Internal;
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"App Registry ori", OnRegisterApps, '', false, false)]

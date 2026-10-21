@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Combines the company switch with the caller's effective native table permissions.</summary>
-codeunit 10078485 "Projects Gate ori"
+codeunit 70009200 "Projects Gate ori"
 {
     Access = Internal;
     /// <summary>Checks native read or write permission without elevating the caller.</summary>

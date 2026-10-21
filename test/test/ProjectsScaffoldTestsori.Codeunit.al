@@ -101,7 +101,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if (Ordinals.Get(Names.IndexOf(Name)) >= 10078485) and (Ordinals.Get(Names.IndexOf(Name)) <= 10078584) then begin
+            if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
                 Impl := MessageType;
@@ -134,7 +134,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if (Ordinals.Get(Names.IndexOf(Name)) >= 10078485) and (Ordinals.Get(Names.IndexOf(Name)) <= 10078584) then begin
+            if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 Clear(Contract);
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));

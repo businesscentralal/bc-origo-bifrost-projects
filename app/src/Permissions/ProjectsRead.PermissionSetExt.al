@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Extends the Foundation Read role with Projects objects; no Foundation Setup tabledata grant.</summary>
-permissionsetextension 10078485 "Projects Read ori" extends "BIFROST Read ori"
+permissionsetextension 70009200 "Projects Read ori" extends "BIFROST Read ori"
 {
     Permissions =
         tabledata "Proj. Posting ori" = R,

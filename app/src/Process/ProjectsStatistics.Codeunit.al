@@ -2,7 +2,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 using Microsoft.Projects.Project.Job;
 /// <summary>Reads native project statistics using the same calculation engine as the BC statistics pages.</summary>
-codeunit 10078511 "Projects Statistics ori"
+codeunit 70009226 "Projects Statistics ori"
 {
     Access = Internal;
     /// <summary>Returns totals and, for budget versus actual, individual posting task results in LCY.</summary>

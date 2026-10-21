@@ -7,7 +7,7 @@ using Microsoft.Projects.Project.Ledger;
 
 
 /// <summary>Implements the version 1 Projects.Usage.Link contract.</summary>
-codeunit 10078513 "Proj. Usage Link Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009228 "Proj. Usage Link Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     /// <summary>Checks company enablement and native table write permission.</summary>

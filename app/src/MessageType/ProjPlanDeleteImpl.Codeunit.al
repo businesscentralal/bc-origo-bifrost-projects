@@ -5,7 +5,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
 
 /// <summary>Implements the version 1 Projects.PlanningLine.Delete contract.</summary>
-codeunit 10078496 "Proj. Plan Delete Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009211 "Proj. Plan Delete Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     /// <summary>Checks company enablement and native table write permission.</summary>

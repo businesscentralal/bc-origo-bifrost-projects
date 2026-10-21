@@ -6,7 +6,7 @@ using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Project.Posting;
 /// <summary>Reads usage links and applies owned project usage through native BC link/transfer codeunits.</summary>
-codeunit 10078514 "Projects Usage ori"
+codeunit 70009229 "Projects Usage ori"
 {
     Access = Internal;
     /// <summary>Processes one exact project/task ledger usage link or reads its native state.</summary>

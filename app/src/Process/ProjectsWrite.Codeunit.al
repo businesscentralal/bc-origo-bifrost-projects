@@ -5,7 +5,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
 
 /// <summary>Validates complete write requests and dispatches isolated native transactions.</summary>
-codeunit 10078499 "Projects Write ori"
+codeunit 70009214 "Projects Write ori"
 {
     Access = Internal;
     /// <summary>Validates a request before running its transactional native operation.</summary>

@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Extends the Foundation Full role with Projects objects; no Foundation Setup tabledata grant.</summary>
-permissionsetextension 10078486 "Projects Full ori" extends "BIFROST Full ori"
+permissionsetextension 70009201 "Projects Full ori" extends "BIFROST Full ori"
 {
     Permissions =
         tabledata "Proj. Posting ori" = RIMD,

@@ -1,7 +1,7 @@
 namespace Origo.Bifrost.Projects;
 
 /// <summary>Administrative company switch for Projects message types.</summary>
-page 10078485 "Projects Setup ori"
+page 70009200 "Projects Setup ori"
 {
     ApplicationArea = All;
     Caption = 'Projects Setup', Comment = 'is-IS=Uppsetning verkefna';

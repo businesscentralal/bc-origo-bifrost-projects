@@ -5,7 +5,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.WIP;
 
 /// <summary>Executes native WIP operations and returns the actual calculated and posted entry state.</summary>
-codeunit 10078505 "Projects WIP ori"
+codeunit 70009220 "Projects WIP ori"
 {
     Access = Internal;
     /// <summary>Runs inside the existing Projects process transaction, preserving native WIP and posting validation.</summary>

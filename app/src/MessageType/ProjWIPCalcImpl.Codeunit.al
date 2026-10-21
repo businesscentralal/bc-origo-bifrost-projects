@@ -6,7 +6,7 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Project.WIP;
 
 /// <summary>Implements the version 1 Projects.WIP.Calculate contract.</summary>
-codeunit 10078503 "Proj. WIP Calc Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009218 "Proj. WIP Calc Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     /// <summary>Checks company enablement and native table write permission.</summary>

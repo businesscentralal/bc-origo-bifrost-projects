@@ -5,7 +5,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
 
 /// <summary>Declares the native Projects write contract and its nested parameter schemas.</summary>
-codeunit 10078489 "Projects Contract ori"
+codeunit 70009204 "Projects Contract ori"
 {
     Access = Internal;
     /// <summary>Declares the supported data keys for a Projects write operation.</summary>

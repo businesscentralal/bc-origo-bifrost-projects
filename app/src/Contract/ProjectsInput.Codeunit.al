@@ -5,7 +5,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
 
 /// <summary>Validates the entire request tree before any native project write.</summary>
-codeunit 10078497 "Projects Input ori"
+codeunit 70009212 "Projects Input ori"
 {
     Access = Internal;
     /// <summary>Collects malformed and missing parameters, including every nested line.</summary>

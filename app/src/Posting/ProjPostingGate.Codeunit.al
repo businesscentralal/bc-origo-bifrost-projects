@@ -6,7 +6,7 @@ using Origo.Bifrost;
 /// Posting gate for Bifrost Projects.
 /// WIP Post requires the Projects Full extension token write permission and native business rights.
 /// </summary>
-codeunit 10078507 "Proj. Posting Gate ori"
+codeunit 70009222 "Proj. Posting Gate ori"
 {
     Access = Internal;
 

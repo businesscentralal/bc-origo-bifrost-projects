@@ -7,7 +7,7 @@ using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Project.WIP;
 
 /// <summary>Implements the version 1 Projects.BudgetVsActual.Get contract.</summary>
-codeunit 10078510 "Proj. Budget Actual Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009225 "Proj. Budget Actual Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     /// <summary>Checks company enablement and native table write permission.</summary>

@@ -1,7 +1,7 @@
 namespace Origo.Bifrost.Projects;
 
 /// <summary>Company switch for Projects messages. Administrators manage it through Projects Setup.</summary>
-table 10078485 "Projects Setup ori"
+table 70009200 "Projects Setup ori"
 {
     Access = Internal;
     Caption = 'Projects Setup', Comment = 'is-IS=Uppsetning verkefna';
