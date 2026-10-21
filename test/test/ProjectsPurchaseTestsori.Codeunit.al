@@ -144,8 +144,8 @@ codeunit 97124 "Projects Purchase Tests ori"
     procedure DedicatedFields_BlockGenericWritesAndAdvertiseHint()
     var
         PurchaseLine: Record "Purchase Line";
-        Message: Record "Message ori";
-        Messages: TestPage "Messages ori";
+        TempArgument: Record "Message Argument ori" temporary;
+        Impl: Interface "Msg Interface ori";
         Request: JsonObject;
         Fixture: JsonObject;
         Row: JsonObject;
@@ -154,9 +154,6 @@ codeunit 97124 "Projects Purchase Tests ori"
         Response: JsonObject;
         FieldNames: List of [Text];
         FieldName: Text;
-        RequestText: Text;
-        ResponseText: Text;
-        ResponseData: BigText;
     begin
         Fixture := NewRequest(PurchaseLine);
         FieldNames.Add('Job No.');
@@ -164,45 +161,53 @@ codeunit 97124 "Projects Purchase Tests ori"
         FieldNames.Add('Job Line Type');
         FieldNames.Add('Job Planning Line No.');
         foreach FieldName in FieldNames do begin
-            Clear(Message);
+            Clear(TempArgument);
             Clear(Request);
             Clear(Row);
             Clear(Fields);
             Clear(Data);
-            Clear(Response);
-            case FieldName of
-                'Job No.': Fields.Add(FieldName, Fixture.GetText('projectNo'));
-                'Job Task No.': Fields.Add(FieldName, Fixture.GetText('taskNo'));
-                'Job Line Type': Fields.Add(FieldName, 'Budget');
-                'Job Planning Line No.': Fields.Add(FieldName, 0);
-            end;
+            TempArgument.ID := CreateGuid();
+            TempArgument.Type := "Message Type ori"::"Data.Records.Set";
+            TempArgument.Version := "Message Version ori"::"1.0";
+            TempArgument.Subject := '39';
+            TempArgument.Insert(true);
+            Fields.Add(FieldName, Fixture.GetText('projectNo'));
             Row.Add('id', Format(PurchaseLine.SystemId, 0, 4));
             Row.Add('fields', Fields);
             Data.Add(Row);
             Request.Add('data', Data);
-            Request.WriteTo(RequestText);
-            Message.Id := CreateGuid();
-            Message.Type := "Message Type ori"::"Data.Records.Set";
-            Message.Version := "Message Version ori"::"1.0";
-            Message.Subject := '39';
-            Message.SetRequestData(RequestText);
-            Message.Insert(true);
-            Commit();
-            // Invoke the normal public UI task action. Foundation derives its own
-            // licence/company context; no internal entrypoint or licensed flag is set.
-            Messages.OpenView();
-            Messages.GoToRecord(Message);
-            Messages.RunTaskAction.Invoke();
-            Messages.Close();
-            Message.Get(Message.Id);
-            ResponseData := Message.GetResponseData();
-            Clear(ResponseText);
-            ResponseData.GetSubText(ResponseText);
-            Response.ReadFrom(ResponseText);
+            TempArgument.SetRequestJson(Request);
+            Impl := TempArgument.Type;
+            // Runs the real public Foundation path; no licensing/EULA test hook or bypass.
+            Impl.ExecuteBifrostTask(TempArgument);
+            Response := TempArgument.GetResponseJson();
             Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Dedicated project-link field refused: ' + FieldName);
             Assert.IsTrue(Response.GetText('nextStep').Contains('Projects.PurchaseLine.Link'), 'Dedicated message hint');
-            PurchaseLine.GetBySystemId(PurchaseLine.SystemId);
-            Assert.AreEqual('', PurchaseLine."Job No.", 'No generic link write persisted');
+        end;
+        PurchaseLine.GetBySystemId(PurchaseLine.SystemId);
+        Assert.AreEqual('', PurchaseLine."Job No.", 'Generic writes changed no project link');
+    end;
+
+    /// <summary>Public Foundation hint events route all dedicated fields while leaving reads open.</summary>
+    [Test]
+    procedure DedicatedHints_AllFieldsRegisteredAndReadsOpen()
+    var
+        PurchaseLine: Record "Purchase Line";
+        TempArgument: Record "Message Argument ori" temporary;
+        FieldAccess: Codeunit "Field Access ori";
+        FieldNos: List of [Integer];
+        FieldNo: Integer;
+        Hint: Text;
+    begin
+        FieldNos.Add(PurchaseLine.FieldNo("Job No."));
+        FieldNos.Add(PurchaseLine.FieldNo("Job Task No."));
+        FieldNos.Add(PurchaseLine.FieldNo("Job Line Type"));
+        FieldNos.Add(PurchaseLine.FieldNo("Job Planning Line No."));
+        foreach FieldNo in FieldNos do begin
+            Hint := TempArgument.GetDedicatedMessageTypeHintForField(Database::"Purchase Line", FieldNo);
+            Assert.IsTrue(Hint.Contains('Projects.PurchaseLine.Link'), 'Real Foundation hint publisher is wired');
+            Assert.IsTrue(Hint.Contains('Projects.ItemUsage.Post'), 'Both dedicated type hints');
+            Assert.IsFalse(FieldAccess.IsFieldReadRestricted(Database::"Purchase Line", FieldNo), 'Write restriction does not close reads');
         end;
     end;
 
