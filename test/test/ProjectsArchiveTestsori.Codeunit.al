@@ -193,26 +193,20 @@ codeunit 97122 "Projects Archive Tests ori"
     var
         Project: Record Job;
         Task: Record "Job Task";
-        Planning: Record "Job Planning Line";
         Setup: Record "Jobs Setup";
+        PlanningRequest: JsonObject;
     begin
-        Library.Initialize();
+        PlanningRequest := Library.NewPlanningRequest('Item');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", PlanningRequest), 'Success');
         Setup.Get();
         Setup."Archive Jobs" := Setup."Archive Jobs"::Always;
         Setup.Modify(true);
-        Project."No." := NewNumber();
+        Project.Get(PlanningRequest.GetText('projectNo'));
         Project.Description := 'X archive project';
-        Project.Insert(true);
-        Task."Job No." := Project."No.";
-        Task."Job Task No." := 'X100';
+        Project.Modify(true);
+        Task.Get(Project."No.", PlanningRequest.GetText('taskNo'));
         Task.Description := 'X task';
-        Task.Insert(true);
-        Planning."Job No." := Project."No.";
-        Planning."Job Task No." := Task."Job Task No.";
-        Planning."Line No." := 10000;
-        Planning.Description := 'X planning';
-        Planning.Quantity := 3;
-        Planning.Insert(false);
+        Task.Modify(true);
         exit(Project."No.");
     end;
 }
