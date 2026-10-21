@@ -174,6 +174,7 @@ codeunit 97125 "Projects Item Usage Tests ori"
         Ledger: Record "Job Ledger Entry";
         TempArgument: Record "Message Argument ori" temporary;
         Usage: Codeunit "Projects Item Usage ori";
+        Observer: Codeunit "Proj. Usage Observed ori";
         Request: JsonObject;
         OtherRequest: JsonObject;
         Line: JsonObject;
@@ -193,7 +194,11 @@ codeunit 97125 "Projects Item Usage Tests ori"
         TempArgument.Insert(true);
         TempArgument.SetRequestJson(Request);
         Commit();
+        Observer.ObserveProject(CopyStr(Request.GetText('projectNo'), 1, 20));
+        BindSubscription(Observer);
         Usage.Execute(TempArgument);
+        UnbindSubscription(Observer);
+        Assert.IsTrue(Observer.ObservedCount() > 0, 'An earlier native ledger insertion actually occurred before the later failure');
         Response := TempArgument.GetResponseJson();
         Assert.AreEqual('Error', Response.GetText('status'), 'Native blocked second item is a clean error');
         Ledger.SetRange("Job No.", Request.GetText('projectNo'));
