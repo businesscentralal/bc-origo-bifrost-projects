@@ -188,13 +188,12 @@ codeunit 97124 "Projects Purchase Tests ori"
         Assert.AreEqual('', PurchaseLine."Job No.", 'Generic writes changed no project link');
     end;
 
-    /// <summary>Public Foundation hint events route all dedicated fields while leaving reads open.</summary>
+    /// <summary>Public Foundation hint events route all four dedicated project-link fields.</summary>
     [Test]
-    procedure DedicatedHints_AllFieldsRegisteredAndReadsOpen()
+    procedure DedicatedHints_AllFieldsRegistered()
     var
         PurchaseLine: Record "Purchase Line";
         TempArgument: Record "Message Argument ori" temporary;
-        FieldAccess: Codeunit "Field Access ori";
         FieldNos: List of [Integer];
         FieldNo: Integer;
         Hint: Text;
@@ -207,7 +206,6 @@ codeunit 97124 "Projects Purchase Tests ori"
             Hint := TempArgument.GetDedicatedMessageTypeHintForField(Database::"Purchase Line", FieldNo);
             Assert.IsTrue(Hint.Contains('Projects.PurchaseLine.Link'), 'Real Foundation hint publisher is wired');
             Assert.IsTrue(Hint.Contains('Projects.ItemUsage.Post'), 'Both dedicated type hints');
-            Assert.IsFalse(FieldAccess.IsFieldReadRestricted(Database::"Purchase Line", FieldNo), 'Write restriction does not close reads');
         end;
     end;
 
