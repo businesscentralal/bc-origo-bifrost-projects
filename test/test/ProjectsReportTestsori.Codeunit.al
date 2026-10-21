@@ -327,6 +327,30 @@ codeunit 97126 "Projects Report Tests ori"
         Assert.AreEqual(21, Row.GetDecimal('budgetCostLCY'), 'Native planned cost');
     end;
 
+    /// <summary>Native PDF output uses the standard layout and produces a valid PDF for populated and empty projects.</summary>
+    [Test]
+    procedure NativePdf_StandardLayoutAndEmptyProject()
+    var
+        Adapter: Codeunit "Projects Report ori";
+        Planning: JsonObject;
+        Project: JsonObject;
+        Request: JsonObject;
+        Pdf: Text;
+    begin
+        Planning := Library.NewPlanningRequest('Item');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Planning), 'Success');
+        Request.Add('report', 'actualToBudget');
+        Request.Add('format', 'pdf');
+        Request.Add('projectNo', Planning.GetText('projectNo'));
+        Pdf := Adapter.RenderPdf(Request);
+        Assert.IsTrue(Pdf.StartsWith('JVBERi0'), 'Populated native report PDF signature');
+        Project := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Project), 'Success');
+        Request.Replace('projectNo', Project.GetText('projectNo'));
+        Pdf := Adapter.RenderPdf(Request);
+        Assert.IsTrue(Pdf.StartsWith('JVBERi0'), 'Empty native report still has a valid PDF signature');
+    end;
+
     local procedure Dataset(Columns: Text) Document: XmlDocument
     begin
         XmlDocument.ReadFrom('<ReportDataSet><DataItems><DataItem>' + Columns + '</DataItem></DataItems></ReportDataSet>', Document);

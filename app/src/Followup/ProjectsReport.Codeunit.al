@@ -353,11 +353,15 @@ codeunit 70009235 "Projects Report ori"
 
     local procedure ShapeAnalysis(Node: XmlNode; var Row: JsonObject)
     var
+        NativeFlag: XmlNode;
         Names: List of [Text];
         Index: Integer;
     begin
         if ColumnText(Node, 'JobTaskNo_JobTask') = '' then
             exit;
+        if Node.SelectSingleNode('.//Column[@name="ShowIntBody1"]', NativeFlag) then
+            if not (ColumnBoolean(Node, 'ShowIntBody1') or ColumnBoolean(Node, 'ShowIntBody2') or ColumnBoolean(Node, 'ShowIntBody3')) then
+                exit;
         Row.Add('projectNo', ColumnText(Node, 'No_Job'));
         Row.Add('taskNo', ColumnText(Node, 'JobTaskNo_JobTask'));
         Row.Add('description', ColumnText(Node, 'Indentation_JobTask'));
@@ -425,6 +429,18 @@ codeunit 70009235 "Projects Report ori"
         if Node.SelectSingleNode('.//Column[@name="' + Name + '"]', Column) then
             exit(Column.AsXmlElement().InnerText());
         exit('');
+    end;
+
+    local procedure ColumnBoolean(Node: XmlNode; Name: Text): Boolean
+    var
+        Value: Boolean;
+        TextValue: Text;
+    begin
+        TextValue := ColumnText(Node, Name);
+        if TextValue = '' then
+            exit(false);
+        Evaluate(Value, TextValue, 9);
+        exit(Value);
     end;
 
     local procedure ColumnDecimal(Node: XmlNode; Name: Text): Decimal
