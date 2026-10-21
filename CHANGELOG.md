@@ -41,3 +41,7 @@
 
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 70009200..70009249, tests 97100..97199.
+
+## Unreleased — typed project reports (verification candidate)
+
+- Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009243), and dataset, nonzero native budget and permission tests 97126–97127. Shared registry/permission/translation integration and shipping queue acceptance remain pending serialized integration.
