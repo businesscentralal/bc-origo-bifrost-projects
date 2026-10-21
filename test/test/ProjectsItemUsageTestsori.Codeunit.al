@@ -3,6 +3,7 @@ namespace Origo.Bifrost.Projects.Test;
 using Microsoft.Inventory.Item;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Planning;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
@@ -238,11 +239,16 @@ codeunit 97125 "Projects Item Usage Tests ori"
     local procedure NewRequest() Request: JsonObject
     var
         Project: Record Job;
+        PlanningLine: Record "Job Planning Line";
         Planning: JsonObject;
         Line: JsonObject;
         Lines: JsonArray;
     begin
         Planning := Library.NewPlanningRequest('Item');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Planning), 'Success');
+        PlanningLine.Get(Planning.GetText('projectNo'), Planning.GetText('taskNo'), Planning.GetInteger('lineNo'));
+        PlanningLine.Validate("Usage Link", true);
+        PlanningLine.Modify(true);
         Project.Get(Planning.GetText('projectNo'));
         Project.Validate(Status, Project.Status::Open);
         Project.Modify(true);
