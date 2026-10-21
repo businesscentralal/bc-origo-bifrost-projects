@@ -5,7 +5,7 @@ Bifrost feature app for project (job) message types that are not covered by Bifr
 Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets), not here. Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
 
 - Depends only on Bifrost Foundation.
-- Object range: 10078485..10078584 (app), 97100..97199 (tests).
+- Object range: 70009200..70009249 (app), 97100..97199 (tests).
 
 ## Message types
 
