@@ -4,7 +4,7 @@
 
 ### Added (2026-10-21)
 
-- Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009231, 70009238; enum value 70009216; tests 97120/97121).
+- Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009231, 70009238; enum value 70009216; tests 97120/97121 and owned nonfinancial fixture actions 97128).
 
 ### Changed (2026-10-21) - Object range moved into a registered range
 
