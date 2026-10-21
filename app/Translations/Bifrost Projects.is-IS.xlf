@@ -33,6 +33,156 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Primary Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2277945722" size-unit="char" translate="yes" xml:space="preserve">
+          <source>resource no.</source>
+          <target>forðanúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=forðanúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text10Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 3472886041" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project no.</source>
+          <target>verkefnisnúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefnisnúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text11Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 3419189944" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Each row contains resourceNo, fromDate, toDate, capacity, allocated, availability and projects (projectNo, allocated). Quantities use the resource base unit.</source>
+          <target>Hver lína inniheldur resourceNo, fromDate, toDate, capacity, allocated, availability og projects (projectNo, allocated). Magn er í grunneiningu forðans.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hver lína inniheldur resourceNo, fromDate, toDate, capacity, allocated, availability og projects (projectNo, allocated). Magn er í grunneiningu forðans.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text12Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 1040320215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The requested calendar period type.</source>
+          <target>Umbeðin tegund almanakstímabils.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbeðin tegund almanakstímabils.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text13Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2689785662" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A required date or periodType is missing.</source>
+          <target>Nauðsynlega dagsetningu eða periodType vantar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlega dagsetningu eða periodType vantar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text14Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 3884725981" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A parameter has the wrong JSON type, date format or identifier length.</source>
+          <target>Viðfang hefur ranga JSON-gagnategund, dagsetningasnið eða lengd auðkennis.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Viðfang hefur ranga JSON-gagnategund, dagsetningasnið eða lengd auðkennis.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text15Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 978377084" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A key is not declared by this contract.</source>
+          <target>Lykill er ekki skilgreindur í þessum samningi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lykill er ekki skilgreindur í þessum samningi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text16Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2173317403" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The periodType or date range is invalid.</source>
+          <target>periodType eða dagsetningabil er ógilt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=periodType eða dagsetningabil er ógilt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text17Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2553692530" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The requested range crosses more than 53 calendar periods.</source>
+          <target>Umbeðið bil nær yfir fleiri en 53 almanakstímabil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbeðið bil nær yfir fleiri en 53 almanakstímabil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text18Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 527311121" size-unit="char" translate="yes" xml:space="preserve">
+          <source>An explicit project, resource or resource group does not exist.</source>
+          <target>Tilgreint verkefni, forði eða forðaflokkur er ekki til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreint verkefni, forði eða forðaflokkur er ekki til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text19Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 1760757218" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown parameter.</source>
+          <target>Fjarlægðu óþekkta viðfangið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta viðfangið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text1Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 3853295839" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass an existing identifier.</source>
+          <target>Sendu auðkenni sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu auðkenni sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text20Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2264290496" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The resource does not belong to the selected group.</source>
+          <target>Forðinn tilheyrir ekki völdum flokki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forðinn tilheyrir ekki völdum flokki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text21Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 533385441" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A required native table is not readable or Projects is disabled.</source>
+          <target>Ekki er hægt að lesa nauðsynleg gögn eða verkefni eru óvirk.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að lesa nauðsynleg gögn eða verkefni eru óvirk.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text22Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2317934527" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass the filter named in the refusal.</source>
+          <target>Sendu síuna sem nefnd er í synjuninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu síuna sem nefnd er í synjuninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text2Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 49348640" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the parameter type and length listed in the help.</source>
+          <target>Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text3Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 3704831365" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional exact resource number.</source>
+          <target>Valfrjálst nákvæmt forðanúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjálst nákvæmt forðanúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text4Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2852177702" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for BIFROST Read ori and the Projects read permissions.</source>
+          <target>Biddu kerfisstjóra um BIFROST Read ori og lesheimildir fyrir verkefni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Read ori og lesheimildir fyrir verkefni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text5Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 2729774467" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use day, week, month, quarter or year.</source>
+          <target>Notaðu day, week, month, quarter eða year.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu day, week, month, quarter eða year.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text6Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 1140769124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Narrow the date range.</source>
+          <target>Þrengdu dagsetningabilið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Þrengdu dagsetningabilið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text7Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 542861257" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a resource belonging to the selected resource group.</source>
+          <target>Notaðu forða sem tilheyrir völdum forðaflokki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu forða sem tilheyrir völdum forðaflokki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text8Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - NamedType 3642888234" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional exact project number.</source>
+          <target>Valfrjálst nákvæmt verkefnisnúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjálst nákvæmt verkefnisnúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - NamedType Text9Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads resource capacity, allocation to open projects and availability by calendar period.</source>
+          <target>Les afkastagetu, ráðstöfun á opin verkefni og lausa afkastagetu forða eftir almanakstímabili.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les afkastagetu, ráðstöfun á opin verkefni og lausa afkastagetu forða eftir almanakstímabili.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, resource, capacity, allocation, availability</source>
+          <target>verkefni, forði, afkastageta, ráðstöfun, tiltækni</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, forði, afkastageta, ráðstöfun, tiltækni</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 108631167 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Read only. Dates are inclusive; weeks end Sunday. Partial first/last periods are clipped to the date range. At most 53 periods are allowed. Allocation sums scheduled base quantities on open projects; billable-only lines are excluded. Capacity is the resource total even when projectNo filters allocation. Missing capacity returns zero. No capacity or allocation is changed.</source>
+          <target>Aðeins til lestrar. Dagsetningar eru meðtaldar; vikum lýkur á sunnudegi. Fyrsta og síðasta tímabil afmarkast af dagsetningabilinu. Mest 53 tímabil eru leyfð. Ráðstöfun leggur saman áætlað grunnmagn á opnum verkefnum; línur sem eru eingöngu reikningshæfar eru undanskildar. Afkastageta er heildargeta forðans þótt projectNo afmarki ráðstöfun. Engar afkastafærslur skila núlli. Afkastagetu eða ráðstöfun er ekki breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins til lestrar. Dagsetningar eru meðtaldar; vikum lýkur á sunnudegi. Fyrsta og síðasta tímabil afmarkast af dagsetningabilinu. Mest 53 tímabil eru leyfð. Ráðstöfun leggur saman áætlað grunnmagn á opnum verkefnum; línur sem eru eingöngu reikningshæfar eru undanskildar. Afkastageta er heildargeta forðans þótt projectNo afmarki ráðstöfun. Engar afkastafærslur skila núlli. Afkastagetu eða ráðstöfun er ekki breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 197225938 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returns native project totals and posting-task budget versus actual statistics in LCY.</source>
           <target>Skilar innbyggðum heildarfjárhæðum verkefnis og samanburði áætlunar og rauntalna eftir verkhlutum í heimamynt.</target>
@@ -326,6 +476,114 @@
           <target>Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST Full ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST Full ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 2277945722" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Narrow the date range.</source>
+          <target>Þrengdu dagsetningabilið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Þrengdu dagsetningabilið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text10Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 3472886041" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass an existing project number.</source>
+          <target>Sendu verkefnisnúmer sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu verkefnisnúmer sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text11Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 3419189944" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass an existing resource number.</source>
+          <target>Sendu forðanúmer sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu forðanúmer sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text12Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 1040320215" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass an existing resource group number.</source>
+          <target>Sendu forðaflokksnúmer sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu forðaflokksnúmer sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text13Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 2689785662" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a resource belonging to the selected resource group.</source>
+          <target>Notaðu forða sem tilheyrir völdum forðaflokki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu forða sem tilheyrir völdum forðaflokki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text14Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 1760757218" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional exact project number; capacity remains the resource capacity.</source>
+          <target>Valfrjálst nákvæmt verkefnisnúmer; afkastageta helst afkastageta forðans.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjálst nákvæmt verkefnisnúmer; afkastageta helst afkastageta forðans.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text1Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 2317934527" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional exact resource number.</source>
+          <target>Valfrjálst nákvæmt forðanúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjálst nákvæmt forðanúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text2Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 49348640" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional exact resource group number; combines with resourceNo.</source>
+          <target>Valfrjálst nákvæmt forðaflokksnúmer; er notað ásamt resourceNo.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjálst nákvæmt forðaflokksnúmer; er notað ásamt resourceNo.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text3Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 3704831365" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Calendar period: day, week, month, quarter or year.</source>
+          <target>Almanakstímabil: day, week, month, quarter eða year.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Almanakstímabil: day, week, month, quarter eða year.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text4Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 2852177702" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inclusive first date in ISO YYYY-MM-DD format.</source>
+          <target>Fyrsti dagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyrsti dagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text5Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 2729774467" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Inclusive last date in ISO YYYY-MM-DD format.</source>
+          <target>Síðasti dagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Síðasti dagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text6Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 1140769124" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for BIFROST Read ori and the Projects read permissions.</source>
+          <target>Biddu kerfisstjóra um BIFROST Read ori og lesheimildir fyrir verkefni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Read ori og lesheimildir fyrir verkefni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text7Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 542861257" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use day, week, month, quarter or year.</source>
+          <target>Notaðu day, week, month, quarter eða year.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu day, week, month, quarter eða year.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text8Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1150983558 - NamedType 3642888234" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a date range ending on or after fromDate.</source>
+          <target>Notaðu dagsetningabil sem endar á eða eftir fromDate.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu dagsetningabil sem endar á eða eftir fromDate.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text9Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - NamedType 1760757218" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown parameter.</source>
+          <target>Fjarlægðu óþekkta viðfangið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta viðfangið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - NamedType Text1Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - NamedType 2317934527" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass the filter named in the refusal.</source>
+          <target>Sendu síuna sem nefnd er í synjuninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu síuna sem nefnd er í synjuninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - NamedType Text2Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - NamedType 49348640" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the parameter type and length listed in the help.</source>
+          <target>Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - NamedType Text3Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - Method 2962684526 - NamedType 1066607173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Projects request cannot be processed. Check the named parameter.</source>
+          <target>Ekki er hægt að vinna verkefnabeiðnina. Athugaðu tilgreint viðfang.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að vinna verkefnabeiðnina. Athugaðu tilgreint viðfang.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - Method Refuse - NamedType InvalidLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 30800967 - Method 1513833081 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects messages are disabled for this company.</source>

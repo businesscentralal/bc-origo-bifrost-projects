@@ -2,6 +2,10 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Added (2026-10-21)
+
+- Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009231, 70009238; enum value 70009216; tests 97120/97121).
+
 ### Changed (2026-10-21) - Object range moved into a registered range
 
 - Reconcile the WIP posting contract with the resolved Projects Read/Full decision (#18) and distinguish the historical Foundation EULA refusal from current-version queue verification (#17).

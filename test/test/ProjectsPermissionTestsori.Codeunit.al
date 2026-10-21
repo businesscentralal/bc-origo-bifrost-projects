@@ -16,7 +16,7 @@ codeunit 97103 "Projects Permission Tests ori"
     var
         Assert: Codeunit "Library Assert";
     [Test]
-    procedure Scenario_AC01_ReadRole_WithoutNativeRights_Denied()
+    procedure Scenario_AC01_NoNativeRights_AllTypesDenied()
     var
         TempArgument: Record "Message Argument ori" temporary;
         LowerPermissions: Codeunit "Library - Lower Permissions";
@@ -28,8 +28,8 @@ codeunit 97103 "Projects Permission Tests ori"
         Name: Text;
     begin
         // Story #1/#2, AC01 | Time: no date dependency | Risk: None
-        // [GIVEN] The caller has the read role, without native project write permission.
-        LowerPermissions.PushPermissionSetWithoutDefaults('BIFROST Read ori');
+        // [GIVEN] The caller can inspect Projects setup and execute the catalogue, but has no native business-table rights.
+        LowerPermissions.PushPermissionSetWithoutDefaults('ProjAllocTest ori');
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
