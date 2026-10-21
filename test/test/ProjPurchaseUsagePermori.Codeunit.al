@@ -1,0 +1,59 @@
+namespace Origo.Bifrost.Projects.Test;
+
+using Microsoft.Purchases.Document;
+using Origo.Bifrost;
+using Origo.Bifrost.Projects;
+using System.TestLibraries.Utilities;
+
+/// <summary>Proves native purchase rights alone cannot authorize dedicated Full-only feature operations.</summary>
+codeunit 97129 "Proj. Purchase Usage Perm ori"
+{
+    Subtype = Test;
+    TestPermissions = Restrictive;
+
+    /// <summary>Native purchase write rights cannot replace the explicit BIFROST Full feature token.</summary>
+    [Test]
+    procedure NativePurchaseRightsWithoutFullToken_RefuseLink()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Setup: Record "Projects Setup ori";
+        PurchaseLine: Record "Purchase Line";
+        Impl: Codeunit "Proj. Purchase Impl ori";
+        LowerPermissions: Codeunit "Library - Lower Permissions";
+        Assert: Codeunit "Library Assert";
+        Response: JsonObject;
+    begin
+        LowerPermissions.PushPermissionSetWithoutDefaults('ProjUsageTest ori');
+        Assert.IsTrue(Setup.IsEnabled(), 'Feature fixture enabled');
+        Assert.IsTrue(PurchaseLine.WritePermission(), 'Native purchase write rights actually present');
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Assert.IsFalse(Impl.IsEnabled(), 'Native rights alone do not grant feature Full');
+        Impl.ExecuteBifrostTask(TempArgument);
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Refusal before licensing or argument read');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Names Full permission set');
+    end;
+
+    /// <summary>Read-only feature token and no native posting rights refuse item consumption before licensing.</summary>
+    [Test]
+    procedure NoNativePostingOrFullToken_RefuseItemUsage()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Setup: Record "Projects Setup ori";
+        Impl: Codeunit "Proj. Item Usage Impl ori";
+        LowerPermissions: Codeunit "Library - Lower Permissions";
+        Assert: Codeunit "Library Assert";
+        Response: JsonObject;
+    begin
+        LowerPermissions.PushPermissionSetWithoutDefaults('ProjUsageTest ori');
+        Assert.IsTrue(Setup.IsEnabled(), 'Feature fixture enabled');
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Assert.IsFalse(Impl.IsEnabled(), 'Item usage cannot post without Full/native rights');
+        Impl.ExecuteBifrostTask(TempArgument);
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Refusal before licensing or argument read');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Names Full permission set');
+    end;
+}
