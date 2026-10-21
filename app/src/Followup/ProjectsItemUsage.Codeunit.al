@@ -13,6 +13,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Project.Planning;
+using Microsoft.Sales.Customer;
 using Origo.Bifrost;
 
 /// <summary>Validates an atomic native project item-usage request before dispatching posting.</summary>
@@ -67,7 +68,7 @@ codeunit 70009233 "Projects Item Usage ori"
         Gate: Codeunit "Projects Gate ori";
     begin
         exit(Posting.HasPostingPermission() and Gate.IsEnabled(Database::Job, true) and Gate.IsEnabled(Database::Job, false) and
-             Gate.IsEnabled(Database::"Job Task", false) and Gate.IsEnabled(Database::"Job Journal Line", true) and
+             Gate.IsEnabled(Database::"Job Task", false) and Gate.IsEnabled(Database::Customer, false) and Gate.IsEnabled(Database::"Job Journal Line", true) and
              Gate.IsEnabled(Database::"Job Ledger Entry", true) and Gate.IsEnabled(Database::"Job Register", true) and
              Gate.IsEnabled(Database::"Job Planning Line", true) and Gate.IsEnabled(Database::Item, false) and
              Gate.IsEnabled(Database::"Item Variant", false) and Gate.IsEnabled(Database::Location, false) and
@@ -194,6 +195,8 @@ codeunit 70009233 "Projects Item Usage ori"
 
     local procedure PrepareJournal(TaskId: Guid; Request: JsonObject; Line: JsonObject; LineNo: Integer; var Journal: Record "Job Journal Line" temporary)
     var
+        Project: Record Job;
+        Customer: Record Customer;
         Input: Codeunit "Projects Followup Input ori";
         PostingDate: Date;
         DocumentNo: Code[20];
@@ -214,6 +217,9 @@ codeunit 70009233 "Projects Item Usage ori"
         Journal.Validate("Document No.", DocumentNo);
         Journal.Validate("Job No.", CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(Journal."Job No.")));
         Journal.Validate("Job Task No.", CopyStr(Request.GetText('taskNo'), 1, MaxStrLen(Journal."Job Task No.")));
+        Project.Get(Request.GetText('projectNo'));
+        Customer.Get(Project."Bill-to Customer No.");
+        Journal.Validate("Gen. Bus. Posting Group", Customer."Gen. Bus. Posting Group");
         Journal.Validate("No.", CopyStr(Line.GetText('itemNo'), 1, MaxStrLen(Journal."No.")));
         if Input.TextValue(Line, 'variantCode') <> '' then
             Journal.Validate("Variant Code", CopyStr(Line.GetText('variantCode'), 1, MaxStrLen(Journal."Variant Code")));
