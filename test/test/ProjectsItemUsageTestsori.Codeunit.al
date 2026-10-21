@@ -217,10 +217,12 @@ codeunit 97125 "Projects Item Usage Tests ori"
         Lines: JsonArray;
         Token: JsonToken;
         TotalQuantity: Decimal;
+        LineText: Text;
     begin
         Request := NewRequest();
         Lines := Request.GetArray('lines');
-        Line := Lines.GetObject(0);
+        Lines.GetObject(0).WriteTo(LineText);
+        Line.ReadFrom(LineText);
         Line.Replace('quantity', 1);
         Lines.Add(Line);
         Request.Replace('lines', Lines);
