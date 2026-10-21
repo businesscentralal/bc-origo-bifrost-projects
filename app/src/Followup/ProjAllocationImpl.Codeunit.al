@@ -165,12 +165,38 @@ codeunit 70009238 "Proj. Allocation Impl ori" implements "Msg Interface ori", "M
     procedure GetExamples(var Examples: JsonArray): Boolean
     var
         Example: JsonObject;
+        Envelope: JsonObject;
         Request: JsonObject;
+        Response: JsonObject;
+        Row: JsonObject;
+        Project: JsonObject;
+        Rows: JsonArray;
+        Projects: JsonArray;
+        TitleLbl: Label 'Monthly resource allocation', Comment = 'is-IS=Mánaðarleg ráðstöfun forða';
     begin
+        Request.Add('resourceNo', 'RESOURCE-001');
         Request.Add('periodType', 'month');
         Request.Add('fromDate', '2026-01-01');
-        Request.Add('toDate', '2026-03-31');
-        Example.Add('data', Request);
+        Request.Add('toDate', '2026-01-31');
+        Envelope.Add('type', 'Projects.ResourceAllocation.Get');
+        Envelope.Add('data', Request);
+        Project.Add('projectNo', 'PROJECT-001');
+        Project.Add('allocated', 120);
+        Projects.Add(Project);
+        Row.Add('resourceNo', 'RESOURCE-001');
+        Row.Add('fromDate', '2026-01-01');
+        Row.Add('toDate', '2026-01-31');
+        Row.Add('capacity', 160);
+        Row.Add('allocated', 120);
+        Row.Add('availability', 40);
+        Row.Add('projects', Projects);
+        Rows.Add(Row);
+        Response.Add('status', 'Success');
+        Response.Add('periodType', 'month');
+        Response.Add('rows', Rows);
+        Example.Add('title', TitleLbl);
+        Example.Add('request', Envelope);
+        Example.Add('response', Response);
         Examples.Add(Example);
         exit(true);
     end;

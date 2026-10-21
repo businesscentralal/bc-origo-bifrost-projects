@@ -171,6 +171,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Les afkastagetu, ráðstöfun á opin verkefni og lausa afkastagetu forða eftir almanakstímabili.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 108631167 - Method 3255554567 - NamedType 1582893390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Monthly resource allocation</source>
+          <target>Mánaðarleg ráðstöfun forða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Mánaðarleg ráðstöfun forða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Allocation Impl ori - Method GetExamples - NamedType TitleLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 108631167 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
           <source>project, resource, capacity, allocation, availability</source>
           <target>verkefni, forði, afkastageta, ráðstöfun, tiltækni</target>

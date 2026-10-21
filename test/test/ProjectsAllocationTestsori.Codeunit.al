@@ -186,6 +186,32 @@ codeunit 97120 "Projects Allocation Tests ori"
         Assert.AreEqual('InvalidParameter', Response.GetText('code'), 'Reversed range refused');
     end;
 
+    /// <summary>Public help carries a complete request/answer example in both supported languages.</summary>
+    [Test]
+    procedure ContractExample_HasEnvelopeAnswerAndLocalizedTitle()
+    var
+        Impl: Codeunit "Proj. Allocation Impl ori";
+        Examples: JsonArray;
+        Example: JsonObject;
+        PreviousLanguage: Integer;
+        EnglishTitle: Text;
+    begin
+        PreviousLanguage := GlobalLanguage();
+        GlobalLanguage(1033);
+        Assert.IsTrue(Impl.GetExamples(Examples), 'Examples chapter is present');
+        Example := Examples.GetObject(0);
+        Assert.AreEqual('Projects.ResourceAllocation.Get', Example.GetObject('request').GetText('type'), 'Example is a runnable message envelope');
+        Assert.IsTrue(Example.GetObject('request').GetObject('data').Contains('periodType'), 'Request includes required parameters');
+        Assert.AreEqual('Success', Example.GetObject('response').GetText('status'), 'Example includes the expected answer');
+        Assert.IsTrue(Example.GetObject('response').GetArray('rows').Count() > 0, 'Example explains the row shape');
+        EnglishTitle := Example.GetText('title');
+        Clear(Examples);
+        GlobalLanguage(1039);
+        Impl.GetExamples(Examples);
+        Assert.AreNotEqual(EnglishTitle, Examples.GetObject(0).GetText('title'), 'Icelandic example title is translated');
+        GlobalLanguage(PreviousLanguage);
+    end;
+
     local procedure Execute(Request: JsonObject): JsonObject
     var
         TempArgument: Record "Message Argument ori" temporary;
