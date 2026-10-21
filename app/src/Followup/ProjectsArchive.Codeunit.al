@@ -34,7 +34,10 @@ codeunit 70009234 "Projects Archive ori"
     procedure IsEnabled(CreateVersion: Boolean): Boolean
     var
         Gate: Codeunit "Projects Gate ori";
+        Posting: Codeunit "Proj. Posting Gate ori";
     begin
+        if CreateVersion and not Posting.HasPostingPermission() then
+            exit(false);
         if not (Gate.IsEnabled(Database::"Job Archive", false) and Gate.IsEnabled(Database::"Job Task Archive", false) and Gate.IsEnabled(Database::"Job Planning Line Archive", false) and
                 Gate.IsEnabled(Database::"Job Archive", CreateVersion) and Gate.IsEnabled(Database::"Job Task Archive", CreateVersion) and Gate.IsEnabled(Database::"Job Planning Line Archive", CreateVersion)) then
             exit(false);
