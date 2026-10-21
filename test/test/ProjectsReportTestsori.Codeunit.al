@@ -89,7 +89,7 @@ codeunit 97126 "Projects Report Tests ori"
         Document.SelectNodes('ReportParameters/DataItems/DataItem', Nodes);
         Assert.AreEqual(2, Nodes.Count(), 'Project and task views are serialized');
         Document.SelectNodes('ReportParameters/Options/Field', Nodes);
-        Assert.AreEqual(16, Nodes.Count(), 'All eight amount/currency selections fixed; no saved user options');
+        Assert.AreEqual(17, Nodes.Count(), 'All eight amount/currency selections and zero-task exclusion fixed; no saved user options');
         Assert.IsTrue(Xml.Contains(Project."No."), 'Exact project view retained');
     end;
 

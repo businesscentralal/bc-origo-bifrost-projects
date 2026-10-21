@@ -188,11 +188,13 @@ codeunit 70009235 "Projects Report ori"
         Root := XmlElement.Create('ReportParameters');
         Root.SetAttribute('id', Format(ReportId(Request.GetText('report')), 0, 9));
         Options := XmlElement.Create('Options');
-        if Request.GetText('report') = 'analysis' then
+        if Request.GetText('report') = 'analysis' then begin
+            AddOption(Options, 'ExcludeJobTask', 'true');
             for Index := 1 to 8 do begin
                 AddOption(Options, 'AmountField[' + Format(Index, 0, 9) + ']', Format(Index, 0, 9));
                 AddOption(Options, 'CurrencyField[' + Format(Index, 0, 9) + ']', '0');
             end;
+        end;
         if Request.GetText('report') = 'actualToBudget' then
             AddOption(Options, 'CurrencyField', '0');
         Root.Add(Options);
@@ -210,6 +212,8 @@ codeunit 70009235 "Projects Report ori"
             Evaluate(LastDate, Request.GetText('toDate'), 9);
             Project.SetRange("Posting Date Filter", FirstDate, LastDate);
             Project.SetRange("Planning Date Filter", FirstDate, LastDate);
+            Task.SetRange("Posting Date Filter", FirstDate, LastDate);
+            Task.SetRange("Planning Date Filter", FirstDate, LastDate);
             Ledger.SetRange("Posting Date", FirstDate, LastDate);
         end;
         if Request.GetText('report') = 'register' then begin
