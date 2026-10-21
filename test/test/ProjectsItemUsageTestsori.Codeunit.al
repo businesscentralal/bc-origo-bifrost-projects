@@ -270,7 +270,7 @@ codeunit 97125 "Projects Item Usage Tests ori"
         TrackingNo: Code[50];
         Quantity: Decimal;
     begin
-        Request := NewRequest();
+        Request := NewRequestWithInventory(true);
         Line := Request.GetArray('lines').GetObject(0);
         TrackingNo := CopyStr(DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(TrackingNo));
         Quantity := 2;
@@ -345,7 +345,7 @@ codeunit 97125 "Projects Item Usage Tests ori"
         GeneralSetup."Direct Cost Applied Account" := Account."No.";
         GeneralSetup."COGS Account" := Account."No.";
         GeneralSetup.Modify(true);
-        Item.Validate(Type, Item.Type::Inventory);
+        Assert.AreEqual(Item.Type::Inventory, Item.Type, 'Inventory type was set before planning lines were created');
         Item.Validate("Inventory Posting Group", InventoryGroup.Code);
         Item.Validate("Item Tracking Code", TrackingCode.Code);
         Item.Modify(true);
@@ -366,8 +366,14 @@ codeunit 97125 "Projects Item Usage Tests ori"
         PostItem.RunWithCheck(TempJournal);
     end;
 
-    local procedure NewRequest() Request: JsonObject
+    local procedure NewRequest(): JsonObject
+    begin
+        exit(NewRequestWithInventory(false));
+    end;
+
+    local procedure NewRequestWithInventory(Inventory: Boolean) Request: JsonObject
     var
+        Item: Record Item;
         Project: Record Job;
         PlanningLine: Record "Job Planning Line";
         Planning: JsonObject;
@@ -375,6 +381,11 @@ codeunit 97125 "Projects Item Usage Tests ori"
         Lines: JsonArray;
     begin
         Planning := Library.NewPlanningRequest('Item');
+        if Inventory then begin
+            Item.Get(Planning.GetText('no'));
+            Item.Validate(Type, Item.Type::Inventory);
+            Item.Modify(true);
+        end;
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Planning), 'Success');
         PlanningLine.Get(Planning.GetText('projectNo'), Planning.GetText('taskNo'), Planning.GetInteger('lineNo'));
         PlanningLine.Validate("Usage Link", true);

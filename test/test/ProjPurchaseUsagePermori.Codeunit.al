@@ -63,16 +63,18 @@ codeunit 97129 "Proj. Purchase Usage Perm ori"
     var
         Reservation: Record "Reservation Entry";
         TempArgument: Record "Message Argument ori" temporary;
-        Library: Codeunit "Projects Test Library ori";
+        Setup: Record "Projects Setup ori";
         Usage: Codeunit "Projects Item Usage ori";
         Impl: Codeunit "Proj. Item Usage Impl ori";
         Lower: Codeunit "Library - Lower Permissions";
         Assert: Codeunit "Library Assert";
         Response: JsonObject;
     begin
-        Library.Initialize();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Full ori');
         Lower.AddPermissionSet('ProjUsageTest ori');
+        Setup.InsertIfNotExists();
+        Setup.Enabled := true;
+        Setup.Modify(true);
         Assert.IsFalse(Reservation.WritePermission(), 'The omitted native reservation right is actually absent');
         Assert.IsFalse(Usage.IsEnabled(), 'Every native posting right is required');
         TempArgument.ID := CreateGuid();
