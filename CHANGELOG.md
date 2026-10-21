@@ -44,4 +44,4 @@
 
 ## Unreleased — purchase links and item usage (verification candidate)
 
-- Add native purchase line linking and atomic project item usage posting with strict selectors, tracking-key isolation and exact native ledger capture (codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247). Add native posting, transaction/refusal and permission regressions 97124, 97125 and 97129. Shared registry/permission/translation integration, full permission inventory and shipping UI/MCP acceptance remain pending.
+- Add native purchase line linking and atomic project item usage posting with strict selectors, tracking-key isolation and exact native ledger capture (codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247). Add native posting, transaction/refusal and permission regressions 97124, 97125 and 97129, with in-memory native rollback observation helper 97130. Shared registry/permission/translation integration, full permission inventory and shipping UI/MCP acceptance remain pending.
