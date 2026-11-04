@@ -145,11 +145,16 @@ codeunit 70009231 "Projects Allocation ori"
     procedure PeriodEnd(FirstDate: Date; PeriodType: Text): Date
     begin
         case PeriodType of
-            'day': exit(FirstDate);
-            'week': exit(CalcDate('<CW>', FirstDate));
-            'month': exit(CalcDate('<CM>', FirstDate));
-            'quarter': exit(CalcDate('<CQ>', FirstDate));
-            'year': exit(CalcDate('<CY>', FirstDate));
+            'day':
+                exit(FirstDate);
+            'week':
+                exit(CalcDate('<CW>', FirstDate));
+            'month':
+                exit(CalcDate('<CM>', FirstDate));
+            'quarter':
+                exit(CalcDate('<CQ>', FirstDate));
+            'year':
+                exit(CalcDate('<CY>', FirstDate));
         end;
     end;
 
