@@ -44,4 +44,6 @@
 
 ## Unreleased — project archives (verification candidate)
 
+- Regenerate the Icelandic translation file in compiler order so the XLF sync guard passes (#13; archive objects 70009234, 70009239–70009241). Preserve all 110 translation sources and targets.
+
 - Add native project archive creation and version reads (codeunits 70009230, 70009234, 70009236, 70009239, 70009240), with native snapshot and permission regression tests 97122–97123. Register Projects.Project.Archive (enum value 70009218) and Projects.ProjectArchive.Get (70009219), grant the archive codeunits in the Projects extensions of BIFROST Read/Full, and add the 39 missing is-IS archive translations (#13).
