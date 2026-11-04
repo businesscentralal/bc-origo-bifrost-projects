@@ -2,6 +2,10 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Changed (2026-11-04)
+
+- Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
+
 ### Tests (2026-11-04)
 
 - Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
