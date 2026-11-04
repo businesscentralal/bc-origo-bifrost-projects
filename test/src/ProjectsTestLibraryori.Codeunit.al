@@ -242,7 +242,8 @@ codeunit 97102 "Projects Test Library ori"
         Group."WIP Accrued Costs Account" := Account2."No.";
         Group."Job Costs Applied Account" := Account."No.";
         Group."Job Costs Adjustment Account" := Account."No.";
-        Group."Recognized Costs Account" := Account."No.";
+        // Distinct owned accounts preserve nonzero native WIP report rows after posting.
+        Group."Recognized Costs Account" := Account2."No.";
         Group."Recognized Sales Account" := Account."No.";
         Group."Job Sales Applied Account" := Account."No.";
         Group."Job Sales Adjustment Account" := Account."No.";

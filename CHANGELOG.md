@@ -8,6 +8,8 @@
 
 ### Tests (2026-11-04)
 
+- Preserve nonzero WIP report fixture amounts using distinct owned posting accounts and verify real native posting through report 1010 (#14; codeunits 97102/97126).
+
 - Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
 
 ### Changed (2026-10-21) - Object range moved into a registered range

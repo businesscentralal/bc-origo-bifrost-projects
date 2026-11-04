@@ -411,6 +411,51 @@ codeunit 97126 "Projects Report Tests ori"
         end;
     end;
 
+    /// <summary>Native posted WIP retains nonzero costs in separate owned accounts instead of cancelling the fixture to zero.</summary>
+    [Test]
+    [HandlerFunctions('DeclineOwnedDimensionUpdates')]
+    procedure NativePostedWip_PreservesNonzeroAccountAmounts()
+    var
+        Adapter: Codeunit "Projects Report ori";
+        WIPRequest: JsonObject;
+        Request: JsonObject;
+        Rows: JsonArray;
+        Token: JsonToken;
+        Row: JsonObject;
+        AbsoluteCosts: Decimal;
+    begin
+        WIPRequest := Library.NewEconomicWIPRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", WIPRequest), 'Success');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Post", WIPRequest), 'Success');
+        Request.Add('report', 'wipToGL');
+        Request.Add('format', 'json');
+        Request.Add('projectNo', WIPRequest.GetText('projectNo'));
+        Request.Add('fromDate', '2026-01-01');
+        Request.Add('toDate', '2026-12-31');
+        Rows := Adapter.RenderJson(Request);
+        Assert.AreEqual(2, Rows.Count(), 'Applied and recognized costs retain distinct native account rows');
+        foreach Token in Rows do begin
+            Row := Token.AsObject();
+            Assert.AreEqual(WIPRequest.GetText('projectNo'), Row.GetText('postingGroup'), 'Only the owned posting group');
+            Assert.AreEqual(21, Abs(Row.GetDecimal('wipCostLCY')), 'Each native cost amount remains nonzero');
+            Assert.AreEqual(Row.GetDecimal('wipCostLCY'), Row.GetDecimal('wipAmountLCY'), 'Native account total retains the cost');
+            AbsoluteCosts += Abs(Row.GetDecimal('wipCostLCY'));
+        end;
+        Assert.AreEqual(42, AbsoluteCosts, 'Both signs of the posted cost are represented');
+    end;
+
+    [ConfirmHandler]
+    procedure DeclineOwnedDimensionUpdates(Question: Text[1024]; var Reply: Boolean)
+    begin
+        if Question.Contains('Allowed Values Filter') then
+            Assert.IsTrue(Question.Contains('dimension value X'), 'Only an owned dimension value is involved: ' + Question)
+        else begin
+            Assert.IsTrue(Question.Contains('You have changed a dimension.'), 'Unexpected native confirmation: ' + Question);
+            Assert.IsTrue(Question.Contains('Do you want to update the lines?'), 'Unexpected native confirmation: ' + Question);
+        end;
+        Reply := false;
+    end;
+
     local procedure Dataset(Columns: Text) Document: XmlDocument
     begin
         XmlDocument.ReadFrom('<ReportDataSet><DataItems><DataItem>' + Columns + '</DataItem></DataItems></ReportDataSet>', Document);
