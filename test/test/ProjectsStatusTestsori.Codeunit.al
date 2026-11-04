@@ -114,6 +114,64 @@ codeunit 97105 "Projects Status Tests ori"
         Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.SetStatus", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Unknown native status must fail before lookup');
     end;
+    [Test]
+    procedure Scenario_AC01_CompleteBeforeStartingDate_ReturnsBCErrorAndRollsBack()
+    var
+        Project: Record Job;
+        Request: JsonObject;
+        ChangeRequest: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #4, AC01 | Time: starting date is one day after WorkDate | Risk: None
+        // [GIVEN] An owned open project cannot end before its starting date.
+        Request := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
+        Project.Get(Request.GetText('projectNo'));
+        Project.Validate("Starting Date", CalcDate('<+1D>', WorkDate()));
+        Project.Modify(true);
+        ChangeRequest.Add('projectNo', Project."No.");
+        ChangeRequest.Add('status', 'Completed');
+        ChangeRequest.Add('blocked', 'All');
+
+        // [WHEN] Native completion validates the default ending date.
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.SetStatus", ChangeRequest);
+
+        // [THEN] The native validation error uses the Bifrost contract and no state change persists.
+        Library.AssertStatus(Response, 'Error');
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native field validation must surface as a contract error');
+        Project.Get(Project."No.");
+        Assert.AreEqual(Project.Status::Open, Project.Status, 'Failed completion must roll back status');
+        Assert.IsFalse(Project.Complete, 'Failed completion must roll back the completion flag');
+        Assert.AreEqual(0D, Project."Ending Date", 'Failed completion must preserve the ending date');
+        Assert.AreEqual(Project.Blocked::" ", Project.Blocked, 'Failed status must not apply blocking');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_InvalidBlocked_ReturnsFormatErrorWithoutChangingStatus()
+    var
+        Project: Record Job;
+        Request: JsonObject;
+        ChangeRequest: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #4, AC01 | Time: no date dependency | Risk: None
+        // [GIVEN] An owned open project receives a valid status and an invalid block value.
+        Request := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
+        ChangeRequest.Add('projectNo', Request.GetText('projectNo'));
+        ChangeRequest.Add('status', 'Planning');
+        ChangeRequest.Add('blocked', 'Invalid');
+
+        // [WHEN] The complete request is validated before writing.
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.SetStatus", ChangeRequest);
+
+        // [THEN] The contract rejects the invalid value before either change persists.
+        Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Unknown blocking values must fail contract validation');
+        Project.Get(Request.GetText('projectNo'));
+        Assert.AreEqual(Project.Status::Open, Project.Status, 'Invalid blocking must not apply status');
+        Assert.AreEqual(Project.Blocked::" ", Project.Blocked, 'Invalid blocking must preserve the block state');
+    end;
+
     [MessageHandler]
     procedure CompletionMessageHandler(MessageText: Text[1024])
     var

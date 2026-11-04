@@ -2,6 +2,9 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Tests
+- Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
+
 ### Changed (2026-10-21) - Object range moved into a registered range
 
 - Reconcile the WIP posting contract with the resolved Projects Read/Full decision (#18) and distinguish the historical Foundation EULA refusal from current-version queue verification (#17).
