@@ -97,10 +97,14 @@ codeunit 70009235 "Projects Report ori"
     procedure ReportId(ReportName: Text): Integer
     begin
         case ReportName of
-            'actualToBudget': exit(Report::"Job Actual To Budget");
-            'analysis': exit(Report::"Job Analysis");
-            'wipToGL': exit(Report::"Job WIP To G/L");
-            'register': exit(Report::"Job Register");
+            'actualToBudget':
+                exit(Report::"Job Actual To Budget");
+            'analysis':
+                exit(Report::"Job Analysis");
+            'wipToGL':
+                exit(Report::"Job WIP To G/L");
+            'register':
+                exit(Report::"Job Register");
         end;
         exit(0);
     end;
