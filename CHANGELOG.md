@@ -47,3 +47,6 @@
 - Regenerate the Icelandic translation file in compiler order so the XLF sync guard passes (#13; archive objects 70009234, 70009239–70009241). Preserve all 110 translation sources and targets.
 
 - Add native project archive creation and version reads (codeunits 70009230, 70009234, 70009236, 70009239, 70009240), with native snapshot and permission regression tests 97122–97123. Register Projects.Project.Archive (enum value 70009218) and Projects.ProjectArchive.Get (70009219), grant the archive codeunits in the Projects extensions of BIFROST Read/Full, and add the 39 missing is-IS archive translations (#13).
+- Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
+- Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
+- app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
