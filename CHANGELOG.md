@@ -2,6 +2,8 @@
 
 ## 28.1.0.0 - Unreleased
 
+- Remove the duplicate application telemetry property introduced by the main merge; preserve the configured connection and restore test-mode product compilation (#13).
+
 ### Changed (2026-10-21) - Object range moved into a registered range
 
 - Every app object, Message Type enum value and range reference moves from 10078485-10078584 (outside every registered Origo range) to 70009200-70009249, Origo Public 3 (Gunnar 21.10.2026). The mapping is a fixed offset: old ID + 59930715, so 10078485 becomes 70009200. The objects use 70009200-70009229. Tests that check the range now use 70009200-70009249. Test object IDs 97100-97199 are unchanged.
