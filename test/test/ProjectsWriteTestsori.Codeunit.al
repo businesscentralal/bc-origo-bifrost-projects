@@ -171,6 +171,38 @@ codeunit 97101 "Projects Write Tests ori"
     end;
 
     [Test]
+    procedure Scenario_AC01_FailedNestedUpdate_RestoresExistingProject()
+    var
+        Project: Record Job;
+        Task: Record "Job Task";
+        Request: JsonObject;
+        UpdateRequest: JsonObject;
+        FirstTask: JsonObject;
+        MissingTask: JsonObject;
+        Tasks: JsonArray;
+        Response: JsonObject;
+    begin
+        // Story #2, AC01 | Risk: a later native error must undo header and earlier child changes.
+        Request := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
+        UpdateRequest.Add('projectNo', Request.GetText('projectNo'));
+        UpdateRequest.Add('description', 'X Must roll back');
+        FirstTask.Add('taskNo', 'XNEW');
+        FirstTask.Add('description', 'X Must roll back');
+        Tasks.Add(FirstTask);
+        MissingTask.Add('taskNo', 'XMISSING');
+        MissingTask.Add('operation', 'Update');
+        Tasks.Add(MissingTask);
+        UpdateRequest.Add('tasks', Tasks);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Update", UpdateRequest);
+        Library.AssertStatus(Response, 'Error');
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native missing-task error must surface');
+        Project.Get(Request.GetText('projectNo'));
+        Assert.AreEqual(Request.GetText('description'), Project.Description, 'Existing header must retain its original description');
+        Assert.IsFalse(Task.Get(Project."No.", 'XNEW'), 'Earlier nested insert must roll back with the failed update');
+    end;
+
+    [Test]
     procedure Scenario_AC01_WrongShapeAndMissingKeys_CollectAll()
     var
         Request: JsonObject;

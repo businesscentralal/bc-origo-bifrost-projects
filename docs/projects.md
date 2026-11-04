@@ -117,8 +117,11 @@ calculation baseline, nonzero economic calculation and native G/L posting fixtur
 required options and native missing-method validation. Component tests are distinct
 from shipping queue, bilingual Web Client and independent acceptance.
 `Projects.WIP.Post` uses the Projects-owned gate mapped to the Read/Full role
-extensions under the #18 decision. Shipping queue acceptance remains blocked
-separately in #17.
+extensions under the #18 decision. Shipping queue acceptance is tracked separately
+in #17 and must use the exact deployed Foundation version. The historical EULA
+refusal on an older Foundation deployment does not establish a current sandbox or
+evaluation-company refusal. No consent, trial or licence state is written to obtain
+a verification pass.
 
 ## Pending scope
 

@@ -2,7 +2,19 @@
 
 ## [28.1.0.0] - Unreleased
 
+### Changed (2026-11-04)
+
+- Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
+
+### Tests (2026-11-04)
+
+- Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
+
 ### Changed (2026-10-21) - Object range moved into a registered range
+
+- Reconcile the WIP posting contract with the resolved Projects Read/Full decision (#18) and distinguish the historical Foundation EULA refusal from current-version queue verification (#17).
+- Add idempotent, language-isolated MCP fixture actions to the test app (97110/97111) for unposted economic WIP and unlinked usage; seeding leaves posting to the actual queue calls and writes no consent or licence state.
+- Integrate the approved workflow restoration from main and retain one telemetry manifest property. Add a late nested-update failure regression (97101) to prove the existing project header and earlier nested task insert roll back together (#2).
 
 - Every app object, Message Type enum value and range reference moves from 10078485-10078584 (outside every registered Origo range) to 70009200-70009249, Origo Public 3 (Gunnar 21.10.2026). The mapping is a fixed offset: old ID + 59930715, so 10078485 becomes 70009200. The objects use 70009200-70009229. Tests that check the range now use 70009200-70009249. Test object IDs 97100-97199 are unchanged.
 
@@ -47,6 +59,7 @@
 - Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009243), and dataset, nonzero native budget and permission tests 97126–97127. Report registry, feature-role permissions and translations are integrated; shipping queue acceptance remains subject to current-tip verification.
 
 - Register `Projects.Report.Get` (enum value 70009221) and grant its adapter (70009235), implementation (70009243) and input validator (70009230) through Projects Read/Full role extensions (#14).
+- Object ranges: app 10078485..10078584, tests 97100..97199.
 - Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
 - Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
 - app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
