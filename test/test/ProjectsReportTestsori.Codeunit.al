@@ -1,6 +1,7 @@
 namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Projects.Project.Job;
+using Microsoft.Projects.Project.Ledger;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
@@ -367,6 +368,47 @@ codeunit 97126 "Projects Report Tests ori"
         Assert.IsTrue(Contract.GetEffect(Effect), 'Registered type advertises its effect');
         Assert.AreEqual('read', Effect.GetText('effect'), 'Report type is read only');
         Assert.IsTrue(Effect.GetBoolean('idempotent'), 'Report type is idempotent');
+    end;
+
+    /// <summary>All remaining standard reports preserve empty JSON and PDF behavior on self-created records.</summary>
+    [Test]
+    procedure NativeEmptyReports_AnalysisWipAndRegisterReturnEmptyRowsAndPdf()
+    var
+        Project: Record Job;
+        Register: Record "Job Register";
+        Adapter: Codeunit "Projects Report ori";
+        Request: JsonObject;
+        Rows: JsonArray;
+        Name: Text;
+        Names: List of [Text];
+    begin
+        Library.Initialize();
+        Project."No." := CopyStr('X' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Project."No."));
+        Project.Insert(true);
+        Register.ReadIsolation := IsolationLevel::ReadCommitted;
+        if Register.FindLast() then
+            Register."No." += 1
+        else
+            Register."No." := 1;
+        Register."From Entry No." := 1;
+        Register."To Entry No." := 0;
+        Register.Insert(true);
+        Names.Add('analysis');
+        Names.Add('wipToGL');
+        Names.Add('register');
+        foreach Name in Names do begin
+            Clear(Request);
+            Request.Add('report', Name);
+            Request.Add('format', 'json');
+            if Name = 'register' then
+                Request.Add('registerNo', Register."No.")
+            else
+                Request.Add('projectNo', Project."No.");
+            Rows := Adapter.RenderJson(Request);
+            Assert.AreEqual(0, Rows.Count(), 'Empty native detail rows for ' + Name);
+            Request.Replace('format', 'pdf');
+            Assert.IsTrue(Adapter.RenderPdf(Request).StartsWith('JVBERi0'), 'Valid empty native PDF for ' + Name);
+        end;
     end;
 
     local procedure Dataset(Columns: Text) Document: XmlDocument
