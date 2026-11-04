@@ -44,4 +44,5 @@
 
 ## Unreleased — purchase links and item usage (verification candidate)
 
+- Create compatible owned VAT and general posting setup for localized purchase MCP fixtures (97131), with a native inventory/purchase fixture regression (97124).
 - Add native purchase line linking and atomic project item usage posting with strict selectors, tracking-key isolation and exact native ledger capture (codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247). Add native posting, transaction/refusal and permission regressions 97124, 97125 and 97129, with in-memory native rollback observation helper 97130. Register both types as enum values 70009219–70009220 and grant owned executable objects through the existing Read/Full extensions; native write rights remain caller-owned. Verify dedicated-field refusals through the supported Foundation dispatcher rather than an unlicensed direct implementation call. Add a disposable-container test fixture seeder/page (97131–97132) for native tracked stock and purchase data. Shipping full-suite/UI/MCP acceptance remains pending.

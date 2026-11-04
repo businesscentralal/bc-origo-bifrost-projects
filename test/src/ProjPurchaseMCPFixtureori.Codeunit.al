@@ -2,6 +2,7 @@ namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Finance.VAT.Setup;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Posting;
@@ -10,6 +11,7 @@ using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
 using Microsoft.Purchases.Document;
 using Microsoft.Purchases.Vendor;
+using Microsoft.Sales.Customer;
 using Origo.Bifrost.Projects;
 using Origo.Bifrost;
 using System.TestLibraries.Utilities;
@@ -28,11 +30,14 @@ codeunit 97131 "Proj. Purchase MCP Fixture ori"
         PurchaseHeader: Record "Purchase Header";
         PurchaseLine: Record "Purchase Line";
         Vendor: Record Vendor;
+        Customer: Record Customer;
+        VATPostingSetup: Record "VAT Posting Setup";
         Item: Record Item;
         Project: Record Job;
         PlanningLine: Record "Job Planning Line";
         Library: Codeunit "Projects Test Library ori";
         PurchaseLibrary: Codeunit "Library - Purchase";
+        ERMLibrary: Codeunit "Library - ERM";
         Planning: JsonObject;
         LotNo: Code[50];
     begin
@@ -51,6 +56,13 @@ codeunit 97131 "Proj. Purchase MCP Fixture ori"
         LotNo := CopyStr('X' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(LotNo));
         SeedTrackedInventoryAtLocation(Item."No.", false, LotNo, 10, '', '');
         PurchaseLibrary.CreateVendor(Vendor);
+        Customer.Get(Project."Bill-to Customer No.");
+        ERMLibrary.CreateVATPostingSetupWithAccounts(VATPostingSetup, VATPostingSetup."VAT Calculation Type"::"Normal VAT", 0);
+        Vendor.Validate("Gen. Bus. Posting Group", Customer."Gen. Bus. Posting Group");
+        Vendor.Validate("VAT Bus. Posting Group", VATPostingSetup."VAT Bus. Posting Group");
+        Vendor.Modify(true);
+        Item.Validate("VAT Prod. Posting Group", VATPostingSetup."VAT Prod. Posting Group");
+        Item.Modify(true);
         PurchaseLibrary.CreatePurchaseDocumentWithItem(PurchaseHeader, PurchaseLine, PurchaseHeader."Document Type"::Order, Vendor."No.", Item."No.", 1, '', WorkDate());
         Manifest.Add('projectNo', Project."No.");
         Manifest.Add('taskNo', PlanningLine."Job Task No.");

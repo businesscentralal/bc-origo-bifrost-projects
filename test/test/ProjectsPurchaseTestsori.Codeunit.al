@@ -1,6 +1,7 @@
 namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Ledger;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
 using Microsoft.Purchases.Document;
@@ -18,6 +19,32 @@ codeunit 97124 "Projects Purchase Tests ori"
     var
         Assert: Codeunit "Library Assert";
         Library: Codeunit "Projects Test Library ori";
+
+    /// <summary>The MCP fixture creates compatible owned posting setup before creating its inventory purchase.</summary>
+    [Test]
+    procedure Scenario_AC01_SelfSeededInventoryPurchaseHasValidPostingSetup()
+    var
+        PurchaseLine: Record "Purchase Line";
+        ItemLedger: Record "Item Ledger Entry";
+        Fixture: Codeunit "Proj. Purchase MCP Fixture ori";
+        Manifest: JsonObject;
+        PurchaseSystemId: Guid;
+    begin
+        // [SCENARIO] A fresh localized company can seed an unposted purchase and its own tracked stock.
+        // [GIVEN] No pre-existing purchase or inventory fixture is supplied.
+        // [WHEN] The MCP fixture creates all required master data and posting setup.
+        Manifest := Fixture.Seed();
+        // [THEN] The purchase is unposted and exactly ten owned tracked units exist.
+        Evaluate(PurchaseSystemId, Manifest.GetText('purchaseSystemId'));
+        PurchaseLine.GetBySystemId(PurchaseSystemId);
+        Assert.AreEqual(Manifest.GetText('itemNo'), PurchaseLine."No.", 'Owned inventory purchase item');
+        Assert.AreEqual(0, PurchaseLine."Quantity Received", 'The fixture does not receive the purchase');
+        Assert.AreEqual(0, PurchaseLine."Quantity Invoiced", 'The fixture does not invoice the purchase');
+        ItemLedger.SetRange("Item No.", Manifest.GetText('itemNo'));
+        ItemLedger.SetRange("Lot No.", Manifest.GetText('lotNo'));
+        ItemLedger.CalcSums(Quantity);
+        Assert.AreEqual(10, ItemLedger.Quantity, 'Native posting created the owned tracked stock');
+    end;
 
     /// <summary>Happy Path: Links Through Native Validation.</summary>
     [Test]
