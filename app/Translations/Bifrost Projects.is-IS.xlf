@@ -507,6 +507,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Notaðu registerNo aðeins með skýrslunni register.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType RegisterFilterLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 2757779888" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The standard project report did not produce a PDF. Try again or ask an administrator to check report rendering.</source>
+          <target>Staðlaða verkefnaskýrslan bjó ekki til PDF-skjal. Reyndu aftur eða biddu kerfisstjóra um að athuga skýrslugerðina.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Staðlaða verkefnaskýrslan bjó ekki til PDF-skjal. Reyndu aftur eða biddu kerfisstjóra um að athuga skýrslugerðina.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType RenderFailedErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2098550208 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use one of the values listed in the help.</source>
           <target>Notaðu eitt gildanna sem talin eru upp í hjálpinni.</target>

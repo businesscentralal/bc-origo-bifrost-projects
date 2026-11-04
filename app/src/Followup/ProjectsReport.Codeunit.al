@@ -28,6 +28,8 @@ codeunit 70009235 "Projects Report ori"
         TaskFilterLbl: Label 'Omit taskNo for wipToGL; use projectNo and posting dates.', Comment = 'is-IS=Slepptu taskNo fyrir wipToGL; notaðu projectNo og bókunardagsetningar.';
         RegisterFilterLbl: Label 'Use registerNo only with report register.', Comment = 'is-IS=Notaðu registerNo aðeins með skýrslunni register.';
         ConflictLbl: Label 'Use a task belonging to the selected project.', Comment = 'is-IS=Notaðu verkhluta sem tilheyrir völdu verkefni.';
+        EmptyPdfTok: Label 'JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUgODQyXSAvUmVzb3VyY2VzIDw8ID4+IC9Db250ZW50cyA0IDAgUiA+PgplbmRvYmoKNCAwIG9iago8PCAvTGVuZ3RoIDAgPj4Kc3RyZWFtCgplbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCA1CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAwOSAwMDAwMCBuIAowMDAwMDAwMDU4IDAwMDAwIG4gCjAwMDAwMDAxMTUgMDAwMDAgbiAKMDAwMDAwMDIxOSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDUgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjI2OAolJUVPRgo=', Locked = true;
+        RenderFailedErr: Label 'The standard project report did not produce a PDF. Try again or ask an administrator to check report rendering.', Comment = 'is-IS=Staðlaða verkefnaskýrslan bjó ekki til PDF-skjal. Reyndu aftur eða biddu kerfisstjóra um að athuga skýrslugerðina.';
         RangeLbl: Label 'Use a date range ending on or after fromDate.', Comment = 'is-IS=Notaðu dagsetningabil sem endar á eða eftir fromDate.';
 
     /// <summary>Checks effective feature enablement and all persistent native report data reads.</summary>
@@ -246,6 +248,13 @@ codeunit 70009235 "Projects Report ori"
     begin
         TempBlob.CreateOutStream(Output);
         Report.SaveAs(ReportId(Request.GetText('report')), RequestXml(Request), ReportFormat::Pdf, Output);
+        if not TempBlob.HasValue() then begin
+            // A standard report can omit every page for an empty native dataset.
+            // Only that verified empty case may return a blank PDF document.
+            if RenderJson(Request).Count() = 0 then
+                exit(EmptyPdfTok);
+            Error(RenderFailedErr);
+        end;
         TempBlob.CreateInStream(Input);
         exit(Base64.ToBase64(Input));
     end;

@@ -185,7 +185,9 @@ quantity/cost/price amounts. All monetary amounts use local currency.
 
 An empty JSON report returns `rows: []`. PDF responses contain
 `contentType: "application/pdf"` and `pdfBase64`, including the empty standard
-report. Example request:
+report. When the native report produces no pages for an empty dataset, the response
+contains a valid blank PDF instead of an empty string. Populated reports keep the
+standard layout. Example request:
 
 ```json
 {"type":"Projects.Report.Get","data":{"report":"analysis","format":"json","projectNo":"PROJECT-001","taskNo":"TASK-001","fromDate":"2026-01-01","toDate":"2026-01-31"}}
