@@ -2,6 +2,10 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Tests (2026-11-04)
+
+- Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
+
 ### Changed (2026-10-21) - Object range moved into a registered range
 
 - Reconcile the WIP posting contract with the resolved Projects Read/Full decision (#18) and distinguish the historical Foundation EULA refusal from current-version queue verification (#17).
