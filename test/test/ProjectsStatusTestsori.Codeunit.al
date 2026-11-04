@@ -114,6 +114,7 @@ codeunit 97105 "Projects Status Tests ori"
         Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.SetStatus", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Unknown native status must fail before lookup');
     end;
+    /// <summary>Proves native completion date validation returns a contract error without changing state.</summary>
     [Test]
     procedure Scenario_AC01_CompleteBeforeStartingDate_ReturnsBCErrorAndRollsBack()
     var
@@ -146,6 +147,7 @@ codeunit 97105 "Projects Status Tests ori"
         Assert.AreEqual(Project.Blocked::" ", Project.Blocked, 'Failed status must not apply blocking');
     end;
 
+    /// <summary>Proves invalid blocking is rejected before applying an otherwise valid status.</summary>
     [Test]
     procedure Scenario_AC01_InvalidBlocked_ReturnsFormatErrorWithoutChangingStatus()
     var
