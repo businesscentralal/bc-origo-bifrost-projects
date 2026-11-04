@@ -144,8 +144,12 @@ codeunit 97124 "Projects Purchase Tests ori"
     procedure DedicatedFields_BlockGenericWritesAndAdvertiseHint()
     var
         PurchaseLine: Record "Purchase Line";
-        TempArgument: Record "Message Argument ori" temporary;
-        Impl: Interface "Msg Interface ori";
+        Dispatcher: Codeunit "Dispatcher ori";
+        RequestContent: BigText;
+        ResponseContent: BigText;
+        RequestText: Text;
+        ResponseText: Text;
+        ResponseContentType: Text[100];
         Request: JsonObject;
         Fixture: JsonObject;
         Row: JsonObject;
@@ -161,26 +165,23 @@ codeunit 97124 "Projects Purchase Tests ori"
         FieldNames.Add('Job Line Type');
         FieldNames.Add('Job Planning Line No.');
         foreach FieldName in FieldNames do begin
-            Clear(TempArgument);
+            Clear(RequestContent);
+            Clear(ResponseContent);
             Clear(Request);
             Clear(Row);
             Clear(Fields);
             Clear(Data);
-            TempArgument.ID := CreateGuid();
-            TempArgument.Type := "Message Type ori"::"Data.Records.Set";
-            TempArgument.Version := "Message Version ori"::"1.0";
-            TempArgument.Subject := '39';
-            TempArgument.Insert(true);
             Fields.Add(FieldName, Fixture.GetText('projectNo'));
             Row.Add('id', Format(PurchaseLine.SystemId, 0, 4));
             Row.Add('fields', Fields);
             Data.Add(Row);
             Request.Add('data', Data);
-            TempArgument.SetRequestJson(Request);
-            Impl := TempArgument.Type;
-            // Runs the real public Foundation path; no licensing/EULA test hook or bypass.
-            Impl.ExecuteBifrostTask(TempArgument);
-            Response := TempArgument.GetResponseJson();
+            Request.WriteTo(RequestText);
+            RequestContent.AddText(RequestText);
+            // The supported dispatcher performs the real company/licensing checks and keeps rollback enabled.
+            Dispatcher.Execute("Message Type ori"::"Data.Records.Set", "Message Version ori"::"1.0", '39', '', 'application/json', RequestContent, ResponseContent, ResponseContentType);
+            ResponseContent.GetSubText(ResponseText, 1);
+            Response.ReadFrom(ResponseText);
             Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Dedicated project-link field refused: ' + FieldName);
             Assert.IsTrue(Response.GetText('nextStep').Contains('Projects.PurchaseLine.Link'), 'Dedicated message hint');
         end;

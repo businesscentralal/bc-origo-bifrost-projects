@@ -6,6 +6,16 @@ using Origo.Bifrost;
 permissionsetextension 70009201 "Projects Full ori" extends "BIFROST Full ori"
 {
     Permissions =
+        codeunit "Proj. Item Usage Impl ori" = X,
+        codeunit "Proj. Item Usage Process ori" = X,
+        codeunit "Proj. Purchase Impl ori" = X,
+        codeunit "Proj. Purchase Process ori" = X,
+        codeunit "Proj. Usage Entry Capture ori" = X,
+        codeunit "Projects Followup Input ori" = X,
+        codeunit "Projects Item Usage ori" = X,
+        codeunit "Projects Purchase Restrict ori" = X,
+        codeunit "Projects Purchase ori" = X,
+
         tabledata "Proj. Posting ori" = RIMD,
         codeunit "Proj. Usage Get Impl ori" = X,
         codeunit "Proj. Usage Link Impl ori" = X,
