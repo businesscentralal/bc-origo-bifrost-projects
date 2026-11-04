@@ -45,3 +45,5 @@
 ## Unreleased — typed project reports (verification candidate)
 
 - Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009243), and dataset, nonzero native budget and permission tests 97126–97127. Shared registry/permission/translation integration and shipping queue acceptance remain pending serialized integration.
+
+- Register `Projects.Report.Get` (enum value 70009221) and grant its adapter (70009235), implementation (70009243) and input validator (70009230) through Projects Read/Full role extensions (#14).

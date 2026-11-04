@@ -351,6 +351,24 @@ codeunit 97126 "Projects Report Tests ori"
         Assert.IsTrue(Pdf.StartsWith('JVBERi0'), 'Empty native report still has a valid PDF signature');
     end;
 
+    /// <summary>The registered shipping type exposes the same read-only report contract as its adapter.</summary>
+    [Test]
+    procedure RegisteredReport_ExposesTypedReadOnlyContract()
+    var
+        MessageType: Enum "Message Type ori";
+        Contract: Interface "Msg Contract ori";
+        Parameters: JsonArray;
+        Effect: JsonObject;
+    begin
+        MessageType := "Message Type ori"::"Projects.Report.Get";
+        Contract := MessageType;
+        Assert.IsTrue(Contract.GetParameters(Parameters), 'Registered type has report parameters');
+        Assert.AreEqual(7, Parameters.Count(), 'All seven report selector and filter keys are advertised');
+        Assert.IsTrue(Contract.GetEffect(Effect), 'Registered type advertises its effect');
+        Assert.AreEqual('read', Effect.GetText('effect'), 'Report type is read only');
+        Assert.IsTrue(Effect.GetBoolean('idempotent'), 'Report type is idempotent');
+    end;
+
     local procedure Dataset(Columns: Text) Document: XmlDocument
     begin
         XmlDocument.ReadFrom('<ReportDataSet><DataItems><DataItem>' + Columns + '</DataItem></DataItems></ReportDataSet>', Document);

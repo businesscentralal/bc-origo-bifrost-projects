@@ -147,6 +147,90 @@
           <note from="Developer" annotates="general" priority="2">%1 = permission set name, is-IS=Bókun hafnað: vantar '%1' heimildasett.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Posting Gate ori - Method AssertCanPost - NamedType PostingDeniedErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a task belonging to the selected project.</source>
+          <target>Notaðu verkhluta sem tilheyrir völdu verkefni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu verkhluta sem tilheyrir völdu verkefni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType ConflictLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the parameter type and length listed in the help.</source>
+          <target>Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType FormatLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 3514698339" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass an existing project, task or register number.</source>
+          <target>Sendu verkefnis-, verkhluta- eða færsluskrárnúmer sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu verkefnis-, verkhluta- eða færsluskrárnúmer sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType IdentifierLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass the filter named in the refusal.</source>
+          <target>Sendu síuna sem nefnd er í synjuninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu síuna sem nefnd er í synjuninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for BIFROST Read ori and native project report read permissions.</source>
+          <target>Biddu kerfisstjóra um BIFROST Read ori og innbyggðar lesheimildir fyrir verkefnaskýrslur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Read ori og innbyggðar lesheimildir fyrir verkefnaskýrslur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType PermissionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The request cannot be executed with the supplied parameters or permissions.</source>
+          <target>Ekki er hægt að framkvæma beiðnina með sendum viðföngum eða heimildum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að framkvæma beiðnina með sendum viðföngum eða heimildum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType RefusedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use one of the values listed in the help.</source>
+          <target>Notaðu eitt gildanna sem talin eru upp í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu eitt gildanna sem talin eru upp í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType ReportLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - NamedType 1773691126" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown parameter.</source>
+          <target>Fjarlægðu óþekkta viðfangið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta viðfangið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - NamedType UnknownLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads standard project Actual to Budget, Analysis, WIP to G/L or Register reports as typed rows or a base64 PDF.</source>
+          <target>Les staðlaðar verkefnaskýrslur um rauntölur og áætlun, greiningu, verk í vinnslu í fjárhag eða færsluskrá sem gagnaðar línur eða base64 PDF.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les staðlaðar verkefnaskýrslur um rauntölur og áætlun, greiningu, verk í vinnslu í fjárhag eða færsluskrá sem gagnaðar línur eða base64 PDF.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - Method 3255554567 - NamedType 1582893390" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project analysis in local currency</source>
+          <target>Verkefnagreining í staðbundnum gjaldmiðli</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnagreining í staðbundnum gjaldmiðli</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetExamples - NamedType TitleLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, report, budget, analysis, register</source>
+          <target>verkefni, skýrsla, áætlun, greining, færsluskrá</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, skýrsla, áætlun, greining, færsluskrá</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Read only: nothing is posted or changed. Monetary amounts use local currency. Date filters are inclusive and apply to posting dates and planning dates. Analysis uses fixed budget, actual, billable and invoiced price/cost columns and omits tasks whose selected amounts are all zero. wipToGL accepts project and dates; taskNo is refused. register requires registerNo and intersects optional project/task/date filters. Custom layouts and scheduling are not supported.</source>
+          <target>Aðeins til lestrar: ekkert er bókað eða breytt. Fjárhæðir eru í staðbundnum gjaldmiðli. Dagsetningasíur eru meðtaldar og gilda um bókunar- og áætlunardagsetningar. Greining notar fasta verð- og kostnaðardálka fyrir áætlun, rauntölur, reikningshæfar og reikningsfærðar fjárhæðir og sleppir verkhlutum þar sem allar valdar fjárhæðir eru núll. wipToGL tekur verkefni og dagsetningar; taskNo er hafnað. register krefst registerNo og sker saman valfrjálsar verkefnis-, verkhluta- og dagsetningasíur. Sérsniðin útlit og tímasetning eru ekki studd.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins til lestrar: ekkert er bókað eða breytt. Fjárhæðir eru í staðbundnum gjaldmiðli. Dagsetningasíur eru meðtaldar og gilda um bókunar- og áætlunardagsetningar. Greining notar fasta verð- og kostnaðardálka fyrir áætlun, rauntölur, reikningshæfar og reikningsfærðar fjárhæðir og sleppir verkhlutum þar sem allar valdar fjárhæðir eru núll. wipToGL tekur verkefni og dagsetningar; taskNo er hafnað. register krefst registerNo og sker saman valfrjálsar verkefnis-, verkhluta- og dagsetningasíur. Sérsniðin útlit og tímasetning eru ekki studd.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - Method 4268477247 - NamedType 885739933" size-unit="char" translate="yes" xml:space="preserve">
+          <source>For json: typed native report detail rows; no data is an empty list. Actual-to-budget rows contain quantities, costs and prices for budget, actual and difference. Analysis rows contain budget, actual, billable and invoiced costs and prices. WIP rows contain account, posting group, WIP amounts, G/L balance and difference. Register rows contain native ledger identifiers and amounts. All monetary amounts are LCY.</source>
+          <target>Fyrir json: gagnaðar ítarlínur innbyggðu skýrslunnar; engin gögn eru tómur listi. Rauntölur og áætlun innihalda magn, kostnað og verð fyrir áætlun, rauntölur og mismun. Greining inniheldur áætlaðan, raunverulegan, reikningshæfan og reikningsfærðan kostnað og verð. Verk í vinnslu innihalda reikning, bókunarflokk, fjárhæðir, fjárhagsstöðu og mismun. Færsluskrá inniheldur innbyggð færsluauðkenni og fjárhæðir. Allar fjárhæðir eru í SGM.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyrir json: gagnaðar ítarlínur innbyggðu skýrslunnar; engin gögn eru tómur listi. Rauntölur og áætlun innihalda magn, kostnað og verð fyrir áætlun, rauntölur og mismun. Greining inniheldur áætlaðan, raunverulegan, reikningshæfan og reikningsfærðan kostnað og verð. Verk í vinnslu innihalda reikning, bókunarflokk, fjárhæðir, fjárhagsstöðu og mismun. Færsluskrá inniheldur innbyggð færsluauðkenni og fjárhæðir. Allar fjárhæðir eru í SGM.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetResponse - NamedType RowsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3987711189 - Method 4268477247 - NamedType 535108804" size-unit="char" translate="yes" xml:space="preserve">
+          <source>For pdf: the native standard-layout PDF encoded as base64, with contentType application/pdf.</source>
+          <target>Fyrir pdf: PDF með innbyggðu staðlaðri útliti, kóðað sem base64, með contentType application/pdf.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyrir pdf: PDF með innbyggðu staðlaðri útliti, kóðað sem base64, með contentType application/pdf.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetResponse - NamedType PdfLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 533419340 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returns native project budget, actual, billable and invoiced statistics in LCY.</source>
           <target>Skilar innbyggðri áætlun, raunkostnaði, reikningshæfum og reikningsfærðum fjárhæðum verkefnis í heimamynt.</target>
@@ -327,6 +411,30 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Notar innbyggða sannprófun og bókun verka í vinnslu. Post krefst einnig BIFROST Full ori og innbyggðra viðskiptaheimilda. Nýjar fjárhagsfærslur halda fylgiskjalsnúmeri reiknaðra VÍV-færslna. Engri leyfisuppsetningu er breytt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Post Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 838704996 - NamedType 1760757218" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown parameter.</source>
+          <target>Fjarlægðu óþekkta viðfangið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta viðfangið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - NamedType Text1Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - NamedType 2317934527" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass the filter named in the refusal.</source>
+          <target>Sendu síuna sem nefnd er í synjuninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu síuna sem nefnd er í synjuninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - NamedType Text2Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - NamedType 49348640" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the parameter type and length listed in the help.</source>
+          <target>Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu gagnategund og lengd viðfangs sem tilgreind eru í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - NamedType Text3Lbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 838704996 - Method 2962684526 - NamedType 1066607173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The Projects request cannot be processed. Check the named parameter.</source>
+          <target>Ekki er hægt að vinna verkefnabeiðnina. Athugaðu tilgreint viðfang.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að vinna verkefnabeiðnina. Athugaðu tilgreint viðfang.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Followup Input ori - Method Refuse - NamedType InvalidLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 30800967 - Method 1513833081 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects messages are disabled for this company.</source>
           <target>Verkefnaskilaboð eru óvirk fyrir þetta fyrirtæki.</target>
@@ -356,6 +464,102 @@
           <target>Nauðsynlegt viðfang verkefnis vantar eða er tómt.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlegt viðfang verkefnis vantar eða er tómt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Input ori - Method AddMissing - NamedType MissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a task belonging to the selected project.</source>
+          <target>Notaðu verkhluta sem tilheyrir völdu verkefni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu verkhluta sem tilheyrir völdu verkefni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType ConflictLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use json or pdf.</source>
+          <target>Notaðu json eða pdf.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu json eða pdf.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType FormatLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 3514698339" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass an existing project, task or register number.</source>
+          <target>Sendu verkefnis-, verkhluta- eða færsluskrárnúmer sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu verkefnis-, verkhluta- eða færsluskrárnúmer sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType IdentifierLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Pass the filter named in the refusal.</source>
+          <target>Sendu síuna sem nefnd er í synjuninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu síuna sem nefnd er í synjuninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 2229569886" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for BIFROST Read ori and native project report read permissions.</source>
+          <target>Biddu kerfisstjóra um BIFROST Read ori og innbyggðar lesheimildir fyrir verkefnaskýrslur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Read ori og innbyggðar lesheimildir fyrir verkefnaskýrslur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType PermissionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 2666638023" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a date range ending on or after fromDate.</source>
+          <target>Notaðu dagsetningabil sem endar á eða eftir fromDate.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu dagsetningabil sem endar á eða eftir fromDate.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType RangeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 1838072469" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use registerNo only with report register.</source>
+          <target>Notaðu registerNo aðeins með skýrslunni register.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu registerNo aðeins með skýrslunni register.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType RegisterFilterLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 1687279216" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use one of the values listed in the help.</source>
+          <target>Notaðu eitt gildanna sem talin eru upp í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu eitt gildanna sem talin eru upp í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType ReportLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - NamedType 48699521" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Omit taskNo for wipToGL; use projectNo and posting dates.</source>
+          <target>Slepptu taskNo fyrir wipToGL; notaðu projectNo og bókunardagsetningar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Slepptu taskNo fyrir wipToGL; notaðu projectNo og bókunardagsetningar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - NamedType TaskFilterLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 4011224625" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Required report: actualToBudget, analysis, wipToGL or register.</source>
+          <target>Nauðsynleg skýrsla: actualToBudget, analysis, wipToGL eða register.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynleg skýrsla: actualToBudget, analysis, wipToGL eða register.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType SelectorLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 1218464063" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Required output format: json or pdf.</source>
+          <target>Nauðsynlegt úttakssnið: json eða pdf.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlegt úttakssnið: json eða pdf.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType OutputLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 341724697" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exact project number; required for actualToBudget, analysis and wipToGL.</source>
+          <target>Nákvæmt verkefnisnúmer; nauðsynlegt fyrir actualToBudget, analysis og wipToGL.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nákvæmt verkefnisnúmer; nauðsynlegt fyrir actualToBudget, analysis og wipToGL.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType ProjectLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 2412533929" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional exact posting task within projectNo; applies to project detail reports and register entries.</source>
+          <target>Valfrjáls nákvæmur bókunarverkhluti innan projectNo; gildir um ítarlegar verkefnaskýrslur og færsluskrárfærslur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjáls nákvæmur bókunarverkhluti innan projectNo; gildir um ítarlegar verkefnaskýrslur og færsluskrárfærslur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType TaskLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 782210877" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Exact positive project register number; required for register.</source>
+          <target>Nákvæmt jákvætt verkefnisfærsluskrárnúmer; nauðsynlegt fyrir register.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nákvæmt jákvætt verkefnisfærsluskrárnúmer; nauðsynlegt fyrir register.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType RegisterLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 901740384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional inclusive first posting date in ISO YYYY-MM-DD format; requires toDate.</source>
+          <target>Valfrjáls fyrsti bókunardagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD; krefst toDate.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjáls fyrsti bókunardagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD; krefst toDate.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType FromLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2098550208 - Method 684242166 - NamedType 806278067" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional inclusive last posting date in ISO YYYY-MM-DD format; requires fromDate.</source>
+          <target>Valfrjáls síðasti bókunardagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD; krefst fromDate.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjáls síðasti bókunardagur, meðtalinn, á ISO-sniðinu YYYY-MM-DD; krefst fromDate.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Report ori - Method Parameters - NamedType ToLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2603485745 - Method 1561766673 - NamedType 2969446904" size-unit="char" translate="yes" xml:space="preserve">
           <source>The requested posting task does not exist in this project.</source>

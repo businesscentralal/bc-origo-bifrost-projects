@@ -1,11 +1,20 @@
 namespace Origo.Bifrost.Projects;
 
+using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Reports;
 using Origo.Bifrost;
 
 /// <summary>Extends the Foundation Full role with Projects objects; no Foundation Setup tabledata grant.</summary>
 permissionsetextension 70009201 "Projects Full ori" extends "BIFROST Full ori"
 {
     Permissions =
+        report "Job Actual To Budget" = X,
+        report "Job Analysis" = X,
+        report "Job WIP To G/L" = X,
+        report "Job Register" = X,
+        codeunit "Projects Followup Input ori" = X,
+        codeunit "Projects Report ori" = X,
+        codeunit "Proj. Report Impl ori" = X,
         tabledata "Proj. Posting ori" = RIMD,
         codeunit "Proj. Usage Get Impl ori" = X,
         codeunit "Proj. Usage Link Impl ori" = X,
