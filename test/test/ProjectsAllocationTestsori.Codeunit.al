@@ -212,6 +212,43 @@ codeunit 97120 "Projects Allocation Tests ori"
         GlobalLanguage(PreviousLanguage);
     end;
 
+    /// <summary>AC01: An exact resource group selects only its resources and preserves capacity totals.</summary>
+    [Test]
+    procedure Scenario_AC01_GroupFilter_ReturnsMatchingResources()
+    var
+        Resource: Record Resource;
+        ResourceGroup: Record "Resource Group";
+        Request: JsonObject;
+        Response: JsonObject;
+        Row: JsonObject;
+        ResourceNo: Code[20];
+    begin
+        // Story #12, AC01 | Time: fixed ISO dates; Today/WorkDate ignored | Risk: None
+        Library.Initialize();
+        // [GIVEN] Two resources, only one belonging to a new group.
+        ResourceNo := NewResource();
+        NewResource();
+        ResourceGroup."No." := NewNumber();
+        ResourceGroup.Insert(true);
+        Resource.Get(ResourceNo);
+        Resource."Resource Group No." := ResourceGroup."No.";
+        Resource.Modify(true);
+        SeedCapacity(ResourceNo, 20260105D, 8);
+        Request.Add('resourceGroupNo', ResourceGroup."No.");
+        Request.Add('periodType', 'day');
+        Request.Add('fromDate', '2026-01-05');
+        Request.Add('toDate', '2026-01-05');
+        // [WHEN] Selecting by group without an exact resource selector.
+        Response := Execute(Request);
+        // [THEN] Only the matching resource and its own capacity are returned.
+        Library.AssertStatus(Response, 'Success');
+        Assert.AreEqual(1, Response.GetArray('rows').Count(), 'Group excludes unrelated resources');
+        Row := Response.GetArray('rows').GetObject(0);
+        Assert.AreEqual(ResourceNo, Row.GetText('resourceNo'), 'Matching group member');
+        Assert.AreEqual(8, Row.GetDecimal('capacity'), 'Group preserves resource capacity');
+        Assert.AreEqual(8, Row.GetDecimal('availability'), 'No allocation consumes capacity');
+    end;
+
     local procedure Execute(Request: JsonObject): JsonObject
     var
         TempArgument: Record "Message Argument ori" temporary;

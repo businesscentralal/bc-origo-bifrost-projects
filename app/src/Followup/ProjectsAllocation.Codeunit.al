@@ -176,7 +176,7 @@ codeunit 70009231 "Projects Allocation ori"
         Planning.SetRange(Status, Planning.Status::Order);
         if ProjectNo <> '' then
             Planning.SetRange("Job No.", ProjectNo);
-        Planning.SetLoadFields("Job No.", "Quantity (Base)");
+        Planning.SetLoadFields("Job No.", "Quantity (Base)", Type, "No.", "Planning Date", "Schedule Line", Status);
         if Planning.FindSet() then
             repeat
                 Allocated += Planning."Quantity (Base)";
