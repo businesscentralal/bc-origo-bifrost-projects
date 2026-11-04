@@ -55,6 +55,7 @@ codeunit 97131 "Proj. Purchase MCP Fixture ori"
         Project.Modify(true);
         LotNo := CopyStr('X' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(LotNo));
         SeedTrackedInventoryAtLocation(Item."No.", false, LotNo, 10, '', '');
+        Item.Get(Planning.GetText('no'));
         PurchaseLibrary.CreateVendor(Vendor);
         Customer.Get(Project."Bill-to Customer No.");
         ERMLibrary.CreateVATPostingSetupWithAccounts(VATPostingSetup, VATPostingSetup."VAT Calculation Type"::"Normal VAT", 0);
