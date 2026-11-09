@@ -3,6 +3,11 @@
 ## 28.1.0.0 - Unreleased
 
 ### Changed (2026-11-10) - Remove the unreleased planning-line deletion type
+### Tests (2026-11-09)
+
+- Make WIP tests (97106) create and remove their own blank-No. Job default dimension, independent of CRONUS demo data (#29).
+
+### Changed (2026-11-04)
 
 - Remove `Projects.PlanningLine.Delete`, its implementation (70009211), enum value
   70009206, permission entries, help and translations under Gunnar's new-type rule
