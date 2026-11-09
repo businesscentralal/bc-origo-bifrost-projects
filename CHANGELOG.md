@@ -2,6 +2,10 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Tests (2026-11-09)
+
+- Make WIP tests (97106) create and remove their own blank-No. Job default dimension, independent of CRONUS demo data (#29).
+
 ### Changed (2026-11-04)
 
 - Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
