@@ -30,7 +30,6 @@ permissionsetextension 70009201 "Projects Full ori" extends "BIFROST Full ori"
         codeunit "Proj. Task Update Impl ori" = X,
         codeunit "Proj. Plan Create Impl ori" = X,
         codeunit "Proj. Plan Update Impl ori" = X,
-        codeunit "Proj. Plan Delete Impl ori" = X,
         tabledata "Projects Setup ori" = RIMD,
         codeunit "Projects Gate ori" = X,
         codeunit "Projects Registration ori" = X,
