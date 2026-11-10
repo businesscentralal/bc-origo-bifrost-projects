@@ -1,6 +1,6 @@
 # Changelog
 
-## 28.1.0.0 - Unreleased
+## [28.1.0.0] - 2026-11-10
 
 - Projects #12: keep all allocation planning filters loaded (codeunit 70009231) and verify positive resource-group filtering (test codeunit 97120).
 
