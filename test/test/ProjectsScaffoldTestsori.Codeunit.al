@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_AllSeventeenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_AllSixteenTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -104,7 +104,6 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Task.Update');
         ExpectedTypes.Add('Projects.PlanningLine.Create');
         ExpectedTypes.Add('Projects.PlanningLine.Update');
-        ExpectedTypes.Add('Projects.PlanningLine.Delete');
         ExpectedTypes.Add('Projects.Project.Copy');
         ExpectedTypes.Add('Projects.Project.SetStatus');
         ExpectedTypes.Add('Projects.WIP.Get');
@@ -136,7 +135,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(17, Count, 'Catalogue must contain all original sixteen Projects types plus ResourceAllocation.Get');
+        Assert.AreEqual(16, Count, 'Catalogue must contain all fifteen retained Projects types plus ResourceAllocation.Get');
     end;
 
     [Test]

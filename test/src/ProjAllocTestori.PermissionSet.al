@@ -14,7 +14,6 @@ permissionset 97120 "ProjAllocTest ori"
         codeunit "Proj. Copy Impl ori" = X,
         codeunit "Proj. Create Impl ori" = X,
         codeunit "Proj. Plan Create Impl ori" = X,
-        codeunit "Proj. Plan Delete Impl ori" = X,
         codeunit "Proj. Plan Update Impl ori" = X,
         codeunit "Proj. Posting Gate ori" = X,
         codeunit "Proj. Statistics Impl ori" = X,

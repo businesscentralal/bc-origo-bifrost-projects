@@ -261,24 +261,6 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Create Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 3087127345 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Deletes project planning lines.</source>
-          <target>Eyðir áætlunarlínum verkefna.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Eyðir áætlunarlínum verkefna.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Delete Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3087127345 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
-          <source>project, job, task, planning line, delete</source>
-          <target>verkefni, verk, verkhluti, áætlunarlína, eyða</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verkhluti, áætlunarlína, eyða</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Delete Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3087127345 - Method 3650283039 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.</source>
-          <target>Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Delete Impl ori - Method GetNotes - NamedType NotesLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 3680531121 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Updates project planning lines.</source>
           <target>Uppfærir áætlunarlínur verkefna.</target>

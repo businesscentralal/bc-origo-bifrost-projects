@@ -8,6 +8,26 @@
 
 - Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009231, 70009238; enum value 70009216; tests 97120/97121 and owned nonfinancial fixture actions 97128).
 
+### Changed (2026-11-10)
+
+- Integrate allocation #12 with the approved removal of PlanningLine.Delete and native WIP fixture updates; keep exact coverage of the sixteen remaining registered types (enum 70009200; tests 97100/97103).
+
+### Tests (2026-11-10)
+
+- Codeunit 97102 creates its own blank-number Job dimension when the company has none, so codeunit 97106 economic WIP tests do not depend on CRONUS demo data. The mandatory default-dimension row is removed after the scenario.
+
+### Removed (2026-11-10)
+
+- Remove the unreleased message type `Projects.PlanningLine.Delete` (enum value 70009206, codeunit 70009211) per Gunnar decision d-20261105-delete-types. `Projects.PlanningLine.Create` and `Projects.PlanningLine.Update` stay.
+
+### Changed (2026-11-04)
+
+- Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
+
+### Tests (2026-11-04)
+
+- Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
+
 ### Changed (2026-10-21) - Object range moved into a registered range
 
 - Reconcile the WIP posting contract with the resolved Projects Read/Full decision (#18) and distinguish the historical Foundation EULA refusal from current-version queue verification (#17).
