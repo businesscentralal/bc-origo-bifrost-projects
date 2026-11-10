@@ -1,0 +1,27 @@
+{
+  "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+  "baseSha": "b9c609c896b5a934bb9cc1398a195a80d391b2fa",
+  "tier": "Standard",
+  "sourceChangesThisSession": 0,
+  "gateway": {
+    "filesScanned": 1,
+    "mode": "diff (vs b9c609c896b5a934bb9cc1398a195a80d391b2fa)",
+    "actualPassedChecks": 22,
+    "actualFailedChecks": 1,
+    "scriptSummaryCaveat": "summary.failed=2 contradicts checks map (one failed). The checks map has 22 passing and one failed out of 23. Raw report retained.",
+    "disposition": "Changelog version detector requires bracketed heading; actual ## 28.1.0.0 - Unreleased contains issue3 entry. No production code findings in the changed adapter."
+  },
+  "layer2": {
+    "productionDiff": "Using order and local JSON variable Field -> ResponseField only; public contract/permissions/native Copy Job behavior unchanged.",
+    "tests": "Two rollback tests and stronger disabled-price assertion in 97104 plus shipping restrictive-role test97113; original implementation and regressions verified by full61/61.",
+    "ids": "Production70009200..70009249; tests97100..97199 per repository CLAUDE.md (supersedes old issue IDs).",
+    "translations": "No new production strings in diff; existing is-IS XLF and localized catalogue/help verified.",
+    "dependency": "Only Bifrost Foundation feature dependency; no Timesheets scope.",
+    "broaderFindings": "Retained prior suggestions: fixture page lacks built-in cleanup (performed using exact manifest filters instead); CHANGELOG omits test fixture page97114; authoritative Projects context-help pages not reverified. Full-app advisory scan (33 files) has pre-existing findings retained separately.",
+    "reviewLessons": [
+      "projects-copy-status-fixtures-c731381-20261016",
+      "projects-nested-schema-3a26cb8-20261016"
+    ],
+    "noNewSuppressions": true
+  }
+}

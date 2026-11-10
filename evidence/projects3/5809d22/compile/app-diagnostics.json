@@ -1,0 +1,619 @@
+{
+  "version": "0.2",
+  "toolInfo": {
+    "toolName": "Microsoft (R) AL Compiler",
+    "productVersion": "30.0.42",
+    "fileVersion": "30.0.42"
+  },
+  "issues": [
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Contract/ProjectsContract.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Contract/ProjectsInput.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjUsageLinkImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjWIPCalcImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjWIPGetImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjWIPPostImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjBudgetActualImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjCreateImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjPlanUpdateImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjStatisticsImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjStatusImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjTaskCreateImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjTaskUpdateImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjUpdateImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjUsageGetImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Process/ProjectsStatistics.Codeunit.al",
+              "region": {
+                "startLine": 3,
+                "startColumn": 1,
+                "endLine": 3,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Process/ProjectsUsage.Codeunit.al",
+              "region": {
+                "startLine": 3,
+                "startColumn": 1,
+                "endLine": 3,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Process/ProjectsWIP.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/MessageType/ProjPlanCreateImpl.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Process/ProjectsWrite.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    },
+    {
+      "ruleId": "AA0477",
+      "locations": [
+        {
+          "analysisTarget": [
+            {
+              "uri": "/workspace/private/projects3-loni-20261110T1227/source/app/src/Process/ProjectsWriteProcess.Codeunit.al",
+              "region": {
+                "startLine": 4,
+                "startColumn": 1,
+                "endLine": 4,
+                "endColumn": 38
+              }
+            }
+          ]
+        }
+      ],
+      "shortMessage": "The using statements are not in a sorted order.",
+      "fullMessage": "Using statements are not ordered alphabetically.",
+      "properties": {
+        "severity": "Info",
+        "defaultSeverity": "Info",
+        "title": "Unordered using statements",
+        "category": "Readability",
+        "helpLink": "https://learn.microsoft.com/dynamics365/business-central/dev-itpro/developer/analyzers/codecop-aa0477?wt.mc_id=d365bc_inproduct_alextension",
+        "isEnabledByDefault": "True",
+        "isSuppressedInSource": "False"
+      }
+    }
+  ]
+}

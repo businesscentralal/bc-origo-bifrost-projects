@@ -1,0 +1,79 @@
+[
+  {
+    "name": "ui-is-list",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"is-IS\",\"description\":\"Loni copy 1033 budget\",\"verified\":\"Copied header and Budget Cost 21.00 visible\"}\n### Ran Playwright code\n```js\nawait (async page => { const f=page.frameLocator('iframe').first(); const lang=await page.locator('html').getAttribute('lang'); const description=await f.getByRole('textbox',{name:'Description',exact:true}).evaluate(el=>el.value||el.textContent); if(lang!=='is-IS'||description!=='Loni copy 1033 budget')throw Error('UI identity mismatch'); await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-is-list.png'}); await f.getByRole('button',{name:'No., raðað í pöntunina Hækkandi L10P3EN1',exact:true}).click(); return {lang,description,verified:'Copied header and Budget Cost 21.00 visible'}; })(page);\n```\n### Page\n- Page URL: http://host.docker.internal:8080/BC290/?company=CRONUS%20International%20Ltd.&tenant=w129-20&page=88&filter=Job.%27No.%27%20IS%20%27L10P3EN1%27&dc=0&bookmark=1B_pwAAAAJ7_0wAMQAwAFAAMwBFAE4AMQ\n- Page Title: Project Card | Vinnudagsetning: 1/27/2028 - L10P3EN1 ∙ Loni copy 1033 budget\n- Console: 0 errors, 2 warnings"
+        }
+      ]
+    }
+  },
+  {
+    "name": "ui-is-card",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"is-IS\",\"tasks\":[\"X100\"]}\n### Ran Playwright code\n```js\nawait (async page => { const f=page.frameLocator('iframe').first();const card=f.getByRole('form',{name:'Project Card',exact:true});const values=await card.getByRole('treegrid',{name:'Tasks',exact:true}).getByRole('textbox',{name:/Project Task No\\./}).evaluateAll(es=>es.map(e=>e.value||e.textContent).filter(Boolean));if(JSON.stringify(values)!=='[\"X100\"]')throw Error('Unexpected task set '+JSON.stringify(values));await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-is-card.png'});await card.getByRole('button',{name:'Budget (Total Cost) 21.00',exact:true}).click();return {lang:await page.locator('html').getAttribute('lang'),tasks:values}; })(page);\n```\n### Page\n- Page URL: http://host.docker.internal:8080/BC290/?company=CRONUS%20International%20Ltd.&tenant=w129-20&page=1007&filter=%27Job%20Planning%20Line%27.%27Job%20No.%27%20IS%20%27L10P3EN1%27%20AND%20%27Job%20Planning%20Line%27.%27Job%20Task%20No.%27%20IS%20%27X100%27%20AND%20%27Job%20Planning%20Line%27.%27Schedule%20Line%27%20IS%20%27J%c3%a1%27&dc=0&bookmark=2E_6wMAAAJ7_0wAMQAwAFAAMwBFAE4AMQAAAAJ7_1gAMQAwADAAAAAAhxAn\n- Page Title: Project Planning Lines - L10P3EN1 Loni copy 1033 budget X100\n- Console: 0 errors, 2 warnings"
+        }
+      ]
+    }
+  },
+  {
+    "name": "ui-is-planning",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"is-IS\",\"values\":{\"Line Type\":\"Budget\",\"Quantity\":\"3\",\"Unit Cost\":\"7.00\",\"Unit Price\":\"11.00\",\"Line Amount\":\"33.00\"}}\n### Ran Playwright code\n```js\nawait (async page => { const form=page.frameLocator('iframe').first().getByRole('form',{name:'Project Planning Lines',exact:true}); const values={};for(const name of ['Line Type','Quantity','Unit Cost','Unit Price','Line Amount'])values[name]=await form.getByRole('textbox',{name,exact:true}).evaluate(el=>el.value||el.textContent); if(values['Line Type']!=='Budget'||Number(values.Quantity)!==3||Number(values['Unit Price'])!==11||Number(values['Unit Cost'])!==7)throw Error('Planning values mismatch '+JSON.stringify(values));await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-is-planning.png'});return {lang:await page.locator('html').getAttribute('lang'),values}; })(page);\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "ui-en-list",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"en-US\",\"description\":\"Loni copy 1033 budget\",\"budgetCost\":21}\n### Ran Playwright code\n```js\nawait (async page => { const f=page.frameLocator('iframe').first(); const lang=await page.locator('html').getAttribute('lang'); const description=await f.getByRole('textbox',{name:'Description',exact:true}).evaluate(el=>el.value||el.textContent); if(lang!=='en-US'||description!=='Loni copy 1033 budget')throw Error('UI identity mismatch');if(await f.getByRole('button',{name:'Total 21.00',exact:true}).count()!==1)throw Error('Budget cost missing');await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-en-list.png'}); await f.getByRole('button',{name:'No., sorted in Ascending order L10P3EN1',exact:true}).click(); return {lang,description,budgetCost:21}; })(page);\n```\n### Page\n- Page URL: http://host.docker.internal:8080/BC290/?company=CRONUS%20International%20Ltd.&tenant=w129-20&page=88&filter=Job.%27No.%27%20IS%20%27L10P3EN1%27&dc=0&bookmark=1B_pwAAAAJ7_0wAMQAwAFAAMwBFAE4AMQ\n- Page Title: Project Card | Work Date: 1/27/2028 - L10P3EN1 ∙ Loni copy 1033 budget\n- Console: 0 errors, 2 warnings"
+        }
+      ]
+    }
+  },
+  {
+    "name": "ui-en-card",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"en-US\",\"tasks\":[\"X100\"]}\n### Ran Playwright code\n```js\nawait (async page => { const f=page.frameLocator('iframe').first();const card=f.getByRole('form',{name:'Project Card',exact:true});const values=await card.getByRole('treegrid',{name:'Tasks',exact:true}).getByRole('textbox',{name:/Project Task No\\./}).evaluateAll(es=>es.map(e=>e.value||e.textContent).filter(Boolean));if(JSON.stringify(values)!=='[\"X100\"]')throw Error('Unexpected task set '+JSON.stringify(values));await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-en-card.png'});await card.getByRole('button',{name:'Budget (Total Cost) 21.00',exact:true}).click();return {lang:await page.locator('html').getAttribute('lang'),tasks:values}; })(page);\n```\n### Page\n- Page URL: http://host.docker.internal:8080/BC290/?company=CRONUS%20International%20Ltd.&tenant=w129-20&page=1007&filter=%27Job%20Planning%20Line%27.%27Job%20No.%27%20IS%20%27L10P3EN1%27%20AND%20%27Job%20Planning%20Line%27.%27Job%20Task%20No.%27%20IS%20%27X100%27%20AND%20%27Job%20Planning%20Line%27.%27Schedule%20Line%27%20IS%20%27Yes%27&dc=0&bookmark=2E_6wMAAAJ7_0wAMQAwAFAAMwBFAE4AMQAAAAJ7_1gAMQAwADAAAAAAhxAn\n- Page Title: Project Planning Lines - L10P3EN1 Loni copy 1033 budget X100\n- Console: 0 errors, 2 warnings"
+        }
+      ]
+    }
+  },
+  {
+    "name": "ui-en-planning",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"en-US\",\"values\":{\"Line Type\":\"Budget\",\"Quantity\":\"3\",\"Unit Cost\":\"7.00\",\"Unit Price\":\"11.00\",\"Line Amount\":\"33.00\"}}\n### Ran Playwright code\n```js\nawait (async page => { const form=page.frameLocator('iframe').first().getByRole('form',{name:'Project Planning Lines',exact:true}); const values={};for(const name of ['Line Type','Quantity','Unit Cost','Unit Price','Line Amount'])values[name]=await form.getByRole('textbox',{name,exact:true}).evaluate(el=>el.value||el.textContent); if(values['Line Type']!=='Budget'||Number(values.Quantity)!==3||Number(values['Unit Price'])!==11||Number(values['Unit Cost'])!==7)throw Error('Planning values mismatch '+JSON.stringify(values));await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-en-planning.png'});return {lang:await page.locator('html').getAttribute('lang'),values}; })(page);\n```"
+        }
+      ]
+    }
+  },
+  {
+    "name": "ui-en-setup",
+    "evidence": {
+      "content": [
+        {
+          "type": "text",
+          "text": "### Result\n{\"lang\":\"en-US\",\"title\":\"Work Date: 1/27/2028 - Projects Setup\",\"enabled\":true}\n### Ran Playwright code\n```js\nawait (async page => { const f=page.frameLocator('iframe').first();const lang=await page.locator('html').getAttribute('lang');if(lang!=='en-US')throw Error('Language not restored');if(!await f.getByRole('heading',{name:'Projects Setup',exact:true}).isVisible())throw Error('Setup caption mismatch');await page.screenshot({path:'/workspace/evidence/projects3-loni-5809d22-en-setup.png'});return {lang,title:await page.title(),enabled:await f.getByRole('checkbox',{name:'Enabled',exact:true}).isChecked()}; })(page);\n```\n### Page\n- Page URL: http://host.docker.internal:8080/BC290/?company=CRONUS%20International%20Ltd.&tenant=w129-20&bookmark=B_cEEsBAJ7&page=70009200&dc=0\n- Page Title: Work Date: 1/27/2028 - Projects Setup\n- Console: 0 errors, 2 warnings"
+        }
+      ]
+    }
+  }
+]

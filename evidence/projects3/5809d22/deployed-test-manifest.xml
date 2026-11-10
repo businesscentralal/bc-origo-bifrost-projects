@@ -1,0 +1,26 @@
+<Package xmlns="http://schemas.microsoft.com/navx/2015/manifest">
+  <App Id="f8c2c4ed-28c1-4a34-af45-61d25968298b" Name="Bifrost Projects - Tests" Publisher="Origo" Brief="Bifrost Projects - Tests" Description="Bifrost Projects - Tests" Version="28.1.0.0" CompatibilityId="0.0.0.0" PrivacyStatement="https://www.origo.is/um-origo/stefnur/personuverndarstefna" EULA="https://www.origo.is/skilmalar-og-oryggismal" Help="https://www.origo.is/" HelpBaseUrl="" Url="https://www.origo.is/" Logo="/logo/Logo250x250.png" Platform="28.0.0.0" Application="28.0.0.0" Runtime="17.0" Target="Cloud" ShowMyCode="False" />
+  <IdRanges>
+    <IdRange MinObjectId="97100" MaxObjectId="97199" />
+  </IdRanges>
+  <Dependencies>
+    <Dependency Id="7505e808-6e52-4b96-a328-82573391297a" Name="Bifrost Foundation" Publisher="Origo" MinVersion="28.0.5.0" CompatibilityId="0.0.0.0" />
+    <Dependency Id="5d86850b-0d76-4eca-bd7b-951ad998e997" Name="Tests-TestLibraries" Publisher="Microsoft" MinVersion="1.0.0.0" CompatibilityId="0.0.0.0" />
+    <Dependency Id="dd0be2ea-f733-4d65-bb34-a28f4624fb14" Name="Library Assert" Publisher="Microsoft" MinVersion="1.0.0.0" CompatibilityId="0.0.0.0" />
+    <Dependency Id="23de40a6-dfe8-4f80-80db-d70f83ce8caf" Name="Test Runner" Publisher="Microsoft" MinVersion="1.0.0.0" CompatibilityId="0.0.0.0" />
+    <Dependency Id="e7320ebb-08b3-4406-b1ec-b4927d3e280b" Name="Any" Publisher="Microsoft" MinVersion="1.0.0.0" CompatibilityId="0.0.0.0" />
+    <Dependency Id="5095f467-0a01-4b99-99d1-9ff1237d286f" Name="Library Variable Storage" Publisher="Microsoft" MinVersion="1.0.0.0" CompatibilityId="0.0.0.0" />
+    <Dependency Id="c847bab7-2525-4ff5-93c4-15512b3be1e5" Name="Bifrost Projects" Publisher="Origo" MinVersion="28.1.0.0" CompatibilityId="0.0.0.0" />
+  </Dependencies>
+  <InternalsVisibleTo />
+  <ScreenShots />
+  <SupportedLocales />
+  <Features />
+  <PreprocessorSymbols />
+  <SuppressWarnings />
+  <ResourceExposurePolicy AllowDebugging="true" AllowDownloadingSource="true" IncludeSourceInSymbolFile="true" ApplyToDevExtension="false" />
+  <KeyVaultUrls />
+  <Source RepositoryUrl="https://github.com/businesscentralal/bc-origo-bifrost-projects" Commit="5809d22ab818ff2e9718f01d62bf3f6dd638d61e" />
+  <Build Timestamp="2026-11-10T12:33:40.1716767Z" CompilerVersion="30.0.42.60748" />
+  <AlternateIds />
+</Package>

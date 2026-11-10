@@ -1,0 +1,112 @@
+{
+  "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+  "tenant": "w129-20",
+  "projects": [
+    "X11F1F76F327F4C79941",
+    "XE46FB31349C94089BF8",
+    "L10P3EN1",
+    "L10P3IS1"
+  ],
+  "resources": [
+    "X31168E3FF4574A0FB31",
+    "XD1A77653DD8A4598863"
+  ],
+  "dimensions": [
+    "XD362A8DAC40B468397F",
+    "X9443997C45634DAAA87"
+  ],
+  "rows": [
+    {
+      "table": "Job",
+      "filter": "WHERE(No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+      "before": 4,
+      "deleted": 4,
+      "remaining": 0
+    },
+    {
+      "table": "Job Task",
+      "filter": "WHERE(Job No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+      "before": 0,
+      "deleted": 0,
+      "remaining": 0
+    },
+    {
+      "table": "Job Planning Line",
+      "filter": "WHERE(Job No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+      "before": 0,
+      "deleted": 0,
+      "remaining": 0
+    },
+    {
+      "table": "Default Dimension",
+      "filter": "WHERE(Table ID=CONST(167),No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+      "before": 0,
+      "deleted": 0,
+      "remaining": 0
+    },
+    {
+      "table": "Resource",
+      "filter": "WHERE(No.=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "Resource Unit of Measure",
+      "filter": "WHERE(Resource No.=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+      "before": 0,
+      "deleted": 0,
+      "remaining": 0
+    },
+    {
+      "table": "Customer",
+      "filter": "WHERE(No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "General Posting Setup",
+      "filter": "WHERE(Gen. Bus. Posting Group=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863),Gen. Prod. Posting Group=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "Gen. Business Posting Group",
+      "filter": "WHERE(Code=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "Gen. Product Posting Group",
+      "filter": "WHERE(Code=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "Unit of Measure",
+      "filter": "WHERE(Code=FILTER(X31168E3FF|XD1A77653D))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "Dimension Value",
+      "filter": "WHERE(Dimension Code=FILTER(XD362A8DAC40B468397F|X9443997C45634DAAA87))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    },
+    {
+      "table": "Dimension",
+      "filter": "WHERE(Code=FILTER(XD362A8DAC40B468397F|X9443997C45634DAAA87))",
+      "before": 2,
+      "deleted": 2,
+      "remaining": 0
+    }
+  ],
+  "verified": true
+}

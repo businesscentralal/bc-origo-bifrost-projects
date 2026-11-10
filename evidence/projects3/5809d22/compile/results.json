@@ -1,0 +1,40 @@
+[
+  {
+    "project": "app",
+    "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+    "exitCode": 0,
+    "errors": 0,
+    "warnings": 0,
+    "args": [
+      "/opt/devtools/dotnet/dotnet",
+      "/opt/devtools/al-language/extension/bin/alc.dll",
+      "/project:/workspace/private/projects3-loni-20261110T1227/source/app",
+      "/packagecachepath:/workspace/private/projects3-loni-20261110T1227/symbols",
+      "/out:/workspace/private/projects3-loni-20261110T1227/compile/app.app",
+      "/SourceCommit:5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+      "/SourceRepositoryUrl:https://github.com/businesscentralal/bc-origo-bifrost-projects",
+      "/errorlog:/workspace/private/projects3-loni-20261110T1227/compile/app-diagnostics.json",
+      "/analyzer:/opt/devtools/al-language/extension/bin/Microsoft.Dynamics.Nav.CodeCop.dll,/opt/devtools/al-language/extension/bin/Microsoft.Dynamics.Nav.UICop.dll,/opt/devtools/al-language/extension/bin/Microsoft.Dynamics.Nav.AppSourceCop.dll"
+    ],
+    "sha256": "5b03b482069c7d4e51fb490f9b390ec9674f8b20b8601438aafeff240dfa8d42"
+  },
+  {
+    "project": "test",
+    "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+    "exitCode": 0,
+    "errors": 0,
+    "warnings": 0,
+    "args": [
+      "/opt/devtools/dotnet/dotnet",
+      "/opt/devtools/al-language/extension/bin/alc.dll",
+      "/project:/workspace/private/projects3-loni-20261110T1227/source/test",
+      "/packagecachepath:/workspace/private/projects3-loni-20261110T1227/symbols",
+      "/out:/workspace/private/projects3-loni-20261110T1227/compile/test.app",
+      "/SourceCommit:5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+      "/SourceRepositoryUrl:https://github.com/businesscentralal/bc-origo-bifrost-projects",
+      "/errorlog:/workspace/private/projects3-loni-20261110T1227/compile/test-diagnostics.json",
+      "/analyzer:/opt/devtools/al-language/extension/bin/Microsoft.Dynamics.Nav.CodeCop.dll,/opt/devtools/al-language/extension/bin/Microsoft.Dynamics.Nav.UICop.dll"
+    ],
+    "sha256": "ef305cdc66f16de8a3fc085cda7ae7a946de71a3bd2ce6d4df79c342954cbce1"
+  }
+]

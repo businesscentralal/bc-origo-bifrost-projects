@@ -1,0 +1,30 @@
+<Package xmlns="http://schemas.microsoft.com/navx/2015/manifest">
+  <App Id="c847bab7-2525-4ff5-93c4-15512b3be1e5" Name="Bifrost Projects" Publisher="Origo" Brief="Bifrost Projects - project lifecycle message types" Description="Bifrost Projects: project lifecycle, tasks, planning lines, WIP, budget vs actual, invoicing and project query message types on top of Bifrost Foundation." Version="28.1.0.0" CompatibilityId="0.0.0.0" PrivacyStatement="https://businesscentralal.github.io/bifrost/en-us/foundation/privacy/" EULA="https://businesscentralal.github.io/bifrost/en-us/foundation/eula/" Help="https://businesscentralal.github.io/bifrost/en-us/projects/" HelpBaseUrl="" ContextSensitiveHelpUrl="https://businesscentralal.github.io/bifrost/{0}/help/projects/" Url="https://www.origo.is/" Logo="/logo/Logo250x250.png" Platform="28.0.0.0" Application="28.0.0.0" Runtime="17.0" Target="Cloud" ShowMyCode="False" ApplicationInsightsConnectionString="InstrumentationKey=af411133-5e22-486f-b23a-081b79ed4168;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=c4476f32-5dfb-490a-8ad0-fb8ffad1c050" />
+  <IdRanges>
+    <IdRange MinObjectId="70009200" MaxObjectId="70009249" />
+  </IdRanges>
+  <Dependencies>
+    <Dependency Id="7505e808-6e52-4b96-a328-82573391297a" Name="Bifrost Foundation" Publisher="Origo" MinVersion="28.0.5.0" CompatibilityId="0.0.0.0" />
+  </Dependencies>
+  <InternalsVisibleTo>
+    <Module Id="f8c2c4ed-28c1-4a34-af45-61d25968298b" Name="Bifrost Projects - Tests" Publisher="Origo" />
+  </InternalsVisibleTo>
+  <ScreenShots />
+  <SupportedLocales>
+    <SupportedLocale Local="en-US" />
+    <SupportedLocale Local="is-IS" />
+  </SupportedLocales>
+  <Features>
+    <Feature>TRANSLATIONFILE</Feature>
+    <Feature>NOIMPLICITWITH</Feature>
+  </Features>
+  <PreprocessorSymbols />
+  <SuppressWarnings>
+    <SuppressWarning Name="AS0081" />
+  </SuppressWarnings>
+  <ResourceExposurePolicy AllowDebugging="true" AllowDownloadingSource="true" IncludeSourceInSymbolFile="true" ApplyToDevExtension="false" />
+  <KeyVaultUrls />
+  <Source RepositoryUrl="https://github.com/businesscentralal/bc-origo-bifrost-projects" Commit="5809d22ab818ff2e9718f01d62bf3f6dd638d61e" />
+  <Build Timestamp="2026-11-10T12:33:26.2028360Z" CompilerVersion="30.0.42.60748" />
+  <AlternateIds />
+</Package>

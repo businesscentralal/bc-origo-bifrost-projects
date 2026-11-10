@@ -1,0 +1,16 @@
+[
+  {
+    "project": "app",
+    "sha256": "5b03b482069c7d4e51fb490f9b390ec9674f8b20b8601438aafeff240dfa8d42",
+    "downloadedSha256": "5b03b482069c7d4e51fb490f9b390ec9674f8b20b8601438aafeff240dfa8d42",
+    "matches": true,
+    "manifest": "/workspace/private/projects3-loni-20261110T1227/deployed-app-manifest.xml"
+  },
+  {
+    "project": "test",
+    "sha256": "ef305cdc66f16de8a3fc085cda7ae7a946de71a3bd2ce6d4df79c342954cbce1",
+    "downloadedSha256": "ef305cdc66f16de8a3fc085cda7ae7a946de71a3bd2ce6d4df79c342954cbce1",
+    "matches": true,
+    "manifest": "/workspace/private/projects3-loni-20261110T1227/deployed-test-manifest.xml"
+  }
+]

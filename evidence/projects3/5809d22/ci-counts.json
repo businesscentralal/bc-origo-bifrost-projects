@@ -1,0 +1,111 @@
+{
+  "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+  "runUrl": "https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/42799591898",
+  "executed": 61,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suites": [
+    {
+      "name": "97100 Projects Scaffold Tests ori",
+      "timestamp": "2026-11-10T10:42:37",
+      "hostname": "runnervmm7ud1",
+      "time": "2.117",
+      "tests": "7",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97101 Projects Write Tests ori",
+      "timestamp": "2026-11-10T10:42:45",
+      "hostname": "runnervmm7ud1",
+      "time": "6.779",
+      "tests": "21",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97103 Projects Permission Tests ori",
+      "timestamp": "2026-11-10T10:42:45",
+      "hostname": "runnervmm7ud1",
+      "time": "0.177",
+      "tests": "1",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97104 Projects Copy Tests ori",
+      "timestamp": "2026-11-10T10:42:47",
+      "hostname": "runnervmm7ud1",
+      "time": "1.093",
+      "tests": "8",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97105 Projects Status Tests ori",
+      "timestamp": "2026-11-10T10:42:48",
+      "hostname": "runnervmm7ud1",
+      "time": "0.225",
+      "tests": "5",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97106 Projects WIP Tests ori",
+      "timestamp": "2026-11-10T10:43:02",
+      "hostname": "runnervmm7ud1",
+      "time": "13.731",
+      "tests": "7",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97107 Proj. Posting Gate Tests ori",
+      "timestamp": "2026-11-10T10:43:02",
+      "hostname": "runnervmm7ud1",
+      "time": "0.034",
+      "tests": "2",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97108 Projects Statistics Tests ori",
+      "timestamp": "2026-11-10T10:43:04",
+      "hostname": "runnervmm7ud1",
+      "time": "0.493",
+      "tests": "5",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97109 Projects Usage Tests ori",
+      "timestamp": "2026-11-10T10:43:05",
+      "hostname": "runnervmm7ud1",
+      "time": "0.476",
+      "tests": "4",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "97113 Proj Copy Perm Tests ori",
+      "timestamp": "2026-11-10T10:43:05",
+      "hostname": "runnervmm7ud1",
+      "time": "0.01",
+      "tests": "1",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0"
+    }
+  ],
+  "passed": 61
+}

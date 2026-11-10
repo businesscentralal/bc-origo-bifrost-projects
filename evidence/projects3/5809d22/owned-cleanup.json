@@ -1,0 +1,216 @@
+{
+  "tenant": "w129-20",
+  "owner": "worker-10",
+  "candidateSha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+  "fixtureCleanup": {
+    "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+    "tenant": "w129-20",
+    "projects": [
+      "X11F1F76F327F4C79941",
+      "XE46FB31349C94089BF8",
+      "L10P3EN1",
+      "L10P3IS1"
+    ],
+    "resources": [
+      "X31168E3FF4574A0FB31",
+      "XD1A77653DD8A4598863"
+    ],
+    "dimensions": [
+      "XD362A8DAC40B468397F",
+      "X9443997C45634DAAA87"
+    ],
+    "rows": [
+      {
+        "table": "Job",
+        "filter": "WHERE(No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+        "before": 4,
+        "deleted": 4,
+        "remaining": 0
+      },
+      {
+        "table": "Job Task",
+        "filter": "WHERE(Job No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+        "before": 0,
+        "deleted": 0,
+        "remaining": 0
+      },
+      {
+        "table": "Job Planning Line",
+        "filter": "WHERE(Job No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+        "before": 0,
+        "deleted": 0,
+        "remaining": 0
+      },
+      {
+        "table": "Default Dimension",
+        "filter": "WHERE(Table ID=CONST(167),No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8|L10P3EN1|L10P3IS1))",
+        "before": 0,
+        "deleted": 0,
+        "remaining": 0
+      },
+      {
+        "table": "Resource",
+        "filter": "WHERE(No.=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "Resource Unit of Measure",
+        "filter": "WHERE(Resource No.=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+        "before": 0,
+        "deleted": 0,
+        "remaining": 0
+      },
+      {
+        "table": "Customer",
+        "filter": "WHERE(No.=FILTER(X11F1F76F327F4C79941|XE46FB31349C94089BF8))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "General Posting Setup",
+        "filter": "WHERE(Gen. Bus. Posting Group=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863),Gen. Prod. Posting Group=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "Gen. Business Posting Group",
+        "filter": "WHERE(Code=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "Gen. Product Posting Group",
+        "filter": "WHERE(Code=FILTER(X31168E3FF4574A0FB31|XD1A77653DD8A4598863))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "Unit of Measure",
+        "filter": "WHERE(Code=FILTER(X31168E3FF|XD1A77653D))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "Dimension Value",
+        "filter": "WHERE(Dimension Code=FILTER(XD362A8DAC40B468397F|X9443997C45634DAAA87))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      },
+      {
+        "table": "Dimension",
+        "filter": "WHERE(Code=FILTER(XD362A8DAC40B468397F|X9443997C45634DAAA87))",
+        "before": 2,
+        "deleted": 2,
+        "remaining": 0
+      }
+    ],
+    "verified": true
+  },
+  "operations": [
+    {
+      "operation": "uninstall-projects-tests",
+      "result": {
+        "action": "uninstallAndDeleteExtensionData",
+        "packageId": "bf930d94-32ec-44e5-a590-9ee0bda0de71",
+        "statusCode": 204,
+        "durationMs": 279,
+        "ok": true,
+        "body": null,
+        "match": {
+          "packageId": "bf930d94-32ec-44e5-a590-9ee0bda0de71",
+          "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+          "displayName": "Bifrost Projects - Tests",
+          "publisher": "Origo",
+          "versionMajor": 28,
+          "versionMinor": 1,
+          "versionBuild": 0,
+          "versionRevision": 0,
+          "isInstalled": true,
+          "publishedAs": " Dev"
+        }
+      }
+    },
+    {
+      "operation": "unpublish-projects-tests",
+      "result": {
+        "action": "unpublish",
+        "packageId": "bf930d94-32ec-44e5-a590-9ee0bda0de71",
+        "statusCode": 204,
+        "durationMs": 233,
+        "ok": true,
+        "body": null,
+        "match": {
+          "packageId": "bf930d94-32ec-44e5-a590-9ee0bda0de71",
+          "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+          "displayName": "Bifrost Projects - Tests",
+          "publisher": "Origo",
+          "versionMajor": 28,
+          "versionMinor": 1,
+          "versionBuild": 0,
+          "versionRevision": 0,
+          "isInstalled": false,
+          "publishedAs": " Dev"
+        }
+      }
+    },
+    {
+      "operation": "uninstall-projects",
+      "result": {
+        "action": "uninstallAndDeleteExtensionData",
+        "packageId": "aaa21cd6-3bfe-4cc4-8a97-0a05aca694bb",
+        "statusCode": 204,
+        "durationMs": 381,
+        "ok": true,
+        "body": null,
+        "match": {
+          "packageId": "aaa21cd6-3bfe-4cc4-8a97-0a05aca694bb",
+          "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+          "displayName": "Bifrost Projects",
+          "publisher": "Origo",
+          "versionMajor": 28,
+          "versionMinor": 1,
+          "versionBuild": 0,
+          "versionRevision": 0,
+          "isInstalled": true,
+          "publishedAs": " Dev"
+        }
+      }
+    },
+    {
+      "operation": "unpublish-projects",
+      "result": {
+        "action": "unpublish",
+        "packageId": "aaa21cd6-3bfe-4cc4-8a97-0a05aca694bb",
+        "statusCode": 204,
+        "durationMs": 278,
+        "ok": true,
+        "body": null,
+        "match": {
+          "packageId": "aaa21cd6-3bfe-4cc4-8a97-0a05aca694bb",
+          "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+          "displayName": "Bifrost Projects",
+          "publisher": "Origo",
+          "versionMajor": 28,
+          "versionMinor": 1,
+          "versionBuild": 0,
+          "versionRevision": 0,
+          "isInstalled": false,
+          "publishedAs": " Dev"
+        }
+      }
+    }
+  ],
+  "projectsAppsAbsent": true,
+  "foundationAndQualityAppsRetained": true,
+  "languageRestored": "en-US",
+  "verifiedAt": "2026-11-10T12:49:10.675879+00:00",
+  "requestAuditRecords": "Normal Bifrost request/response audit history retained; no broad internal-table deletion."
+}

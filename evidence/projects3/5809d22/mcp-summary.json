@@ -1,0 +1,305 @@
+{
+  "sha": "5809d22ab818ff2e9718f01d62bf3f6dd638d61e",
+  "tenant": "w129-20",
+  "startedAt": "2026-11-10T12:41:33.454Z",
+  "rows": [
+    {
+      "name": "1033-localized-discovery",
+      "passed": true,
+      "detail": {
+        "name": "Projects.Project.Copy",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Copies a project with a task range and budget or billable planning lines.",
+        "messageDirection": "Inbound"
+      }
+    },
+    {
+      "name": "1033-localized-help",
+      "passed": true,
+      "detail": "Copies a project with a task range and budget or billable planning lines."
+    },
+    {
+      "name": "1033-copy-success",
+      "passed": true,
+      "detail": {
+        "sourceProjectNo": "X11F1F76F327F4C79941",
+        "status": "Success",
+        "projectNo": "L10P3EN1"
+      }
+    },
+    {
+      "name": "1033-existing-target",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "BusinessCentralError",
+          "error": "The record in table Project already exists. Identification fields and values: No.='L10P3EN1'",
+          "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type."
+        }
+      }
+    },
+    {
+      "name": "1033-reversed-range",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "BusinessCentralError",
+          "error": "The first task number must not exceed the last task number.",
+          "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type."
+        }
+      }
+    },
+    {
+      "name": "1033-invalid-customer",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "BusinessCentralError",
+          "error": "The field Bill-to Customer No. of table Project contains a value (L10NOTEXIST) that cannot be found in the related table (Customer).",
+          "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type."
+        }
+      }
+    },
+    {
+      "name": "1033-unknown-key",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "UnknownParameter",
+          "error": "Parameter \"skip\" is not declared by this message type. Nothing was executed.",
+          "parameter": "skip",
+          "received": "1",
+          "expected": "declared request parameters",
+          "nextStep": "Remove this key or consult Help.Implementation.Get for the declared parameters.",
+          "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type."
+        }
+      }
+    },
+    {
+      "name": "1033-missing-target",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "MissingParameter",
+          "error": "A required Projects parameter is missing or empty.",
+          "parameter": "targetProjectNo",
+          "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type."
+        }
+      }
+    },
+    {
+      "name": "1033-task-filter-readback",
+      "passed": true,
+      "detail": [
+        {
+          "id": "B4278CCA-03DD-F111-B6F8-00090FFE0001",
+          "primaryKey": {
+            "JobNo_": "L10P3EN1",
+            "JobTaskNo_": "X100"
+          },
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "name": "1033-planning-readback",
+      "passed": true,
+      "detail": [
+        {
+          "id": "B6278CCA-03DD-F111-B6F8-00090FFE0001",
+          "primaryKey": {
+            "LineNo_": "10000",
+            "JobNo_": "L10P3EN1",
+            "JobTaskNo_": "X100"
+          },
+          "fields": {
+            "LineType": "Budget",
+            "Quantity": "3",
+            "UnitPrice": "11",
+            "UnitCost": "7"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1033-dimension-readback",
+      "passed": true,
+      "detail": [
+        {
+          "id": "B3278CCA-03DD-F111-B6F8-00090FFE0001",
+          "primaryKey": {
+            "TableID": "167",
+            "No_": "L10P3EN1",
+            "DimensionCode": "XD362A8DAC40B468397F"
+          },
+          "fields": {
+            "DimensionValueCode": "XVALUE"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1039-localized-discovery",
+      "passed": true,
+      "detail": {
+        "name": "Projects.Project.Copy",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Afritar verkefni með bili verkhluta og áætlunar- eða reikningsfærslulínum.",
+        "messageDirection": "Inbound"
+      }
+    },
+    {
+      "name": "1039-localized-help",
+      "passed": true,
+      "detail": "Afritar verkefni með bili verkhluta og áætlunar- eða reikningsfærslulínum."
+    },
+    {
+      "name": "1039-copy-success",
+      "passed": true,
+      "detail": {
+        "sourceProjectNo": "XE46FB31349C94089BF8",
+        "status": "Success",
+        "projectNo": "L10P3IS1"
+      }
+    },
+    {
+      "name": "1039-existing-target",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "BusinessCentralError",
+          "error": "The record in table Project already exists. Identification fields and values: No.='L10P3IS1'",
+          "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+        }
+      }
+    },
+    {
+      "name": "1039-reversed-range",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "BusinessCentralError",
+          "error": "Fyrsta verkhlutanúmerið má ekki vera hærra en það síðasta.",
+          "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+        }
+      }
+    },
+    {
+      "name": "1039-invalid-customer",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "BusinessCentralError",
+          "error": "The field Bill-to Customer No. of table Project contains a value (L10NOTEXIST) that cannot be found in the related table (Customer).",
+          "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+        }
+      }
+    },
+    {
+      "name": "1039-unknown-key",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "UnknownParameter",
+          "error": "Viðfangið \"skip\" er ekki skilgreint fyrir þessa skilaboðategund. Ekkert var keyrt.",
+          "parameter": "skip",
+          "received": "1",
+          "expected": "skilgreind beiðniviðföng",
+          "nextStep": "Fjarlægðu þennan lykil eða skoðaðu Help.Implementation.Get til að sjá skilgreind viðföng.",
+          "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+        }
+      }
+    },
+    {
+      "name": "1039-missing-target",
+      "passed": true,
+      "detail": {
+        "queueStatus": "bc_error",
+        "response": {
+          "status": "Error",
+          "code": "MissingParameter",
+          "error": "Nauðsynlegt viðfang verkefnis vantar eða er tómt.",
+          "parameter": "targetProjectNo",
+          "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+        }
+      }
+    },
+    {
+      "name": "1039-task-filter-readback",
+      "passed": true,
+      "detail": [
+        {
+          "id": "57EAEF25-04DD-F111-B6F8-00090FFE0001",
+          "primaryKey": {
+            "JobNo_": "L10P3IS1",
+            "JobTaskNo_": "X100"
+          },
+          "fields": {}
+        }
+      ]
+    },
+    {
+      "name": "1039-planning-readback",
+      "passed": true,
+      "detail": [
+        {
+          "id": "58EAEF25-04DD-F111-B6F8-00090FFE0001",
+          "primaryKey": {
+            "LineNo_": "10000",
+            "JobNo_": "L10P3IS1",
+            "JobTaskNo_": "X100"
+          },
+          "fields": {
+            "LineType": "Billable",
+            "Quantity": "0",
+            "UnitPrice": "0",
+            "UnitCost": "0"
+          }
+        }
+      ]
+    },
+    {
+      "name": "1039-dimension-readback",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "rollback-targets-absent",
+      "passed": true,
+      "detail": {
+        "remaining": 0
+      }
+    },
+    {
+      "name": "source-planning-preserved",
+      "passed": true,
+      "detail": {
+        "rows": 4
+      }
+    }
+  ],
+  "executed": 24,
+  "passed": 24,
+  "failed": 0,
+  "skipped": 0
+}
