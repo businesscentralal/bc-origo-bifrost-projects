@@ -30,6 +30,7 @@ codeunit 97102 "Projects Test Library ori"
             JobsSetup.Init();
             JobsSetup.Insert(true);
         end;
+        DeleteOwnedWIPDimensions();
         Setup.InsertIfNotExists();
         Setup.Enabled := true;
         Setup.Modify(true);
@@ -209,6 +210,12 @@ codeunit 97102 "Projects Test Library ori"
 
     /// <summary>Creates isolated economic WIP data with owned posting accounts and required dimensions; never changes licence state.</summary>
     procedure NewEconomicWIPRequest() Request: JsonObject
+    begin
+        Request := NewEconomicWIPRequest(true);
+    end;
+
+    /// <summary>Creates isolated economic WIP data. The prompt flag is false for non-test callers that cannot answer the native dimension confirmation.</summary>
+    procedure NewEconomicWIPRequest(ExpectDimensionPrompt: Boolean) Request: JsonObject
     var
         Project: Record Job;
         Task: Record "Job Task";
@@ -242,7 +249,7 @@ codeunit 97102 "Projects Test Library ori"
         Group."WIP Accrued Costs Account" := Account2."No.";
         Group."Job Costs Applied Account" := Account."No.";
         Group."Job Costs Adjustment Account" := Account."No.";
-        // Distinct owned accounts preserve nonzero native WIP report rows after posting.
+        // Preserve distinct applied/recognized costs for the report nonzero WIP regression.
         Group."Recognized Costs Account" := Account2."No.";
         Group."Recognized Sales Account" := Account."No.";
         Group."Job Sales Applied Account" := Account."No.";
@@ -261,10 +268,7 @@ codeunit 97102 "Projects Test Library ori"
         Task.Get(CodeValue, 'X100');
         Task."WIP-Total" := Task."WIP-Total"::Total;
         Task.Modify(true);
-        SeedRequiredDimensions(CodeValue, 'X100');
-        // BC 28 asks before updating project lines. BC 29 local Client Services does not ask
-        // unless the owned global dimension actually changes. The confirm handler must run on both.
-        ConfirmOwnedGlobalDimension(CodeValue);
+        SeedRequiredDimensions(CodeValue, 'X100', ExpectDimensionPrompt);
         if Ledger.FindLast() then;
         Ledger."Entry No." += 1;
         Ledger.Init();
@@ -286,7 +290,14 @@ codeunit 97102 "Projects Test Library ori"
         Request.Add('documentNo', CodeValue);
     end;
 
-    local procedure SeedRequiredDimensions(ProjectNo: Code[20]; TaskNo: Code[20])
+    /// <summary>Removes blank-number Job dimensions created by this library and commits that delete.</summary>
+    procedure RemoveOwnedWIPDimensions()
+    begin
+        if DeleteOwnedWIPDimensions() then
+            Commit();
+    end;
+
+    local procedure SeedRequiredDimensions(ProjectNo: Code[20]; TaskNo: Code[20]; ExpectDimensionPrompt: Boolean)
     var
         Required: Record "Default Dimension";
         OwnedDefault: Record "Default Dimension";
@@ -296,14 +307,17 @@ codeunit 97102 "Projects Test Library ori"
         // Respect native mandatory-dimension setup without borrowing demo values or weakening its rules.
         Required.SetRange("Table ID", Database::Job);
         Required.SetRange("No.", '');
+        EnsureOwnedJobDimension(ProjectNo, ExpectDimensionPrompt);
         if Required.FindSet() then
             repeat
                 if Required."Value Posting" in [Required."Value Posting"::"Code Mandatory", Required."Value Posting"::"Same Code"] then begin
-                    Value.Init();
-                    Value.Validate("Dimension Code", Required."Dimension Code");
-                    Value.Validate(Code, ProjectNo);
-                    Value.Name := 'X owned WIP posting dimension';
-                    Value.Insert(true);
+                    if not Value.Get(Required."Dimension Code", ProjectNo) then begin
+                        Value.Init();
+                        Value.Validate("Dimension Code", Required."Dimension Code");
+                        Value.Validate(Code, ProjectNo);
+                        Value.Name := 'X owned WIP posting dimension';
+                        Value.Insert(true);
+                    end;
                     // Configure this owned test company's native constraint with self-created values.
                     // Keep Same Code / Code Mandatory unchanged, and narrow an existing allowed filter to this exact value.
                     if Required."Value Posting" = Required."Value Posting"::"Same Code" then
@@ -333,65 +347,68 @@ codeunit 97102 "Projects Test Library ori"
             until Required.Next() = 0;
     end;
 
-    /// <summary>Changes the owned project's global dimension so the native line-update confirm is raised.</summary>
-    local procedure ConfirmOwnedGlobalDimension(ProjectNo: Code[20])
+    local procedure EnsureOwnedJobDimension(ProjectNo: Code[20]; ExpectDimensionPrompt: Boolean)
     var
-        GeneralLedgerSetup: Record "General Ledger Setup";
-        DimensionValue: Record "Dimension Value";
-        Project: Record Job;
-    begin
-        GeneralLedgerSetup.Get();
-        GeneralLedgerSetup.TestField("Global Dimension 1 Code");
-        if not DimensionValue.Get(GeneralLedgerSetup."Global Dimension 1 Code", ProjectNo) then begin
-            DimensionValue.Init();
-            DimensionValue.Validate("Dimension Code", GeneralLedgerSetup."Global Dimension 1 Code");
-            DimensionValue.Validate(Code, ProjectNo);
-            DimensionValue.Name := 'X owned global dimension';
-            DimensionValue.Insert(true);
-        end;
-        Project.Get(ProjectNo);
-        Project.ValidateShortcutDimCode(1, ProjectNo);
-    end;
-
-    /// <summary>Requires an owned dimension on this project's posting accounts and supplies no value.</summary>
-    procedure RequireOwnedAccountDimension(ProjectNo: Code[20])
-    var
-        Project: Record Job;
-        PostingGroup: Record "Job Posting Group";
+        Required: Record "Default Dimension";
         Dimension: Record Dimension;
+        Value: Record "Dimension Value";
+        DimCode: Code[20];
+        ValueCode: Code[20];
     begin
-        Project.Get(ProjectNo);
-        PostingGroup.Get(Project."Job Posting Group");
+        // Companies that already enforce a blank-number Job dimension keep that rule. This only fills the gap.
+        Required.SetRange("Table ID", Database::Job);
+        Required.SetRange("No.", '');
+        Required.SetFilter("Value Posting", '%1|%2', Required."Value Posting"::"Code Mandatory", Required."Value Posting"::"Same Code");
+        if not Required.IsEmpty() then
+            exit;
+        DimCode := CopyStr('XWIP' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(DimCode));
         Dimension.Init();
-        Dimension.Code := ProjectNo;
-        Dimension.Name := 'X mandatory WIP dimension';
+        Dimension.Validate(Code, DimCode);
+        Dimension.Name := 'X owned WIP dimension';
         Dimension.Insert(true);
-        RequireAccountDimension(PostingGroup."WIP Costs Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."WIP Accrued Costs Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."Job Costs Applied Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."Job Costs Adjustment Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."Recognized Costs Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."Recognized Sales Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."Job Sales Applied Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."Job Sales Adjustment Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."WIP Accrued Sales Account", Dimension.Code);
-        RequireAccountDimension(PostingGroup."WIP Invoiced Sales Account", Dimension.Code);
+        ValueCode := ProjectNo;
+        if ExpectDimensionPrompt then
+            ValueCode := 'XSEED';
+        Value.Init();
+        Value.Validate("Dimension Code", DimCode);
+        Value.Validate(Code, ValueCode);
+        Value.Name := 'X owned WIP posting dimension';
+        Value.Insert(true);
+        Required.Init();
+        Required.Validate("Table ID", Database::Job);
+        Required.Validate("No.", '');
+        Required.Validate("Dimension Code", DimCode);
+        Required.Validate("Value Posting", Required."Value Posting"::"Code Mandatory");
+        Required.Insert(true);
+        Required.Validate("Allowed Values Filter", ValueCode);
+        Required.Modify(true);
     end;
 
-    local procedure RequireAccountDimension(AccountNo: Code[20]; DimensionCode: Code[20])
+    local procedure DeleteOwnedWIPDimensions(): Boolean
     var
+        Dimension: Record Dimension;
         DefaultDimension: Record "Default Dimension";
+        DimValuePerAccount: Record "Dim. Value per Account";
+        TaskDimension: Record "Job Task Dimension";
+        Removed: Boolean;
     begin
-        if AccountNo = '' then
-            exit;
-        if DefaultDimension.Get(Database::"G/L Account", AccountNo, DimensionCode) then
-            exit;
-        DefaultDimension.Init();
-        DefaultDimension.Validate("Table ID", Database::"G/L Account");
-        DefaultDimension.Validate("No.", AccountNo);
-        DefaultDimension.Validate("Dimension Code", DimensionCode);
-        DefaultDimension.Validate("Value Posting", DefaultDimension."Value Posting"::"Code Mandatory");
-        DefaultDimension.Insert(true);
+        Dimension.SetFilter(Code, 'XWIP*');
+        if Dimension.FindSet() then
+            repeat
+                TaskDimension.SetRange("Dimension Code", Dimension.Code);
+                if not TaskDimension.IsEmpty() then
+                    TaskDimension.DeleteAll(true);
+                DimValuePerAccount.SetRange("Dimension Code", Dimension.Code);
+                if not DimValuePerAccount.IsEmpty() then
+                    DimValuePerAccount.DeleteAll(true);
+                DefaultDimension.SetRange("Dimension Code", Dimension.Code);
+                if not DefaultDimension.IsEmpty() then begin
+                    DefaultDimension.DeleteAll(true);
+                    Removed := true;
+                end;
+                // Posted WIP keeps the dimension value in a dimension set, so the value and dimension stay.
+            until Dimension.Next() = 0;
+        exit(Removed);
     end;
 
 }

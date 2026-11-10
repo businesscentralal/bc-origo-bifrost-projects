@@ -143,6 +143,7 @@ codeunit 97106 "Projects WIP Tests ori"
         foreach Entry in Entries do
             Nonzero := Nonzero or (Entry.AsObject().GetDecimal('amount') <> 0);
         Assert.IsTrue(Nonzero, 'At least one calculated WIP amount must be nonzero');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -164,6 +165,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(Entries.GetObject(0).GetInteger('glEntryNo') > 0, 'WIP references a real G/L entry');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.IsTrue(GLEntry.Count() > 0, 'Native posting must create real financial entries');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -174,20 +176,18 @@ codeunit 97106 "Projects WIP Tests ori"
         GLEntry: Record "G/L Entry";
         Request: JsonObject;
         Response: JsonObject;
-        ProjectNo: Code[20];
     begin
         // Story #5, AC01 | Time: explicit 2026-10-16 | Risk: mandatory dimensions must remain enforced, no weakened native gate.
         Request := Library.NewEconomicWIPRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
-        ProjectNo := CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(ProjectNo));
-        WIPEntry.SetRange("Job No.", ProjectNo);
+        WIPEntry.SetRange("Job No.", Request.GetText('projectNo'));
         WIPEntry.ModifyAll("Dimension Set ID", 0, true);
-        Library.RequireOwnedAccountDimension(ProjectNo);
         Response := Library.ExecuteNative("Message Type ori"::"Projects.WIP.Post", Request);
         Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native mandatory-dimension posting refusal');
         Assert.IsTrue(Response.GetText('error').ToLower().Contains('dimension'), 'Native dimension error must be surfaced');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.AreEqual(0, GLEntry.Count(), 'Rejected posting must not create financial entries');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [ConfirmHandler]

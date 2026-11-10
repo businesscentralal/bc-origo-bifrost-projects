@@ -35,11 +35,6 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.PlanningLine.Update', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Plan Update Impl ori", "Msg Discovery ori" = "Proj. Plan Update Impl ori", "Msg Contract ori" = "Proj. Plan Update Impl ori";
     }
-    value(70009206; "Projects.PlanningLine.Delete")
-    {
-        Caption = 'Projects.PlanningLine.Delete', Locked = true;
-        Implementation = "Msg Interface ori" = "Proj. Plan Delete Impl ori", "Msg Discovery ori" = "Proj. Plan Delete Impl ori", "Msg Contract ori" = "Proj. Plan Delete Impl ori";
-    }
     value(70009207; "Projects.Project.Copy")
     {
         Caption = 'Projects.Project.Copy', Locked = true;

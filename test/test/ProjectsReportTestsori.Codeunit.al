@@ -442,6 +442,7 @@ codeunit 97126 "Projects Report Tests ori"
             AbsoluteCosts += Abs(Row.GetDecimal('wipCostLCY'));
         end;
         Assert.AreEqual(42, AbsoluteCosts, 'Both signs of the posted cost are represented');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [ConfirmHandler]
