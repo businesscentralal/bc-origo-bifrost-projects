@@ -11,7 +11,7 @@ when a caller invokes one. Setup is company-specific. The Read role can read the
 switch; the Full role can administer it. Neither extension grants Foundation Setup
 tabledata, a new assignable role, or native project table privileges.
 
-`Help.MessageTypes` discovers the seven registered `Projects.*` write types.
+`Help.MessageTypes` discovers the six registered `Projects.*` write types.
 `Help.Implementation.Get` describes each version 1.0 operation and its nested schema.
 Descriptions, selection help and keywords support en-US and is-IS.
 
@@ -30,7 +30,6 @@ Create operations fail if the key already exists; they do not silently update it
   (`Resource`, `Item`, `G/L Account`, `Text`), `lineType` (`Budget`, `Billable`,
   `Both Budget and Billable`), `no` (20), `description` (100), `planningDate`,
   `unitOfMeasureCode` (10), numeric `quantity`, `unitCost`, `unitPrice`.
-- Planning line deletion uses only `projectNo`, `taskNo`, `lineNo`.
 
 Nested tasks inherit their project number; nested planning lines inherit both
 parent keys. Nested `operation` defaults to `Create`. Use `operation: "Update"` to
@@ -43,7 +42,7 @@ Normal BC prerequisites (including a bill-to customer for tasks) still apply.
 
 Success returns `status: "Success"` and `projectNo`; task and planning-line calls
 also return `taskNo`, and planning-line calls return `lineNo`. There are no posts
-or time sheet operations in these seven types.
+or time sheet operations in these six types.
 
 Malformed or null values, overlong codes, invalid dates/enums and wrong-shaped
 nested arrays return `InvalidParameterFormat`; missing/empty identifiers return
@@ -117,8 +116,11 @@ calculation baseline, nonzero economic calculation and native G/L posting fixtur
 required options and native missing-method validation. Component tests are distinct
 from shipping queue, bilingual Web Client and independent acceptance.
 `Projects.WIP.Post` uses the Projects-owned gate mapped to the Read/Full role
-extensions under the #18 decision. Shipping queue acceptance remains blocked
-separately in #17.
+extensions under the #18 decision. Shipping queue acceptance is tracked separately
+in #17 and must use the exact deployed Foundation version. The historical EULA
+refusal on an older Foundation deployment does not establish a current sandbox or
+evaluation-company refusal. No consent, trial or licence state is written to obtain
+a verification pass.
 
 ## Pending scope
 
