@@ -2,6 +2,10 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Removed (2026-11-10)
+
+- Remove the unreleased message type `Projects.PlanningLine.Delete` (enum value 70009206, codeunit 70009211) per Gunnar decision d-20261105-delete-types. `Projects.PlanningLine.Create` and `Projects.PlanningLine.Update` stay.
+
 ### Changed (2026-11-04)
 
 - Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
