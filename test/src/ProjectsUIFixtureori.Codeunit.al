@@ -83,12 +83,13 @@ codeunit 97110 "Projects UI Fixture ori"
         LinkRequest.Add('entryNo', Ledger."Entry No.");
         LinkRequest.Add('lineNo', 10000);
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Usage.Link", LinkRequest), 'Success');
-        WIPRequest := Library.NewEconomicWIPRequest();
+        WIPRequest := Library.NewEconomicWIPRequest(false);
         Project.Get(WIPRequest.GetText('projectNo'));
         Project.Description := 'X Projects UI WIP';
         Project.Modify(true);
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", WIPRequest), 'Success');
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Post", WIPRequest), 'Success');
+        Library.RemoveOwnedWIPDimensions();
         Commit();
     end;
 
@@ -117,7 +118,7 @@ codeunit 97110 "Projects UI Fixture ori"
         if not Project.IsEmpty() or not Ledger.IsEmpty() then
             Error(PartialErr);
         Planning.Get('XW4-PROJECT-UI', 'X100', 10000);
-        Request := Library.NewEconomicWIPRequest();
+        Request := Library.NewEconomicWIPRequest(false);
         Ledger.Reset();
         if Ledger.FindLast() then
             EntryNo := Ledger."Entry No.";
@@ -142,6 +143,7 @@ codeunit 97110 "Projects UI Fixture ori"
         Project.Get(Request.GetText('projectNo'));
         Project.Description := Marker;
         Project.Modify(true);
+        Library.RemoveOwnedWIPDimensions();
         Commit();
     end;
 

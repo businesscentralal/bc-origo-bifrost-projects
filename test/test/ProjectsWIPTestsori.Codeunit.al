@@ -154,6 +154,7 @@ codeunit 97106 "Projects WIP Tests ori"
             Nonzero := Nonzero or (Entry.AsObject().GetDecimal('amount') <> 0);
         Assert.IsTrue(Nonzero, 'At least one calculated WIP amount must be nonzero');
         CleanupOwnedJobDimensionFixture();
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -177,6 +178,7 @@ codeunit 97106 "Projects WIP Tests ori"
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.IsTrue(GLEntry.Count() > 0, 'Native posting must create real financial entries');
         CleanupOwnedJobDimensionFixture();
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -200,6 +202,7 @@ codeunit 97106 "Projects WIP Tests ori"
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.AreEqual(0, GLEntry.Count(), 'Rejected posting must not create financial entries');
         CleanupOwnedJobDimensionFixture();
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [ConfirmHandler]
@@ -249,8 +252,10 @@ codeunit 97106 "Projects WIP Tests ori"
         DefaultDimension: Record "Default Dimension";
     begin
         Library.Initialize();
-        FixtureDimensionCode := 'XWIPMAND';
-        FixtureDimensionValueCode := 'XWIPVALUE';
+        // Keep this code outside the library XWIP* sweep. Library.Initialize deletes those rows
+        // and NewProjectRequest calls it after this fixture is created.
+        FixtureDimensionCode := 'P29MAND';
+        FixtureDimensionValueCode := 'P29VALUE';
 
         if not Dimension.Get(FixtureDimensionCode) then begin
             Dimension.Init();

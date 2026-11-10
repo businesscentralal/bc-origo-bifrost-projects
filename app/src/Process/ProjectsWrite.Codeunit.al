@@ -117,7 +117,7 @@ codeunit 70009214 "Projects Write ori"
                     TaskNo := CopyStr(Request.GetText('taskNo'), 1, MaxStrLen(TaskNo));
                     WriteTask(Request, ProjectNo, TaskNo, Argument.Type = "Message Type ori"::"Projects.Task.Create");
                 end;
-            "Message Type ori"::"Projects.PlanningLine.Create", "Message Type ori"::"Projects.PlanningLine.Update", "Message Type ori"::"Projects.PlanningLine.Delete":
+            "Message Type ori"::"Projects.PlanningLine.Create", "Message Type ori"::"Projects.PlanningLine.Update":
                 begin
                     TaskNo := CopyStr(Request.GetText('taskNo'), 1, MaxStrLen(TaskNo));
                     LineNo := Request.GetInteger('lineNo');
@@ -281,10 +281,6 @@ codeunit 70009214 "Projects Write ori"
             PlanningLine.Validate("Line No.", LineNo);
         end else
             PlanningLine.Get(ProjectNo, TaskNo, LineNo);
-        if MessageType = "Message Type ori"::"Projects.PlanningLine.Delete" then begin
-            PlanningLine.Delete(true);
-            exit;
-        end;
         ApplyPlanningLineFields(PlanningLine, Request);
         if MessageType = "Message Type ori"::"Projects.PlanningLine.Create" then
             PlanningLine.Insert(true)
