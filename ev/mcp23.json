@@ -1,0 +1,169 @@
+{
+ "sha": "03fe8e14f9d05342fe6f634ed67e88db2e0d0f8e",
+ "tenant": "w129-36",
+ "at": "2026-11-10T05:02:41.832Z",
+ "rows": [
+  {
+   "name": "seed Project.Create 1033",
+   "expect": "Success",
+   "pass": true,
+   "response": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.Create",
+    "status": "Success",
+    "projectNo": "ZZNAR23S"
+   }
+  },
+  {
+   "name": "Copy no data 1033",
+   "expect": "MultipleErrors projectNo+targetProjectNo",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "MultipleErrors",
+    "error": "Correct the invalid Projects parameters.",
+    "errors": [
+     {
+      "code": "MissingParameter",
+      "error": "A required Projects parameter is missing or empty.",
+      "parameter": "projectNo"
+     },
+     {
+      "code": "MissingParameter",
+      "error": "A required Projects parameter is missing or empty.",
+      "parameter": "targetProjectNo"
+     }
+    ],
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type."
+   }
+  },
+  {
+   "name": "Copy no data 1039",
+   "expect": "MultipleErrors Icelandic",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "MultipleErrors",
+    "error": "Leiðréttu ógild viðföng verkefnis.",
+    "errors": [
+     {
+      "code": "MissingParameter",
+      "error": "Nauðsynlegt viðfang verkefnis vantar eða er tómt.",
+      "parameter": "projectNo"
+     },
+     {
+      "code": "MissingParameter",
+      "error": "Nauðsynlegt viðfang verkefnis vantar eða er tómt.",
+      "parameter": "targetProjectNo"
+     }
+    ],
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+   }
+  },
+  {
+   "name": "Copy undeclared keys 1033",
+   "expect": "UnknownParameter",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "UnknownParameter",
+    "error": "Unknown parameters: sourceProjectNo, newProjectNo. Nothing was executed.",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.Copy\". Always read the help before calling a message type.",
+    "errors": [
+     {
+      "code": "UnknownParameter",
+      "error": "Parameter \"sourceProjectNo\" is not declared by this message type. Nothing was executed.",
+      "parameter": "sourceProjectNo",
+      "received": "ZZNAR23S",
+      "expected": "declared request parameters",
+      "nextStep": "Use the declared parameter \"targetProjectNo\" instead."
+     },
+     {
+      "code": "UnknownParameter",
+      "error": "Parameter \"newProjectNo\" is not declared by this message type. Nothing was executed.",
+      "parameter": "newProjectNo",
+      "received": "ZZNAR23T",
+      "expected": "declared request parameters",
+      "nextStep": "Use the declared parameter \"projectNo\" instead."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Copy undeclared keys 1039",
+   "expect": "UnknownParameter Icelandic",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "UnknownParameter",
+    "error": "Óþekkt viðföng: sourceProjectNo, newProjectNo. Ekkert var keyrt.",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund.",
+    "errors": [
+     {
+      "code": "UnknownParameter",
+      "error": "Viðfangið \"sourceProjectNo\" er ekki skilgreint fyrir þessa skilaboðategund. Ekkert var keyrt.",
+      "parameter": "sourceProjectNo",
+      "received": "ZZNAR23S",
+      "expected": "skilgreind beiðniviðföng",
+      "nextStep": "Notaðu skilgreinda viðfangið \"targetProjectNo\" í staðinn."
+     },
+     {
+      "code": "UnknownParameter",
+      "error": "Viðfangið \"newProjectNo\" er ekki skilgreint fyrir þessa skilaboðategund. Ekkert var keyrt.",
+      "parameter": "newProjectNo",
+      "received": "ZZNAR23T",
+      "expected": "skilgreind beiðniviðföng",
+      "nextStep": "Notaðu skilgreinda viðfangið \"projectNo\" í staðinn."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Copy happy 1033",
+   "expect": "Success projectNo=ZZNAR23T",
+   "pass": true,
+   "response": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.Copy",
+    "sourceProjectNo": "ZZNAR23S",
+    "status": "Success",
+    "projectNo": "ZZNAR23T"
+   }
+  },
+  {
+   "name": "Copy existing target 1039",
+   "expect": "Error, no overwrite",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "BusinessCentralError",
+    "error": "The record in table Project already exists. Identification fields and values: No.='ZZNAR23T'",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.Copy\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+   }
+  },
+  {
+   "name": "Removed PlanningLine.Delete (base #21)",
+   "expect": "not registered",
+   "pass": true,
+   "response": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.PlanningLine.Delete",
+    "error": {
+     "code": "Application_DialogException",
+     "message": "Unknown message type 'Projects.PlanningLine.Delete'. Use Help.MessageTypes.Get to list the available types.  CorrelationId:  48136369-b5ab-47b1-8b59-19633dfbd3ec."
+    }
+   }
+  }
+ ],
+ "seed": {
+  "customer": {
+   "number": "ZZNAR23C",
+   "id": "10eb2cf0-c3dc-f111-b6f8-00090ffe0001",
+   "createStatus": 400
+  }
+ },
+ "readback": {
+  "source": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]",
+  "target": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+ }
+}

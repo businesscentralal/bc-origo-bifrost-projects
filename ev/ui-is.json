@@ -1,0 +1,18 @@
+[
+ {
+  "name": "joblist",
+  "url": "&page=89&filter='No.' IS 'ZZNAR23*'",
+  "hasSource": true,
+  "hasTarget": true,
+  "hasTasks": false,
+  "text": "Fara í aðalefni\nCRONUS International Ltd.\nSales\nPurchasing\nInventory\nPosted Documents\nShopify\nAllar skýrslur\n\nProjects:\nAllt\n\n\nNýtt\nEyða\nHeim\n\nProject\n\nPrices & Discounts\n\nWIP\n\nReport\n\nFleiri valkostir\n\n\n\n\n\n\t\nNo.\n\t\n\t\nDescription\n\t\nBill-to Customer No.\n\t\nStatus\n\t\nSearch Description\n\t\n\t\t\n\t\t\t\t\t\n\tZZNAR23S\t\n\tNar PR23 source\tZZNAR23C\tOpen\tNAR PR23 SOURCE\t\n\tZZNAR23T\t\tNar PR23 source\tZZNAR23C\tPlanning\tNAR PR23 SOURCE\t\nUpplýsingar\nViðhengi (0)\nProject Details - WIP/Recognition\nProject No.\nZZNAR23S\nWIP Posting Date\nTotal WIP Cost Amount\n0.00\nTotal WIP Sales Amount\n0.00\nRecog. Costs Amount\n0"
+ },
+ {
+  "name": "tasks",
+  "url": "&page=1002&filter='Job No.' IS 'ZZNAR23T'",
+  "hasSource": false,
+  "hasTarget": false,
+  "hasTasks": true,
+  "text": "Fara í aðalefni\nCRONUS International Ltd.\nSales\nPurchasing\nInventory\nPosted Documents\nShopify\nAllar skýrslur\n\nProject Task Lines:\nAllt\n\n\nNýtt\nEyða\nBreyta lista\nHeim\n\nProject Task\n\nWIP\n\nReports\n\nFleiri valkostir\n\n\n\n\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nTotaling\n\t\nProject Posting Group\n\t\nLocation Code\n\t\nBin Code\n\t\nWIP-Total\n\t\nWIP Method\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nBudget (Total Price)\n\t\nActual (Total Cost)\n\t\nActual (Total Price)\n\t\nBillable (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Cost)\n\t\nInvoiced (Total Price)\n\t\nRemaining (Total Cos"
+ }
+]
