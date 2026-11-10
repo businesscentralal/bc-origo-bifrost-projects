@@ -60,46 +60,42 @@ codeunit 70009204 "Projects Contract ori"
         end;
         case Kind of
             'Project':
-                    if Operation <> 'Delete' then begin
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('billToCustomerNo', 'string', false, 'Native bill-to customer number.'), 'string', 20, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('personResponsible', 'string', false, 'Native person responsible code.'), 'string', 20, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('startingDate', 'date', false, 'Native starting date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('endingDate', 'date', false, 'Native ending date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('currencyCode', 'string', false, 'Native currency code; empty uses local currency.'), 'string', 10, ''));
-                        Entry := ContractMgt.Parameter('tasks', 'array', false, 'New nested records inheriting the parent keys.');
-                        Entry.Add('children', Parameters('Task', 'Create', true));
-                        Result.Add(Entry);
-                    end;
+                begin
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('billToCustomerNo', 'string', false, 'Native bill-to customer number.'), 'string', 20, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('personResponsible', 'string', false, 'Native person responsible code.'), 'string', 20, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('startingDate', 'date', false, 'Native starting date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('endingDate', 'date', false, 'Native ending date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('currencyCode', 'string', false, 'Native currency code; empty uses local currency.'), 'string', 10, ''));
+                    Entry := ContractMgt.Parameter('tasks', 'array', false, 'New nested records inheriting the parent keys.');
+                    Entry.Add('children', Parameters('Task', 'Create', true));
+                    Result.Add(Entry);
+                end;
             'Task':
                 begin
                     Result.Add(DecorateParameter(ContractMgt.Parameter('taskNo', 'string', true, 'Exact native task number within the project.'), 'string', 20, ''));
-                    if Operation <> 'Delete' then begin
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('taskType', 'string', false, 'Native task type; Posting by default when creating a task.'), 'string', 0, 'Posting,Heading,Total,Begin-Total,End-Total'));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('totaling', 'string', false, 'Native task-number totaling filter for a total task.'), 'string', 250, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('indentation', 'integer', false, 'Native task indentation level as a nonnegative integer.'), 'integer', 0, ''));
-                        Entry := ContractMgt.Parameter('planningLines', 'array', false, 'New nested records inheriting the parent keys.');
-                        Entry.Add('children', Parameters('PlanningLine', 'Create', true));
-                        Result.Add(Entry);
-                    end;
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('taskType', 'string', false, 'Native task type; Posting by default when creating a task.'), 'string', 0, 'Posting,Heading,Total,Begin-Total,End-Total'));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('totaling', 'string', false, 'Native task-number totaling filter for a total task.'), 'string', 250, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('indentation', 'integer', false, 'Native task indentation level as a nonnegative integer.'), 'integer', 0, ''));
+                    Entry := ContractMgt.Parameter('planningLines', 'array', false, 'New nested records inheriting the parent keys.');
+                    Entry.Add('children', Parameters('PlanningLine', 'Create', true));
+                    Result.Add(Entry);
                 end;
             'PlanningLine':
                 begin
                     if not Nested then
                         Result.Add(DecorateParameter(ContractMgt.Parameter('taskNo', 'string', true, 'Exact native task number within the project.'), 'string', 20, ''));
                     Result.Add(DecorateParameter(ContractMgt.Parameter('lineNo', 'integer', true, 'Positive planning line number within the project and task.'), 'integer', 0, ''));
-                    if Operation <> 'Delete' then begin
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('lineType', 'string', false, 'Budget, Billable or Both Budget and Billable; native default on create.'), 'string', 0, 'Budget,Billable,Both Budget and Billable'));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('type', 'string', false, 'Native planning line type: Resource, Item, G/L Account or Text.'), 'string', 0, 'Resource,Item,G/L Account,Text'));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('no', 'string', false, 'Native resource, item or G/L account number for the selected type.'), 'string', 20, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('planningDate', 'date', false, 'Native planning date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('unitOfMeasureCode', 'string', false, 'Native unit of measure code for the selected resource or item.'), 'string', 10, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('quantity', 'number', false, 'Native planning quantity; field validation recalculates dependent amounts.'), 'number', 0, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('unitCost', 'number', false, 'Native unit cost; field validation recalculates dependent amounts.'), 'number', 0, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('unitPrice', 'number', false, 'Native unit price; field validation recalculates dependent amounts.'), 'number', 0, ''));
-                    end;
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('lineType', 'string', false, 'Budget, Billable or Both Budget and Billable; native default on create.'), 'string', 0, 'Budget,Billable,Both Budget and Billable'));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('type', 'string', false, 'Native planning line type: Resource, Item, G/L Account or Text.'), 'string', 0, 'Resource,Item,G/L Account,Text'));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('no', 'string', false, 'Native resource, item or G/L account number for the selected type.'), 'string', 20, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('planningDate', 'date', false, 'Native planning date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('unitOfMeasureCode', 'string', false, 'Native unit of measure code for the selected resource or item.'), 'string', 10, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('quantity', 'number', false, 'Native planning quantity; field validation recalculates dependent amounts.'), 'number', 0, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('unitCost', 'number', false, 'Native unit cost; field validation recalculates dependent amounts.'), 'number', 0, ''));
+                    Result.Add(DecorateParameter(ContractMgt.Parameter('unitPrice', 'number', false, 'Native unit price; field validation recalculates dependent amounts.'), 'number', 0, ''));
                 end;
         end;
     end;

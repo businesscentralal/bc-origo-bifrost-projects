@@ -2,6 +2,13 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Changed (2026-11-10) - Remove the unreleased planning-line deletion type
+
+- Remove `Projects.PlanningLine.Delete`, its implementation (70009211), enum value
+  70009206, permission entries, help and translations under Gunnar's new-type rule
+  (PR #22 amendment). Keep planning-line Create and Update and their native validation
+  coverage; verify that the removed type is absent from the 15-type catalogue (97100).
+
 ### Changed (2026-10-21) - Object range moved into a registered range
 
 - Every app object, Message Type enum value and range reference moves from 10078485-10078584 (outside every registered Origo range) to 70009200-70009249, Origo Public 3 (Gunnar 21.10.2026). The mapping is a fixed offset: old ID + 59930715, so 10078485 becomes 70009200. The objects use 70009200-70009229. Tests that check the range now use 70009200-70009249. Test object IDs 97100-97199 are unchanged.
@@ -13,7 +20,7 @@
 
 - Add Projects company enablement, administrative page, Foundation app registration,
   permission-set extensions and generic setup-write protection (#1; objects 70009200–70009203).
-- Register project/task/planning-line create and update, plus planning-line delete,
+- Register project/task/planning-line create and update,
   with localized discovery and typed nested contracts (#2; enum 70009200, codeunits
   70009204–70009214). Use native field/table triggers and atomic rollback on failure.
 - Teach the inherited permission coverage guard to resolve feature extensions of known

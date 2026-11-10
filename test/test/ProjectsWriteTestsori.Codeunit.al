@@ -107,7 +107,7 @@ codeunit 97101 "Projects Write Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC01_PlanCreateUpdateDelete_RunNativeTriggers()
+    procedure Scenario_AC01_PlanCreateUpdate_RunNativeTriggers()
     var
         PlanningLine: Record "Job Planning Line";
         Request: JsonObject;
@@ -130,8 +130,6 @@ codeunit 97101 "Projects Write Tests ori"
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Update", PlanRequest), 'Success');
         PlanningLine.Get(Request.GetText('projectNo'), 'X100', 10000);
         Assert.AreEqual('X Changed', PlanningLine.Description, 'Planning line update missing');
-        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", PlanRequest), 'Success');
-        Assert.IsFalse(PlanningLine.Get(Request.GetText('projectNo'), 'X100', 10000), 'Native deletion missing');
     end;
 
     [Test]
@@ -325,10 +323,10 @@ codeunit 97101 "Projects Write Tests ori"
         Request.Add('projectNo', 'XDOESNOTEXIST');
         Request.Add('taskNo', 'X100');
         Request.Add('lineNo', 1.5);
-        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", Request);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Update", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Fractional primary key must fail validation');
         Request.Replace('lineNo', 0);
-        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", Request);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Update", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Zero planning line number must fail validation');
     end;
 
