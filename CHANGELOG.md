@@ -2,8 +2,24 @@
 
 ## 28.1.0.0 - Unreleased
 
-### Tests
+### Tests (2026-11-10) — Project status validation
+
 - Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
+### Tests (2026-11-10)
+
+- Codeunit 97102 creates its own blank-number Job dimension when the company has none, so codeunit 97106 economic WIP tests do not depend on CRONUS demo data. The mandatory default-dimension row is removed after the scenario.
+
+### Removed (2026-11-10)
+
+- Remove the unreleased message type `Projects.PlanningLine.Delete` (enum value 70009206, codeunit 70009211) per Gunnar decision d-20261105-delete-types. `Projects.PlanningLine.Create` and `Projects.PlanningLine.Update` stay.
+
+### Changed (2026-11-04)
+
+- Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
+
+### Tests (2026-11-04)
+
+- Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
 
 ### Changed (2026-10-21) - Object range moved into a registered range
 
