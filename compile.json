@@ -1,0 +1,42 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "compiledAt": "2026-11-10T12:36:08.181341+00:00",
+  "results": [
+    {
+      "name": "projects-default",
+      "errors": 0,
+      "warnings": 0,
+      "analyzers": [
+        "CodeCop",
+        "UICop",
+        "AppSourceCop"
+      ],
+      "artifact": "/workspace/private/litr-projects4-20261110T1230/build/projects-default.app",
+      "sha256": "75cd1ec6d1e3f378cd9ca56c2b70d58ff5992c60ce2f77935c4def79e5a8897b"
+    },
+    {
+      "name": "projects",
+      "errors": 0,
+      "warnings": 0,
+      "analyzers": [
+        "CodeCop",
+        "UICop",
+        "AppSourceCop"
+      ],
+      "artifact": "/workspace/private/litr-projects4-20261110T1230/build/projects.app",
+      "sha256": "42023e9a077db88d57d2ef9d8bbcac687ad8a605f6949be66cc6df7f04308385"
+    },
+    {
+      "name": "projects-test",
+      "errors": 0,
+      "warnings": 0,
+      "analyzers": [
+        "CodeCop",
+        "UICop"
+      ],
+      "artifact": "/workspace/private/litr-projects4-20261110T1230/build/projects-test.app",
+      "sha256": "8ea8383039034086d9f83e07f681c56710bec4c7e1543b58f7c9c15e38659110"
+    }
+  ],
+  "testAppPTERuling": "CodeCop/UICop per explicit PR22 PTE ruling; no added suppression"
+}

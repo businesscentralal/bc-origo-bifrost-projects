@@ -1,0 +1,25 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "runUrl": "https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/42798677780",
+  "checkoutSha": "aa3297e4e325c42dcedd8ef3097d46553387eccf",
+  "candidateTree": "bad77184a05173fbe1aac677250e96ebd7b687c7",
+  "checkoutTree": "bad77184a05173fbe1aac677250e96ebd7b687c7",
+  "identicalTree": true,
+  "conclusion": "success",
+  "tests": {
+    "executed": 60,
+    "passed": 60,
+    "failed": 0,
+    "skipped": 0
+  },
+  "logs": [
+    "ci-default.log",
+    "ci-test.log"
+  ],
+  "optionalSkippedJobs": [
+    "Code Analysis Processing",
+    "PregateCheck",
+    "duplicate container removal"
+  ],
+  "checkedAt": "2026-11-10T12:41:17.614129+00:00"
+}

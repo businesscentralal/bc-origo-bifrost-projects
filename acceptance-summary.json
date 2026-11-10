@@ -1,0 +1,10 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "issue": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/4",
+  "pr": "https://github.com/businesscentralal/bc-origo-bifrost-projects/pull/25",
+  "executor": "Litr (worker-9)",
+  "environment": "local BC29 BC290 tenant w129-19, CRONUS International Ltd.",
+  "summary": "Current-tip verification, no source change this execution. Both apps0errors0warnings; full AL60/60; final MCP42/42; final UI4/4 with persisted-state readback, both LCIDs1033/1039. Historical harness/UI probe errors remain disclosed.",
+  "hold": "PR25 pr:on-hold remains; Architect disposition required before canonical review handoff. No issue completion, review clearance, merge/deploy/UAT claimed.",
+  "originalOwnerEvidence": "Previous worker2/worker8 artifacts/checkpoints retained separately; worker8 fixture disposition requested, never accessed foreign tenant."
+}

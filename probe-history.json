@@ -1,0 +1,153 @@
+{
+  "mcp": [
+    {
+      "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+      "tenant": "w129-19",
+      "touchedMessageTypes": [
+        "Projects.Project.SetStatus"
+      ],
+      "supportingTypes": [
+        "Projects.Project.Create"
+      ],
+      "lcids": [
+        1033,
+        1039
+      ],
+      "createsOwnData": true,
+      "executed": 3,
+      "passed": 2,
+      "failed": 1,
+      "skipped": 0,
+      "checks": [
+        {
+          "name": "create-project-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/create-project-1033.json"
+        },
+        {
+          "name": "status-help-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-help-1033.json"
+        }
+      ],
+      "failures": [
+        {
+          "name": "status-catalogue-1033",
+          "error": "undefined == 'Success'"
+        }
+      ],
+      "fixtures": [
+        {
+          "lcid": 1033,
+          "no": "XL9-P4-1033",
+          "customerCreated": true
+        }
+      ],
+      "verified": false
+    },
+    {
+      "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+      "tenant": "w129-19",
+      "touchedMessageTypes": [
+        "Projects.Project.SetStatus"
+      ],
+      "supportingTypes": [
+        "Projects.Project.Create"
+      ],
+      "lcids": [
+        1033,
+        1039
+      ],
+      "createsOwnData": true,
+      "executed": 11,
+      "passed": 10,
+      "failed": 1,
+      "skipped": 0,
+      "checks": [
+        {
+          "name": "create-project-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/create-project-1033.json"
+        },
+        {
+          "name": "status-help-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-help-1033.json"
+        },
+        {
+          "name": "status-catalogue-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-catalogue-1033.json"
+        },
+        {
+          "name": "status-Planning-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Planning-1033.json"
+        },
+        {
+          "name": "status-Planning-1033-state",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Planning-1033-state.json"
+        },
+        {
+          "name": "status-Quote-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Quote-1033.json"
+        },
+        {
+          "name": "status-Quote-1033-state",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Quote-1033-state.json"
+        },
+        {
+          "name": "status-Open-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Open-1033.json"
+        },
+        {
+          "name": "status-Open-1033-state",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Open-1033-state.json"
+        },
+        {
+          "name": "status-Completed-1033",
+          "status": "PASS",
+          "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Completed-1033.json"
+        }
+      ],
+      "failures": [
+        {
+          "name": "status-Completed-1033-state",
+          "error": "'true' == true"
+        }
+      ],
+      "fixtures": [
+        {
+          "lcid": 1033,
+          "no": "XL9-P4-1033",
+          "customerCreated": true
+        }
+      ],
+      "verified": false
+    }
+  ],
+  "ui": [
+    {
+      "file": "ui-en-planning-blocked-final.json",
+      "error": "### Error\nError: locator.click: Error: strict mode violation: getByRole('textbox', { name: 'Description', exact: true }) resolved to 2 elements:\n    1) <input title=\"\" id=\"b9uee\" type=\"text\" role=\"textbox\" maxlength=\"100\" spellcheck=\"false\" aria-labe"
+    },
+    {
+      "file": "ui-en-planning-blocked-saved.json",
+      "error": "### Error\nTimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('iframe').first().contentFrame().getByRole('form', { name: 'Project Card', exact: true }).getByRole('combobox', { name: 'Status', exact: true })"
+    },
+    {
+      "file": "ui-en-planning-blocked.json",
+      "error": "### Error\nError: locator.click: Error: strict mode violation: getByRole('textbox', { name: 'Description', exact: true }) resolved to 2 elements:\n    1) <span id=\"b5vee\" tabindex=\"-1\" role=\"textbox\" data-tabbable=\"true\" aria-readonly=\"true\" data-prev-"
+    },
+    {
+      "file": "ui-en-planning-persisted.json",
+      "error": "### Error\nError: locator.waitFor: Error: strict mode violation: getByText('Saved', { exact: true }) resolved to 2 elements:\n    1) <span title=\"Your data is saved now and the page can be closed.\">Saved</span> aka getByTitle('Your data is saved now an"
+    }
+  ],
+  "uiStaleRecord": "Initial stale page after MCP update was rejected by BC. Final pass requires independent persisted readback; no stale/field-only checks counted."
+}

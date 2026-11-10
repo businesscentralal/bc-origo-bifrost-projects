@@ -1,0 +1,944 @@
+{
+  "create-project-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.Create",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "status-help-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "contract": "json",
+    "format": "chapters",
+    "catalogue": {
+      "name": "Projects.Project.SetStatus",
+      "isEnabled": true,
+      "filterTableNo": 167,
+      "description": "Changes project status or blocking through native Business Central validation.",
+      "selectionDescription": "Changes project status or blocking through native Business Central validation.",
+      "messageDirection": "Inbound",
+      "keywords": [
+        "project",
+        "job",
+        "task",
+        "planning line",
+        "status",
+        "block",
+        "unblock"
+      ],
+      "chargeable": true
+    },
+    "chapters": {
+      "envelope": {
+        "subject": {
+          "use": "notUsed"
+        },
+        "dataRequired": true,
+        "version": "1.0",
+        "contentType": "text/json"
+      },
+      "target": [
+        {
+          "source": "data.projectNo",
+          "form": "project no.",
+          "description": "The exact native project number."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "projectNo",
+          "type": "string",
+          "required": true,
+          "description": "Exact native project number.",
+          "maxLength": 20
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "description": "Native project status; send status or blocked.",
+          "allowed": [
+            "Planning",
+            "Quote",
+            "Open",
+            "Completed"
+          ]
+        },
+        {
+          "name": "blocked",
+          "type": "string",
+          "required": false,
+          "description": "None unblocks; Posting or All applies the native block.",
+          "allowed": [
+            "None",
+            "Posting",
+            "All"
+          ]
+        }
+      ],
+      "response": {
+        "contentType": "text/json",
+        "fields": [
+          {
+            "name": "status",
+            "type": "string",
+            "description": "Success after the entire native operation succeeds."
+          },
+          {
+            "name": "projectNo",
+            "type": "string"
+          }
+        ]
+      },
+      "errors": [
+        {
+          "code": "MissingParameter",
+          "when": "A required key is missing or empty.",
+          "fix": "Supply the key named by parameter."
+        },
+        {
+          "code": "InvalidParameterFormat",
+          "when": "A key has the wrong JSON type, length, date or enum value.",
+          "fix": "Use the declared parameter schema."
+        },
+        {
+          "code": "MultipleErrors",
+          "when": "Several input values are invalid.",
+          "fix": "Correct every entry in errors and retry."
+        },
+        {
+          "code": "PermissionDenied",
+          "when": "The caller lacks the native table permission.",
+          "fix": "Ask an administrator for the required Business Central role."
+        },
+        {
+          "code": "RecordNotFound",
+          "when": "The requested posting task does not exist in this project.",
+          "fix": "Supply an existing posting task number in taskNo."
+        },
+        {
+          "code": "BusinessCentralError",
+          "when": "Business Central refuses validation or the record operation.",
+          "fix": "Correct the reported native validation error; the operation is rolled back."
+        },
+        {
+          "code": "Retryable",
+          "when": "A transient lock or deadlock caught while writing or posting. The error preserves Business Central's original text. Uncaught errors are Retryable only for types with effect write.",
+          "fix": "Retry the same call after a few seconds; nothing was changed."
+        }
+      ],
+      "effect": {
+        "effect": "write",
+        "changes": "Project records; native field and table triggers run.",
+        "idempotent": false
+      },
+      "metering": {
+        "chargeable": true,
+        "chargedAs": "message"
+      },
+      "overview": "Changes project status or blocking through native Business Central validation.",
+      "notes": "Send status, blocked, or both. Native status validation handles completion and its WIP requirements. None unblocks a project. Errors roll back both changes."
+    },
+    "conventions": "## Errors and warnings\r\nAn error response has `status` = `Error`, a stable `code`, the `error` text and, when they apply, `parameter` (the request parameter concerned, e.g. `lines[2].no`), `received` (the value received), `expected` (what was expected) and `nextStep` (what to do now). `hint` says where to read more.\r\nWhen a request has several problems, all of them are listed in `errors[]` - each with the same fields - under a top-level `code` (`MultipleErrors`, or a shared code such as `InvalidLine` for the `lines` of a Create type) and a summary `error`. Fix them all before calling again. One problem is reported at the top level, with no `errors[]`.\r\nRequest values are checked first and every problem found is reported together. A Business Central validation error raised afterwards, while a record is being written, stops the call and is reported on its own: `code` = `BusinessCentralError`, Business Central's own `error` text, and `parameter` naming the request parameter being applied, e.g. `lines[1].accountNo`. Nothing is written.\r\nRequest values are read in one format, whatever the language: dates `YYYY-MM-DD`; date-times ISO 8601 with `Z` or an offset; amounts as JSON numbers (or a string such as `\"1234.56\"`, no thousands separator); integers as JSON integers; booleans `true` or `false`. Any other value is `InvalidParameterFormat` with `received` and `expected`; for an unambiguous local form such as `26.09.2026`, `nextStep` gives the value to resend. Every bad value of a request is reported together.\r\nAnswers are written in one format as well, whatever the language of the call: dates `YYYY-MM-DD`, date-times ISO 8601, numbers with a dot and no thousands separator, and the option and enum values of every answer except `Data.Records.Get` and `Data.Records.Set` as their English names, so a value read from an answer can be sent back. Those two answer the caption of the language of the call, for a person to read. The language of the call (`lcid`) changes captions and message texts, not these forms. Two things are outside Bifrost's control: Business Central writes its own texts (a ledger entry description such as `Direct Cost V00010 on 10/02/26`, the text of a `BusinessCentralError`) with the regional settings of the server session, which `lcid` does not change, so a date in such a text can be in month-day order; and a table view is read with those settings too, so write dates in a view as `YYYY-MM-DD` and decimals with a dot.\r\nBoth success and error responses can carry `warnings[]`, each with `code`, `message` and, when they apply, `parameter` and `nextStep`.\r\n`UnknownParameter` refuses undeclared data keys before execution for every type whose effect is not read, including a missing effect. The root envelope option `strict:false` cannot opt out. Read types keep warnings without changing status, validationResult or domain warningCount unless the caller sets `strict:true` (next to type and subject, never inside data). Refusals list the keys and localized nextStep corrections; no business changes or successful execution charges occur. Example: {\"type\":\"Memory.User.Set\",\"strict\":true,\"data\":{\"memory\":\"test\",\"memry\":\"typo\"}} is refused.\r\n`FieldChangedByBC` is a warning from Data.Records.Set: another field validation or the write changed a sent field after its own validation. `parameter` names data[n].fields.{jsonName}, counting from 0. Status stays Success. Compare the returned values with what you sent; follow `nextStep` to use validation order or send the field again in a separate call. Normalisation of the field itself, LCY, Dimension Set ID, BLOB, Media, MediaSet and skipped fields are excluded.\r\n`SecurityFilterApplied` is a warning from Data.Records.Get, severity `low`, `parameter` `table`: a security filter of the caller applies to the table, so the result may hold fewer records than the table. `securityFiltered` is then true. Status stays Success, and the hidden records are never counted or described. Ask an administrator if you expect more records.\r\nData.RecordIds.Get, Data.Totals.Get, Data.Entries.Find and CSV.Records.Get do not return `securityFiltered` or `SecurityFilterApplied`. Their results can still be limited by security filters: counts and totals cover only visible records, and the absence of a flag or warning does not prove that every record in the table was included. Their help explains this visibility limit; request filters such as tableView and date ranges are separate.\r\nWhen a Business Central operation fails, the error can identify the request parameter being applied, the expected input and what to do next. That guidance accompanies the original `BusinessCentralError` after rollback, including a failed queued task. It does not change which writes are rolled back or committed. Guidance is cleared between messages; a message without it keeps its existing response shape. Recognized lock errors follow the `Retryable` rules below.\r\nSome message types accept calls only through a particular path: a scheduled queue message, the Task API (`/tasks`), the in-product MCP tool server, another message type, or the Messages page Run Task action. Bifrost determines where the call came from; request values cannot override it. A call through an unsupported path is refused with `PreconditionFailed` and a `nextStep` naming the path to use.\r\n`Retryable` means a transient lock or deadlock caught while writing or posting. `error` keeps Business Central's original text. `expected` is \"no concurrent lock on the same records\"; `nextStep` is \"Retry the same call after a few seconds; nothing was changed.\" Bifrost does not retry automatically. Uncaught recognized lock errors are also `Retryable` for `write` types. Uncaught `read` and `irreversible` errors remain `BusinessCentralError`, because an irreversible operation may already have committed.\r\n`ConfirmationRequired` is the preview refusal for an irreversible type called without `expectedCount`. Nothing was changed; inspect `expected` and the description before sending the same request with that count. `ConfirmationMismatch` means the count has changed or the sent count was wrong; nothing was changed. Inspect the new preview before confirming again. Feature apps use the same preview and confirmation protocol for irreversible operations.\r\nCodes: `MissingParameter`, `InvalidParameterFormat`, `InvalidParameter`, `RecordNotFound`, `AmbiguousRecord`, `ConflictingIdentifiers`, `InvalidFilterField`, `InvalidLine`, `NothingToPreview`, `LinesSkipped`, `BlockedByWriteGuard`, `PreconditionFailed`, `PermissionDenied`, `LimitExceeded`, `BusinessCentralError`, `MultipleErrors`, `DeprecatedParameter`, `UnknownParameter`, `FieldChangedByBC`, `Retryable`, `EULA_REQUIRED`, `TRIAL_NOT_STARTED`, `ConfirmationRequired`, `ConfirmationMismatch`, `SecurityFilterApplied`. The `error` text may be translated; the code never is.\r\n"
+  },
+  "status-catalogue-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Help.MessageTypes.Get",
+    "status": "Success",
+    "usage": "Before calling any message type, call \"Help.Implementation.Get\" with the type name as subject to read its required subject/data format and examples.",
+    "result": [
+      {
+        "name": "Projects.ProjectJournal.Create",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Adds project journal lines to an existing batch. Without lines, inserts blank lines with the BC defaults.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Check",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Validates a project journal batch and returns readiness status.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Post",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Posts a project journal batch and returns posting statistics.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.PreviewPost",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Simulates posting a project journal batch and returns the resulting ledger entries (Job Ledger Entry, Item Ledger Entry, G/L Entry where applicable) without committing changes.",
+        "messageDirection": "Both"
+      },
+      {
+        "name": "Projects.ProjectJournal.Update",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Deletes selected project journal lines from one existing batch and optionally renumbers its documents.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Create",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Creates project headers with optional tasks and planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Update",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Updates project headers with optional tasks and planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Create",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Creates project tasks with optional planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Update",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Updates project tasks with optional planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Create",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Creates project planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Update",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Updates project planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Copy",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Copies a project with a task range and budget or billable planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.SetStatus",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Changes project status or blocking through native Business Central validation.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Get",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Reads calculated and posted project WIP entries.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.WIP.Calculate",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Calculates project work in progress through the native WIP engine.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Post",
+        "isEnabled": true,
+        "filterTableNo": 1005,
+        "description": "Posts calculated project WIP to the general ledger through native BC posting.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Statistics.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Returns native project budget, actual, billable and invoiced statistics in LCY.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.BudgetVsActual.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Returns native project totals and posting-task budget versus actual statistics in LCY.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Get",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Reads project task usage links and remaining planning quantities.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Link",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Links posted project usage to a planning line or creates planning lines from usage through native BC.",
+        "messageDirection": "Outbound"
+      }
+    ],
+    "totalCatalogueRows": 217,
+    "evidenceProjection": "Only Projects.* entries retained; full local response preserved."
+  },
+  "status-Planning-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "status-Planning-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Planning",
+        "Blocked": " ",
+        "Complete": "false",
+        "Ending Date": ""
+      }
+    ]
+  },
+  "status-Quote-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "status-Quote-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Quote",
+        "Blocked": " ",
+        "Complete": "false",
+        "Ending Date": ""
+      }
+    ]
+  },
+  "status-Open-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "status-Open-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Open",
+        "Blocked": " ",
+        "Complete": "false",
+        "Ending Date": ""
+      }
+    ]
+  },
+  "status-Completed-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "status-Completed-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Completed",
+        "Blocked": " ",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "blocked-All-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "blocked-All-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Completed",
+        "Blocked": "All",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "blocked-Posting-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "blocked-Posting-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Completed",
+        "Blocked": "Posting",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "blocked-None-1033": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1033"
+  },
+  "blocked-None-1033-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1033",
+        "Status": "Completed",
+        "Blocked": " ",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "no-change-1033": {
+    "status": "Error",
+    "code": "MissingParameter",
+    "error": "Send status or blocked to change the project state.",
+    "parameter": "status",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+  },
+  "invalid-status-1033": {
+    "status": "Error",
+    "code": "InvalidParameterFormat",
+    "error": "A Projects parameter does not match its declared type, length or allowed values.",
+    "parameter": "status",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+  },
+  "invalid-block-1033": {
+    "status": "Error",
+    "code": "InvalidParameterFormat",
+    "error": "A Projects parameter does not match its declared type, length or allowed values.",
+    "parameter": "blocked",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+  },
+  "unknown-key-1033": {
+    "status": "Error",
+    "code": "UnknownParameter",
+    "error": "Parameter \"extra\" is not declared by this message type. Nothing was executed.",
+    "parameter": "extra",
+    "received": "true",
+    "expected": "declared request parameters",
+    "nextStep": "Remove this key or consult Help.Implementation.Get for the declared parameters.",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+  },
+  "create-project-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.Create",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "status-help-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "contract": "json",
+    "format": "chapters",
+    "catalogue": {
+      "name": "Projects.Project.SetStatus",
+      "isEnabled": true,
+      "filterTableNo": 167,
+      "description": "Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.",
+      "selectionDescription": "Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.",
+      "messageDirection": "Inbound",
+      "keywords": [
+        "verkefni",
+        "verk",
+        "verkhluti",
+        "áætlunarlína",
+        "staða",
+        "loka",
+        "opna"
+      ],
+      "chargeable": true
+    },
+    "chapters": {
+      "envelope": {
+        "subject": {
+          "use": "notUsed"
+        },
+        "dataRequired": true,
+        "version": "1.0",
+        "contentType": "text/json"
+      },
+      "target": [
+        {
+          "source": "data.projectNo",
+          "form": "project no.",
+          "description": "The exact native project number."
+        }
+      ],
+      "parameters": [
+        {
+          "name": "projectNo",
+          "type": "string",
+          "required": true,
+          "description": "Exact native project number.",
+          "maxLength": 20
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "description": "Native project status; send status or blocked.",
+          "allowed": [
+            "Planning",
+            "Quote",
+            "Open",
+            "Completed"
+          ]
+        },
+        {
+          "name": "blocked",
+          "type": "string",
+          "required": false,
+          "description": "None unblocks; Posting or All applies the native block.",
+          "allowed": [
+            "None",
+            "Posting",
+            "All"
+          ]
+        }
+      ],
+      "response": {
+        "contentType": "text/json",
+        "fields": [
+          {
+            "name": "status",
+            "type": "string",
+            "description": "Success after the entire native operation succeeds."
+          },
+          {
+            "name": "projectNo",
+            "type": "string"
+          }
+        ]
+      },
+      "errors": [
+        {
+          "code": "MissingParameter",
+          "when": "A required key is missing or empty.",
+          "fix": "Supply the key named by parameter."
+        },
+        {
+          "code": "InvalidParameterFormat",
+          "when": "A key has the wrong JSON type, length, date or enum value.",
+          "fix": "Use the declared parameter schema."
+        },
+        {
+          "code": "MultipleErrors",
+          "when": "Several input values are invalid.",
+          "fix": "Correct every entry in errors and retry."
+        },
+        {
+          "code": "PermissionDenied",
+          "when": "The caller lacks the native table permission.",
+          "fix": "Ask an administrator for the required Business Central role."
+        },
+        {
+          "code": "RecordNotFound",
+          "when": "The requested posting task does not exist in this project.",
+          "fix": "Supply an existing posting task number in taskNo."
+        },
+        {
+          "code": "BusinessCentralError",
+          "when": "Business Central refuses validation or the record operation.",
+          "fix": "Correct the reported native validation error; the operation is rolled back."
+        },
+        {
+          "code": "Retryable",
+          "when": "A transient lock or deadlock caught while writing or posting. The error preserves Business Central's original text. Uncaught errors are Retryable only for types with effect write.",
+          "fix": "Retry the same call after a few seconds; nothing was changed."
+        }
+      ],
+      "effect": {
+        "effect": "write",
+        "changes": "Project records; native field and table triggers run.",
+        "idempotent": false
+      },
+      "metering": {
+        "chargeable": true,
+        "chargedAs": "message"
+      },
+      "overview": "Changes project status or blocking through native Business Central validation.",
+      "notes": "Send status, blocked, or both. Native status validation handles completion and its WIP requirements. None unblocks a project. Errors roll back both changes."
+    },
+    "conventions": "## Errors and warnings\r\nAn error response has `status` = `Error`, a stable `code`, the `error` text and, when they apply, `parameter` (the request parameter concerned, e.g. `lines[2].no`), `received` (the value received), `expected` (what was expected) and `nextStep` (what to do now). `hint` says where to read more.\r\nWhen a request has several problems, all of them are listed in `errors[]` - each with the same fields - under a top-level `code` (`MultipleErrors`, or a shared code such as `InvalidLine` for the `lines` of a Create type) and a summary `error`. Fix them all before calling again. One problem is reported at the top level, with no `errors[]`.\r\nRequest values are checked first and every problem found is reported together. A Business Central validation error raised afterwards, while a record is being written, stops the call and is reported on its own: `code` = `BusinessCentralError`, Business Central's own `error` text, and `parameter` naming the request parameter being applied, e.g. `lines[1].accountNo`. Nothing is written.\r\nRequest values are read in one format, whatever the language: dates `YYYY-MM-DD`; date-times ISO 8601 with `Z` or an offset; amounts as JSON numbers (or a string such as `\"1234.56\"`, no thousands separator); integers as JSON integers; booleans `true` or `false`. Any other value is `InvalidParameterFormat` with `received` and `expected`; for an unambiguous local form such as `26.09.2026`, `nextStep` gives the value to resend. Every bad value of a request is reported together.\r\nAnswers are written in one format as well, whatever the language of the call: dates `YYYY-MM-DD`, date-times ISO 8601, numbers with a dot and no thousands separator, and the option and enum values of every answer except `Data.Records.Get` and `Data.Records.Set` as their English names, so a value read from an answer can be sent back. Those two answer the caption of the language of the call, for a person to read. The language of the call (`lcid`) changes captions and message texts, not these forms. Two things are outside Bifrost's control: Business Central writes its own texts (a ledger entry description such as `Direct Cost V00010 on 10/02/26`, the text of a `BusinessCentralError`) with the regional settings of the server session, which `lcid` does not change, so a date in such a text can be in month-day order; and a table view is read with those settings too, so write dates in a view as `YYYY-MM-DD` and decimals with a dot.\r\nBoth success and error responses can carry `warnings[]`, each with `code`, `message` and, when they apply, `parameter` and `nextStep`.\r\n`UnknownParameter` refuses undeclared data keys before execution for every type whose effect is not read, including a missing effect. The root envelope option `strict:false` cannot opt out. Read types keep warnings without changing status, validationResult or domain warningCount unless the caller sets `strict:true` (next to type and subject, never inside data). Refusals list the keys and localized nextStep corrections; no business changes or successful execution charges occur. Example: {\"type\":\"Memory.User.Set\",\"strict\":true,\"data\":{\"memory\":\"test\",\"memry\":\"typo\"}} is refused.\r\n`FieldChangedByBC` is a warning from Data.Records.Set: another field validation or the write changed a sent field after its own validation. `parameter` names data[n].fields.{jsonName}, counting from 0. Status stays Success. Compare the returned values with what you sent; follow `nextStep` to use validation order or send the field again in a separate call. Normalisation of the field itself, LCY, Dimension Set ID, BLOB, Media, MediaSet and skipped fields are excluded.\r\n`SecurityFilterApplied` is a warning from Data.Records.Get, severity `low`, `parameter` `table`: a security filter of the caller applies to the table, so the result may hold fewer records than the table. `securityFiltered` is then true. Status stays Success, and the hidden records are never counted or described. Ask an administrator if you expect more records.\r\nData.RecordIds.Get, Data.Totals.Get, Data.Entries.Find and CSV.Records.Get do not return `securityFiltered` or `SecurityFilterApplied`. Their results can still be limited by security filters: counts and totals cover only visible records, and the absence of a flag or warning does not prove that every record in the table was included. Their help explains this visibility limit; request filters such as tableView and date ranges are separate.\r\nWhen a Business Central operation fails, the error can identify the request parameter being applied, the expected input and what to do next. That guidance accompanies the original `BusinessCentralError` after rollback, including a failed queued task. It does not change which writes are rolled back or committed. Guidance is cleared between messages; a message without it keeps its existing response shape. Recognized lock errors follow the `Retryable` rules below.\r\nSome message types accept calls only through a particular path: a scheduled queue message, the Task API (`/tasks`), the in-product MCP tool server, another message type, or the Messages page Run Task action. Bifrost determines where the call came from; request values cannot override it. A call through an unsupported path is refused with `PreconditionFailed` and a `nextStep` naming the path to use.\r\n`Retryable` means a transient lock or deadlock caught while writing or posting. `error` keeps Business Central's original text. `expected` is \"no concurrent lock on the same records\"; `nextStep` is \"Retry the same call after a few seconds; nothing was changed.\" Bifrost does not retry automatically. Uncaught recognized lock errors are also `Retryable` for `write` types. Uncaught `read` and `irreversible` errors remain `BusinessCentralError`, because an irreversible operation may already have committed.\r\n`ConfirmationRequired` is the preview refusal for an irreversible type called without `expectedCount`. Nothing was changed; inspect `expected` and the description before sending the same request with that count. `ConfirmationMismatch` means the count has changed or the sent count was wrong; nothing was changed. Inspect the new preview before confirming again. Feature apps use the same preview and confirmation protocol for irreversible operations.\r\nCodes: `MissingParameter`, `InvalidParameterFormat`, `InvalidParameter`, `RecordNotFound`, `AmbiguousRecord`, `ConflictingIdentifiers`, `InvalidFilterField`, `InvalidLine`, `NothingToPreview`, `LinesSkipped`, `BlockedByWriteGuard`, `PreconditionFailed`, `PermissionDenied`, `LimitExceeded`, `BusinessCentralError`, `MultipleErrors`, `DeprecatedParameter`, `UnknownParameter`, `FieldChangedByBC`, `Retryable`, `EULA_REQUIRED`, `TRIAL_NOT_STARTED`, `ConfirmationRequired`, `ConfirmationMismatch`, `SecurityFilterApplied`. The `error` text may be translated; the code never is.\r\n"
+  },
+  "status-catalogue-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Help.MessageTypes.Get",
+    "status": "Success",
+    "usage": "Before calling any message type, call \"Help.Implementation.Get\" with the type name as subject to read its required subject/data format and examples.",
+    "result": [
+      {
+        "name": "Projects.ProjectJournal.Create",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Bætir línum verkefnafærslubókar við fyrirliggjandi keyrslu. Án lína eru tómar línur settar inn með sjálfgildum Business Central.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Check",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Sannreynir keyrslu verkefnafærslubókar og skilar stöðu um hvort hún sé tilbúin.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Post",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Bókar keyrslu verkefnafærslubókar og skilar tölum um bókunina.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.PreviewPost",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Hermir bókun keyrslu verkefnafærslubókar og skilar færslum sem mynduðust (Job Ledger Entry, Item Ledger Entry og G/L Entry þar sem við á) án þess að vista breytingar.",
+        "messageDirection": "Both"
+      },
+      {
+        "name": "Projects.ProjectJournal.Update",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Eyðir völdum línum verkefnafærslubókar úr einni fyrirliggjandi keyrslu og endurnúmerar skjöl hennar ef óskað er.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Create",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Býr til verkefni, valfrjálsa verkhluta og áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Update",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Uppfærir verkefni, valfrjálsa verkhluta og áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Create",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Býr til verkhluta og valfrjálsar áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Update",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Uppfærir verkhluta og valfrjálsar áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Create",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Býr til áætlunarlínur verkefna.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Update",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Uppfærir áætlunarlínur verkefna.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Copy",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Afritar verkefni með bili verkhluta og áætlunar- eða reikningsfærslulínum.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.SetStatus",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Get",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Les reiknaðar og bókaðar færslur verka í vinnslu.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.WIP.Calculate",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Reiknar verk í vinnslu með innbyggðum verkefnisreikningi.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Post",
+        "isEnabled": true,
+        "filterTableNo": 1005,
+        "description": "Bókar reiknuð verk í vinnslu í fjárhag með innbyggðri bókun BC.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Statistics.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Skilar innbyggðri áætlun, raunkostnaði, reikningshæfum og reikningsfærðum fjárhæðum verkefnis í heimamynt.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.BudgetVsActual.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Skilar innbyggðum heildarfjárhæðum verkefnis og samanburði áætlunar og rauntalna eftir verkhlutum í heimamynt.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Get",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Les notkunartengingar verkhluta og eftirstandandi magn áætlunarlína.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Link",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Tengir bókaða verkefnanotkun við áætlunarlínu eða stofnar áætlunarlínur úr notkun með innbyggðu BC.",
+        "messageDirection": "Outbound"
+      }
+    ],
+    "totalCatalogueRows": 217,
+    "evidenceProjection": "Only Projects.* entries retained; full local response preserved."
+  },
+  "status-Planning-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "status-Planning-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Planning",
+        "Blocked": " ",
+        "Complete": "false",
+        "Ending Date": ""
+      }
+    ]
+  },
+  "status-Quote-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "status-Quote-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Quote",
+        "Blocked": " ",
+        "Complete": "false",
+        "Ending Date": ""
+      }
+    ]
+  },
+  "status-Open-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "status-Open-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Open",
+        "Blocked": " ",
+        "Complete": "false",
+        "Ending Date": ""
+      }
+    ]
+  },
+  "status-Completed-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "status-Completed-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Completed",
+        "Blocked": " ",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "blocked-All-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "blocked-All-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Completed",
+        "Blocked": "All",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "blocked-Posting-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "blocked-Posting-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Completed",
+        "Blocked": "Posting",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "blocked-None-1039": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.SetStatus",
+    "status": "Success",
+    "projectNo": "XL9-P4-1039"
+  },
+  "blocked-None-1039-state": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Test.Records.Get",
+    "status": "Success",
+    "noOfRecords": 1,
+    "result": [
+      {
+        "No.": "XL9-P4-1039",
+        "Status": "Completed",
+        "Blocked": " ",
+        "Complete": "true",
+        "Ending Date": "2026-11-10"
+      }
+    ]
+  },
+  "no-change-1039": {
+    "status": "Error",
+    "code": "MissingParameter",
+    "error": "Sendu status eða blocked til að breyta stöðu verkefnis.",
+    "parameter": "status",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+  },
+  "invalid-status-1039": {
+    "status": "Error",
+    "code": "InvalidParameterFormat",
+    "error": "Viðfang verkefnis passar ekki við skilgreinda gerð, lengd eða leyfileg gildi.",
+    "parameter": "status",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+  },
+  "invalid-block-1039": {
+    "status": "Error",
+    "code": "InvalidParameterFormat",
+    "error": "Viðfang verkefnis passar ekki við skilgreinda gerð, lengd eða leyfileg gildi.",
+    "parameter": "blocked",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+  },
+  "unknown-key-1039": {
+    "status": "Error",
+    "code": "UnknownParameter",
+    "error": "Viðfangið \"extra\" er ekki skilgreint fyrir þessa skilaboðategund. Ekkert var keyrt.",
+    "parameter": "extra",
+    "received": "true",
+    "expected": "skilgreind beiðniviðföng",
+    "nextStep": "Fjarlægðu þennan lykil eða skoðaðu Help.Implementation.Get til að sjá skilgreind viðföng.",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "ui-en-final-open-state": {
+    "No.": "XL9-P4-1033",
+    "Status": "Open",
+    "Blocked": " ",
+    "Complete": "false"
+  },
+  "ui-en-final-planning-state": {
+    "No.": "XL9-P4-1033",
+    "Status": "Planning",
+    "Blocked": "All",
+    "Complete": "false"
+  },
+  "ui-is-final-open-state": {
+    "No.": "XL9-P4-1033",
+    "Status": "Open",
+    "Blocked": " ",
+    "Complete": "false"
+  },
+  "ui-is-final-planning-state": {
+    "No.": "XL9-P4-1033",
+    "Status": "Planning",
+    "Blocked": "All",
+    "Complete": "false"
+  }
+}

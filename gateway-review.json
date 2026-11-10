@@ -1,0 +1,23 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "layer1": "gateway-layer1.json",
+  "mechanicalLimitations": [
+    "Diff mode scans app AL only; candidate diff is test AL plus CHANGELOG, so files_scanned=0 is not a test-source review.",
+    "CHANGELOG checker requires literal [28.1.0.0]; repository heading is ## 28.1.0.0 - Unreleased with specific codeunit97105 entry. This is a formatting false positive, not a missing version entry.",
+    "Initial Windows USERPROFILE assumption failed on Linux; rerun with private path completed, tool unchanged."
+  ],
+  "manualReview": {
+    "changedFiles": [
+      "test/test/ProjectsStatusTestsori.Codeunit.al",
+      "CHANGELOG.md"
+    ],
+    "productTreeMatchesMain": true,
+    "testAssertions": "Native completion-before-start-date yields BusinessCentralError and rolls back status, Complete, ending date and block; invalid blocked value prevents otherwise valid status write. Full suite 60/60 verifies regression tests.",
+    "appRange": "70009200..70009249 authorized by newer Gunnar21Oct directive",
+    "testRange": "97100..97199",
+    "translations": "No new user-facing production text; en-US/is-IS help verified via MCP.",
+    "noNewSuppressions": true,
+    "noDeletedTypeReintroduced": true,
+    "disposition": "No new source change required; real Architect hold remains."
+  }
+}

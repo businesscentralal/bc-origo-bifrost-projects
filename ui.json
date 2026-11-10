@@ -1,0 +1,68 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "tenant": "w129-19",
+  "verified": true,
+  "lcids": [
+    1033,
+    1039
+  ],
+  "executed": 4,
+  "passed": 4,
+  "failed": 0,
+  "skipped": 0,
+  "checks": [
+    {
+      "lcid": 1033,
+      "scenario": "Project Card planning / All",
+      "status": "PASS",
+      "ui": "ui-en-final-planning.json",
+      "persistedState": "ui-en-final-planning-state.json",
+      "screenshot": "ui-en-planning-blocked-final.png"
+    },
+    {
+      "lcid": 1033,
+      "scenario": "Project Card open /  ",
+      "status": "PASS",
+      "ui": "ui-en-final-open.json",
+      "persistedState": "ui-en-final-open-state.json",
+      "screenshot": "ui-en-open-unblocked-final.png"
+    },
+    {
+      "lcid": 1039,
+      "scenario": "Project Card planning / All",
+      "status": "PASS",
+      "ui": "ui-is-final.json",
+      "persistedState": "ui-is-final-planning-state.json",
+      "screenshot": "ui-is-planning-blocked-final.png"
+    },
+    {
+      "lcid": 1039,
+      "scenario": "Project Card open /  ",
+      "status": "PASS",
+      "ui": "ui-is-final.json",
+      "persistedState": "ui-is-final-open-state.json",
+      "screenshot": "ui-is-open-unblocked-final.png"
+    }
+  ],
+  "earlierProbeErrors": [
+    {
+      "file": "ui-en-planning-blocked-final.json",
+      "error": "### Error\nError: locator.click: Error: strict mode violation: getByRole('textbox', { name: 'Description', exact: true }) resolved to 2 elements:\n    1) <input title=\"\" id=\"b9uee\" type=\"text\" role=\"textbox\" maxlength=\"100\" spellcheck=\"false\" aria-labe"
+    },
+    {
+      "file": "ui-en-planning-blocked-saved.json",
+      "error": "### Error\nTimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('iframe').first().contentFrame().getByRole('form', { name: 'Project Card', exact: true }).getByRole('combobox', { name: 'Status', exact: true })"
+    },
+    {
+      "file": "ui-en-planning-blocked.json",
+      "error": "### Error\nError: locator.click: Error: strict mode violation: getByRole('textbox', { name: 'Description', exact: true }) resolved to 2 elements:\n    1) <span id=\"b5vee\" tabindex=\"-1\" role=\"textbox\" data-tabbable=\"true\" aria-readonly=\"true\" data-prev-"
+    },
+    {
+      "file": "ui-en-planning-persisted.json",
+      "error": "### Error\nError: locator.waitFor: Error: strict mode violation: getByText('Saved', { exact: true }) resolved to 2 elements:\n    1) <span title=\"Your data is saved now and the page can be closed.\">Saved</span> aka getByTitle('Your data is saved now an"
+    }
+  ],
+  "stalePageProbe": "ui-en-card-snapshot.json: BC rejected stale page after MCP modifications; refreshed and proved saved DB values. Initial field-only screenshots are not passes.",
+  "localeObservation": "W1 Microsoft native project field captions remain English under LCID1039; shell commands/settings are Icelandic. Projects message discovery/help is Icelandic and verified by MCP.",
+  "verifiedAt": "2026-11-10T12:48:45.437484+00:00"
+}

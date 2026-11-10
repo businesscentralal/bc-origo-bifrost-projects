@@ -1,0 +1,28 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "tenant": "w129-19",
+  "verified": true,
+  "checks": [
+    {
+      "tableName": "Job",
+      "lcid": 1033,
+      "remaining": 0
+    },
+    {
+      "tableName": "Customer",
+      "lcid": 1033,
+      "remaining": 0
+    },
+    {
+      "tableName": "Job",
+      "lcid": 1039,
+      "remaining": 0
+    },
+    {
+      "tableName": "Customer",
+      "lcid": 1039,
+      "remaining": 0
+    }
+  ],
+  "finishedAt": "2026-11-10T12:49:09.958Z"
+}

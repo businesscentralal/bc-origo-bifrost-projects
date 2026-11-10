@@ -1,0 +1,90 @@
+[
+  {
+    "name": "foundation",
+    "sha": "35f0efa31b85402fe5628ae764bc5ee2209664e2",
+    "artifact": "/workspace/private/quality32-repair-20261110/build/foundation.app",
+    "sha256": "2817a71e5b58b688c60b9dfe20bb97c6aaf18c0cf73dab0cd10166b179cf1d45",
+    "builtBy": "worker-9",
+    "tenant": "w129-19",
+    "scope": "Tenant",
+    "installedReadback": {
+      "@odata.etag": "W/\"JzE5OzkwODI1MjQzMzc3Mzc2NDI5NDExOzAwOyc=\"",
+      "packageId": "942961b1-cfe3-43d8-b717-56397ec12e1b",
+      "id": "7505e808-6e52-4b96-a328-82573391297a",
+      "displayName": "Bifrost Foundation",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 0,
+      "versionBuild": 13,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    }
+  },
+  {
+    "name": "foundation-test",
+    "sha": "35f0efa31b85402fe5628ae764bc5ee2209664e2",
+    "artifact": "/workspace/private/quality32-repair-20261110/build/foundation-test.app",
+    "sha256": "064e6123e978be03f185b2e0a5a15013b543661cb6b821fbd6228a4127abde99",
+    "builtBy": "worker-9",
+    "tenant": "w129-19",
+    "scope": "Tenant",
+    "installedReadback": {
+      "@odata.etag": "W/\"JzE4OzIzMzk2NTUxNzIwNzkzMjI4NTE7MDA7Jw==\"",
+      "packageId": "c0693a8f-7592-489b-afe2-955d902156c1",
+      "id": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+      "displayName": "Bifrost Foundation - Tests",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 0,
+      "versionBuild": 13,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    }
+  },
+  {
+    "name": "projects",
+    "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+    "artifact": "/workspace/private/litr-projects4-20261110T1230/build/projects.app",
+    "sha256": "42023e9a077db88d57d2ef9d8bbcac687ad8a605f6949be66cc6df7f04308385",
+    "builtBy": "worker-9",
+    "tenant": "w129-19",
+    "scope": "Tenant",
+    "installedReadback": {
+      "@odata.etag": "W/\"JzIwOzEwODUyNTU5NzQwOTcwODQ1NTE5MTswMDsn\"",
+      "packageId": "8e540da6-a1a9-479a-bb8b-0dff8e0c340e",
+      "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+      "displayName": "Bifrost Projects",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 1,
+      "versionBuild": 0,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    }
+  },
+  {
+    "name": "projects-test",
+    "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+    "artifact": "/workspace/private/litr-projects4-20261110T1230/build/projects-test.app",
+    "sha256": "8ea8383039034086d9f83e07f681c56710bec4c7e1543b58f7c9c15e38659110",
+    "builtBy": "worker-9",
+    "tenant": "w129-19",
+    "scope": "Tenant",
+    "installedReadback": {
+      "@odata.etag": "W/\"JzIwOzEyMjM4MDMwMjI5NzMyMzM0MjgyMTswMDsn\"",
+      "packageId": "13ad563d-d5f6-46fd-b576-b1528af79744",
+      "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+      "displayName": "Bifrost Projects - Tests",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 1,
+      "versionBuild": 0,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    }
+  }
+]

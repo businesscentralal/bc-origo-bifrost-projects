@@ -1,0 +1,30 @@
+Microsoft (R) AL Compiler version 30.0.42.60748
+Copyright (C) Microsoft Corporation. All rights reserved
+
+Compilation started for project 'Bifrost Projects' containing '33' files at '12:35:24.586'.
+
+private/litr-projects4-20261110T1230/build/default/src/Contract/ProjectsContract.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/Contract/ProjectsInput.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjUsageLinkImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjWIPCalcImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjWIPGetImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjWIPPostImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjBudgetActualImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjCopyImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjPlanUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjStatisticsImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjStatusImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjTaskCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjTaskUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjUsageGetImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/MessageType/ProjPlanCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/Process/ProjectsStatistics.Codeunit.al(3,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/Process/ProjectsUsage.Codeunit.al(3,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/Process/ProjectsWIP.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/Process/ProjectsWrite.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/litr-projects4-20261110T1230/build/default/src/Process/ProjectsWriteProcess.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+
+Compilation ended at '12:35:38.287'.
+

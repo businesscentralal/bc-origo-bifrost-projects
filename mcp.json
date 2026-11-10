@@ -1,0 +1,245 @@
+{
+  "sha": "98764cffec2733f91073490b79ebfde0120bd0ab",
+  "tenant": "w129-19",
+  "touchedMessageTypes": [
+    "Projects.Project.SetStatus"
+  ],
+  "supportingTypes": [
+    "Projects.Project.Create"
+  ],
+  "lcids": [
+    1033,
+    1039
+  ],
+  "createsOwnData": true,
+  "executed": 42,
+  "passed": 42,
+  "failed": 0,
+  "skipped": 0,
+  "checks": [
+    {
+      "name": "create-project-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/create-project-1033.json"
+    },
+    {
+      "name": "status-help-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-help-1033.json"
+    },
+    {
+      "name": "status-catalogue-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-catalogue-1033.json"
+    },
+    {
+      "name": "status-Planning-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Planning-1033.json"
+    },
+    {
+      "name": "status-Planning-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Planning-1033-state.json"
+    },
+    {
+      "name": "status-Quote-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Quote-1033.json"
+    },
+    {
+      "name": "status-Quote-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Quote-1033-state.json"
+    },
+    {
+      "name": "status-Open-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Open-1033.json"
+    },
+    {
+      "name": "status-Open-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Open-1033-state.json"
+    },
+    {
+      "name": "status-Completed-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Completed-1033.json"
+    },
+    {
+      "name": "status-Completed-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Completed-1033-state.json"
+    },
+    {
+      "name": "blocked-All-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-All-1033.json"
+    },
+    {
+      "name": "blocked-All-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-All-1033-state.json"
+    },
+    {
+      "name": "blocked-Posting-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-Posting-1033.json"
+    },
+    {
+      "name": "blocked-Posting-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-Posting-1033-state.json"
+    },
+    {
+      "name": "blocked-None-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-None-1033.json"
+    },
+    {
+      "name": "blocked-None-1033-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-None-1033-state.json"
+    },
+    {
+      "name": "no-change-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/no-change-1033.json"
+    },
+    {
+      "name": "invalid-status-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/invalid-status-1033.json"
+    },
+    {
+      "name": "invalid-block-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/invalid-block-1033.json"
+    },
+    {
+      "name": "unknown-key-1033",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/unknown-key-1033.json"
+    },
+    {
+      "name": "create-project-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/create-project-1039.json"
+    },
+    {
+      "name": "status-help-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-help-1039.json"
+    },
+    {
+      "name": "status-catalogue-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-catalogue-1039.json"
+    },
+    {
+      "name": "status-Planning-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Planning-1039.json"
+    },
+    {
+      "name": "status-Planning-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Planning-1039-state.json"
+    },
+    {
+      "name": "status-Quote-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Quote-1039.json"
+    },
+    {
+      "name": "status-Quote-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Quote-1039-state.json"
+    },
+    {
+      "name": "status-Open-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Open-1039.json"
+    },
+    {
+      "name": "status-Open-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Open-1039-state.json"
+    },
+    {
+      "name": "status-Completed-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Completed-1039.json"
+    },
+    {
+      "name": "status-Completed-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/status-Completed-1039-state.json"
+    },
+    {
+      "name": "blocked-All-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-All-1039.json"
+    },
+    {
+      "name": "blocked-All-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-All-1039-state.json"
+    },
+    {
+      "name": "blocked-Posting-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-Posting-1039.json"
+    },
+    {
+      "name": "blocked-Posting-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-Posting-1039-state.json"
+    },
+    {
+      "name": "blocked-None-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-None-1039.json"
+    },
+    {
+      "name": "blocked-None-1039-state",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/blocked-None-1039-state.json"
+    },
+    {
+      "name": "no-change-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/no-change-1039.json"
+    },
+    {
+      "name": "invalid-status-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/invalid-status-1039.json"
+    },
+    {
+      "name": "invalid-block-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/invalid-block-1039.json"
+    },
+    {
+      "name": "unknown-key-1039",
+      "status": "PASS",
+      "evidence": "/workspace/private/litr-projects4-20261110T1230/unknown-key-1039.json"
+    }
+  ],
+  "failures": [],
+  "fixtures": [
+    {
+      "lcid": 1033,
+      "no": "XL9-P4-1033",
+      "customerCreated": true
+    },
+    {
+      "lcid": 1039,
+      "no": "XL9-P4-1039",
+      "customerCreated": true
+    }
+  ],
+  "verified": true
+}
