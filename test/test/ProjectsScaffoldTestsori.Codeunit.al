@@ -177,4 +177,22 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Assert.AreEqual(Page::"Projects Setup ori", TempApps."Setup Page Id", 'Registry must expose the owned setup page');
     end;
 
+    [Test]
+    procedure Scenario_Issue31_RegistryEvent_WithoutProjectsRole_DoesNotFailAndListsProjects()
+    var
+        TempApps: Record "Registered App ori" temporary;
+        LowerPermissions: Codeunit "Library - Lower Permissions";
+        Registry: Codeunit "App Registry ori";
+        ProjectsAppId: Guid;
+    begin
+        // Story #31 AC02 | Time: no date dependency | Risk: installed app registry only; no license or backend changes
+        // [GIVEN] The caller has only the read role and no Projects permission set.
+        LowerPermissions.PushPermissionSetWithoutDefaults('BIFROST Read ori');
+        // [WHEN] Foundation builds the registry, raising OnRegisterApps for the Projects subscriber.
+        Registry.GetApps(TempApps);
+        // [THEN] No permission error occurs and Projects is listed.
+        Evaluate(ProjectsAppId, 'c847bab7-2525-4ff5-93c4-15512b3be1e5');
+        Assert.IsTrue(TempApps.Get(ProjectsAppId), 'Projects must register for a user without a Projects role');
+    end;
+
 }
