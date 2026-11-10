@@ -143,6 +143,7 @@ codeunit 97106 "Projects WIP Tests ori"
         foreach Entry in Entries do
             Nonzero := Nonzero or (Entry.AsObject().GetDecimal('amount') <> 0);
         Assert.IsTrue(Nonzero, 'At least one calculated WIP amount must be nonzero');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -164,6 +165,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(Entries.GetObject(0).GetInteger('glEntryNo') > 0, 'WIP references a real G/L entry');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.IsTrue(GLEntry.Count() > 0, 'Native posting must create real financial entries');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -185,6 +187,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(Response.GetText('error').ToLower().Contains('dimension'), 'Native dimension error must be surfaced');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.AreEqual(0, GLEntry.Count(), 'Rejected posting must not create financial entries');
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [ConfirmHandler]

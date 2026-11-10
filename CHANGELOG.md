@@ -2,6 +2,10 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Tests (2026-11-10)
+
+- Codeunit 97102 creates its own blank-number Job dimension when the company has none, so codeunit 97106 economic WIP tests do not depend on CRONUS demo data. The mandatory default-dimension row is removed after the scenario.
+
 ### Removed (2026-11-10)
 
 - Remove the unreleased message type `Projects.PlanningLine.Delete` (enum value 70009206, codeunit 70009211) per Gunnar decision d-20261105-delete-types. `Projects.PlanningLine.Create` and `Projects.PlanningLine.Update` stay.
