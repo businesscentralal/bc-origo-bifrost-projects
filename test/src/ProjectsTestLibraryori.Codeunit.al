@@ -262,6 +262,9 @@ codeunit 97102 "Projects Test Library ori"
         Task."WIP-Total" := Task."WIP-Total"::Total;
         Task.Modify(true);
         SeedRequiredDimensions(CodeValue, 'X100');
+        // BC 28 asks before updating project lines. BC 29 local Client Services does not ask
+        // unless the owned global dimension actually changes. The confirm handler must run on both.
+        ConfirmOwnedGlobalDimension(CodeValue);
         if Ledger.FindLast() then;
         Ledger."Entry No." += 1;
         Ledger.Init();
@@ -328,6 +331,67 @@ codeunit 97102 "Projects Test Library ori"
                     end;
                 end;
             until Required.Next() = 0;
+    end;
+
+    /// <summary>Changes the owned project's global dimension so the native line-update confirm is raised.</summary>
+    local procedure ConfirmOwnedGlobalDimension(ProjectNo: Code[20])
+    var
+        GeneralLedgerSetup: Record "General Ledger Setup";
+        DimensionValue: Record "Dimension Value";
+        Project: Record Job;
+    begin
+        GeneralLedgerSetup.Get();
+        GeneralLedgerSetup.TestField("Global Dimension 1 Code");
+        if not DimensionValue.Get(GeneralLedgerSetup."Global Dimension 1 Code", ProjectNo) then begin
+            DimensionValue.Init();
+            DimensionValue.Validate("Dimension Code", GeneralLedgerSetup."Global Dimension 1 Code");
+            DimensionValue.Validate(Code, ProjectNo);
+            DimensionValue.Name := 'X owned global dimension';
+            DimensionValue.Insert(true);
+        end;
+        Project.Get(ProjectNo);
+        Project.ValidateShortcutDimCode(1, ProjectNo);
+    end;
+
+    /// <summary>Requires an owned dimension on this project's posting accounts and supplies no value.</summary>
+    procedure RequireOwnedAccountDimension(ProjectNo: Code[20])
+    var
+        Project: Record Job;
+        PostingGroup: Record "Job Posting Group";
+        Dimension: Record Dimension;
+    begin
+        Project.Get(ProjectNo);
+        PostingGroup.Get(Project."Job Posting Group");
+        Dimension.Init();
+        Dimension.Code := ProjectNo;
+        Dimension.Name := 'X mandatory WIP dimension';
+        Dimension.Insert(true);
+        RequireAccountDimension(PostingGroup."WIP Costs Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."WIP Accrued Costs Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."Job Costs Applied Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."Job Costs Adjustment Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."Recognized Costs Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."Recognized Sales Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."Job Sales Applied Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."Job Sales Adjustment Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."WIP Accrued Sales Account", Dimension.Code);
+        RequireAccountDimension(PostingGroup."WIP Invoiced Sales Account", Dimension.Code);
+    end;
+
+    local procedure RequireAccountDimension(AccountNo: Code[20]; DimensionCode: Code[20])
+    var
+        DefaultDimension: Record "Default Dimension";
+    begin
+        if AccountNo = '' then
+            exit;
+        if DefaultDimension.Get(Database::"G/L Account", AccountNo, DimensionCode) then
+            exit;
+        DefaultDimension.Init();
+        DefaultDimension.Validate("Table ID", Database::"G/L Account");
+        DefaultDimension.Validate("No.", AccountNo);
+        DefaultDimension.Validate("Dimension Code", DimensionCode);
+        DefaultDimension.Validate("Value Posting", DefaultDimension."Value Posting"::"Code Mandatory");
+        DefaultDimension.Insert(true);
     end;
 
 }

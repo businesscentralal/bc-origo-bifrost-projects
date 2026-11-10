@@ -6,6 +6,10 @@
 
 - Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
 
+### Tests (2026-11-10)
+
+- Make the WIP dimension confirm and the missing-dimension posting refusal self-seeded, so they do not depend on company default dimensions (codeunits 97102, 97106, 97126; #14).
+
 ### Tests (2026-11-04)
 
 - Preserve nonzero WIP report fixture amounts using distinct owned posting accounts and verify real native posting through report 1010 (#14; codeunits 97102/97126).

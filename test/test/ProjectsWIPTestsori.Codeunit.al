@@ -174,12 +174,15 @@ codeunit 97106 "Projects WIP Tests ori"
         GLEntry: Record "G/L Entry";
         Request: JsonObject;
         Response: JsonObject;
+        ProjectNo: Code[20];
     begin
         // Story #5, AC01 | Time: explicit 2026-10-16 | Risk: mandatory dimensions must remain enforced, no weakened native gate.
         Request := Library.NewEconomicWIPRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
-        WIPEntry.SetRange("Job No.", Request.GetText('projectNo'));
+        ProjectNo := CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(ProjectNo));
+        WIPEntry.SetRange("Job No.", ProjectNo);
         WIPEntry.ModifyAll("Dimension Set ID", 0, true);
+        Library.RequireOwnedAccountDimension(ProjectNo);
         Response := Library.ExecuteNative("Message Type ori"::"Projects.WIP.Post", Request);
         Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native mandatory-dimension posting refusal');
         Assert.IsTrue(Response.GetText('error').ToLower().Contains('dimension'), 'Native dimension error must be surfaced');
