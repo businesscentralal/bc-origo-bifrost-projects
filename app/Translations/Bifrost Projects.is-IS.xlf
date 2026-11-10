@@ -105,8 +105,6 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Create Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
-
-
         <trans-unit id="Codeunit 3680531121 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Updates project planning lines.</source>
           <target>Uppfærir áætlunarlínur verkefna.</target>
