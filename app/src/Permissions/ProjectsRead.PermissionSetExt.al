@@ -30,7 +30,6 @@ permissionsetextension 70009200 "Projects Read ori" extends "BIFROST Read ori"
         codeunit "Proj. Task Update Impl ori" = X,
         codeunit "Proj. Plan Create Impl ori" = X,
         codeunit "Proj. Plan Update Impl ori" = X,
-        codeunit "Proj. Plan Delete Impl ori" = X,
         codeunit "Projects Followup Input ori" = X,
         codeunit "Projects Archive ori" = X,
         codeunit "Proj. Archive Process ori" = X,

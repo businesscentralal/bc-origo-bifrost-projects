@@ -26,7 +26,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.WIP.Calculate` | `projectNo`, `postingDate`, `documentNo` | Runs native WIP calculation and returns entry state. |
 | `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with a selected task range. |
 | `Projects.Project.SetStatus` | `projectNo`, `status` and/or `blocked` | Validates native status, completion and blocking. |
-| `Projects.PlanningLine.Delete` | `projectNo`, `taskNo`, `lineNo` | Deletes through native BC checks. |
+| `Projects.Project.Archive` | `projectNo`, optional `description` | Creates a native archived project version (requires Projects Full and Archive Projects in Jobs Setup). |
+| `Projects.ProjectArchive.Get` | `projectNo`, optional `versionNo` | Lists archived versions or reads one version with tasks and planning lines. |
 
 Calls use version `1.0` and a JSON object in `data`; `subject` is not used.
 All writes require the native BC table permissions in addition to the Foundation role.
@@ -39,4 +40,4 @@ See [Projects contracts](docs/projects.md) for fields, nested behavior and error
 
 Scaffold and lifecycle implementation are under development. Native component tests
 are separate from queue API, licensing, bilingual Web Client and MCP acceptance.
-Template/workflow restoration is retained by human PR #10. Issues #5 and #6 have native implementation and component tests; shipping MCP, business UI and independent acceptance remain pending. Issue #8 has native implementation and component tests with runtime acceptance pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.
+Template/workflow restoration from merged PR #10 is integrated. Issues #5 and #6 have native implementation and component tests; current-candidate runtime and independent acceptance remain pending. Issue #8 has native implementation and component tests with runtime acceptance pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.

@@ -107,7 +107,7 @@ codeunit 97101 "Projects Write Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC01_PlanCreateUpdateDelete_RunNativeTriggers()
+    procedure Scenario_AC01_PlanCreateUpdate_RunNativeTriggers()
     var
         PlanningLine: Record "Job Planning Line";
         Request: JsonObject;
@@ -130,8 +130,6 @@ codeunit 97101 "Projects Write Tests ori"
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Update", PlanRequest), 'Success');
         PlanningLine.Get(Request.GetText('projectNo'), 'X100', 10000);
         Assert.AreEqual('X Changed', PlanningLine.Description, 'Planning line update missing');
-        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", PlanRequest), 'Success');
-        Assert.IsFalse(PlanningLine.Get(Request.GetText('projectNo'), 'X100', 10000), 'Native deletion missing');
     end;
 
     [Test]
@@ -168,6 +166,38 @@ codeunit 97101 "Projects Write Tests ori"
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Error');
         Assert.IsFalse(Project.Get(Request.GetText('projectNo')), 'Parent must roll back after second nested task fails');
         Assert.IsFalse(Task.Get(Request.GetText('projectNo'), 'XDUP'), 'First nested task must roll back too');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_FailedNestedUpdate_RestoresExistingProject()
+    var
+        Project: Record Job;
+        Task: Record "Job Task";
+        Request: JsonObject;
+        UpdateRequest: JsonObject;
+        FirstTask: JsonObject;
+        MissingTask: JsonObject;
+        Tasks: JsonArray;
+        Response: JsonObject;
+    begin
+        // Story #2, AC01 | Risk: a later native error must undo header and earlier child changes.
+        Request := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
+        UpdateRequest.Add('projectNo', Request.GetText('projectNo'));
+        UpdateRequest.Add('description', 'X Must roll back');
+        FirstTask.Add('taskNo', 'XNEW');
+        FirstTask.Add('description', 'X Must roll back');
+        Tasks.Add(FirstTask);
+        MissingTask.Add('taskNo', 'XMISSING');
+        MissingTask.Add('operation', 'Update');
+        Tasks.Add(MissingTask);
+        UpdateRequest.Add('tasks', Tasks);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Update", UpdateRequest);
+        Library.AssertStatus(Response, 'Error');
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native missing-task error must surface');
+        Project.Get(Request.GetText('projectNo'));
+        Assert.AreEqual(Request.GetText('description'), Project.Description, 'Existing header must retain its original description');
+        Assert.IsFalse(Task.Get(Project."No.", 'XNEW'), 'Earlier nested insert must roll back with the failed update');
     end;
 
     [Test]
@@ -325,10 +355,10 @@ codeunit 97101 "Projects Write Tests ori"
         Request.Add('projectNo', 'XDOESNOTEXIST');
         Request.Add('taskNo', 'X100');
         Request.Add('lineNo', 1.5);
-        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", Request);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Update", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Fractional primary key must fail validation');
         Request.Replace('lineNo', 0);
-        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Delete", Request);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Update", Request);
         Assert.AreEqual('InvalidParameterFormat', Response.GetText('code'), 'Zero planning line number must fail validation');
     end;
 

@@ -22,6 +22,8 @@ codeunit 97106 "Projects WIP Tests ori"
     var
         Assert: Codeunit "Library Assert";
         Library: Codeunit "Projects Test Library ori";
+        FixtureDimensionCode: Code[20];
+        FixtureDimensionValueCode: Code[20];
 
     [Test]
     procedure Scenario_AC01_GetOwnEntries_FiltersOtherProject()
@@ -34,6 +36,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Response: JsonObject;
         Entries: JsonArray;
     begin
+        Initialize();
         // Story #5, AC01 | Time: fixed2026-10-16 fixture dates | Risk: synthetic owned read fixtures, not a calculation/posting or licensing pass
         Request := Library.NewProjectRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
@@ -54,6 +57,7 @@ codeunit 97106 "Projects WIP Tests ori"
         GLEntry.SetRange("Job No.", Request.GetText('projectNo'));
         Assert.AreEqual(1, WIPEntry.Count(), 'Get must not consume WIP entries');
         Assert.AreEqual(1, GLEntry.Count(), 'Get must not change posted WIP entries');
+        CleanupOwnedJobDimensionFixture();
     end;
 
     [Test]
@@ -66,6 +70,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Response: JsonObject;
         MethodCode: Code[20];
     begin
+        Initialize();
         // Story #5, AC01 | Time: explicit2026-10-16 posting date | Risk: empty project only; nonzero economic WIP remains unverified
         Request := Library.NewProjectRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
@@ -86,6 +91,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Project.Get(Request.GetText('projectNo'));
         Assert.AreEqual(20261016D, Project."WIP Posting Date", 'Native calculation must use the explicit date');
         Assert.AreEqual(0, Response.GetArray('entries').Count(), 'Empty-project baseline must report zero calculated entries honestly');
+        CleanupOwnedJobDimensionFixture();
     end;
 
     [Test]
@@ -94,12 +100,13 @@ codeunit 97106 "Projects WIP Tests ori"
         Request: JsonObject;
         Response: JsonObject;
     begin
+        Initialize();
         // Story #5, AC01 | Time: no date dependency | Risk: None
-        Library.Initialize();
         Request.Add('projectNo', 'XNOTFOUND');
         Response := Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request);
         Assert.AreEqual('MultipleErrors', Response.GetText('code'), 'Date and document number are both required before native writes');
         Assert.AreEqual(2, Response.GetArray('errors').Count(), 'Both missing options must be identified');
+        CleanupOwnedJobDimensionFixture();
     end;
 
     [Test]
@@ -110,6 +117,7 @@ codeunit 97106 "Projects WIP Tests ori"
         CalculateRequest: JsonObject;
         Response: JsonObject;
     begin
+        Initialize();
         // Story #5, AC01 | Time: explicit2026-10-16 date | Risk: no native WIP method bypass
         Request := Library.NewProjectRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request), 'Success');
@@ -122,6 +130,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Response := Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", CalculateRequest);
         Library.AssertStatus(Response, 'Error');
         Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native missing-method validation must surface');
+        CleanupOwnedJobDimensionFixture();
     end;
 
     [Test]
@@ -134,6 +143,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Entry: JsonToken;
         Nonzero: Boolean;
     begin
+        Initialize();
         // Story #5, AC01 | Time: explicit 2026-10-16 | Risk: isolated native component, no licensing proof.
         Request := Library.NewEconomicWIPRequest();
         Response := Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request);
@@ -143,6 +153,8 @@ codeunit 97106 "Projects WIP Tests ori"
         foreach Entry in Entries do
             Nonzero := Nonzero or (Entry.AsObject().GetDecimal('amount') <> 0);
         Assert.IsTrue(Nonzero, 'At least one calculated WIP amount must be nonzero');
+        CleanupOwnedJobDimensionFixture();
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -154,6 +166,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Response: JsonObject;
         Entries: JsonArray;
     begin
+        Initialize();
         // Story #5, AC01 | Time: explicit 2026-10-16 | Risk: writes only owned ephemeral native company; not a shipping MCP pass.
         Request := Library.NewEconomicWIPRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
@@ -164,6 +177,8 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(Entries.GetObject(0).GetInteger('glEntryNo') > 0, 'WIP references a real G/L entry');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.IsTrue(GLEntry.Count() > 0, 'Native posting must create real financial entries');
+        CleanupOwnedJobDimensionFixture();
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [Test]
@@ -175,6 +190,7 @@ codeunit 97106 "Projects WIP Tests ori"
         Request: JsonObject;
         Response: JsonObject;
     begin
+        Initialize();
         // Story #5, AC01 | Time: explicit 2026-10-16 | Risk: mandatory dimensions must remain enforced, no weakened native gate.
         Request := Library.NewEconomicWIPRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
@@ -185,6 +201,8 @@ codeunit 97106 "Projects WIP Tests ori"
         Assert.IsTrue(Response.GetText('error').ToLower().Contains('dimension'), 'Native dimension error must be surfaced');
         GLEntry.SetRange("Document No.", Request.GetText('documentNo'));
         Assert.AreEqual(0, GLEntry.Count(), 'Rejected posting must not create financial entries');
+        CleanupOwnedJobDimensionFixture();
+        Library.RemoveOwnedWIPDimensions();
     end;
 
     [ConfirmHandler]
@@ -226,4 +244,54 @@ codeunit 97106 "Projects WIP Tests ori"
         GLEntry."WIP Entry Amount" := Amount;
         GLEntry.Insert(true);
     end;
+
+    local procedure Initialize()
+    var
+        Dimension: Record Dimension;
+        DimensionValue: Record "Dimension Value";
+        DefaultDimension: Record "Default Dimension";
+    begin
+        Library.Initialize();
+        // Keep this code outside the library XWIP* sweep. Library.Initialize deletes those rows
+        // and NewProjectRequest calls it after this fixture is created.
+        FixtureDimensionCode := 'P29MAND';
+        FixtureDimensionValueCode := 'P29VALUE';
+
+        if not Dimension.Get(FixtureDimensionCode) then begin
+            Dimension.Init();
+            Dimension.Validate(Code, FixtureDimensionCode);
+            Dimension.Validate(Name, 'X owned WIP mandatory fixture');
+            Dimension.Insert(true);
+        end;
+
+        if not DimensionValue.Get(FixtureDimensionCode, FixtureDimensionValueCode) then begin
+            DimensionValue.Init();
+            DimensionValue.Validate("Dimension Code", FixtureDimensionCode);
+            DimensionValue.Validate(Code, FixtureDimensionValueCode);
+            DimensionValue.Validate(Name, 'X owned WIP mandatory value');
+            DimensionValue.Insert(true);
+        end;
+
+        DefaultDimension.Init();
+        DefaultDimension.Validate("Table ID", Database::Job);
+        DefaultDimension.Validate("No.", '');
+        DefaultDimension.Validate("Dimension Code", FixtureDimensionCode);
+        DefaultDimension.Validate("Dimension Value Code", FixtureDimensionValueCode);
+        DefaultDimension.Validate("Value Posting", DefaultDimension."Value Posting"::"Code Mandatory");
+        DefaultDimension.Insert(true);
+    end;
+
+    local procedure CleanupOwnedJobDimensionFixture()
+    var
+        DefaultDimension: Record "Default Dimension";
+    begin
+        if FixtureDimensionCode = '' then
+            exit;
+        if DefaultDimension.Get(Database::Job, '', FixtureDimensionCode) then
+            DefaultDimension.Delete(true);
+        // Posted test entries may retain dimension-set references; keep the test-owned supporting value reusable.
+        FixtureDimensionCode := '';
+        FixtureDimensionValueCode := '';
+    end;
+
 }
