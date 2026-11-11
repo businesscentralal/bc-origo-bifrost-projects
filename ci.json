@@ -1,0 +1,12 @@
+{
+ "sha": "6ee85e99f970dbb09d7db5cac275c383e1ddc021",
+ "run": "https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/42975434184",
+ "conclusion": "success",
+ "testJob": {
+  "id": 130375634199,
+  "passed": 60,
+  "failedOrSkipped": 0,
+  "alWarnings": 0
+ },
+ "annotations": "AL-Go infra only: no previous release for upgrade/breaking-change check; runner label notice"
+}

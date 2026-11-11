@@ -1,0 +1,19 @@
+Microsoft (R) AL Compiler version 30.0.42.60748
+Copyright (C) Microsoft Corporation. All rights reserved
+
+Compilation started for project 'Bifrost Projects - Tests' containing '14' files at '06:51:48.411'.
+
+repo/test/src/ProjectsUIFixtureori.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+repo/test/src/ProjectsTestLibraryori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsScaffoldTestsori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsStatisticsTestsori.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsCopyTestsori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsStatusTestsori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsUsageTestsori.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsPermissionTestsori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsWIPTestsori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjectsWriteTestsori.Codeunit.al(5,1): info AA0477: The using statements are not in a sorted order.
+repo/test/test/ProjPostingGateTestsori.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+
+Compilation ended at '06:51:54.431'.
+

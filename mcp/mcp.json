@@ -1,0 +1,358 @@
+{
+ "sha": "6ee85e99f970dbb09d7db5cac275c383e1ddc021",
+ "tenant": "w129-36",
+ "company": "CRONUS International Ltd.",
+ "at": "2026-11-11T07:00:25.785Z",
+ "rows": [
+  {
+   "name": "seed Project.Create",
+   "expect": "Success",
+   "pass": true,
+   "response": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.Create",
+    "status": "Success",
+    "projectNo": "ZZNAR4Q"
+   }
+  },
+  {
+   "name": "help 1033",
+   "expect": "status/blocked allowed values; localized description",
+   "pass": true,
+   "harnessRetry": "first assertion expected comma string; contract returns allowed arrays",
+   "response": {
+    "catalogue": {
+     "name": "Projects.Project.SetStatus",
+     "isEnabled": true,
+     "filterTableNo": 167,
+     "description": "Changes project status or blocking through native Business Central validation.",
+     "selectionDescription": "Changes project status or blocking through native Business Central validation.",
+     "messageDirection": "Inbound",
+     "keywords": [
+      "project",
+      "job",
+      "task",
+      "planning line",
+      "status",
+      "block",
+      "unblock"
+     ],
+     "chargeable": true
+    },
+    "parameters": [
+     {
+      "name": "projectNo",
+      "type": "string",
+      "required": true,
+      "description": "Exact native project number.",
+      "maxLength": 20
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "description": "Native project status; send status or blocked.",
+      "allowed": [
+       "Planning",
+       "Quote",
+       "Open",
+       "Completed"
+      ]
+     },
+     {
+      "name": "blocked",
+      "type": "string",
+      "required": false,
+      "description": "None unblocks; Posting or All applies the native block.",
+      "allowed": [
+       "None",
+       "Posting",
+       "All"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "help 1039",
+   "expect": "status/blocked allowed values; localized description",
+   "pass": true,
+   "harnessRetry": "first assertion expected comma string; contract returns allowed arrays",
+   "response": {
+    "catalogue": {
+     "name": "Projects.Project.SetStatus",
+     "isEnabled": true,
+     "filterTableNo": 167,
+     "description": "Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.",
+     "selectionDescription": "Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.",
+     "messageDirection": "Inbound",
+     "keywords": [
+      "verkefni",
+      "verk",
+      "verkhluti",
+      "áætlunarlína",
+      "staða",
+      "loka",
+      "opna"
+     ],
+     "chargeable": true
+    },
+    "parameters": [
+     {
+      "name": "projectNo",
+      "type": "string",
+      "required": true,
+      "description": "Exact native project number.",
+      "maxLength": 20
+     },
+     {
+      "name": "status",
+      "type": "string",
+      "required": false,
+      "description": "Native project status; send status or blocked.",
+      "allowed": [
+       "Planning",
+       "Quote",
+       "Open",
+       "Completed"
+      ]
+     },
+     {
+      "name": "blocked",
+      "type": "string",
+      "required": false,
+      "description": "None unblocks; Posting or All applies the native block.",
+      "allowed": [
+       "None",
+       "Posting",
+       "All"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Planning\"} 1033",
+   "expect": "Success + DB readback Planning",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Planning\",\n        \"Blocked\": \" \",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Quote\"} 1039",
+   "expect": "Success + DB readback Quote",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Quote\",\n        \"Blocked\": \" \",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Open\"} 1033",
+   "expect": "Success + DB readback Open",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Open\",\n        \"Blocked\": \" \",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"blocked\":\"All\"} 1033",
+   "expect": "Success + DB readback All/Open",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Open\",\n        \"Blocked\": \"All\",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"blocked\":\"Posting\"} 1039",
+   "expect": "Success + DB readback Posting/Open",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Open\",\n        \"Blocked\": \"Posting\",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"blocked\":\"None\"} 1033",
+   "expect": "Success + DB readback Open",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Open\",\n        \"Blocked\": \" \",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Planning\",\"blocked\":\"All\"} 1039",
+   "expect": "Success + DB readback Planning/All",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Planning\",\n        \"Blocked\": \"All\",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Open\",\"blocked\":\"None\"} 1033",
+   "expect": "Success + DB readback Open",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Open\",\n        \"Blocked\": \" \",\n        \"Complete\": \"false\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  },
+  {
+   "name": "no change 1033",
+   "expect": "MissingParameter",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "MissingParameter",
+    "error": "Send status or blocked to change the project state.",
+    "parameter": "status",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+   }
+  },
+  {
+   "name": "no change 1039",
+   "expect": "MissingParameter Icelandic",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "MissingParameter",
+    "error": "Sendu status eða blocked til að breyta stöðu verkefnis.",
+    "parameter": "status",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+   }
+  },
+  {
+   "name": "invalid status 1033",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "InvalidParameterFormat",
+     "error": "A Projects parameter does not match its declared type, length or allowed values.",
+     "parameter": "status",
+     "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "invalid blocked 1039",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "InvalidParameterFormat",
+     "error": "Viðfang verkefnis passar ekki við skilgreinda gerð, lengd eða leyfileg gildi.",
+     "parameter": "blocked",
+     "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "unknown key 1033",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "UnknownParameter",
+     "error": "Parameter \"colour\" is not declared by this message type. Nothing was executed.",
+     "parameter": "colour",
+     "received": "red",
+     "expected": "declared request parameters",
+     "nextStep": "Remove this key or consult Help.Implementation.Get for the declared parameters.",
+     "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "missing project 1039",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "BusinessCentralError",
+     "error": "The Project does not exist. Identification fields and values: No.='ZZNAR4NONE'",
+     "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "Completed 1033",
+   "expect": "Success + Complete=true readback",
+   "pass": true,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4Q"
+    },
+    "readback": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Completed\",\n        \"Blocked\": \" \",\n        \"Complete\": \"true\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}"
+   }
+  }
+ ],
+ "seed": {
+  "customer": {
+   "number": "ZZNAR4C",
+   "id": "e00eb8ae-9cdd-f111-b6f8-00090ffe0001"
+  }
+ },
+ "finalState": "{\n  \"company\": \"CRONUS International Ltd.\",\n  \"table\": \"Job\",\n  \"skip\": 0,\n  \"take\": 50,\n  \"count\": 1,\n  \"records\": [\n    {\n      \"id\": \"73FEA4A0-9DDD-F111-B6F8-00090FFE0001\",\n      \"primaryKey\": {\n        \"No_\": \"ZZNAR4Q\"\n      },\n      \"fields\": {\n        \"Status\": \"Completed\",\n        \"Blocked\": \" \",\n        \"Complete\": \"true\",\n        \"StartingDate\": \"2026-01-01\"\n      }\n    }\n  ],\n  \"noOfRecords\": 1\n}",
+ "passed": 18,
+ "executed": 18,
+ "failed": 0,
+ "skipped": 0
+}

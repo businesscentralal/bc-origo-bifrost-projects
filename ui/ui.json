@@ -1,0 +1,5 @@
+{"sha":"6ee85e99f970dbb09d7db5cac275c383e1ddc021","tenant":"w129-36","page":"Project Card (88), fixture ZZNAR4Q self-created","executed":4,"passed":4,"failed":0,"skipped":0,
+"scenarios":[{"lcid":1033,"state":"Planning/Blocked All","file":"card-en-planning-all"},{"lcid":1033,"state":"Open/unblocked","file":"card-en-open-none"},{"lcid":1039,"state":"Planning/Blocked All","file":"card-is-planning-all"},{"lcid":1039,"state":"Open/unblocked","file":"card-is-open-none"}],
+"method":"State set via Projects.Project.SetStatus (1033/1039), Project Card displays saved Status and Blocked; final DB readback Open/blank (db-final.json). 1039 = Icelandic user language (shell Vinnudagsetning/Heim/Stjórna); W1 base-app field captions remain English.",
+"voided":"ui/void: two earlier 1039 captures discarded because the first language-switch script failed and could not prove the Icelandic shell; not counted.",
+"restored":"User language restored to English; card-en-final-open-none confirms. Browser closed."}

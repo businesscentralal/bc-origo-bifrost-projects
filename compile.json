@@ -1,0 +1,39 @@
+{
+ "sha": "6ee85e99f970dbb09d7db5cac275c383e1ddc021",
+ "compiler": "AL 30.0.42 /opt/devtools",
+ "results": [
+  {
+   "name": "projects-default (no IVT)",
+   "analyzers": [
+    "CodeCop",
+    "UICop",
+    "AppSourceCop"
+   ],
+   "errors": 0,
+   "warnings": 0,
+   "sha256": "593853c65d2dd3cc03a5c58484796ae3cec1018ee98e37117d5d33a55e3b3674"
+  },
+  {
+   "name": "projects (Test product, IVT)",
+   "analyzers": [
+    "CodeCop",
+    "UICop",
+    "AppSourceCop"
+   ],
+   "errors": 0,
+   "warnings": 0,
+   "sha256": "ae5a2291091f8a2f7afbd75b24a7a2034982d040d56c53aedb83e8370198d401"
+  },
+  {
+   "name": "projects-test",
+   "analyzers": [
+    "CodeCop",
+    "UICop"
+   ],
+   "errors": 0,
+   "warnings": 0,
+   "sha256": "913fff2d15737ef4a15369a9a262705067c5030f1ccf3e2433b77089fa6bd6d8",
+   "note": "test app analyzers per retained PR22 ruling (PTE 97100..97199)"
+  }
+ ]
+}

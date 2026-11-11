@@ -1,0 +1,24 @@
+{
+ "sha": "6ee85e99f970dbb09d7db5cac275c383e1ddc021",
+ "tenant": "w129-36 (local BC 29, BC290)",
+ "company": "CRONUS International Ltd.",
+ "runner": "bc_dev_run_tests mode=local page 130455 runner 130450",
+ "range": "97100..97199",
+ "sourceTestCount": 60,
+ "executed": 60,
+ "passed": 60,
+ "failed": 0,
+ "skipped": 0,
+ "durationMs": 18034,
+ "codeunits": {
+  "97100": 7,
+  "97101": 21,
+  "97103": 1,
+  "97104": 6,
+  "97105": 7,
+  "97106": 7,
+  "97107": 2,
+  "97108": 5,
+  "97109": 4
+ }
+}

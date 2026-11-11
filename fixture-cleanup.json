@@ -1,0 +1,27 @@
+{
+ "at": "2026-11-11T07:15:01.051Z",
+ "tenant": "w129-36",
+ "out": [
+  {
+   "ent": "projects",
+   "no": "ZZNAR4P",
+   "id": "d37bbabb-9cdd-f111-b6f8-00090ffe0001",
+   "deleteStatus": 204,
+   "remainingAfter": 0
+  },
+  {
+   "ent": "projects",
+   "no": "ZZNAR4Q",
+   "id": "73fea4a0-9ddd-f111-b6f8-00090ffe0001",
+   "deleteStatus": 204,
+   "remainingAfter": 0
+  },
+  {
+   "ent": "customers",
+   "no": "ZZNAR4C",
+   "id": "e00eb8ae-9cdd-f111-b6f8-00090ffe0001",
+   "deleteStatus": 204,
+   "remainingAfter": 0
+  }
+ ]
+}

@@ -1,0 +1,250 @@
+{
+ "sha": "6ee85e99f970dbb09d7db5cac275c383e1ddc021",
+ "tenant": "w129-36",
+ "company": "CRONUS International Ltd.",
+ "at": "2026-11-11T06:53:54.588Z",
+ "rows": [
+  {
+   "name": "seed Project.Create",
+   "expect": "Success",
+   "pass": true,
+   "response": {
+    "company": "CRONUS International Ltd.",
+    "messageType": "Projects.Project.Create",
+    "status": "Success",
+    "projectNo": "ZZNAR4P"
+   }
+  },
+  {
+   "name": "help 1033",
+   "expect": "contract lists status+blocked",
+   "pass": false,
+   "response": "MCP error -32602: Input validation error: Invalid arguments for tool get_message_type_help: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"messageType\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+  },
+  {
+   "name": "help 1039",
+   "expect": "contract lists status+blocked + Icelandic description",
+   "pass": false,
+   "response": "MCP error -32602: Input validation error: Invalid arguments for tool get_message_type_help: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"messageType\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+  },
+  {
+   "name": "SetStatus {\"status\":\"Planning\"} 1033",
+   "expect": "Success + DB readback Planning",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Quote\"} 1039",
+   "expect": "Success + DB readback Quote",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Open\"} 1033",
+   "expect": "Success + DB readback Open",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"blocked\":\"All\"} 1033",
+   "expect": "Success + DB readback All/Open",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"blocked\":\"Posting\"} 1039",
+   "expect": "Success + DB readback Posting/Open",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"blocked\":\"None\"} 1033",
+   "expect": "Success + DB readback Open",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Planning\",\"blocked\":\"All\"} 1039",
+   "expect": "Success + DB readback Planning/All",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "SetStatus {\"status\":\"Open\",\"blocked\":\"None\"} 1033",
+   "expect": "Success + DB readback Open",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  },
+  {
+   "name": "no change 1033",
+   "expect": "MissingParameter",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "MissingParameter",
+    "error": "Send status or blocked to change the project state.",
+    "parameter": "status",
+    "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+   }
+  },
+  {
+   "name": "no change 1039",
+   "expect": "MissingParameter Icelandic",
+   "pass": true,
+   "response": {
+    "status": "Error",
+    "code": "MissingParameter",
+    "error": "Sendu status eða blocked til að breyta stöðu verkefnis.",
+    "parameter": "status",
+    "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+   }
+  },
+  {
+   "name": "invalid status 1033",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "InvalidParameterFormat",
+     "error": "A Projects parameter does not match its declared type, length or allowed values.",
+     "parameter": "status",
+     "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "invalid blocked 1039",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "InvalidParameterFormat",
+     "error": "Viðfang verkefnis passar ekki við skilgreinda gerð, lengd eða leyfileg gildi.",
+     "parameter": "blocked",
+     "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "unknown key 1033",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "UnknownParameter",
+     "error": "Parameter \"colour\" is not declared by this message type. Nothing was executed.",
+     "parameter": "colour",
+     "received": "red",
+     "expected": "declared request parameters",
+     "nextStep": "Remove this key or consult Help.Implementation.Get for the declared parameters.",
+     "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.Project.SetStatus\". Always read the help before calling a message type."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "missing project 1039",
+   "expect": "Error, project unchanged",
+   "pass": true,
+   "response": {
+    "resp": {
+     "status": "Error",
+     "code": "BusinessCentralError",
+     "error": "The Project does not exist. Identification fields and values: No.='ZZNAR4NONE'",
+     "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.Project.SetStatus\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+    },
+    "unchanged": true
+   }
+  },
+  {
+   "name": "Completed 1033",
+   "expect": "Success + Complete=true readback",
+   "pass": false,
+   "response": {
+    "resp": {
+     "company": "CRONUS International Ltd.",
+     "messageType": "Projects.Project.SetStatus",
+     "status": "Success",
+     "projectNo": "ZZNAR4P"
+    },
+    "readback": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+   }
+  }
+ ],
+ "seed": {
+  "customer": {
+   "number": "ZZNAR4C",
+   "id": "e00eb8ae-9cdd-f111-b6f8-00090ffe0001"
+  }
+ },
+ "finalState": "MCP error -32602: Input validation error: Invalid arguments for tool get_records: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+}
