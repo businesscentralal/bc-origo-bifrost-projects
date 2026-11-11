@@ -6,6 +6,9 @@
 
 - Complete copy option and rollback coverage for native Copy Job (70009214–70009215, tests97104/97113): inclusive task selection, Budget/Billable filtering, prices, quantities, dimensions, reversed ranges, customer validation and restricted-role denial.
 - Clarify the README copy contract and use a descriptive response-field variable in the copy adapter; no public contract removed.
+### Tests (2026-11-09)
+
+- Make WIP tests (97106) create and remove their own blank-No. Job default dimension, independent of CRONUS demo data (#29).
 
 ### Tests (2026-11-10)
 
