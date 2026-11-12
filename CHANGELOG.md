@@ -3,6 +3,7 @@
 ## [28.1.0.0] - 2026-11-10
 
 - Projects #12: keep all allocation planning filters loaded (codeunit 70009231) and verify positive resource-group filtering (test codeunit 97120).
+- Projects #12 verification repair: usage test fixtures choose ledger numbers not already referenced by native usage links, preserving existing rows on reused tenants; regression coverage in test codeunit 97109.
 
 ### Added (2026-10-21)
 
