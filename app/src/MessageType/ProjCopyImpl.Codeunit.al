@@ -1,8 +1,8 @@
 namespace Origo.Bifrost.Projects;
 
-using Origo.Bifrost;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Planning;
+using Origo.Bifrost;
 
 /// <summary>Implements the version 1 Projects.Project.Copy contract.</summary>
 codeunit 70009215 "Proj. Copy Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
@@ -77,20 +77,20 @@ codeunit 70009215 "Proj. Copy Impl ori" implements "Msg Interface ori", "Msg Dis
     procedure GetResponse(var Response: JsonObject): Boolean
     var
         Fields: JsonArray;
-        Field: JsonObject;
+        ResponseField: JsonObject;
     begin
-        Field.Add('name', 'status');
-        Field.Add('type', 'string');
-        Field.Add('description', 'Success after the entire native operation succeeds.');
-        Fields.Add(Field);
-        Clear(Field);
-        Field.Add('name', 'projectNo');
-        Field.Add('type', 'string');
-        Fields.Add(Field);
-        Clear(Field);
-        Field.Add('name', 'sourceProjectNo');
-        Field.Add('type', 'string');
-        Fields.Add(Field);
+        ResponseField.Add('name', 'status');
+        ResponseField.Add('type', 'string');
+        ResponseField.Add('description', 'Success after the entire native operation succeeds.');
+        Fields.Add(ResponseField);
+        Clear(ResponseField);
+        ResponseField.Add('name', 'projectNo');
+        ResponseField.Add('type', 'string');
+        Fields.Add(ResponseField);
+        Clear(ResponseField);
+        ResponseField.Add('name', 'sourceProjectNo');
+        ResponseField.Add('type', 'string');
+        Fields.Add(ResponseField);
         Response.Add('contentType', 'text/json');
         Response.Add('fields', Fields);
         exit(true);
