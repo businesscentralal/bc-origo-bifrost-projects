@@ -1,0 +1,147 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "owner": "worker-9",
+  "tenant": "w129-19",
+  "compile": {
+    "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+    "compiledAt": "2026-11-12T08:15:45.520254+00:00",
+    "results": [
+      {
+        "name": "projects-default",
+        "errors": 0,
+        "warnings": 0,
+        "analyzers": [
+          "CodeCop",
+          "UICop",
+          "AppSourceCop"
+        ],
+        "artifact": "/workspace/private/projects22-handoff-20261112T0812/build/projects-default.app",
+        "sha256": "bab6f1b0235fc331dfbc8e58605182ca7e530823009fbd3907c3774142242d85"
+      },
+      {
+        "name": "projects",
+        "errors": 0,
+        "warnings": 0,
+        "analyzers": [
+          "CodeCop",
+          "UICop",
+          "AppSourceCop"
+        ],
+        "artifact": "/workspace/private/projects22-handoff-20261112T0812/build/projects.app",
+        "sha256": "7e44d6555bcb1f5468ccc266240b6102dfa0bf7d5439176939bb8e1782ee1784"
+      },
+      {
+        "name": "projects-test",
+        "errors": 0,
+        "warnings": 0,
+        "analyzers": [
+          "CodeCop",
+          "UICop"
+        ],
+        "artifact": "/workspace/private/projects22-handoff-20261112T0812/build/projects-test.app",
+        "sha256": "295164f571ce921e7ff9fdde82e2d28fc8440b738369536e18c789dcff85f539"
+      }
+    ],
+    "testAppPTERuling": "CodeCop/UICop per explicit PR22 PTE ruling; no added suppression"
+  },
+  "foundation": [
+    {
+      "name": "foundation",
+      "sha": "35f0efa31b85402fe5628ae764bc5ee2209664e2",
+      "version": "28.0.13.0",
+      "artifact": "/workspace/private/quality32-repair-20261110/build/foundation.app",
+      "sha256": "2817a71e5b58b688c60b9dfe20bb97c6aaf18c0cf73dab0cd10166b179cf1d45",
+      "builtBy": "worker-9",
+      "tenant": "w129-19",
+      "scope": "Tenant",
+      "manifest": {
+        "Id": "7505e808-6e52-4b96-a328-82573391297a",
+        "Name": "Bifrost Foundation",
+        "Publisher": "Origo",
+        "Version": "28.0.13.0",
+        "CompatibilityId": "0.0.0.0"
+      },
+      "packageId": "942961b1-cfe3-43d8-b717-56397ec12e1b",
+      "observedSha256": "2817a71e5b58b688c60b9dfe20bb97c6aaf18c0cf73dab0cd10166b179cf1d45",
+      "originOwner": "worker-9",
+      "reuseReason": "Own locally compiled dependency packages previously used on w129-19; tenant currently has no Origo packages."
+    },
+    {
+      "name": "foundation-test",
+      "sha": "35f0efa31b85402fe5628ae764bc5ee2209664e2",
+      "version": "28.0.13.0",
+      "artifact": "/workspace/private/quality32-repair-20261110/build/foundation-test.app",
+      "sha256": "064e6123e978be03f185b2e0a5a15013b543661cb6b821fbd6228a4127abde99",
+      "builtBy": "worker-9",
+      "tenant": "w129-19",
+      "scope": "Tenant",
+      "manifest": {
+        "Id": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+        "Name": "Bifrost Foundation - Tests",
+        "Publisher": "Origo",
+        "Version": "28.0.13.0",
+        "CompatibilityId": "0.0.0.0"
+      },
+      "packageId": "c0693a8f-7592-489b-afe2-955d902156c1",
+      "observedSha256": "064e6123e978be03f185b2e0a5a15013b543661cb6b821fbd6228a4127abde99",
+      "originOwner": "worker-9",
+      "reuseReason": "Own locally compiled dependency packages previously used on w129-19; tenant currently has no Origo packages."
+    }
+  ],
+  "installedPackages": [
+    {
+      "@odata.etag": "W/\"JzE5OzkwODI1MjQzMzc3Mzc2NDI5NDExOzAwOyc=\"",
+      "packageId": "942961b1-cfe3-43d8-b717-56397ec12e1b",
+      "id": "7505e808-6e52-4b96-a328-82573391297a",
+      "displayName": "Bifrost Foundation",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 0,
+      "versionBuild": 13,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    },
+    {
+      "@odata.etag": "W/\"JzE4OzIzMzk2NTUxNzIwNzkzMjI4NTE7MDA7Jw==\"",
+      "packageId": "c0693a8f-7592-489b-afe2-955d902156c1",
+      "id": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+      "displayName": "Bifrost Foundation - Tests",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 0,
+      "versionBuild": 13,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    },
+    {
+      "@odata.etag": "W/\"JzIwOzE0OTQ4MzA3MjQyMzEyNjMzMDQ2MTswMDsn\"",
+      "packageId": "6ece3afc-331f-42e4-862f-c412120a6aeb",
+      "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+      "displayName": "Bifrost Projects",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 1,
+      "versionBuild": 0,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    },
+    {
+      "@odata.etag": "W/\"JzE5OzM3NzgyNTIyNzI0Nzc0MjQ5MjgxOzAwOyc=\"",
+      "packageId": "ab819eab-2832-462f-b407-8e190b715233",
+      "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+      "displayName": "Bifrost Projects - Tests",
+      "publisher": "Origo",
+      "versionMajor": 28,
+      "versionMinor": 1,
+      "versionBuild": 0,
+      "versionRevision": 0,
+      "isInstalled": true,
+      "publishedAs": " Dev"
+    }
+  ],
+  "publicationScope": "Tenant specified explicitly in every /dev/apps publish; Automation API labels dev extensions as Dev, not Global.",
+  "foundationSymbolMatchesPublishedArtifact": true
+}

@@ -1,0 +1,48 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "standardsSnapshot": "52ba4754cfd614e4a7c50af87b30149b18b313e3 captured 2026-11-02, not freshly fetched",
+  "target": "main at 8858f5fe153c57699325b1206539fe4146a894af",
+  "netDiff": "One added no-delete catalogue assertion in codeunit 97100; product exactly equals main.",
+  "tier": "Full",
+  "layer1": {
+    "files": 16,
+    "summary": {
+      "ready": false,
+      "total": 23,
+      "passed": 16,
+      "failed": 7
+    },
+    "scanScope": "Full test folder to avoid invalid zero-file root app scan",
+    "privateToolAdaptation": "Replaced null Windows USERPROFILE fallback with canonical standards path; no repository/shared tool changes.",
+    "findings": {
+      "one_statement_per_line": 2,
+      "app_json": 1,
+      "changelog": 1,
+      "today_vs_workdate": 1,
+      "page_code_minimal": 4,
+      "xml_doc_comments": 64,
+      "read_isolation": 28
+    },
+    "triage": "Inherited test-folder style/docs/read-isolation findings; signature semicolons are false positives; test manifest telemetry/test-local CHANGELOG are folder-context findings. No finding introduced by net assertion."
+  },
+  "layer2": {
+    "compile": "Default product without IVT, test-enabled product and test app all 0 errors/0 warnings",
+    "ids": "Changed codeunit 97100 within assigned 97100..97199; no object additions",
+    "publicApi": "No product change or public API removal versus main",
+    "translations": "Product XLF unchanged versus main; assertion is test-only",
+    "tests": "Full configured suite 61/61/0/0 on own tenant; independent CI 61/61/0/0 with matching tree. Catalogue test verifies localized discovery for 15 owned types and absence of deleted type.",
+    "permissions": "No new permission or object",
+    "docs": "No newly changed product contract; existing main-only dead Delete wording/guard advisories retained for independent follow-up",
+    "logic": "One assertion, no behavioral production code; no additional source defect identified",
+    "gaps": [
+      "Independent Claude current-head verification and open pr:amend disposition pending.",
+      "Full-folder inherited main findings are disclosed; no app-wide readiness claim."
+    ]
+  },
+  "lessonsApplied": [
+    "projects22-stale-evidence-amend-worker10-20261111",
+    "projects22-claude6755796488-unreleased-delete-20261110-worker8",
+    "projects-scaffold-40737b4-native-tests-20261016"
+  ],
+  "overall": "Scoped developer verification complete; independent Claude receipt/amendment closure pending. Full-folder inherited findings disclosed; no all-checks-green claim."
+}

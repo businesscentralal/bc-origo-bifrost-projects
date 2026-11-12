@@ -1,0 +1,14 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "syntheticMerge": "029b465c5485f7413ce4adea7dbea5784c1b0bdb",
+  "candidateTree": "aef4e39abad47c3cc5cbaaa6353ba4f0a7cb8a8e",
+  "ciTree": "aef4e39abad47c3cc5cbaaa6353ba4f0a7cb8a8e",
+  "treesEqual": true,
+  "runUrl": "https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/43176976885",
+  "executed": 61,
+  "passed": 61,
+  "failed": 0,
+  "skipped": 0,
+  "evidence": "ci-test.log summary 08:09:00.4314538Z",
+  "cleanup": "CI cleanup job success 131055546104"
+}

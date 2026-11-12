@@ -1,0 +1,29 @@
+{
+  "tenant": "w129-19",
+  "verified": true,
+  "ownedPackages": [
+    {
+      "id": "7505e808-6e52-4b96-a328-82573391297a",
+      "packageId": "942961b1-cfe3-43d8-b717-56397ec12e1b",
+      "name": "Bifrost Foundation"
+    },
+    {
+      "id": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+      "packageId": "c0693a8f-7592-489b-afe2-955d902156c1",
+      "name": "Bifrost Foundation - Tests"
+    },
+    {
+      "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+      "packageId": "6ece3afc-331f-42e4-862f-c412120a6aeb",
+      "name": "Bifrost Projects"
+    },
+    {
+      "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+      "packageId": "ab819eab-2832-462f-b407-8e190b715233",
+      "name": "Bifrost Projects - Tests"
+    }
+  ],
+  "remainingOwnedApps": 0,
+  "globalMicrosoftAppsRemaining": 84,
+  "finishedAt": "2026-11-12T08:28:38.044Z"
+}

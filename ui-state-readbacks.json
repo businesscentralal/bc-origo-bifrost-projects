@@ -1,0 +1,32 @@
+[
+  {
+    "evidence": "ui-en-setup-count.json",
+    "status": "Success",
+    "count": 1,
+    "enabled": "true"
+  },
+  {
+    "evidence": "ui-en-disabled-state.json",
+    "status": "Success",
+    "count": 1,
+    "enabled": "false"
+  },
+  {
+    "evidence": "ui-is-enabled-state.json",
+    "status": "Success",
+    "count": 1,
+    "enabled": "true"
+  },
+  {
+    "evidence": "ui-is-disabled-state.json",
+    "status": "Success",
+    "count": 1,
+    "enabled": "false"
+  },
+  {
+    "evidence": "ui-final-enabled-state.json",
+    "status": "Success",
+    "count": 1,
+    "enabled": "true"
+  }
+]

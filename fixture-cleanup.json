@@ -1,0 +1,35 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "tenant": "w129-19",
+  "verified": true,
+  "checks": [
+    {
+      "name": "jobs",
+      "remaining": 0,
+      "evidence": "fixture-readback-jobs.json"
+    },
+    {
+      "name": "tasks",
+      "remaining": 0,
+      "evidence": "fixture-readback-tasks.json"
+    },
+    {
+      "name": "planning",
+      "remaining": 0,
+      "evidence": "fixture-readback-planning.json"
+    },
+    {
+      "name": "customers",
+      "remaining": 0,
+      "evidence": "fixture-readback-customers.json"
+    },
+    {
+      "name": "dimensions",
+      "remainingOwnedOrBlankJobRows": 0,
+      "existingDemoRowsPreserved": 7,
+      "evidence": "fixture-readback-dimensions-corrected.json"
+    }
+  ],
+  "method": "Full native suite test-runner isolation; actual zero record readbacks. Supplementary MCP probes create no business fixtures.",
+  "probeCorrection": "Initial const(quoted empty) filter did not mean blank; replaced with Table ID=167 and inspected all returned No. and dimension identifiers. Initial probe not used as cleanup proof."
+}

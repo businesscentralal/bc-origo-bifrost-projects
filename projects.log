@@ -1,0 +1,29 @@
+Microsoft (R) AL Compiler version 30.0.42.60748
+Copyright (C) Microsoft Corporation. All rights reserved
+
+Compilation started for project 'Bifrost Projects' containing '33' files at '08:15:25.192'.
+
+private/projects22-handoff-20261112T0812/build/app/src/Contract/ProjectsContract.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/Contract/ProjectsInput.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjUsageLinkImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjWIPCalcImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjWIPGetImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjWIPPostImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjBudgetActualImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjPlanUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjStatisticsImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjStatusImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjTaskCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjTaskUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjUsageGetImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/MessageType/ProjPlanCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/Process/ProjectsStatistics.Codeunit.al(3,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/Process/ProjectsUsage.Codeunit.al(3,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/Process/ProjectsWIP.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/Process/ProjectsWrite.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+private/projects22-handoff-20261112T0812/build/app/src/Process/ProjectsWriteProcess.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+
+Compilation ended at '08:15:35.424'.
+

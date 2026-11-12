@@ -1,0 +1,69 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "tenant": "w129-19",
+  "tool": "Playwright MCP",
+  "lcids": [
+    1033,
+    1039
+  ],
+  "executed": 4,
+  "passed": 4,
+  "failed": 0,
+  "skipped": 0,
+  "verified": true,
+  "scenarios": [
+    {
+      "lcid": 1033,
+      "name": "Projects Setup disabled persists across reload",
+      "status": "PASS",
+      "storedEnabled": false,
+      "screenshot": "ui-en-disabled-final.png",
+      "stateEvidence": "ui-en-disabled-state.json"
+    },
+    {
+      "lcid": 1033,
+      "name": "Projects Setup enabled persists across reload",
+      "status": "PASS",
+      "storedEnabled": true,
+      "screenshot": "ui-en-enabled-final.png",
+      "stateEvidence": "ui-en-setup-count.json"
+    },
+    {
+      "lcid": 1039,
+      "name": "Projects Setup disabled persists across reload",
+      "status": "PASS",
+      "storedEnabled": false,
+      "screenshot": "ui-is-disabled-final.png",
+      "stateEvidence": "ui-is-disabled-state.json"
+    },
+    {
+      "lcid": 1039,
+      "name": "Projects Setup enabled persists across reload",
+      "status": "PASS",
+      "storedEnabled": true,
+      "screenshot": "ui-is-enabled-final.png",
+      "stateEvidence": "ui-is-enabled-state.json"
+    }
+  ],
+  "scope": "Setup persistence and localization smoke for one-line test-only diff; not a rerun of all historical product UI ACs.",
+  "priorDiagnosticAttempts": [
+    {
+      "kind": "tool-name",
+      "result": "browser_run_code unavailable; used exposed browser_run_code_unsafe; no action executed on failed call."
+    },
+    {
+      "kind": "premature-read",
+      "result": "Immediate isChecked returned false before binding; later loaded snapshot and DB showed true. Final checks wait for load and independently read stored state."
+    },
+    {
+      "kind": "navigation-race",
+      "result": "Back followed immediately by goto produced ERR_ABORTED; recovered by fresh navigation and readback without repeating saved write."
+    },
+    {
+      "kind": "record-filter",
+      "result": "Initial quoted-empty const filter selected no rows; final state uses Enabled boolean filter and exact singleton count1."
+    }
+  ],
+  "languageRestore": "Verified 1033: loaded English Settings/Enabled controls",
+  "enabledRestore": "Verified true by UI reload and stored-record readback"
+}

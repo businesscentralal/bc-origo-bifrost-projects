@@ -1,0 +1,310 @@
+{
+  "1033": {
+    "catalogueStatus": "Success",
+    "projects": [
+      {
+        "name": "Projects.ProjectJournal.Create",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Adds project journal lines to an existing batch. Without lines, inserts blank lines with the BC defaults.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Check",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Validates a project journal batch and returns readiness status.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Post",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Posts a project journal batch and returns posting statistics.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.PreviewPost",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Simulates posting a project journal batch and returns the resulting ledger entries (Job Ledger Entry, Item Ledger Entry, G/L Entry where applicable) without committing changes.",
+        "messageDirection": "Both"
+      },
+      {
+        "name": "Projects.ProjectJournal.Update",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Deletes selected project journal lines from one existing batch and optionally renumbers its documents.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Create",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Creates project headers with optional tasks and planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Update",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Updates project headers with optional tasks and planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Create",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Creates project tasks with optional planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Update",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Updates project tasks with optional planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Create",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Creates project planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Update",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Updates project planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Copy",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Copies a project with a task range and budget or billable planning lines.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.SetStatus",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Changes project status or blocking through native Business Central validation.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Get",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Reads calculated and posted project WIP entries.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.WIP.Calculate",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Calculates project work in progress through the native WIP engine.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Post",
+        "isEnabled": true,
+        "filterTableNo": 1005,
+        "description": "Posts calculated project WIP to the general ledger through native BC posting.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Statistics.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Returns native project budget, actual, billable and invoiced statistics in LCY.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.BudgetVsActual.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Returns native project totals and posting-task budget versus actual statistics in LCY.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Get",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Reads project task usage links and remaining planning quantities.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Link",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Links posted project usage to a planning line or creates planning lines from usage through native BC.",
+        "messageDirection": "Outbound"
+      }
+    ],
+    "deleteAbsent": true,
+    "refusal": {
+      "company": "CRONUS International Ltd.",
+      "messageType": "Projects.PlanningLine.Delete",
+      "error": {
+        "code": "Application_DialogException",
+        "message": "Unknown message type 'Projects.PlanningLine.Delete'. Use Help.MessageTypes.Get to list the available types.  CorrelationId:  58578052-4b0f-4ed9-b0c5-db4810b0fcc9."
+      }
+    }
+  },
+  "1039": {
+    "catalogueStatus": "Success",
+    "projects": [
+      {
+        "name": "Projects.ProjectJournal.Create",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Bætir línum verkefnafærslubókar við fyrirliggjandi keyrslu. Án lína eru tómar línur settar inn með sjálfgildum Business Central.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Check",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Sannreynir keyrslu verkefnafærslubókar og skilar stöðu um hvort hún sé tilbúin.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.Post",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Bókar keyrslu verkefnafærslubókar og skilar tölum um bókunina.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.ProjectJournal.PreviewPost",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Hermir bókun keyrslu verkefnafærslubókar og skilar færslum sem mynduðust (Job Ledger Entry, Item Ledger Entry og G/L Entry þar sem við á) án þess að vista breytingar.",
+        "messageDirection": "Both"
+      },
+      {
+        "name": "Projects.ProjectJournal.Update",
+        "isEnabled": true,
+        "filterTableNo": 237,
+        "description": "Eyðir völdum línum verkefnafærslubókar úr einni fyrirliggjandi keyrslu og endurnúmerar skjöl hennar ef óskað er.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Create",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Býr til verkefni, valfrjálsa verkhluta og áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Update",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Uppfærir verkefni, valfrjálsa verkhluta og áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Create",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Býr til verkhluta og valfrjálsar áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Task.Update",
+        "isEnabled": true,
+        "filterTableNo": 1001,
+        "description": "Uppfærir verkhluta og valfrjálsar áætlunarlínur.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Create",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Býr til áætlunarlínur verkefna.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.PlanningLine.Update",
+        "isEnabled": true,
+        "filterTableNo": 1003,
+        "description": "Uppfærir áætlunarlínur verkefna.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.Copy",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Afritar verkefni með bili verkhluta og áætlunar- eða reikningsfærslulínum.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Project.SetStatus",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Get",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Les reiknaðar og bókaðar færslur verka í vinnslu.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.WIP.Calculate",
+        "isEnabled": true,
+        "filterTableNo": 1004,
+        "description": "Reiknar verk í vinnslu með innbyggðum verkefnisreikningi.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.WIP.Post",
+        "isEnabled": true,
+        "filterTableNo": 1005,
+        "description": "Bókar reiknuð verk í vinnslu í fjárhag með innbyggðri bókun BC.",
+        "messageDirection": "Inbound"
+      },
+      {
+        "name": "Projects.Statistics.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Skilar innbyggðri áætlun, raunkostnaði, reikningshæfum og reikningsfærðum fjárhæðum verkefnis í heimamynt.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.BudgetVsActual.Get",
+        "isEnabled": true,
+        "filterTableNo": 167,
+        "description": "Skilar innbyggðum heildarfjárhæðum verkefnis og samanburði áætlunar og rauntalna eftir verkhlutum í heimamynt.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Get",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Les notkunartengingar verkhluta og eftirstandandi magn áætlunarlína.",
+        "messageDirection": "Outbound"
+      },
+      {
+        "name": "Projects.Usage.Link",
+        "isEnabled": true,
+        "filterTableNo": 1020,
+        "description": "Tengir bókaða verkefnanotkun við áætlunarlínu eða stofnar áætlunarlínur úr notkun með innbyggðu BC.",
+        "messageDirection": "Outbound"
+      }
+    ],
+    "deleteAbsent": true,
+    "refusal": {
+      "company": "CRONUS International Ltd.",
+      "messageType": "Projects.PlanningLine.Delete",
+      "error": {
+        "code": "Application_DialogException",
+        "message": "Unknown message type 'Projects.PlanningLine.Delete'. Use Help.MessageTypes.Get to list the available types.  CorrelationId:  9b9f36f1-0145-48f1-ac2b-9f5d5682fb34."
+      }
+    }
+  }
+}

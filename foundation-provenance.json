@@ -1,0 +1,44 @@
+[
+  {
+    "name": "foundation",
+    "sha": "35f0efa31b85402fe5628ae764bc5ee2209664e2",
+    "version": "28.0.13.0",
+    "artifact": "/workspace/private/quality32-repair-20261110/build/foundation.app",
+    "sha256": "2817a71e5b58b688c60b9dfe20bb97c6aaf18c0cf73dab0cd10166b179cf1d45",
+    "builtBy": "worker-9",
+    "tenant": "w129-19",
+    "scope": "Tenant",
+    "manifest": {
+      "Id": "7505e808-6e52-4b96-a328-82573391297a",
+      "Name": "Bifrost Foundation",
+      "Publisher": "Origo",
+      "Version": "28.0.13.0",
+      "CompatibilityId": "0.0.0.0"
+    },
+    "packageId": "942961b1-cfe3-43d8-b717-56397ec12e1b",
+    "observedSha256": "2817a71e5b58b688c60b9dfe20bb97c6aaf18c0cf73dab0cd10166b179cf1d45",
+    "originOwner": "worker-9",
+    "reuseReason": "Own locally compiled dependency packages previously used on w129-19; tenant currently has no Origo packages."
+  },
+  {
+    "name": "foundation-test",
+    "sha": "35f0efa31b85402fe5628ae764bc5ee2209664e2",
+    "version": "28.0.13.0",
+    "artifact": "/workspace/private/quality32-repair-20261110/build/foundation-test.app",
+    "sha256": "064e6123e978be03f185b2e0a5a15013b543661cb6b821fbd6228a4127abde99",
+    "builtBy": "worker-9",
+    "tenant": "w129-19",
+    "scope": "Tenant",
+    "manifest": {
+      "Id": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+      "Name": "Bifrost Foundation - Tests",
+      "Publisher": "Origo",
+      "Version": "28.0.13.0",
+      "CompatibilityId": "0.0.0.0"
+    },
+    "packageId": "c0693a8f-7592-489b-afe2-955d902156c1",
+    "observedSha256": "064e6123e978be03f185b2e0a5a15013b543661cb6b821fbd6228a4127abde99",
+    "originOwner": "worker-9",
+    "reuseReason": "Own locally compiled dependency packages previously used on w129-19; tenant currently has no Origo packages."
+  }
+]

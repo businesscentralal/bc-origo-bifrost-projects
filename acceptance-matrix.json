@@ -1,0 +1,25 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "pr": "https://github.com/businesscentralal/bc-origo-bifrost-projects/pull/22",
+  "executor": "Litr (worker-9)",
+  "netDiff": "One additional catalogue assertion in 97100; product, permissions, XLF, help equal current main 8858f5fe. Main integration imports copy acceptance tests; no new source edit by Litr.",
+  "matrix": [
+    {
+      "criterion": "Remove unreleased PlanningLine.Delete and prevent registration regression",
+      "status": "PASS: source removal already on main, negative assertion verified in 61-test suite; bilingual actual MCP absence/refusal."
+    },
+    {
+      "criterion": "Exact-head developer compile and full-suite evidence",
+      "status": "PASS: Default/no-IVT and test-enabled app plus tests0errors0warnings; local61/61/0/0 and tree-matched CI61/61/0/0."
+    },
+    {
+      "criterion": "Bilingual Web Client setup persistence and cleanup",
+      "status": "PASS: UI4/4 in1033/1039, native fixture readbacks zero, four owned packages uninstalled with data deletion and unpublished; remaining owned apps0. English restored."
+    },
+    {
+      "criterion": "Current-head independent Claude receipt and open amendment disposition",
+      "status": "PENDING: latest Claude receipt ead9642, latest worker AMEND a9e1597; developer cannot clear verdict."
+    }
+  ],
+  "widerFindings": "Inherited full test-folder scan16/23 with7 categories flagged; no new diff finding. Main-only P29MAND idempotence and dead Delete wording/guards remain reviewer advisories for separate scope. No AppSource-wide readiness claim."
+}

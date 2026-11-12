@@ -1,0 +1,663 @@
+{
+  "total_al_files": 16,
+  "version": "28.1.0.0",
+  "checks": {
+    "hardcoded_values": {
+      "findings": [],
+      "pass": true
+    },
+    "with_statements": {
+      "findings": [],
+      "pass": true
+    },
+    "caption_translation": {
+      "pass": true,
+      "skipped": "single-locale project",
+      "findings": []
+    },
+    "modernization": {
+      "findings": [],
+      "pass": true
+    },
+    "confirm_in_page": {
+      "findings": [],
+      "pass": true
+    },
+    "event_subscriber_placement": {
+      "findings": [],
+      "pass": true
+    },
+    "format_evaluate_enum": {
+      "findings": [],
+      "pass": true
+    },
+    "try_prefix_convention": {
+      "findings": [],
+      "pass": true
+    },
+    "one_statement_per_line": {
+      "findings": [
+        {
+          "line": 299,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "local procedure SeedRequiredDimensions(ProjectNo: Code[20]; TaskNo: Code[20]; ExpectDimensionPrompt: Boolean)"
+        },
+        {
+          "line": 164,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "text": "local procedure SeedAmounts(ProjectNo: Code[20]; TaskNo: Code[20]; LineNo: Integer; Type: Enum \"Job Planning Line Type\"; Cost: Decimal; Price: Decimal)"
+        }
+      ],
+      "pass": false
+    },
+    "set_load_fields": {
+      "pass": true,
+      "advisory": "Loops without SetLoadFields - consider it only for wide tables; not a gate failure",
+      "findings": [
+        {
+          "line": 310,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Required.FindSet() then",
+          "severity": "low"
+        },
+        {
+          "line": 395,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Dimension.FindSet() then",
+          "severity": "low"
+        }
+      ]
+    },
+    "app_json": {
+      "findings": [
+        "Warning: no applicationInsightsKey/connectionString"
+      ],
+      "pass": false
+    },
+    "changelog": {
+      "findings": [
+        "No entry for version 28.1.0.0"
+      ],
+      "pass": false
+    },
+    "commit_in_loop": {
+      "findings": [],
+      "pass": true
+    },
+    "format_guid": {
+      "findings": [],
+      "pass": true
+    },
+    "global_variables": {
+      "findings": [],
+      "pass": true
+    },
+    "object_naming": {
+      "findings": [],
+      "pass": true
+    },
+    "today_vs_workdate": {
+      "findings": [
+        {
+          "line": 33,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "text": "Assert.AreEqual(Today(), Project.\"Creation Date\", 'Native OnInsert must run');"
+        }
+      ],
+      "pass": false
+    },
+    "namespace": {
+      "findings": [],
+      "pass": true
+    },
+    "page_code_minimal": {
+      "findings": [
+        {
+          "line": 32,
+          "file": "ProjectsUIFixturesori.Page.al",
+          "issue": "Action trigger has 4 lines of logic (max 2: one call + optional guard)",
+          "action": "CreateMcp1033",
+          "logic_lines": 4
+        },
+        {
+          "line": 48,
+          "file": "ProjectsUIFixturesori.Page.al",
+          "issue": "Action trigger has 4 lines of logic (max 2: one call + optional guard)",
+          "action": "CreateMcp1039",
+          "logic_lines": 4
+        },
+        {
+          "line": 64,
+          "file": "ProjectsUIFixturesori.Page.al",
+          "issue": "Action trigger has 3 lines of logic (max 2: one call + optional guard)",
+          "action": "CreateFixtures",
+          "logic_lines": 3
+        },
+        {
+          "line": 35,
+          "file": "ProjectsWriteFixturesori.Page.al",
+          "issue": "Action trigger has 10 lines of logic (max 2: one call + optional guard)",
+          "action": "SeedMasters",
+          "logic_lines": 10
+        }
+      ],
+      "pass": false
+    },
+    "data_classification": {
+      "findings": [],
+      "pass": true
+    },
+    "reserved_var_names": {
+      "findings": [],
+      "pass": true
+    },
+    "xml_doc_comments": {
+      "findings": [
+        {
+          "line": 14,
+          "file": "ProjCopyPermTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ReadRole_CopyDenied"
+        },
+        {
+          "line": 22,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_CopyTaskRange_CreatesOnlySelectedTasks"
+        },
+        {
+          "line": 63,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_DefaultCopy_PreservesDescriptionAndCustomer"
+        },
+        {
+          "line": 83,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ExistingTarget_ReturnsNativeError"
+        },
+        {
+          "line": 103,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_BadBooleanAndTarget_CollectBothErrors"
+        },
+        {
+          "line": 119,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_MissingSource_DoesNotCreateTarget"
+        },
+        {
+          "line": 135,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ReversedTaskRange_DoesNotCreateTarget"
+        },
+        {
+          "line": 160,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_InvalidCustomer_RollsBackTarget"
+        },
+        {
+          "line": 191,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_CopyPlanOptions_FiltersQuantityAndDimensions"
+        },
+        {
+          "line": 254,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "procedure": "DimensionConfirmHandler"
+        },
+        {
+          "line": 19,
+          "file": "ProjectsPermissionTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ReadRole_WithoutNativeRights_Denied"
+        },
+        {
+          "line": 21,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_MissingSetup_EnabledWithoutInsert"
+        },
+        {
+          "line": 36,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_DisabledSetup_ReturnsContractError"
+        },
+        {
+          "line": 59,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_SetupPageToggle_PersistsSwitch"
+        },
+        {
+          "line": 77,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_GenericSetupWrite_IsRestricted"
+        },
+        {
+          "line": 86,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC02_FifteenTypes_HaveLocalizedDiscovery"
+        },
+        {
+          "line": 124,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC02_AllTypes_ExposeValidContract"
+        },
+        {
+          "line": 165,
+          "file": "ProjectsScaffoldTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_RegistryEvent_ExposesOwnSetupPage"
+        },
+        {
+          "line": 18,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_AllTypes_ReturnsNativeTotals"
+        },
+        {
+          "line": 55,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_TaskBreakdown_IsolatesProjectsAndTasks"
+        },
+        {
+          "line": 88,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_EmptyAndMissingProject_StableResponses"
+        },
+        {
+          "line": 107,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "procedure": "Scenario_D3_UnknownTask_ReturnsLocalizedNotFound"
+        },
+        {
+          "line": 132,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "procedure": "Scenario_D3_OtherProjectTask_IsNotAValidTarget"
+        },
+        {
+          "line": 21,
+          "file": "ProjectsStatusTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_StatusPlanningQuoteOpen_UsesNativeValues"
+        },
+        {
+          "line": 46,
+          "file": "ProjectsStatusTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_BlockAndUnblock_PreservesStatus"
+        },
+        {
+          "line": 73,
+          "file": "ProjectsStatusTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_Complete_InvokesNativeCompleteFlag"
+        },
+        {
+          "line": 92,
+          "file": "ProjectsStatusTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_NoStateChange_ReturnsMissingParameter"
+        },
+        {
+          "line": 105,
+          "file": "ProjectsStatusTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_InvalidState_ReturnsFormatError"
+        },
+        {
+          "line": 118,
+          "file": "ProjectsStatusTestsori.Codeunit.al",
+          "procedure": "CompletionMessageHandler"
+        },
+        {
+          "line": 18,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ExistingPlanning_LinkReducesRemaining"
+        },
+        {
+          "line": 43,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_CreateFromUsage_ReturnsNativePlanning"
+        },
+        {
+          "line": 65,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_Get_IsReadOnlyAndTaskScoped"
+        },
+        {
+          "line": 81,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ForeignEntryOrDisabledUsage_Rejects"
+        },
+        {
+          "line": 29,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_GetOwnEntries_FiltersOtherProject"
+        },
+        {
+          "line": 64,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_EmptyProjectCalculation_UpdatesNativeDate"
+        },
+        {
+          "line": 98,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_MissingCalculationOptions_CollectBoth"
+        },
+        {
+          "line": 113,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_MissingWIPMethod_ReturnsNativeError"
+        },
+        {
+          "line": 138,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_NonzeroUsage_CalculatesEconomicWIP"
+        },
+        {
+          "line": 162,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_CalculatedWIP_PostsNativeGLEntries"
+        },
+        {
+          "line": 186,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_MissingDimensions_RefusesNativePosting"
+        },
+        {
+          "line": 209,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "procedure": "DeclineGlobalDimensionFilterUpdate"
+        },
+        {
+          "line": 21,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_CreateProject_NativeFieldsPersist"
+        },
+        {
+          "line": 38,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_UpdateProject_PreservesOmittedFields"
+        },
+        {
+          "line": 58,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_NestedTasksAndTextLine_AllCreated"
+        },
+        {
+          "line": 87,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_TaskCreateAndUpdate_PersistTotals"
+        },
+        {
+          "line": 110,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_PlanCreateUpdate_RunNativeTriggers"
+        },
+        {
+          "line": 136,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_BadNativeCustomer_ReturnsBCError"
+        },
+        {
+          "line": 152,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_DuplicateNestedTask_RollsBackProject"
+        },
+        {
+          "line": 172,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_FailedNestedUpdate_RestoresExistingProject"
+        },
+        {
+          "line": 204,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_WrongShapeAndMissingKeys_CollectAll"
+        },
+        {
+          "line": 221,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_OverlongIdentifier_NoTruncationOrWrite"
+        },
+        {
+          "line": 235,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ExactLengthIdentifier_Accepted"
+        },
+        {
+          "line": 248,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_InvalidNestedShape_NoPartialWrites"
+        },
+        {
+          "line": 263,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_NullKey_ReturnsInvalidFormat"
+        },
+        {
+          "line": 277,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_NestedUpdate_PreservesOtherFields"
+        },
+        {
+          "line": 318,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_WrongTasksShape_ReturnsFormatError"
+        },
+        {
+          "line": 334,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_InvalidDate_ReturnsFormatError"
+        },
+        {
+          "line": 348,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_FractionalAndZeroLine_RejectBeforeLookup"
+        },
+        {
+          "line": 367,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_OmitCommit_UsesCallerTransaction"
+        },
+        {
+          "line": 385,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ResourceLine_ValidatesQuantityCostAndPrice"
+        },
+        {
+          "line": 392,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ItemLine_ValidatesQuantityCostAndPrice"
+        },
+        {
+          "line": 399,
+          "file": "ProjectsWriteTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_GLLine_ValidatesQuantityCostAndPrice"
+        },
+        {
+          "line": 16,
+          "file": "ProjPostingGateTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_ReadWithNativeWrite_Denied"
+        },
+        {
+          "line": 39,
+          "file": "ProjPostingGateTestsori.Codeunit.al",
+          "procedure": "Scenario_AC01_FullWithNativeWrite_Allowed"
+        }
+      ],
+      "pass": false
+    },
+    "read_isolation": {
+      "findings": [
+        {
+          "line": 271,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Ledger.FindLast() then;",
+          "variable": "Ledger"
+        },
+        {
+          "line": 310,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Required.FindSet() then",
+          "variable": "Required"
+        },
+        {
+          "line": 398,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if not TaskDimension.IsEmpty() then",
+          "variable": "TaskDimension"
+        },
+        {
+          "line": 310,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Required.FindSet() then",
+          "variable": "Required"
+        },
+        {
+          "line": 395,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Dimension.FindSet() then",
+          "variable": "Dimension"
+        },
+        {
+          "line": 395,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if Dimension.FindSet() then",
+          "variable": "Dimension"
+        },
+        {
+          "line": 404,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if not DefaultDimension.IsEmpty() then begin",
+          "variable": "DefaultDimension"
+        },
+        {
+          "line": 401,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if not DimValuePerAccount.IsEmpty() then",
+          "variable": "DimValuePerAccount"
+        },
+        {
+          "line": 398,
+          "file": "ProjectsTestLibraryori.Codeunit.al",
+          "text": "if not TaskDimension.IsEmpty() then",
+          "variable": "TaskDimension"
+        },
+        {
+          "line": 118,
+          "file": "ProjectsUIFixtureori.Codeunit.al",
+          "text": "if not Project.IsEmpty() or not Ledger.IsEmpty() then",
+          "variable": "Project"
+        },
+        {
+          "line": 62,
+          "file": "ProjectsUIFixtureori.Codeunit.al",
+          "text": "if Ledger.FindLast() then",
+          "variable": "Ledger"
+        },
+        {
+          "line": 118,
+          "file": "ProjectsUIFixtureori.Codeunit.al",
+          "text": "if not Project.IsEmpty() or not Ledger.IsEmpty() then",
+          "variable": "Project"
+        },
+        {
+          "line": 62,
+          "file": "ProjectsUIFixtureori.Codeunit.al",
+          "text": "if Ledger.FindLast() then",
+          "variable": "Ledger"
+        },
+        {
+          "line": 118,
+          "file": "ProjectsUIFixtureori.Codeunit.al",
+          "text": "if not Project.IsEmpty() or not Ledger.IsEmpty() then",
+          "variable": "Project"
+        },
+        {
+          "line": 62,
+          "file": "ProjectsUIFixtureori.Codeunit.al",
+          "text": "if Ledger.FindLast() then",
+          "variable": "Ledger"
+        },
+        {
+          "line": 232,
+          "file": "ProjectsCopyTestsori.Codeunit.al",
+          "text": "PlanningLine.FindFirst();",
+          "variable": "PlanningLine"
+        },
+        {
+          "line": 179,
+          "file": "ProjectsStatisticsTestsori.Codeunit.al",
+          "text": "if Ledger.FindLast() then",
+          "variable": "Ledger"
+        },
+        {
+          "line": 59,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "text": "Assert.IsTrue(Planning.FindFirst(), 'Native transfer creates a planning line from usage');",
+          "variable": "Planning"
+        },
+        {
+          "line": 59,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "text": "Assert.IsTrue(Planning.FindFirst(), 'Native transfer creates a planning line from usage');",
+          "variable": "Planning"
+        },
+        {
+          "line": 59,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "text": "Assert.IsTrue(Planning.FindFirst(), 'Native transfer creates a planning line from usage');",
+          "variable": "Planning"
+        },
+        {
+          "line": 123,
+          "file": "ProjectsUsageTestsori.Codeunit.al",
+          "text": "if Ledger.FindLast() then",
+          "variable": "Ledger"
+        },
+        {
+          "line": 228,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if WIPEntry.FindLast() then",
+          "variable": "WIPEntry"
+        },
+        {
+          "line": 237,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if GLEntry.FindLast() then",
+          "variable": "GLEntry"
+        },
+        {
+          "line": 237,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if GLEntry.FindLast() then",
+          "variable": "GLEntry"
+        },
+        {
+          "line": 228,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if WIPEntry.FindLast() then",
+          "variable": "WIPEntry"
+        },
+        {
+          "line": 237,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if GLEntry.FindLast() then",
+          "variable": "GLEntry"
+        },
+        {
+          "line": 228,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if WIPEntry.FindLast() then",
+          "variable": "WIPEntry"
+        },
+        {
+          "line": 237,
+          "file": "ProjectsWIPTestsori.Codeunit.al",
+          "text": "if GLEntry.FindLast() then",
+          "variable": "GLEntry"
+        }
+      ],
+      "pass": false
+    }
+  },
+  "files_scanned": 16,
+  "publisher": "Origo",
+  "summary": {
+    "ready": false,
+    "total": 23,
+    "passed": 16,
+    "failed": 7
+  },
+  "project": "Bifrost Projects - Tests",
+  "mode": "full"
+}

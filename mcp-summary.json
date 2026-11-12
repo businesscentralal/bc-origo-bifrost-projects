@@ -1,0 +1,37 @@
+{
+  "sha": "6f6b8471d6a2224139355c5ff21e7091e8b48b3e",
+  "tenant": "w129-19",
+  "touchedMessageTypes": [],
+  "notApplicableReason": "Net diff versus integrated main is one negative catalogue test assertion; all shipping implementations and contracts equal main. Supplementary absence/refusal checks do not certify other historical feature ACs.",
+  "supplementaryChecks": [
+    {
+      "name": "catalogue-1033",
+      "status": "PASS",
+      "lcid": 1033
+    },
+    {
+      "name": "removed-type-1033",
+      "status": "PASS",
+      "lcid": 1033
+    },
+    {
+      "name": "catalogue-1039",
+      "status": "PASS",
+      "lcid": 1039
+    },
+    {
+      "name": "removed-type-1039",
+      "status": "PASS",
+      "lcid": 1039
+    }
+  ],
+  "executed": 4,
+  "passed": 4,
+  "failed": 0,
+  "skipped": 0,
+  "createsOwnData": true,
+  "dataSetup": "Catalogue and unknown-type refusal need no business records. No customer/shared fixtures used.",
+  "businessDataCreated": 0,
+  "cleanup": "No business fixtures created; queue rows belong to own tenant and removed with owned Foundation cleanup.",
+  "verified": true
+}
