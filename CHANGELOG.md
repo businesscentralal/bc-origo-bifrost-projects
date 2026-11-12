@@ -6,6 +6,10 @@
 
 - Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
 
+### Issue #3 copy acceptance (2026-11-04)
+
+- Complete copy option and rollback coverage for native Copy Job (70009214–70009215, tests97104/97113): inclusive task selection, Budget/Billable filtering, prices, quantities, dimensions, reversed ranges, customer validation and restricted-role denial.
+- Clarify the README copy contract and use a descriptive response-field variable in the copy adapter; no public contract removed.
 ### Tests (2026-11-09)
 
 - Make WIP tests (97106) create and remove their own blank-No. Job default dimension, independent of CRONUS demo data (#29).

@@ -131,6 +131,57 @@ codeunit 97104 "Projects Copy Tests ori"
         Assert.IsFalse(Target.Get(TargetNo), 'A missing source must not leave a target');
     end;
 
+    [Test]
+    procedure Scenario_AC01_ReversedTaskRange_DoesNotCreateTarget()
+    var
+        Target: Record Job;
+        SourceRequest: JsonObject;
+        CopyRequest: JsonObject;
+        Response: JsonObject;
+        TargetNo: Code[20];
+    begin
+        // [GIVEN] An owned source and a reversed inclusive task range.
+        SourceRequest := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", SourceRequest), 'Success');
+        TargetNo := NewTargetNo();
+        CopyRequest.Add('projectNo', SourceRequest.GetText('projectNo'));
+        CopyRequest.Add('targetProjectNo', TargetNo);
+        CopyRequest.Add('fromTaskNo', 'X200');
+        CopyRequest.Add('toTaskNo', 'X100');
+        // [WHEN] The range is copied.
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Copy", CopyRequest);
+        // [THEN] The native contract error leaves no target behind.
+        Library.AssertStatus(Response, 'Error');
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Reversed range must surface as a native contract error');
+        Assert.IsFalse(Target.Get(TargetNo), 'Invalid range must not create a target');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_InvalidCustomer_RollsBackTarget()
+    var
+        Project: Record Job;
+        SourceRequest: JsonObject;
+        CopyRequest: JsonObject;
+        Response: JsonObject;
+        TargetNo: Code[20];
+    begin
+        // [GIVEN] An owned source and a replacement customer that does not exist.
+        SourceRequest := Library.NewProjectRequest();
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", SourceRequest), 'Success');
+        TargetNo := NewTargetNo();
+        CopyRequest.Add('projectNo', SourceRequest.GetText('projectNo'));
+        CopyRequest.Add('targetProjectNo', TargetNo);
+        CopyRequest.Add('billToCustomerNo', 'XDOESNOTEXIST');
+        // [WHEN] Native customer field validation rejects the copy.
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Copy", CopyRequest);
+        // [THEN] The public error contract is preserved and no partial target survives.
+        Library.AssertStatus(Response, 'Error');
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'Native field validation must surface through the contract');
+        Assert.IsFalse(Project.Get(TargetNo), 'Invalid customer must roll back the target');
+        Project.Get(SourceRequest.GetText('projectNo'));
+        Assert.AreEqual(SourceRequest.GetText('billToCustomerNo'), Project."Bill-to Customer No.", 'Failed copy must preserve the source customer');
+    end;
+
     local procedure NewTargetNo(): Code[20]
     begin
         exit(CopyStr('X' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, 20));
@@ -187,6 +238,7 @@ codeunit 97104 "Projects Copy Tests ori"
         CopyRequest.Replace('targetProjectNo', TargetNo);
         CopyRequest.Replace('planningLineType', 'Billable');
         CopyRequest.Add('copyQuantity', false);
+        CopyRequest.Add('copyPrices', false);
         CopyRequest.Add('copyDimensions', false);
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Project.Copy", CopyRequest), 'Success');
         PlanningLine.SetRange("Job No.", TargetNo);
@@ -194,6 +246,7 @@ codeunit 97104 "Projects Copy Tests ori"
         PlanningLine.FindFirst();
         Assert.AreEqual(PlanningLine."Line Type"::Billable, PlanningLine."Line Type", 'Billable line must be copied');
         Assert.AreEqual(0, PlanningLine.Quantity, 'Disabled quantity option must clear copied quantity');
+        Assert.AreEqual(0, PlanningLine."Unit Price", 'Disabled price option must not retain the source price');
         Assert.IsFalse(DefaultDimension.Get(Database::Job, TargetNo, DimensionCode), 'Disabled dimensions option must not copy the owned dimension');
     end;
 
