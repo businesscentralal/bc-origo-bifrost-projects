@@ -6,6 +6,8 @@ using Origo.Bifrost;
 codeunit 70013503 "Projects Setup Restrict ori"
 {
     Access = Internal;
+    InherentPermissions = X;
+    InherentEntitlements = X;
     [EventSubscriber(ObjectType::Table, Database::"Message Argument ori", OnAfterIsTableWriteRestrictedForDataRecords, '', false, false)]
     local procedure RestrictSetupTable(TableNo: Integer; var IsRestricted: Boolean)
     begin
