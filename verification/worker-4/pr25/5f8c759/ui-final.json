@@ -1,0 +1,105 @@
+{
+  "sha": "5f8c7593e6ea2c78e31ea495c12d75677647fa3f",
+  "tenant": "w129-14",
+  "rows": [
+    {
+      "lcid": 1033,
+      "scenario": "localizedSetup",
+      "pass": true,
+      "body": "\n\nWork Date: 1/27/2028\n\n\n\n\n\n\nProjects Setup\nGeneral\nEnabled\n\nUse the Left and Right arrow keys to adjust the size. Use the Escape key to undo or the Enter key to accept."
+    },
+    {
+      "lcid": 1033,
+      "scenario": "completed",
+      "pass": true,
+      "statusVisible": true,
+      "blockVisible": true,
+      "fields": {
+        "Status": "Completed",
+        "Blocked": " ",
+        "Complete": "true"
+      },
+      "body": "\n\nProject Card | Work Date: 1/27/2028\n\n\n\n\n\nXW4P25E ∙ X worker-4 PR25\nHome\nPrint/Send\nPrices & Discounts\nWIP\nProject\nReport\nMore options\n\nCopy Project Tasks from...\nCopy Project Tasks to...\nCreate Inventory Pick\nCreate Warehouse Pick\n\nGeneral\nShow more\nNo.\nXW4P25E\nDescription\nX worker-4 PR25\nCustomer Name\nX worker-4 PR25 English\nExternal Document No.\nPerson Responsible\nBlocked\n \nLast Date Modified\n11/13/2026\nProject Manager\nTasks\nManage\nLine\n\n\nEdit\nView\nNew\nNew Line\nDelete Line\n\n\t\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nActual (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Price)\n\t\n\t\t\t\n\t\t\t\t\t\t\t\t\t\n(There is nothing to show in this view)\nPosting\nCompleted\n0.00\n0.00\nInvoice and Shipping\nDuration\n1/1/2026\n11/13/2026\nForeign Trade\nWIP and Recognition\nDetails\nAttachments (0)\nProject Details - No. of Prices\nProject No.XW4P25E\nResource0\nItem0\nG/L Account0\nProject Details\nProject No.XW4P25E\nBudget Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nActual Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nBillable Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nInvoiced Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\n\nUse the Left and Right arrow keys to adjust the size. Use the Escape key to undo or the Enter key to accept.\n\nXW4P25E ∙ X worker-4 PR25. Project Card | Work Date: 1/27/2028"
+    },
+    {
+      "lcid": 1033,
+      "scenario": "blocked",
+      "pass": true,
+      "statusVisible": true,
+      "blockVisible": true,
+      "fields": {
+        "Status": "Open",
+        "Blocked": "All",
+        "Complete": "false"
+      },
+      "body": "\n\nProject Card | Work Date: 1/27/2028\n\n\n\n\n\nXW4P25E ∙ X worker-4 PR25\nHome\nPrint/Send\nPrices & Discounts\nWIP\nProject\nReport\nMore options\n\nCopy Project Tasks from...\nCopy Project Tasks to...\nCreate Inventory Pick\nCreate Warehouse Pick\n\nGeneral\nShow more\nNo.\nXW4P25E\nDescription\nX worker-4 PR25\nCustomer Name\nX worker-4 PR25 English\nExternal Document No.\nPerson Responsible\nBlocked\nAll\nLast Date Modified\n11/13/2026\nProject Manager\nTasks\nManage\nLine\n\n\nEdit\nView\nNew\nNew Line\nDelete Line\n\n\t\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nActual (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Price)\n\t\n\t\t\t\n\t\t\t\t\t\t\t\t\t\n(There is nothing to show in this view)\nPosting\nOpen\n0.00\n0.00\nInvoice and Shipping\nDuration\n1/1/2026\n11/13/2026\nForeign Trade\nWIP and Recognition\nDetails\nAttachments (0)\nProject Details - No. of Prices\nProject No.XW4P25E\nResource0\nItem0\nG/L Account0\nProject Details\nProject No.XW4P25E\nBudget Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nActual Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nBillable Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nInvoiced Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\n\nUse the Left and Right arrow keys to adjust the size. Use the Escape key to undo or the Enter key to accept.\n\nXW4P25E ∙ X worker-4 PR25. Project Card | Work Date: 1/27/2028"
+    },
+    {
+      "lcid": 1033,
+      "scenario": "unblocked",
+      "pass": true,
+      "statusVisible": true,
+      "blockVisible": true,
+      "fields": {
+        "Status": "Open",
+        "Blocked": " ",
+        "Complete": "false"
+      },
+      "body": "\n\nProject Card | Work Date: 1/27/2028\n\n\n\n\n\nXW4P25E ∙ X worker-4 PR25\nHome\nPrint/Send\nPrices & Discounts\nWIP\nProject\nReport\nMore options\n\nCopy Project Tasks from...\nCopy Project Tasks to...\nCreate Inventory Pick\nCreate Warehouse Pick\n\nGeneral\nShow more\nNo.\nXW4P25E\nDescription\nX worker-4 PR25\nCustomer Name\nX worker-4 PR25 English\nExternal Document No.\nPerson Responsible\nBlocked\n \nLast Date Modified\n11/13/2026\nProject Manager\nTasks\nManage\nLine\n\n\nEdit\nView\nNew\nNew Line\nDelete Line\n\n\t\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nActual (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Price)\n\t\n\t\t\t\n\t\t\t\t\t\t\t\t\t\n(There is nothing to show in this view)\nPosting\nOpen\n0.00\n0.00\nInvoice and Shipping\nDuration\n1/1/2026\n11/13/2026\nForeign Trade\nWIP and Recognition\nDetails\nAttachments (0)\nProject Details - No. of Prices\nProject No.XW4P25E\nResource0\nItem0\nG/L Account0\nProject Details\nProject No.XW4P25E\nBudget Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nActual Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nBillable Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nInvoiced Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\n\nUse the Left and Right arrow keys to adjust the size. Use the Escape key to undo or the Enter key to accept.\n\nXW4P25E ∙ X worker-4 PR25. Project Card | Work Date: 1/27/2028"
+    },
+    {
+      "lcid": 1039,
+      "scenario": "localizedSetup",
+      "pass": true,
+      "body": "\n\nVinnudagsetning: 1/27/2028\n\n\n\n\n\n\nUppsetning verkefna\nAlmennt\nVirkt\n\nNotaðu hægri og vinstri örvalyklana til að stilla stærðina. Notaðu Escape-lykilinn til að afturkalla eða Enter-lykilinn til að staðfesta."
+    },
+    {
+      "lcid": 1039,
+      "scenario": "completed",
+      "pass": true,
+      "statusVisible": true,
+      "blockVisible": true,
+      "fields": {
+        "Status": "Completed",
+        "Blocked": " ",
+        "Complete": "true"
+      },
+      "body": "\n\nProject Card | Vinnudagsetning: 1/27/2028\n\n\n\n\n\nXW4P25I ∙ X worker-4 PR25\nHeim\nPrint/Send\nPrices & Discounts\nWIP\nProject\nReport\nFleiri valkostir\n\nCopy Project Tasks from...\nCopy Project Tasks to...\nCreate Inventory Pick\nCreate Warehouse Pick\n\nGeneral\nSýna meira\nNo.\nXW4P25I\nDescription\nX worker-4 PR25\nCustomer Name\nX worker-4 PR25 Icelandic\nExternal Document No.\nPerson Responsible\nBlocked\n \nLast Date Modified\n11/13/2026\nProject Manager\nTasks\nStjórna\nLine\n\n\nBreyta\nSkoða\nNýtt\nNý lína\nEyða línu\n\n\t\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nActual (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Price)\n\t\n\t\t\t\n\t\t\t\t\t\t\t\t\t\n(Það eru engin atriði til að sýna í þessu yfirliti)\nPosting\nCompleted\n0.00\n0.00\nInvoice and Shipping\nDuration\n1/1/2026\n11/13/2026\nForeign Trade\nWIP and Recognition\nUpplýsingar\nViðhengi (0)\nProject Details - No. of Prices\nProject No.XW4P25I\nResource0\nItem0\nG/L Account0\nProject Details\nProject No.XW4P25I\nBudget Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nActual Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nBillable Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nInvoiced Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\n\nNotaðu hægri og vinstri örvalyklana til að stilla stærðina. Notaðu Escape-lykilinn til að afturkalla eða Enter-lykilinn til að staðfesta.\n\nXW4P25I ∙ X worker-4 PR25. Project Card | Vinnudagsetning: 1/27/2028"
+    },
+    {
+      "lcid": 1039,
+      "scenario": "blocked",
+      "pass": true,
+      "statusVisible": true,
+      "blockVisible": true,
+      "fields": {
+        "Status": "Open",
+        "Blocked": "All",
+        "Complete": "false"
+      },
+      "body": "\n\nProject Card | Vinnudagsetning: 1/27/2028\n\n\n\n\n\nXW4P25I ∙ X worker-4 PR25\nHeim\nPrint/Send\nPrices & Discounts\nWIP\nProject\nReport\nFleiri valkostir\n\nCopy Project Tasks from...\nCopy Project Tasks to...\nCreate Inventory Pick\nCreate Warehouse Pick\n\nGeneral\nSýna meira\nNo.\nXW4P25I\nDescription\nX worker-4 PR25\nCustomer Name\nX worker-4 PR25 Icelandic\nExternal Document No.\nPerson Responsible\nBlocked\nAll\nLast Date Modified\n11/13/2026\nProject Manager\nTasks\nStjórna\nLine\n\n\nBreyta\nSkoða\nNýtt\nNý lína\nEyða línu\n\n\t\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nActual (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Price)\n\t\n\t\t\t\n\t\t\t\t\t\t\t\t\t\n(Það eru engin atriði til að sýna í þessu yfirliti)\nPosting\nOpen\n0.00\n0.00\nInvoice and Shipping\nDuration\n1/1/2026\n11/13/2026\nForeign Trade\nWIP and Recognition\nUpplýsingar\nViðhengi (0)\nProject Details - No. of Prices\nProject No.XW4P25I\nResource0\nItem0\nG/L Account0\nProject Details\nProject No.XW4P25I\nBudget Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nActual Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nBillable Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nInvoiced Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\n\nNotaðu hægri og vinstri örvalyklana til að stilla stærðina. Notaðu Escape-lykilinn til að afturkalla eða Enter-lykilinn til að staðfesta.\n\nXW4P25I ∙ X worker-4 PR25. Project Card | Vinnudagsetning: 1/27/2028"
+    },
+    {
+      "lcid": 1039,
+      "scenario": "unblocked",
+      "pass": true,
+      "statusVisible": true,
+      "blockVisible": true,
+      "fields": {
+        "Status": "Open",
+        "Blocked": " ",
+        "Complete": "false"
+      },
+      "body": "\n\nProject Card | Vinnudagsetning: 1/27/2028\n\n\n\n\n\nXW4P25I ∙ X worker-4 PR25\nHeim\nPrint/Send\nPrices & Discounts\nWIP\nProject\nReport\nFleiri valkostir\n\nCopy Project Tasks from...\nCopy Project Tasks to...\nCreate Inventory Pick\nCreate Warehouse Pick\n\nGeneral\nSýna meira\nNo.\nXW4P25I\nDescription\nX worker-4 PR25\nCustomer Name\nX worker-4 PR25 Icelandic\nExternal Document No.\nPerson Responsible\nBlocked\n \nLast Date Modified\n11/13/2026\nProject Manager\nTasks\nStjórna\nLine\n\n\nBreyta\nSkoða\nNýtt\nNý lína\nEyða línu\n\n\t\t\nProject Task No.\n\t\n\t\nDescription\n\t\nProject Task Type\n\t\nStart Date\n\t\nEnd Date\n\t\nBudget (Total Cost)\n\t\nActual (Total Cost)\n\t\nBillable (Total Price)\n\t\nInvoiced (Total Price)\n\t\n\t\t\t\n\t\t\t\t\t\t\t\t\t\n(Það eru engin atriði til að sýna í þessu yfirliti)\nPosting\nOpen\n0.00\n0.00\nInvoice and Shipping\nDuration\n1/1/2026\n11/13/2026\nForeign Trade\nWIP and Recognition\nUpplýsingar\nViðhengi (0)\nProject Details - No. of Prices\nProject No.XW4P25I\nResource0\nItem0\nG/L Account0\nProject Details\nProject No.XW4P25I\nBudget Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nActual Cost\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nBillable Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\nInvoiced Price\nResource0.00\nItem0.00\nG/L Account0.00\nTotal0.00\n\nNotaðu hægri og vinstri örvalyklana til að stilla stærðina. Notaðu Escape-lykilinn til að afturkalla eða Enter-lykilinn til að staðfesta.\n\nXW4P25I ∙ X worker-4 PR25. Project Card | Vinnudagsetning: 1/27/2028"
+    },
+    {
+      "lcid": 1033,
+      "scenario": "localizedSetup",
+      "pass": true,
+      "body": "\n\nWork Date: 1/27/2028\n\n\n\n\n\n\nProjects Setup\nGeneral\nEnabled\n\nUse the Left and Right arrow keys to adjust the size. Use the Escape key to undo or the Enter key to accept."
+    }
+  ],
+  "startedAt": "2026-11-13T20:57:08.459Z",
+  "restoredLanguage": 1033,
+  "completedAt": "2026-11-13T21:00:18.672Z"
+}

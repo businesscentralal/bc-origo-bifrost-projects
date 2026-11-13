@@ -1,0 +1,149 @@
+{
+  "sha": "5f8c7593e6ea2c78e31ea495c12d75677647fa3f",
+  "tenant": "w129-14",
+  "rows": [
+    {
+      "tableId": 167,
+      "tableView": "WHERE(No.=FILTER(XW4P25*))",
+      "response": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 167,
+        "deleted": 4,
+        "appliedFilter": "No.: XW4P25*"
+      }
+    },
+    {
+      "tableId": 18,
+      "tableView": "WHERE(No.=FILTER(XW4P25*))",
+      "response": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 18,
+        "deleted": 4,
+        "appliedFilter": "No.: XW4P25*"
+      }
+    },
+    {
+      "tableId": 5050,
+      "tableView": "WHERE(Name=FILTER(X worker-4 PR25*))",
+      "response": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 5050,
+        "deleted": 4,
+        "appliedFilter": "Name: X worker-4 PR25*"
+      }
+    },
+    {
+      "kind": "absenceReadback",
+      "table": "Job",
+      "count": 0
+    },
+    {
+      "kind": "absenceReadback",
+      "table": "Customer",
+      "count": 0
+    },
+    {
+      "kind": "absenceReadback",
+      "table": "Contact",
+      "count": 0
+    }
+  ],
+  "apps": [
+    {
+      "name": "Bifrost Projects - Tests",
+      "packageId": "9e3359d1-19b9-4089-955b-ca97b0327f6d",
+      "uninstall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"uninstallAndDeleteExtensionData\",\n  \"packageId\": \"9e3359d1-19b9-4089-955b-ca97b0327f6d\",\n  \"statusCode\": 204,\n  \"durationMs\": 562,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      },
+      "unpublish": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"unpublish\",\n  \"packageId\": \"9e3359d1-19b9-4089-955b-ca97b0327f6d\",\n  \"statusCode\": 204,\n  \"durationMs\": 174,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bifrost Projects",
+      "packageId": "e0910ac6-26f0-417c-8758-b5534d693c38",
+      "uninstall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"uninstallAndDeleteExtensionData\",\n  \"packageId\": \"e0910ac6-26f0-417c-8758-b5534d693c38\",\n  \"statusCode\": 204,\n  \"durationMs\": 128,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      },
+      "unpublish": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"unpublish\",\n  \"packageId\": \"e0910ac6-26f0-417c-8758-b5534d693c38\",\n  \"statusCode\": 204,\n  \"durationMs\": 155,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bifrost Foundation - Tests",
+      "packageId": "862985a7-50fc-475d-a9f4-08756f0e87a9",
+      "uninstall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"uninstallAndDeleteExtensionData\",\n  \"packageId\": \"862985a7-50fc-475d-a9f4-08756f0e87a9\",\n  \"statusCode\": 204,\n  \"durationMs\": 340,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      },
+      "unpublish": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"unpublish\",\n  \"packageId\": \"862985a7-50fc-475d-a9f4-08756f0e87a9\",\n  \"statusCode\": 204,\n  \"durationMs\": 183,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Bifrost Foundation",
+      "packageId": "37717c16-19c7-4778-8beb-516ce4398b56",
+      "uninstall": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"uninstallAndDeleteExtensionData\",\n  \"packageId\": \"37717c16-19c7-4778-8beb-516ce4398b56\",\n  \"statusCode\": 204,\n  \"durationMs\": 467,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      },
+      "unpublish": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"action\": \"unpublish\",\n  \"packageId\": \"37717c16-19c7-4778-8beb-516ce4398b56\",\n  \"statusCode\": 204,\n  \"durationMs\": 240,\n  \"ok\": true,\n  \"body\": null\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "extensionAbsence": {
+    "entity": "extensions",
+    "method": "GET",
+    "statusCode": 200,
+    "durationMs": 30,
+    "rowCount": 0,
+    "hasMore": false,
+    "rows": [],
+    "odataContext": "http://host.docker.internal:7048/BC290/api/microsoft/automation/v2.0/$metadata#companies(233157a0-f5bb-f111-85bd-6045bdfdea7c)/extensions"
+  }
+}
