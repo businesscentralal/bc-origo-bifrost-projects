@@ -1,0 +1,72 @@
+{
+  "sha": "c40d75349bf3a9d896d487722e623cff47115ba5",
+  "tenant": "w129-15",
+  "appsBefore": 4,
+  "appsRemaining": 0,
+  "operations": [
+    {
+      "name": "bc_dev_uninstall_app",
+      "appId": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+      "deleteExtensionData": true,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_unpublish_app",
+      "appId": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
+      "deleteExtensionData": null,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_uninstall_app",
+      "appId": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+      "deleteExtensionData": true,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_unpublish_app",
+      "appId": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
+      "deleteExtensionData": null,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_uninstall_app",
+      "appId": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+      "deleteExtensionData": true,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_unpublish_app",
+      "appId": "9db1a0c9-c503-4793-a9e4-bcda3d3f3c94",
+      "deleteExtensionData": null,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_uninstall_app",
+      "appId": "7505e808-6e52-4b96-a328-82573391297a",
+      "deleteExtensionData": true,
+      "statusCode": 204,
+      "ok": true
+    },
+    {
+      "name": "bc_dev_unpublish_app",
+      "appId": "7505e808-6e52-4b96-a328-82573391297a",
+      "deleteExtensionData": null,
+      "statusCode": 204,
+      "ok": true
+    }
+  ],
+  "fixtureReadbacks": {
+    "projects": 0,
+    "testCustomers": 0,
+    "ownedWipDimensions": 0
+  },
+  "userLanguageRestored": "en-US",
+  "otherTenantsTouched": false,
+  "MicrosoftAppsPreserved": true
+}

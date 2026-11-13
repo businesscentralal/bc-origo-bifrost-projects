@@ -1,0 +1,13 @@
+{
+  "sha": "c40d75349bf3a9d896d487722e623cff47115ba5",
+  "runId": 43346375688,
+  "conclusion": "success",
+  "url": "https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/43346375688",
+  "counts": {
+    "executed": 62,
+    "passed": 62,
+    "failed": 0,
+    "skipped": 0
+  },
+  "countSource": "CI TestResults artifact 14002242987 as independently recounted in worker review 6841544392; new owned-tenant full suite independently returned the same counts."
+}

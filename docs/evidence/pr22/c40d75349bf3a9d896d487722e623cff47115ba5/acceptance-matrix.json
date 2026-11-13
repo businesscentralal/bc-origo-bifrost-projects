@@ -1,0 +1,35 @@
+{
+  "sha": "c40d75349bf3a9d896d487722e623cff47115ba5",
+  "sourceEdits": 0,
+  "netDiff": "One added negative catalogue assertion in test/test/ProjectsScaffoldTestsori.Codeunit.al, codeunit 97100.",
+  "gateway": "Mechanical script scanned the unchanged product tree because diff only contains test source, which the script excludes. It returned 18 passed / 5 failed categories (reserved names, changelog, statements per line, caption comments, read isolation); those findings predate this one-line assertion. No suppressions, skips or weakening introduced.",
+  "deepReview": "The added assertion refuses the unreleased deletion message. It preserves the existing fifteen-type count and all discovery tests. No product, schema, permission, message, public interface or XLF delta. Registered app range 70009200..70009249; test range 97100..97199. No new object IDs; CHANGELOG/XLF need no net-diff additions.",
+  "licencePaths": "NOT_RUN \u2014 verified before release.",
+  "issues": [
+    {
+      "url": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/1",
+      "criteria": [
+        {
+          "criterion": "Happy path, BC validation contract errors and permission denial in test range 97100..97199",
+          "implemented": true,
+          "verified": "Local full suite: 62/62 passed, 0 failed, 0 skipped, including 97100, 97101 and 97103."
+        },
+        {
+          "criterion": "Bilingual discovery and documented response through queue API",
+          "implemented": true,
+          "verified": "Supplementary current-head catalogue and Project.Create help succeed in 1033/1039; removed deletion type refuses invocation in both. No message implementation changes in net diff; historical shipping behavior remains in main."
+        },
+        {
+          "criterion": "README, CHANGELOG, is-IS, namespaces, affix and range; no Timesheets; Foundation dependency only",
+          "implemented": true,
+          "verified": "No net product/doc/translation changes; current app range 70009200..70009249 approved in project CLAUDE.md supersedes original issue range. Test range 97100..97199. All local compiler analyzer runs 0 errors/0 warnings."
+        },
+        {
+          "criterion": "Codex PR, independent worker review, Claude verification, Architect merge",
+          "implemented": true,
+          "verified": "PR22 open at c40d753; independent amendment re-gate/Claude receipt and Architect merge are subsequent steps."
+        }
+      ]
+    }
+  ]
+}

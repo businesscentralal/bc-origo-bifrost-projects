@@ -1,0 +1,44 @@
+{
+  "sha": "c40d75349bf3a9d896d487722e623cff47115ba5",
+  "tenant": "w129-15",
+  "touchedMessageTypes": [],
+  "reason": "The sole net diff adds a negative catalogue regression assertion in test codeunit 97100. No shipping message implementation, registration, contract, permission, help or translation changes.",
+  "executed": 6,
+  "passed": 6,
+  "failed": 0,
+  "skipped": 0,
+  "createsOwnData": true,
+  "dataCreated": "No project/message fixtures created; read-only discovery and unknown-type refusal calls.",
+  "checks": [
+    {
+      "name": "catalogue-1033",
+      "lcid": 1033,
+      "passed": true
+    },
+    {
+      "name": "help-1033",
+      "lcid": 1033,
+      "passed": true
+    },
+    {
+      "name": "delete-refusal-1033",
+      "lcid": 1033,
+      "passed": true
+    },
+    {
+      "name": "catalogue-1039",
+      "lcid": 1039,
+      "passed": true
+    },
+    {
+      "name": "help-1039",
+      "lcid": 1039,
+      "passed": true
+    },
+    {
+      "name": "delete-refusal-1039",
+      "lcid": 1039,
+      "passed": true
+    }
+  ]
+}

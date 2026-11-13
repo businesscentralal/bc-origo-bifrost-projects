@@ -1,0 +1,13 @@
+{
+  "id": 43445991961,
+  "name": "CI/CD",
+  "head_sha": "bf12f5cbf725d772607a8481788e9a54d9c9596a",
+  "conclusion": "success",
+  "html_url": "https://github.com/OrigoSoftwareSolutions/bc-origo-bifrost-core/actions/runs/43445991961",
+  "sourcePath": "/workspace/private/projects22-andvari-20261113/foundation-source",
+  "locallyCompiled": true,
+  "tenant": "w129-15",
+  "CIAppPublished": false,
+  "sourceRepository": "OrigoSoftwareSolutions/bc-origo-bifrost-core",
+  "sourceMetadataNote": "Compiler sourcecommit records the selected core revision. The shared compile script also set sourcerepositoryurl to the Projects repository; dependency provenance is explicitly corrected here. No source was modified."
+}

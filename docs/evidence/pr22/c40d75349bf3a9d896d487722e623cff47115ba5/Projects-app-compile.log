@@ -1,0 +1,29 @@
+Microsoft (R) AL Compiler version 30.0.42.60748
+Copyright (C) Microsoft Corporation. All rights reserved
+
+Compilation started for project 'Bifrost Projects' containing '33' files at '16:27:30.913'.
+
+projects1-pr22-worker5/app/src/Contract/ProjectsContract.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/Contract/ProjectsInput.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjUsageLinkImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjWIPCalcImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjWIPGetImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjWIPPostImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjBudgetActualImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjUsageGetImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/Process/ProjectsStatistics.Codeunit.al(3,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/Process/ProjectsUsage.Codeunit.al(3,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/Process/ProjectsWIP.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/Process/ProjectsWrite.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/Process/ProjectsWriteProcess.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjPlanCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjPlanUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjStatisticsImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjStatusImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjTaskCreateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjTaskUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+projects1-pr22-worker5/app/src/MessageType/ProjUpdateImpl.Codeunit.al(4,1): info AA0477: The using statements are not in a sorted order.
+
+Compilation ended at '16:27:46.367'.
+

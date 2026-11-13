@@ -1,0 +1,32 @@
+{
+  "sha": "c40d75349bf3a9d896d487722e623cff47115ba5",
+  "tenant": "w129-15",
+  "executed": 4,
+  "passed": 4,
+  "failed": 0,
+  "skipped": 0,
+  "checks": [
+    {
+      "name": "setup-captions-en-US",
+      "lcid": 1033,
+      "passed": true
+    },
+    {
+      "name": "setup-toggle-persists-and-restores-en-US",
+      "lcid": 1033,
+      "passed": true
+    },
+    {
+      "name": "setup-captions-is-IS",
+      "lcid": 1039,
+      "passed": true
+    },
+    {
+      "name": "setup-toggle-persists-and-restores-is-IS",
+      "lcid": 1039,
+      "passed": true
+    }
+  ],
+  "languageRestored": "English (United States)",
+  "setupEnabledRestored": true
+}

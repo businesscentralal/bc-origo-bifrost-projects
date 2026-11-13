@@ -1,0 +1,32 @@
+{
+  "sha": "bf12f5cbf725d772607a8481788e9a54d9c9596a",
+  "checks": [
+    {
+      "kind": "app",
+      "sha": "bf12f5cbf725d772607a8481788e9a54d9c9596a",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "analyzers": [
+        "CodeCop",
+        "UICop",
+        "AppSourceCop"
+      ],
+      "artifactPath": "/workspace/private/projects22-andvari-20261113/symbols/Foundation-app.app",
+      "sha256": "38dada4685957f4f1a59cd9fa85899d871dc51986f567c3828c90a3ef7798652"
+    },
+    {
+      "kind": "test",
+      "sha": "bf12f5cbf725d772607a8481788e9a54d9c9596a",
+      "exitCode": 0,
+      "errors": 0,
+      "warnings": 0,
+      "analyzers": [
+        "CodeCop",
+        "UICop"
+      ],
+      "artifactPath": "/workspace/private/projects22-andvari-20261113/symbols/Foundation-test.app",
+      "sha256": "9ca9a80111e144255a9dc261735b1fc1ebae66cfef9e9b7dab99cf24ca4144c1"
+    }
+  ]
+}
