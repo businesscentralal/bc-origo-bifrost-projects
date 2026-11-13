@@ -5,6 +5,9 @@
 ### Tests (2026-11-10) — Project status validation
 
 - Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
+### Fixed (2026-11-10)
+
+- Codeunits 70009201 "Projects Registration ori" and 70009203 "Projects Setup Restrict ori" declare `InherentPermissions = X` and `InherentEntitlements = X`, so Foundation's `OnRegisterApps` and the table-write-restriction event no longer fail for users without a Projects role (#31). Regression test in codeunit 97100.
 
 ### Issue #3 copy acceptance (2026-11-04)
 
