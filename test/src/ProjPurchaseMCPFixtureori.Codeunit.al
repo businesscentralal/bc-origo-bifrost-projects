@@ -12,8 +12,8 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Purchases.Document;
 using Microsoft.Purchases.Vendor;
 using Microsoft.Sales.Customer;
-using Origo.Bifrost.Projects;
 using Origo.Bifrost;
+using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Creates unique native purchase and tracked-stock fixtures only for the owner's disposable verification environment.</summary>

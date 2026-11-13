@@ -22,6 +22,38 @@ page 97111 "Projects UI Fixtures ori"
     {
         area(Processing)
         {
+            action(CreateMcp1033)
+            {
+                ApplicationArea = All;
+                Caption = 'Create MCP 1033 Fixtures', Comment = 'is-IS=Stofna MCP-prófunargögn 1033';
+                ToolTip = 'Seeds isolated unposted WIP and unlinked usage data for the assigned language in the worker-owned environment.', Comment = 'is-IS=Stofnar aðskilin óbókuð VÍV-gögn og ótengda notkun fyrir umbeðið tungumál í umhverfi starfsmanns.';
+                Image = New;
+                Enabled = OwnedFixtureExists and not Mcp1033Exists;
+                trigger OnAction()
+                var
+                    Fixture: Codeunit "Projects UI Fixture ori";
+                begin
+                    Fixture.SeedMcpFixture(1033);
+                    CheckExistingFixture();
+                    CurrPage.Update(false);
+                end;
+            }
+            action(CreateMcp1039)
+            {
+                ApplicationArea = All;
+                Caption = 'Create MCP 1039 Fixtures', Comment = 'is-IS=Stofna MCP-prófunargögn 1039';
+                ToolTip = 'Seeds isolated unposted WIP and unlinked usage data for the assigned language in the worker-owned environment.', Comment = 'is-IS=Stofnar aðskilin óbókuð VÍV-gögn og ótengda notkun fyrir umbeðið tungumál í umhverfi starfsmanns.';
+                Image = New;
+                Enabled = OwnedFixtureExists and not Mcp1039Exists;
+                trigger OnAction()
+                var
+                    Fixture: Codeunit "Projects UI Fixture ori";
+                begin
+                    Fixture.SeedMcpFixture(1039);
+                    CheckExistingFixture();
+                    CurrPage.Update(false);
+                end;
+            }
             action(CreateFixtures)
             {
                 ApplicationArea = All;
@@ -44,10 +76,15 @@ page 97111 "Projects UI Fixtures ori"
     end;
     var
         OwnedFixtureExists: Boolean;
+        Mcp1033Exists: Boolean;
+        Mcp1039Exists: Boolean;
     local procedure CheckExistingFixture()
     var
         Project: Record Job;
+        Fixture: Codeunit "Projects UI Fixture ori";
     begin
+        Mcp1033Exists := Fixture.McpFixtureExists(1033);
+        Mcp1039Exists := Fixture.McpFixtureExists(1039);
         OwnedFixtureExists := Project.Get('XW4-PROJECT-UI');
     end;
 }

@@ -3,8 +3,43 @@
 ## 28.1.0.0 - Unreleased
 
 - Remove duplicate telemetry manifest key introduced by merging main; restore product/test compilation for Projects purchase linking and item usage (#11).
+- Merge current main and keep `Projects.PlanningLine.Delete` removed (Gunnar decision d-20261105-delete-types). Register `Projects.PurchaseLine.Link` and `Projects.ItemUsage.Post` (enum values 70009219–70009220; codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247; tests 97124, 97125, 97129–97132) on that scaffold (#11).
 
 ### Changed (2026-10-21) - Object range moved into a registered range
+
+### Fixed (2026-11-10)
+
+- Codeunits 70009201 "Projects Registration ori" and 70009203 "Projects Setup Restrict ori" declare `InherentPermissions = X` and `InherentEntitlements = X`, so Foundation's `OnRegisterApps` and the table-write-restriction event no longer fail for users without a Projects role (#31). Regression test in codeunit 97100.
+
+### Issue #3 copy acceptance (2026-11-04)
+
+- Complete copy option and rollback coverage for native Copy Job (70009214–70009215, tests97104/97113): inclusive task selection, Budget/Billable filtering, prices, quantities, dimensions, reversed ranges, customer validation and restricted-role denial.
+- Clarify the README copy contract and use a descriptive response-field variable in the copy adapter; no public contract removed.
+### Tests (2026-11-09)
+
+- Make WIP tests (97106) create and remove their own blank-No. Job default dimension, independent of CRONUS demo data (#29).
+
+### Tests (2026-11-10)
+
+- Codeunit 97102 creates its own blank-number Job dimension when the company has none, so codeunit 97106 economic WIP tests do not depend on CRONUS demo data. The mandatory default-dimension row is removed after the scenario.
+
+### Removed (2026-11-10)
+
+- Remove the unreleased message type `Projects.PlanningLine.Delete` (enum value 70009206, codeunit 70009211) per Gunnar decision d-20261105-delete-types. `Projects.PlanningLine.Create` and `Projects.PlanningLine.Update` stay.
+
+### Changed (2026-11-04)
+
+- Use a descriptive response-field variable in the seven issue #2 message adapters (70009205–70009211); the public contracts and behavior are unchanged.
+
+### Tests (2026-11-04)
+
+- Add an isolated issue #2 write-fixture page (97112) for customer/resource/item/G/L queue and bilingual Web Client acceptance; no consent or licence writes.
+
+### Changed (2026-10-21) - Object range moved into a registered range
+
+- Reconcile the WIP posting contract with the resolved Projects Read/Full decision (#18) and distinguish the historical Foundation EULA refusal from current-version queue verification (#17).
+- Add idempotent, language-isolated MCP fixture actions to the test app (97110/97111) for unposted economic WIP and unlinked usage; seeding leaves posting to the actual queue calls and writes no consent or licence state.
+- Integrate the approved workflow restoration from main and retain one telemetry manifest property. Add a late nested-update failure regression (97101) to prove the existing project header and earlier nested task insert roll back together (#2).
 
 - Every app object, Message Type enum value and range reference moves from 10078485-10078584 (outside every registered Origo range) to 70009200-70009249, Origo Public 3 (Gunnar 21.10.2026). The mapping is a fixed offset: old ID + 59930715, so 10078485 becomes 70009200. The objects use 70009200-70009229. Tests that check the range now use 70009200-70009249. Test object IDs 97100-97199 are unchanged.
 
@@ -48,6 +83,7 @@
 
 - Create compatible owned VAT and general posting setup for localized purchase MCP fixtures (97131), with a native inventory/purchase fixture regression (97124).
 - Add native purchase line linking and atomic project item usage posting with strict selectors, tracking-key isolation and exact native ledger capture (codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247). Add native posting, transaction/refusal and permission regressions 97124, 97125 and 97129, with in-memory native rollback observation helper 97130. Register both types as enum values 70009219–70009220 and grant owned executable objects through the existing Read/Full extensions; native write rights remain caller-owned. Verify dedicated-field refusals through the supported Foundation dispatcher rather than an unlicensed direct implementation call. Add a disposable-container test fixture seeder/page (97131–97132) for native tracked stock and purchase data. Shipping full-suite/UI/MCP acceptance remains pending.
+- Object ranges: app 10078485..10078584, tests 97100..97199.
 - Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
 - Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
 - app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.

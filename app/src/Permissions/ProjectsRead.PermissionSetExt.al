@@ -15,7 +15,6 @@ permissionsetextension 70009200 "Projects Read ori" extends "BIFROST Read ori"
         codeunit "Projects Item Usage ori" = X,
         codeunit "Projects Purchase Restrict ori" = X,
         codeunit "Projects Purchase ori" = X,
-
         tabledata "Proj. Posting ori" = R,
         codeunit "Proj. Usage Get Impl ori" = X,
         codeunit "Proj. Usage Link Impl ori" = X,
@@ -40,7 +39,6 @@ permissionsetextension 70009200 "Projects Read ori" extends "BIFROST Read ori"
         codeunit "Proj. Task Update Impl ori" = X,
         codeunit "Proj. Plan Create Impl ori" = X,
         codeunit "Proj. Plan Update Impl ori" = X,
-        codeunit "Proj. Plan Delete Impl ori" = X,
         tabledata "Projects Setup ori" = R,
         codeunit "Projects Gate ori" = X,
         codeunit "Projects Registration ori" = X,

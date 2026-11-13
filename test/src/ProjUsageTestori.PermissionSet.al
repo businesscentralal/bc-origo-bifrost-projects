@@ -1,15 +1,15 @@
 namespace Origo.Bifrost.Projects.Test;
 
-using Microsoft.Projects.Project.Job;
-using Microsoft.Projects.Project.Planning;
-using Microsoft.Purchases.Document;
 using Microsoft.Finance.GeneralLedger.Ledger;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Ledger;
 using Microsoft.Inventory.Location;
+using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Planning;
+using Microsoft.Purchases.Document;
 using Microsoft.Sales.Customer;
 using Microsoft.Warehouse.Ledger;
 using Microsoft.Warehouse.Structure;

@@ -12,6 +12,7 @@ using Microsoft.Inventory.Item;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Finance.GeneralLedger.Setup;
+using System.Security.User;
 using Microsoft.Finance.Dimension;
 using Microsoft.Projects.Project.WIP;
 using Microsoft.Projects.Project.Ledger;
@@ -30,10 +31,99 @@ codeunit 97102 "Projects Test Library ori"
             JobsSetup.Init();
             JobsSetup.Insert(true);
         end;
+        AllowPostingAroundWorkDate();
+        DeleteOwnedWIPDimensions();
         Setup.InsertIfNotExists();
         Setup.Enabled := true;
         Setup.Modify(true);
     end;
+    local procedure AllowPostingAroundWorkDate()
+    var
+        GeneralLedgerSetup: Record "General Ledger Setup";
+        UserSetup: Record "User Setup";
+        TargetFrom: Date;
+        TargetTo: Date;
+    begin
+        TargetFrom := CalcDate('<-1Y>', WorkDate());
+        TargetTo := CalcDate('<1Y>', WorkDate());
+        if Today() < TargetFrom then
+            TargetFrom := CalcDate('<-1Y>', Today());
+        if Today() > TargetTo then
+            TargetTo := CalcDate('<1Y>', Today());
+        if UserSetup.Get(UserId()) and UserSetupGovernsPostingDates(UserSetup) then begin
+            if PostingWindowExcludes(
+                UserSetup."Allow Posting From", UserSetup."Allow Posting To",
+                UserSetup."Allow Posting From DateFormula", UserSetup."Allow Posting To DateFormula", WorkDate())
+            then
+                SetUserPostingWindow(UserSetup, TargetFrom, TargetTo);
+            exit;
+        end;
+        GeneralLedgerSetup.Get();
+        if PostingWindowExcludes(
+            GeneralLedgerSetup."Allow Posting From", GeneralLedgerSetup."Allow Posting To",
+            GeneralLedgerSetup."Allow Posting From DateFormula", GeneralLedgerSetup."Allow Posting To DateFormula", WorkDate())
+        then
+            SetGeneralLedgerPostingWindow(GeneralLedgerSetup, TargetFrom, TargetTo);
+    end;
+
+    local procedure UserSetupGovernsPostingDates(UserSetup: Record "User Setup"): Boolean
+    begin
+        exit((UserSetup."Allow Posting From" <> 0D) or (UserSetup."Allow Posting To" <> 0D) or
+            (Format(UserSetup."Allow Posting From DateFormula") <> '') or (Format(UserSetup."Allow Posting To DateFormula") <> ''));
+    end;
+
+    local procedure PostingWindowExcludes(AllowFrom: Date; AllowTo: Date; FromFormula: DateFormula; ToFormula: DateFormula; DateToTest: Date): Boolean
+    var
+        EffectiveFrom: Date;
+        EffectiveTo: Date;
+    begin
+        EffectiveFrom := AllowFrom;
+        EffectiveTo := AllowTo;
+        if Format(FromFormula) <> '' then
+            EffectiveFrom := CalcDate(FromFormula, Today());
+        if Format(ToFormula) <> '' then
+            EffectiveTo := CalcDate(ToFormula, Today());
+        if EffectiveTo = 0D then
+            EffectiveTo := DMY2Date(31, 12, 9999);
+        exit(not (DateToTest in [EffectiveFrom .. EffectiveTo]));
+    end;
+
+    local procedure SetUserPostingWindow(var UserSetup: Record "User Setup"; TargetFrom: Date; TargetTo: Date)
+    begin
+        Evaluate(UserSetup."Allow Posting From DateFormula", '');
+        Evaluate(UserSetup."Allow Posting To DateFormula", '');
+        RaisePostingToBeforeLoweringFrom(UserSetup."Allow Posting From", UserSetup."Allow Posting To", TargetFrom, TargetTo);
+        if (UserSetup."Allow Posting From" <> 0D) and (UserSetup."Allow Posting From" > TargetFrom) then
+            UserSetup.Validate("Allow Posting From", TargetFrom);
+        if (UserSetup."Allow Posting To" <> 0D) and (UserSetup."Allow Posting To" < TargetTo) then
+            UserSetup.Validate("Allow Posting To", TargetTo);
+        UserSetup.Modify(true);
+    end;
+
+    local procedure SetGeneralLedgerPostingWindow(var GeneralLedgerSetup: Record "General Ledger Setup"; TargetFrom: Date; TargetTo: Date)
+    begin
+        Evaluate(GeneralLedgerSetup."Allow Posting From DateFormula", '');
+        Evaluate(GeneralLedgerSetup."Allow Posting To DateFormula", '');
+        RaisePostingToBeforeLoweringFrom(GeneralLedgerSetup."Allow Posting From", GeneralLedgerSetup."Allow Posting To", TargetFrom, TargetTo);
+        if (GeneralLedgerSetup."Allow Posting From" <> 0D) and (GeneralLedgerSetup."Allow Posting From" > TargetFrom) then
+            GeneralLedgerSetup.Validate("Allow Posting From", TargetFrom);
+        if (GeneralLedgerSetup."Allow Posting To" <> 0D) and (GeneralLedgerSetup."Allow Posting To" < TargetTo) then
+            GeneralLedgerSetup.Validate("Allow Posting To", TargetTo);
+        GeneralLedgerSetup.Modify(true);
+    end;
+
+    local procedure RaisePostingToBeforeLoweringFrom(AllowFrom: Date; var AllowTo: Date; TargetFrom: Date; TargetTo: Date)
+    var
+        BridgeTo: Date;
+    begin
+        if (AllowTo = 0D) or (AllowTo >= TargetFrom) then
+            exit;
+        BridgeTo := TargetTo;
+        if (AllowFrom <> 0D) and (AllowFrom > BridgeTo) then
+            BridgeTo := AllowFrom;
+        AllowTo := BridgeTo;
+    end;
+
     /// <summary>Creates a fresh customer and project number for every test.</summary>
     procedure NewProjectRequest() Request: JsonObject
     var
@@ -209,6 +299,12 @@ codeunit 97102 "Projects Test Library ori"
 
     /// <summary>Creates isolated economic WIP data with owned posting accounts and required dimensions; never changes licence state.</summary>
     procedure NewEconomicWIPRequest() Request: JsonObject
+    begin
+        Request := NewEconomicWIPRequest(true);
+    end;
+
+    /// <summary>Creates isolated economic WIP data. The prompt flag is false for non-test callers that cannot answer the native dimension confirmation.</summary>
+    procedure NewEconomicWIPRequest(ExpectDimensionPrompt: Boolean) Request: JsonObject
     var
         Project: Record Job;
         Task: Record "Job Task";
@@ -260,7 +356,7 @@ codeunit 97102 "Projects Test Library ori"
         Task.Get(CodeValue, 'X100');
         Task."WIP-Total" := Task."WIP-Total"::Total;
         Task.Modify(true);
-        SeedRequiredDimensions(CodeValue, 'X100');
+        SeedRequiredDimensions(CodeValue, 'X100', ExpectDimensionPrompt);
         if Ledger.FindLast() then;
         Ledger."Entry No." += 1;
         Ledger.Init();
@@ -282,7 +378,14 @@ codeunit 97102 "Projects Test Library ori"
         Request.Add('documentNo', CodeValue);
     end;
 
-    local procedure SeedRequiredDimensions(ProjectNo: Code[20]; TaskNo: Code[20])
+    /// <summary>Removes blank-number Job dimensions created by this library and commits that delete.</summary>
+    procedure RemoveOwnedWIPDimensions()
+    begin
+        if DeleteOwnedWIPDimensions() then
+            Commit();
+    end;
+
+    local procedure SeedRequiredDimensions(ProjectNo: Code[20]; TaskNo: Code[20]; ExpectDimensionPrompt: Boolean)
     var
         Required: Record "Default Dimension";
         OwnedDefault: Record "Default Dimension";
@@ -292,14 +395,17 @@ codeunit 97102 "Projects Test Library ori"
         // Respect native mandatory-dimension setup without borrowing demo values or weakening its rules.
         Required.SetRange("Table ID", Database::Job);
         Required.SetRange("No.", '');
+        EnsureOwnedJobDimension(ProjectNo, ExpectDimensionPrompt);
         if Required.FindSet() then
             repeat
                 if Required."Value Posting" in [Required."Value Posting"::"Code Mandatory", Required."Value Posting"::"Same Code"] then begin
-                    Value.Init();
-                    Value.Validate("Dimension Code", Required."Dimension Code");
-                    Value.Validate(Code, ProjectNo);
-                    Value.Name := 'X owned WIP posting dimension';
-                    Value.Insert(true);
+                    if not Value.Get(Required."Dimension Code", ProjectNo) then begin
+                        Value.Init();
+                        Value.Validate("Dimension Code", Required."Dimension Code");
+                        Value.Validate(Code, ProjectNo);
+                        Value.Name := 'X owned WIP posting dimension';
+                        Value.Insert(true);
+                    end;
                     // Configure this owned test company's native constraint with self-created values.
                     // Keep Same Code / Code Mandatory unchanged, and narrow an existing allowed filter to this exact value.
                     if Required."Value Posting" = Required."Value Posting"::"Same Code" then
@@ -327,6 +433,70 @@ codeunit 97102 "Projects Test Library ori"
                     end;
                 end;
             until Required.Next() = 0;
+    end;
+
+    local procedure EnsureOwnedJobDimension(ProjectNo: Code[20]; ExpectDimensionPrompt: Boolean)
+    var
+        Required: Record "Default Dimension";
+        Dimension: Record Dimension;
+        Value: Record "Dimension Value";
+        DimCode: Code[20];
+        ValueCode: Code[20];
+    begin
+        // Companies that already enforce a blank-number Job dimension keep that rule. This only fills the gap.
+        Required.SetRange("Table ID", Database::Job);
+        Required.SetRange("No.", '');
+        Required.SetFilter("Value Posting", '%1|%2', Required."Value Posting"::"Code Mandatory", Required."Value Posting"::"Same Code");
+        if not Required.IsEmpty() then
+            exit;
+        DimCode := CopyStr('XWIP' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(DimCode));
+        Dimension.Init();
+        Dimension.Validate(Code, DimCode);
+        Dimension.Name := 'X owned WIP dimension';
+        Dimension.Insert(true);
+        ValueCode := ProjectNo;
+        if ExpectDimensionPrompt then
+            ValueCode := 'XSEED';
+        Value.Init();
+        Value.Validate("Dimension Code", DimCode);
+        Value.Validate(Code, ValueCode);
+        Value.Name := 'X owned WIP posting dimension';
+        Value.Insert(true);
+        Required.Init();
+        Required.Validate("Table ID", Database::Job);
+        Required.Validate("No.", '');
+        Required.Validate("Dimension Code", DimCode);
+        Required.Validate("Value Posting", Required."Value Posting"::"Code Mandatory");
+        Required.Insert(true);
+        Required.Validate("Allowed Values Filter", ValueCode);
+        Required.Modify(true);
+    end;
+
+    local procedure DeleteOwnedWIPDimensions(): Boolean
+    var
+        Dimension: Record Dimension;
+        DefaultDimension: Record "Default Dimension";
+        DimValuePerAccount: Record "Dim. Value per Account";
+        TaskDimension: Record "Job Task Dimension";
+        Removed: Boolean;
+    begin
+        Dimension.SetFilter(Code, 'XWIP*');
+        if Dimension.FindSet() then
+            repeat
+                TaskDimension.SetRange("Dimension Code", Dimension.Code);
+                if not TaskDimension.IsEmpty() then
+                    TaskDimension.DeleteAll(true);
+                DimValuePerAccount.SetRange("Dimension Code", Dimension.Code);
+                if not DimValuePerAccount.IsEmpty() then
+                    DimValuePerAccount.DeleteAll(true);
+                DefaultDimension.SetRange("Dimension Code", Dimension.Code);
+                if not DefaultDimension.IsEmpty() then begin
+                    DefaultDimension.DeleteAll(true);
+                    Removed := true;
+                end;
+                // Posted WIP keeps the dimension value in a dimension set, so the value and dimension stay.
+            until Dimension.Next() = 0;
+        exit(Removed);
     end;
 
 }

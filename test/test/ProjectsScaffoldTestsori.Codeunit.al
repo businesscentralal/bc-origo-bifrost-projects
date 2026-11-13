@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_SixteenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_SeventeenTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -100,6 +100,9 @@ codeunit 97100 "Projects Scaffold Tests ori"
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
+        Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Planning line delete is not a Projects message type');
+        Assert.IsTrue(Names.Contains('Projects.PurchaseLine.Link'), 'Purchase line link must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ItemUsage.Post'), 'Item usage post must be registered');
         foreach Name in Names do
             if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
@@ -116,7 +119,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(18, Count, 'Catalogue must contain all eighteen owned Projects types');
+        Assert.AreEqual(17, Count, 'Catalogue must contain all seventeen owned Projects types');
     end;
 
     [Test]
@@ -175,6 +178,24 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Assert.IsTrue(TempApps.Get(ProjectsAppId), 'Projects must register with Foundation');
         Assert.AreEqual('Bifrost Projects', TempApps."App Name", 'Registry must expose this module name');
         Assert.AreEqual(Page::"Projects Setup ori", TempApps."Setup Page Id", 'Registry must expose the owned setup page');
+    end;
+
+    [Test]
+    procedure Scenario_Issue31_RegistryEvent_WithoutProjectsRole_DoesNotFailAndListsProjects()
+    var
+        TempApps: Record "Registered App ori" temporary;
+        LowerPermissions: Codeunit "Library - Lower Permissions";
+        Registry: Codeunit "App Registry ori";
+        ProjectsAppId: Guid;
+    begin
+        // Story #31 AC02 | Time: no date dependency | Risk: installed app registry only; no license or backend changes
+        // [GIVEN] The caller has only the read role and no Projects permission set.
+        LowerPermissions.PushPermissionSetWithoutDefaults('BIFROST Read ori');
+        // [WHEN] Foundation builds the registry, raising OnRegisterApps for the Projects subscriber.
+        Registry.GetApps(TempApps);
+        // [THEN] No permission error occurs and Projects is listed.
+        Evaluate(ProjectsAppId, 'c847bab7-2525-4ff5-93c4-15512b3be1e5');
+        Assert.IsTrue(TempApps.Get(ProjectsAppId), 'Projects must register for a user without a Projects role');
     end;
 
 }

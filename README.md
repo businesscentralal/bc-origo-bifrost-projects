@@ -17,6 +17,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Task.Update` | `projectNo`, `taskNo`, changed fields, optional `planningLines[]` | Updates a task; preserves omitted fields. |
 | `Projects.PlanningLine.Create` | `projectNo`, `taskNo`, positive `lineNo`, fields | Creates a native resource, item, G/L account or text planning line. |
 | `Projects.PlanningLine.Update` | `projectNo`, `taskNo`, `lineNo`, changed fields | Updates supplied native fields. |
+| `Projects.PurchaseLine.Link` | purchase line (`systemId` or `documentType`+`documentNo`+`lineNo`), `projectNo`, `taskNo`, optional `lineType`, `planningLineNo` | Links an unreceived, uninvoiced purchase line to an open project task. Repeating the same link returns `changed: false`. |
+| `Projects.ItemUsage.Post` | `projectNo`, `taskNo`, `lines[]` | Posts item usage through the project journal and returns the project ledger entry range. |
 | `Projects.Usage.Get` | `projectNo`, `taskNo` | Native usage links and planning-line remaining quantities. |
 | `Projects.Usage.Link` | `projectNo`, `taskNo`, `entryNo`, `lineNo` or `createPlanningLine: true` | Applies usage through native BC or transfers usage to planning lines. |
 | `Projects.WIP.Get` | `projectNo` | Reads calculated and posted WIP entries. |
@@ -24,9 +26,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Statistics.Get` | `projectNo` | LCY budget/actual/billable/invoiced cost and price by resource/item/G/L and total. |
 | `Projects.BudgetVsActual.Get` | `projectNo`, optional exact `taskNo` | Project totals plus posting-task detail; total/heading tasks excluded. |
 | `Projects.WIP.Calculate` | `projectNo`, `postingDate`, `documentNo` | Runs native WIP calculation and returns entry state. |
-| `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with a selected task range. |
+| `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with an inclusive task range; optional Budget/Billable filtering, prices, quantities and dimensions. The target must be new; validation errors roll back the copy. |
 | `Projects.Project.SetStatus` | `projectNo`, `status` and/or `blocked` | Validates native status, completion and blocking. |
-| `Projects.PlanningLine.Delete` | `projectNo`, `taskNo`, `lineNo` | Deletes through native BC checks. |
 
 Calls use version `1.0` and a JSON object in `data`; `subject` is not used.
 All writes require the native BC table permissions in addition to the Foundation role.
@@ -39,4 +40,4 @@ See [Projects contracts](docs/projects.md) for fields, nested behavior and error
 
 Scaffold and lifecycle implementation are under development. Native component tests
 are separate from queue API, licensing, bilingual Web Client and MCP acceptance.
-Template/workflow restoration is retained by human PR #10. Issues #5 and #6 have native implementation and component tests; shipping MCP, business UI and independent acceptance remain pending. Issue #8 has native implementation and component tests with runtime acceptance pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.
+Template/workflow restoration from merged PR #10 is integrated. Issues #5 and #6 have native implementation and component tests; current-candidate runtime and independent acceptance remain pending. Issue #8 has native implementation and component tests with runtime acceptance pending; #7 is closed as not planned with Gunnar's recorded disposition; tracking issue #9 does not authorize more message types.

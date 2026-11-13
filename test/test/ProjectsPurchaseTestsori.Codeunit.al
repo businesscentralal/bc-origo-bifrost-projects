@@ -264,7 +264,7 @@ codeunit 97124 "Projects Purchase Tests ori"
         Library.Initialize();
         PurchaseLibrary.CreateVendor(Vendor);
         InventoryLibrary.CreateItem(Item);
-        PurchaseLibrary.CreatePurchaseDocumentWithItem(Header, PurchaseLine, Header."Document Type"::Order, Vendor."No.", Item."No.", 1, '', 20260105D);
+        PurchaseLibrary.CreatePurchaseDocumentWithItem(Header, PurchaseLine, Header."Document Type"::Order, Vendor."No.", Item."No.", 1, '', WorkDate());
         JobLibrary.CreateJob(Project);
         Project.Validate(Status, Project.Status::Open);
         Project.Modify(true);
