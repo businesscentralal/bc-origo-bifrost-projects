@@ -12,6 +12,7 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Project.Setup;
 using Origo.Bifrost;
 using System.Environment.Configuration;
+using System.Reflection;
 
 /// <summary>Creates native project archive versions and reads immutable archived task/planning snapshots.</summary>
 codeunit 70009234 "Projects Archive ori"
@@ -43,11 +44,29 @@ codeunit 70009234 "Projects Archive ori"
             exit(false);
         if not CreateVersion then
             exit(true);
+        if not (HasOptionalNativePermission('Job Assigned Resource', false) and
+                HasOptionalNativePermission('Job Assigned Resource Archive', false) and
+                HasOptionalNativePermission('Job Assigned Resource Archive', true)) then
+            exit(false);
         exit(Gate.IsEnabled(Database::Job, false) and Gate.IsEnabled(Database::"Job Task", false) and Gate.IsEnabled(Database::"Job Planning Line", false) and
              Gate.IsEnabled(Database::"Jobs Setup", false) and Gate.IsEnabled(Database::"Comment Line", false) and Gate.IsEnabled(Database::"Comment Line Archive", true) and
              Gate.IsEnabled(Database::"Job Ledger Entry", false) and Gate.IsEnabled(Database::"Purchase Line", false) and
              Gate.IsEnabled(Database::"Job Planning Line Invoice", false) and Gate.IsEnabled(Database::"Reservation Entry", false) and
              Gate.IsEnabled(Database::"Warehouse Activity Line", false) and Gate.IsEnabled(Database::"Job Journal Line", false) and Gate.IsEnabled(Database::"Record Link", true));
+    end;
+
+    local procedure HasOptionalNativePermission(TableName: Text[30]; NeedWrite: Boolean): Boolean
+    var
+        NativeTable: Record AllObj;
+        Gate: Codeunit "Projects Gate ori";
+    begin
+        // BC 29 StoreJob reads assigned resources and inserts their archive rows.
+        // Resolve by object name because these tables do not exist in BC 28.
+        NativeTable.SetRange("Object Type", NativeTable."Object Type"::Table);
+        NativeTable.SetRange("Object Name", TableName);
+        if not NativeTable.FindFirst() then
+            exit(true);
+        exit(Gate.IsEnabled(NativeTable."Object ID", NeedWrite));
     end;
 
     /// <summary>Validates input and dispatches archive writes through a native rollback boundary.</summary>
