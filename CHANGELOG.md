@@ -13,6 +13,10 @@
 
 - Integrate allocation #12 with the approved removal of PlanningLine.Delete and native WIP fixture updates; keep exact coverage of the sixteen remaining registered types (enum 70009200; tests 97100/97103).
 
+### Fixed (2026-11-10)
+
+- Codeunits 70009201 "Projects Registration ori" and 70009203 "Projects Setup Restrict ori" declare `InherentPermissions = X` and `InherentEntitlements = X`, so Foundation's `OnRegisterApps` and the table-write-restriction event no longer fail for users without a Projects role (#31). Regression test in codeunit 97100.
+
 ### Issue #3 copy acceptance (2026-11-04)
 
 - Complete copy option and rollback coverage for native Copy Job (70009214–70009215, tests97104/97113): inclusive task selection, Budget/Billable filtering, prices, quantities, dimensions, reversed ranges, customer validation and restricted-role denial.
