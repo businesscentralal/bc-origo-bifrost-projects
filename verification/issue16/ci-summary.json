@@ -1,0 +1,93 @@
+{
+  "sha": "e415bd5e886763a63c013199f7c4bacc94178556",
+  "runId": 43535346082,
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/43535346082",
+  "mergeable": true,
+  "labels": [
+    "wip:codex-alviss"
+  ],
+  "jobs": [
+    {
+      "name": "Initialize COSMO Alpaca / COSMO Alpaca Settings Files Check / COSMO Alpaca Settings Files Check",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "Initialize COSMO Alpaca / COSMO Alpaca Initialization",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "Initialization",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "PregateCheck",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failedSteps": []
+    },
+    {
+      "name": "Create COSMO Alpaca Containers / Create COSMO Alpaca Containers",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "Build . (Default then Test) / Default / . (Default)",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "Build . (Default then Test) / Test / . (Test)",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "Build . (Default then Test) / Default / Remove COSMO Alpaca Containers",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failedSteps": []
+    },
+    {
+      "name": "Remove COSMO Alpaca Containers / Remove COSMO Alpaca Containers",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    },
+    {
+      "name": "Build . (Default then Test) / Test / Remove COSMO Alpaca Containers",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failedSteps": []
+    },
+    {
+      "name": "Code Analysis Processing",
+      "status": "completed",
+      "conclusion": "skipped",
+      "failedSteps": []
+    },
+    {
+      "name": "Pull Request Status Check",
+      "status": "completed",
+      "conclusion": "success",
+      "failedSteps": []
+    }
+  ],
+  "sourceGuards": [
+    {
+      "id": 43535346057,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "checkedAt": "2026-11-14T00:51:42.423Z"
+}

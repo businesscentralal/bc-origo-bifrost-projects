@@ -15,3 +15,9 @@ Candidate: `e415bd5e886763a63c013199f7c4bacc94178556` (`feat/16-projects-wip-met
 Licence-path checks: **NOT_RUN**, verified before release per standing ruling. Baseline AS0081 is unchanged. No CI files changed.
 
 Foundation source: successful core main CI/CD run 43490408396 at ab2475c4fab17c42f0458a791bd3028afb5edbf6 (latest successful when provisioned). All four packages were compiled locally by worker-4 and published only at tenant scope. No CI or another worker's package was published.
+
+## CI and independent receipt
+
+[Paired CI proof](ci-summary.json): Pull Request Build [43535346082](https://github.com/businesscentralal/bc-origo-bifrost-projects/actions/runs/43535346082) completed successfully at the candidate SHA. Both Default and Test lanes, final cleanup and the PR status check passed; Source Guards passed. Existing pipeline bookkeeping/cleanup skips are distinct from AL tests (76 passed, 0 skipped locally).
+
+[Claude Code exact-head receipt](claude-receipt.json) independently reports 8 scaffold and 14 WIP-method tests passed on its own tenant. Cross-family Worker review CLEARED is a separate pending stage.
