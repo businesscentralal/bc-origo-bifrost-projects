@@ -1,0 +1,169 @@
+{
+  "sha": "57b051965443102b9bace6950b3c90d63127505c",
+  "worker": "worker-4",
+  "author": "Alv\u00edss",
+  "tenant": "w129-14",
+  "server": "BC290",
+  "company": "CRONUS International Ltd.",
+  "branch": "feat/16-projects-wip-method-alviss",
+  "foundation": {
+    "sourceSha": "ab2475c4fab17c42f0458a791bd3028afb5edbf6",
+    "latestSuccessfulMainCi": "https://github.com/OrigoSoftwareSolutions/bc-origo-bifrost-core/actions/runs/43490408396",
+    "packagesLocallyCompiled": true,
+    "tenantScopeOnly": true,
+    "eulaSetup": "Test.Eula.Set approved=true on own tenant only"
+  },
+  "compile": {
+    "app": {
+      "sha": "57b051965443102b9bace6950b3c90d63127505c",
+      "errors": 0,
+      "warnings": 0,
+      "codeCop": true,
+      "log": "product-build.log"
+    },
+    "testApp": {
+      "sha": "57b051965443102b9bace6950b3c90d63127505c",
+      "errors": 0,
+      "warnings": 0,
+      "codeCop": true,
+      "log": "tests-build.log"
+    }
+  },
+  "tests": {
+    "fullSuite": true,
+    "range": "97100..97199",
+    "executed": 75,
+    "passed": 75,
+    "failed": 0,
+    "skipped": 0,
+    "report": "al-full-suite.json"
+  },
+  "mcp": {
+    "touchedMessageTypes": [
+      "Projects.WIPMethod.Get",
+      "Projects.WIPMethod.Set"
+    ],
+    "locales": [
+      1033,
+      1039
+    ],
+    "executed": 48,
+    "passed": 48,
+    "failed": 0,
+    "skipped": 0,
+    "createsOwnData": true,
+    "cleanupOperations": 12,
+    "report": "mcp-results.json",
+    "localeComparisonReport": "mcp-localization-validation.json"
+  },
+  "ui": {
+    "changedPages": [],
+    "changedActions": [],
+    "locales": [
+      1033,
+      1039
+    ],
+    "executed": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "report": "ui-results.json",
+    "scope": "Supplemental native WIP Methods page readback of newly created records; no product page/action changes.",
+    "restoredLanguage": 1033
+  },
+  "licensePath": {
+    "status": "NOT_RUN",
+    "reason": "Verified before release; not per PR, per standing ruling."
+  },
+  "acceptanceCriteria": [
+    {
+      "issue": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/16",
+      "id": "AC01",
+      "implemented": true,
+      "verified": true,
+      "evidence": [
+        "AL Get scenarios",
+        "MCP Get exact/list both locales",
+        "Native UI both locales"
+      ]
+    },
+    {
+      "issue": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/16",
+      "id": "AC02",
+      "implemented": true,
+      "verified": true,
+      "evidence": [
+        "AL create/update/preservation and system protection",
+        "MCP create/update/system-refusal both locales"
+      ]
+    },
+    {
+      "issue": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/16",
+      "id": "AC03",
+      "implemented": true,
+      "verified": true,
+      "evidence": [
+        "AL posted reversed and calculated history protection",
+        "MCP synthetic self-seeded history refusals both locales"
+      ]
+    },
+    {
+      "issue": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/16",
+      "id": "AC04",
+      "implemented": true,
+      "verified": true,
+      "evidence": [
+        "AL happy/invalid/edge/rollback/locale scenarios",
+        "48 MCP checks and 2 bilingual metadata comparisons",
+        "82/82 synchronized XLF units"
+      ]
+    },
+    {
+      "issue": "https://github.com/businesscentralal/bc-origo-bifrost-projects/issues/16",
+      "id": "AC05",
+      "implemented": true,
+      "verified": true,
+      "evidence": [
+        "AL exact three-part name check",
+        "Enum values Projects.WIPMethod.Get and Projects.WIPMethod.Set"
+      ]
+    }
+  ],
+  "newObjects": [
+    "codeunit 70009240",
+    "codeunit 70009241",
+    "codeunit 70009242",
+    "codeunit 70009243",
+    "test codeunit 97116"
+  ],
+  "newEnumValues": [
+    70009240,
+    70009241
+  ],
+  "noNewSuppressions": true,
+  "inheritedSuppression": "AS0081 unchanged in baseline app.json; no new warning/test suppression.",
+  "noCiEdits": true,
+  "packages": {
+    "foundation": {
+      "bytes": 2876490,
+      "sha256": "ba2d4c8747838fbe42aa855ecb29994f9e0b52a8e1087a9c917a22bc8f0d219a",
+      "origin": "compiled locally by worker-4; never a CI or other worker package"
+    },
+    "foundationTests": {
+      "bytes": 2063612,
+      "sha256": "6eb1a2d1c56174e5245ea3c7871935a24fef181efb9dfea75bf3dd3735375979",
+      "origin": "compiled locally by worker-4; never a CI or other worker package"
+    },
+    "app": {
+      "bytes": 91169,
+      "sha256": "04870715ed684d7879f9b71ed269e1163a613314ea6e8d53c1197171bad368d5",
+      "origin": "compiled locally by worker-4; never a CI or other worker package"
+    },
+    "testApp": {
+      "bytes": 53510,
+      "sha256": "c893c4aad77e5d98fc94b5aed723af249600ec60f989ea40adfade070c2067bd",
+      "origin": "compiled locally by worker-4; never a CI or other worker package"
+    }
+  },
+  "completedAt": "2026-11-14T00:26:34.362310+00:00"
+}

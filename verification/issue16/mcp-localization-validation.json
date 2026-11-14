@@ -1,0 +1,17 @@
+{
+  "sha": "57b051965443102b9bace6950b3c90d63127505c",
+  "comparisons": [
+    {
+      "messageType": "Projects.WIPMethod.Get",
+      "translatedCatalogue": true,
+      "englishOnlyChapters": true
+    },
+    {
+      "messageType": "Projects.WIPMethod.Set",
+      "translatedCatalogue": true,
+      "englishOnlyChapters": true
+    }
+  ],
+  "passed": 2,
+  "failed": 0
+}

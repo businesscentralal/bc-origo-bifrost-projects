@@ -1,0 +1,93 @@
+{
+  "sha": "57b051965443102b9bace6950b3c90d63127505c",
+  "tenant": "w129-14",
+  "changedProductPages": [],
+  "changedProductActions": [],
+  "scope": "Supplemental native WIP Methods readback of records created by the new message type; no product page/action changed.",
+  "rows": [
+    {
+      "lcid": 1033,
+      "scenario": "nativeWIPMethodsReadback",
+      "pass": true,
+      "code": "X16UI1033877350",
+      "rowText": "\tX16UI1033877350\t\n\tOwned WIP method UI 1033\tUsage (Total Cost)\tContract (Invoiced Price)\t\n\t\n\t\n\t\n\t",
+      "checkboxes": [
+        {
+          "name": null,
+          "checked": "false"
+        },
+        {
+          "name": null,
+          "checked": "false"
+        },
+        {
+          "name": null,
+          "checked": "true"
+        },
+        {
+          "name": null,
+          "checked": "false"
+        }
+      ],
+      "body": "Skip to main content\nCRONUS International Ltd.\nSales\nPurchasing\nInventory\nPosted Documents\nShopify\nAll Reports\n\nProject WIP Methods:\nAll\n\n\nNew\nDelete\nEdit List\n\n\n\n\t\nCode\n\t\n\t\nDescription\n\t\nRecognized Costs\n\t\nRecognized Sales\n\t\nWIP Cost\n\t\nWIP Sales\n\t\nValid\n\t\nSystem Defined\n\t\n\t\t\n\t\t\t\t\t\t\t\t\n\tX16UI1033877350\t\n\tOwned WIP method UI 1033\tUsage (Total Cost)\tContract (Invoiced Price)\t\n\t\n\t\n\t\n\t\nUse the Left and Right arrow keys to adjust the size. Use the Escape key to undo or the Enter key to accept.\n\nList with title \"Project WIP Methods\" now has one item\n\nCode, sorted in Ascending order"
+    },
+    {
+      "lcid": 1039,
+      "scenario": "nativeWIPMethodsReadback",
+      "pass": true,
+      "code": "X16UI1039898001",
+      "rowText": "\tX16UI1039898001\t\n\tOwned WIP method UI 1039\tUsage (Total Cost)\tContract (Invoiced Price)\t\n\t\n\t\n\t\n\t",
+      "checkboxes": [
+        {
+          "name": null,
+          "checked": "false"
+        },
+        {
+          "name": null,
+          "checked": "false"
+        },
+        {
+          "name": null,
+          "checked": "true"
+        },
+        {
+          "name": null,
+          "checked": "false"
+        }
+      ],
+      "body": "Fara í aðalefni\nCRONUS International Ltd.\nSales\nPurchasing\nInventory\nPosted Documents\nShopify\nAllar skýrslur\n\nProject WIP Methods:\nAllt\n\n\nNýtt\nEyða\nBreyta lista\n\n\n\n\t\nCode\n\t\n\t\nDescription\n\t\nRecognized Costs\n\t\nRecognized Sales\n\t\nWIP Cost\n\t\nWIP Sales\n\t\nValid\n\t\nSystem Defined\n\t\n\t\t\n\t\t\t\t\t\t\t\t\n\tX16UI1039898001\t\n\tOwned WIP method UI 1039\tUsage (Total Cost)\tContract (Invoiced Price)\t\n\t\n\t\n\t\n\t\nNotaðu hægri og vinstri örvalyklana til að stilla stærðina. Notaðu Escape-lykilinn til að afturkalla eða Enter-lykilinn til að staðfesta.\n\nListi með titilinn „Project WIP Methods“ hefur nú eitt atriði\n\nCode, raðað í pöntunina Hækkandi"
+    }
+  ],
+  "cleanup": [
+    {
+      "code": "X16UI1033877350",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16UI1033877350"
+      }
+    },
+    {
+      "code": "X16UI1039898001",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16UI1039898001"
+      }
+    }
+  ],
+  "restoredLanguage": 1033,
+  "completedAt": "2026-11-14T00:25:57.822Z",
+  "summary": {
+    "executed": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0
+  }
+}

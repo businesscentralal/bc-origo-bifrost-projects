@@ -1,0 +1,212 @@
+{
+  "version": "28.1.0.0",
+  "files_scanned": 7,
+  "publisher": "Origo",
+  "project": "Bifrost Projects",
+  "summary": {
+    "passed": 21,
+    "failed": 2,
+    "total": 23,
+    "ready": false
+  },
+  "checks": {
+    "xml_doc_comments": {
+      "pass": true,
+      "findings": []
+    },
+    "with_statements": {
+      "pass": true,
+      "findings": []
+    },
+    "global_variables": {
+      "pass": true,
+      "findings": []
+    },
+    "format_evaluate_enum": {
+      "pass": true,
+      "findings": []
+    },
+    "read_isolation": {
+      "pass": true,
+      "findings": []
+    },
+    "hardcoded_values": {
+      "pass": true,
+      "findings": []
+    },
+    "event_subscriber_placement": {
+      "pass": true,
+      "findings": []
+    },
+    "page_code_minimal": {
+      "pass": true,
+      "findings": []
+    },
+    "commit_in_loop": {
+      "pass": true,
+      "findings": []
+    },
+    "confirm_in_page": {
+      "pass": true,
+      "findings": []
+    },
+    "one_statement_per_line": {
+      "pass": false,
+      "findings": [
+        {
+          "file": "ProjectsWIPMethods.Codeunit.al",
+          "text": "local procedure AddEnumParameter(var Schema: JsonArray; Name: Text; Names: List of [Text])",
+          "line": 57
+        },
+        {
+          "file": "ProjectsWIPMethods.Codeunit.al",
+          "text": "local procedure ValidateRequest(var Argument: Record \"Message Argument ori\"; Request: JsonObject; Writing: Boolean): Boolean",
+          "line": 121
+        },
+        {
+          "file": "ProjectsWIPMethods.Codeunit.al",
+          "text": "local procedure RefuseInput(var Argument: Record \"Message Argument ori\"; Parameter: Text; Missing: Boolean)",
+          "line": 198
+        }
+      ]
+    },
+    "format_guid": {
+      "pass": true,
+      "findings": []
+    },
+    "modernization": {
+      "pass": true,
+      "findings": []
+    },
+    "today_vs_workdate": {
+      "pass": true,
+      "findings": []
+    },
+    "try_prefix_convention": {
+      "pass": true,
+      "findings": []
+    },
+    "namespace": {
+      "pass": true,
+      "findings": []
+    },
+    "caption_translation": {
+      "findings": [
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Project.Create', Locked = true;",
+          "line": 10
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Project.Update', Locked = true;",
+          "line": 15
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Task.Create', Locked = true;",
+          "line": 20
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Task.Update', Locked = true;",
+          "line": 25
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.PlanningLine.Create', Locked = true;",
+          "line": 30
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.PlanningLine.Update', Locked = true;",
+          "line": 35
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Project.Copy', Locked = true;",
+          "line": 40
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Project.SetStatus', Locked = true;",
+          "line": 46
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.WIP.Get', Locked = true;",
+          "line": 52
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.WIP.Calculate', Locked = true;",
+          "line": 58
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.WIP.Post', Locked = true;",
+          "line": 65
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Statistics.Get', Locked = true;",
+          "line": 70
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.BudgetVsActual.Get', Locked = true;",
+          "line": 75
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Usage.Get', Locked = true;",
+          "line": 80
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.Usage.Link', Locked = true;",
+          "line": 85
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.WIPMethod.Get', Locked = true;",
+          "line": 90
+        },
+        {
+          "file": "ProjectsMessageTypes.EnumExt.al",
+          "text": "Caption = 'Projects.WIPMethod.Set', Locked = true;",
+          "line": 95
+        }
+      ],
+      "pass": false,
+      "skipped": null
+    },
+    "reserved_var_names": {
+      "pass": true,
+      "findings": []
+    },
+    "changelog": {
+      "pass": true,
+      "findings": []
+    },
+    "app_json": {
+      "pass": true,
+      "findings": []
+    },
+    "data_classification": {
+      "pass": true,
+      "findings": []
+    },
+    "set_load_fields": {
+      "findings": [],
+      "pass": true,
+      "advisory": "Loops without SetLoadFields - consider it only for wide tables; not a gate failure"
+    },
+    "object_naming": {
+      "pass": true,
+      "findings": []
+    }
+  },
+  "total_al_files": 37,
+  "mode": "diff (vs origin/main)"
+}
