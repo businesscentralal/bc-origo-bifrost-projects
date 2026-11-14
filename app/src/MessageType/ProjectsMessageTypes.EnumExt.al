@@ -85,4 +85,14 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Usage.Link', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Usage Link Impl ori", "Msg Discovery ori" = "Proj. Usage Link Impl ori", "Msg Contract ori" = "Proj. Usage Link Impl ori";
     }
+    value(70009240; "Projects.WIPMethod.Get")
+    {
+        Caption = 'Projects.WIPMethod.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Method Get ori", "Msg Discovery ori" = "Proj. WIP Method Get ori", "Msg Contract ori" = "Proj. WIP Method Get ori";
+    }
+    value(70009241; "Projects.WIPMethod.Set")
+    {
+        Caption = 'Projects.WIPMethod.Set', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Method Set ori", "Msg Discovery ori" = "Proj. WIP Method Set ori", "Msg Contract ori" = "Proj. WIP Method Set ori";
+    }
 }
