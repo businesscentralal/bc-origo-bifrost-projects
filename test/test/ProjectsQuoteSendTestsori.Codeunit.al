@@ -30,10 +30,10 @@ codeunit 97140 "Projects Quote Send Tests ori"
         Profile: Record "Document Sending Profile";
         Request: JsonObject;
         Response: JsonObject;
-        Previous: Enum "Job Archive Option";
+        Previous: Text;
     begin
         // Story #15, AC01 | Time: no date dependency | Risk: profile without channels, nothing leaves the tenant
-        Previous := SetArchiveRule("Job Archive Option"::Never);
+        Previous := SetArchiveRule('Never');
         CreateQuoteProject(Project);
         CreateProfile(Profile);
         Request.Add('projectNo', Project."No.");
@@ -56,10 +56,10 @@ codeunit 97140 "Projects Quote Send Tests ori"
         Customer: Record Customer;
         Request: JsonObject;
         Response: JsonObject;
-        Previous: Enum "Job Archive Option";
+        Previous: Text;
     begin
         // Story #15, AC01 | Time: no date dependency | Risk: profile without channels
-        Previous := SetArchiveRule("Job Archive Option"::Never);
+        Previous := SetArchiveRule('Never');
         CreateQuoteProject(Project);
         CreateProfile(Profile);
         Customer.Get(Project."Bill-to Customer No.");
@@ -81,10 +81,10 @@ codeunit 97140 "Projects Quote Send Tests ori"
         JobArchive: Record "Job Archive";
         Request: JsonObject;
         Response: JsonObject;
-        Previous: Enum "Job Archive Option";
+        Previous: Text;
     begin
         // Story #15, AC04 edge case | Time: no date dependency | Risk: archive rows of the own project are removed
-        Previous := SetArchiveRule("Job Archive Option"::Always);
+        Previous := SetArchiveRule('Always');
         CreateQuoteProject(Project);
         CreateProfile(Profile);
         Request.Add('projectNo', Project."No.");
@@ -312,15 +312,18 @@ codeunit 97140 "Projects Quote Send Tests ori"
         Profile.Insert(false);
     end;
 
-    /// <summary>Sets Archive Projects and returns the previous rule.</summary>
-    local procedure SetArchiveRule(Rule: Enum "Job Archive Option") Previous: Enum "Job Archive Option"
+    /// <summary>
+    /// Sets Archive Projects by its English caption and returns the previous caption. The field is an Option on
+    /// BC 28 and the enum "Job Archive Option" on BC 29, so the value goes through Format/Evaluate, which both accept.
+    /// </summary>
+    local procedure SetArchiveRule(Rule: Text) Previous: Text
     var
         JobsSetup: Record "Jobs Setup";
     begin
         Library.Initialize();
         JobsSetup.Get();
-        Previous := JobsSetup."Archive Jobs";
-        JobsSetup."Archive Jobs" := Rule;
+        Previous := Format(JobsSetup."Archive Jobs");
+        Evaluate(JobsSetup."Archive Jobs", Rule);
         JobsSetup.Modify(false);
     end;
 
