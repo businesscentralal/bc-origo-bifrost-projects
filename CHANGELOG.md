@@ -100,3 +100,22 @@
 - Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
 - Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
 - app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
+
+## Unreleased — typed project reports (verification candidate)
+
+- Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009246), and dataset, nonzero native budget and permission tests 97126–97127. Report registry, feature-role permissions and translations are integrated; shipping queue acceptance remains subject to current-tip verification.
+
+- Register `Projects.Report.Get` (enum value 70009221) and grant its adapter (70009235), implementation (70009246) and input validator (70009230) through Projects Read/Full role extensions (#14).
+- Object ranges: app 10078485..10078584, tests 97100..97199.
+- Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
+- Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
+- app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
+
+- Return a valid blank PDF when a standard report produces no pages and its native dataset is empty (70009235, #14); retain rendering errors for nonempty data.
+
+### Changed (2026-11-14)
+- Merged main into the typed project reports branch: object ID clash on codeunit 70009243 (main's "Proj. WIP Method Process ori"); "Proj. Report Impl ori" moved to the next free ID 70009244.
+- Merged main again (3f8e1ac): object ID clash on codeunit 70009244 (main's "Proj. Item Usage Process ori"); "Proj. Report Impl ori" moved to the next free ID 70009246. Message-type catalogue count is now twenty-one.
+
+### Changed (2026-11-10)
+- Issue #14: integrated merged scaffold #21 without restoring the unreleased PlanningLine.Delete type (70009211); retained report registration 70009221, report permissions and bilingual help. Kept deterministic WIP dimension fixtures and distinct owned applied/recognized accounts for the nonzero report regression (97102, 97126).
