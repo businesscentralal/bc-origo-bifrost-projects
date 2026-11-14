@@ -236,6 +236,8 @@ codeunit 70009242 "Projects WIP Methods ori"
                 Argument.RespondWithError("Bifrost Error Code ori"::PreconditionFailed, ProtectedLbl, 'code', '', '', NewNextLbl);
                 exit;
             end;
+            Calculated.ReadIsolation := IsolationLevel::ReadCommitted;
+            Posted.ReadIsolation := IsolationLevel::ReadCommitted;
             Calculated.SetRange("WIP Method Used", CodeValue);
             Posted.SetRange("WIP Method Used", CodeValue);
             if not Calculated.IsEmpty() or not Posted.IsEmpty() then begin
@@ -253,6 +255,7 @@ codeunit 70009242 "Projects WIP Methods ori"
                 Method.Insert(true);
             Methods.Add(MethodJson(Method));
         end else begin
+            Method.ReadIsolation := IsolationLevel::ReadCommitted;
             if CodeValue <> '' then begin
                 Method.SetRange(Code, CodeValue);
                 if Method.IsEmpty() then begin

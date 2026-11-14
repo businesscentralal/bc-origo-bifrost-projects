@@ -7,7 +7,7 @@ using Origo.Bifrost;
 codeunit 70009241 "Proj. WIP Method Set ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
-    /// <summary>Checks company enablement and native table write permission.</summary>
+    /// <summary>Checks company enablement and the native table permissions used by this operation.</summary>
     procedure IsEnabled(): Boolean
     var
         Gate: Codeunit "Projects Gate ori";
@@ -75,16 +75,16 @@ codeunit 70009241 "Proj. WIP Method Set ori" implements "Msg Interface ori", "Ms
     procedure GetResponse(var Response: JsonObject): Boolean
     var
         Fields: JsonArray;
-        Field: JsonObject;
+        ResponseField: JsonObject;
     begin
-        Field.Add('name', 'status');
-        Field.Add('type', 'string');
-        Fields.Add(Field);
-        Clear(Field);
-        Field.Add('name', 'methods');
-        Field.Add('type', 'array');
-        Field.Add('description', 'Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language.');
-        Fields.Add(Field);
+        ResponseField.Add('name', 'status');
+        ResponseField.Add('type', 'string');
+        Fields.Add(ResponseField);
+        Clear(ResponseField);
+        ResponseField.Add('name', 'methods');
+        ResponseField.Add('type', 'array');
+        ResponseField.Add('description', 'Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language.');
+        Fields.Add(ResponseField);
         Response.Add('contentType', 'text/json');
         Response.Add('fields', Fields);
         exit(true);
@@ -132,13 +132,13 @@ codeunit 70009241 "Proj. WIP Method Set ori" implements "Msg Interface ori", "Ms
         Examples.Add(Example);
         exit(true);
     end;
-    /// <summary>Provides localized operation help.</summary>
+    /// <summary>Provides the English-only purpose chapter.</summary>
     procedure GetOverview(var Overview: Text): Boolean
     begin
         Overview := 'Creates or updates a custom project WIP method; protects system-defined and used methods.';
         exit(true);
     end;
-    /// <summary>Documents nested write behavior.</summary>
+    /// <summary>Documents native method protections and partial update behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     begin
         Notes := 'Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change. No posting or deletion occurs.';
