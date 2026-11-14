@@ -26,6 +26,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Task.Update` | `projectNo`, `taskNo`, changed fields, optional `planningLines[]` | Updates a task; preserves omitted fields. |
 | `Projects.PlanningLine.Create` | `projectNo`, `taskNo`, positive `lineNo`, fields | Creates a native resource, item, G/L account or text planning line. |
 | `Projects.PlanningLine.Update` | `projectNo`, `taskNo`, `lineNo`, changed fields | Updates supplied native fields. |
+| `Projects.PurchaseLine.Link` | purchase line (`systemId` or `documentType`+`documentNo`+`lineNo`), `projectNo`, `taskNo`, optional `lineType`, `planningLineNo` | Links an unreceived, uninvoiced purchase line to an open project task. Repeating the same link returns `changed: false`. |
+| `Projects.ItemUsage.Post` | `projectNo`, `taskNo`, `lines[]` | Posts item usage through the project journal and returns the project ledger entry range. |
 | `Projects.Usage.Get` | `projectNo`, `taskNo` | Native usage links and planning-line remaining quantities. |
 | `Projects.Usage.Link` | `projectNo`, `taskNo`, `entryNo`, `lineNo` or `createPlanningLine: true` | Applies usage through native BC or transfers usage to planning lines. |
 | `Projects.WIP.Get` | `projectNo` | Reads calculated and posted WIP entries. |

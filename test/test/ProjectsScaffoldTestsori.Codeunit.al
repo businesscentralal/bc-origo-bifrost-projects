@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_AllNineteenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_TwentyOneTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -120,6 +120,9 @@ codeunit 97100 "Projects Scaffold Tests ori"
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
+        Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Planning line delete is not a Projects message type');
+        Assert.IsTrue(Names.Contains('Projects.PurchaseLine.Link'), 'Purchase line link must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ItemUsage.Post'), 'Item usage post must be registered');
         foreach Name in Names do
             if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
                 Assert.IsTrue(ExpectedTypes.Contains(Name), 'Unexpected Projects type in the exact catalogue: ' + Name);
@@ -138,7 +141,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(19, Count, 'Catalogue must contain all nineteen owned Projects types');
+        Assert.AreEqual(21, Count, 'Catalogue must contain all twenty-one owned Projects types');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
