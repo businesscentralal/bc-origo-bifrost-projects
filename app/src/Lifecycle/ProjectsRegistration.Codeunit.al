@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Registers the Projects setup page in Foundation's application registry.</summary>
-codeunit 70009201 "Projects Registration ori"
+codeunit 70013501 "Projects Registration ori"
 {
     Access = Internal;
     InherentPermissions = X;

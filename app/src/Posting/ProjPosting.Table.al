@@ -5,7 +5,7 @@ namespace Origo.Bifrost.Projects;
 /// No records are stored. WritePermission() on this table is the project posting gate
 /// for Projects.WIP.Post. Projects Full grants write; Projects Read grants only read.
 /// </summary>
-table 70009221 "Proj. Posting ori"
+table 70013521 "Proj. Posting ori"
 {
     Extensible = false;
     Access = Internal;

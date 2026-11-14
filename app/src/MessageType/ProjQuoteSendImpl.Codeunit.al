@@ -10,7 +10,7 @@ using Microsoft.Sales.Customer;
 /// Profile the way the Send Project Quote action on the project card does. Every refusal is checked before anything
 /// is sent; the native send runs in "Proj. Quote Send Process ori" so a Business Central error rolls back.
 /// </summary>
-codeunit 70009248 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     Permissions = tabledata Job = R,

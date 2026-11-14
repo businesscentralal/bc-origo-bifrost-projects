@@ -33,7 +33,7 @@ codeunit 97103 "Projects Permission Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
+            if (Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599) then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 Clear(TempArgument);
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
