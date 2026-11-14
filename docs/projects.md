@@ -11,7 +11,7 @@ when a caller invokes one. Setup is company-specific. The Read role can read the
 switch; the Full role can administer it. Neither extension grants Foundation Setup
 tabledata, a new assignable role, or native project table privileges.
 
-`Help.MessageTypes.Get` discovers the seventeen registered `Projects.*.*` types.
+`Help.MessageTypes.Get` discovers the twenty registered `Projects.*.*` types, including `Projects.PurchaseLine.Link`, `Projects.ItemUsage.Post`, `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set`.
 `Help.Implementation.Get` describes each version 1.0 operation and its nested schema.
 Descriptions, selection help and keywords support en-US and is-IS.
 
