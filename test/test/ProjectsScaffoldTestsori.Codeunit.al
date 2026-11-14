@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_AllSixteenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_AllNineteenTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -114,6 +114,9 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Usage.Get');
         ExpectedTypes.Add('Projects.Usage.Link');
         ExpectedTypes.Add('Projects.ResourceAllocation.Get');
+        ExpectedTypes.Add('Projects.WIPMethod.Get');
+        ExpectedTypes.Add('Projects.WIPMethod.Set');
+        ExpectedTypes.Add('Projects.Quote.Send');
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
@@ -135,7 +138,8 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(16, Count, 'Catalogue must contain all fifteen retained Projects types plus ResourceAllocation.Get');
+        Assert.AreEqual(19, Count, 'Catalogue must contain all nineteen owned Projects types');
+        Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
     [Test]
