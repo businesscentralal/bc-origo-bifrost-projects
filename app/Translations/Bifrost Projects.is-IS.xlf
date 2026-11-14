@@ -1382,6 +1382,7 @@
           <target>Notaðu dagsetningabil sem endar á eða eftir fromDate.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Notaðu dagsetningabil sem endar á eða eftir fromDate.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Allocation ori - NamedType Text9Lbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3987711189 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use a task belonging to the selected project.</source>
           <target>Notaðu verkhluta sem tilheyrir völdu verkefni.</target>
