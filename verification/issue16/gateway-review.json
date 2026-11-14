@@ -1,0 +1,36 @@
+{
+  "sha": "e415bd5e886763a63c013199f7c4bacc94178556",
+  "reviewer": "Alv\u00edss (worker-4), implementation self-check; independent worker review still required",
+  "targetBranch": "main",
+  "tier": "Standard",
+  "automatedFilesScanned": 7,
+  "automatedSummary": {
+    "total": 23,
+    "ready": false,
+    "passed": 21,
+    "failed": 2
+  },
+  "manualDisposition": {
+    "one_statement_per_line": "Three findings are semicolons separating AL procedure parameters; each executable statement occupies its own line. No suppression added.",
+    "caption_translation": "Seventeen enum captions are locked machine message-type identifiers. Discovery labels and error/nextStep labels are localized in the XLF and checked in both locales.",
+    "changelog": "Current version is documented with a bracketed version/date header and new object IDs."
+  },
+  "layer2": {
+    "namespaces_and_names": "All four new codeunits use Origo.Bifrost.Projects, ori suffix and names at most 30 characters.",
+    "ranges": "Product codeunits 70009240..70009243, enum values 70009240/70009241, test codeunit 97116; all within main app manifests and project ranges.",
+    "compatibility": "Existing public contracts and procedures preserved; additions only. No new table, field, page or action.",
+    "partial_fields": "Set validates JSON types, length and enum names before writes. Omitted fields preserve existing/native defaults.",
+    "protections": "All writes to system-defined and calculated/posted-history methods are refused before changes, including valid-only changes and reversed posted history.",
+    "native_transaction": "Uses native Validate and Insert/Modify triggers inside a Codeunit.Run rollback boundary; earlier description changes roll back on later native errors.",
+    "permissions": "Both role extensions grant the four codeunits; native table rights are checked and never elevated. Existing restricted-role suite iterates new enum values.",
+    "reads": "Get uses committed isolation and loads all emitted fields. History guards use committed reads; updates use the method table lock and native guards.",
+    "translations": "All source/target XLF unit IDs synchronize; refusal and discovery labels include is-IS. Help strings and enum names are English-only by design.",
+    "tests": "Fourteen new story-traced tests cover native read/create/update, preservation, system and posted/calculated protection, malformed input, missing/notfound, rollback, localization, three-part names; full suite also tests new type permissions and contracts. The added native-error regression verifies localized refusal summaries independently of the platform diagnostic language.",
+    "documentation": "README updated to template sections and complete app object table; docs/contracts.md defines WIP method schema/errors and examples; docs/projects.md corrects discovery count and identifier exception; CHANGELOG lists new object IDs.",
+    "no_pipeline_changes": "No .github, .AL-Go or CI files edited.",
+    "external_calls": "Only own local BC tenant and GitHub used; all WIP history fixtures are synthetic owned data."
+  },
+  "remainingChecks": "All final-head runtime checks passed; independent review and release licence checks remain separate.",
+  "verdict": "PASS after manual disposition of two automated false-positive categories; no suppressions added.",
+  "createdAt": "2026-11-14T00:23:27.501982+00:00"
+}

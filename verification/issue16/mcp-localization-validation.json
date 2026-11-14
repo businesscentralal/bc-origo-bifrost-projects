@@ -1,0 +1,148 @@
+{
+  "sha": "e415bd5e886763a63c013199f7c4bacc94178556",
+  "comparisons": [
+    {
+      "messageType": "Projects.WIPMethod.Get",
+      "translatedCatalogue": true,
+      "englishOnlyChapters": true
+    },
+    {
+      "messageType": "Projects.WIPMethod.Set",
+      "translatedCatalogue": true,
+      "englishOnlyChapters": true
+    }
+  ],
+  "passed": 2,
+  "failed": 0,
+  "refusalComparisons": [
+    {
+      "name": "Native invalid change rolls back all fields",
+      "code": "BusinessCentralError",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true,
+      "nativeDiagnosticPreserved": true
+    },
+    {
+      "name": "Set rejects missing code",
+      "code": "MissingParameter",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects empty code",
+      "code": "MissingParameter",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects blank code",
+      "code": "MissingParameter",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects null code",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects numeric code",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects overlong code",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects boolean string",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects unknown cost enum",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects object enum",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects null flag",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects overlong description",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set rejects protected flag input",
+      "code": "UnknownParameter",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Get unknown code is actionable",
+      "code": "RecordNotFound",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Get overlong code refuses truncation",
+      "code": "InvalidParameterFormat",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set refuses system-defined valid-only update",
+      "code": "PreconditionFailed",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set refuses reversed posted WIP history",
+      "code": "PreconditionFailed",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    },
+    {
+      "name": "Set refuses calculated WIP history",
+      "code": "PreconditionFailed",
+      "codesMatch": true,
+      "refusalTranslated": true,
+      "nextStepTranslated": true
+    }
+  ],
+  "refusalComparisonsPassed": 18,
+  "refusalComparisonsFailed": 0
+}

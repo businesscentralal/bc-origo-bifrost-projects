@@ -1,0 +1,20 @@
+{
+  "sha": "e415bd5e886763a63c013199f7c4bacc94178556",
+  "tenant": "w129-14",
+  "ownPrefix": "X16*",
+  "tables": [
+    {
+      "table": "Job WIP Method",
+      "count": 0
+    },
+    {
+      "table": "Job WIP Entry",
+      "count": 0
+    },
+    {
+      "table": "Job WIP G/L Entry",
+      "count": 0
+    }
+  ],
+  "remainingOwnedFixtures": 0
+}

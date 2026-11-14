@@ -1,0 +1,2040 @@
+{
+  "sha": "e415bd5e886763a63c013199f7c4bacc94178556",
+  "tenant": "w129-14",
+  "startedAt": "2026-11-14T00:37:14.488Z",
+  "rows": [
+    {
+      "lcid": 1033,
+      "name": "Set creates custom method",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Set",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16ME16648670C",
+            "description": "Owned MCP WIP method",
+            "recognizedCosts": "At Completion",
+            "recognizedSales": "At Completion",
+            "wipCost": true,
+            "wipSales": true,
+            "valid": true,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set updates all native settings",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Set",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16ME16648670C",
+            "description": "Owned MCP updated",
+            "recognizedCosts": "Usage (Total Cost)",
+            "recognizedSales": "Contract (Invoiced Price)",
+            "wipCost": false,
+            "wipSales": false,
+            "valid": false,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Get returns stable recognized settings and every flag",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Get",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16ME16648670C",
+            "description": "Owned MCP updated",
+            "recognizedCosts": "Usage (Total Cost)",
+            "recognizedSales": "Contract (Invoiced Price)",
+            "wipCost": false,
+            "wipSales": false,
+            "valid": false,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Get without code lists owned method",
+      "pass": true,
+      "result": {
+        "status": "Success",
+        "count": 6,
+        "ownedPresent": true
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set preserves omitted fields",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Get",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16ME16648670C",
+            "description": "Partial update",
+            "recognizedCosts": "Usage (Total Cost)",
+            "recognizedSales": "Contract (Invoiced Price)",
+            "wipCost": false,
+            "wipSales": false,
+            "valid": false,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Native invalid change rolls back all fields",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "BusinessCentralError",
+        "error": "Native validation rejected the WIP method settings.",
+        "nextStep": "Review the method settings and nativeError details, then retry with valid values.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type.",
+        "nativeError": "You cannot modify this field when Recognized Costs is At Completion."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects missing code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "MissingParameter",
+        "error": "The WIP method code is required and must not be empty.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects empty code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "MissingParameter",
+        "error": "The WIP method code is required and must not be empty.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects blank code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "MissingParameter",
+        "error": "The WIP method code is required and must not be empty.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects null code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects numeric code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects overlong code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects boolean string",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "wipCost",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects unknown cost enum",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "recognizedCosts",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects object enum",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "recognizedSales",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects null flag",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "valid",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects overlong description",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "description",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set rejects protected flag input",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "UnknownParameter",
+        "error": "Parameter \"systemDefined\" is not declared by this message type. Nothing was executed.",
+        "parameter": "systemDefined",
+        "received": "false",
+        "expected": "declared request parameters",
+        "nextStep": "Remove this key or consult Help.Implementation.Get for the declared parameters.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Get unknown code is actionable",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "RecordNotFound",
+        "error": "The requested WIP method does not exist.",
+        "parameter": "code",
+        "nextStep": "List WIP methods without a code, or create a custom method with Set.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Get\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Get overlong code refuses truncation",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "A WIP method parameter has an invalid type, length or value, or is not supported.",
+        "parameter": "code",
+        "nextStep": "Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Get\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set refuses system-defined valid-only update",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "PreconditionFailed",
+        "error": "System-defined WIP methods cannot be changed.",
+        "parameter": "code",
+        "nextStep": "Create a new custom WIP method with a different code; leave the protected method unchanged.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set refuses reversed posted WIP history",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "PreconditionFailed",
+        "error": "WIP methods referenced by calculated or posted WIP cannot be changed.",
+        "parameter": "code",
+        "nextStep": "Create a new custom WIP method with a different code; leave the protected method unchanged.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Set refuses calculated WIP history",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "PreconditionFailed",
+        "error": "WIP methods referenced by calculated or posted WIP cannot be changed.",
+        "parameter": "code",
+        "nextStep": "Create a new custom WIP method with a different code; leave the protected method unchanged.",
+        "hint": "For usage details, call the \"Help.Implementation.Get\" message type with subject \"Projects.WIPMethod.Set\". Always read the help before calling a message type."
+      }
+    },
+    {
+      "lcid": 1033,
+      "name": "Both types expose localized discovery and English chapters",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Help.Implementation.Get",
+        "status": "Success",
+        "result": [
+          {
+            "status": "Success",
+            "name": "Projects.WIPMethod.Get",
+            "isEnabled": true,
+            "filterTableNo": 1006,
+            "description": "Lists project WIP methods and their recognized cost and sales settings.",
+            "selectionDescription": "Lists project WIP methods and their recognized cost and sales settings.",
+            "messageDirection": "Outbound",
+            "keywords": [
+              "project",
+              "job",
+              "wip",
+              "method",
+              "recognized costs",
+              "recognized sales",
+              "get"
+            ],
+            "chargeable": true,
+            "envelope": {
+              "subject": {
+                "use": "notUsed"
+              },
+              "dataRequired": true,
+              "version": "1.0",
+              "contentType": "text/json"
+            },
+            "target": [
+              {
+                "source": "data.code",
+                "form": "WIP method code",
+                "description": "Exact native WIP method code; omitted on Get lists all methods."
+              }
+            ],
+            "parameters": [
+              {
+                "name": "code",
+                "type": "string",
+                "required": false,
+                "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+                "maxLength": 20
+              }
+            ],
+            "response": {
+              "contentType": "text/json",
+              "fields": [
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "methods",
+                  "type": "array",
+                  "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "MissingParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameterFormat",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "RecordNotFound",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PreconditionFailed",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "BusinessCentralError",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PermissionDenied",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              }
+            ],
+            "effect": {
+              "effect": "read",
+              "changes": "None.",
+              "idempotent": true
+            },
+            "metering": {
+              "chargeable": true,
+              "chargedAs": "message"
+            },
+            "examples": [
+              {
+                "data": {
+                  "code": "CUSTOM"
+                }
+              }
+            ],
+            "overview": "Lists project WIP methods and their recognized cost and sales settings.",
+            "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+          },
+          {
+            "status": "Success",
+            "name": "Projects.WIPMethod.Set",
+            "isEnabled": true,
+            "filterTableNo": 1006,
+            "description": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+            "selectionDescription": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+            "messageDirection": "Inbound",
+            "keywords": [
+              "project",
+              "job",
+              "wip",
+              "method",
+              "recognized costs",
+              "recognized sales",
+              "set"
+            ],
+            "chargeable": true,
+            "envelope": {
+              "subject": {
+                "use": "notUsed"
+              },
+              "dataRequired": true,
+              "version": "1.0",
+              "contentType": "text/json"
+            },
+            "target": [
+              {
+                "source": "data.code",
+                "form": "WIP method code",
+                "description": "Exact native WIP method code; omitted on Get lists all methods."
+              }
+            ],
+            "parameters": [
+              {
+                "name": "code",
+                "type": "string",
+                "required": true,
+                "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+                "maxLength": 20
+              },
+              {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "description": "Description; omitted on update preserves the existing value.",
+                "maxLength": 100
+              },
+              {
+                "name": "recognizedCosts",
+                "type": "string",
+                "required": false,
+                "description": "Exact native English enum name, independent of session language.",
+                "allowed": [
+                  "At Completion",
+                  "Cost of Sales",
+                  "Cost Value",
+                  "Contract (Invoiced Cost)",
+                  "Usage (Total Cost)"
+                ]
+              },
+              {
+                "name": "recognizedSales",
+                "type": "string",
+                "required": false,
+                "description": "Exact native English enum name, independent of session language.",
+                "allowed": [
+                  "At Completion",
+                  "Contract (Invoiced Price)",
+                  "Usage (Total Cost)",
+                  "Usage (Total Price)",
+                  "Percentage of Completion",
+                  "Sales Value"
+                ]
+              },
+              {
+                "name": "wipCost",
+                "type": "boolean",
+                "required": false,
+                "description": "Native WIP cost flag; false requires Usage (Total Cost)."
+              },
+              {
+                "name": "wipSales",
+                "type": "boolean",
+                "required": false,
+                "description": "Native WIP sales flag; false requires Contract (Invoiced Price)."
+              },
+              {
+                "name": "valid",
+                "type": "boolean",
+                "required": false,
+                "description": "Whether the custom method is available for assignment to projects."
+              }
+            ],
+            "response": {
+              "contentType": "text/json",
+              "fields": [
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "methods",
+                  "type": "array",
+                  "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "MissingParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameterFormat",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "RecordNotFound",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PreconditionFailed",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "BusinessCentralError",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PermissionDenied",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "Retryable",
+                "when": "A transient lock or deadlock caught while writing or posting. The error preserves Business Central's original text. Uncaught errors are Retryable only for types with effect write.",
+                "fix": "Retry the same call after a few seconds; nothing was changed."
+              }
+            ],
+            "effect": {
+              "effect": "write",
+              "changes": "Creates or updates one custom Job WIP Method through native validation. No posting or deletion.",
+              "idempotent": true
+            },
+            "metering": {
+              "chargeable": true,
+              "chargedAs": "message"
+            },
+            "examples": [
+              {
+                "data": {
+                  "code": "CUSTOM",
+                  "description": "Custom WIP method"
+                }
+              }
+            ],
+            "overview": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+            "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+          }
+        ],
+        "conventions": {
+          "errorsAndWarnings": "## Errors and warnings\r\nAn error response has `status` = `Error`, a stable `code`, the `error` text and, when they apply, `parameter` (the request parameter concerned, e.g. `lines[2].no`), `received` (the value received), `expected` (what was expected) and `nextStep` (what to do now). `hint` says where to read more.\r\nWhen a request has several problems, all of them are listed in `errors[]` - each with the same fields - under a top-level `code` (`MultipleErrors`, or a shared code such as `InvalidLine` for the `lines` of a Create type) and a summary `error`. Fix them all before calling again. One problem is reported at the top level, with no `errors[]`.\r\nRequest values are checked first and every problem found is reported together. A Business Central validation error raised afterwards, while a record is being written, stops the call and is reported on its own: `code` = `BusinessCentralError`, Business Central's own `error` text, and `parameter` naming the request parameter being applied, e.g. `lines[1].accountNo`. Nothing is written.\r\nRequest values are read in one format, whatever the language: dates `YYYY-MM-DD`; date-times ISO 8601 with `Z` or an offset; amounts as JSON numbers (or a string such as `\"1234.56\"`, no thousands separator); integers as JSON integers; booleans `true` or `false`. Any other value is `InvalidParameterFormat` with `received` and `expected`; for an unambiguous local form such as `26.09.2026`, `nextStep` gives the value to resend. Every bad value of a request is reported together.\r\nAnswers are written in one format as well, whatever the language of the call: dates `YYYY-MM-DD`, date-times ISO 8601, numbers with a dot and no thousands separator, and the option and enum values of every answer except `Data.Records.Get` and `Data.Records.Set` as their English names, so a value read from an answer can be sent back. Those two answer the caption of the language of the call, for a person to read. The language of the call (`lcid`) changes captions and message texts, not these forms. Two things are outside Bifrost's control: Business Central writes its own texts (a ledger entry description such as `Direct Cost V00010 on 10/02/26`, the text of a `BusinessCentralError`) with the regional settings of the server session, which `lcid` does not change, so a date in such a text can be in month-day order; and a table view is read with those settings too, so write dates in a view as `YYYY-MM-DD` and decimals with a dot.\r\nBoth success and error responses can carry `warnings[]`, each with `code`, `message` and, when they apply, `parameter` and `nextStep`.\r\n`UnknownParameter` refuses undeclared data keys before execution for every type whose effect is not read, including a missing effect. The root envelope option `strict:false` cannot opt out. Read types keep warnings without changing status, validationResult or domain warningCount unless the caller sets `strict:true` (next to type and subject, never inside data). Refusals list the keys and localized nextStep corrections; no business changes or successful execution charges occur. Example: {\"type\":\"Memory.User.Set\",\"strict\":true,\"data\":{\"memory\":\"test\",\"memry\":\"typo\"}} is refused.\r\n`FieldChangedByBC` is a warning from Data.Records.Set: another field validation or the write changed a sent field after its own validation. `parameter` names data[n].fields.{jsonName}, counting from 0. Status stays Success. Compare the returned values with what you sent; follow `nextStep` to use validation order or send the field again in a separate call. Normalisation of the field itself, LCY, Dimension Set ID, BLOB, Media, MediaSet and skipped fields are excluded.\r\n`SecurityFilterApplied` is a warning from Data.Records.Get, severity `low`, `parameter` `table`: a security filter of the caller applies to the table, so the result may hold fewer records than the table. `securityFiltered` is then true. Status stays Success, and the hidden records are never counted or described. Ask an administrator if you expect more records.\r\nData.RecordIds.Get, Data.Totals.Get, Data.Entries.Find and CSV.Records.Get do not return `securityFiltered` or `SecurityFilterApplied`. Their results can still be limited by security filters: counts and totals cover only visible records, and the absence of a flag or warning does not prove that every record in the table was included. Their help explains this visibility limit; request filters such as tableView and date ranges are separate.\r\nWhen a Business Central operation fails, the error can identify the request parameter being applied, the expected input and what to do next. That guidance accompanies the original `BusinessCentralError` after rollback, including a failed queued task. It does not change which writes are rolled back or committed. Guidance is cleared between messages; a message without it keeps its existing response shape. Recognized lock errors follow the `Retryable` rules below.\r\nSome message types accept calls only through a particular path: a scheduled queue message, the Task API (`/tasks`), the in-product MCP tool server, another message type, or the Messages page Run Task action. Bifrost determines where the call came from; request values cannot override it. A call through an unsupported path is refused with `PreconditionFailed` and a `nextStep` naming the path to use.\r\n`Retryable` means a transient lock or deadlock caught while writing or posting. `error` keeps Business Central's original text. `expected` is \"no concurrent lock on the same records\"; `nextStep` is \"Retry the same call after a few seconds; nothing was changed.\" Bifrost does not retry automatically. Uncaught recognized lock errors are also `Retryable` for `write` types. Uncaught `read` and `irreversible` errors remain `BusinessCentralError`, because an irreversible operation may already have committed.\r\n`ConfirmationRequired` is the preview refusal for an irreversible type called without `expectedCount`. Nothing was changed; inspect `expected` and the description before sending the same request with that count. `ConfirmationMismatch` means the count has changed or the sent count was wrong; nothing was changed. Inspect the new preview before confirming again. Feature apps use the same preview and confirmation protocol for irreversible operations.\r\nCodes: `MissingParameter`, `InvalidParameterFormat`, `InvalidParameter`, `RecordNotFound`, `AmbiguousRecord`, `ConflictingIdentifiers`, `InvalidFilterField`, `InvalidLine`, `NothingToPreview`, `LinesSkipped`, `BlockedByWriteGuard`, `PreconditionFailed`, `PermissionDenied`, `LimitExceeded`, `BusinessCentralError`, `MultipleErrors`, `DeprecatedParameter`, `UnknownParameter`, `FieldChangedByBC`, `Retryable`, `EULA_REQUIRED`, `TRIAL_NOT_STARTED`, `ConfirmationRequired`, `ConfirmationMismatch`, `SecurityFilterApplied`. The `error` text may be translated; the code never is.\r\n"
+        }
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set creates custom method",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Set",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16MI16652066C",
+            "description": "Owned MCP WIP method",
+            "recognizedCosts": "At Completion",
+            "recognizedSales": "At Completion",
+            "wipCost": true,
+            "wipSales": true,
+            "valid": true,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set updates all native settings",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Set",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16MI16652066C",
+            "description": "Owned MCP updated",
+            "recognizedCosts": "Usage (Total Cost)",
+            "recognizedSales": "Contract (Invoiced Price)",
+            "wipCost": false,
+            "wipSales": false,
+            "valid": false,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Get returns stable recognized settings and every flag",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Get",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16MI16652066C",
+            "description": "Owned MCP updated",
+            "recognizedCosts": "Usage (Total Cost)",
+            "recognizedSales": "Contract (Invoiced Price)",
+            "wipCost": false,
+            "wipSales": false,
+            "valid": false,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Get without code lists owned method",
+      "pass": true,
+      "result": {
+        "status": "Success",
+        "count": 6,
+        "ownedPresent": true
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set preserves omitted fields",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Projects.WIPMethod.Get",
+        "status": "Success",
+        "methods": [
+          {
+            "code": "X16MI16652066C",
+            "description": "Partial update",
+            "recognizedCosts": "Usage (Total Cost)",
+            "recognizedSales": "Contract (Invoiced Price)",
+            "wipCost": false,
+            "wipSales": false,
+            "valid": false,
+            "systemDefined": false
+          }
+        ]
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Native invalid change rolls back all fields",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "BusinessCentralError",
+        "error": "Innbyggð sannprófun hafnaði stillingum VÍV-aðferðarinnar.",
+        "nextStep": "Farðu yfir stillingar aðferðarinnar og nánari upplýsingar í nativeError og reyndu aftur með gildum gildum.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund.",
+        "nativeError": "You cannot modify this field when Recognized Costs is At Completion."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects missing code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "MissingParameter",
+        "error": "Kóði VÍV-aðferðar er nauðsynlegur og má ekki vera tómur.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects empty code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "MissingParameter",
+        "error": "Kóði VÍV-aðferðar er nauðsynlegur og má ekki vera tómur.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects blank code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "MissingParameter",
+        "error": "Kóði VÍV-aðferðar er nauðsynlegur og má ekki vera tómur.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects null code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects numeric code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects overlong code",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects boolean string",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "wipCost",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects unknown cost enum",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "recognizedCosts",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects object enum",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "recognizedSales",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects null flag",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "valid",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects overlong description",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "description",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set rejects protected flag input",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "UnknownParameter",
+        "error": "Viðfangið \"systemDefined\" er ekki skilgreint fyrir þessa skilaboðategund. Ekkert var keyrt.",
+        "parameter": "systemDefined",
+        "received": "false",
+        "expected": "skilgreind beiðniviðföng",
+        "nextStep": "Fjarlægðu þennan lykil eða skoðaðu Help.Implementation.Get til að sjá skilgreind viðföng.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Get unknown code is actionable",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "RecordNotFound",
+        "error": "Umbeðin VÍV-aðferð er ekki til.",
+        "parameter": "code",
+        "nextStep": "Sýndu VÍV-aðferðir án kóða eða stofnaðu sérsniðna aðferð með Set.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Get\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Get overlong code refuses truncation",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "InvalidParameterFormat",
+        "error": "Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.",
+        "parameter": "code",
+        "nextStep": "Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Get\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set refuses system-defined valid-only update",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "PreconditionFailed",
+        "error": "Ekki er hægt að breyta kerfisskilgreindum VÍV-aðferðum.",
+        "parameter": "code",
+        "nextStep": "Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set refuses reversed posted WIP history",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "PreconditionFailed",
+        "error": "Ekki er hægt að breyta VÍV-aðferðum sem reiknaðar eða bókaðar VÍV-færslur vísa í.",
+        "parameter": "code",
+        "nextStep": "Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Set refuses calculated WIP history",
+      "pass": true,
+      "result": {
+        "status": "Error",
+        "code": "PreconditionFailed",
+        "error": "Ekki er hægt að breyta VÍV-aðferðum sem reiknaðar eða bókaðar VÍV-færslur vísa í.",
+        "parameter": "code",
+        "nextStep": "Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.",
+        "hint": "Til að sjá notkunarupplýsingar skaltu kalla á skilaboðategundina \"Help.Implementation.Get\" með subject \"Projects.WIPMethod.Set\". Lestu alltaf hjálpina áður en þú kallar á skilaboðategund."
+      }
+    },
+    {
+      "lcid": 1039,
+      "name": "Both types expose localized discovery and English chapters",
+      "pass": true,
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Help.Implementation.Get",
+        "status": "Success",
+        "result": [
+          {
+            "status": "Success",
+            "name": "Projects.WIPMethod.Get",
+            "isEnabled": true,
+            "filterTableNo": 1006,
+            "description": "Sýnir VÍV-aðferðir verkefna og stillingar fyrir færðan kostnað og sölu.",
+            "selectionDescription": "Sýnir VÍV-aðferðir verkefna og stillingar fyrir færðan kostnað og sölu.",
+            "messageDirection": "Outbound",
+            "keywords": [
+              "verkefni",
+              "verk",
+              "vív",
+              "aðferð",
+              "færður kostnaður",
+              "færð sala",
+              "lesa"
+            ],
+            "chargeable": true,
+            "envelope": {
+              "subject": {
+                "use": "notUsed"
+              },
+              "dataRequired": true,
+              "version": "1.0",
+              "contentType": "text/json"
+            },
+            "target": [
+              {
+                "source": "data.code",
+                "form": "WIP method code",
+                "description": "Exact native WIP method code; omitted on Get lists all methods."
+              }
+            ],
+            "parameters": [
+              {
+                "name": "code",
+                "type": "string",
+                "required": false,
+                "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+                "maxLength": 20
+              }
+            ],
+            "response": {
+              "contentType": "text/json",
+              "fields": [
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "methods",
+                  "type": "array",
+                  "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "MissingParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameterFormat",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "RecordNotFound",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PreconditionFailed",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "BusinessCentralError",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PermissionDenied",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              }
+            ],
+            "effect": {
+              "effect": "read",
+              "changes": "None.",
+              "idempotent": true
+            },
+            "metering": {
+              "chargeable": true,
+              "chargedAs": "message"
+            },
+            "examples": [
+              {
+                "data": {
+                  "code": "CUSTOM"
+                }
+              }
+            ],
+            "overview": "Lists project WIP methods and their recognized cost and sales settings.",
+            "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+          },
+          {
+            "status": "Success",
+            "name": "Projects.WIPMethod.Set",
+            "isEnabled": true,
+            "filterTableNo": 1006,
+            "description": "Stofnar eða uppfærir sérsniðna VÍV-aðferð verkefnis; verndar kerfisskilgreindar og notaðar aðferðir.",
+            "selectionDescription": "Stofnar eða uppfærir sérsniðna VÍV-aðferð verkefnis; verndar kerfisskilgreindar og notaðar aðferðir.",
+            "messageDirection": "Inbound",
+            "keywords": [
+              "verkefni",
+              "verk",
+              "vív",
+              "aðferð",
+              "færður kostnaður",
+              "færð sala",
+              "skrifa"
+            ],
+            "chargeable": true,
+            "envelope": {
+              "subject": {
+                "use": "notUsed"
+              },
+              "dataRequired": true,
+              "version": "1.0",
+              "contentType": "text/json"
+            },
+            "target": [
+              {
+                "source": "data.code",
+                "form": "WIP method code",
+                "description": "Exact native WIP method code; omitted on Get lists all methods."
+              }
+            ],
+            "parameters": [
+              {
+                "name": "code",
+                "type": "string",
+                "required": true,
+                "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+                "maxLength": 20
+              },
+              {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "description": "Description; omitted on update preserves the existing value.",
+                "maxLength": 100
+              },
+              {
+                "name": "recognizedCosts",
+                "type": "string",
+                "required": false,
+                "description": "Exact native English enum name, independent of session language.",
+                "allowed": [
+                  "At Completion",
+                  "Cost of Sales",
+                  "Cost Value",
+                  "Contract (Invoiced Cost)",
+                  "Usage (Total Cost)"
+                ]
+              },
+              {
+                "name": "recognizedSales",
+                "type": "string",
+                "required": false,
+                "description": "Exact native English enum name, independent of session language.",
+                "allowed": [
+                  "At Completion",
+                  "Contract (Invoiced Price)",
+                  "Usage (Total Cost)",
+                  "Usage (Total Price)",
+                  "Percentage of Completion",
+                  "Sales Value"
+                ]
+              },
+              {
+                "name": "wipCost",
+                "type": "boolean",
+                "required": false,
+                "description": "Native WIP cost flag; false requires Usage (Total Cost)."
+              },
+              {
+                "name": "wipSales",
+                "type": "boolean",
+                "required": false,
+                "description": "Native WIP sales flag; false requires Contract (Invoiced Price)."
+              },
+              {
+                "name": "valid",
+                "type": "boolean",
+                "required": false,
+                "description": "Whether the custom method is available for assignment to projects."
+              }
+            ],
+            "response": {
+              "contentType": "text/json",
+              "fields": [
+                {
+                  "name": "status",
+                  "type": "string"
+                },
+                {
+                  "name": "methods",
+                  "type": "array",
+                  "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "MissingParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameterFormat",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "RecordNotFound",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PreconditionFailed",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "BusinessCentralError",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "PermissionDenied",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "InvalidParameter",
+                "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+                "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+              },
+              {
+                "code": "Retryable",
+                "when": "A transient lock or deadlock caught while writing or posting. The error preserves Business Central's original text. Uncaught errors are Retryable only for types with effect write.",
+                "fix": "Retry the same call after a few seconds; nothing was changed."
+              }
+            ],
+            "effect": {
+              "effect": "write",
+              "changes": "Creates or updates one custom Job WIP Method through native validation. No posting or deletion.",
+              "idempotent": true
+            },
+            "metering": {
+              "chargeable": true,
+              "chargedAs": "message"
+            },
+            "examples": [
+              {
+                "data": {
+                  "code": "CUSTOM",
+                  "description": "Custom WIP method"
+                }
+              }
+            ],
+            "overview": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+            "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+          }
+        ],
+        "conventions": {
+          "errorsAndWarnings": "## Errors and warnings\r\nAn error response has `status` = `Error`, a stable `code`, the `error` text and, when they apply, `parameter` (the request parameter concerned, e.g. `lines[2].no`), `received` (the value received), `expected` (what was expected) and `nextStep` (what to do now). `hint` says where to read more.\r\nWhen a request has several problems, all of them are listed in `errors[]` - each with the same fields - under a top-level `code` (`MultipleErrors`, or a shared code such as `InvalidLine` for the `lines` of a Create type) and a summary `error`. Fix them all before calling again. One problem is reported at the top level, with no `errors[]`.\r\nRequest values are checked first and every problem found is reported together. A Business Central validation error raised afterwards, while a record is being written, stops the call and is reported on its own: `code` = `BusinessCentralError`, Business Central's own `error` text, and `parameter` naming the request parameter being applied, e.g. `lines[1].accountNo`. Nothing is written.\r\nRequest values are read in one format, whatever the language: dates `YYYY-MM-DD`; date-times ISO 8601 with `Z` or an offset; amounts as JSON numbers (or a string such as `\"1234.56\"`, no thousands separator); integers as JSON integers; booleans `true` or `false`. Any other value is `InvalidParameterFormat` with `received` and `expected`; for an unambiguous local form such as `26.09.2026`, `nextStep` gives the value to resend. Every bad value of a request is reported together.\r\nAnswers are written in one format as well, whatever the language of the call: dates `YYYY-MM-DD`, date-times ISO 8601, numbers with a dot and no thousands separator, and the option and enum values of every answer except `Data.Records.Get` and `Data.Records.Set` as their English names, so a value read from an answer can be sent back. Those two answer the caption of the language of the call, for a person to read. The language of the call (`lcid`) changes captions and message texts, not these forms. Two things are outside Bifrost's control: Business Central writes its own texts (a ledger entry description such as `Direct Cost V00010 on 10/02/26`, the text of a `BusinessCentralError`) with the regional settings of the server session, which `lcid` does not change, so a date in such a text can be in month-day order; and a table view is read with those settings too, so write dates in a view as `YYYY-MM-DD` and decimals with a dot.\r\nBoth success and error responses can carry `warnings[]`, each with `code`, `message` and, when they apply, `parameter` and `nextStep`.\r\n`UnknownParameter` refuses undeclared data keys before execution for every type whose effect is not read, including a missing effect. The root envelope option `strict:false` cannot opt out. Read types keep warnings without changing status, validationResult or domain warningCount unless the caller sets `strict:true` (next to type and subject, never inside data). Refusals list the keys and localized nextStep corrections; no business changes or successful execution charges occur. Example: {\"type\":\"Memory.User.Set\",\"strict\":true,\"data\":{\"memory\":\"test\",\"memry\":\"typo\"}} is refused.\r\n`FieldChangedByBC` is a warning from Data.Records.Set: another field validation or the write changed a sent field after its own validation. `parameter` names data[n].fields.{jsonName}, counting from 0. Status stays Success. Compare the returned values with what you sent; follow `nextStep` to use validation order or send the field again in a separate call. Normalisation of the field itself, LCY, Dimension Set ID, BLOB, Media, MediaSet and skipped fields are excluded.\r\n`SecurityFilterApplied` is a warning from Data.Records.Get, severity `low`, `parameter` `table`: a security filter of the caller applies to the table, so the result may hold fewer records than the table. `securityFiltered` is then true. Status stays Success, and the hidden records are never counted or described. Ask an administrator if you expect more records.\r\nData.RecordIds.Get, Data.Totals.Get, Data.Entries.Find and CSV.Records.Get do not return `securityFiltered` or `SecurityFilterApplied`. Their results can still be limited by security filters: counts and totals cover only visible records, and the absence of a flag or warning does not prove that every record in the table was included. Their help explains this visibility limit; request filters such as tableView and date ranges are separate.\r\nWhen a Business Central operation fails, the error can identify the request parameter being applied, the expected input and what to do next. That guidance accompanies the original `BusinessCentralError` after rollback, including a failed queued task. It does not change which writes are rolled back or committed. Guidance is cleared between messages; a message without it keeps its existing response shape. Recognized lock errors follow the `Retryable` rules below.\r\nSome message types accept calls only through a particular path: a scheduled queue message, the Task API (`/tasks`), the in-product MCP tool server, another message type, or the Messages page Run Task action. Bifrost determines where the call came from; request values cannot override it. A call through an unsupported path is refused with `PreconditionFailed` and a `nextStep` naming the path to use.\r\n`Retryable` means a transient lock or deadlock caught while writing or posting. `error` keeps Business Central's original text. `expected` is \"no concurrent lock on the same records\"; `nextStep` is \"Retry the same call after a few seconds; nothing was changed.\" Bifrost does not retry automatically. Uncaught recognized lock errors are also `Retryable` for `write` types. Uncaught `read` and `irreversible` errors remain `BusinessCentralError`, because an irreversible operation may already have committed.\r\n`ConfirmationRequired` is the preview refusal for an irreversible type called without `expectedCount`. Nothing was changed; inspect `expected` and the description before sending the same request with that count. `ConfirmationMismatch` means the count has changed or the sent count was wrong; nothing was changed. Inspect the new preview before confirming again. Feature apps use the same preview and confirmation protocol for irreversible operations.\r\nCodes: `MissingParameter`, `InvalidParameterFormat`, `InvalidParameter`, `RecordNotFound`, `AmbiguousRecord`, `ConflictingIdentifiers`, `InvalidFilterField`, `InvalidLine`, `NothingToPreview`, `LinesSkipped`, `BlockedByWriteGuard`, `PreconditionFailed`, `PermissionDenied`, `LimitExceeded`, `BusinessCentralError`, `MultipleErrors`, `DeprecatedParameter`, `UnknownParameter`, `FieldChangedByBC`, `Retryable`, `EULA_REQUIRED`, `TRIAL_NOT_STARTED`, `ConfirmationRequired`, `ConfirmationMismatch`, `SecurityFilterApplied`. The `error` text may be translated; the code never is.\r\n"
+        }
+      }
+    }
+  ],
+  "cleanup": [
+    {
+      "tableName": "Job WIP G/L Entry",
+      "field": "WIP Method Used",
+      "code": "X16ME16648670P",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1005,
+        "deleted": 1,
+        "appliedFilter": "WIP Method Used: X16ME16648670P"
+      }
+    },
+    {
+      "tableName": "Job WIP Entry",
+      "field": "WIP Method Used",
+      "code": "X16ME16648670A",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1004,
+        "deleted": 1,
+        "appliedFilter": "WIP Method Used: X16ME16648670A"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16ME16648670C",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16ME16648670C"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16ME16648670S",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16ME16648670S"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16ME16648670P",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16ME16648670P"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16ME16648670A",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16ME16648670A"
+      }
+    },
+    {
+      "tableName": "Job WIP G/L Entry",
+      "field": "WIP Method Used",
+      "code": "X16MI16652066P",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1005,
+        "deleted": 1,
+        "appliedFilter": "WIP Method Used: X16MI16652066P"
+      }
+    },
+    {
+      "tableName": "Job WIP Entry",
+      "field": "WIP Method Used",
+      "code": "X16MI16652066A",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1004,
+        "deleted": 1,
+        "appliedFilter": "WIP Method Used: X16MI16652066A"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16MI16652066C",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16MI16652066C"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16MI16652066S",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16MI16652066S"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16MI16652066P",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16MI16652066P"
+      }
+    },
+    {
+      "tableName": "Job WIP Method",
+      "field": "Code",
+      "code": "X16MI16652066A",
+      "result": {
+        "company": "CRONUS International Ltd.",
+        "messageType": "Test.Records.Delete",
+        "status": "Success",
+        "tableId": 1006,
+        "deleted": 1,
+        "appliedFilter": "Code: X16MI16652066A"
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "lcid": 1033,
+      "codes": [
+        "X16ME16648670C",
+        "X16ME16648670S",
+        "X16ME16648670P",
+        "X16ME16648670A"
+      ]
+    },
+    {
+      "lcid": 1039,
+      "codes": [
+        "X16MI16652066C",
+        "X16MI16652066S",
+        "X16MI16652066P",
+        "X16MI16652066A"
+      ]
+    }
+  ],
+  "help": {
+    "1033": {
+      "company": "CRONUS International Ltd.",
+      "messageType": "Help.Implementation.Get",
+      "status": "Success",
+      "result": [
+        {
+          "status": "Success",
+          "name": "Projects.WIPMethod.Get",
+          "isEnabled": true,
+          "filterTableNo": 1006,
+          "description": "Lists project WIP methods and their recognized cost and sales settings.",
+          "selectionDescription": "Lists project WIP methods and their recognized cost and sales settings.",
+          "messageDirection": "Outbound",
+          "keywords": [
+            "project",
+            "job",
+            "wip",
+            "method",
+            "recognized costs",
+            "recognized sales",
+            "get"
+          ],
+          "chargeable": true,
+          "envelope": {
+            "subject": {
+              "use": "notUsed"
+            },
+            "dataRequired": true,
+            "version": "1.0",
+            "contentType": "text/json"
+          },
+          "target": [
+            {
+              "source": "data.code",
+              "form": "WIP method code",
+              "description": "Exact native WIP method code; omitted on Get lists all methods."
+            }
+          ],
+          "parameters": [
+            {
+              "name": "code",
+              "type": "string",
+              "required": false,
+              "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+              "maxLength": 20
+            }
+          ],
+          "response": {
+            "contentType": "text/json",
+            "fields": [
+              {
+                "name": "status",
+                "type": "string"
+              },
+              {
+                "name": "methods",
+                "type": "array",
+                "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+              }
+            ]
+          },
+          "errors": [
+            {
+              "code": "MissingParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameterFormat",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "RecordNotFound",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PreconditionFailed",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "BusinessCentralError",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PermissionDenied",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            }
+          ],
+          "effect": {
+            "effect": "read",
+            "changes": "None.",
+            "idempotent": true
+          },
+          "metering": {
+            "chargeable": true,
+            "chargedAs": "message"
+          },
+          "examples": [
+            {
+              "data": {
+                "code": "CUSTOM"
+              }
+            }
+          ],
+          "overview": "Lists project WIP methods and their recognized cost and sales settings.",
+          "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+        },
+        {
+          "status": "Success",
+          "name": "Projects.WIPMethod.Set",
+          "isEnabled": true,
+          "filterTableNo": 1006,
+          "description": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+          "selectionDescription": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+          "messageDirection": "Inbound",
+          "keywords": [
+            "project",
+            "job",
+            "wip",
+            "method",
+            "recognized costs",
+            "recognized sales",
+            "set"
+          ],
+          "chargeable": true,
+          "envelope": {
+            "subject": {
+              "use": "notUsed"
+            },
+            "dataRequired": true,
+            "version": "1.0",
+            "contentType": "text/json"
+          },
+          "target": [
+            {
+              "source": "data.code",
+              "form": "WIP method code",
+              "description": "Exact native WIP method code; omitted on Get lists all methods."
+            }
+          ],
+          "parameters": [
+            {
+              "name": "code",
+              "type": "string",
+              "required": true,
+              "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+              "maxLength": 20
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "description": "Description; omitted on update preserves the existing value.",
+              "maxLength": 100
+            },
+            {
+              "name": "recognizedCosts",
+              "type": "string",
+              "required": false,
+              "description": "Exact native English enum name, independent of session language.",
+              "allowed": [
+                "At Completion",
+                "Cost of Sales",
+                "Cost Value",
+                "Contract (Invoiced Cost)",
+                "Usage (Total Cost)"
+              ]
+            },
+            {
+              "name": "recognizedSales",
+              "type": "string",
+              "required": false,
+              "description": "Exact native English enum name, independent of session language.",
+              "allowed": [
+                "At Completion",
+                "Contract (Invoiced Price)",
+                "Usage (Total Cost)",
+                "Usage (Total Price)",
+                "Percentage of Completion",
+                "Sales Value"
+              ]
+            },
+            {
+              "name": "wipCost",
+              "type": "boolean",
+              "required": false,
+              "description": "Native WIP cost flag; false requires Usage (Total Cost)."
+            },
+            {
+              "name": "wipSales",
+              "type": "boolean",
+              "required": false,
+              "description": "Native WIP sales flag; false requires Contract (Invoiced Price)."
+            },
+            {
+              "name": "valid",
+              "type": "boolean",
+              "required": false,
+              "description": "Whether the custom method is available for assignment to projects."
+            }
+          ],
+          "response": {
+            "contentType": "text/json",
+            "fields": [
+              {
+                "name": "status",
+                "type": "string"
+              },
+              {
+                "name": "methods",
+                "type": "array",
+                "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+              }
+            ]
+          },
+          "errors": [
+            {
+              "code": "MissingParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameterFormat",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "RecordNotFound",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PreconditionFailed",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "BusinessCentralError",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PermissionDenied",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "Retryable",
+              "when": "A transient lock or deadlock caught while writing or posting. The error preserves Business Central's original text. Uncaught errors are Retryable only for types with effect write.",
+              "fix": "Retry the same call after a few seconds; nothing was changed."
+            }
+          ],
+          "effect": {
+            "effect": "write",
+            "changes": "Creates or updates one custom Job WIP Method through native validation. No posting or deletion.",
+            "idempotent": true
+          },
+          "metering": {
+            "chargeable": true,
+            "chargedAs": "message"
+          },
+          "examples": [
+            {
+              "data": {
+                "code": "CUSTOM",
+                "description": "Custom WIP method"
+              }
+            }
+          ],
+          "overview": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+          "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+        }
+      ],
+      "conventions": {
+        "errorsAndWarnings": "## Errors and warnings\r\nAn error response has `status` = `Error`, a stable `code`, the `error` text and, when they apply, `parameter` (the request parameter concerned, e.g. `lines[2].no`), `received` (the value received), `expected` (what was expected) and `nextStep` (what to do now). `hint` says where to read more.\r\nWhen a request has several problems, all of them are listed in `errors[]` - each with the same fields - under a top-level `code` (`MultipleErrors`, or a shared code such as `InvalidLine` for the `lines` of a Create type) and a summary `error`. Fix them all before calling again. One problem is reported at the top level, with no `errors[]`.\r\nRequest values are checked first and every problem found is reported together. A Business Central validation error raised afterwards, while a record is being written, stops the call and is reported on its own: `code` = `BusinessCentralError`, Business Central's own `error` text, and `parameter` naming the request parameter being applied, e.g. `lines[1].accountNo`. Nothing is written.\r\nRequest values are read in one format, whatever the language: dates `YYYY-MM-DD`; date-times ISO 8601 with `Z` or an offset; amounts as JSON numbers (or a string such as `\"1234.56\"`, no thousands separator); integers as JSON integers; booleans `true` or `false`. Any other value is `InvalidParameterFormat` with `received` and `expected`; for an unambiguous local form such as `26.09.2026`, `nextStep` gives the value to resend. Every bad value of a request is reported together.\r\nAnswers are written in one format as well, whatever the language of the call: dates `YYYY-MM-DD`, date-times ISO 8601, numbers with a dot and no thousands separator, and the option and enum values of every answer except `Data.Records.Get` and `Data.Records.Set` as their English names, so a value read from an answer can be sent back. Those two answer the caption of the language of the call, for a person to read. The language of the call (`lcid`) changes captions and message texts, not these forms. Two things are outside Bifrost's control: Business Central writes its own texts (a ledger entry description such as `Direct Cost V00010 on 10/02/26`, the text of a `BusinessCentralError`) with the regional settings of the server session, which `lcid` does not change, so a date in such a text can be in month-day order; and a table view is read with those settings too, so write dates in a view as `YYYY-MM-DD` and decimals with a dot.\r\nBoth success and error responses can carry `warnings[]`, each with `code`, `message` and, when they apply, `parameter` and `nextStep`.\r\n`UnknownParameter` refuses undeclared data keys before execution for every type whose effect is not read, including a missing effect. The root envelope option `strict:false` cannot opt out. Read types keep warnings without changing status, validationResult or domain warningCount unless the caller sets `strict:true` (next to type and subject, never inside data). Refusals list the keys and localized nextStep corrections; no business changes or successful execution charges occur. Example: {\"type\":\"Memory.User.Set\",\"strict\":true,\"data\":{\"memory\":\"test\",\"memry\":\"typo\"}} is refused.\r\n`FieldChangedByBC` is a warning from Data.Records.Set: another field validation or the write changed a sent field after its own validation. `parameter` names data[n].fields.{jsonName}, counting from 0. Status stays Success. Compare the returned values with what you sent; follow `nextStep` to use validation order or send the field again in a separate call. Normalisation of the field itself, LCY, Dimension Set ID, BLOB, Media, MediaSet and skipped fields are excluded.\r\n`SecurityFilterApplied` is a warning from Data.Records.Get, severity `low`, `parameter` `table`: a security filter of the caller applies to the table, so the result may hold fewer records than the table. `securityFiltered` is then true. Status stays Success, and the hidden records are never counted or described. Ask an administrator if you expect more records.\r\nData.RecordIds.Get, Data.Totals.Get, Data.Entries.Find and CSV.Records.Get do not return `securityFiltered` or `SecurityFilterApplied`. Their results can still be limited by security filters: counts and totals cover only visible records, and the absence of a flag or warning does not prove that every record in the table was included. Their help explains this visibility limit; request filters such as tableView and date ranges are separate.\r\nWhen a Business Central operation fails, the error can identify the request parameter being applied, the expected input and what to do next. That guidance accompanies the original `BusinessCentralError` after rollback, including a failed queued task. It does not change which writes are rolled back or committed. Guidance is cleared between messages; a message without it keeps its existing response shape. Recognized lock errors follow the `Retryable` rules below.\r\nSome message types accept calls only through a particular path: a scheduled queue message, the Task API (`/tasks`), the in-product MCP tool server, another message type, or the Messages page Run Task action. Bifrost determines where the call came from; request values cannot override it. A call through an unsupported path is refused with `PreconditionFailed` and a `nextStep` naming the path to use.\r\n`Retryable` means a transient lock or deadlock caught while writing or posting. `error` keeps Business Central's original text. `expected` is \"no concurrent lock on the same records\"; `nextStep` is \"Retry the same call after a few seconds; nothing was changed.\" Bifrost does not retry automatically. Uncaught recognized lock errors are also `Retryable` for `write` types. Uncaught `read` and `irreversible` errors remain `BusinessCentralError`, because an irreversible operation may already have committed.\r\n`ConfirmationRequired` is the preview refusal for an irreversible type called without `expectedCount`. Nothing was changed; inspect `expected` and the description before sending the same request with that count. `ConfirmationMismatch` means the count has changed or the sent count was wrong; nothing was changed. Inspect the new preview before confirming again. Feature apps use the same preview and confirmation protocol for irreversible operations.\r\nCodes: `MissingParameter`, `InvalidParameterFormat`, `InvalidParameter`, `RecordNotFound`, `AmbiguousRecord`, `ConflictingIdentifiers`, `InvalidFilterField`, `InvalidLine`, `NothingToPreview`, `LinesSkipped`, `BlockedByWriteGuard`, `PreconditionFailed`, `PermissionDenied`, `LimitExceeded`, `BusinessCentralError`, `MultipleErrors`, `DeprecatedParameter`, `UnknownParameter`, `FieldChangedByBC`, `Retryable`, `EULA_REQUIRED`, `TRIAL_NOT_STARTED`, `ConfirmationRequired`, `ConfirmationMismatch`, `SecurityFilterApplied`. The `error` text may be translated; the code never is.\r\n"
+      }
+    },
+    "1039": {
+      "company": "CRONUS International Ltd.",
+      "messageType": "Help.Implementation.Get",
+      "status": "Success",
+      "result": [
+        {
+          "status": "Success",
+          "name": "Projects.WIPMethod.Get",
+          "isEnabled": true,
+          "filterTableNo": 1006,
+          "description": "Sýnir VÍV-aðferðir verkefna og stillingar fyrir færðan kostnað og sölu.",
+          "selectionDescription": "Sýnir VÍV-aðferðir verkefna og stillingar fyrir færðan kostnað og sölu.",
+          "messageDirection": "Outbound",
+          "keywords": [
+            "verkefni",
+            "verk",
+            "vív",
+            "aðferð",
+            "færður kostnaður",
+            "færð sala",
+            "lesa"
+          ],
+          "chargeable": true,
+          "envelope": {
+            "subject": {
+              "use": "notUsed"
+            },
+            "dataRequired": true,
+            "version": "1.0",
+            "contentType": "text/json"
+          },
+          "target": [
+            {
+              "source": "data.code",
+              "form": "WIP method code",
+              "description": "Exact native WIP method code; omitted on Get lists all methods."
+            }
+          ],
+          "parameters": [
+            {
+              "name": "code",
+              "type": "string",
+              "required": false,
+              "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+              "maxLength": 20
+            }
+          ],
+          "response": {
+            "contentType": "text/json",
+            "fields": [
+              {
+                "name": "status",
+                "type": "string"
+              },
+              {
+                "name": "methods",
+                "type": "array",
+                "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+              }
+            ]
+          },
+          "errors": [
+            {
+              "code": "MissingParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameterFormat",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "RecordNotFound",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PreconditionFailed",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "BusinessCentralError",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PermissionDenied",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            }
+          ],
+          "effect": {
+            "effect": "read",
+            "changes": "None.",
+            "idempotent": true
+          },
+          "metering": {
+            "chargeable": true,
+            "chargedAs": "message"
+          },
+          "examples": [
+            {
+              "data": {
+                "code": "CUSTOM"
+              }
+            }
+          ],
+          "overview": "Lists project WIP methods and their recognized cost and sales settings.",
+          "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+        },
+        {
+          "status": "Success",
+          "name": "Projects.WIPMethod.Set",
+          "isEnabled": true,
+          "filterTableNo": 1006,
+          "description": "Stofnar eða uppfærir sérsniðna VÍV-aðferð verkefnis; verndar kerfisskilgreindar og notaðar aðferðir.",
+          "selectionDescription": "Stofnar eða uppfærir sérsniðna VÍV-aðferð verkefnis; verndar kerfisskilgreindar og notaðar aðferðir.",
+          "messageDirection": "Inbound",
+          "keywords": [
+            "verkefni",
+            "verk",
+            "vív",
+            "aðferð",
+            "færður kostnaður",
+            "færð sala",
+            "skrifa"
+          ],
+          "chargeable": true,
+          "envelope": {
+            "subject": {
+              "use": "notUsed"
+            },
+            "dataRequired": true,
+            "version": "1.0",
+            "contentType": "text/json"
+          },
+          "target": [
+            {
+              "source": "data.code",
+              "form": "WIP method code",
+              "description": "Exact native WIP method code; omitted on Get lists all methods."
+            }
+          ],
+          "parameters": [
+            {
+              "name": "code",
+              "type": "string",
+              "required": true,
+              "description": "Exact method code. Omit on Get to list all methods. Required on Set.",
+              "maxLength": 20
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "description": "Description; omitted on update preserves the existing value.",
+              "maxLength": 100
+            },
+            {
+              "name": "recognizedCosts",
+              "type": "string",
+              "required": false,
+              "description": "Exact native English enum name, independent of session language.",
+              "allowed": [
+                "At Completion",
+                "Cost of Sales",
+                "Cost Value",
+                "Contract (Invoiced Cost)",
+                "Usage (Total Cost)"
+              ]
+            },
+            {
+              "name": "recognizedSales",
+              "type": "string",
+              "required": false,
+              "description": "Exact native English enum name, independent of session language.",
+              "allowed": [
+                "At Completion",
+                "Contract (Invoiced Price)",
+                "Usage (Total Cost)",
+                "Usage (Total Price)",
+                "Percentage of Completion",
+                "Sales Value"
+              ]
+            },
+            {
+              "name": "wipCost",
+              "type": "boolean",
+              "required": false,
+              "description": "Native WIP cost flag; false requires Usage (Total Cost)."
+            },
+            {
+              "name": "wipSales",
+              "type": "boolean",
+              "required": false,
+              "description": "Native WIP sales flag; false requires Contract (Invoiced Price)."
+            },
+            {
+              "name": "valid",
+              "type": "boolean",
+              "required": false,
+              "description": "Whether the custom method is available for assignment to projects."
+            }
+          ],
+          "response": {
+            "contentType": "text/json",
+            "fields": [
+              {
+                "name": "status",
+                "type": "string"
+              },
+              {
+                "name": "methods",
+                "type": "array",
+                "description": "Methods with code, description, recognizedCosts, recognizedSales, wipCost, wipSales, valid and systemDefined. Enum values are stable English names at every language."
+              }
+            ]
+          },
+          "errors": [
+            {
+              "code": "MissingParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameterFormat",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "RecordNotFound",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PreconditionFailed",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "BusinessCentralError",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "PermissionDenied",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "InvalidParameter",
+              "description": "Invalid input, missing method, protected method, native validation, permission or company setup refusal.",
+              "nextStep": "Correct the request, enable Projects or request native table permissions. For protected methods, create a new custom method code."
+            },
+            {
+              "code": "Retryable",
+              "when": "A transient lock or deadlock caught while writing or posting. The error preserves Business Central's original text. Uncaught errors are Retryable only for types with effect write.",
+              "fix": "Retry the same call after a few seconds; nothing was changed."
+            }
+          ],
+          "effect": {
+            "effect": "write",
+            "changes": "Creates or updates one custom Job WIP Method through native validation. No posting or deletion.",
+            "idempotent": true
+          },
+          "metering": {
+            "chargeable": true,
+            "chargedAs": "message"
+          },
+          "examples": [
+            {
+              "data": {
+                "code": "CUSTOM",
+                "description": "Custom WIP method"
+              }
+            }
+          ],
+          "overview": "Creates or updates a custom project WIP method; protects system-defined and used methods.",
+          "notes": "Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs."
+        }
+      ],
+      "conventions": {
+        "errorsAndWarnings": "## Errors and warnings\r\nAn error response has `status` = `Error`, a stable `code`, the `error` text and, when they apply, `parameter` (the request parameter concerned, e.g. `lines[2].no`), `received` (the value received), `expected` (what was expected) and `nextStep` (what to do now). `hint` says where to read more.\r\nWhen a request has several problems, all of them are listed in `errors[]` - each with the same fields - under a top-level `code` (`MultipleErrors`, or a shared code such as `InvalidLine` for the `lines` of a Create type) and a summary `error`. Fix them all before calling again. One problem is reported at the top level, with no `errors[]`.\r\nRequest values are checked first and every problem found is reported together. A Business Central validation error raised afterwards, while a record is being written, stops the call and is reported on its own: `code` = `BusinessCentralError`, Business Central's own `error` text, and `parameter` naming the request parameter being applied, e.g. `lines[1].accountNo`. Nothing is written.\r\nRequest values are read in one format, whatever the language: dates `YYYY-MM-DD`; date-times ISO 8601 with `Z` or an offset; amounts as JSON numbers (or a string such as `\"1234.56\"`, no thousands separator); integers as JSON integers; booleans `true` or `false`. Any other value is `InvalidParameterFormat` with `received` and `expected`; for an unambiguous local form such as `26.09.2026`, `nextStep` gives the value to resend. Every bad value of a request is reported together.\r\nAnswers are written in one format as well, whatever the language of the call: dates `YYYY-MM-DD`, date-times ISO 8601, numbers with a dot and no thousands separator, and the option and enum values of every answer except `Data.Records.Get` and `Data.Records.Set` as their English names, so a value read from an answer can be sent back. Those two answer the caption of the language of the call, for a person to read. The language of the call (`lcid`) changes captions and message texts, not these forms. Two things are outside Bifrost's control: Business Central writes its own texts (a ledger entry description such as `Direct Cost V00010 on 10/02/26`, the text of a `BusinessCentralError`) with the regional settings of the server session, which `lcid` does not change, so a date in such a text can be in month-day order; and a table view is read with those settings too, so write dates in a view as `YYYY-MM-DD` and decimals with a dot.\r\nBoth success and error responses can carry `warnings[]`, each with `code`, `message` and, when they apply, `parameter` and `nextStep`.\r\n`UnknownParameter` refuses undeclared data keys before execution for every type whose effect is not read, including a missing effect. The root envelope option `strict:false` cannot opt out. Read types keep warnings without changing status, validationResult or domain warningCount unless the caller sets `strict:true` (next to type and subject, never inside data). Refusals list the keys and localized nextStep corrections; no business changes or successful execution charges occur. Example: {\"type\":\"Memory.User.Set\",\"strict\":true,\"data\":{\"memory\":\"test\",\"memry\":\"typo\"}} is refused.\r\n`FieldChangedByBC` is a warning from Data.Records.Set: another field validation or the write changed a sent field after its own validation. `parameter` names data[n].fields.{jsonName}, counting from 0. Status stays Success. Compare the returned values with what you sent; follow `nextStep` to use validation order or send the field again in a separate call. Normalisation of the field itself, LCY, Dimension Set ID, BLOB, Media, MediaSet and skipped fields are excluded.\r\n`SecurityFilterApplied` is a warning from Data.Records.Get, severity `low`, `parameter` `table`: a security filter of the caller applies to the table, so the result may hold fewer records than the table. `securityFiltered` is then true. Status stays Success, and the hidden records are never counted or described. Ask an administrator if you expect more records.\r\nData.RecordIds.Get, Data.Totals.Get, Data.Entries.Find and CSV.Records.Get do not return `securityFiltered` or `SecurityFilterApplied`. Their results can still be limited by security filters: counts and totals cover only visible records, and the absence of a flag or warning does not prove that every record in the table was included. Their help explains this visibility limit; request filters such as tableView and date ranges are separate.\r\nWhen a Business Central operation fails, the error can identify the request parameter being applied, the expected input and what to do next. That guidance accompanies the original `BusinessCentralError` after rollback, including a failed queued task. It does not change which writes are rolled back or committed. Guidance is cleared between messages; a message without it keeps its existing response shape. Recognized lock errors follow the `Retryable` rules below.\r\nSome message types accept calls only through a particular path: a scheduled queue message, the Task API (`/tasks`), the in-product MCP tool server, another message type, or the Messages page Run Task action. Bifrost determines where the call came from; request values cannot override it. A call through an unsupported path is refused with `PreconditionFailed` and a `nextStep` naming the path to use.\r\n`Retryable` means a transient lock or deadlock caught while writing or posting. `error` keeps Business Central's original text. `expected` is \"no concurrent lock on the same records\"; `nextStep` is \"Retry the same call after a few seconds; nothing was changed.\" Bifrost does not retry automatically. Uncaught recognized lock errors are also `Retryable` for `write` types. Uncaught `read` and `irreversible` errors remain `BusinessCentralError`, because an irreversible operation may already have committed.\r\n`ConfirmationRequired` is the preview refusal for an irreversible type called without `expectedCount`. Nothing was changed; inspect `expected` and the description before sending the same request with that count. `ConfirmationMismatch` means the count has changed or the sent count was wrong; nothing was changed. Inspect the new preview before confirming again. Feature apps use the same preview and confirmation protocol for irreversible operations.\r\nCodes: `MissingParameter`, `InvalidParameterFormat`, `InvalidParameter`, `RecordNotFound`, `AmbiguousRecord`, `ConflictingIdentifiers`, `InvalidFilterField`, `InvalidLine`, `NothingToPreview`, `LinesSkipped`, `BlockedByWriteGuard`, `PreconditionFailed`, `PermissionDenied`, `LimitExceeded`, `BusinessCentralError`, `MultipleErrors`, `DeprecatedParameter`, `UnknownParameter`, `FieldChangedByBC`, `Retryable`, `EULA_REQUIRED`, `TRIAL_NOT_STARTED`, `ConfirmationRequired`, `ConfirmationMismatch`, `SecurityFilterApplied`. The `error` text may be translated; the code never is.\r\n"
+      }
+    }
+  },
+  "completedAt": "2026-11-14T00:37:35.367Z",
+  "summary": {
+    "executed": 48,
+    "passed": 48,
+    "failed": 0,
+    "skipped": 0
+  }
+}
