@@ -12,6 +12,8 @@ permissionsetextension 70009200 "Projects Read ori" extends "BIFROST Read ori"
         codeunit "Proj. Purchase Process ori" = X,
         codeunit "Proj. Usage Entry Capture ori" = X,
         codeunit "Projects Followup Input ori" = X,
+        codeunit "Projects Report ori" = X,
+        codeunit "Proj. Report Impl ori" = X,
         codeunit "Projects Archive ori" = X,
         codeunit "Proj. Archive Process ori" = X,
         codeunit "Proj. Archive Impl ori" = X,

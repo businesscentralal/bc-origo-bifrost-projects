@@ -15,7 +15,7 @@ using System.Environment.Configuration;
 using System.Reflection;
 
 /// <summary>Creates native project archive versions and reads immutable archived task/planning snapshots.</summary>
-codeunit 70009235 "Projects Archive ori"
+codeunit 70009238 "Projects Archive ori"
 {
     Access = Internal;
 

@@ -100,7 +100,7 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.ItemUsage.Post', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Item Usage Impl ori", "Msg Discovery ori" = "Proj. Item Usage Impl ori", "Msg Contract ori" = "Proj. Item Usage Impl ori";
     }
-    value(70009221; "Projects.ProjectArchive.Get")
+    value(70009223; "Projects.ProjectArchive.Get")
     {
         Caption = 'Projects.ProjectArchive.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Archive Get Impl ori", "Msg Discovery ori" = "Proj. Archive Get Impl ori", "Msg Contract ori" = "Proj. Archive Get Impl ori";
@@ -114,6 +114,11 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
     {
         Caption = 'Projects.WIPMethod.Set', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Method Set ori", "Msg Discovery ori" = "Proj. WIP Method Set ori", "Msg Contract ori" = "Proj. WIP Method Set ori";
+    }
+    value(70009221; "Projects.Report.Get")
+    {
+        Caption = 'Projects.Report.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Report Impl ori", "Msg Discovery ori" = "Proj. Report Impl ori", "Msg Contract ori" = "Proj. Report Impl ori";
     }
     value(70009222; "Projects.Quote.Send")
     {
