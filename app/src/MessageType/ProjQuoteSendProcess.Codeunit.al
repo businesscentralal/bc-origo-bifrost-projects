@@ -11,7 +11,7 @@ using Microsoft.Projects.Project.Job;
 /// electronic formats, sends through Job.SendProfile and archives the project by the Projects Setup rule.
 /// Runs through Codeunit.Run, so any Business Central error rolls back and is answered as BusinessCentralError.
 /// </summary>
-codeunit 70009249 "Proj. Quote Send Process ori"
+codeunit 70013549 "Proj. Quote Send Process ori"
 {
     Access = Internal;
     TableNo = "Message Argument ori";
