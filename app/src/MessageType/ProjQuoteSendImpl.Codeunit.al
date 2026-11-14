@@ -392,7 +392,7 @@ codeunit 70009248 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
             exit(false);
         end;
         if Project.Status <> Project.Status::Quote then begin
-            Argument.RespondWithError("Bifrost Error Code ori"::PreconditionFailed, StrSubstNo(NotQuoteErr, Project."No.", Project.Status), 'projectNo', Format(Project.Status), Format(Project.Status::Quote), NotQuoteNextStepLbl);
+            Argument.RespondWithError("Bifrost Error Code ori"::PreconditionFailed, StrSubstNo(NotQuoteErr, Project."No.", Project.Status), 'projectNo', StatusName(Project.Status), StatusName(Project.Status::Quote), NotQuoteNextStepLbl);
             exit(false);
         end;
         if Project."Bill-to Customer No." = '' then begin
@@ -404,6 +404,12 @@ codeunit 70009248 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
             exit(false);
         end;
         exit(true);
+    end;
+
+    /// <summary>Answers a status by its English enum name, whatever the session language.</summary>
+    local procedure StatusName(Status: Enum "Job Status"): Text
+    begin
+        exit(Status.Names().Get(Status.Ordinals().IndexOf(Status.AsInteger())));
     end;
 
     /// <summary>

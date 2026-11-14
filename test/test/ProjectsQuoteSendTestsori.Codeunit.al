@@ -115,7 +115,8 @@ codeunit 97140 "Projects Quote Send Tests ori"
         Request.Add('documentSendingProfile', Profile.Code);
         Response := Send(Request);
         AssertRefusal(Response, 'PreconditionFailed', 'projectNo', 'Set the project status to Quote');
-        Assert.AreEqual(Format(Project.Status::Open), Response.GetText('received'), 'received names the current status');
+        Assert.AreEqual('Open', Response.GetText('received'), 'received names the current status by its English name');
+        Assert.AreEqual('Quote', Response.GetText('expected'), 'expected is Quote');
     end;
 
     [Test]
@@ -138,6 +139,7 @@ codeunit 97140 "Projects Quote Send Tests ori"
         AssertRefusal(Response, 'PreconditionFailed', 'projectNo', 'Projects.Project.SetStatus');
         Assert.IsTrue(Response.GetText('error').Contains('aðeins verkefni'), 'The refusal is Icelandic: ' + Response.GetText('error'));
         Assert.IsTrue(Response.GetText('nextStep').Contains('Stilltu stöðu'), 'The nextStep is Icelandic: ' + Response.GetText('nextStep'));
+        Assert.AreEqual('Planning', Response.GetText('received'), 'received stays the English enum name at lcid 1039');
     end;
 
     [Test]

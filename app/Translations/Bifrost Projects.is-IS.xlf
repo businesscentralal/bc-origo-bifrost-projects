@@ -147,17 +147,29 @@
           <note from="Developer" annotates="general" priority="2">is-IS=tölvupóstfang viðskiptamanns fyrir valda forstillingu</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method CheckEmailAddress - NamedType EmailExpectedLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4262836893 - Method 3571782927 - NamedType 3177803720" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Projects data must be a JSON object.</source>
-          <target>Verkefnisgögn verða að vera JSON-hlutur.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnisgögn verða að vera JSON-hlutur.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ExecuteBifrostTask - NamedType InvalidErr</note>
+        <trans-unit id="Codeunit 4262836893 - Method 3571782927 - NamedType 3791449231" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects messages are disabled for this company.</source>
+          <target>Verkefnaskilaboð eru óvirk fyrir þetta fyrirtæki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnaskilaboð eru óvirk fyrir þetta fyrirtæki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ExecuteBifrostTask - NamedType DisabledErr</note>
         </trans-unit>
-        <trans-unit id="Codeunit 4262836893 - Method 3571782927 - NamedType 2547116611" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Correct the invalid Projects parameters.</source>
-          <target>Leiðréttu ógild viðföng verkefnis.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Leiðréttu ógild viðföng verkefnis.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ExecuteBifrostTask - NamedType SummaryErr</note>
+        <trans-unit id="Codeunit 4262836893 - Method 3571782927 - NamedType 702719613" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable Projects in Projects Setup.</source>
+          <target>Virkjaðu verkefni í uppsetningu verkefna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Virkjaðu verkefni í uppsetningu verkefna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ExecuteBifrostTask - NamedType EnableLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3571782927 - NamedType 1133441294" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Permission denied for this Projects message type.</source>
+          <target>Heimild hafnað fyrir þessa verkefnaskilaboðategund.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimild hafnað fyrir þessa verkefnaskilaboðategund.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ExecuteBifrostTask - NamedType DeniedErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3571782927 - NamedType 3389031044" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for a Business Central role that can read projects.</source>
+          <target>Biddu kerfisstjóra um hlutverk í Business Central sem getur lesið verkefni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um hlutverk í Business Central sem getur lesið verkefni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ExecuteBifrostTask - NamedType DeniedNextStepLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4262836893 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sends a project quote to the bill-to customer through a document sending profile.</source>
@@ -212,6 +224,24 @@
           <target>forstilling skjalasendingar sem biður ekki um tölvupóststillingar</target>
           <note from="Developer" annotates="general" priority="2">is-IS=forstilling skjalasendingar sem biður ekki um tölvupóststillingar</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method IsUsableWithoutClient - NamedType PromptEmailExpectedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 2522052906 - NamedType 3177803720" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects data must be a JSON object.</source>
+          <target>Verkefnisgögn verða að vera JSON-hlutur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnisgögn verða að vera JSON-hlutur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method SendQuote - NamedType InvalidErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 2522052906 - NamedType 2547116611" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Correct the invalid Projects parameters.</source>
+          <target>Leiðréttu ógild viðföng verkefnis.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Leiðréttu ógild viðföng verkefnis.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method SendQuote - NamedType SummaryErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 2522052906 - NamedType 680257497" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send data as a JSON object with projectNo.</source>
+          <target>Sendu data sem JSON-hlut með projectNo.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu data sem JSON-hlut með projectNo.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method SendQuote - NamedType NextStepLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4262836893 - Method 2611399904 - NamedType 3351274" size-unit="char" translate="yes" xml:space="preserve">
           <source>Project %1 does not exist.</source>
@@ -314,6 +344,36 @@
           <target>Sendu documentSendingProfile, gefðu viðskiptamanninum forstillingu, eða merktu eina forstillingu sem sjálfgefna.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Sendu documentSendingProfile, gefðu viðskiptamanninum forstillingu, eða merktu eina forstillingu sem sjálfgefna.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method TryResolveProfile - NamedType NoProfileNextStepLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3868710196 - NamedType 1830439019" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A required Projects parameter is missing or empty.</source>
+          <target>Nauðsynlegt viðfang verkefnis vantar eða er tómt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlegt viðfang verkefnis vantar eða er tómt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ValidateInput - NamedType MissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3868710196 - NamedType 903645118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send projectNo as the No. of a project in status Quote.</source>
+          <target>Sendu projectNo sem númer verkefnis í stöðunni Tilboð.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu projectNo sem númer verkefnis í stöðunni Tilboð.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ValidateInput - NamedType ProjectNextStepLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3868710196 - NamedType 2135081366" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A Projects parameter does not match its declared type, length or allowed values.</source>
+          <target>Viðfang verkefnis passar ekki við skilgreinda gerð, lengd eða leyfileg gildi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Viðfang verkefnis passar ekki við skilgreinda gerð, lengd eða leyfileg gildi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ValidateInput - NamedType BadErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3868710196 - NamedType 3463406715" size-unit="char" translate="yes" xml:space="preserve">
+          <source>a JSON string of at most 20 characters</source>
+          <target>JSON-strengur með mest 20 stöfum</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=JSON-strengur með mest 20 stöfum</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ValidateInput - NamedType CodeExpectedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4262836893 - Method 3868710196 - NamedType 3520557336" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send documentSendingProfile as a JSON string of at most 20 characters, or leave the key out. A longer code is refused, never cut.</source>
+          <target>Sendu documentSendingProfile sem JSON-streng með mest 20 stöfum, eða slepptu lyklinum. Lengri kóða er hafnað, hann er aldrei styttur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu documentSendingProfile sem JSON-streng með mest 20 stöfum, eða slepptu lyklinum. Lengri kóða er hafnað, hann er aldrei styttur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method ValidateInput - NamedType ProfileNextStepLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 533419340 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returns native project budget, actual, billable and invoiced statistics in LCY.</source>
