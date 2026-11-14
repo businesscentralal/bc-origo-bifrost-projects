@@ -100,6 +100,30 @@ The operation uses BC field validation, including native completion/WIP handling
 it does not assign status directly or bypass WIP requirements. Success returns
 `status: "Success"` and `projectNo`. Native validation errors roll back both changes.
 
+## Send a project quote
+
+```json
+{"type":"Projects.Quote.Send","version":"1.0","data":{"projectNo":"XPROJECT","documentSendingProfile":"EMAIL"}}
+```
+
+Sends the quote of a project in status `Quote` to its bill-to customer, as the
+Send Project Quote action on the project card does, without its confirmation
+window. The profile is `documentSendingProfile` (at most 20 characters, compared
+in upper case, never cut), else the bill-to customer's Document Sending Profile,
+else the profile marked Default. Every check runs before anything is sent:
+
+- a project that is not in status `Quote` is `PreconditionFailed` (parameter `projectNo`, `received` is the status);
+- a missing or unknown bill-to customer is `PreconditionFailed`;
+- an unknown profile is `RecordNotFound`; a profile with a Disk channel, an e-mail settings prompt, or an e-mail channel without a customer address is `PreconditionFailed`.
+
+Business Central then validates the electronic formats, sends through every
+channel of the profile and archives the project by the Projects Setup rule
+(Archive Projects). Its own errors come back as `BusinessCentralError` and roll
+back. Success returns `projectNo`, `projectId`, `customerNo`, `customerName`,
+`documentSendingProfileCode`, `documentSendingProfileSource` (`Request`,
+`Customer` or `Default`) and `archived`. Not retry-safe: a second call sends the
+quote again. Refusals and their `nextStep` follow the session language.
+
 ## Read or calculate WIP
 
 ```json

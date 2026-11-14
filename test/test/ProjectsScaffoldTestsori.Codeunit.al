@@ -116,7 +116,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(17, Count, 'Catalogue must contain all seventeen owned Projects types');
+        Assert.AreEqual(18, Count, 'Catalogue must contain all eighteen owned Projects types');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 

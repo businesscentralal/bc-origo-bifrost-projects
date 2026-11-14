@@ -35,6 +35,7 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.WIP.Calculate` | `projectNo`, `postingDate`, `documentNo` | Runs native WIP calculation and returns entry state. |
 | `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with an inclusive task range; optional Budget/Billable filtering, prices, quantities and dimensions. The target must be new; validation errors roll back the copy. |
 | `Projects.Project.SetStatus` | `projectNo`, `status` and/or `blocked` | Validates native status, completion and blocking. |
+| `Projects.Quote.Send` | `projectNo`, optional `documentSendingProfile` | Sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile, as the Send Project Quote action does. Irreversible. |
 
 | `Projects.WIPMethod.Get` | Optional exact `code`; `{}` lists all | Reads native WIP methods, recognized settings and flags. |
 | `Projects.WIPMethod.Set` | Required `code`, optional recognized settings, flags and description | Creates or partially updates a custom method; refuses system-defined methods and methods used by WIP history. |
