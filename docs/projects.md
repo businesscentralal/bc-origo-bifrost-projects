@@ -11,14 +11,16 @@ when a caller invokes one. Setup is company-specific. The Read role can read the
 switch; the Full role can administer it. Neither extension grants Foundation Setup
 tabledata, a new assignable role, or native project table privileges.
 
-`Help.MessageTypes` discovers the seventeen registered `Projects.*` types, including `Projects.PurchaseLine.Link` and `Projects.ItemUsage.Post`.
+`Help.MessageTypes.Get` discovers the twenty registered `Projects.*.*` types, including `Projects.PurchaseLine.Link`, `Projects.ItemUsage.Post`, `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set`.
 `Help.Implementation.Get` describes each version 1.0 operation and its nested schema.
 Descriptions, selection help and keywords support en-US and is-IS.
 
 ## Request fields
 
-All calls require a JSON object in `data`, containing `projectNo` (maximum 20
-characters). `subject` is not used. Update operations change only supplied fields.
+All calls require a JSON object in `data`. Project, task and planning-line calls
+use `projectNo` (maximum 20 characters). WIP method calls use `code` instead;
+Get may omit it to list methods. See the [WIP method setup contract](contracts.md)
+for these two types. `subject` is not used. Update operations change only supplied fields.
 Create operations fail if the key already exists; they do not silently update it.
 
 - Project: `description` (100), `billToCustomerNo` (20), `personResponsible` (20),

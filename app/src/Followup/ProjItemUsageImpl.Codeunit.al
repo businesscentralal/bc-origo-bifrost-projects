@@ -4,7 +4,7 @@ using Microsoft.Projects.Project.Job;
 using Origo.Bifrost;
 
 /// <summary>Exposes the dedicated native project operation.</summary>
-codeunit 70009242 "Proj. Item Usage Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009234 "Proj. Item Usage Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 

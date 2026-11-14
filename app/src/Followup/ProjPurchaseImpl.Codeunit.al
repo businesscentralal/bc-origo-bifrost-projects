@@ -4,7 +4,7 @@ using Microsoft.Purchases.Document;
 using Origo.Bifrost;
 
 /// <summary>Exposes the dedicated native project operation.</summary>
-codeunit 70009241 "Proj. Purchase Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009231 "Proj. Purchase Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 
