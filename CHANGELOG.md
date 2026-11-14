@@ -1,6 +1,18 @@
 # Changelog
 
-## 28.1.0.0 - Unreleased
+## [28.1.0.0] - 2026-11-14 (Unreleased)
+
+### Added (2026-11-14)
+
+- Add `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set` (#16): list native recognized cost/sales settings and create or partially update custom WIP methods. System-defined methods and methods with calculated or posted WIP history return `PreconditionFailed` with translated recovery guidance. Native validation refusals translate their summary and retain the original diagnostic in `nativeError`.
+- Add codeunits 70009240–70009243, enum values 70009240–70009241 and test codeunit 97116. Sync Icelandic discovery and refusal XLF entries; contract chapters stay English in every locale.
+
+### Added (2026-11-14)
+
+- `Projects.Quote.Send` (#15): sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile (request, customer, then Default), as the Send Project Quote action does. Refuses a project not in status Quote, a missing bill-to customer, an unknown profile and profiles that need a client (Disk, e-mail prompt) or have no customer e-mail address, each with a coded error and `nextStep` in en-US and is-IS. New objects: enum value 70009222, codeunits 70009248 "Proj. Quote Send Impl ori" and 70009249 "Proj. Quote Send Process ori" (granted in the Projects Read/Full extensions); test codeunit 97140 "Projects Quote Send Tests ori", and an MCP fixture for the worker-owned tenant (codeunit 97141 / page 97141 "Proj. Quote Send Fixture ori": customers, quote and open projects, a profile without channels and a Disk profile; removed afterwards with Test.Records.Delete). The scaffold catalogue test (97100) now counts sixteen types. These IDs move with the range change of #34.
+### Tests (2026-11-10) — Project status validation
+
+- Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
 
 ### Fixed (2026-11-10)
 
@@ -80,15 +92,18 @@
 
 ## Unreleased — typed project reports (verification candidate)
 
-- Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009243), and dataset, nonzero native budget and permission tests 97126–97127. Report registry, feature-role permissions and translations are integrated; shipping queue acceptance remains subject to current-tip verification.
+- Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009244), and dataset, nonzero native budget and permission tests 97126–97127. Report registry, feature-role permissions and translations are integrated; shipping queue acceptance remains subject to current-tip verification.
 
-- Register `Projects.Report.Get` (enum value 70009221) and grant its adapter (70009235), implementation (70009243) and input validator (70009230) through Projects Read/Full role extensions (#14).
+- Register `Projects.Report.Get` (enum value 70009221) and grant its adapter (70009235), implementation (70009244) and input validator (70009230) through Projects Read/Full role extensions (#14).
 - Object ranges: app 10078485..10078584, tests 97100..97199.
 - Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
 - Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
 - app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
 
 - Return a valid blank PDF when a standard report produces no pages and its native dataset is empty (70009235, #14); retain rendering errors for nonempty data.
+
+### Changed (2026-11-14)
+- Merged main into the typed project reports branch: object ID clash on codeunit 70009243 (main's "Proj. WIP Method Process ori"); "Proj. Report Impl ori" moved to the next free ID 70009244.
 
 ### Changed (2026-11-10)
 - Issue #14: integrated merged scaffold #21 without restoring the unreleased PlanningLine.Delete type (70009211); retained report registration 70009221, report permissions and bilingual help. Kept deterministic WIP dimension fixtures and distinct owned applied/recognized accounts for the nonzero report regression (97102, 97126).
