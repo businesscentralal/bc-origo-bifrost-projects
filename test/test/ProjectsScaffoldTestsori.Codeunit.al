@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_TwentyTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_TwentyOneTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -119,7 +119,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(20, Count, 'Catalogue must contain all twenty owned Projects types');
+        Assert.AreEqual(21, Count, 'Catalogue must contain all twenty-one owned Projects types, including reports');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
