@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_SeventeenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_TwentyTwoTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -100,6 +100,11 @@ codeunit 97100 "Projects Scaffold Tests ori"
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
+        Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Planning line delete is not a Projects message type');
+        Assert.IsTrue(Names.Contains('Projects.PurchaseLine.Link'), 'Purchase line link must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ItemUsage.Post'), 'Item usage post must be registered');
+        Assert.IsTrue(Names.Contains('Projects.Project.Archive'), 'Project archive must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ProjectArchive.Get'), 'Project archive read must be registered');
         foreach Name in Names do
             if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
@@ -116,7 +121,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(20, Count, 'Catalogue must contain all twenty owned Projects types');
+        Assert.AreEqual(22, Count, 'Catalogue must contain all twenty-two owned Projects types');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
