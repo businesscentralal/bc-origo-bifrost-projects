@@ -2,7 +2,11 @@
 
 ## 28.1.0.0 - Unreleased
 
+### Added (2026-11-14)
+
+- `Projects.Quote.Send` (#15): sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile (request, customer, then Default), as the Send Project Quote action does. Refuses a project not in status Quote, a missing bill-to customer, an unknown profile and profiles that need a client (Disk, e-mail prompt) or have no customer e-mail address, each with a coded error and `nextStep` in en-US and is-IS. New objects: enum value 70009222, codeunits 70009248 "Proj. Quote Send Impl ori" and 70009249 "Proj. Quote Send Process ori" (granted in the Projects Read/Full extensions); test codeunit 97140 "Projects Quote Send Tests ori", and an MCP fixture for the worker-owned tenant (codeunit 97141 / page 97141 "Proj. Quote Send Fixture ori": customers, quote and open projects, a profile without channels and a Disk profile; removed afterwards with Test.Records.Delete). The scaffold catalogue test (97100) now counts sixteen types. These IDs move with the range change of #34.
 - Object range moved from 70009200..70009249 to 70013500..70013599 (#34, Gunnar 12.11.2026). Projects takes the free upper part of Public 4 while Shopify still uses 70013400..70013481. App objects and message-type enum values that are on main move by a fixed offset of +4300 (70009200+n becomes 70013500+n). Test objects stay in 97100..97199. Name-hashed XLF ids are unchanged. A tenant that already has Projects 28.1.0.0 at the old object IDs cannot upgrade in place: uninstall with deleteExtensionData, unpublish, then install the new-ID packages. Table names stay the same and queued or logged message rows keep the old enum ordinals; this change does not migrate that data. Open pull requests #22, #24, #25, #26, #27, #28 and #32 renumber their additional objects after this merges.
+
 ### Fixed (2026-11-10)
 
 - Codeunits 70009201 "Projects Registration ori" and 70009203 "Projects Setup Restrict ori" declare `InherentPermissions = X` and `InherentEntitlements = X`, so Foundation's `OnRegisterApps` and the table-write-restriction event no longer fail for users without a Projects role (#31). Regression test in codeunit 97100.
