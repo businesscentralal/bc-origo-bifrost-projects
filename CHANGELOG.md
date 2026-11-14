@@ -4,11 +4,15 @@
 
 ### Added (2026-11-14)
 
-- Resolve the #11/#16 merge codeunit clashes: move `Proj. Purchase Impl ori` from 70009241 to unused 70009231 and `Proj. Item Usage Impl ori` from 70009242 to unused 70009234; retain main's WIP method IDs. Keep all 20 message registrations and the exact bilingual catalogue assertion.
-
+- Resolve the main merge (62daf31, #27) ID collisions with the archive branch: keep main's `Projects.Report.Get` at enum value 70009221, `Projects Report ori` at codeunit 70009235 and `Proj. Report Impl ori` at codeunit 70009246. Move the archive side to the next free IDs: `Projects.ProjectArchive.Get` from enum value 70009221 to 70009223, `Projects Archive ori` from codeunit 70009235 to 70009238, and `Proj. Archive Get Impl ori` from codeunit 70009246 to 70009221 (the IDs above 70009246 are taken; 70009211 stays unused because it was `Projects.PlanningLine.Delete`). Message names are unchanged. The scaffold catalogue assertion now counts twenty-three types (#13, PR #26).
+- Resolve the main merge (3f8e1ac, #28) ID collisions with the archive branch: keep main's `Projects.PurchaseLine.Link` at enum value 70009219, `Proj. Item Usage Impl ori` at codeunit 70009234 and `Proj. Item Usage Process ori` at codeunit 70009244. Move the archive side to the next free IDs: `Projects.ProjectArchive.Get` from enum value 70009219 to 70009221, `Projects Archive ori` from codeunit 70009234 to 70009235, and `Proj. Archive Get Impl ori` from codeunit 70009244 to 70009246. Message names are unchanged. The scaffold catalogue assertion now counts twenty-two types (#13, PR #26).
+- Resolve the main merge object-ID collision by moving the archive-read codeunit `Proj. Archive Get Impl ori` from 70009240 to the next free codeunit ID 70009244; keep main's WIP-method codeunits 70009240–70009243. Preserve all message contracts and update the combined catalogue assertion to twenty types (#13, PR #26).
 - Add `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set` (#16): list native recognized cost/sales settings and create or partially update custom WIP methods. System-defined methods and methods with calculated or posted WIP history return `PreconditionFailed` with translated recovery guidance. Native validation refusals translate their summary and retain the original diagnostic in `nativeError`.
 - Add codeunits 70009240–70009243, enum values 70009240–70009241 and test codeunit 97116. Sync Icelandic discovery and refusal XLF entries; contract chapters stay English in every locale.
-
+- Refuse project archiving before native execution when BC 29 assigned-resource source or archive permissions are missing; retain BC 28 compatibility and archive-read permissions (#13, PR #26).
+- Merge main (b7afb96) into the archive branch: keep main's validated writes, statistics, posting gate, WIP fixture (#29) and the Gunnar-decided removal of `Projects.PlanningLine.Delete` (d-20261105-delete-types); retain only the archive additions (enum 70009218/70009219, archive permission entries, 39 is-IS archive translations, test catalogue count 17).
+- Remove the duplicate application telemetry property introduced by the main merge; preserve the configured connection and restore test-mode product compilation (#13).
+- Resolve the #11/#16 merge codeunit clashes: move `Proj. Purchase Impl ori` from 70009241 to unused 70009231 and `Proj. Item Usage Impl ori` from 70009242 to unused 70009234; retain main's WIP method IDs. Keep all 20 message registrations and the exact bilingual catalogue assertion.
 - Remove duplicate telemetry manifest key introduced by merging main; restore product/test compilation for Projects purchase linking and item usage (#11).
 - Merge current main and keep `Projects.PlanningLine.Delete` removed (Gunnar decision d-20261105-delete-types). Register `Projects.PurchaseLine.Link` and `Projects.ItemUsage.Post` (enum values 70009219–70009220; codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247; tests 97124, 97125, 97129–97132) on that scaffold (#11).
 
@@ -92,6 +96,11 @@
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 70009200..70009249, tests 97100..97199.
 
+## Unreleased — project archives (verification candidate)
+
+- Regenerate the Icelandic translation file in compiler order so the XLF sync guard passes (#13; archive objects 70009234, 70009239–70009241). Preserve all 110 translation sources and targets.
+
+- Add native project archive creation and version reads (codeunits 70009230, 70009234, 70009236, 70009239, 70009240), with native snapshot and permission regression tests 97122–97123. Register Projects.Project.Archive (enum value 70009218) and Projects.ProjectArchive.Get (70009219), grant the archive codeunits in the Projects extensions of BIFROST Read/Full, and add the 39 missing is-IS archive translations (#13).
 ### Purchase links and item usage (verification candidate)
 
 - Create compatible owned VAT and general posting setup for localized purchase MCP fixtures (97131), with a native inventory/purchase fixture regression (97124).
