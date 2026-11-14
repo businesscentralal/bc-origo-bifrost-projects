@@ -141,7 +141,7 @@ codeunit 70009240 "Proj. WIP Method Get ori" implements "Msg Interface ori", "Ms
     /// <summary>Documents native method protections and partial update behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     begin
-        Notes := 'Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change. No posting or deletion occurs.';
+        Notes := 'Version 1.0. Subject is not used. Send a JSON object. Get without code lists all methods. Set requires code, creates a missing custom method and preserves omitted fields on update. Recognized cost and sales values use exact English enum names in every language. System-defined methods and methods referenced by calculated or posted WIP entries cannot be changed. Use a new custom code instead. Native validation failures roll back the entire change; their localized summary includes the original platform diagnostic in nativeError. No posting or deletion occurs.';
         exit(true);
     end;
     /// <summary>Checks company, permissions, licence and version before processing WIP methods.</summary>

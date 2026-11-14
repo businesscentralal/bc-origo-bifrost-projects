@@ -306,6 +306,38 @@ codeunit 97116 "Projects WIP Method Tests ori"
         Assert.AreEqual(EnglishOverview, IcelandicOverview, 'Contract chapters must stay English');
     end;
 
+    /// <summary>Verifies that native validation refusals translate even when the platform diagnostic has no translation.</summary>
+    [Test]
+    procedure Scenario_AC04_NativeErrors_LocalizedSummaryAndDiagnostic()
+    var
+        Request: JsonObject;
+        English: JsonObject;
+        Icelandic: JsonObject;
+        OriginalLanguage: Integer;
+        MethodCode: Code[20];
+    begin
+        // Story #16, AC04 | Time: independent of Today and WorkDate | Risk: native diagnostic may remain English on a W1 tenant
+        // [GIVEN] An owned method and a change rejected by native field validation.
+        MethodCode := SeedMethod(false);
+        Request.Add('code', MethodCode);
+        Request.Add('wipCost', false);
+        OriginalLanguage := GlobalLanguage();
+        // [WHEN] The same native validation failure is returned in both supported locales.
+        GlobalLanguage(1033);
+        English := Execute(true, Request);
+        GlobalLanguage(1039);
+        Icelandic := Execute(true, Request);
+        GlobalLanguage(OriginalLanguage);
+        // [THEN] Our refusal and recovery text translate; the original platform diagnostic is retained separately.
+        AssertRefusal(English, 'BusinessCentralError');
+        AssertRefusal(Icelandic, 'BusinessCentralError');
+        Assert.AreNotEqual(English.GetText('error'), Icelandic.GetText('error'), 'Native refusal summary must be translated');
+        Assert.AreNotEqual(English.GetText('nextStep'), Icelandic.GetText('nextStep'), 'Native refusal guidance must be translated');
+        Assert.IsTrue(English.GetText('nativeError') <> '', 'Original diagnostic must remain available');
+        Assert.IsTrue(Icelandic.GetText('nativeError') <> '', 'Original diagnostic must remain available in every locale');
+        Cleanup(MethodCode);
+    end;
+
     /// <summary>Verifies AC05 NewNames HaveExactlyThreeParts.</summary>
     [Test]
     procedure Scenario_AC05_NewNames_HaveExactlyThreeParts()

@@ -91,7 +91,9 @@ codeunit 70009242 "Projects WIP Methods ori"
         Request: JsonObject;
         Writing: Boolean;
         NativeErr: Text;
-        NativeNextLbl: Label 'Review the method settings and native validation message, then retry with valid values.', Comment = 'is-IS=Farðu yfir stillingar aðferðarinnar og villuboð innbyggðrar sannprófunar og reyndu aftur með gildum gildum.';
+        Response: JsonObject;
+        NativeSummaryLbl: Label 'Native validation rejected the WIP method settings.', Comment = 'is-IS=Innbyggð sannprófun hafnaði stillingum VÍV-aðferðarinnar.';
+        NativeNextLbl: Label 'Review the method settings and nativeError details, then retry with valid values.', Comment = 'is-IS=Farðu yfir stillingar aðferðarinnar og nánari upplýsingar í nativeError og reyndu aftur með gildum gildum.';
     begin
         Writing := Argument.Type = "Message Type ori"::"Projects.WIPMethod.Set";
         if not TryReadRequest(Argument, Request) then begin
@@ -108,7 +110,10 @@ codeunit 70009242 "Projects WIP Methods ori"
         if not Codeunit.Run(Codeunit::"Proj. WIP Method Process ori", Argument) then begin
             NativeErr := GetLastErrorText();
             ClearLastError();
-            Argument.RespondWithError("Bifrost Error Code ori"::BusinessCentralError, NativeErr, '', '', '', NativeNextLbl);
+            Argument.RespondWithError("Bifrost Error Code ori"::BusinessCentralError, NativeSummaryLbl, '', '', '', NativeNextLbl);
+            Response := Argument.GetResponseJson();
+            Response.Add('nativeError', NativeErr);
+            Argument.SetResponseJson(Response);
         end;
     end;
 

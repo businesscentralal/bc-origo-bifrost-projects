@@ -50,7 +50,7 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 
 `Company switch and native permissions → Foundation licence/version checks → request validation → native transaction → response`
 
-Write failures roll back the native transaction. WIP method Set preserves omitted fields and refuses system-defined methods or methods referenced by calculated or posted WIP, including reversed posted history.
+Write failures roll back the native transaction. Native WIP method validation failures include a translated summary and preserve the original platform diagnostic in `nativeError`. WIP method Set preserves omitted fields and refuses system-defined methods or methods referenced by calculated or posted WIP, including reversed posted history.
 
 ## Setup and configuration
 

@@ -441,12 +441,6 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Virkjaðu verkefni í uppsetningu verkefna og biddu kerfisstjóra um heimildir á innbyggðum töflum VÍV-aðferða og VÍV-færslna.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method AssertEnabled - NamedType NextLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 2118332420 - Method 1561766673 - NamedType 2612954968" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Review the method settings and native validation message, then retry with valid values.</source>
-          <target>Farðu yfir stillingar aðferðarinnar og villuboð innbyggðrar sannprófunar og reyndu aftur með gildum gildum.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Farðu yfir stillingar aðferðarinnar og villuboð innbyggðrar sannprófunar og reyndu aftur með gildum gildum.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method Execute - NamedType NativeNextLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 2118332420 - Method 3106619160 - NamedType 1066607173" size-unit="char" translate="yes" xml:space="preserve">
           <source>A WIP method parameter has an invalid type, length or value, or is not supported.</source>
           <target>Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.</target>
@@ -494,6 +488,18 @@
           <target>Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RunNative - NamedType NewNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1561766673 - NamedType 1691119105" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Native validation rejected the WIP method settings.</source>
+          <target>Innbyggð sannprófun hafnaði stillingum VÍV-aðferðarinnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innbyggð sannprófun hafnaði stillingum VÍV-aðferðarinnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method Execute - NamedType NativeSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1561766673 - NamedType 2612954968" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Review the method settings and nativeError details, then retry with valid values.</source>
+          <target>Farðu yfir stillingar aðferðarinnar og nánari upplýsingar í nativeError og reyndu aftur með gildum gildum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Farðu yfir stillingar aðferðarinnar og nánari upplýsingar í nativeError og reyndu aftur með gildum gildum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method Execute - NamedType NativeNextLbl</note>
         </trans-unit>
       </group>
     </body>
