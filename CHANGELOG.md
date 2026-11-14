@@ -1,6 +1,12 @@
 # Changelog
 
-## 28.1.0.0 - Unreleased
+## [28.1.0.0] - 2026-11-14 (Unreleased)
+
+### Added (2026-11-14)
+
+- Resolve the main merge object-ID collision by moving the archive-read codeunit `Proj. Archive Get Impl ori` from 70009240 to the next free codeunit ID 70009244; keep main's WIP-method codeunits 70009240–70009243. Preserve all message contracts and update the combined catalogue assertion to twenty types (#13, PR #26).
+- Add `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set` (#16): list native recognized cost/sales settings and create or partially update custom WIP methods. System-defined methods and methods with calculated or posted WIP history return `PreconditionFailed` with translated recovery guidance. Native validation refusals translate their summary and retain the original diagnostic in `nativeError`.
+- Add codeunits 70009240–70009243, enum values 70009240–70009241 and test codeunit 97116. Sync Icelandic discovery and refusal XLF entries; contract chapters stay English in every locale.
 
 - Refuse project archiving before native execution when BC 29 assigned-resource source or archive permissions are missing; retain BC 28 compatibility and archive-read permissions (#13, PR #26).
 - Merge main (b7afb96) into the archive branch: keep main's validated writes, statistics, posting gate, WIP fixture (#29) and the Gunnar-decided removal of `Projects.PlanningLine.Delete` (d-20261105-delete-types); retain only the archive additions (enum 70009218/70009219, archive permission entries, 39 is-IS archive translations, test catalogue count 17).
@@ -10,6 +16,9 @@
 ### Added (2026-11-14)
 
 - `Projects.Quote.Send` (#15): sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile (request, customer, then Default), as the Send Project Quote action does. Refuses a project not in status Quote, a missing bill-to customer, an unknown profile and profiles that need a client (Disk, e-mail prompt) or have no customer e-mail address, each with a coded error and `nextStep` in en-US and is-IS. New objects: enum value 70009222, codeunits 70009248 "Proj. Quote Send Impl ori" and 70009249 "Proj. Quote Send Process ori" (granted in the Projects Read/Full extensions); test codeunit 97140 "Projects Quote Send Tests ori", and an MCP fixture for the worker-owned tenant (codeunit 97141 / page 97141 "Proj. Quote Send Fixture ori": customers, quote and open projects, a profile without channels and a Disk profile; removed afterwards with Test.Records.Delete). The scaffold catalogue test (97100) now counts sixteen types. These IDs move with the range change of #34.
+### Tests (2026-11-10) — Project status validation
+
+- Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
 
 ### Fixed (2026-11-10)
 

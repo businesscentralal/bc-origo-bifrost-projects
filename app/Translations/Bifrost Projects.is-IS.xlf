@@ -705,6 +705,30 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Skilar innbyggðum VÍV-færslum og VÍV-fjárhagsfærslum eins verkefnis. Calculate krefst skýrrar bókunardagsetningar og fylgiskjalsnúmers. Get bókar ekki eða breytir færslum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Get Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 67364598 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lists project WIP methods and their recognized cost and sales settings.</source>
+          <target>Sýnir VÍV-aðferðir verkefna og stillingar fyrir færðan kostnað og sölu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sýnir VÍV-aðferðir verkefna og stillingar fyrir færðan kostnað og sölu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Method Get ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 67364598 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, WIP, method, recognized costs, recognized sales, get</source>
+          <target>verkefni, verk, VÍV, aðferð, færður kostnaður, færð sala, lesa</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, VÍV, aðferð, færður kostnaður, færð sala, lesa</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Method Get ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3149588994 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Creates or updates a custom project WIP method; protects system-defined and used methods.</source>
+          <target>Stofnar eða uppfærir sérsniðna VÍV-aðferð verkefnis; verndar kerfisskilgreindar og notaðar aðferðir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofnar eða uppfærir sérsniðna VÍV-aðferð verkefnis; verndar kerfisskilgreindar og notaðar aðferðir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Method Set ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3149588994 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, WIP, method, recognized costs, recognized sales, set</source>
+          <target>verkefni, verk, VÍV, aðferð, færður kostnaður, færð sala, skrifa</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, VÍV, aðferð, færður kostnaður, færð sala, skrifa</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Method Set ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3445775645 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posts calculated project WIP to the general ledger through native BC posting.</source>
           <target>Bókar reiknuð verk í vinnslu í fjárhag með innbyggðri bókun BC.</target>
@@ -842,6 +866,72 @@
           <target>Sendu jákvætt lineNo eða stilltu createPlanningLine á true.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Sendu jákvætt lineNo eða stilltu createPlanningLine á true.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Usage ori - Method Execute - NamedType MissingLineErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1513833081 - NamedType 2029447175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Enable Projects in Projects Setup and ask an administrator for the native WIP method and WIP entry table permissions.</source>
+          <target>Virkjaðu verkefni í uppsetningu verkefna og biddu kerfisstjóra um heimildir á innbyggðum töflum VÍV-aðferða og VÍV-færslna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Virkjaðu verkefni í uppsetningu verkefna og biddu kerfisstjóra um heimildir á innbyggðum töflum VÍV-aðferða og VÍV-færslna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method AssertEnabled - NamedType NextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1561766673 - NamedType 1691119105" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Native validation rejected the WIP method settings.</source>
+          <target>Innbyggð sannprófun hafnaði stillingum VÍV-aðferðarinnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innbyggð sannprófun hafnaði stillingum VÍV-aðferðarinnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method Execute - NamedType NativeSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1561766673 - NamedType 2612954968" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Review the method settings and nativeError details, then retry with valid values.</source>
+          <target>Farðu yfir stillingar aðferðarinnar og nánari upplýsingar í nativeError og reyndu aftur með gildum gildum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Farðu yfir stillingar aðferðarinnar og nánari upplýsingar í nativeError og reyndu aftur með gildum gildum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method Execute - NamedType NativeNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 3106619160 - NamedType 1066607173" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A WIP method parameter has an invalid type, length or value, or is not supported.</source>
+          <target>Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Viðfang VÍV-aðferðar er af ógildri gerð eða lengd, hefur ógilt gildi eða er ekki stutt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RefuseInput - NamedType InvalidLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 3106619160 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The WIP method code is required and must not be empty.</source>
+          <target>Kóði VÍV-aðferðar er nauðsynlegur og má ekki vera tómur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kóði VÍV-aðferðar er nauðsynlegur og má ekki vera tómur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RefuseInput - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 3106619160 - NamedType 2029447175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send a JSON object with a nonempty code of at most 20 characters for Set. Use the documented fields, boolean flags and exact English enum names.</source>
+          <target>Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu JSON-hlut með kóða sem er ekki tómur og er að hámarki 20 stafir fyrir Set. Notaðu skjalfesta reiti, rökgildisflögg og nákvæm ensk heiti upptalningargilda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RefuseInput - NamedType NextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1967010076 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The requested WIP method does not exist.</source>
+          <target>Umbeðin VÍV-aðferð er ekki til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbeðin VÍV-aðferð er ekki til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RunNative - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1967010076 - NamedType 3129818787" size-unit="char" translate="yes" xml:space="preserve">
+          <source>List WIP methods without a code, or create a custom method with Set.</source>
+          <target>Sýndu VÍV-aðferðir án kóða eða stofnaðu sérsniðna aðferð með Set.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sýndu VÍV-aðferðir án kóða eða stofnaðu sérsniðna aðferð með Set.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RunNative - NamedType MissingNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1967010076 - NamedType 2205849964" size-unit="char" translate="yes" xml:space="preserve">
+          <source>System-defined WIP methods cannot be changed.</source>
+          <target>Ekki er hægt að breyta kerfisskilgreindum VÍV-aðferðum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að breyta kerfisskilgreindum VÍV-aðferðum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RunNative - NamedType ProtectedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1967010076 - NamedType 828691623" size-unit="char" translate="yes" xml:space="preserve">
+          <source>WIP methods referenced by calculated or posted WIP cannot be changed.</source>
+          <target>Ekki er hægt að breyta VÍV-aðferðum sem reiknaðar eða bókaðar VÍV-færslur vísa í.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að breyta VÍV-aðferðum sem reiknaðar eða bókaðar VÍV-færslur vísa í.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RunNative - NamedType UsedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2118332420 - Method 1967010076 - NamedType 2077379667" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create a new custom WIP method with a different code; leave the protected method unchanged.</source>
+          <target>Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofnaðu nýja sérsniðna VÍV-aðferð með öðrum kóða; láttu vernduðu aðferðina vera óbreytta.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP Methods ori - Method RunNative - NamedType NewNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4253862177 - Method 1797619284 - NamedType 2239992694" size-unit="char" translate="yes" xml:space="preserve">
           <source>The first task number must not exceed the last task number.</source>
