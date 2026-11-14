@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_TwentyTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_TwentyOneTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -92,11 +92,31 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Ordinals: List of [Integer];
         Name: Text;
         Count: Integer;
+        ExpectedTypes: List of [Text];
         OriginalLanguage: Integer;
         English: Text;
     begin
         // Story #1, AC02 | Time: no date dependency | Risk: catalogue grows in later issue families
         Library.Initialize();
+        ExpectedTypes.Add('Projects.Project.Create');
+        ExpectedTypes.Add('Projects.Project.Update');
+        ExpectedTypes.Add('Projects.Task.Create');
+        ExpectedTypes.Add('Projects.Task.Update');
+        ExpectedTypes.Add('Projects.PlanningLine.Create');
+        ExpectedTypes.Add('Projects.PlanningLine.Update');
+        ExpectedTypes.Add('Projects.Project.Copy');
+        ExpectedTypes.Add('Projects.Project.SetStatus');
+        ExpectedTypes.Add('Projects.WIP.Get');
+        ExpectedTypes.Add('Projects.WIP.Calculate');
+        ExpectedTypes.Add('Projects.WIP.Post');
+        ExpectedTypes.Add('Projects.Statistics.Get');
+        ExpectedTypes.Add('Projects.BudgetVsActual.Get');
+        ExpectedTypes.Add('Projects.Usage.Get');
+        ExpectedTypes.Add('Projects.Usage.Link');
+        ExpectedTypes.Add('Projects.ResourceAllocation.Get');
+        ExpectedTypes.Add('Projects.WIPMethod.Get');
+        ExpectedTypes.Add('Projects.WIPMethod.Set');
+        ExpectedTypes.Add('Projects.Quote.Send');
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
@@ -105,6 +125,8 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Assert.IsTrue(Names.Contains('Projects.ItemUsage.Post'), 'Item usage post must be registered');
         foreach Name in Names do
             if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
+                Assert.IsTrue(ExpectedTypes.Contains(Name), 'Unexpected Projects type in the exact catalogue: ' + Name);
+                Assert.AreEqual(3, Name.Split('.').Count(), 'Every owned name has exactly three parts');
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
                 Impl := MessageType;
@@ -119,7 +141,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(20, Count, 'Catalogue must contain all twenty owned Projects types');
+        Assert.AreEqual(21, Count, 'Catalogue must contain all twenty-one owned Projects types');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 

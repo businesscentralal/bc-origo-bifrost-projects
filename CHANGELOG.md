@@ -2,8 +2,20 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+- Projects #12: keep all allocation planning filters loaded (codeunit 70009235) and verify positive resource-group filtering (test codeunit 97120).
+- Projects #12 verification repair: usage test fixtures choose ledger numbers not already referenced by native usage links, preserving existing rows on reused tenants; regression coverage in test codeunit 97109.
+
+### Added (2026-10-21)
+
+- Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009235, 70009238; enum value 70009216; tests 97120/97121 and owned nonfinancial fixture actions 97128).
+
+### Changed (2026-11-10)
+
+- Integrate allocation #12 with the approved removal of PlanningLine.Delete and native WIP fixture updates; keep exact coverage of the sixteen remaining registered types (enum 70009200; tests 97100/97103).
+
 ### Added (2026-11-14)
 
+- Merge main into the #12 allocation branch: object ID clash on codeunit 70009231 (`Proj. Purchase Impl ori` from main vs `Projects Allocation ori`); the allocation side moved to the next free ID 70009235. Enum value count is now 21 registered types (tests 97100/97103).
 - Resolve the #11/#16 merge codeunit clashes: move `Proj. Purchase Impl ori` from 70009241 to unused 70009231 and `Proj. Item Usage Impl ori` from 70009242 to unused 70009234; retain main's WIP method IDs. Keep all 20 message registrations and the exact bilingual catalogue assertion.
 
 - Add `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set` (#16): list native recognized cost/sales settings and create or partially update custom WIP methods. System-defined methods and methods with calculated or posted WIP history return `PreconditionFailed` with translated recovery guidance. Native validation refusals translate their summary and retain the original diagnostic in `nativeError`.
