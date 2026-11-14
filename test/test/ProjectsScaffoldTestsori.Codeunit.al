@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_TwentyOneTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_TwentyThreeTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -126,6 +126,9 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Planning line delete is not a Projects message type');
         Assert.IsTrue(Names.Contains('Projects.PurchaseLine.Link'), 'Purchase line link must be registered');
         Assert.IsTrue(Names.Contains('Projects.ItemUsage.Post'), 'Item usage post must be registered');
+        Assert.IsTrue(Names.Contains('Projects.Project.Archive'), 'Project archive must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ProjectArchive.Get'), 'Project archive read must be registered');
+        Assert.IsTrue(Names.Contains('Projects.Report.Get'), 'Project report read must be registered');
         foreach Name in Names do
             if (Ordinals.Get(Names.IndexOf(Name)) >= 70009200) and (Ordinals.Get(Names.IndexOf(Name)) <= 70009249) then begin
                 Assert.IsTrue(ExpectedTypes.Contains(Name), 'Unexpected Projects type in the exact catalogue: ' + Name);
@@ -144,7 +147,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(22, Count, 'Catalogue must contain all twenty-two owned Projects types, including allocation and reports');
+        Assert.AreEqual(24, Count, 'Catalogue must contain all twenty-four owned Projects types, including allocation, reports and archives');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
