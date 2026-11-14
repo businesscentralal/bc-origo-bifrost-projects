@@ -1,0 +1,24 @@
+{
+  "sha": "e415bd5e886763a63c013199f7c4bacc94178556",
+  "pr": "https://github.com/businesscentralal/bc-origo-bifrost-projects/pull/36",
+  "state": "open",
+  "draft": false,
+  "mergeable": true,
+  "labels": [
+    "pr:needs-review",
+    "needs:receipt"
+  ],
+  "currentStateCommentCount": 1,
+  "currentStateCommentId": 6868490473,
+  "claudeReceiptUrl": "https://github.com/businesscentralal/bc-origo-bifrost-projects/pull/36#issuecomment-6868694276",
+  "ci": {
+    "run": 43535346082,
+    "status": "completed",
+    "conclusion": "success",
+    "default": "success",
+    "test": "success",
+    "cleanup": "success"
+  },
+  "workerReviewCleared": false,
+  "checkedAt": "2026-11-14T00:54:31.208Z"
+}
