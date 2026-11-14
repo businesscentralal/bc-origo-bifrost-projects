@@ -13,12 +13,14 @@ codeunit 97110 "Projects UI Fixture ori"
         Project: Record Job;
         PlanningLine: Record "Job Planning Line";
         Ledger: Record "Job Ledger Entry";
+        Register: Record "Job Register";
         Library: Codeunit "Projects Test Library ori";
         Request: JsonObject;
         CopyRequest: JsonObject;
         StatusRequest: JsonObject;
         WIPRequest: JsonObject;
         EntryNo: Integer;
+        RegisterNo: Integer;
         MasterNo: Code[20];
         Planning: JsonObject;
         LinkRequest: JsonObject;
@@ -78,6 +80,18 @@ codeunit 97110 "Projects UI Fixture ori"
         Ledger."Line Amount" := 14;
         Ledger."Line Amount (LCY)" := 14;
         Ledger.Insert(true);
+        // Keep register-report verification on this action's own ledger entry.
+        Register.ReadIsolation := IsolationLevel::ReadCommitted;
+        if Register.FindLast() then
+            RegisterNo := Register."No." + 1
+        else
+            RegisterNo := 1;
+        Register.Init();
+        Register."No." := RegisterNo;
+        Register."From Entry No." := Ledger."Entry No.";
+        Register."To Entry No." := Ledger."Entry No.";
+        Register."Creation Date" := WorkDate();
+        Register.Insert(true);
         LinkRequest.Add('projectNo', 'XW4-PROJECT-UI');
         LinkRequest.Add('taskNo', 'X100');
         LinkRequest.Add('entryNo', Ledger."Entry No.");

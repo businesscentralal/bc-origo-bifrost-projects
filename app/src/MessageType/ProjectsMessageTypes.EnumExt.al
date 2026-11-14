@@ -85,11 +85,6 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Usage.Link', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Usage Link Impl ori", "Msg Discovery ori" = "Proj. Usage Link Impl ori", "Msg Contract ori" = "Proj. Usage Link Impl ori";
     }
-    value(70009216; "Projects.ResourceAllocation.Get")
-    {
-        Caption = 'Projects.ResourceAllocation.Get', Locked = true;
-        Implementation = "Msg Interface ori" = "Proj. Allocation Impl ori", "Msg Discovery ori" = "Proj. Allocation Impl ori", "Msg Contract ori" = "Proj. Allocation Impl ori";
-    }
     value(70009219; "Projects.PurchaseLine.Link")
     {
         Caption = 'Projects.PurchaseLine.Link', Locked = true;
@@ -109,6 +104,16 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
     {
         Caption = 'Projects.WIPMethod.Set', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Method Set ori", "Msg Discovery ori" = "Proj. WIP Method Set ori", "Msg Contract ori" = "Proj. WIP Method Set ori";
+    }
+    value(70009216; "Projects.ResourceAllocation.Get")
+    {
+        Caption = 'Projects.ResourceAllocation.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Allocation Impl ori", "Msg Discovery ori" = "Proj. Allocation Impl ori", "Msg Contract ori" = "Proj. Allocation Impl ori";
+    }
+    value(70009221; "Projects.Report.Get")
+    {
+        Caption = 'Projects.Report.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Report Impl ori", "Msg Discovery ori" = "Proj. Report Impl ori", "Msg Contract ori" = "Proj. Report Impl ori";
     }
     value(70009222; "Projects.Quote.Send")
     {

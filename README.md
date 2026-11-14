@@ -35,6 +35,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Statistics.Get` | `projectNo` | LCY budget/actual/billable/invoiced cost and price by resource/item/G/L and total. |
 | `Projects.BudgetVsActual.Get` | `projectNo`, optional exact `taskNo` | Project totals plus posting-task detail; total/heading tasks excluded. |
 | `Projects.WIP.Calculate` | `projectNo`, `postingDate`, `documentNo` | Runs native WIP calculation and returns entry state. |
+| `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with a selected task range. |
+| `Projects.Report.Get` | `report`, `format`, project/task/date/register filters | Returns typed standard report rows or a base64 PDF. |
 | `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with an inclusive task range; optional Budget/Billable filtering, prices, quantities and dimensions. The target must be new; validation errors roll back the copy. |
 | `Projects.Project.SetStatus` | `projectNo`, `status` and/or `blocked` | Validates native status, completion and blocking. |
 | `Projects.Quote.Send` | `projectNo`, optional `documentSendingProfile` | Sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile, as the Send Project Quote action does. Irreversible. |
