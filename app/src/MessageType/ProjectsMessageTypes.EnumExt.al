@@ -85,4 +85,9 @@ enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Usage.Link', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Usage Link Impl ori", "Msg Discovery ori" = "Proj. Usage Link Impl ori", "Msg Contract ori" = "Proj. Usage Link Impl ori";
     }
+    value(70009222; "Projects.Quote.Send")
+    {
+        Caption = 'Projects.Quote.Send', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Quote Send Impl ori", "Msg Discovery ori" = "Proj. Quote Send Impl ori", "Msg Contract ori" = "Proj. Quote Send Impl ori";
+    }
 }
