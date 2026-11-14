@@ -4,7 +4,7 @@ using Microsoft.Projects.Project.Job;
 using Origo.Bifrost;
 
 /// <summary>Exposes typed read-only native project reports without arbitrary report execution.</summary>
-codeunit 70009244 "Proj. Report Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70009246 "Proj. Report Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 

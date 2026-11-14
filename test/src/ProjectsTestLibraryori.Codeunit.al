@@ -12,6 +12,7 @@ using Microsoft.Inventory.Item;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Finance.GeneralLedger.Account;
 using Microsoft.Finance.GeneralLedger.Setup;
+using System.Security.User;
 using Microsoft.Finance.Dimension;
 using Microsoft.Projects.Project.WIP;
 using Microsoft.Projects.Project.Ledger;
@@ -30,11 +31,99 @@ codeunit 97102 "Projects Test Library ori"
             JobsSetup.Init();
             JobsSetup.Insert(true);
         end;
+        AllowPostingAroundWorkDate();
         DeleteOwnedWIPDimensions();
         Setup.InsertIfNotExists();
         Setup.Enabled := true;
         Setup.Modify(true);
     end;
+    local procedure AllowPostingAroundWorkDate()
+    var
+        GeneralLedgerSetup: Record "General Ledger Setup";
+        UserSetup: Record "User Setup";
+        TargetFrom: Date;
+        TargetTo: Date;
+    begin
+        TargetFrom := CalcDate('<-1Y>', WorkDate());
+        TargetTo := CalcDate('<1Y>', WorkDate());
+        if Today() < TargetFrom then
+            TargetFrom := CalcDate('<-1Y>', Today());
+        if Today() > TargetTo then
+            TargetTo := CalcDate('<1Y>', Today());
+        if UserSetup.Get(UserId()) and UserSetupGovernsPostingDates(UserSetup) then begin
+            if PostingWindowExcludes(
+                UserSetup."Allow Posting From", UserSetup."Allow Posting To",
+                UserSetup."Allow Posting From DateFormula", UserSetup."Allow Posting To DateFormula", WorkDate())
+            then
+                SetUserPostingWindow(UserSetup, TargetFrom, TargetTo);
+            exit;
+        end;
+        GeneralLedgerSetup.Get();
+        if PostingWindowExcludes(
+            GeneralLedgerSetup."Allow Posting From", GeneralLedgerSetup."Allow Posting To",
+            GeneralLedgerSetup."Allow Posting From DateFormula", GeneralLedgerSetup."Allow Posting To DateFormula", WorkDate())
+        then
+            SetGeneralLedgerPostingWindow(GeneralLedgerSetup, TargetFrom, TargetTo);
+    end;
+
+    local procedure UserSetupGovernsPostingDates(UserSetup: Record "User Setup"): Boolean
+    begin
+        exit((UserSetup."Allow Posting From" <> 0D) or (UserSetup."Allow Posting To" <> 0D) or
+            (Format(UserSetup."Allow Posting From DateFormula") <> '') or (Format(UserSetup."Allow Posting To DateFormula") <> ''));
+    end;
+
+    local procedure PostingWindowExcludes(AllowFrom: Date; AllowTo: Date; FromFormula: DateFormula; ToFormula: DateFormula; DateToTest: Date): Boolean
+    var
+        EffectiveFrom: Date;
+        EffectiveTo: Date;
+    begin
+        EffectiveFrom := AllowFrom;
+        EffectiveTo := AllowTo;
+        if Format(FromFormula) <> '' then
+            EffectiveFrom := CalcDate(FromFormula, Today());
+        if Format(ToFormula) <> '' then
+            EffectiveTo := CalcDate(ToFormula, Today());
+        if EffectiveTo = 0D then
+            EffectiveTo := DMY2Date(31, 12, 9999);
+        exit(not (DateToTest in [EffectiveFrom .. EffectiveTo]));
+    end;
+
+    local procedure SetUserPostingWindow(var UserSetup: Record "User Setup"; TargetFrom: Date; TargetTo: Date)
+    begin
+        Evaluate(UserSetup."Allow Posting From DateFormula", '');
+        Evaluate(UserSetup."Allow Posting To DateFormula", '');
+        RaisePostingToBeforeLoweringFrom(UserSetup."Allow Posting From", UserSetup."Allow Posting To", TargetFrom, TargetTo);
+        if (UserSetup."Allow Posting From" <> 0D) and (UserSetup."Allow Posting From" > TargetFrom) then
+            UserSetup.Validate("Allow Posting From", TargetFrom);
+        if (UserSetup."Allow Posting To" <> 0D) and (UserSetup."Allow Posting To" < TargetTo) then
+            UserSetup.Validate("Allow Posting To", TargetTo);
+        UserSetup.Modify(true);
+    end;
+
+    local procedure SetGeneralLedgerPostingWindow(var GeneralLedgerSetup: Record "General Ledger Setup"; TargetFrom: Date; TargetTo: Date)
+    begin
+        Evaluate(GeneralLedgerSetup."Allow Posting From DateFormula", '');
+        Evaluate(GeneralLedgerSetup."Allow Posting To DateFormula", '');
+        RaisePostingToBeforeLoweringFrom(GeneralLedgerSetup."Allow Posting From", GeneralLedgerSetup."Allow Posting To", TargetFrom, TargetTo);
+        if (GeneralLedgerSetup."Allow Posting From" <> 0D) and (GeneralLedgerSetup."Allow Posting From" > TargetFrom) then
+            GeneralLedgerSetup.Validate("Allow Posting From", TargetFrom);
+        if (GeneralLedgerSetup."Allow Posting To" <> 0D) and (GeneralLedgerSetup."Allow Posting To" < TargetTo) then
+            GeneralLedgerSetup.Validate("Allow Posting To", TargetTo);
+        GeneralLedgerSetup.Modify(true);
+    end;
+
+    local procedure RaisePostingToBeforeLoweringFrom(AllowFrom: Date; var AllowTo: Date; TargetFrom: Date; TargetTo: Date)
+    var
+        BridgeTo: Date;
+    begin
+        if (AllowTo = 0D) or (AllowTo >= TargetFrom) then
+            exit;
+        BridgeTo := TargetTo;
+        if (AllowFrom <> 0D) and (AllowFrom > BridgeTo) then
+            BridgeTo := AllowFrom;
+        AllowTo := BridgeTo;
+    end;
+
     /// <summary>Creates a fresh customer and project number for every test.</summary>
     procedure NewProjectRequest() Request: JsonObject
     var
