@@ -39,6 +39,8 @@ Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscent
 | `Projects.Report.Get` | `report`, `format`, project/task/date/register filters | Returns typed standard report rows or a base64 PDF. |
 | `Projects.Project.Copy` | `projectNo`, `targetProjectNo`, copy options | Runs native Copy Job with an inclusive task range; optional Budget/Billable filtering, prices, quantities and dimensions. The target must be new; validation errors roll back the copy. |
 | `Projects.Project.SetStatus` | `projectNo`, `status` and/or `blocked` | Validates native status, completion and blocking. |
+| `Projects.Project.Archive` | `projectNo`, optional `description` | Creates a native archived project version (requires Projects Full and Archive Projects in Jobs Setup). |
+| `Projects.ProjectArchive.Get` | `projectNo`, optional `versionNo` | Lists archived versions or reads one version with tasks and planning lines. |
 | `Projects.Quote.Send` | `projectNo`, optional `documentSendingProfile` | Sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile, as the Send Project Quote action does. Irreversible. |
 
 | `Projects.WIPMethod.Get` | Optional exact `code`; `{}` lists all | Reads native WIP methods, recognized settings and flags. |
