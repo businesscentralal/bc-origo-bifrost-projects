@@ -127,7 +127,7 @@ codeunit 70009240 "Proj. WIP Method Get ori" implements "Msg Interface ori", "Ms
         Data: JsonObject;
     begin
         Data.Add('code', 'CUSTOM');
-        
+
         Example.Add('data', Data);
         Examples.Add(Example);
         exit(true);
