@@ -1,6 +1,6 @@
 # Changelog
 
-## 28.1.0.0 - Unreleased
+## [28.1.0.0] - 2026-11-14 (Unreleased)
 
 ### Added (2026-11-14)
 
