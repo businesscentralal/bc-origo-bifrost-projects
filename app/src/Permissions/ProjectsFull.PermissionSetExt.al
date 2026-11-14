@@ -15,6 +15,8 @@ permissionsetextension 70009201 "Projects Full ori" extends "BIFROST Full ori"
         codeunit "Projects Item Usage ori" = X,
         codeunit "Projects Purchase Restrict ori" = X,
         codeunit "Projects Purchase ori" = X,
+        codeunit "Proj. Quote Send Impl ori" = X,
+        codeunit "Proj. Quote Send Process ori" = X,
         tabledata "Proj. Posting ori" = RIMD,
         codeunit "Proj. Usage Get Impl ori" = X,
         codeunit "Proj. Usage Link Impl ori" = X,

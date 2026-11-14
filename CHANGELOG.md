@@ -6,6 +6,9 @@
 - Merge current main and keep `Projects.PlanningLine.Delete` removed (Gunnar decision d-20261105-delete-types). Register `Projects.PurchaseLine.Link` and `Projects.ItemUsage.Post` (enum values 70009219–70009220; codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247; tests 97124, 97125, 97129–97132) on that scaffold (#11).
 
 ### Changed (2026-10-21) - Object range moved into a registered range
+### Added (2026-11-14)
+
+- `Projects.Quote.Send` (#15): sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile (request, customer, then Default), as the Send Project Quote action does. Refuses a project not in status Quote, a missing bill-to customer, an unknown profile and profiles that need a client (Disk, e-mail prompt) or have no customer e-mail address, each with a coded error and `nextStep` in en-US and is-IS. New objects: enum value 70009222, codeunits 70009248 "Proj. Quote Send Impl ori" and 70009249 "Proj. Quote Send Process ori" (granted in the Projects Read/Full extensions); test codeunit 97140 "Projects Quote Send Tests ori", and an MCP fixture for the worker-owned tenant (codeunit 97141 / page 97141 "Proj. Quote Send Fixture ori": customers, quote and open projects, a profile without channels and a Disk profile; removed afterwards with Test.Records.Delete). The scaffold catalogue test (97100) now counts sixteen types. These IDs move with the range change of #34.
 
 ### Fixed (2026-11-10)
 
@@ -79,7 +82,7 @@
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 70009200..70009249, tests 97100..97199.
 
-## Unreleased — purchase links and item usage (verification candidate)
+### Purchase links and item usage (verification candidate)
 
 - Create compatible owned VAT and general posting setup for localized purchase MCP fixtures (97131), with a native inventory/purchase fixture regression (97124).
 - Add native purchase line linking and atomic project item usage posting with strict selectors, tracking-key isolation and exact native ledger capture (codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247). Add native posting, transaction/refusal and permission regressions 97124, 97125 and 97129, with in-memory native rollback observation helper 97130. Register both types as enum values 70009219–70009220 and grant owned executable objects through the existing Read/Full extensions; native write rights remain caller-owned. Verify dedicated-field refusals through the supported Foundation dispatcher rather than an unlicensed direct implementation call. Add a disposable-container test fixture seeder/page (97131–97132) for native tracked stock and purchase data. Shipping full-suite/UI/MCP acceptance remains pending.
