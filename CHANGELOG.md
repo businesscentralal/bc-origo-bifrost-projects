@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Changed (2026-11-16)
+
+- Effect audit (#42, core#1365 D1/D2): `Projects.Usage.Link` declares `write` instead of the unsupported `reversible`. `Projects.ItemUsage.Post` declares `irreversible` instead of `write`, names `data.projectNo` as its target and accepts an optional `expectedCount`, so Foundation now asks for confirmation before posting. `Projects.ItemUsage.Post`, `Projects.WIP.Post` and `Projects.Quote.Send` state in `effect.changes` and on the `expectedCount` parameter that the count is the one project named by `projectNo` (always 1), and how to preview it without a side effect. Chapter text stays English at every LCID (core#1239). New test codeunit 97111 `Projects Effect Tests ori`; two new tests in 97125. No new app object ID.
+
 - Projects #12: keep all allocation planning filters loaded (codeunit 70009211) and verify positive resource-group filtering (test codeunit 97120).
 - Projects #12 verification repair: usage test fixtures choose ledger numbers not already referenced by native usage links, preserving existing rows on reused tenants; regression coverage in test codeunit 97109.
 
