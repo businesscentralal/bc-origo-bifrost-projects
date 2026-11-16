@@ -1,7 +1,43 @@
 # Changelog
 
-## 28.1.0.0 - Unreleased
+## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Changed (2026-11-16)
+
+- Merge main into #34 (range move): the objects main added in the old Public 3 range (allocation, archive, purchase link, item usage, report, WIP method) are renumbered with the same +4300 offset into 70013500..70013599. Enum values 70009216/218/219/220/221/223/240/241 became 70013516/518/519/520/521/523/540/541; codeunits 70009211..70009247 became 70013511..70013547. `Proj. Archive Get Impl ori` clashed with `Proj. Posting ori` (table 70013521) and takes the next free ID 70013550. The older entries below keep their historical IDs.
+- Effect audit (#42, core#1365 D1/D2): `Projects.Usage.Link` declares `write` instead of the unsupported `reversible`. `Projects.ItemUsage.Post` declares `irreversible` instead of `write`, names `data.projectNo` as its target and accepts an optional `expectedCount`, so Foundation now asks for confirmation before posting. `Projects.ItemUsage.Post`, `Projects.WIP.Post` and `Projects.Quote.Send` state in `effect.changes` and on the `expectedCount` parameter that the count is the one project named by `projectNo` (always 1), and how to preview it without a side effect. Chapter text stays English at every LCID (core#1239). New test codeunit 97111 `Projects Effect Tests ori`; two new tests in 97125. No new app object ID.
+
+- Projects #12: keep all allocation planning filters loaded (codeunit 70009211) and verify positive resource-group filtering (test codeunit 97120).
+- Projects #12 verification repair: usage test fixtures choose ledger numbers not already referenced by native usage links, preserving existing rows on reused tenants; regression coverage in test codeunit 97109.
+
+### Added (2026-10-21)
+
+- Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009211, 70009223; enum value 70009216; tests 97120/97121 and owned nonfinancial fixture actions 97128).
+
+### Changed (2026-11-10)
+
+- Integrate allocation #12 with the approved removal of PlanningLine.Delete and native WIP fixture updates; keep exact coverage of the sixteen remaining registered types (enum 70009200; tests 97100/97103).
+
+### Added (2026-11-14)
+
+- Merge main into the #12 allocation branch: object ID clash on codeunit 70009231 (`Proj. Purchase Impl ori` from main vs `Projects Allocation ori`); the allocation side moved to the next free ID 70009235. Enum value count is now 21 registered types (tests 97100/97103).
+- Merge main into the #12 allocation branch again: object ID clash on codeunit 70009235 (`Projects Report ori` from #27 vs `Projects Allocation ori`); the allocation side moved to the next free ID 70009236. The exact-catalogue test (97100) now lists all 22 registered types, adding `Projects.PurchaseLine.Link`, `Projects.ItemUsage.Post` and `Projects.Report.Get`.
+- Merge main (#26 project archive) into the #12 allocation branch: codeunit IDs 70009236/70009238 clashed with `Projects Archive ori`/`Proj. Archive Impl ori`; the allocation side moved to the free IDs 70009211 (`Projects Allocation ori`) and 70009223 (`Proj. Allocation Impl ori`). The exact-catalogue test (97100, renamed Scenario_AC02_TwentyFourTypes_HaveLocalizedDiscovery) now lists all 24 registered types (allocation, reports and both archive types).
+- Resolve the #11/#16 merge codeunit clashes: move `Proj. Purchase Impl ori` from 70009241 to unused 70009231 and `Proj. Item Usage Impl ori` from 70009242 to unused 70009234; retain main's WIP method IDs. Keep all 20 message registrations and the exact bilingual catalogue assertion.
+
+- Resolve the main merge (62daf31, #27) ID collisions with the archive branch: keep main's `Projects.Report.Get` at enum value 70009221, `Projects Report ori` at codeunit 70009235 and `Proj. Report Impl ori` at codeunit 70009246. Move the archive side to the next free IDs: `Projects.ProjectArchive.Get` from enum value 70009221 to 70009223, `Projects Archive ori` from codeunit 70009235 to 70009238, and `Proj. Archive Get Impl ori` from codeunit 70009246 to 70009221 (the IDs above 70009246 are taken; 70009211 stays unused because it was `Projects.PlanningLine.Delete`). Message names are unchanged. The scaffold catalogue assertion now counts twenty-three types (#13, PR #26).
+- Resolve the main merge (3f8e1ac, #28) ID collisions with the archive branch: keep main's `Projects.PurchaseLine.Link` at enum value 70009219, `Proj. Item Usage Impl ori` at codeunit 70009234 and `Proj. Item Usage Process ori` at codeunit 70009244. Move the archive side to the next free IDs: `Projects.ProjectArchive.Get` from enum value 70009219 to 70009221, `Projects Archive ori` from codeunit 70009234 to 70009235, and `Proj. Archive Get Impl ori` from codeunit 70009244 to 70009246. Message names are unchanged. The scaffold catalogue assertion now counts twenty-two types (#13, PR #26).
+- Resolve the main merge object-ID collision by moving the archive-read codeunit `Proj. Archive Get Impl ori` from 70009240 to the next free codeunit ID 70009244; keep main's WIP-method codeunits 70009240–70009243. Preserve all message contracts and update the combined catalogue assertion to twenty types (#13, PR #26).
+- Add `Projects.WIPMethod.Get` and `Projects.WIPMethod.Set` (#16): list native recognized cost/sales settings and create or partially update custom WIP methods. System-defined methods and methods with calculated or posted WIP history return `PreconditionFailed` with translated recovery guidance. Native validation refusals translate their summary and retain the original diagnostic in `nativeError`.
+- Add codeunits 70009240–70009243, enum values 70009240–70009241 and test codeunit 97116. Sync Icelandic discovery and refusal XLF entries; contract chapters stay English in every locale.
+- Refuse project archiving before native execution when BC 29 assigned-resource source or archive permissions are missing; retain BC 28 compatibility and archive-read permissions (#13, PR #26).
+- Merge main (b7afb96) into the archive branch: keep main's validated writes, statistics, posting gate, WIP fixture (#29) and the Gunnar-decided removal of `Projects.PlanningLine.Delete` (d-20261105-delete-types); retain only the archive additions (enum 70009218/70009219, archive permission entries, 39 is-IS archive translations, test catalogue count 17).
+- Remove the duplicate application telemetry property introduced by the main merge; preserve the configured connection and restore test-mode product compilation (#13).
+- Resolve the #11/#16 merge codeunit clashes: move `Proj. Purchase Impl ori` from 70009241 to unused 70009231 and `Proj. Item Usage Impl ori` from 70009242 to unused 70009234; retain main's WIP method IDs. Keep all 20 message registrations and the exact bilingual catalogue assertion.
+- Remove duplicate telemetry manifest key introduced by merging main; restore product/test compilation for Projects purchase linking and item usage (#11).
+- Merge current main and keep `Projects.PlanningLine.Delete` removed (Gunnar decision d-20261105-delete-types). Register `Projects.PurchaseLine.Link` and `Projects.ItemUsage.Post` (enum values 70009219–70009220; codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247; tests 97124, 97125, 97129–97132) on that scaffold (#11).
+
+### Changed (2026-10-21) - Object range moved into a registered range
 ### Added (2026-11-14)
 
 - `Projects.Quote.Send` (#15): sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile (request, customer, then Default), as the Send Project Quote action does. Refuses a project not in status Quote, a missing bill-to customer, an unknown profile and profiles that need a client (Disk, e-mail prompt) or have no customer e-mail address, each with a coded error and `nextStep` in en-US and is-IS. New objects: enum value 70009222, codeunits 70009248 "Proj. Quote Send Impl ori" and 70009249 "Proj. Quote Send Process ori" (granted in the Projects Read/Full extensions); test codeunit 97140 "Projects Quote Send Tests ori", and an MCP fixture for the worker-owned tenant (codeunit 97141 / page 97141 "Proj. Quote Send Fixture ori": customers, quote and open projects, a profile without channels and a Disk profile; removed afterwards with Test.Records.Delete). The scaffold catalogue test (97100) now counts sixteen types. These IDs move with the range change of #34.
@@ -81,7 +117,36 @@
 
 - Repository scaffold from the Bifrost feature-app template (AL-Go, Alpaca shared container, Bifrost pipeline guards).
 - Object ranges: app 70009200..70009249, tests 97100..97199.
+
+## Unreleased — project archives (verification candidate)
+
+- Regenerate the Icelandic translation file in compiler order so the XLF sync guard passes (#13; archive objects 70009234, 70009239–70009241). Preserve all 110 translation sources and targets.
+
+- Add native project archive creation and version reads (codeunits 70009230, 70009234, 70009236, 70009239, 70009240), with native snapshot and permission regression tests 97122–97123. Register Projects.Project.Archive (enum value 70009218) and Projects.ProjectArchive.Get (70009219), grant the archive codeunits in the Projects extensions of BIFROST Read/Full, and add the 39 missing is-IS archive translations (#13).
+### Purchase links and item usage (verification candidate)
+
+- Create compatible owned VAT and general posting setup for localized purchase MCP fixtures (97131), with a native inventory/purchase fixture regression (97124).
+- Add native purchase line linking and atomic project item usage posting with strict selectors, tracking-key isolation and exact native ledger capture (codeunits 70009230, 70009232, 70009233, 70009237, 70009241, 70009242, 70009244, 70009245, 70009247). Add native posting, transaction/refusal and permission regressions 97124, 97125 and 97129, with in-memory native rollback observation helper 97130. Register both types as enum values 70009219–70009220 and grant owned executable objects through the existing Read/Full extensions; native write rights remain caller-owned. Verify dedicated-field refusals through the supported Foundation dispatcher rather than an unlicensed direct implementation call. Add a disposable-container test fixture seeder/page (97131–97132) for native tracked stock and purchase data. Shipping full-suite/UI/MCP acceptance remains pending.
 - Object ranges: app 10078485..10078584, tests 97100..97199.
 - Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
 - Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
 - app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
+
+## Unreleased — typed project reports (verification candidate)
+
+- Add a typed native report adapter for Actual to Budget, Analysis, WIP to G/L and Register with JSON/PDF output (codeunits 70009230, 70009235, 70009246), and dataset, nonzero native budget and permission tests 97126–97127. Report registry, feature-role permissions and translations are integrated; shipping queue acceptance remains subject to current-tip verification.
+
+- Register `Projects.Report.Get` (enum value 70009221) and grant its adapter (70009235), implementation (70009246) and input validator (70009230) through Projects Read/Full role extensions (#14).
+- Object ranges: app 10078485..10078584, tests 97100..97199.
+- Object ranges: app 70009200..70009249 (Origo Public 3; moved 21.10.2026 from 10078485..10078584, which is outside every registered Origo range), tests 97100..97199.
+- Template alignment with the Bifrost feature-app template: the workflow set, .gitattributes, the Icelandic translation file, and docs. PullRequestHandler.yaml skips the pull-request build when app/ and test/ contain no .al files. SourceGuards.yaml records NoClientCallstack, PermissionCoverage, ValidatedTableView, and IcelandicKeywordCounts as not applicable on a tip with no app code, and those checks gate again once app source exists.
+- app.json sets applicationInsightsConnectionString the same way as Bifrost Inventory, so AppSourceCop AS0092 is satisfied.
+
+- Return a valid blank PDF when a standard report produces no pages and its native dataset is empty (70009235, #14); retain rendering errors for nonempty data.
+
+### Changed (2026-11-14)
+- Merged main into the typed project reports branch: object ID clash on codeunit 70009243 (main's "Proj. WIP Method Process ori"); "Proj. Report Impl ori" moved to the next free ID 70009244.
+- Merged main again (3f8e1ac): object ID clash on codeunit 70009244 (main's "Proj. Item Usage Process ori"); "Proj. Report Impl ori" moved to the next free ID 70009246. Message-type catalogue count is now twenty-one.
+
+### Changed (2026-11-10)
+- Issue #14: integrated merged scaffold #21 without restoring the unreleased PlanningLine.Delete type (70009211); retained report registration 70009221, report permissions and bilingual help. Kept deterministic WIP dimension fixtures and distinct owned applied/recognized accounts for the nonzero report regression (97102, 97126).

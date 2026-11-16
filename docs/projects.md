@@ -11,14 +11,16 @@ when a caller invokes one. Setup is company-specific. The Read role can read the
 switch; the Full role can administer it. Neither extension grants Foundation Setup
 tabledata, a new assignable role, or native project table privileges.
 
-`Help.MessageTypes` discovers the six registered `Projects.*` write types.
+`Help.MessageTypes.Get` discovers the twenty-one registered `Projects.*.*` types, including `Projects.PurchaseLine.Link`, `Projects.ItemUsage.Post`, `Projects.WIPMethod.Get`, `Projects.WIPMethod.Set` and `Projects.Report.Get`.
 `Help.Implementation.Get` describes each version 1.0 operation and its nested schema.
 Descriptions, selection help and keywords support en-US and is-IS.
 
 ## Request fields
 
-All calls require a JSON object in `data`, containing `projectNo` (maximum 20
-characters). `subject` is not used. Update operations change only supplied fields.
+All calls require a JSON object in `data`. Project, task and planning-line calls
+use `projectNo` (maximum 20 characters). WIP method calls use `code` instead;
+Get may omit it to list methods. See the [WIP method setup contract](contracts.md)
+for these two types. `subject` is not used. Update operations change only supplied fields.
 Create operations fail if the key already exists; they do not silently update it.
 
 - Project: `description` (100), `billToCustomerNo` (20), `personResponsible` (20),
@@ -185,3 +187,46 @@ Apply Usage Link enabled. An entry from another project/task or an already linke
 entry is rejected before changes. Existing planning lines must match the entry's
 type, number, unit, location, variant and work type. Native validation and
 rollback are retained. No journal or financial entry is posted by this message.
+
+## Standard project reports
+
+`Projects.Report.Get` returns standard project reports as typed JSON detail rows or
+as a base64 PDF using the standard report layout. It is read only and never posts
+or changes project data. Custom layouts and scheduling are outside its scope.
+
+| Parameter | Meaning |
+| --- | --- |
+| `report` | Required: `actualToBudget`, `analysis`, `wipToGL` or `register`. |
+| `format` | Required: `json` or `pdf`. |
+| `projectNo` | Exact project number, required except for `register`. |
+| `taskNo` | Optional exact task within `projectNo`; unsupported for `wipToGL`. |
+| `registerNo` | Required positive integer for `register`; unsupported otherwise. |
+| `fromDate`, `toDate` | Optional paired ISO dates, inclusive; filter posting and planning dates. |
+
+JSON responses contain `status`, `report`, `format` and `rows`. Actual-to-budget
+rows expose item/resource identifiers and budget, actual and difference values for
+quantity, cost and price. Analysis returns task budget, actual, billable and
+invoiced costs/prices, omitting rows with no selected amounts. WIP rows expose
+account, posting group, WIP amounts, G/L balance and difference. Register rows
+expose ledger entry and register numbers, project, posting date, document and
+quantity/cost/price amounts. All monetary amounts use local currency.
+
+An empty JSON report returns `rows: []`. PDF responses contain
+`contentType: "application/pdf"` and `pdfBase64`, including the empty standard
+report. When the native report produces no pages for an empty dataset, the response
+contains a valid blank PDF instead of an empty string. Populated reports keep the
+standard layout. Example request:
+
+```json
+{"type":"Projects.Report.Get","data":{"report":"analysis","format":"json","projectNo":"PROJECT-001","taskNo":"TASK-001","fromDate":"2026-01-01","toDate":"2026-01-31"}}
+```
+
+An unknown report returns `InvalidParameter` with next step "Use one of the values
+listed in the help." A missing required selector/filter returns `MissingParameter`
+with "Pass the filter named in the refusal." Wrong JSON types, unknown keys,
+missing records and conflicting project/task identifiers return
+`InvalidParameterFormat`, `UnknownParameter`, `RecordNotFound` and
+`ConflictingIdentifiers`, respectively, with corrective next steps. Missing native
+read permissions returns `PermissionDenied`, naming BIFROST Read ori and native
+project report permissions. Feature roles grant the report implementation; native
+Business Central permissions remain the caller's responsibility.

@@ -83,7 +83,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC02_FifteenTypes_HaveLocalizedDiscovery()
+    procedure Scenario_AC02_TwentyFourTypes_HaveLocalizedDiscovery()
     var
         Impl: Interface "Msg Interface ori";
         Discovery: Interface "Msg Discovery ori";
@@ -92,16 +92,51 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Ordinals: List of [Integer];
         Name: Text;
         Count: Integer;
+        ExpectedTypes: List of [Text];
         OriginalLanguage: Integer;
         English: Text;
     begin
         // Story #1, AC02 | Time: no date dependency | Risk: catalogue grows in later issue families
         Library.Initialize();
+        ExpectedTypes.Add('Projects.Project.Create');
+        ExpectedTypes.Add('Projects.Project.Update');
+        ExpectedTypes.Add('Projects.Task.Create');
+        ExpectedTypes.Add('Projects.Task.Update');
+        ExpectedTypes.Add('Projects.PlanningLine.Create');
+        ExpectedTypes.Add('Projects.PlanningLine.Update');
+        ExpectedTypes.Add('Projects.Project.Copy');
+        ExpectedTypes.Add('Projects.Project.SetStatus');
+        ExpectedTypes.Add('Projects.WIP.Get');
+        ExpectedTypes.Add('Projects.WIP.Calculate');
+        ExpectedTypes.Add('Projects.WIP.Post');
+        ExpectedTypes.Add('Projects.Statistics.Get');
+        ExpectedTypes.Add('Projects.BudgetVsActual.Get');
+        ExpectedTypes.Add('Projects.Usage.Get');
+        ExpectedTypes.Add('Projects.Usage.Link');
+        ExpectedTypes.Add('Projects.ResourceAllocation.Get');
+        ExpectedTypes.Add('Projects.WIPMethod.Get');
+        ExpectedTypes.Add('Projects.WIPMethod.Set');
+        ExpectedTypes.Add('Projects.Quote.Send');
+        ExpectedTypes.Add('Projects.PurchaseLine.Link');
+        ExpectedTypes.Add('Projects.ItemUsage.Post');
+        ExpectedTypes.Add('Projects.Report.Get');
+        ExpectedTypes.Add('Projects.Project.Archive');
+        ExpectedTypes.Add('Projects.ProjectArchive.Get');
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
+        Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Planning line delete is not a Projects message type');
+        Assert.IsTrue(Names.Contains('Projects.PurchaseLine.Link'), 'Purchase line link must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ItemUsage.Post'), 'Item usage post must be registered');
+        Assert.IsTrue(Names.Contains('Projects.Project.Archive'), 'Project archive must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ProjectArchive.Get'), 'Project archive read must be registered');
+        Assert.IsTrue(Names.Contains('Projects.Report.Get'), 'Project report read must be registered');
+        Assert.IsTrue(Names.Contains('Projects.Project.Archive'), 'Project archive must be registered');
+        Assert.IsTrue(Names.Contains('Projects.ProjectArchive.Get'), 'Project archive read must be registered');
         foreach Name in Names do
             if (Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599) then begin
+                Assert.IsTrue(ExpectedTypes.Contains(Name), 'Unexpected Projects type in the exact catalogue: ' + Name);
+                Assert.AreEqual(3, Name.Split('.').Count(), 'Every owned name has exactly three parts');
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
                 Impl := MessageType;
@@ -116,7 +151,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(16, Count, 'Catalogue must contain all sixteen owned Projects types');
+        Assert.AreEqual(24, Count, 'Catalogue must contain all twenty-four owned Projects types, including allocation, reports and archives');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 

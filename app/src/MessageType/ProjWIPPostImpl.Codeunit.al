@@ -70,8 +70,11 @@ codeunit 70013519 "Proj. WIP Post Impl ori" implements "Msg Interface ori", "Msg
     procedure GetParameters(var Parameters: JsonArray): Boolean
     var
         Contract: Codeunit "Projects Contract ori";
+        ContractMgt: Codeunit "Msg Contract Mgt ori";
+        ExpectedCountTxt: Label 'Counts the one project named by projectNo: always 1. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
     begin
         Parameters := Contract.Parameters('WIP', 'Post', false);
+        Parameters.Add(ContractMgt.Parameter('expectedCount', 'integer', false, ExpectedCountTxt));
         exit(true);
     end;
     /// <summary>Declares the stable success response.</summary>
@@ -110,9 +113,11 @@ codeunit 70013519 "Proj. WIP Post Impl ori" implements "Msg Interface ori", "Msg
     end;
     /// <summary>Documents transactional native writes.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
+    var
+        ExpectedCountUnitTxt: Label 'expectedCount counts the one project named by projectNo, so it is always 1. To read it without a side effect, send the same request without expectedCount while confirmation is enabled and read expected in the ConfirmationRequired answer; nothing is posted.', Locked = true;
     begin
         Effect.Add('effect', 'irreversible');
-        Effect.Add('changes', 'Project records; native field and table triggers run.');
+        Effect.Add('changes', 'Posts the calculated WIP of the project to the general ledger; native field and table triggers run. ' + ExpectedCountUnitTxt);
         Effect.Add('idempotent', false);
         exit(true);
     end;

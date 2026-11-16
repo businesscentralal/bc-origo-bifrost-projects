@@ -85,6 +85,46 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Usage.Link', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Usage Link Impl ori", "Msg Discovery ori" = "Proj. Usage Link Impl ori", "Msg Contract ori" = "Proj. Usage Link Impl ori";
     }
+    value(70013518; "Projects.Project.Archive")
+    {
+        Caption = 'Projects.Project.Archive', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Archive Impl ori", "Msg Discovery ori" = "Proj. Archive Impl ori", "Msg Contract ori" = "Proj. Archive Impl ori";
+    }
+    value(70013519; "Projects.PurchaseLine.Link")
+    {
+        Caption = 'Projects.PurchaseLine.Link', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Purchase Impl ori", "Msg Discovery ori" = "Proj. Purchase Impl ori", "Msg Contract ori" = "Proj. Purchase Impl ori";
+    }
+    value(70013520; "Projects.ItemUsage.Post")
+    {
+        Caption = 'Projects.ItemUsage.Post', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Item Usage Impl ori", "Msg Discovery ori" = "Proj. Item Usage Impl ori", "Msg Contract ori" = "Proj. Item Usage Impl ori";
+    }
+    value(70013523; "Projects.ProjectArchive.Get")
+    {
+        Caption = 'Projects.ProjectArchive.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Archive Get Impl ori", "Msg Discovery ori" = "Proj. Archive Get Impl ori", "Msg Contract ori" = "Proj. Archive Get Impl ori";
+    }
+    value(70013540; "Projects.WIPMethod.Get")
+    {
+        Caption = 'Projects.WIPMethod.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Method Get ori", "Msg Discovery ori" = "Proj. WIP Method Get ori", "Msg Contract ori" = "Proj. WIP Method Get ori";
+    }
+    value(70013541; "Projects.WIPMethod.Set")
+    {
+        Caption = 'Projects.WIPMethod.Set', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. WIP Method Set ori", "Msg Discovery ori" = "Proj. WIP Method Set ori", "Msg Contract ori" = "Proj. WIP Method Set ori";
+    }
+    value(70013516; "Projects.ResourceAllocation.Get")
+    {
+        Caption = 'Projects.ResourceAllocation.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Allocation Impl ori", "Msg Discovery ori" = "Proj. Allocation Impl ori", "Msg Contract ori" = "Proj. Allocation Impl ori";
+    }
+    value(70013521; "Projects.Report.Get")
+    {
+        Caption = 'Projects.Report.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Report Impl ori", "Msg Discovery ori" = "Proj. Report Impl ori", "Msg Contract ori" = "Proj. Report Impl ori";
+    }
     value(70013522; "Projects.Quote.Send")
     {
         Caption = 'Projects.Quote.Send', Locked = true;

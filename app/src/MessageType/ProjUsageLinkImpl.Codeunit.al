@@ -111,7 +111,7 @@ codeunit 70013528 "Proj. Usage Link Impl ori" implements "Msg Interface ori", "M
     /// <summary>Documents transactional native writes.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
     begin
-        Effect.Add('effect', 'reversible');
+        Effect.Add('effect', 'write');
         Effect.Add('changes', 'Native planning quantities and usage links; no financial posting.');
         Effect.Add('idempotent', false);
         exit(true);
