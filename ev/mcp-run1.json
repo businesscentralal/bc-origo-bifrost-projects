@@ -1,0 +1,285 @@
+{
+ "at": "2026-11-16T09:57:01.176Z",
+ "fail": 0,
+ "total": 40,
+ "res": [
+  {
+   "name": "1033 help Projects.ItemUsage.Post effect irreversible",
+   "pass": true,
+   "detail": "irreversible"
+  },
+  {
+   "name": "1033 help Projects.ItemUsage.Post changes names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1033 help Projects.ItemUsage.Post expectedCount param names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1033 Projects.ItemUsage.Post expectedCount 0 -> ConfirmationMismatch expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "You sent expectedCount 0, but the call would now affect 1 (record X42-MCP-NONE). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.ItemUsage.Post no expectedCount -> ConfirmationRequired expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationRequired",
+    "expected": "1",
+    "error": "This call cannot be undone and was not run. It would affect 1 (record X42-MCP-NONE). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.ItemUsage.Post expectedCount 1 passes gate (type's own refusal, not confirm/unknown)",
+   "pass": true,
+   "detail": {
+    "code": "MissingParameter",
+    "parameter": "taskNo",
+    "error": "The Projects request cannot be processed. Check the named parameter."
+   }
+  },
+  {
+   "name": "1033 help Projects.WIP.Post effect irreversible",
+   "pass": true,
+   "detail": "irreversible"
+  },
+  {
+   "name": "1033 help Projects.WIP.Post changes names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1033 help Projects.WIP.Post expectedCount param names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1033 Projects.WIP.Post expectedCount 0 -> ConfirmationMismatch expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "You sent expectedCount 0, but the call would now affect 1 (record X42-MCP-NONE). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.WIP.Post no expectedCount -> ConfirmationRequired expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationRequired",
+    "expected": "1",
+    "error": "This call cannot be undone and was not run. It would affect 1 (record X42-MCP-NONE). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.WIP.Post expectedCount 1 passes gate (type's own refusal, not confirm/unknown)",
+   "pass": true,
+   "detail": {
+    "code": "MultipleErrors",
+    "error": "Correct the invalid Projects parameters."
+   }
+  },
+  {
+   "name": "1033 help Projects.Quote.Send effect irreversible",
+   "pass": true,
+   "detail": "irreversible"
+  },
+  {
+   "name": "1033 help Projects.Quote.Send changes names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1033 help Projects.Quote.Send expectedCount param names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1033 Projects.Quote.Send expectedCount 0 -> ConfirmationMismatch expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "You sent expectedCount 0, but the call would now affect 1 (record X42-MCP-NONE). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.Quote.Send no expectedCount -> ConfirmationRequired expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationRequired",
+    "expected": "1",
+    "error": "This call cannot be undone and was not run. It would affect 1 (record X42-MCP-NONE). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.Quote.Send expectedCount 1 passes gate (type's own refusal, not confirm/unknown)",
+   "pass": true,
+   "detail": {
+    "code": "RecordNotFound",
+    "parameter": "projectNo",
+    "error": "Project X42-MCP-NONE does not exist."
+   }
+  },
+  {
+   "name": "1033 help Projects.Usage.Link effect write",
+   "pass": true,
+   "detail": "write"
+  },
+  {
+   "name": "1033 Usage.Link without expectedCount -> no confirmation",
+   "pass": true,
+   "detail": {
+    "status": "Error",
+    "code": "MultipleErrors",
+    "error": "Correct the invalid Projects parameters."
+   }
+  },
+  {
+   "name": "1039 help Projects.ItemUsage.Post effect irreversible",
+   "pass": true,
+   "detail": "irreversible"
+  },
+  {
+   "name": "1039 help Projects.ItemUsage.Post changes names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1039 help Projects.ItemUsage.Post expectedCount param names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1039 Projects.ItemUsage.Post expectedCount 0 -> ConfirmationMismatch expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "Þú sendir expectedCount 0, en kallið myndi nú hafa áhrif á 1 (færsla X42-MCP-NONE). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.ItemUsage.Post no expectedCount -> ConfirmationRequired expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationRequired",
+    "expected": "1",
+    "error": "Ekki er hægt að afturkalla þetta kall og það var ekki keyrt. Það myndi hafa áhrif á 1 (færsla X42-MCP-NONE). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.ItemUsage.Post expectedCount 1 passes gate (type's own refusal, not confirm/unknown)",
+   "pass": true,
+   "detail": {
+    "code": "MissingParameter",
+    "parameter": "taskNo",
+    "error": "Ekki er hægt að vinna verkefnabeiðnina. Athugaðu tilgreint viðfang."
+   }
+  },
+  {
+   "name": "1039 help Projects.WIP.Post effect irreversible",
+   "pass": true,
+   "detail": "irreversible"
+  },
+  {
+   "name": "1039 help Projects.WIP.Post changes names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1039 help Projects.WIP.Post expectedCount param names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1039 Projects.WIP.Post expectedCount 0 -> ConfirmationMismatch expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "Þú sendir expectedCount 0, en kallið myndi nú hafa áhrif á 1 (færsla X42-MCP-NONE). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.WIP.Post no expectedCount -> ConfirmationRequired expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationRequired",
+    "expected": "1",
+    "error": "Ekki er hægt að afturkalla þetta kall og það var ekki keyrt. Það myndi hafa áhrif á 1 (færsla X42-MCP-NONE). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.WIP.Post expectedCount 1 passes gate (type's own refusal, not confirm/unknown)",
+   "pass": true,
+   "detail": {
+    "code": "MultipleErrors",
+    "error": "Leiðréttu ógild viðföng verkefnis."
+   }
+  },
+  {
+   "name": "1039 help Projects.Quote.Send effect irreversible",
+   "pass": true,
+   "detail": "irreversible"
+  },
+  {
+   "name": "1039 help Projects.Quote.Send changes names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1039 help Projects.Quote.Send expectedCount param names unit",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "name": "1039 Projects.Quote.Send expectedCount 0 -> ConfirmationMismatch expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "Þú sendir expectedCount 0, en kallið myndi nú hafa áhrif á 1 (færsla X42-MCP-NONE). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.Quote.Send no expectedCount -> ConfirmationRequired expected 1",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationRequired",
+    "expected": "1",
+    "error": "Ekki er hægt að afturkalla þetta kall og það var ekki keyrt. Það myndi hafa áhrif á 1 (færsla X42-MCP-NONE). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.Quote.Send expectedCount 1 passes gate (type's own refusal, not confirm/unknown)",
+   "pass": true,
+   "detail": {
+    "code": "RecordNotFound",
+    "parameter": "projectNo",
+    "error": "Verkefni X42-MCP-NONE er ekki til."
+   }
+  },
+  {
+   "name": "1039 help Projects.Usage.Link effect write",
+   "pass": true,
+   "detail": "write"
+  },
+  {
+   "name": "1039 Usage.Link without expectedCount -> no confirmation",
+   "pass": true,
+   "detail": {
+    "status": "Error",
+    "code": "MultipleErrors",
+    "error": "Leiðréttu ógild viðföng verkefnis."
+   }
+  }
+ ]
+}
