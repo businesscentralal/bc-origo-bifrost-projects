@@ -1,0 +1,6 @@
+Job {   "company": "CRONUS International Ltd.",   "table": "Job",   "filter": "WHERE(No.=FILTER(X42MCP*))",   "count": 0 }
+Job Ledger Entry {   "company": "CRONUS International Ltd.",   "table": "Job Ledger Entry",   "filter": "WHERE(Job No.=FILTER(X42MCP*))",   "count": 0 }
+Job Task {   "company": "CRONUS International Ltd.",   "table": "Job Task",   "filter": "WHERE(Job No.=FILTER(X42MCP*))",   "count": 0 }
+Job Planning Line {   "company": "CRONUS International Ltd.",   "table": "Job Planning Line",   "filter": "WHERE(Job No.=FILTER(X42MCP*))",   "count": 0 }
+Job WIP Entry {   "company": "CRONUS International Ltd.",   "table": "Job WIP Entry",   "filter": "WHERE(Job No.=FILTER(X42MCP*))",   "count": 0 }
+Job WIP G/L Entry {   "company": "CRONUS International Ltd.",   "table": "Job WIP G/L Entry",   "filter": "WHERE(Job No.=FILTER(X42MCP*))",   "count": 0 }

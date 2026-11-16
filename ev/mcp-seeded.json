@@ -1,0 +1,135 @@
+{
+ "at": "2026-11-16T10:18:05.917Z",
+ "project": "X42MCP049572",
+ "fail": 3,
+ "total": 15,
+ "res": [
+  {
+   "name": "seed project via REST",
+   "pass": false,
+   "detail": {
+    "number": "X42MCP049572",
+    "statusCode": 201
+   }
+  },
+  {
+   "name": "1033 Projects.ItemUsage.Post seeded project, expectedCount 0 -> ConfirmationMismatch expected 1 naming the project",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "You sent expectedCount 0, but the call would now affect 1 (record X42MCP049572). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.WIP.Post seeded project, expectedCount 0 -> ConfirmationMismatch expected 1 naming the project",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "You sent expectedCount 0, but the call would now affect 1 (record X42MCP049572). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 Projects.Quote.Send seeded project, expectedCount 0 -> ConfirmationMismatch expected 1 naming the project",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "You sent expectedCount 0, but the call would now affect 1 (record X42MCP049572). Nothing was changed."
+   }
+  },
+  {
+   "name": "1033 ItemUsage.Post seeded project, expectedCount 1 -> gate passed, own refusal, nothing posted",
+   "pass": true,
+   "detail": {
+    "code": "RecordNotFound",
+    "parameter": "taskNo",
+    "error": "The Projects request cannot be processed. Check the named parameter."
+   }
+  },
+  {
+   "name": "1033 Quote.Send seeded non-Quote project, expectedCount 1 -> gate passed, PreconditionFailed, nothing sent",
+   "pass": true,
+   "detail": {
+    "code": "PreconditionFailed",
+    "error": "Project X42MCP049572 has status Open; only a project in status Quote can send a quote."
+   }
+  },
+  {
+   "name": "1033 Usage.Link seeded project, no expectedCount -> not gated",
+   "pass": true,
+   "detail": {
+    "status": "Error",
+    "code": "MultipleErrors",
+    "error": "Correct the invalid Projects parameters."
+   }
+  },
+  {
+   "name": "1039 Projects.ItemUsage.Post seeded project, expectedCount 0 -> ConfirmationMismatch expected 1 naming the project",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "Þú sendir expectedCount 0, en kallið myndi nú hafa áhrif á 1 (færsla X42MCP049572). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.WIP.Post seeded project, expectedCount 0 -> ConfirmationMismatch expected 1 naming the project",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "Þú sendir expectedCount 0, en kallið myndi nú hafa áhrif á 1 (færsla X42MCP049572). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 Projects.Quote.Send seeded project, expectedCount 0 -> ConfirmationMismatch expected 1 naming the project",
+   "pass": true,
+   "detail": {
+    "code": "ConfirmationMismatch",
+    "expected": "1",
+    "error": "Þú sendir expectedCount 0, en kallið myndi nú hafa áhrif á 1 (færsla X42MCP049572). Engu var breytt."
+   }
+  },
+  {
+   "name": "1039 ItemUsage.Post seeded project, expectedCount 1 -> gate passed, own refusal, nothing posted",
+   "pass": true,
+   "detail": {
+    "code": "RecordNotFound",
+    "parameter": "taskNo",
+    "error": "Ekki er hægt að vinna verkefnabeiðnina. Athugaðu tilgreint viðfang."
+   }
+  },
+  {
+   "name": "1039 Quote.Send seeded non-Quote project, expectedCount 1 -> gate passed, PreconditionFailed, nothing sent",
+   "pass": true,
+   "detail": {
+    "code": "PreconditionFailed",
+    "error": "Verkefni X42MCP049572 hefur stöðuna Open; aðeins verkefni í stöðunni Tilboð getur sent tilboð."
+   }
+  },
+  {
+   "name": "1039 Usage.Link seeded project, no expectedCount -> not gated",
+   "pass": true,
+   "detail": {
+    "status": "Error",
+    "code": "MultipleErrors",
+    "error": "Leiðréttu ógild viðföng verkefnis."
+   }
+  },
+  {
+   "name": "cleanup: project deleted",
+   "pass": false,
+   "detail": {}
+  },
+  {
+   "name": "cleanup: project gone",
+   "pass": false,
+   "detail": {
+    "rowCount": 1
+   }
+  }
+ ],
+ "jobLedgerCountForSeed": "MCP error -32602: Input validation error: Invalid arguments for tool get_record_count: [\n  {\n    \"code\": \"invalid_type\",\n    \"expected\": \"string\",\n    \"received\": \"undefined\",\n    \"path\": [\n      \"table\"\n    ],\n    \"message\": \"Required\"\n  }\n]"
+}
