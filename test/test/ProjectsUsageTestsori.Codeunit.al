@@ -15,6 +15,35 @@ codeunit 97109 "Projects Usage Tests ori"
         Library: Codeunit "Projects Test Library ori";
 
     [Test]
+    procedure Scenario_AC01_UsageFixture_SkipsOccupiedLinkEntry()
+    var
+        Link: Record "Job Usage Link";
+        Ledger: Record "Job Ledger Entry";
+        Request: JsonObject;
+        Response: JsonObject;
+        EntryNo: Integer;
+        OccupiedEntryNo: Integer;
+    begin
+        // Story #8, AC01 | Time: explicit2026-10-16 | Risk: reused tenants may retain links without ledger entries.
+        Request := Library.NewProjectRequest();
+        if Ledger.FindLast() then
+            OccupiedEntryNo := Ledger."Entry No.";
+        OccupiedEntryNo += 1;
+        Link."Job No." := CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(Link."Job No."));
+        Link."Job Task No." := 'X100';
+        Link."Line No." := 10000;
+        Link."Entry No." := OccupiedEntryNo;
+        Link.Insert(false);
+        Request := NewUsageRequest(EntryNo);
+        Assert.IsTrue(EntryNo > OccupiedEntryNo, 'Fresh usage must not reuse an entry number referenced by an existing link');
+        Request.Add('entryNo', EntryNo);
+        Request.Add('lineNo', 10000);
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Usage.Link", Request);
+        Library.AssertStatus(Response, 'Success');
+        Assert.IsTrue(Link.Get(Link."Job No.", 'X100', 10000, OccupiedEntryNo), 'Existing link is preserved');
+    end;
+
+    [Test]
     procedure Scenario_AC01_ExistingPlanning_LinkReducesRemaining()
     var
         Planning: Record "Job Planning Line";
@@ -110,6 +139,7 @@ codeunit 97109 "Projects Usage Tests ori"
         Project: Record Job;
         Planning: Record "Job Planning Line";
         Ledger: Record "Job Ledger Entry";
+        Link: Record "Job Usage Link";
         PlanningRequest: JsonObject;
     begin
         PlanningRequest := Library.NewPlanningRequest('Resource');
@@ -122,7 +152,10 @@ codeunit 97109 "Projects Usage Tests ori"
         Planning.Modify(true);
         if Ledger.FindLast() then
             EntryNo := Ledger."Entry No.";
-        EntryNo += 1;
+        repeat
+            EntryNo += 1;
+            Link.SetRange("Entry No.", EntryNo);
+        until Link.IsEmpty();
         Ledger.Init();
         Ledger."Entry No." := EntryNo;
         Ledger."Job No." := Project."No.";

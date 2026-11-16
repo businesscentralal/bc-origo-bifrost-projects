@@ -2,7 +2,23 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+- Projects #12: keep all allocation planning filters loaded (codeunit 70009211) and verify positive resource-group filtering (test codeunit 97120).
+- Projects #12 verification repair: usage test fixtures choose ledger numbers not already referenced by native usage links, preserving existing rows on reused tenants; regression coverage in test codeunit 97109.
+
+### Added (2026-10-21)
+
+- Add `Projects.ResourceAllocation.Get` for native calendar-period capacity, scheduled open-project allocations and availability, with exact selectors, a 53-period limit and localized refusal/help contracts (#12; codeunits 70009230, 70009211, 70009223; enum value 70009216; tests 97120/97121 and owned nonfinancial fixture actions 97128).
+
+### Changed (2026-11-10)
+
+- Integrate allocation #12 with the approved removal of PlanningLine.Delete and native WIP fixture updates; keep exact coverage of the sixteen remaining registered types (enum 70009200; tests 97100/97103).
+
 ### Added (2026-11-14)
+
+- Merge main into the #12 allocation branch: object ID clash on codeunit 70009231 (`Proj. Purchase Impl ori` from main vs `Projects Allocation ori`); the allocation side moved to the next free ID 70009235. Enum value count is now 21 registered types (tests 97100/97103).
+- Merge main into the #12 allocation branch again: object ID clash on codeunit 70009235 (`Projects Report ori` from #27 vs `Projects Allocation ori`); the allocation side moved to the next free ID 70009236. The exact-catalogue test (97100) now lists all 22 registered types, adding `Projects.PurchaseLine.Link`, `Projects.ItemUsage.Post` and `Projects.Report.Get`.
+- Merge main (#26 project archive) into the #12 allocation branch: codeunit IDs 70009236/70009238 clashed with `Projects Archive ori`/`Proj. Archive Impl ori`; the allocation side moved to the free IDs 70009211 (`Projects Allocation ori`) and 70009223 (`Proj. Allocation Impl ori`). The exact-catalogue test (97100, renamed Scenario_AC02_TwentyFourTypes_HaveLocalizedDiscovery) now lists all 24 registered types (allocation, reports and both archive types).
+- Resolve the #11/#16 merge codeunit clashes: move `Proj. Purchase Impl ori` from 70009241 to unused 70009231 and `Proj. Item Usage Impl ori` from 70009242 to unused 70009234; retain main's WIP method IDs. Keep all 20 message registrations and the exact bilingual catalogue assertion.
 
 - Resolve the main merge (62daf31, #27) ID collisions with the archive branch: keep main's `Projects.Report.Get` at enum value 70009221, `Projects Report ori` at codeunit 70009235 and `Proj. Report Impl ori` at codeunit 70009246. Move the archive side to the next free IDs: `Projects.ProjectArchive.Get` from enum value 70009221 to 70009223, `Projects Archive ori` from codeunit 70009235 to 70009238, and `Proj. Archive Get Impl ori` from codeunit 70009246 to 70009221 (the IDs above 70009246 are taken; 70009211 stays unused because it was `Projects.PlanningLine.Delete`). Message names are unchanged. The scaffold catalogue assertion now counts twenty-three types (#13, PR #26).
 - Resolve the main merge (3f8e1ac, #28) ID collisions with the archive branch: keep main's `Projects.PurchaseLine.Link` at enum value 70009219, `Proj. Item Usage Impl ori` at codeunit 70009234 and `Proj. Item Usage Process ori` at codeunit 70009244. Move the archive side to the next free IDs: `Projects.ProjectArchive.Get` from enum value 70009219 to 70009221, `Projects Archive ori` from codeunit 70009234 to 70009235, and `Proj. Archive Get Impl ori` from codeunit 70009244 to 70009246. Message names are unchanged. The scaffold catalogue assertion now counts twenty-two types (#13, PR #26).
