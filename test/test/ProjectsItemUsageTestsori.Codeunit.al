@@ -48,6 +48,36 @@ codeunit 97125 "Projects Item Usage Tests ori"
         Assert.AreEqual(Response.GetInteger('firstEntryNo'), Response.GetInteger('lastEntryNo'), 'Single line ledger range');
     end;
 
+    /// <summary>An irreversible call that carries expectedCount (#42) passes the strict input check and posts.</summary>
+    [Test]
+    procedure HappyPath_WithExpectedCount_Posts()
+    var
+        Ledger: Record "Job Ledger Entry";
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        Request := NewRequest();
+        Request.Add('expectedCount', 1);
+        Response := Execute(Request);
+        Library.AssertStatus(Response, 'Success');
+        Ledger.Get(Response.GetInteger('firstEntryNo'));
+        Assert.AreEqual(Request.GetText('projectNo'), Ledger."Job No.", 'Owned project ledger entry');
+    end;
+
+    /// <summary>A non-integer expectedCount is refused by the input check before posting.</summary>
+    [Test]
+    procedure TextExpectedCount_RefusedBeforePosting()
+    var
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        Request := NewRequest();
+        Request.Add('expectedCount', 'one');
+        Response := ValidateRequest(Request);
+        Assert.AreEqual('Error', Response.GetText('status'), 'Refused: ' + Format(Response));
+        Assert.AreEqual('expectedCount', Response.GetText('parameter'), 'Names expectedCount: ' + Format(Response));
+    end;
+
     /// <summary>Blocked projects refuse before any native ledger write.</summary>
     [Test]
     procedure BlockedProject_RefusesWithoutLedgerWrites()

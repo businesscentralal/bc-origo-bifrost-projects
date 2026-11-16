@@ -73,10 +73,13 @@ codeunit 70009234 "Proj. Item Usage Impl ori" implements "Msg Interface ori", "M
         exit(true);
     end;
 
-    /// <summary>The typed data filters fully describe the target.</summary>
+    /// <summary>Names the project the confirmation counts.</summary>
     procedure GetTarget(var Target: JsonArray): Boolean
+    var
+        Contract: Codeunit "Msg Contract Mgt ori";
     begin
-        exit(false);
+        Target.Add(Contract.TargetEntry('data.projectNo', 'project no.', 'The exact native number of the open project the item usage is posted to.'));
+        exit(true);
     end;
 
     /// <summary>Shares the exact runtime parameter declaration.</summary>
@@ -121,10 +124,13 @@ codeunit 70009234 "Proj. Item Usage Impl ori" implements "Msg Interface ori", "M
         exit(true);
     end;
 
-    /// <summary>Declares the operation effect and idempotency.</summary>
+    /// <summary>Declares the irreversible posting effect, its count unit and idempotency.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
+    var
+        ChangesTxt: Label 'Posts item consumption to the project through the native project journal: project ledger entries and item ledger entries are created and committed. Resending posts again. expectedCount counts the one project named by projectNo, so it is always 1, whatever the number of lines. To read it without a side effect, send the same request without expectedCount while confirmation is enabled and read expected in the ConfirmationRequired answer; nothing is posted.', Locked = true;
     begin
-        Effect.Add('effect', 'write');
+        Effect.Add('effect', 'irreversible');
+        Effect.Add('changes', ChangesTxt);
         Effect.Add('idempotent', false);
         exit(true);
     end;
