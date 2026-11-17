@@ -2,13 +2,16 @@
 
 | App ID | App object range | Test object range | Target |
 | --- | --- | --- | --- |
-| `c847bab7-2525-4ff5-93c4-15512b3be1e5` | 70009200..70009249 | 97100..97199 | Business Central 28 or later, Cloud extension |
+| `c847bab7-2525-4ff5-93c4-15512b3be1e5` | 70013500..70013599 | 97100..97199 | Business Central 28 or later, Cloud extension |
 
 ## Overview
 
 Bifrost feature app for project (job) message types that are not covered by Bifrost Foundation: project lifecycle, tasks and planning lines, copy, status, prices, WIP, budget vs actual, project invoicing helpers and project queries. Message types use the `Projects.*.*` pattern.
 
 Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets), not here. Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
+
+- Depends only on Bifrost Foundation.
+- Object range: 70013500..70013599 (app; upper part of Public 4 while Shopify still uses 70013400..70013481), 97100..97199 (tests).
 
 ## Functional flow
 
@@ -89,45 +92,45 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 
 | Type | ID | Name |
 | --- | --- | --- |
-| codeunit | 70009200 | `Projects Gate ori` |
-| codeunit | 70009201 | `Projects Registration ori` |
-| codeunit | 70009202 | `Projects Install ori` |
-| codeunit | 70009203 | `Projects Setup Restrict ori` |
-| codeunit | 70009204 | `Projects Contract ori` |
-| codeunit | 70009205 | `Proj. Create Impl ori` |
-| codeunit | 70009206 | `Proj. Update Impl ori` |
-| codeunit | 70009207 | `Proj. Task Create Impl ori` |
-| codeunit | 70009208 | `Proj. Task Update Impl ori` |
-| codeunit | 70009209 | `Proj. Plan Create Impl ori` |
-| codeunit | 70009210 | `Proj. Plan Update Impl ori` |
-| codeunit | 70009212 | `Projects Input ori` |
-| codeunit | 70009213 | `Projects Write Process ori` |
-| codeunit | 70009214 | `Projects Write ori` |
-| codeunit | 70009215 | `Proj. Copy Impl ori` |
-| codeunit | 70009216 | `Proj. Status Impl ori` |
-| codeunit | 70009217 | `Proj. WIP Get Impl ori` |
-| codeunit | 70009218 | `Proj. WIP Calc Impl ori` |
-| codeunit | 70009219 | `Proj. WIP Post Impl ori` |
-| codeunit | 70009220 | `Projects WIP ori` |
-| codeunit | 70009222 | `Proj. Posting Gate ori` |
-| codeunit | 70009224 | `Proj. Statistics Impl ori` |
-| codeunit | 70009225 | `Proj. Budget Actual Impl ori` |
-| codeunit | 70009226 | `Projects Statistics ori` |
-| codeunit | 70009227 | `Proj. Usage Get Impl ori` |
-| codeunit | 70009228 | `Proj. Usage Link Impl ori` |
-| codeunit | 70009229 | `Projects Usage ori` |
-| codeunit | 70009240 | `Proj. WIP Method Get ori` |
-| codeunit | 70009241 | `Proj. WIP Method Set ori` |
-| codeunit | 70009242 | `Projects WIP Methods ori` |
-| codeunit | 70009243 | `Proj. WIP Method Process ori` |
-| enumextension | 70009200 | `Projects Message Types ori` |
-| page | 70009200 | `Projects Setup ori` |
-| permissionsetextension | 70009200 | `Projects Read ori` |
-| permissionsetextension | 70009201 | `Projects Full ori` |
-| table | 70009200 | `Projects Setup ori` |
-| table | 70009221 | `Proj. Posting ori` |
+| codeunit | 70013500 | `Projects Gate ori` |
+| codeunit | 70013501 | `Projects Registration ori` |
+| codeunit | 70013502 | `Projects Install ori` |
+| codeunit | 70013503 | `Projects Setup Restrict ori` |
+| codeunit | 70013504 | `Projects Contract ori` |
+| codeunit | 70013505 | `Proj. Create Impl ori` |
+| codeunit | 70013506 | `Proj. Update Impl ori` |
+| codeunit | 70013507 | `Proj. Task Create Impl ori` |
+| codeunit | 70013508 | `Proj. Task Update Impl ori` |
+| codeunit | 70013509 | `Proj. Plan Create Impl ori` |
+| codeunit | 70013510 | `Proj. Plan Update Impl ori` |
+| codeunit | 70013512 | `Projects Input ori` |
+| codeunit | 70013513 | `Projects Write Process ori` |
+| codeunit | 70013514 | `Projects Write ori` |
+| codeunit | 70013515 | `Proj. Copy Impl ori` |
+| codeunit | 70013516 | `Proj. Status Impl ori` |
+| codeunit | 70013517 | `Proj. WIP Get Impl ori` |
+| codeunit | 70013518 | `Proj. WIP Calc Impl ori` |
+| codeunit | 70013519 | `Proj. WIP Post Impl ori` |
+| codeunit | 70013520 | `Projects WIP ori` |
+| codeunit | 70013522 | `Proj. Posting Gate ori` |
+| codeunit | 70013524 | `Proj. Statistics Impl ori` |
+| codeunit | 70013525 | `Proj. Budget Actual Impl ori` |
+| codeunit | 70013526 | `Projects Statistics ori` |
+| codeunit | 70013527 | `Proj. Usage Get Impl ori` |
+| codeunit | 70013528 | `Proj. Usage Link Impl ori` |
+| codeunit | 70013529 | `Projects Usage ori` |
+| codeunit | 70013540 | `Proj. WIP Method Get ori` |
+| codeunit | 70013541 | `Proj. WIP Method Set ori` |
+| codeunit | 70013542 | `Projects WIP Methods ori` |
+| codeunit | 70013543 | `Proj. WIP Method Process ori` |
+| enumextension | 70013500 | `Projects Message Types ori` |
+| page | 70013500 | `Projects Setup ori` |
+| permissionsetextension | 70013500 | `Projects Read ori` |
+| permissionsetextension | 70013501 | `Projects Full ori` |
+| table | 70013500 | `Projects Setup ori` |
+| table | 70013521 | `Proj. Posting ori` |
 
-Enum extension `Projects Message Types ori` adds WIP method values 70009240 and 70009241. Test codeunit 97116 covers issue #16; the test app's complete object range is 97100..97199.
+Enum extension `Projects Message Types ori` adds WIP method values 70013540 and 70013541. Test codeunit 97116 covers issue #16; the test app's complete object range is 97100..97199.
 
 ## Dependencies
 

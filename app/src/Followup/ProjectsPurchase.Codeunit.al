@@ -6,7 +6,7 @@ using Microsoft.Purchases.Document;
 using Origo.Bifrost;
 
 /// <summary>Links an unposted purchase line through native project-field validation without posting the purchase document.</summary>
-codeunit 70009232 "Projects Purchase ori"
+codeunit 70013532 "Projects Purchase ori"
 {
     Access = Internal;
 

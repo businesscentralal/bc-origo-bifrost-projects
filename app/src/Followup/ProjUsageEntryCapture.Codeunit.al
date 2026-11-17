@@ -5,7 +5,7 @@ using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Project.Posting;
 
 /// <summary>Captures only ledger entries created by the currently bound native journal source.</summary>
-codeunit 70009247 "Proj. Usage Entry Capture ori"
+codeunit 70013547 "Proj. Usage Entry Capture ori"
 {
     Access = Internal;
     EventSubscriberInstance = Manual;

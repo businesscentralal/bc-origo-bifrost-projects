@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Prevents generic Data.Records.Set calls from changing the administrative company switch.</summary>
-codeunit 70009203 "Projects Setup Restrict ori"
+codeunit 70013503 "Projects Setup Restrict ori"
 {
     Access = Internal;
     InherentPermissions = X;

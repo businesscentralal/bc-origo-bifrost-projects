@@ -4,7 +4,7 @@ using Microsoft.Purchases.Document;
 using Origo.Bifrost;
 
 /// <summary>Routes generic writes to purchase project-link fields to the dedicated safe project messages.</summary>
-codeunit 70009245 "Projects Purchase Restrict ori"
+codeunit 70013545 "Projects Purchase Restrict ori"
 {
     Access = Internal;
 

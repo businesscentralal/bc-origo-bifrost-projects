@@ -4,7 +4,7 @@ using Microsoft.Projects.Project.Archive;
 using Origo.Bifrost;
 
 /// <summary>Exposes the Projects.Project.Archive message and its localized read-only contract.</summary>
-codeunit 70009239 "Proj. Archive Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013539 "Proj. Archive Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 

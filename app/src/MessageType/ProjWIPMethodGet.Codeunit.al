@@ -4,7 +4,7 @@ using Microsoft.Projects.Project.WIP;
 using Origo.Bifrost;
 
 /// <summary>Implements the version 1 Projects.WIPMethod.Get contract.</summary>
-codeunit 70009240 "Proj. WIP Method Get ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013540 "Proj. WIP Method Get ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     /// <summary>Checks company enablement and the native table permissions used by this operation.</summary>

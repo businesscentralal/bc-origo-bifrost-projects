@@ -17,7 +17,7 @@ using Microsoft.Warehouse.Structure;
 using Origo.Bifrost;
 
 /// <summary>Validates an atomic native project item-usage request before dispatching posting.</summary>
-codeunit 70009233 "Projects Item Usage ori"
+codeunit 70013533 "Projects Item Usage ori"
 {
     Access = Internal;
 

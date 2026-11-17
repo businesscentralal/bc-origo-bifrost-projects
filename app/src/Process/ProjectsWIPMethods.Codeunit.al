@@ -4,7 +4,7 @@ using Microsoft.Projects.Project.WIP;
 using Origo.Bifrost;
 
 /// <summary>Validates WIP method contracts and applies native changes inside a rollback boundary.</summary>
-codeunit 70009242 "Projects WIP Methods ori"
+codeunit 70013542 "Projects WIP Methods ori"
 {
     Access = Internal;
 

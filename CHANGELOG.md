@@ -8,6 +8,7 @@
 
 ### Changed (2026-11-16)
 
+- Merge main into #34 (range move): the objects main added in the old Public 3 range (allocation, archive, purchase link, item usage, report, WIP method) are renumbered with the same +4300 offset into 70013500..70013599. Enum values 70009216/218/219/220/221/223/240/241 became 70013516/518/519/520/521/523/540/541; codeunits 70009211..70009247 became 70013511..70013547. `Proj. Archive Get Impl ori` clashed with `Proj. Posting ori` (table 70013521) and takes the next free ID 70013550. The older entries below keep their historical IDs.
 - Effect audit (#42, core#1365 D1/D2): `Projects.Usage.Link` declares `write` instead of the unsupported `reversible`. `Projects.ItemUsage.Post` declares `irreversible` instead of `write`, names `data.projectNo` as its target and accepts an optional `expectedCount`, so Foundation now asks for confirmation before posting. `Projects.ItemUsage.Post`, `Projects.WIP.Post` and `Projects.Quote.Send` state in `effect.changes` and on the `expectedCount` parameter that the count is the one project named by `projectNo` (always 1), and how to preview it without a side effect. Chapter text stays English at every LCID (core#1239). New test codeunit 97111 `Projects Effect Tests ori`; two new tests in 97125. No new app object ID.
 
 - Projects #12: keep all allocation planning filters loaded (codeunit 70009211) and verify positive resource-group filtering (test codeunit 97120).
@@ -47,6 +48,7 @@
 ### Tests (2026-11-10) — Project status validation
 
 - Projects #4: codeunit 97105 now verifies native completion date errors and atomic rollback, plus rejection of invalid blocking values before a status change.
+- Object range moved from 70009200..70009249 to 70013500..70013599 (#34, Gunnar 12.11.2026). Projects takes the free upper part of Public 4 while Shopify still uses 70013400..70013481. App objects and message-type enum values that are on main move by a fixed offset of +4300 (70009200+n becomes 70013500+n). Test objects stay in 97100..97199. Name-hashed XLF ids are unchanged. A tenant that already has Projects 28.1.0.0 at the old object IDs cannot upgrade in place: uninstall with deleteExtensionData, unpublish, then install the new-ID packages. Table names stay the same and queued or logged message rows keep the old enum ordinals; this change does not migrate that data. Open pull requests #22, #24, #25, #26, #27, #28 and #32 renumber their additional objects after this merges.
 
 ### Fixed (2026-11-10)
 

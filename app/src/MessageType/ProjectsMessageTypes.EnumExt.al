@@ -3,129 +3,129 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Registers the Projects lifecycle write messages with Foundation.</summary>
-enumextension 70009200 "Projects Message Types ori" extends "Message Type ori"
+enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
 {
-    value(70009200; "Projects.Project.Create")
+    value(70013500; "Projects.Project.Create")
     {
         Caption = 'Projects.Project.Create', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Create Impl ori", "Msg Discovery ori" = "Proj. Create Impl ori", "Msg Contract ori" = "Proj. Create Impl ori";
     }
-    value(70009201; "Projects.Project.Update")
+    value(70013501; "Projects.Project.Update")
     {
         Caption = 'Projects.Project.Update', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Update Impl ori", "Msg Discovery ori" = "Proj. Update Impl ori", "Msg Contract ori" = "Proj. Update Impl ori";
     }
-    value(70009202; "Projects.Task.Create")
+    value(70013502; "Projects.Task.Create")
     {
         Caption = 'Projects.Task.Create', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Task Create Impl ori", "Msg Discovery ori" = "Proj. Task Create Impl ori", "Msg Contract ori" = "Proj. Task Create Impl ori";
     }
-    value(70009203; "Projects.Task.Update")
+    value(70013503; "Projects.Task.Update")
     {
         Caption = 'Projects.Task.Update', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Task Update Impl ori", "Msg Discovery ori" = "Proj. Task Update Impl ori", "Msg Contract ori" = "Proj. Task Update Impl ori";
     }
-    value(70009204; "Projects.PlanningLine.Create")
+    value(70013504; "Projects.PlanningLine.Create")
     {
         Caption = 'Projects.PlanningLine.Create', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Plan Create Impl ori", "Msg Discovery ori" = "Proj. Plan Create Impl ori", "Msg Contract ori" = "Proj. Plan Create Impl ori";
     }
-    value(70009205; "Projects.PlanningLine.Update")
+    value(70013505; "Projects.PlanningLine.Update")
     {
         Caption = 'Projects.PlanningLine.Update', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Plan Update Impl ori", "Msg Discovery ori" = "Proj. Plan Update Impl ori", "Msg Contract ori" = "Proj. Plan Update Impl ori";
     }
-    value(70009207; "Projects.Project.Copy")
+    value(70013507; "Projects.Project.Copy")
     {
         Caption = 'Projects.Project.Copy', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Copy Impl ori", "Msg Discovery ori" = "Proj. Copy Impl ori", "Msg Contract ori" = "Proj. Copy Impl ori";
     }
 
-    value(70009208; "Projects.Project.SetStatus")
+    value(70013508; "Projects.Project.SetStatus")
     {
         Caption = 'Projects.Project.SetStatus', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Status Impl ori", "Msg Discovery ori" = "Proj. Status Impl ori", "Msg Contract ori" = "Proj. Status Impl ori";
     }
 
-    value(70009209; "Projects.WIP.Get")
+    value(70013509; "Projects.WIP.Get")
     {
         Caption = 'Projects.WIP.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Get Impl ori", "Msg Discovery ori" = "Proj. WIP Get Impl ori", "Msg Contract ori" = "Proj. WIP Get Impl ori";
     }
 
-    value(70009210; "Projects.WIP.Calculate")
+    value(70013510; "Projects.WIP.Calculate")
     {
         Caption = 'Projects.WIP.Calculate', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Calc Impl ori", "Msg Discovery ori" = "Proj. WIP Calc Impl ori", "Msg Contract ori" = "Proj. WIP Calc Impl ori";
     }
 
 
-    value(70009211; "Projects.WIP.Post")
+    value(70013511; "Projects.WIP.Post")
     {
         Caption = 'Projects.WIP.Post', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Post Impl ori", "Msg Discovery ori" = "Proj. WIP Post Impl ori", "Msg Contract ori" = "Proj. WIP Post Impl ori";
     }
-    value(70009212; "Projects.Statistics.Get")
+    value(70013512; "Projects.Statistics.Get")
     {
         Caption = 'Projects.Statistics.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Statistics Impl ori", "Msg Discovery ori" = "Proj. Statistics Impl ori", "Msg Contract ori" = "Proj. Statistics Impl ori";
     }
-    value(70009213; "Projects.BudgetVsActual.Get")
+    value(70013513; "Projects.BudgetVsActual.Get")
     {
         Caption = 'Projects.BudgetVsActual.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Budget Actual Impl ori", "Msg Discovery ori" = "Proj. Budget Actual Impl ori", "Msg Contract ori" = "Proj. Budget Actual Impl ori";
     }
-    value(70009214; "Projects.Usage.Get")
+    value(70013514; "Projects.Usage.Get")
     {
         Caption = 'Projects.Usage.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Usage Get Impl ori", "Msg Discovery ori" = "Proj. Usage Get Impl ori", "Msg Contract ori" = "Proj. Usage Get Impl ori";
     }
-    value(70009215; "Projects.Usage.Link")
+    value(70013515; "Projects.Usage.Link")
     {
         Caption = 'Projects.Usage.Link', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Usage Link Impl ori", "Msg Discovery ori" = "Proj. Usage Link Impl ori", "Msg Contract ori" = "Proj. Usage Link Impl ori";
     }
-    value(70009218; "Projects.Project.Archive")
+    value(70013518; "Projects.Project.Archive")
     {
         Caption = 'Projects.Project.Archive', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Archive Impl ori", "Msg Discovery ori" = "Proj. Archive Impl ori", "Msg Contract ori" = "Proj. Archive Impl ori";
     }
-    value(70009219; "Projects.PurchaseLine.Link")
+    value(70013519; "Projects.PurchaseLine.Link")
     {
         Caption = 'Projects.PurchaseLine.Link', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Purchase Impl ori", "Msg Discovery ori" = "Proj. Purchase Impl ori", "Msg Contract ori" = "Proj. Purchase Impl ori";
     }
-    value(70009220; "Projects.ItemUsage.Post")
+    value(70013520; "Projects.ItemUsage.Post")
     {
         Caption = 'Projects.ItemUsage.Post', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Item Usage Impl ori", "Msg Discovery ori" = "Proj. Item Usage Impl ori", "Msg Contract ori" = "Proj. Item Usage Impl ori";
     }
-    value(70009223; "Projects.ProjectArchive.Get")
+    value(70013523; "Projects.ProjectArchive.Get")
     {
         Caption = 'Projects.ProjectArchive.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Archive Get Impl ori", "Msg Discovery ori" = "Proj. Archive Get Impl ori", "Msg Contract ori" = "Proj. Archive Get Impl ori";
     }
-    value(70009240; "Projects.WIPMethod.Get")
+    value(70013540; "Projects.WIPMethod.Get")
     {
         Caption = 'Projects.WIPMethod.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Method Get ori", "Msg Discovery ori" = "Proj. WIP Method Get ori", "Msg Contract ori" = "Proj. WIP Method Get ori";
     }
-    value(70009241; "Projects.WIPMethod.Set")
+    value(70013541; "Projects.WIPMethod.Set")
     {
         Caption = 'Projects.WIPMethod.Set', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. WIP Method Set ori", "Msg Discovery ori" = "Proj. WIP Method Set ori", "Msg Contract ori" = "Proj. WIP Method Set ori";
     }
-    value(70009216; "Projects.ResourceAllocation.Get")
+    value(70013516; "Projects.ResourceAllocation.Get")
     {
         Caption = 'Projects.ResourceAllocation.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Allocation Impl ori", "Msg Discovery ori" = "Proj. Allocation Impl ori", "Msg Contract ori" = "Proj. Allocation Impl ori";
     }
-    value(70009221; "Projects.Report.Get")
+    value(70013521; "Projects.Report.Get")
     {
         Caption = 'Projects.Report.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Report Impl ori", "Msg Discovery ori" = "Proj. Report Impl ori", "Msg Contract ori" = "Proj. Report Impl ori";
     }
-    value(70009222; "Projects.Quote.Send")
+    value(70013522; "Projects.Quote.Send")
     {
         Caption = 'Projects.Quote.Send', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Quote Send Impl ori", "Msg Discovery ori" = "Proj. Quote Send Impl ori", "Msg Contract ori" = "Proj. Quote Send Impl ori";

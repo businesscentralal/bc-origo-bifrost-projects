@@ -6,7 +6,7 @@ using Microsoft.Projects.Resources.Resource;
 using Origo.Bifrost;
 
 /// <summary>Reads resource capacity and project allocations in bounded calendar periods.</summary>
-codeunit 70009211 "Projects Allocation ori"
+codeunit 70013511 "Projects Allocation ori"
 {
     Access = Internal;
 

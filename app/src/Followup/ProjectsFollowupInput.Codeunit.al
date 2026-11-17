@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Validates additive Projects contracts and reports actionable single errors.</summary>
-codeunit 70009230 "Projects Followup Input ori"
+codeunit 70013530 "Projects Followup Input ori"
 {
     Access = Internal;
 

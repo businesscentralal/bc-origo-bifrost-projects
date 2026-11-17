@@ -15,7 +15,7 @@ using System.Text;
 using System.Utilities;
 
 /// <summary>Validates typed project report selectors and renders the native report as a PDF without changing project data.</summary>
-codeunit 70009235 "Projects Report ori"
+codeunit 70013535 "Projects Report ori"
 {
     Access = Internal;
 

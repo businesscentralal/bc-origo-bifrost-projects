@@ -4,7 +4,7 @@ using Microsoft.Projects.Resources.Resource;
 using Origo.Bifrost;
 
 /// <summary>Exposes the Projects.ResourceAllocation.Get message and its localized read-only contract.</summary>
-codeunit 70009223 "Proj. Allocation Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013523 "Proj. Allocation Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 
