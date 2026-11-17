@@ -690,7 +690,7 @@ codeunit 97147 "TS Native Bulk Tests"
     end;
 
     /// <summary>Creates a fresh owned fixture set in two past weeks (relative to today) so MCP can prove every time-sheet write type.</summary>
-    [Test]
+    // Not a [Test]: it commits approved past-week sheets that fall inside the Reopen cutoff and would break the Reopen tests in the same run.
     procedure McpFixtureSeed_PastWeeks_CreatesExecutionData()
     begin
         // Fixture utility for the per-type MCP execution evidence of #33, not a substitute for message acceptance.
