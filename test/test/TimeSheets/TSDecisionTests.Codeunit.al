@@ -243,7 +243,7 @@ codeunit 97145 "TS Decision Tests"
         Assert.IsFalse(Impl.IsEnabled(), 'Read role must not enable this write.');
         Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Approve", Request);
         // [THEN] No sheet access or write occurs.
-        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Timeshts ori permission set.');
+        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori permission set.');
     end;
 
     /// <summary>Verifies Scenario AC14 Approve EmptySelection WritesNothing.</summary>
@@ -423,7 +423,7 @@ codeunit 97145 "TS Decision Tests"
         Assert.IsFalse(Impl.IsEnabled(), 'Read role must not enable this write.');
         Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Reject", Request);
         // [THEN] No sheet access or write occurs.
-        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Timeshts ori permission set.');
+        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori permission set.');
     end;
 
     /// <summary>Verifies Scenario AC14 Reject EmptySelection WritesNothing.</summary>

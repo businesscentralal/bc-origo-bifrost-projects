@@ -146,7 +146,7 @@ codeunit 70013557 "TS Create Contract ori"
         Text19Lbl: Label 'More than one resource selector was supplied.', Comment = 'is-IS=Fleiri en ein leið var notuð til að velja auðlindir.';
         Text20Lbl: Label 'Send only one of resourceNo, resourceNos or resourceGroup.', Comment = 'is-IS=Sendu aðeins eitt af resourceNo, resourceNos eða resourceGroup.';
         Text21Lbl: Label 'The caller lacks permission to create time sheets.', Comment = 'is-IS=Kallandinn hefur ekki heimild til að búa til tímaskýrslur.';
-        Text22Lbl: Label 'Assign the BIFROST Timeshts ori permission set.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Timeshts ori.';
+        Text22Lbl: Label 'Assign the BIFROST Full ori permission set.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.';
         Text23Lbl: Label 'startingDate is not the configured first weekday. Nothing is written.', Comment = 'is-IS=startingDate er ekki stilltur fyrsti vikudagur. Ekkert er skrifað.';
         Text24Lbl: Label 'Use the first weekday named in the refusal.', Comment = 'is-IS=Notaðu fyrsta vikudaginn sem höfnunin nefnir.';
         Text25Lbl: Label 'Numbering is missing or the caller is not a time sheet administrator.', Comment = 'is-IS=Númeraröð vantar eða kallandinn er ekki stjórnandi tímaskýrslna.';

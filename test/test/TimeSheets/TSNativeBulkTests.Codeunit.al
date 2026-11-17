@@ -80,6 +80,67 @@ codeunit 97147 "TS Native Bulk Tests"
         AssertRefusal(TempArgument, 'InvalidParameterFormat', 'journalTemplate', 'Send the key with the documented type.');
     end;
 
+    [Test]
+    procedure Scenario_AC04_PostMissingTemplate_IsMissingParameter()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Request: JsonObject;
+    begin
+        // Story #33 | Time: no date-dependent setup | Risk: None
+        // [GIVEN] A batch without a template; Projects has no setup fallback.
+        Request.Add('journalBatch', 'DEFAULT');
+        // [WHEN] The native message is executed.
+        Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", Request);
+        // [THEN] The missing template is named.
+        AssertRefusal(TempArgument, 'MissingParameter', 'journalTemplate', 'Send the missing key.');
+    end;
+
+    [Test]
+    procedure Scenario_AC04_PostMissingBatch_IsMissingParameter()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Request: JsonObject;
+    begin
+        // Story #33 | Time: no date-dependent setup | Risk: None
+        // [GIVEN] A template without a batch.
+        Request.Add('journalTemplate', 'JOB');
+        // [WHEN] The native message is executed.
+        Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", Request);
+        // [THEN] The missing batch is named.
+        AssertRefusal(TempArgument, 'MissingParameter', 'journalBatch', 'Send the missing key.');
+    end;
+
+    [Test]
+    procedure Scenario_AC04_PostContract_RequiresJournalKeysAndNamesFullRole()
+    var
+        Contract: Interface "Msg Contract ori";
+        Effect: JsonObject;
+        Parameters: JsonArray;
+        Entry: JsonToken;
+        FoundTemplate: Boolean;
+        FoundBatch: Boolean;
+    begin
+        // Story #33 | Time: no date-dependent setup | Risk: None
+        // [GIVEN] The published Post contract.
+        Contract := "Message Type ori"::"Projects.TimeSheet.Post";
+        Assert.IsTrue(Contract.GetParameters(Parameters), 'Post declares parameters.');
+        // [THEN] Both journal keys are required.
+        foreach Entry in Parameters do begin
+            if Entry.AsObject().GetText('name') = 'journalTemplate' then begin
+                FoundTemplate := true;
+                Assert.IsTrue(Entry.AsObject().GetBoolean('required'), 'journalTemplate is required.');
+            end;
+            if Entry.AsObject().GetText('name') = 'journalBatch' then begin
+                FoundBatch := true;
+                Assert.IsTrue(Entry.AsObject().GetBoolean('required'), 'journalBatch is required.');
+            end;
+        end;
+        Assert.IsTrue(FoundTemplate and FoundBatch, 'Both journal keys are declared.');
+        // [THEN] The advertised role is the Foundation role the Projects extension grants.
+        Contract.GetEffect(Effect);
+        Assert.AreEqual('BIFROST Full ori', Effect.GetText('permissionSet'), 'The permission set names the actual Foundation role.');
+    end;
+
     /// <summary>Verifies platform posting confirmation reaches typed validation in the caller language without ledger writes.</summary>
     [Test]
     procedure Scenario_AC04_ConfirmedPost_InvalidTemplate_IsRefused()
@@ -493,7 +554,7 @@ codeunit 97147 "TS Native Bulk Tests"
         // [THEN] Restore permissions before asserting either outcome.
         Assert.IsFalse(IsEnabled, 'Write types must be disabled for a caller without data permissions.');
         Assert.IsTrue(Executed, 'Permission refusal must not raise a raw runtime exception.');
-        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Timeshts ori permission set.');
+        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori permission set.');
     end;
 
     [TryFunction]
@@ -687,12 +748,14 @@ codeunit 97147 "TS Native Bulk Tests"
                 exit('Notaðu innlenda heitið.');
             'Send the key with the documented type.':
                 exit('Sendu lykilinn með skráðu tagi.');
+            'Send the missing key.':
+                exit('Sendu lykilinn sem vantar.');
             'Remove the unknown key.':
                 exit('Fjarlægðu óþekkta lykilinn.');
             'Use an identifier that exists.':
                 exit('Notaðu auðkenni sem er til.');
-            'Assign the BIFROST Timeshts ori permission set.':
-                exit('Úthlutaðu heimildasamstæðunni BIFROST Timeshts ori.');
+            'Assign the BIFROST Full ori permission set.':
+                exit('Úthlutaðu heimildasamstæðunni BIFROST Full ori.');
         end;
         Error('Missing Icelandic test expectation for %1.', EnglishText);
     end;

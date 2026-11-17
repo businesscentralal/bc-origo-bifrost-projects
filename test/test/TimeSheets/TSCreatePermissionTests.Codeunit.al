@@ -44,6 +44,6 @@ codeunit 97143 "TS Create Permission Tests"
         TempArgument.GetResponseJson().Get('code', Token);
         Assert.AreEqual('PermissionDenied', Token.AsValue().AsText(), 'Refusal code.');
         TempArgument.GetResponseJson().Get('nextStep', Token);
-        Assert.AreEqual('Assign the BIFROST Timeshts ori permission set.', Token.AsValue().AsText(), 'Refusal next step.');
+        Assert.AreEqual('Assign the BIFROST Full ori permission set.', Token.AsValue().AsText(), 'Refusal next step.');
     end;
 }

@@ -30,7 +30,7 @@ codeunit 97151 "TS Submit Permission Tests"
         Response := TempArgument.GetResponseJson();
         // [THEN] The refusal identifies the permission set, before resolving any input.
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Read role must be denied.');
-        Assert.AreEqual('Assign the BIFROST Timeshts ori permission set.', Response.GetText('nextStep'), 'Name the assignable feature set.');
+        Assert.AreEqual('Assign the BIFROST Full ori permission set.', Response.GetText('nextStep'), 'Name the assignable feature set.');
     end;
     [Test]
     procedure Scenario_AC07_NoDetailWrite_DisabledAndDenied()
@@ -53,6 +53,6 @@ codeunit 97151 "TS Submit Permission Tests"
         Response := TempArgument.GetResponseJson();
         // [THEN] The refusal is PermissionDenied, never InvalidLine after a partial write.
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Native detail write permission must be checked.');
-        Assert.AreEqual('Assign the BIFROST Timeshts ori permission set.', Response.GetText('nextStep'), 'Name the permission set.');
+        Assert.AreEqual('Assign the BIFROST Full ori permission set.', Response.GetText('nextStep'), 'Name the permission set.');
     end;
 }
