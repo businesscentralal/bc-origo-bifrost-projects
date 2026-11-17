@@ -71,7 +71,7 @@ codeunit 70009219 "Proj. WIP Post Impl ori" implements "Msg Interface ori", "Msg
     var
         Contract: Codeunit "Projects Contract ori";
         ContractMgt: Codeunit "Msg Contract Mgt ori";
-        ExpectedCountTxt: Label 'Counts the one project named by projectNo: always 1. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
+        ExpectedCountTxt: Label 'expectedCount counts the one project named by projectNo: always 1. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
     begin
         Parameters := Contract.Parameters('WIP', 'Post', false);
         Parameters.Add(ContractMgt.Parameter('expectedCount', 'integer', false, ExpectedCountTxt));
