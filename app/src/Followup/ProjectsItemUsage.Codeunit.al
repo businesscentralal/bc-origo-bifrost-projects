@@ -38,7 +38,7 @@ codeunit 70009233 "Projects Item Usage ori"
         ItemLinesLbl: Label 'Nonempty array: itemNo, quantity, optional variantCode, locationCode, binCode, unitOfMeasureCode, lotNo and serialNo. Quantity must be positive; one serial number represents one base unit.', Comment = 'is-IS=Fylki sem er ekki tómt: itemNo, quantity, valfrjálst variantCode, locationCode, binCode, unitOfMeasureCode, lotNo og serialNo. Magn verður að vera jákvætt; eitt raðnúmer táknar eina grunneiningu.';
         PostingLbl: Label 'Optional ISO posting date; defaults to the current work date.', Comment = 'is-IS=Valfrjáls ISO-bókunardagsetning; sjálfgefið er núverandi vinnudagsetning.';
         DocumentLbl: Label 'Optional document number; defaults to a unique value for this task. Posting is not idempotent.', Comment = 'is-IS=Valfrjálst skjalnúmer; sjálfgefið er einkvæmt gildi fyrir þetta verk. Endurtekning bókar aftur.';
-        ExpectedCountTxt: Label 'Counts the one project named by projectNo: always 1, whatever the number of lines. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
+        ExpectedCountTxt: Label 'expectedCount counts the one project named by projectNo: always 1, whatever the number of lines. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
     begin
         Result.Add(Input.Parameter('projectNo', 'string', true, ProjectLbl, 20));
         Result.Add(Input.Parameter('taskNo', 'string', true, TaskLbl, 20));

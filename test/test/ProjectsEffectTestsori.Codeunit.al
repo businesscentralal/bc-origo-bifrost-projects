@@ -82,7 +82,8 @@ codeunit 97111 "Projects Effect Tests ori"
             Parameter1033 := ExpectedCountDescription(MessageType);
             Assert.IsTrue(Changes1033.Contains(ProjectUnitTxt), Format(MessageType) + ' effect.changes names the unit: ' + Changes1033);
             Assert.IsTrue(Changes1033.Contains(PreviewTxt), Format(MessageType) + ' effect.changes names the preview: ' + Changes1033);
-            Assert.IsTrue(Parameter1033.StartsWith('Counts the one project named by projectNo'), Format(MessageType) + ' expectedCount names the unit: ' + Parameter1033);
+            Assert.IsTrue(Parameter1033.StartsWith('expectedCount counts '), Format(MessageType) + ' expectedCount carries the core#1378 marker "expectedCount counts " (#44): ' + Parameter1033);
+            Assert.IsTrue(Parameter1033.Contains('the one project named by projectNo'), Format(MessageType) + ' expectedCount names the unit: ' + Parameter1033);
             Assert.IsTrue(Parameter1033.Contains('always 1'), Format(MessageType) + ' expectedCount names the value');
             Assert.IsTrue(Parameter1033.Contains('send the request without expectedCount and read expected'), Format(MessageType) + ' expectedCount names the preview');
             GlobalLanguage(1039);

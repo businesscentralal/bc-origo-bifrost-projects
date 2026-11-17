@@ -87,7 +87,7 @@ codeunit 70009248 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
     procedure GetParameters(var Parameters: JsonArray): Boolean
     var
         ContractMgt: Codeunit "Msg Contract Mgt ori";
-        ExpectedCountTxt: Label 'Counts the one project named by projectNo whose quote is sent: always 1. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
+        ExpectedCountTxt: Label 'expectedCount counts the one project named by projectNo whose quote is sent: always 1. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
     begin
         Parameters := RequestSchema();
         Parameters.Add(ContractMgt.Parameter('expectedCount', 'integer', false, ExpectedCountTxt));

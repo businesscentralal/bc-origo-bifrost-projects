@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Changed (2026-11-17)
+
+- Guard marker (#44, core#1378): the `expectedCount` parameter of `Projects.ItemUsage.Post`, `Projects.Quote.Send` and `Projects.WIP.Post` now starts with the literal `expectedCount counts `, as `effect.changes` already does. The chapter text is Locked, so the English marker applies at 1033 and 1039. Test 97111 asserts the marker. No new object ID.
+
 ### Changed (2026-11-16)
 
 - Effect audit (#42, core#1365 D1/D2): `Projects.Usage.Link` declares `write` instead of the unsupported `reversible`. `Projects.ItemUsage.Post` declares `irreversible` instead of `write`, names `data.projectNo` as its target and accepts an optional `expectedCount`, so Foundation now asks for confirmation before posting. `Projects.ItemUsage.Post`, `Projects.WIP.Post` and `Projects.Quote.Send` state in `effect.changes` and on the `expectedCount` parameter that the count is the one project named by `projectNo` (always 1), and how to preview it without a side effect. Chapter text stays English at every LCID (core#1239). New test codeunit 97111 `Projects Effect Tests ori`; two new tests in 97125. No new app object ID.
