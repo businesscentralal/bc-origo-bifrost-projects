@@ -162,8 +162,9 @@ codeunit 97147 "TS Native Bulk Tests"
         // Story #67, AC04/AC07 | Time: none | Risk: Foundation confirmation must reach handler validation
         // [GIVEN] The platform's confirmed count and a deliberately invalid journal identifier type.
         InitialLedgerCount := LedgerEntry.Count();
+        // The count is the real number of postable lines (#54); read it through the gate so the test does not depend on demo data.
         Request.Add('journalTemplate', 42);
-        Request.Add('expectedCount', 1);
+        Request.Add('expectedCount', CountViaGate(1000000000, Response));
         Request.WriteTo(RequestText);
         RequestContent.AddText(RequestText);
         // [WHEN] The public dispatcher validates confirmation in the explicit caller language.
