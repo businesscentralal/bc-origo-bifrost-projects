@@ -283,6 +283,56 @@ codeunit 97147 "TS Native Bulk Tests"
     end;
 
     [Test]
+    procedure Scenario_AC01_ReopenApprovedLine_ChangesItToOpenAndCountsOne()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Request: JsonObject;
+        SheetNo: Code[20];
+    begin
+        // Story #47, AC01 | Time: WorkDate minus two weeks isolates the cutoff | Risk: approved lines need two reopen steps
+        // [GIVEN] An approved line before the cutoff and no other pending line on sheets ending before it.
+        SheetNo := CreateSheet(CreateResource(true), WorkDate() - 14, UserId());
+        CreateLine(SheetNo, 10000, 'Approved');
+        Line.Get(SheetNo, 10000);
+        // Standard Reopen checks the line approver against the caller (or a time-sheet administrator).
+        Line."Approver ID" := CopyStr(UserId(), 1, MaxStrLen(Line."Approver ID"));
+        Line.Modify(false);
+        IsolateFromOtherPendingLines(SheetNo, WorkDate() - 8);
+        Request.Add('endingDateTo', Format(WorkDate() - 8, 0, 9));
+        // [WHEN] Reopening.
+        Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Reopen", Request);
+        // [THEN] The line is Open again and exactly one line was reopened.
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Reopening an approved line should succeed.');
+        Assert.AreEqual('1', ReadText(TempArgument.GetResponseJson(), 'reopenedLines'), 'One approved line was reopened.');
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'Approved line must be open.');
+    end;
+
+    [Test]
+    procedure Scenario_AC02_ReopenOpenLine_StaysOpenAndCountsZero()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Request: JsonObject;
+        SheetNo: Code[20];
+    begin
+        // Story #47, AC02 | Time: WorkDate minus two weeks isolates the cutoff | Risk: open lines counted as reopened
+        // [GIVEN] An open line before the cutoff and no pending line on other sheets.
+        SheetNo := CreateSheet(CreateResource(true), WorkDate() - 14, UserId());
+        CreateLine(SheetNo, 10000, 'Open');
+        IsolateFromOtherPendingLines(SheetNo, WorkDate() - 8);
+        Request.Add('endingDateTo', Format(WorkDate() - 8, 0, 9));
+        // [WHEN] Reopening.
+        Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Reopen", Request);
+        // [THEN] The line stays Open and nothing was counted.
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Reopening an open line should succeed.');
+        Assert.AreEqual('0', ReadText(TempArgument.GetResponseJson(), 'reopenedLines'), 'No line was reopened.');
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'Open line stays open.');
+    end;
+
+    [Test]
     procedure Scenario_AC01_PostEmptyJournal_ReturnsSuccessCount()
     var
         TempArgument: Record "Message Argument ori" temporary;
@@ -798,6 +848,24 @@ codeunit 97147 "TS Native Bulk Tests"
             exit(Token.AsValue().AsText());
         Token.WriteTo(Nested);
         exit(Nested);
+    end;
+
+    local procedure IsolateFromOtherPendingLines(OwnSheetNo: Code[20]; EndingDateTo: Date)
+    var
+        Header: Record "Time Sheet Header";
+        Line: Record "Time Sheet Line";
+    begin
+        // Reopen scans every sheet ending on or before the cutoff, so lines that already exist in the
+        // database (demo data on a CI container) would change the count or fail the standard checks.
+        // The test runner rolls this back.
+        Header.SetFilter("Ending Date", '<=%1', EndingDateTo);
+        Header.SetFilter("No.", '<>%1', OwnSheetNo);
+        if Header.FindSet() then
+            repeat
+                Line.SetRange("Time Sheet No.", Header."No.");
+                Line.SetFilter(Status, '%1|%2', Line.Status::Submitted, Line.Status::Approved);
+                Line.ModifyAll(Status, Line.Status::Open, false);
+            until Header.Next() = 0;
     end;
 
     local procedure CreateResource(UseTimeSheet: Boolean): Code[20]
