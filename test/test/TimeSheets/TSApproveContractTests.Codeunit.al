@@ -3,6 +3,7 @@ namespace Origo.Bifrost.Projects.Test;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
+using System.Security.User;
 using System.TestLibraries.Utilities;
 
 /// <summary>Projects #53: approval keeps transaction control out of its public request contract.</summary>
@@ -37,14 +38,16 @@ codeunit 97152 "TS Approve Contract Tests"
         Line: Record "Time Sheet Line";
         Request: JsonObject;
         Response: JsonObject;
+        ResponseText: Text;
     begin
         // Story #53, AC02 | Time: WorkDate fixture; native approval uses Today | Risk: none
         CreateSubmittedLine(Line);
         Request.Add('timeSheetNo', Line."Time Sheet No.");
 
         Response := Execute(Request);
+        Response.WriteTo(ResponseText);
 
-        Assert.AreEqual('Success', Response.GetText('status'), 'The public approval request succeeds.');
+        Assert.AreEqual('Success', Response.GetText('status'), ResponseText);
         Line.Get(Line."Time Sheet No.", Line."Line No.");
         Assert.AreEqual(Line.Status::Approved, Line.Status, 'Native approval changes the submitted line.');
     end;
@@ -149,13 +152,22 @@ codeunit 97152 "TS Approve Contract Tests"
     var
         Resource: Record Resource;
         Header: Record "Time Sheet Header";
+        UserSetup: Record "User Setup";
+        LibraryResource: Codeunit "Library - Resource";
     begin
-        Resource.Init();
-        Resource."No." := CopyStr('X53' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Resource."No."));
-        Resource."Use Time Sheet" := true;
+        if not UserSetup.Get(UserId()) then begin
+            UserSetup.Init();
+            UserSetup."User ID" := CopyStr(UserId(), 1, MaxStrLen(UserSetup."User ID"));
+            UserSetup.Insert(true);
+        end;
+        UserSetup.Validate("Time Sheet Admin.", false);
+        UserSetup.Modify(true);
+        LibraryResource.CreateResourceNew(Resource);
+        Resource.Rename(CopyStr('X53' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Resource."No.")));
+        Resource.Validate("Use Time Sheet", true);
         Resource."Time Sheet Owner User ID" := CopyStr(UserId(), 1, MaxStrLen(Resource."Time Sheet Owner User ID"));
         Resource."Time Sheet Approver User ID" := Resource."Time Sheet Owner User ID";
-        Resource.Insert(false);
+        Resource.Modify(true);
         Header.Init();
         Header."No." := Resource."No.";
         Header."Resource No." := Resource."No.";
