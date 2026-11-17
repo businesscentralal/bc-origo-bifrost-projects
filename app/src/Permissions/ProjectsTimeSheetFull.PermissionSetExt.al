@@ -73,5 +73,6 @@ permissionsetextension 70013580 "Projects TimeSheet Full ori" extends "BIFROST F
         tabledata "Job Journal Line" = RIMD,
         codeunit "TS Absence Reg Impl ori" = X,
         codeunit "TS Sheet Submit Impl ori" = X,
-        codeunit "TS Bulk Mgt ori" = X;
+        codeunit "TS Bulk Mgt ori" = X,
+        codeunit "TS Post Confirm ori" = X;
 }

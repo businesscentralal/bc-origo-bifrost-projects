@@ -162,8 +162,9 @@ codeunit 97147 "TS Native Bulk Tests"
         // Story #67, AC04/AC07 | Time: none | Risk: Foundation confirmation must reach handler validation
         // [GIVEN] The platform's confirmed count and a deliberately invalid journal identifier type.
         InitialLedgerCount := LedgerEntry.Count();
+        // The count is the real number of postable lines (#54); read it through the gate so the test does not depend on demo data.
         Request.Add('journalTemplate', 42);
-        Request.Add('expectedCount', 1);
+        Request.Add('expectedCount', CountViaGate(1000000000, Response));
         Request.WriteTo(RequestText);
         RequestContent.AddText(RequestText);
         // [WHEN] The public dispatcher validates confirmation in the explicit caller language.
@@ -482,6 +483,182 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.AreEqual(2, LedgerEntry.Quantity, 'Posted resource quantity must match the owned detail.');
         Detail.Get(SheetNo, 10000, WorkDate());
         Assert.IsTrue(Detail.Posted, 'The BC posting path must mark the time sheet detail posted.');
+    end;
+
+    /// <summary>#54: Post is irreversible and its help names the count unit and the side-effect-free preview, in English at 1033 and 1039.</summary>
+    [Test]
+    procedure Scenario_54_PostHelp_NamesCountUnitAndPreview_BothLanguages()
+    var
+        ConfirmGate: Codeunit "Confirm Gate ori";
+        Contract: Interface "Msg Contract ori";
+        Effect: JsonObject;
+        Parameters: JsonArray;
+        Entry: JsonToken;
+        PreviousLanguage: Integer;
+        Language: Integer;
+        Changes: Text;
+        ParameterText: Text;
+    begin
+        PreviousLanguage := GlobalLanguage();
+        Contract := "Message Type ori"::"Projects.TimeSheet.Post";
+        Assert.IsTrue(ConfirmGate.IsConfirmRequired("Message Type ori"::"Projects.TimeSheet.Post"), 'Post stays irreversible.');
+        for Language := 1 to 2 do begin
+            if Language = 1 then
+                GlobalLanguage(1033)
+            else
+                GlobalLanguage(1039);
+            Clear(Effect);
+            Clear(Parameters);
+            Contract.GetEffect(Effect);
+            Changes := Effect.GetText('changes');
+            Assert.AreEqual('irreversible', Effect.GetText('effect'), 'Effect.');
+            Assert.IsTrue(Changes.Contains('expectedCount counts the project journal lines the post creates'), 'effect.changes names the unit: ' + Changes);
+            Assert.IsTrue(Changes.Contains('equals postedLines'), 'effect.changes ties the count to postedLines.');
+            Assert.IsTrue(Changes.Contains('send the same request without expectedCount while confirmation is enabled and read expected'), 'effect.changes names the preview.');
+            Contract.GetParameters(Parameters);
+            ParameterText := '';
+            foreach Entry in Parameters do
+                if Entry.AsObject().GetText('name') = 'expectedCount' then begin
+                    Assert.AreEqual('integer', Entry.AsObject().GetText('type'), 'expectedCount type.');
+                    Assert.IsFalse(Entry.AsObject().GetBoolean('required'), 'expectedCount is optional.');
+                    ParameterText := Entry.AsObject().GetText('description');
+                end;
+            Assert.IsTrue(ParameterText.StartsWith('expectedCount counts the project journal lines'), 'expectedCount carries the core#1378 marker and unit: ' + ParameterText);
+            Assert.IsTrue(ParameterText.Contains('send the request without expectedCount and read expected'), 'expectedCount names the preview.');
+        end;
+        GlobalLanguage(PreviousLanguage);
+    end;
+
+    /// <summary>#54: the gate counts the postable detail lines; a wrong count is refused with the real count and nothing posts, the right count passes.</summary>
+    [Test]
+    procedure Scenario_54_PostGate_CountsPostableLines()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Detail: Record "Time Sheet Detail";
+        Job: Record Job;
+        JobTask: Record "Job Task";
+        Line: Record "Time Sheet Line";
+        ConfirmGate: Codeunit "Confirm Gate ori";
+        LibraryJob: Codeunit "Library - Job";
+        Request: JsonObject;
+        Response: JsonObject;
+        Before: Integer;
+        SheetNo: Code[20];
+    begin
+        // [GIVEN] The count before and one more approved job detail of our own.
+        Before := CountViaGate(0, Response);
+        LibraryJob.CreateJob(Job);
+        Job.Validate(Status, Job.Status::Open);
+        Job.Modify(true);
+        LibraryJob.CreateJobTask(Job, JobTask);
+        SheetNo := CreateSheet(CreateResource(true), WorkDate(), UserId());
+        CreateLine(SheetNo, 10000, 'Approved');
+        Line.Get(SheetNo, 10000);
+        Line.Type := Line.Type::Job;
+        Line."Job No." := Job."No.";
+        Line."Job Task No." := JobTask."Job Task No.";
+        Line.Modify(false);
+        Detail.Init();
+        Detail."Time Sheet No." := SheetNo;
+        Detail."Time Sheet Line No." := 10000;
+        Detail.Date := WorkDate();
+        Detail.CopyFromTimeSheetLine(Line);
+        Detail.Validate(Quantity, 2);
+        Detail.Insert(true);
+        // [WHEN] The gate runs with the old count.
+        Clear(Response);
+        // [THEN] It refuses and names the new count as expected; the preview needs no side effect.
+        Assert.AreEqual(Before + 1, CountViaGate(Before, Response), 'The new approved detail adds exactly one line.');
+        // [THEN] The matching count passes the gate.
+        Request.Add('expectedCount', Before + 1);
+        InitArgument(TempArgument, Request);
+        Assert.IsTrue(ConfirmGate.Check(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post"), 'The matching count passes.');
+        Detail.Get(SheetNo, 10000, WorkDate());
+        Assert.IsFalse(Detail.Posted, 'The gate itself posts nothing.');
+    end;
+
+    /// <summary>#54: a negative expectedCount is refused as InvalidParameterFormat before any count is used.</summary>
+    [Test]
+    procedure Scenario_54_PostGate_NegativeCountRefused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        ConfirmGate: Codeunit "Confirm Gate ori";
+        Request: JsonObject;
+    begin
+        Request.Add('expectedCount', -1);
+        InitArgument(TempArgument, Request);
+        Assert.IsFalse(ConfirmGate.Check(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post"), 'Negative count refused.');
+        Assert.AreEqual('InvalidParameterFormat', ReadText(TempArgument.GetResponseJson(), 'code'), 'Code.');
+    end;
+
+    /// <summary>#54: under the documented BIFROST Full role alone (no SUPER) the gate runs the counter and answers ConfirmationMismatch with the real count instead of a raw permission error.</summary>
+    [Test]
+    procedure Scenario_54_PostGate_RunsUnderBifrostFullRole()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        PermissionsMock: Codeunit "Permissions Mock";
+        Request: JsonObject;
+        Response: JsonObject;
+        Passed: Boolean;
+        Ran: Boolean;
+        Expected: Integer;
+        RoleCount: Integer;
+    begin
+        // [GIVEN] The real count, read with full test permissions, and a request with a count that cannot match.
+        Expected := CountViaGate(1000000, Response);
+        Request.Add('expectedCount', Expected + 1);
+        InitArgument(TempArgument, Request);
+        // [WHEN] The gate runs for a caller holding only the BIFROST Full ori role.
+        PermissionsMock.Start();
+        PermissionsMock.ClearAssignments();
+        PermissionsMock.Assign('BIFROST Full ori');
+        Ran := TryRunPostGate(TempArgument, Passed);
+        PermissionsMock.Stop();
+        // [THEN] Restore permissions first; the counter ran and the mismatch names the real count.
+        Assert.IsTrue(Ran, 'The gate must run under BIFROST Full ori without a permission error: ' + GetLastErrorText());
+        Assert.IsFalse(Passed, 'A wrong count must not pass the gate.');
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('ConfirmationMismatch', ReadText(Response, 'code'), 'Code.');
+        Evaluate(RoleCount, ReadText(Response, 'expected'));
+        Assert.AreEqual(Expected, RoleCount, 'The role-scoped count must equal the full-permission count.');
+    end;
+
+    [TryFunction]
+    local procedure TryRunPostGate(var TempArgument: Record "Message Argument ori" temporary; var Passed: Boolean)
+    var
+        ConfirmGate: Codeunit "Confirm Gate ori";
+    begin
+        Passed := ConfirmGate.Check(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post");
+    end;
+
+    /// <summary>Sends a deliberately wrong count and returns the count the gate reports as expected.</summary>
+    local procedure CountViaGate(WrongCount: Integer; var Response: JsonObject) Actual: Integer
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        ConfirmGate: Codeunit "Confirm Gate ori";
+        Request: JsonObject;
+        Expected: Text;
+    begin
+        Request.Add('expectedCount', WrongCount);
+        InitArgument(TempArgument, Request);
+        if ConfirmGate.Check(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post") then begin
+            Actual := WrongCount;
+            exit;
+        end;
+        Response := TempArgument.GetResponseJson();
+        Expected := ReadText(Response, 'expected');
+        Evaluate(Actual, Expected);
+    end;
+
+    local procedure InitArgument(var TempArgument: Record "Message Argument ori" temporary; Request: JsonObject)
+    begin
+        TempArgument.DeleteAll();
+        TempArgument.Init();
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := "Message Type ori"::"Projects.TimeSheet.Post";
+        TempArgument.Version := TempArgument.Version::"1.0";
+        TempArgument.Insert(true);
+        TempArgument.SetRequestJson(Request);
     end;
 
     [Test]
