@@ -654,11 +654,13 @@ codeunit 97147 "TS Native Bulk Tests"
     var
         Cause: Record "Cause of Absence";
         Employee: Record Employee;
+        HumanResourceUnitOfMeasure: Record "Human Resource Unit of Measure";
         Job: Record Job;
         JobTask: Record "Job Task";
         JournalTemplateRecord: Record "Job Journal Template";
         Batch: Record "Job Journal Batch";
         PlanningLine: Record "Job Planning Line";
+        Resource: Record Resource;
         Series: Record "No. Series";
         SeriesLine: Record "No. Series Line";
         UserSetup: Record "User Setup";
@@ -679,6 +681,14 @@ codeunit 97147 "TS Native Bulk Tests"
         UserSetup.Modify(true);
         // PREV: Absence.Register, Submit, Approve, Reopen and CopyFromPrevious (the next week is created over MCP).
         ResourceNo := CreateResource(true);
+        Resource.Get(ResourceNo);
+        // Posting an absence line gives Employee Absence the resource base unit, which needs a Human Resource Unit of Measure.
+        if not HumanResourceUnitOfMeasure.Get(Resource."Base Unit of Measure") then begin
+            HumanResourceUnitOfMeasure.Init();
+            HumanResourceUnitOfMeasure.Code := Resource."Base Unit of Measure";
+            HumanResourceUnitOfMeasure."Qty. per Unit of Measure" := 1;
+            HumanResourceUnitOfMeasure.Insert(true);
+        end;
         Employee.Init();
         Employee."No." := CopyStr('E' + FixturePrefix, 1, MaxStrLen(Employee."No."));
         Employee."Resource No." := ResourceNo;
