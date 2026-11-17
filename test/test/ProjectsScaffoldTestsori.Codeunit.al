@@ -122,6 +122,17 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Report.Get');
         ExpectedTypes.Add('Projects.Project.Archive');
         ExpectedTypes.Add('Projects.ProjectArchive.Get');
+        ExpectedTypes.Add('Projects.TimeSheet.Create');
+        ExpectedTypes.Add('Projects.TimeSheet.Submit');
+        ExpectedTypes.Add('Projects.TimeSheet.Approve');
+        ExpectedTypes.Add('Projects.TimeSheet.Reject');
+        ExpectedTypes.Add('Projects.TimeSheet.Reopen');
+        ExpectedTypes.Add('Projects.TimeSheet.Post');
+        ExpectedTypes.Add('Projects.TimeSheet.Archive');
+        ExpectedTypes.Add('Projects.TimeSheetLine.CreateFromPlanning');
+        ExpectedTypes.Add('Projects.TimeSheetLine.CopyFromPrevious');
+        ExpectedTypes.Add('Projects.Absence.Register');
+        ExpectedTypes.Add('Projects.PendingApproval.Get');
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
@@ -151,7 +162,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(24, Count, 'Catalogue must contain all twenty-four owned Projects types, including allocation, reports and archives');
+        Assert.AreEqual(35, Count, 'Catalogue must contain all thirty-five owned Projects types, including allocation, reports, archives and the moved time-sheet types');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
@@ -175,11 +186,19 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Clear(Contract);
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));
                 Assert.IsTrue(ContractMgt.GetContract(MessageType, Contract), 'Contract missing for ' + Name);
+                // The moved time-sheet types (#33) keep their own contract tests; some take no parameters.
+                if IsMovedTimeSheetType(Name) and not Contract.Get('parameters', Parameters) then
+                    continue;
                 Assert.IsTrue(Contract.Get('parameters', Parameters), 'Parameter chapter missing for ' + Name);
                 Assert.IsTrue(Parameters.AsArray().Count() > 0, 'Project identifier must be declared');
                 AssertParameterDescriptions(Parameters.AsArray(), Name + '.');
             end;
     end;
+    local procedure IsMovedTimeSheetType(Name: Text): Boolean
+    begin
+        exit(Name.StartsWith('Projects.TimeSheet') or Name.StartsWith('Projects.Absence.') or (Name = 'Projects.PendingApproval.Get'));
+    end;
+
     local procedure AssertParameterDescriptions(Parameters: JsonArray; Path: Text)
     var
         Parameter: JsonToken;

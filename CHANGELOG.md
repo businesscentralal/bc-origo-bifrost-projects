@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-17)
+
+- Move the 11 native time-sheet message types from Bifrost Timesheets into Projects (#33), renamed to the Projects namespace: `Projects.TimeSheet.Create/Submit/Approve/Reject/Reopen/Post/Archive`, `Projects.TimeSheetLine.CreateFromPlanning/CopyFromPrevious`, `Projects.Absence.Register` and `Projects.PendingApproval.Get`. Clockify and the Phone Role Center stay in Timesheets. New objects: codeunits 70013551..70013578 (25 `TS ...` codeunits, `TS Bulk Mgt ori` and the two restrict codeunits), enum extension 70013579 (values 70013506/517/524..532), permission set extensions 70013580 (Full) and 70013581 (Read). 49 IDs were free after #34, 18 remain unused (none of 70013500..70013599 is widened). Tests and fixtures moved to the free IDs 97115, 97117..97119, 97133..97139 and 97142..97151 (including the `TS SUBMIT LINE ONLY` permission set). `Projects.TimeSheet.Post` no longer falls back to a journal template or batch from Clockify Setup: `journalTemplate` and `journalBatch` are required. is-IS units are in sync.
+
 ### Changed (2026-11-17)
 
 - Guard marker (#44, core#1378): the `expectedCount` parameter of `Projects.ItemUsage.Post`, `Projects.Quote.Send` and `Projects.WIP.Post` now starts with the literal `expectedCount counts `, as `effect.changes` already does. The chapter text is Locked, so the English marker applies at 1033 and 1039. Test 97111 asserts the marker. No new object ID.
