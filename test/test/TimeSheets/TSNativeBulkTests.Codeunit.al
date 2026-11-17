@@ -591,6 +591,46 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.AreEqual('InvalidParameterFormat', ReadText(TempArgument.GetResponseJson(), 'code'), 'Code.');
     end;
 
+    /// <summary>#54: under the documented BIFROST Full role alone (no SUPER) the gate runs the counter and answers ConfirmationMismatch with the real count instead of a raw permission error.</summary>
+    [Test]
+    procedure Scenario_54_PostGate_RunsUnderBifrostFullRole()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        PermissionsMock: Codeunit "Permissions Mock";
+        Request: JsonObject;
+        Response: JsonObject;
+        Passed: Boolean;
+        Ran: Boolean;
+        Expected: Integer;
+        RoleCount: Integer;
+    begin
+        // [GIVEN] The real count, read with full test permissions, and a request with a count that cannot match.
+        Expected := CountViaGate(1000000, Response);
+        Request.Add('expectedCount', Expected + 1);
+        InitArgument(TempArgument, Request);
+        // [WHEN] The gate runs for a caller holding only the BIFROST Full ori role.
+        PermissionsMock.Start();
+        PermissionsMock.ClearAssignments();
+        PermissionsMock.Assign('BIFROST Full ori');
+        Ran := TryRunPostGate(TempArgument, Passed);
+        PermissionsMock.Stop();
+        // [THEN] Restore permissions first; the counter ran and the mismatch names the real count.
+        Assert.IsTrue(Ran, 'The gate must run under BIFROST Full ori without a permission error: ' + GetLastErrorText());
+        Assert.IsFalse(Passed, 'A wrong count must not pass the gate.');
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('ConfirmationMismatch', ReadText(Response, 'code'), 'Code.');
+        Evaluate(RoleCount, ReadText(Response, 'expected'));
+        Assert.AreEqual(Expected, RoleCount, 'The role-scoped count must equal the full-permission count.');
+    end;
+
+    [TryFunction]
+    local procedure TryRunPostGate(var TempArgument: Record "Message Argument ori" temporary; var Passed: Boolean)
+    var
+        ConfirmGate: Codeunit "Confirm Gate ori";
+    begin
+        Passed := ConfirmGate.Check(TempArgument, "Message Type ori"::"Projects.TimeSheet.Post");
+    end;
+
     /// <summary>Sends a deliberately wrong count and returns the count the gate reports as expected.</summary>
     local procedure CountViaGate(WrongCount: Integer; var Response: JsonObject) Actual: Integer
     var
