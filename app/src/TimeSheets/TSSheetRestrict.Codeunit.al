@@ -30,6 +30,14 @@ codeunit 70013578 "TS Sheet Restrict ori"
             Hint := ManagedHint;
     end;
 
+    // Keep generic writes from bypassing validated time-sheet and absence messages (moved from Clockify Field Restrict, projects#33).
+    [EventSubscriber(ObjectType::Table, Database::"Message Argument ori", OnAfterIsTableWriteRestrictedForDataRecords, '', false, false)]
+    local procedure RestrictTimeSheetWrites(TableNo: Integer; Force: Boolean; var IsRestricted: Boolean)
+    begin
+        if TableNo in [Database::"Time Sheet Header", Database::"Time Sheet Line", Database::"Time Sheet Detail"] then
+            IsRestricted := true;
+    end;
+
     [EventSubscriber(ObjectType::Table, Database::"Message Argument ori", OnAfterIsTableWriteRestrictedForDataRecords, '', false, false)]
     local procedure OnAfterIsTableWriteRestricted(TableNo: Integer; var IsRestricted: Boolean)
     begin
