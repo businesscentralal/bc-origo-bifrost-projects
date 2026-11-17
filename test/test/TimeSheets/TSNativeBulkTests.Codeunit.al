@@ -1,10 +1,15 @@
 namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Foundation.NoSeries;
+using Microsoft.Foundation.Period;
 using Microsoft.Foundation.UOM;
+using Microsoft.HumanResources.Absence;
+using Microsoft.HumanResources.Employee;
+using Microsoft.HumanResources.Setup;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
@@ -632,6 +637,151 @@ codeunit 97147 "TS Native Bulk Tests"
         Header.Get(FixturePrefix + 'POST');
         Assert.AreEqual(StartingDate, Header."Starting Date", 'Owned project sheet date.');
         // No Foundation consent, EULA, trial, licence or Licensed Call state is written.
+    end;
+
+    /// <summary>Creates a fresh owned fixture set in two past weeks (relative to today) so MCP can prove every time-sheet write type.</summary>
+    [Test]
+    procedure McpFixtureSeed_PastWeeks_CreatesExecutionData()
+    begin
+        // Fixture utility for the per-type MCP execution evidence of #33, not a substitute for message acceptance.
+        // Dates follow Today() (the MCP session work date), not the test work date, so Archive can pick the posted sheet.
+        // Set B sits two weeks before set A, so a Reopen cut off at the end of B leaves A untouched.
+        SeedPastWeekSet('A', 0);
+        SeedPastWeekSet('B', -14);
+    end;
+
+    local procedure SeedPastWeekSet(SetCode: Code[1]; DayOffset: Integer)
+    var
+        Cause: Record "Cause of Absence";
+        Employee: Record Employee;
+        Job: Record Job;
+        JobTask: Record "Job Task";
+        JournalTemplateRecord: Record "Job Journal Template";
+        Batch: Record "Job Journal Batch";
+        PlanningLine: Record "Job Planning Line";
+        Series: Record "No. Series";
+        SeriesLine: Record "No. Series Line";
+        UserSetup: Record "User Setup";
+        LibraryJob: Codeunit "Library - Job";
+        LibraryTimeSheet: Codeunit "Library - Time Sheet";
+        FixturePrefix: Code[10];
+        ResourceNo: Code[20];
+        PlanResourceNo: Code[20];
+        PostResourceNo: Code[20];
+        WeekStart: Date;
+    begin
+        FixturePrefix := CopyStr('Y67' + SetCode + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(FixturePrefix));
+        WeekStart := CalcDate('<-CW>', Today() - 14 + DayOffset);
+        EnsureHrSetup();
+        EnsureAccountingPeriod(WeekStart);
+        UserSetup.Get(UserId());
+        UserSetup."Time Sheet Admin." := true;
+        UserSetup.Modify(true);
+        // PREV: Absence.Register, Submit, Approve, Reopen and CopyFromPrevious (the next week is created over MCP).
+        ResourceNo := CreateResource(true);
+        Employee.Init();
+        Employee."No." := CopyStr('E' + FixturePrefix, 1, MaxStrLen(Employee."No."));
+        Employee."Resource No." := ResourceNo;
+        Employee.Insert(false);
+        LibraryTimeSheet.CreateCauseOfAbsence(Cause);
+        SeedMcpHeader(FixturePrefix + 'PREV', ResourceNo, WeekStart);
+        SeedMcpLine(FixturePrefix + 'PREV', '', '', 1);
+        // PLAN: CreateFromPlanning reads this planning line.
+        PlanResourceNo := CreateResource(true);
+        SeedMcpHeader(FixturePrefix + 'PLAN', PlanResourceNo, WeekStart);
+        LibraryJob.CreateJob(Job);
+        Job.Rename(FixturePrefix + 'PJ');
+        Job.Validate(Status, Job.Status::Open);
+        Job.Modify(true);
+        LibraryJob.CreateJobTask(Job, JobTask);
+        JobTask.Rename(Job."No.", 'OWN33');
+        LibraryTimeSheet.CreateJobPlanningLine(PlanningLine, Job."No.", JobTask."Job Task No.", PlanResourceNo, WeekStart + 1);
+        PlanningLine.Validate("Line Type", PlanningLine."Line Type"::"Both Budget and Billable");
+        PlanningLine.Modify(true);
+        // POST: Post and Archive, one week later than PREV so Reopen (cut off at the end of PREV) leaves it alone.
+        LibraryJob.CreateJob(Job);
+        Job.Rename(FixturePrefix + 'JOB');
+        Job.Validate(Status, Job.Status::Open);
+        Job.Modify(true);
+        LibraryJob.CreateJobTask(Job, JobTask);
+        JobTask.Rename(Job."No.", 'OWN33');
+        PostResourceNo := CreateResource(true);
+        SeedMcpHeader(FixturePrefix + 'POST', PostResourceNo, WeekStart + 7);
+        SeedMcpLine(FixturePrefix + 'POST', Job."No.", JobTask."Job Task No.", 2);
+        Series.Init();
+        Series.Code := FixturePrefix;
+        Series."Default Nos." := true;
+        Series.Insert(true);
+        SeriesLine.Init();
+        SeriesLine."Series Code" := Series.Code;
+        SeriesLine."Line No." := 10000;
+        SeriesLine."Starting No." := FixturePrefix + '000001';
+        SeriesLine."Ending No." := FixturePrefix + '999999';
+        SeriesLine."Increment-by No." := 1;
+        SeriesLine.Insert(true);
+        JournalTemplateRecord.Init();
+        JournalTemplateRecord.Name := FixturePrefix;
+        JournalTemplateRecord.Insert(true);
+        Batch.Init();
+        Batch."Journal Template Name" := JournalTemplateRecord.Name;
+        Batch.Name := 'OWN33';
+        Batch.Validate("No. Series", Series.Code);
+        Batch.Insert(true);
+        Assert.IsTrue(Cause.Get(Cause.Code), 'The cause of absence must exist.');
+    end;
+
+    local procedure EnsureHrSetup()
+    var
+        HumanResourcesSetup: Record "Human Resources Setup";
+        HumanResourceUnitOfMeasure: Record "Human Resource Unit of Measure";
+        LibraryTimeSheet: Codeunit "Library - Time Sheet";
+    begin
+        if not HumanResourcesSetup.Get() then begin
+            HumanResourcesSetup.Init();
+            HumanResourcesSetup.Insert();
+        end;
+        if not HumanResourceUnitOfMeasure.Get('HOUR') then begin
+            HumanResourceUnitOfMeasure.Init();
+            HumanResourceUnitOfMeasure.Code := 'HOUR';
+            HumanResourceUnitOfMeasure."Qty. per Unit of Measure" := 1;
+            HumanResourceUnitOfMeasure.Insert(true);
+        end;
+        if HumanResourcesSetup."Base Unit of Measure" <> '' then begin
+            // Employee Absence takes the setup base unit; it must exist as a Human Resource Unit of Measure.
+            if not HumanResourceUnitOfMeasure.Get(HumanResourcesSetup."Base Unit of Measure") then begin
+                HumanResourceUnitOfMeasure.Init();
+                HumanResourceUnitOfMeasure.Code := HumanResourcesSetup."Base Unit of Measure";
+                HumanResourceUnitOfMeasure."Qty. per Unit of Measure" := 1;
+                HumanResourceUnitOfMeasure.Insert(true);
+            end;
+            exit;
+        end;
+        LibraryTimeSheet.CreateHRUnitOfMeasure(HumanResourceUnitOfMeasure, 1);
+        HumanResourcesSetup."Base Unit of Measure" := HumanResourceUnitOfMeasure.Code;
+        HumanResourcesSetup.Modify();
+    end;
+
+    local procedure EnsureAccountingPeriod(ForDate: Date)
+    var
+        AccountingPeriod: Record "Accounting Period";
+    begin
+        // Time sheet details and job journal posting need open periods; a worker tenant may have closed the demo year.
+        AccountingPeriod.SetRange(Closed, true);
+        AccountingPeriod.SetRange("Starting Date", CalcDate('<-CM-1M>', ForDate), ForDate + 21);
+        if AccountingPeriod.FindSet() then
+            repeat
+                AccountingPeriod.Closed := false;
+                AccountingPeriod.Modify(false);
+            until AccountingPeriod.Next() = 0;
+        AccountingPeriod.Reset();
+        AccountingPeriod.SetFilter("Starting Date", '<=%1', ForDate);
+        if not AccountingPeriod.IsEmpty() then
+            exit;
+        AccountingPeriod.Init();
+        AccountingPeriod."Starting Date" := CalcDate('<-CY>', ForDate);
+        AccountingPeriod."New Fiscal Year" := true;
+        AccountingPeriod.Name := CopyStr(Format(AccountingPeriod."Starting Date", 0, '<Year4>'), 1, MaxStrLen(AccountingPeriod.Name));
+        AccountingPeriod.Insert(false);
     end;
 
     /// <summary>Verifies repeated fixture setup retains both new record sets and all earlier owned fixtures.</summary>
