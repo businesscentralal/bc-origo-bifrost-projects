@@ -240,6 +240,56 @@ codeunit 97147 "TS Native Bulk Tests"
     end;
 
     [Test]
+    procedure Scenario_AC01_ReopenApprovedLine_ChangesItToOpen()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Request: JsonObject;
+        Response: JsonObject;
+        SheetNo: Code[20];
+    begin
+        // Story #33, AC04 | Time: WorkDate minus two weeks isolates the cutoff | Risk: bulk reopen of approved lines
+        // [GIVEN] An owned approved line before the cutoff, approver is the caller.
+        SheetNo := CreateSheet(CreateResource(true), WorkDate() - 14, UserId());
+        CreateLine(SheetNo, 10000, 'Approved');
+        Request.Add('endingDateTo', Format(WorkDate() - 8, 0, 9));
+        // [WHEN] The native alias runs through its real implementation.
+        Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Reopen", Request);
+        // [THEN] The approved line goes back to Open and is counted.
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('Success', ReadText(Response, 'status'), 'Reopening an approved line should succeed.');
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'Approved line must be open.');
+    end;
+
+    [Test]
+    procedure Scenario_AC01_ReopenPostedApprovedLine_IsSkippedWithoutError()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Request: JsonObject;
+        SheetNo: Code[20];
+    begin
+        // Story #33, AC04 | Time: WorkDate minus two weeks | Risk: posted lines abort the bulk run
+        // [GIVEN] A posted approved line and an approved line before the cutoff.
+        SheetNo := CreateSheet(CreateResource(true), WorkDate() - 14, UserId());
+        CreateLine(SheetNo, 10000, 'Approved');
+        CreateLine(SheetNo, 20000, 'Approved');
+        Line.Get(SheetNo, 10000);
+        Line.Posted := true;
+        Line.Modify(false);
+        Request.Add('endingDateTo', Format(WorkDate() - 8, 0, 9));
+        // [WHEN] Reopening.
+        Execute(TempArgument, "Message Type ori"::"Projects.TimeSheet.Reopen", Request);
+        // [THEN] The run succeeds, the posted line stays approved and the other line is open.
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Posted lines must not abort the reopen.');
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Approved, Line.Status, 'The posted line stays approved.');
+        Line.Get(SheetNo, 20000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'The unposted line is reopened.');
+    end;
+
+    [Test]
     procedure Scenario_AC05_ReopenOpenLine_LeavesItOpen()
     var
         TempArgument: Record "Message Argument ori" temporary;

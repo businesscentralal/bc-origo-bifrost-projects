@@ -161,12 +161,15 @@ codeunit 70013576 "TS Bulk Mgt ori"
                 TimeSheetMgt.SetTimeSheetNo(TimeSheet."No.", TimeSheetLine);
                 if TimeSheetLine.FindSet(true) then
                     repeat
-                        WasPending := TimeSheetLine.Status in [TimeSheetLine.Status::Submitted, TimeSheetLine.Status::Approved];
+                        // Posted lines are final: Business Central refuses to reopen them, so they must not abort the whole run.
+                        WasPending := (not TimeSheetLine.Posted) and (TimeSheetLine.Status in [TimeSheetLine.Status::Submitted, TimeSheetLine.Status::Approved]);
                         // Approved -> Submitted, then Submitted -> Open, so a fully approved line lands back on Open.
-                        if TimeSheetLine.Status = TimeSheetLine.Status::Approved then
-                            TimeSheetApprovalMgt.ReopenApproved(TimeSheetLine);
-                        if TimeSheetLine.Status = TimeSheetLine.Status::Submitted then
-                            TimeSheetApprovalMgt.ReopenSubmitted(TimeSheetLine);
+                        if WasPending then begin
+                            if TimeSheetLine.Status = TimeSheetLine.Status::Approved then
+                                TimeSheetApprovalMgt.ReopenApproved(TimeSheetLine);
+                            if TimeSheetLine.Status = TimeSheetLine.Status::Submitted then
+                                TimeSheetApprovalMgt.ReopenSubmitted(TimeSheetLine);
+                        end;
                         if WasPending then
                             ReopenedLineCount += 1;
                     until TimeSheetLine.Next() = 0;
