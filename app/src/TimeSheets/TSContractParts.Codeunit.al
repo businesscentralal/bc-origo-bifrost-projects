@@ -92,6 +92,8 @@ codeunit 70013556 "TS Contract Parts ori"
         BulkPreconditionLbl: Label 'The caller has the BIFROST Full ori permission set.', Comment = 'is-IS=Kallandinn hefur heimildasamstæðuna BIFROST Full ori.';
         BulkChangesLbl: Label 'Changes eligible Business Central time sheets. A refused operation rolls back its own writes.', Comment = 'is-IS=Breytir gjaldgengum tímaskýrslum í Business Central. Ef aðgerð er hafnað eru eigin skrif hennar afturkölluð.';
         PostChangesLbl: Label 'Posts approved time sheet lines through the project journal and commits. Posted entries cannot be undone.', Comment = 'is-IS=Bókar samþykktar tímaskýrslulínur í gegnum verkbók og staðfestir færslurnar. Ekki er hægt að afturkalla bókaðar færslur.';
+        PostCountUnitTxt: Label 'expectedCount counts the project journal lines the post creates: one per unposted time sheet detail with a quantity left to post, on every approved project line of every time sheet, so it equals postedLines in the answer. To read it without a side effect, send the same request without expectedCount while confirmation is enabled and read expected in the ConfirmationRequired answer; nothing is posted.', Locked = true;
+        PostCountParamTxt: Label 'expectedCount counts the project journal lines the post creates (one per unposted time sheet detail with a quantity left to post, on approved project lines; equals postedLines). Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
         BulkRelatedLbl: Label 'Discover the native names alongside the other message types.', Comment = 'is-IS=Finndu innlendu heitin ásamt öðrum skilaboðategundum.';
         BulkStepLbl: Label 'Run the time sheet operation.', Comment = 'is-IS=Keyrðu tímaskýrsluaðgerðina.';
         BulkWorkflowLbl: Label 'Review the returned count before the next call. The operation applies to every eligible time sheet.', Comment = 'is-IS=Farðu yfir fjöldann í svarinu áður en næsta kall er sent. Aðgerðin nær til allra gjaldgengra tímaskýrslna.';
@@ -364,6 +366,7 @@ codeunit 70013556 "TS Contract Parts ori"
     begin
         Parameters.Add(ContractMgt.Parameter('journalTemplate', 'string', true, JournalTemplateHelpLbl));
         Parameters.Add(ContractMgt.Parameter('journalBatch', 'string', true, JournalBatchHelpLbl));
+        Parameters.Add(ContractMgt.Parameter('expectedCount', 'integer', false, PostCountParamTxt));
         exit(true);
     end;
 
@@ -393,7 +396,7 @@ codeunit 70013556 "TS Contract Parts ori"
     begin
         if MessageType = MessageType::"Projects.TimeSheet.Post" then begin
             Effect.Add('effect', 'irreversible');
-            Effect.Add('changes', PostChangesLbl);
+            Effect.Add('changes', PostChangesLbl + ' ' + PostCountUnitTxt);
         end else begin
             Effect.Add('effect', 'write');
             Effect.Add('changes', BulkChangesLbl);

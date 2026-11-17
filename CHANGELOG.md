@@ -12,6 +12,8 @@
 
 ### Changed (2026-11-17)
 
+- Effect audit (#54, core#1365 D2): `Projects.TimeSheet.Post` stays irreversible and now names its count unit. `effect.changes` and the optional `expectedCount` parameter (marker `expectedCount counts `) say the count is the project journal lines the post creates, one per unposted time sheet detail with a quantity left to post on approved project lines, equal to `postedLines`, and how to preview it without a side effect. The type had no confirmation counter, so the Foundation gate never confirmed it: new codeunit 70013582 `TS Post Confirm ori` (`Msg Confirm ori`, bound on enum value 70013528) and `TS Bulk Mgt ori.CountPostableLines` give the gate the real count. The new sentences are Locked English at every LCID (core#1239, as in #42/#44); the one count summary has an is-IS translation. Tests: three in test codeunit 97147.
+
 - Guard marker (#44, core#1378): the `expectedCount` parameter of `Projects.ItemUsage.Post`, `Projects.Quote.Send` and `Projects.WIP.Post` now starts with the literal `expectedCount counts `, as `effect.changes` already does. The chapter text is Locked, so the English marker applies at 1033 and 1039. Test 97111 asserts the marker. No new object ID.
 
 ### Changed (2026-11-16)

@@ -38,7 +38,7 @@ enumextension 70013579 "Projects TimeSheet Types ori" extends "Message Type ori"
     value(70013528; "Projects.TimeSheet.Post")
     {
         Caption = 'Projects.TimeSheet.Post', Locked = true;
-        Implementation = "Msg Interface ori" = "TS Sheet Post Impl ori", "Msg Contract ori" = "TS Sheet Post Impl ori", "Msg Discovery ori" = "TS Sheet Post Impl ori";
+        Implementation = "Msg Interface ori" = "TS Sheet Post Impl ori", "Msg Contract ori" = "TS Sheet Post Impl ori", "Msg Discovery ori" = "TS Sheet Post Impl ori", "Msg Confirm ori" = "TS Post Confirm ori";
     }
     value(70013529; "Projects.TimeSheet.Archive")
     {

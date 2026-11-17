@@ -252,6 +252,31 @@ codeunit 70013576 "TS Bulk Mgt ori"
     end;
 
     /// <summary>
+    /// Counts the Job Journal lines PostApprovedTimeSheets would create right now, without writing:
+    /// one per unposted time sheet detail with a quantity left to post on an approved job line.
+    /// </summary>
+    /// <returns>The number of Job Journal lines a post would create; equals postedLines of a successful post.</returns>
+    procedure CountPostableLines() LineCount: Integer
+    var
+        TimeSheetDetail: Record "Time Sheet Detail";
+        TempTimeSheetLine: Record "Time Sheet Line" temporary;
+    begin
+        FillApprovedLineBuffer(TempTimeSheetLine);
+        if TempTimeSheetLine.FindSet() then
+            repeat
+                TimeSheetDetail.SetRange("Time Sheet No.", TempTimeSheetLine."Time Sheet No.");
+                TimeSheetDetail.SetRange("Time Sheet Line No.", TempTimeSheetLine."Line No.");
+                TimeSheetDetail.SetFilter(Quantity, '<>0');
+                TimeSheetDetail.SetRange(Posted, false);
+                if TimeSheetDetail.FindSet() then
+                    repeat
+                        if TimeSheetDetail.GetMaxQtyToPost() <> 0 then
+                            LineCount += 1;
+                    until TimeSheetDetail.Next() = 0;
+            until TempTimeSheetLine.Next() = 0;
+    end;
+
+    /// <summary>
     /// Archives time sheets that are fully posted and no longer open, and removes empty
     /// posted sheets. Runs on sheets ending before the work date.
     /// </summary>
