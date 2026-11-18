@@ -1,6 +1,9 @@
 namespace Origo.Bifrost.Projects;
 
 using Microsoft.Foundation.NoSeries;
+using Microsoft.HumanResources.Absence;
+using Microsoft.HumanResources.Employee;
+using Microsoft.HumanResources.Setup;
 using Microsoft.Foundation.Period;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
@@ -33,6 +36,12 @@ permissionset 70013587 "PROJ TS APPROVER"
         tabledata "User Setup" = r,
         tabledata Job = r,
         tabledata "Job Task" = r,
+        tabledata "Time Sheet Posting Entry" = ri,
+        tabledata Employee = r,
+        tabledata "Employee Absence" = ri,
+        tabledata "Cause of Absence" = r,
+        tabledata "Human Resources Setup" = r,
+        tabledata "Human Resource Unit of Measure" = r,
         codeunit "TS Approval Get Impl ori" = X,
         codeunit "TS Approval Approve Impl ori" = X,
         codeunit "TS Approval Reject Impl ori" = X;

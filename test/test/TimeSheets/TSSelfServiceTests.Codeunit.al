@@ -5,6 +5,7 @@ using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
+using Origo.Bifrost.Projects;
 using System.Security.AccessControl;
 using System.Security.User;
 using System.TestLibraries.Utilities;
@@ -661,6 +662,115 @@ codeunit 97160 "TS Self Service Tests"
         AssertCode(TempArgument, 'PermissionDenied', 'resourceNo');
         Header.SetRange("Resource No.", ForeignResourceNo);
         Assert.IsTrue(Header.IsEmpty(), 'No sheet may be created for another employee''s resource.');
+    end;
+
+    [Test]
+    procedure AC02_MyCreate_ReassignedForeignSheet_Refused_NoData_1033_1039()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        ResourceNo: Code[20];
+        ForeignNo: Code[20];
+        StartDate: Date;
+        PreviousLanguage: Integer;
+    begin
+        // [SCENARIO] Worker review AMEND at 2480654: a resource reassigned to the caller must not
+        // expose the previous owner's existing sheet through the no-op path of Create.
+        IsolateOwnResources();
+        ResourceNo := CreateResource(UserId(), OtherApproverTok);
+        StartDate := FirstWeekdayWeek();
+        ForeignNo := CreateSheet(ResourceNo, StartDate, OtherEmployeeTok, OtherApproverTok);
+        Request.Add('startingDate', Format(StartDate, 0, 9));
+        PreviousLanguage := GlobalLanguage();
+        GlobalLanguage(1033);
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        GlobalLanguage(PreviousLanguage);
+        AssertCode(TempArgument, 'PermissionDenied', 'resourceNo');
+        Assert.IsFalse(FullResponse(TempArgument).Contains(ForeignNo), 'The refusal must not carry the foreign sheet (1033).');
+        GlobalLanguage(1039);
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        GlobalLanguage(PreviousLanguage);
+        AssertCode(TempArgument, 'PermissionDenied', 'resourceNo');
+        Assert.IsFalse(FullResponse(TempArgument).Contains(ForeignNo), 'The refusal must not carry the foreign sheet (1039).');
+        // [THEN] Nothing was created and the foreign sheet is unchanged.
+        Header.SetRange("Resource No.", ResourceNo);
+        Assert.AreEqual(1, Header.Count(), 'Create must not add a second sheet.');
+        Header.Get(ForeignNo);
+        Assert.AreEqual(CopyStr(UpperCase(OtherEmployeeTok), 1, 50), Header."Owner User ID", 'The foreign owner is unchanged.');
+    end;
+
+    [Test]
+    procedure AC02_SubmitWriter_OwnerChangedAfterPreflight_WritesNothing()
+    var
+        Header: Record "Time Sheet Header";
+        Line: Record "Time Sheet Line";
+        Context: Codeunit "TS Native Context ori";
+        SheetNo: Code[20];
+        Succeeded: Boolean;
+    begin
+        // [SCENARIO] Worker review AMEND at 2480654: the writer re-checks the current owner inside the
+        // submit transaction. The manager's preflight passed for the caller; then the owner changed.
+        SheetNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        CreateLine(SheetNo, 10000, 'Open');
+        Header.Get(SheetNo);
+        Header."Owner User ID" := CopyStr(UpperCase(OtherEmployeeTok), 1, MaxStrLen(Header."Owner User ID"));
+        Header.Modify(false);
+        Commit();
+        // [WHEN] The writer runs the submit that was prepared for the caller
+        Context.SetSubmit(SheetNo, '*');
+        Succeeded := Codeunit.Run(Codeunit::"TS Native Runner ori");
+        Context.Clear();
+        // [THEN] It stops and the line stays open
+        Assert.IsFalse(Succeeded, 'The writer must refuse a sheet the caller no longer owns.');
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'The line must stay open.');
+        // [WHEN] A blank owner [THEN] it is refused as well
+        Header.Get(SheetNo);
+        Header."Owner User ID" := '';
+        Header.Modify(false);
+        Commit();
+        Context.SetSubmit(SheetNo, '*');
+        Succeeded := Codeunit.Run(Codeunit::"TS Native Runner ori");
+        Context.Clear();
+        Assert.IsFalse(Succeeded, 'The writer must refuse a sheet with a blank owner.');
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'The line must stay open after the blank-owner refusal.');
+        CleanupSheet(SheetNo);
+    end;
+
+    [Test]
+    procedure AC02_SubmitWriter_CurrentOwner_Submits()
+    var
+        Line: Record "Time Sheet Line";
+        Context: Codeunit "TS Native Context ori";
+        SheetNo: Code[20];
+    begin
+        // [SCENARIO] The new writer check does not stop the real owner.
+        SheetNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        CreateLine(SheetNo, 10000, 'Open');
+        Commit();
+        Context.SetSubmit(SheetNo, '*');
+        Assert.IsTrue(Codeunit.Run(Codeunit::"TS Native Runner ori"), 'The owner submit must run: ' + GetLastErrorText());
+        Context.Clear();
+        Line.Get(SheetNo, 10000);
+        Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The line is submitted.');
+    end;
+
+    local procedure CleanupSheet(SheetNo: Code[20])
+    var
+        Header: Record "Time Sheet Header";
+        Line: Record "Time Sheet Line";
+        Detail: Record "Time Sheet Detail";
+    begin
+        // The writer test commits, so remove its fixture explicitly.
+        Detail.SetRange("Time Sheet No.", SheetNo);
+        Detail.DeleteAll(false);
+        Line.SetRange("Time Sheet No.", SheetNo);
+        Line.DeleteAll(false);
+        if Header.Get(SheetNo) then
+            Header.Delete(false);
+        Commit();
     end;
 
     [Test]

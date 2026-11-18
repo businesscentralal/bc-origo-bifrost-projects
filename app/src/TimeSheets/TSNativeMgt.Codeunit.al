@@ -331,6 +331,7 @@ codeunit 70013566 "TS Native Mgt ori"
         Context: Codeunit "TS Native Context ori";
         Err: Text;
         Response: JsonObject;
+        SheetNo: Code[20];
         IsSubmit: Boolean;
     begin
         IsSubmit := Context.GetOperation() = 1;
@@ -351,17 +352,31 @@ codeunit 70013566 "TS Native Mgt ori"
 
         if not Codeunit.Run(Codeunit::"TS Native Runner ori") then begin
             Err := GetLastErrorText();
+            SheetNo := Context.GetSheetNo();
             Context.Clear();
-            if IsSubmit then
-                Fail(Argument, "Bifrost Error Code ori"::InvalidLine, FixLineMsg, 'lineNos', FixLineNextTxt)
+            if IsSubmit and not IsCurrentOwner(SheetNo) then
+                Fail(Argument, "Bifrost Error Code ori"::PermissionDenied, OwnerSubmitMsg, 'timeSheetNo', OwnerSubmitNextTxt)
             else
-                Fail(Argument, "Bifrost Error Code ori"::BusinessCentralError, CopyStr(Err, 1, 250), '', RetryNextTxt);
+                if IsSubmit then
+                    Fail(Argument, "Bifrost Error Code ori"::InvalidLine, FixLineMsg, 'lineNos', FixLineNextTxt)
+                else
+                    Fail(Argument, "Bifrost Error Code ori"::BusinessCentralError, CopyStr(Err, 1, 250), '', RetryNextTxt);
             exit;
         end;
 
         Response.ReadFrom(Context.GetResult());
         Context.Clear();
         Argument.SetResponseJson(Response);
+    end;
+
+    local procedure IsCurrentOwner(SheetNo: Code[20]): Boolean
+    var
+        Header: Record "Time Sheet Header";
+    begin
+        Header.ReadIsolation := IsolationLevel::ReadCommitted;
+        if not Header.Get(SheetNo) then
+            exit(false);
+        exit(SameUser(Header."Owner User ID"));
     end;
 
     local procedure Deny(var Argument: Record "Message Argument ori"; IsReject: Boolean): Boolean

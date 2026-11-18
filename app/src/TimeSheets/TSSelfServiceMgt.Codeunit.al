@@ -284,6 +284,12 @@ codeunit 70013583 "TS Self Service Mgt ori"
             end;
         end;
         Header.FindFirst();
+        // The resource may have been reassigned: a sheet that another user owns is never returned,
+        // on the create path or on the no-op path.
+        if not SameUser(Header."Owner User ID") then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, NotOwnerMsg, 'resourceNo', NotOwnerNextTxt);
+            exit;
+        end;
         SheetNode.Add('timeSheetNo', Header."No.");
         SheetNode.Add('resourceNo', Header."Resource No.");
         SheetNode.Add('startingDate', Format(Header."Starting Date", 0, 9));

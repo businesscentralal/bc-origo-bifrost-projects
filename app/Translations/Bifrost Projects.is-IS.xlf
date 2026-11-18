@@ -4305,6 +4305,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins samþykktaraðilinn sem er nefndur á tímaskýrslunni getur samþykkt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Native Runner ori - Method CheckApprover - NamedType ApproverErr</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1438968790 - Method 582105345 - NamedType 2744244088" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only the owner named on the time sheet can submit.</source>
+          <target>Aðeins eigandinn sem er nefndur á tímaskýrslunni getur sent inn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins eigandinn sem er nefndur á tímaskýrslunni getur sent inn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Native Runner ori - Method CheckOwner - NamedType OwnerErr</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use resourceNo and resourceId belonging to the same resource.</source>
           <target>Notaðu resourceNo og resourceId sem tilheyra sama forða.</target>
