@@ -231,6 +231,40 @@ read permissions returns `PermissionDenied`, naming BIFROST Read ori and native
 project report permissions. Feature roles grant the report implementation; native
 Business Central permissions remain the caller's responsibility.
 
+## Self-service and approval time sheets
+
+Seven types let an employee work on their own time sheets and an approver work on their queue
+(projects#38). The caller is always the signed-in session user; the request never names a user.
+
+| Type | Who | Effect |
+|---|---|---|
+| `Projects.MyTimeSheet.Get` | Owner | Reads own sheets (Owner User ID = caller) with lines, daily hours (`days`), `totalHours` and `comments`. Optional `timeSheetNo`, `from` + `to`, `status` (Open, Submitted, Rejected, Approved), `take` (1..100), `skip`. |
+| `Projects.MyTimeSheet.Create` | Owner | Creates the own sheet for one period (`startingDate` on the Time Sheet First Weekday; `resourceNo` only when the caller owns several time sheet resources), with the rules of the native Create Time Sheets report. The caller does not need Time Sheet Admin. An existing sheet returns `created` false. |
+| `Projects.MyTimeSheetLine.Set` | Owner | Adds or edits own lines (`timeSheetNo`, `lines` 1..50: optional `lineNo`, `type` Job or Resource, `projectNo`, `taskNo`, `workTypeCode`, `description`, `days` [{`date`, `hours`}]). Only Open or Rejected lines can change; an edited rejected line returns to Open. All entries are one transaction. No delete: zero hours keeps the day. |
+| `Projects.MyTimeSheet.Submit` | Owner | Submits own open lines (`timeSheetNo`, or `resourceNo` + `date`; optional `lineNos`). |
+| `Projects.TimeSheetApproval.Get` | Approver | Reads sheets whose Approver User ID is the caller and that hold submitted lines. The caller's own sheets are never listed. Optional `timeSheetNo`, `from` + `to`, `take`, `skip`. |
+| `Projects.TimeSheetApproval.Approve` | Approver | Approves submitted lines, per line (`lineNos`) or for the whole sheet. |
+| `Projects.TimeSheetApproval.Reject` | Approver | Rejects submitted lines with an optional `comment` (80 characters). The comment is returned on the line by `Projects.MyTimeSheet.Get`. |
+
+Every call that names a sheet checks owner or approver before anything is read or written, and
+the native writer checks again. Another user's sheet is refused with `PermissionDenied`, a
+`nextStep` and no record data. An approver cannot approve or reject their own sheet. A caller who
+is not the time sheet owner (or approver) of any resource or sheet is refused. Line.Set, Approve and Reject
+commit on success and roll back every selected line on failure, as the `Projects.TimeSheet.*`
+administrator types do. Item and resource usage lines are not part of these types; they use the `Projects.Usage.*` types
+below (#52).
+
+Role sets: assign `PROJ TS SELF` (the four My* types), `PROJ TS APPROVER` (the three Approval types)
+or `PROJ TS POST` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
+sets are convenience bundles with direct tabledata, so a user who has them can also open time sheets in
+the client, exactly as with native BC time sheets. Role separation for approval is the sheet's approver
+identity (Approver User ID), checked in code. Posting is separated by journal and posting rights: only
+`PROJ TS POST` carries the journal, ledger and register data a post needs. A posting user also needs
+read access to the project's master data (customer, posting groups, prices), for example `D365 READ`. A self-service user
+who creates sheets with `Projects.MyTimeSheet.Create` likewise needs ordinary read access (the native Create Time Sheets report
+reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF`. The owner and approver
+checks in code apply in every role.
+
 ## Compare resource capacity with time sheets and usage
 
 ```json

@@ -75,5 +75,15 @@ permissionsetextension 70013580 "Projects TimeSheet Full ori" extends "BIFROST F
         codeunit "TS Sheet Submit Impl ori" = X,
         codeunit "TS Bulk Mgt ori" = X,
         codeunit "TS Post Confirm ori" = X,
+        codeunit "TS Self Service Mgt ori" = X,
+        codeunit "TS My Sheet Get Impl ori" = X,
+        codeunit "TS My Sheet Submit Impl ori" = X,
+        codeunit "TS Approval Get Impl ori" = X,
+        codeunit "TS Approval Approve Impl ori" = X,
+        codeunit "TS Approval Reject Impl ori" = X,
+        codeunit "TS My Line Set Impl ori" = X,
+        codeunit "TS My Line Set Runner ori" = X,
+        codeunit "TS My Sheet Create Impl ori" = X,
+        codeunit "TS My Create Context ori" = X,
         codeunit "TS Sheet Get Impl ori" = X;
 }

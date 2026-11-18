@@ -60,6 +60,41 @@ enumextension 70013579 "Projects TimeSheet Types ori" extends "Message Type ori"
         Caption = 'Projects.Absence.Register', Locked = true;
         Implementation = "Msg Interface ori" = "TS Absence Reg Impl ori", "Msg Contract ori" = "TS Absence Reg Impl ori", "Msg Discovery ori" = "TS Absence Reg Impl ori";
     }
+    value(70013542; "Projects.MyTimeSheet.Get")
+    {
+        Caption = 'Projects.MyTimeSheet.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "TS My Sheet Get Impl ori", "Msg Contract ori" = "TS My Sheet Get Impl ori", "Msg Discovery ori" = "TS My Sheet Get Impl ori";
+    }
+    value(70013543; "Projects.MyTimeSheet.Submit")
+    {
+        Caption = 'Projects.MyTimeSheet.Submit', Locked = true;
+        Implementation = "Msg Interface ori" = "TS My Sheet Submit Impl ori", "Msg Contract ori" = "TS My Sheet Submit Impl ori", "Msg Discovery ori" = "TS My Sheet Submit Impl ori";
+    }
+    value(70013544; "Projects.TimeSheetApproval.Get")
+    {
+        Caption = 'Projects.TimeSheetApproval.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "TS Approval Get Impl ori", "Msg Contract ori" = "TS Approval Get Impl ori", "Msg Discovery ori" = "TS Approval Get Impl ori";
+    }
+    value(70013545; "Projects.TimeSheetApproval.Approve")
+    {
+        Caption = 'Projects.TimeSheetApproval.Approve', Locked = true;
+        Implementation = "Msg Interface ori" = "TS Approval Approve Impl ori", "Msg Contract ori" = "TS Approval Approve Impl ori", "Msg Discovery ori" = "TS Approval Approve Impl ori";
+    }
+    value(70013546; "Projects.TimeSheetApproval.Reject")
+    {
+        Caption = 'Projects.TimeSheetApproval.Reject', Locked = true;
+        Implementation = "Msg Interface ori" = "TS Approval Reject Impl ori", "Msg Contract ori" = "TS Approval Reject Impl ori", "Msg Discovery ori" = "TS Approval Reject Impl ori";
+    }
+    value(70013547; "Projects.MyTimeSheetLine.Set")
+    {
+        Caption = 'Projects.MyTimeSheetLine.Set', Locked = true;
+        Implementation = "Msg Interface ori" = "TS My Line Set Impl ori", "Msg Contract ori" = "TS My Line Set Impl ori", "Msg Discovery ori" = "TS My Line Set Impl ori";
+    }
+    value(70013548; "Projects.MyTimeSheet.Create")
+    {
+        Caption = 'Projects.MyTimeSheet.Create', Locked = true;
+        Implementation = "Msg Interface ori" = "TS My Sheet Create Impl ori", "Msg Contract ori" = "TS My Sheet Create Impl ori", "Msg Discovery ori" = "TS My Sheet Create Impl ori";
+    }
     value(70013549; "Projects.TimeSheet.Get")
     {
         Caption = 'Projects.TimeSheet.Get', Locked = true;
