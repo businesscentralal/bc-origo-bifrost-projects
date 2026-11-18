@@ -261,3 +261,118 @@ not at all.
   `BusinessCentralError` (a validation failed; nothing is written). Each has a next step.
 - Generic `Data.Records.Set` writes to time sheet lines and details are refused and
   point to this type.
+## Self-service and approval time sheets
+
+Seven types let an employee work on their own time sheets and an approver work on their queue
+(projects#38). The caller is always the signed-in session user; the request never names a user.
+
+| Type | Who | Effect |
+|---|---|---|
+| `Projects.MyTimeSheet.Get` | Owner | Reads own sheets (Owner User ID = caller) with lines, daily hours (`days`), `totalHours` and `comments`. Optional `timeSheetNo`, `from` + `to`, `status` (Open, Submitted, Rejected, Approved), `take` (1..100), `skip`. |
+| `Projects.MyTimeSheet.Create` | Owner | Creates the own sheet for one period (`startingDate` on the Time Sheet First Weekday; `resourceNo` only when the caller owns several time sheet resources), with the rules of the native Create Time Sheets report. The caller does not need Time Sheet Admin. An existing sheet returns `created` false. |
+| `Projects.MyTimeSheetLine.Set` | Owner | Adds or edits own lines (`timeSheetNo`, `lines` 1..50: optional `lineNo`, `type` Job or Resource, `projectNo`, `taskNo`, `workTypeCode`, `description`, `days` [{`date`, `hours`}]). Only Open or Rejected lines can change; an edited rejected line returns to Open. All entries are one transaction. No delete: zero hours keeps the day. |
+| `Projects.MyTimeSheet.Submit` | Owner | Submits own open lines (`timeSheetNo`, or `resourceNo` + `date`; optional `lineNos`). |
+| `Projects.TimeSheetApproval.Get` | Approver | Reads sheets whose Approver User ID is the caller and that hold submitted lines. The caller's own sheets are never listed. Optional `timeSheetNo`, `from` + `to`, `take`, `skip`. |
+| `Projects.TimeSheetApproval.Approve` | Approver | Approves submitted lines, per line (`lineNos`) or for the whole sheet. |
+| `Projects.TimeSheetApproval.Reject` | Approver | Rejects submitted lines with an optional `comment` (80 characters). The comment is returned on the line by `Projects.MyTimeSheet.Get`. |
+
+Every call that names a sheet checks owner or approver before anything is read or written, and
+the native writer checks again. Another user's sheet is refused with `PermissionDenied`, a
+`nextStep` and no record data. An approver cannot approve or reject their own sheet. A caller who
+is not the time sheet owner (or approver) of any resource or sheet is refused. Line.Set, Approve and Reject
+commit on success and roll back every selected line on failure, as the `Projects.TimeSheet.*`
+administrator types do. Item and resource usage lines are not part of these types; they use the `Projects.Usage.*` types
+below (#52).
+
+Role sets: assign `PROJ TS SELF` (the four My* types), `PROJ TS APPROVER` (the three Approval types)
+or `PROJ TS POST` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
+sets are convenience bundles with direct tabledata, so a user who has them can also open time sheets in
+the client, exactly as with native BC time sheets. Role separation for approval is the sheet's approver
+identity (Approver User ID), checked in code. Posting is separated by journal and posting rights: only
+`PROJ TS POST` carries the journal, ledger and register data a post needs. A posting user also needs
+read access to the project's master data (customer, posting groups, prices), for example `D365 READ`. A self-service user
+who creates sheets with `Projects.MyTimeSheet.Create` likewise needs ordinary read access (the native Create Time Sheets report
+reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF`. The owner and approver
+checks in code apply in every role.
+
+## Compare resource capacity with time sheets and usage
+
+```json
+{
+  "type": "Projects.ResourceCapacity.Get",
+  "data": {
+    "resourceNo": "RESOURCE-001",
+    "periodType": "month",
+    "fromDate": "2026-01-01",
+    "toDate": "2026-01-31"
+  }
+}
+```
+
+Returns `status`, `periodType` and `rows`. Each row contains `resourceNo`, `fromDate`, `toDate`, `capacity`, `timeSheetHours` and `usage`.
+
+| Input | Meaning |
+|---|---|
+| `resourceNo` | Optional exact resource number, at most 20 characters. |
+| `resourceGroupNo` | Optional exact resource group; combines with `resourceNo`. Omit both selectors for all visible resources. |
+| `periodType` | Required: `day`, `week`, `month`, `quarter` or `year`. |
+| `fromDate`, `toDate` | Required inclusive ISO dates. Partial periods are clipped; weeks end Sunday. Maximum 53 periods. |
+
+`capacity` sums Res. Capacity Entry quantities. `timeSheetHours` sums active and archived Time Sheet Detail quantities for all statuses and types by work date. `usage` sums Res. Ledger Entry **Usage** quantities in the resource base unit by posting date, including negative corrections; Sale entries are excluded. Capacity and usage use the resource base unit. Time-sheet quantities are native hours. Time-sheet hours can overlap posted usage: do not add them together. Missing entries return zero.
+
+The call changes no business data. It requires Projects to be enabled and the caller to have read access to Resource, Resource Group, Res. Capacity Entry, Res. Ledger Entry, Time Sheet Detail and Time Sheet Detail Archive. Business Central security filters continue to apply.
+
+Invalid period types return `InvalidParameter`; more than 53 periods returns `LimitExceeded`. Missing/invalid/unknown parameters, nonexistent selectors and conflicting resource/group selectors return a Bifröst error code with a localized `nextStep`. Help is available in en-US (1033) and is-IS (1039).
+
+Related: `Projects.ResourceAllocation.Get` uses the same resource/group selectors, calendar boundaries and `rows` identity fields; it reports planned project allocation and availability instead of time-sheet and posted usage quantities.
+
+## Time sheet usage lines
+
+Usage lines record items and resources a user used on a time sheet line (tools, km driven, bolts). A line belongs to a time sheet and one of its lines, carries a state and goes through approval into a journal. Native time sheet lines have no item type, so the usage sits in its own table (`TS Usage Line ori`). Use the dedicated messages; a generic `Data.Records.Set` of `Status`, `Reversed` or the journal fields is refused with a hint naming them.
+
+| Message type | Who | What it does |
+|---|---|---|
+| `Projects.Usage.Register` | owner of the sheet | Creates an Open line. Keys: `timeSheetNo`, `lineNo`, `type` (Item or Resource), `no`, `date` (inside the sheet week), `quantity` (> 0), optional `unitOfMeasure`, `description`. The item or resource must exist and not be blocked. |
+| `Projects.Usage.Submit` | owner | Open or Rejected lines become Submitted. Keys: `timeSheetNo`, optional `entryNos`. |
+| `Projects.Usage.Approve` | approver named on the sheet, never its owner | Submitted lines become Approved. |
+| `Projects.Usage.Reject` | approver | Submitted lines become Rejected, optional `comment` (at most 250 characters). The owner can submit them again. |
+| `Projects.Usage.Transfer` | approver | Creates journal lines for Approved lines, once, in one transaction; nothing is posted. |
+| `Projects.Usage.Reverse` | approver | Flags a Posted line Reversed, once. With `createJournalLine: true` it also creates a journal line with negative quantity. |
+| `Projects.Usage.List` | owner, approver | Read-only, paged (`skip`, `take` at most 200). Filters `timeSheetNo`, `status`, `pending` (Submitted lines addressed to the caller as approver). |
+
+States: Open, Submitted, Approved, Rejected, Transferred, Posted. Transferred means a journal line exists. Posting that journal line sets Posted and stores the ledger entry number; deleting the journal line before posting returns the line to Approved.
+
+Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. The usage message types need `BIFROST Full ori` together with the assignable set `PROJ USAGE` (`BIFROST Read ori` and `PROJ USAGE` for `Projects.Usage.List`); `PROJ USAGE` grants the Base Application time sheet, item, resource, journal and ledger data. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
+
+## Read a time sheet
+
+```json
+{"type":"Projects.TimeSheet.Get","data":{"timeSheetNo":"TS00001"}}
+```
+
+Returns `timeSheets` with the header, lines, daily hours, line and day statuses,
+and line totals. Only the authenticated owner or approver may read a sheet;
+blank assignments grant no access. Native read permissions are also required.
+Status names remain English enum names in both supported locales.
+
+| Selection | Request data |
+|---|---|
+| One sheet by number | `{"timeSheetNo":"TS00001"}` |
+| One sheet containing a date | `{"resourceNo":"R001","date":"2026-11-18"}` |
+| Paged list | `{"resourceNo":"R001","from":"2026-11-01","to":"2026-11-30","take":20,"skip":0}` |
+
+List filters are optional. `from` and `to` must be supplied together and select
+sheet periods that overlap the inclusive range. All daily hours on each selected
+sheet are returned. `take` is 1–100 (default 20); `skip` is a nonnegative integer
+(default 0). Results are ordered by sheet number and include only authorized
+sheets. When `hasMore` is true, add the number returned to `skip` for the next page.
+Concurrent sheet changes can shift offset-based pages.
+
+Single-sheet selectors cannot be mixed with paging or range filters. An empty
+list for a mapped caller succeeds; a caller with no resource or sheet mapping
+receives `PermissionDenied`. An unauthorized sheet returns `PermissionDenied`
+without record data. Invalid input and missing records return typed Bifröst
+errors with a localized `nextStep`. The help catalogue (description, selection
+text and keywords) follows en-US or is-IS. Foundation publishes machine-readable
+contract chapters in English at every LCID (core #1239).
+Related operations: `Projects.PendingApproval.Get`, `Projects.TimeSheet.Submit`.

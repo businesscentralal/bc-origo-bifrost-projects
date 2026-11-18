@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Contract chapters for Projects.TimeSheetLine.Set.</summary>
-codeunit 70013592 "TS Line Set Contract ori"
+codeunit 70013521 "TS Line Set Contract ori"
 {
     Access = Internal;
 

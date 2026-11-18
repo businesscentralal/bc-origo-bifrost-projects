@@ -5,7 +5,7 @@ using Origo.Bifrost;
 /// <summary>
 /// Adds or changes time sheet lines and their hours per day (Projects.TimeSheetLine.Set, projects#50).
 /// </summary>
-codeunit 70013591 "TS Line Set Impl ori" implements "Msg Interface ori", "Msg Contract ori", "Msg Discovery ori"
+codeunit 70013599 "TS Line Set Impl ori" implements "Msg Interface ori", "Msg Contract ori", "Msg Discovery ori"
 {
     Access = Internal;
 

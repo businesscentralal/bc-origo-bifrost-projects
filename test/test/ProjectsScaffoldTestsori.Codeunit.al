@@ -114,6 +114,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Usage.Get');
         ExpectedTypes.Add('Projects.Usage.Link');
         ExpectedTypes.Add('Projects.ResourceAllocation.Get');
+        ExpectedTypes.Add('Projects.ResourceCapacity.Get');
         ExpectedTypes.Add('Projects.WIPMethod.Get');
         ExpectedTypes.Add('Projects.WIPMethod.Set');
         ExpectedTypes.Add('Projects.Quote.Send');
@@ -134,6 +135,14 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Absence.Register');
         ExpectedTypes.Add('Projects.TimeSheetLine.Set');
         ExpectedTypes.Add('Projects.PendingApproval.Get');
+        ExpectedTypes.Add('Projects.MyTimeSheet.Get');
+        ExpectedTypes.Add('Projects.MyTimeSheet.Create');
+        ExpectedTypes.Add('Projects.MyTimeSheetLine.Set');
+        ExpectedTypes.Add('Projects.MyTimeSheet.Submit');
+        ExpectedTypes.Add('Projects.TimeSheetApproval.Get');
+        ExpectedTypes.Add('Projects.TimeSheetApproval.Approve');
+        ExpectedTypes.Add('Projects.TimeSheetApproval.Reject');
+        ExpectedTypes.Add('Projects.TimeSheet.Get');
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
@@ -163,7 +172,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(36, Count, 'Catalogue must contain all thirty-six owned Projects types, including allocation, reports, archives, the moved time-sheet types and Projects.TimeSheetLine.Set');
+        Assert.AreEqual(45, Count, 'Catalogue must contain all forty-five owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read, the #38 self-service types and Projects.TimeSheetLine.Set');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 

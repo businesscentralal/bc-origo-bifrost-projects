@@ -169,7 +169,7 @@ codeunit 70013571 "TS Sheet Create Impl ori" implements "Msg Interface ori", "Ms
         ConflictLbl: Label 'Choose resources in only one way.', Comment = 'is-IS=Veldu auðlindir á aðeins einn hátt.';
         ConflictNextLbl: Label 'Send only one of resourceNo, resourceNos or resourceGroup.', Comment = 'is-IS=Sendu aðeins eitt af resourceNo, resourceNos eða resourceGroup.';
         PermissionLbl: Label 'The caller lacks permission to create time sheets.', Comment = 'is-IS=Kallandinn hefur ekki heimild til að búa til tímaskýrslur.';
-        PermissionNextLbl: Label 'Assign the BIFROST Full ori permission set.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.';
+        PermissionNextLbl: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.';
         WeekdayLbl: Label 'startingDate must be %1.', Comment = '%1 = first weekday|is-IS=startingDate verður að vera %1.';
         WeekdayNextLbl: Label 'Use the first weekday named in the refusal.', Comment = 'is-IS=Notaðu fyrsta vikudaginn sem höfnunin nefnir.';
         LimitLbl: Label 'numberOfPeriods is above 52.', Comment = 'is-IS=numberOfPeriods er yfir 52.';
