@@ -8,7 +8,7 @@
 
 Bifrost feature app for project (job) message types that are not covered by Bifrost Foundation: project lifecycle, tasks and planning lines, copy, status, prices, WIP, budget vs actual, project invoicing helpers and project queries. Message types use the `Projects.*.*` pattern.
 
-Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets), not here. Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
+Native time sheets belong to **Bifrost Projects**: create, submit, approve, reject, reopen, post and archive sheets, create lines from planning or a previous sheet, list pending approvals and register absence. The Clockify sync and Phone Role Center remain in **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets). Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
 
 - Depends only on Bifrost Foundation.
 - Object range: 70013500..70013599 (app; upper part of Public 4 while Shopify still uses 70013400..70013481), 97100..97199 (tests).
@@ -67,7 +67,7 @@ Write failures roll back the native transaction. Native WIP method validation fa
 
 Calls require the native BC table permissions in addition to the Foundation role. WIP posting also requires the Projects Full role extension (via `BIFROST Full ori`); Projects Read does not grant posting. Projects Setup is a company-wide switch; generic `Data.Records.Set` cannot change it.
 
-For WIP methods, Get requires read permission on `Job WIP Method`. Set requires write permission on that table and read permission on `Job WIP Entry` and `Job WIP G/L Entry`. The app's role extensions grant codeunit execution without granting native table permissions.
+For WIP methods, Get requires read permission on `Job WIP Method`. Set requires write permission on that table and read permission on `Job WIP Entry` and `Job WIP G/L Entry`. The project-operation role extensions grant codeunit execution without granting native table permissions. The time-sheet extension of `BIFROST Full ori` also grants direct data access: RIMD on native time sheets and their archive tables and on project journal lines, and RI on employee absence and time-sheet posting entries. These grants support native creation, submission, decisions, reopening, posting, archiving and absence registration. They also apply outside message-type calls; the caller checks inside those operations do not restrict direct table access. Assign this role only to users who should have those native permissions. `BIFROST Read ori` does not gain these time-sheet data grants.
 
 ## Example scenario
 

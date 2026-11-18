@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Changed (2026-11-18, #59)
+
+- Prepare Projects release metadata: use the canonical PROJECTS family logo from documentation PR bifrost#184, describe native time-sheet features in app.json and README, and move help, privacy and EULA URLs to docs.bifrost.origo.is. Pending-approval refusal (codeunit 70013568) now names the assignable `BIFROST Full ori` role for Projects in English and Icelandic; test codeunit 97150 verifies both languages. Document the existing direct time-sheet data grants in permission set extension 70013580; permission scope is unchanged pending Architect confirmation. No object IDs added.
+
 ### Added (2026-11-17, #53)
 
 - Verify the moved `Projects.TimeSheet.Approve` contract with test codeunit 97152 `TS Approve Contract Tests`: English and Icelandic public help and raw parameters exclude `omitCommit`; requests containing either boolean value are refused without approving lines. Valid approval and empty selection remain covered. The product implementation already satisfies this contract after #33; no product object or translation changes.

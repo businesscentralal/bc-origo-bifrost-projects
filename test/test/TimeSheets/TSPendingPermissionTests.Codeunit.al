@@ -10,17 +10,34 @@ codeunit 97150 "TS Pending Permission Tests"
     Subtype = Test;
     TestPermissions = Restrictive;
 
-    /// <summary>Verifies Scenario AC02 AC06 NoNativeRead RefusesWithPermissionHint.</summary>
+    /// <summary>Names the assignable Projects role in the English native permission refusal.</summary>
     [Test]
-    procedure Scenario_AC02_AC06_NoNativeRead_RefusesWithPermissionHint()
+    procedure Scenario_AC05_EnglishNoNativeRead_NamesProjectsRole()
+    begin
+        // Story #59, AC05 | Time: independent of dates | Risk: None
+        AssertPermissionHint(1033, 'Ask for the BIFROST Full ori permission set for Projects.');
+    end;
+
+    /// <summary>Names the same role in the Icelandic native permission refusal.</summary>
+    [Test]
+    procedure Scenario_AC05_IcelandicNoNativeRead_NamesProjectsRole()
+    begin
+        // Story #59, AC05 | Time: independent of dates | Risk: None
+        AssertPermissionHint(1039, 'Biddu um heimildasafnið BIFROST Full ori fyrir Verkefni.');
+    end;
+
+    local procedure AssertPermissionHint(LanguageId: Integer; ExpectedHint: Text)
     var
         TempArgument: Record "Message Argument ori" temporary;
         Impl: Codeunit "TS Pending Approval ori";
         LowerPermissions: Codeunit "Library - Lower Permissions";
         Assert: Codeunit "Library Assert";
         Response: JsonObject;
+        OriginalLanguage: Integer;
     begin
-        // [GIVEN] The Foundation Read token, with no Timesheets native table permissions.
+        // [GIVEN] The Foundation Read role without Projects native time-sheet data grants.
+        OriginalLanguage := GlobalLanguage();
+        GlobalLanguage(LanguageId);
         LowerPermissions.PushPermissionSetWithoutDefaults('BIFROST Read ori');
         TempArgument.ID := CreateGuid();
         TempArgument.Insert();
@@ -28,8 +45,9 @@ codeunit 97150 "TS Pending Permission Tests"
         Assert.IsFalse(Impl.IsEnabled(), 'Missing native reads disable discovery.');
         Impl.ExecuteBifrostTask(TempArgument);
         Response := TempArgument.GetResponseJson();
-        // [THEN] The refusal is actionable and happens before reading any time sheet.
+        GlobalLanguage(OriginalLanguage);
+        // [THEN] Refusal precedes data access and identifies the assignable Projects role.
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Permission denial.');
-        Assert.AreEqual('Ask for the Timesheets permission set.', Response.GetText('nextStep'), 'Required exact hint.');
+        Assert.AreEqual(ExpectedHint, Response.GetText('nextStep'), 'Localized Projects permission hint.');
     end;
 }
