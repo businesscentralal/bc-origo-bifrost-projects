@@ -52,7 +52,6 @@ codeunit 70013591 "Projects Capacity ori"
         Resource: Record Resource;
         ResourceGroup: Record "Resource Group";
         Input: Codeunit "Projects Followup Input ori";
-        Allocation: Codeunit "Projects Allocation ori";
         Request: JsonObject;
         Response: JsonObject;
         Rows: JsonArray;
@@ -88,7 +87,7 @@ codeunit 70013591 "Projects Capacity ori"
                 Input.Refuse(Argument, "Bifrost Error Code ori"::LimitExceeded, 'toDate', Text10Lbl);
                 exit;
             end;
-            EndDate := Allocation.PeriodEnd(PeriodDate, PeriodType);
+            EndDate := ClippedPeriodEnd(PeriodDate, LastDate, PeriodType);
             if EndDate >= LastDate then
                 break;
             PeriodDate := EndDate + 1;
@@ -118,9 +117,7 @@ codeunit 70013591 "Projects Capacity ori"
             repeat
                 PeriodDate := FirstDate;
                 repeat
-                    EndDate := Allocation.PeriodEnd(PeriodDate, PeriodType);
-                    if EndDate > LastDate then
-                        EndDate := LastDate;
+                    EndDate := ClippedPeriodEnd(PeriodDate, LastDate, PeriodType);
                     Rows.Add(CapacityRow(Resource."No.", PeriodDate, EndDate));
                     if EndDate = LastDate then
                         break;
@@ -131,6 +128,20 @@ codeunit 70013591 "Projects Capacity ori"
         Response.Add('periodType', PeriodType);
         Response.Add('rows', Rows);
         Argument.SetResponseJson(Response);
+    end;
+
+    local procedure ClippedPeriodEnd(FirstDate: Date; LastDate: Date; PeriodType: Text): Date
+    var
+        Allocation: Codeunit "Projects Allocation ori";
+        EndDate: Date;
+    begin
+        // Avoid asking CalcDate for a Sunday beyond BC's maximum supported date.
+        if (PeriodType = 'week') and (LastDate - FirstDate < 7 - Date2DWY(FirstDate, 1)) then
+            exit(LastDate);
+        EndDate := Allocation.PeriodEnd(FirstDate, PeriodType);
+        if EndDate > LastDate then
+            exit(LastDate);
+        exit(EndDate);
     end;
 
     local procedure CapacityRow(ResourceNo: Code[20]; FirstDate: Date; LastDate: Date) Result: JsonObject

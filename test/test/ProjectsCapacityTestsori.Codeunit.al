@@ -134,15 +134,18 @@ codeunit 97161 "Projects Capacity Tests ori"
     var
         ResourceNo: Code[20];
         Response: JsonObject;
+        PeriodType: Text;
     begin
         // Story #51, AC01 | Time: fixed last date supported by BC | Risk: None
         Initialize();
         // [GIVEN] A resource without entries.
         ResourceNo := NewResource('');
         // [WHEN] Reading a single day at the date boundary.
-        Response := Execute(NewRequest(ResourceNo, 'day', '9999-12-31', '9999-12-31'));
-        // [THEN] No overflow or fabricated quantity.
-        AssertRow(Response.GetArray('rows').GetObject(0), ResourceNo, '9999-12-31', '9999-12-31', 0, 0, 0);
+        foreach PeriodType in 'day,week,month,quarter,year'.Split(',') do begin
+            Response := Execute(NewRequest(ResourceNo, PeriodType, '9999-12-31', '9999-12-31'));
+            // [THEN] No overflow or fabricated quantity.
+            AssertRow(Response.GetArray('rows').GetObject(0), ResourceNo, '9999-12-31', '9999-12-31', 0, 0, 0);
+        end;
     end;
 
     /// <summary>Group filters exclude other resources and empty groups return no rows.</summary>
@@ -269,6 +272,8 @@ codeunit 97161 "Projects Capacity Tests ori"
         Impl := "Message Type ori"::"Projects.ResourceCapacity.Get";
         TempArgument.Type := "Message Type ori"::"Projects.ResourceCapacity.Get";
         TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
         // [WHEN] Executing through the registered interface.
         Impl.ExecuteBifrostTask(TempArgument);
         Response := TempArgument.GetResponseJson();
