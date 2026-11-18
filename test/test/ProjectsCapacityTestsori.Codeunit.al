@@ -8,7 +8,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Story 51: verifies capacity, time-sheet hours, usage and the read-only contract.</summary>
-codeunit 97161 "Projects Capacity Tests ori"
+codeunit 97166 "Projects Capacity Tests ori"
 {
     Subtype = Test;
     TestPermissions = Disabled;

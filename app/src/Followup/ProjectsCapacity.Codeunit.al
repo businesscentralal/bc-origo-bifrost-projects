@@ -6,7 +6,7 @@ using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 
 /// <summary>Reads resource capacity, time-sheet quantities and posted usage in bounded calendar periods.</summary>
-codeunit 70013591 "Projects Capacity ori"
+codeunit 70013594 "Projects Capacity ori"
 {
     Access = Internal;
 
