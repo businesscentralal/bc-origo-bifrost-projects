@@ -1,0 +1,150 @@
+namespace Origo.Bifrost.Projects;
+
+using Origo.Bifrost;
+
+/// <summary>Implements the version 1 Projects.Usage.Register contract.</summary>
+codeunit 70013410 "TS Usage Register Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+{
+    Access = Internal;
+
+    /// <summary>Checks the permissions this message type needs.</summary>
+    procedure IsEnabled(): Boolean
+    var
+        Mgt: Codeunit "TS Usage Mgt ori";
+    begin
+        exit(Mgt.CanUse(1));
+    end;
+
+    /// <summary>Usage lines have no native filter table.</summary>
+    procedure GetFilterTableNo(): Integer
+    begin
+        exit(0);
+    end;
+
+    /// <summary>Describes this operation in the session language.</summary>
+    procedure GetDescription(): Text[250]
+    var
+        DescriptionLbl: Label 'Registers item or resource usage on a time sheet line.', Comment = 'is-IS=Skráir notkun á vöru eða aðfangi á tímaskýrslulínu.';
+    begin
+        exit(DescriptionLbl);
+    end;
+
+    /// <summary>Provides localized discovery terms.</summary>
+    procedure GetKeywords(): Text
+    var
+        KeywordsLbl: Label 'time sheet, usage, register, item, resource, km, tools', Comment = 'is-IS=tímaskýrsla, notkun, skrá, vara, aðfang, km, verkfæri';
+    begin
+        exit(KeywordsLbl);
+    end;
+
+    /// <summary>Distinguishes this operation during discovery.</summary>
+    procedure GetSelectionDescription(): Text
+    var
+        SelectionLbl: Label 'Projects.Usage.Register: Registers item or resource usage on a time sheet line.', Comment = 'is-IS=Projects.Usage.Register: Skráir notkun á vöru eða aðfangi á tímaskýrslulínu.';
+    begin
+        exit(SelectionLbl);
+    end;
+
+    /// <summary>Declares the message direction.</summary>
+    procedure GetMessageDirection(): Enum "Msg Direction ori"
+    begin
+        exit("Msg Direction ori"::Inbound);
+    end;
+
+    /// <summary>Declares the data-only version 1 envelope.</summary>
+    procedure GetEnvelope(var Envelope: JsonObject): Boolean
+    var
+        Contract: Codeunit "TS Usage Contract ori";
+    begin
+        exit(Contract.GetEnvelope(Envelope));
+    end;
+
+    /// <summary>No target keys are declared; the request data carries the keys.</summary>
+    procedure GetTarget(var Target: JsonArray): Boolean
+    begin
+        exit(false);
+    end;
+
+    /// <summary>Declares the request keys.</summary>
+    procedure GetParameters(var Parameters: JsonArray): Boolean
+    var
+        Contract: Codeunit "TS Usage Contract ori";
+    begin
+        exit(Contract.GetParameters(1, Parameters));
+    end;
+
+    /// <summary>Declares the stable success response.</summary>
+    procedure GetResponse(var Response: JsonObject): Boolean
+    var
+        Contract: Codeunit "TS Usage Contract ori";
+    begin
+        exit(Contract.GetResponse(Response));
+    end;
+
+    /// <summary>Declares the Bifrost error codes.</summary>
+    procedure GetErrors(var Errors: JsonArray): Boolean
+    var
+        Contract: Codeunit "Projects Contract ori";
+    begin
+        Errors := Contract.Errors();
+        exit(true);
+    end;
+
+    /// <summary>Documents the effect.</summary>
+    procedure GetEffect(var Effect: JsonObject): Boolean
+    var
+        Contract: Codeunit "TS Usage Contract ori";
+    begin
+        exit(Contract.GetEffect(1, Effect));
+    end;
+
+    /// <summary>No additional meter is declared.</summary>
+    procedure GetMetering(var Metering: JsonObject): Boolean
+    begin
+        exit(false);
+    end;
+
+    /// <summary>No additional related types are declared.</summary>
+    procedure GetRelated(var Related: JsonArray): Boolean
+    begin
+        exit(false);
+    end;
+
+    /// <summary>No additional workflow chapter is declared.</summary>
+    procedure GetWorkflow(var Workflow: JsonObject): Boolean
+    begin
+        exit(false);
+    end;
+
+    /// <summary>No example is declared.</summary>
+    procedure GetExamples(var Examples: JsonArray): Boolean
+    begin
+        exit(false);
+    end;
+
+    /// <summary>Provides localized operation help.</summary>
+    procedure GetOverview(var Overview: Text): Boolean
+    begin
+        Overview := GetDescription();
+        exit(true);
+    end;
+
+    /// <summary>Documents the rules of this operation.</summary>
+    procedure GetNotes(var Notes: Text): Boolean
+    var
+        NotesLbl: Label 'Register creates an Open usage line for the caller on an own time sheet and an existing line of it. Type is Item or Resource; the item or resource must exist and not be blocked; the date must be inside the week of the sheet; quantity is greater than zero.', Comment = 'is-IS=Register býr til opna notkunarlínu fyrir kallanda á eigin tímaskýrslu og línu á henni. Type er Item eða Resource; varan eða aðfangið verður að vera til og ekki lokað; dagsetning verður að vera innan viku tímaskýrslunnar; magn er stærra en núll.';
+    begin
+        Notes := NotesLbl;
+        exit(true);
+    end;
+
+    /// <summary>Runs the operation after the license and version checks.</summary>
+    procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    var
+        Mgt: Codeunit "TS Usage Mgt ori";
+    begin
+        Argument.AssertIsLicensed();
+        Argument.AssertVersion1();
+        Mgt.Execute(Argument, 1);
+    end;
+}
