@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-18, #52)
+
+- Item and resource usage registration on time sheets. New table 70013400 `TS Usage Line ori`, enums 70013400 `TS Usage Status ori` and 70013401 `TS Usage Type ori`, page 70013400 `TS Usage Lines ori`, enum extension 70013400 `TS Usage Types ori` (values 70013410..70013416), codeunits 70013400 `TS Usage Mgt ori`, 70013401 `TS Usage Context ori`, 70013402 `TS Usage Journal ori`, 70013403 `TS Usage Runner ori`, 70013404 `TS Usage Contract ori`, 70013405 `TS Usage Restrict ori` and 70013410..70013416 for the seven new message types `Projects.Usage.Register/Submit/Approve/Reject/Transfer/Reverse/List`, and permission set extensions 70013400 (Full) and 70013401 (Read). `app.json` idRanges widened to 70013400-70013599 (Architect ruling 18.11.2026, Gunnar 12.11 #34; usage objects stay in 70013400-70013499). Journal mapping: Item Journal, Resource Journal, or Job Journal when the time sheet line has a project; Transfer creates lines only (never posts) in one transaction. Product decisions on the recommended defaults (sheet approver approves, journal by line type, no post flag); Gunnar's card d-20261104 is still open. Tests: codeunits 97153 `TS Usage Tests` and 97154 `TS Usage Perm Tests`, permission set 97153. Help: docs/projects.md. is-IS units in sync.
+
 ### Added (2026-11-17, #53)
 
 - Verify the moved `Projects.TimeSheet.Approve` contract with test codeunit 97152 `TS Approve Contract Tests`: English and Icelandic public help and raw parameters exclude `omitCommit`; requests containing either boolean value are refused without approving lines. Valid approval and empty selection remain covered. The product implementation already satisfies this contract after #33; no product object or translation changes.
