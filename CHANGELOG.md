@@ -2,6 +2,11 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-18, #49)
+
+- `Projects.TimeSheet.Get` reads a sheet by number or resource and date, or lists authorized sheets with resource/date filters and paging. It returns headers, lines, daily hours, stable statuses and line totals. Only the authenticated owner or approver can read a sheet; foreign and blank assignments fail closed with `PermissionDenied` and a localized next step. New codeunit 70013593 `TS Sheet Get Impl ori`, enum value 70013549, and test codeunits 97161–97162 cover selection, paging, authorization, invalid input and bilingual help. Icelandic translations and Foundation Read/Full execution grants are included.
+
+
 ### Added (2026-11-17, #53)
 
 - Verify the moved `Projects.TimeSheet.Approve` contract with test codeunit 97152 `TS Approve Contract Tests`: English and Icelandic public help and raw parameters exclude `omitCommit`; requests containing either boolean value are refused without approving lines. Valid approval and empty selection remain covered. The product implementation already satisfies this contract after #33; no product object or translation changes.

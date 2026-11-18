@@ -230,3 +230,34 @@ missing records and conflicting project/task identifiers return
 read permissions returns `PermissionDenied`, naming BIFROST Read ori and native
 project report permissions. Feature roles grant the report implementation; native
 Business Central permissions remain the caller's responsibility.
+
+## Read a time sheet
+
+```json
+{"type":"Projects.TimeSheet.Get","data":{"timeSheetNo":"TS00001"}}
+```
+
+Returns `timeSheets` with the header, lines, daily hours, line and day statuses,
+and line totals. Only the authenticated owner or approver may read a sheet;
+blank assignments grant no access. Native read permissions are also required.
+Status names remain English enum names in both supported locales.
+
+| Selection | Request data |
+|---|---|
+| One sheet by number | `{"timeSheetNo":"TS00001"}` |
+| One sheet containing a date | `{"resourceNo":"R001","date":"2026-11-18"}` |
+| Paged list | `{"resourceNo":"R001","from":"2026-11-01","to":"2026-11-30","take":20,"skip":0}` |
+
+List filters are optional. `from` and `to` must be supplied together and select
+sheet periods that overlap the inclusive range. All daily hours on each selected
+sheet are returned. `take` is 1–100 (default 20); `skip` is a nonnegative integer
+(default 0). Results are ordered by sheet number and include only authorized
+sheets. When `hasMore` is true, add the number returned to `skip` for the next page.
+Concurrent sheet changes can shift offset-based pages.
+
+Single-sheet selectors cannot be mixed with paging or range filters. An empty
+list for a mapped caller succeeds; a caller with no resource or sheet mapping
+receives `PermissionDenied`. An unauthorized sheet returns `PermissionDenied`
+without record data. Invalid input and missing records return typed Bifröst
+errors with a localized `nextStep`. Help is available in en-US and is-IS.
+Related operations: `Projects.PendingApproval.Get`, `Projects.TimeSheet.Submit`.
