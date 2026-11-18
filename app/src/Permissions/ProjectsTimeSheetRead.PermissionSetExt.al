@@ -51,5 +51,7 @@ permissionsetextension 70013581 "Projects TimeSheet Read ori" extends "BIFROST R
         codeunit "TS My Sheet Submit Impl ori" = X,
         codeunit "TS Approval Get Impl ori" = X,
         codeunit "TS Approval Approve Impl ori" = X,
-        codeunit "TS Approval Reject Impl ori" = X;
+        codeunit "TS Approval Reject Impl ori" = X,
+        codeunit "TS My Line Set Impl ori" = X,
+        codeunit "TS My Line Set Runner ori" = X;
 }

@@ -32,6 +32,14 @@ codeunit 70013583 "TS Self Service Mgt ori"
         UnknownNextTxt: Label 'Remove the unknown parameter.', Comment = 'is-IS=Fjarlægðu óþekkta viðfangið.';
         DatesNextTxt: Label 'Supply both from and to, with from <= to.', Comment = 'is-IS=Sendu bæði from og to, með from <= to.';
         NotFoundNextTxt: Label 'Use an existing time sheet number.', Comment = 'is-IS=Notaðu fyrirliggjandi tímaskýrslunúmer.';
+        LockedLineMsg: Label 'Only open or rejected lines can be changed.', Comment = 'is-IS=Aðeins er hægt að breyta opnum eða höfnuðum línum.';
+        LockedLineNextTxt: Label 'Ask the approver to reject the line, then edit it.', Comment = 'is-IS=Biddu samþykkjanda að hafna línunni og breyttu henni síðan.';
+        IsolatedMsg: Label 'This operation requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslu.';
+        IsolatedNextTxt: Label 'Run this action outside an uncommitted batch.', Comment = 'is-IS=Keyrðu þessa aðgerð utan óstaðfestrar lotu.';
+        MissingNextTxt: Label 'Send the missing key.', Comment = 'is-IS=Sendu lykilinn sem vantar.';
+        TypeChangeNextTxt: Label 'Keep the line type; add a new line for another type.', Comment = 'is-IS=Haltu tegund línunnar; bættu við nýrri línu fyrir aðra tegund.';
+        DayRangeNextTxt: Label 'Use dates inside the time sheet period and hours from 0 to 24.', Comment = 'is-IS=Notaðu dagsetningar innan tímabils tímaskýrslunnar og stundir frá 0 til 24.';
+        RetryNextTxt: Label 'Correct the Business Central error and retry.', Comment = 'is-IS=Leiðréttu Business Central villuna og reyndu aftur.';
 
     /// <summary>True when the caller can read native time sheets.</summary>
     procedure CanReadSheets(): Boolean
@@ -142,6 +150,227 @@ codeunit 70013583 "TS Self Service Mgt ori"
         Header.ReadIsolation := IsolationLevel::ReadCommitted;
         Header.SetRange("Approver User ID", CallerId());
         exit(not Header.IsEmpty());
+    end;
+
+    /// <summary>Adds or edits lines and daily hours on the caller's own sheet (Projects.MyTimeSheetLine.Set).</summary>
+    procedure ExecuteMyLineSet(var Argument: Record "Message Argument ori")
+    var
+        Header: Record "Time Sheet Header";
+        Runner: Codeunit "TS My Line Set Runner ori";
+        Request: JsonObject;
+        Response: JsonObject;
+        Token: JsonToken;
+        Entry: JsonToken;
+        ParameterName: Text;
+        SheetNo: Code[20];
+    begin
+        Argument.AssertVersion1();
+        if not CanReadSheets() then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, PermissionMsg, '', PermissionNextTxt);
+            exit;
+        end;
+        if not IsOwnerMapped() then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, UnmappedOwnerMsg, '', UnmappedOwnerNextTxt);
+            exit;
+        end;
+        Request := Argument.GetRequestJson();
+        foreach ParameterName in Request.Keys() do
+            if not (ParameterName in ['timeSheetNo', 'lines']) then begin
+                Refuse(Argument, "Bifrost Error Code ori"::UnknownParameter, RefusedMsg, ParameterName, UnknownNextTxt);
+                exit;
+            end;
+        if not Request.Get('timeSheetNo', Token) then begin
+            Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'timeSheetNo', MissingNextTxt);
+            exit;
+        end;
+        if not IsText(Token, MaxStrLen(SheetNo), false) then begin
+            BadFormat(Argument, 'timeSheetNo');
+            exit;
+        end;
+        SheetNo := CopyStr(Token.AsValue().AsText(), 1, MaxStrLen(SheetNo));
+        Header.ReadIsolation := IsolationLevel::ReadCommitted;
+        if not Header.Get(SheetNo) then begin
+            Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, RefusedMsg, 'timeSheetNo', NotFoundNextTxt);
+            exit;
+        end;
+        if not SameUser(Header."Owner User ID") then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, NotOwnerMsg, 'timeSheetNo', NotOwnerNextTxt);
+            exit;
+        end;
+        if not Request.Get('lines', Token) then begin
+            Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'lines', MissingNextTxt);
+            exit;
+        end;
+        if not Token.IsArray() then begin
+            BadFormat(Argument, 'lines');
+            exit;
+        end;
+        if (Token.AsArray().Count() = 0) or (Token.AsArray().Count() > 50) then begin
+            BadFormat(Argument, 'lines');
+            exit;
+        end;
+        foreach Entry in Token.AsArray() do
+            if not ValidateLineEntry(Argument, Header, Entry) then
+                exit;
+        if Argument."Omit Commit" then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, IsolatedMsg, '', IsolatedNextTxt);
+            exit;
+        end;
+        // A captured Codeunit.Run cannot roll back inside an open write transaction; commit first,
+        // so the runner has its own transaction that commits or rolls back as a whole.
+        if Database.IsInWriteTransaction() then
+            Commit();
+        Runner.SetRequest(Header."No.", Token.AsArray());
+        if not Runner.Run() then begin
+            Refuse(Argument, "Bifrost Error Code ori"::BusinessCentralError, CopyStr(GetLastErrorText(), 1, 250), 'lines', RetryNextTxt);
+            exit;
+        end;
+        Response.Add('status', 'Success');
+        Response.Add('timeSheetNo', Header."No.");
+        Response.Add('lines', Runner.GetResults());
+        Argument.SetResponseJson(Response);
+    end;
+
+    local procedure ValidateLineEntry(var Argument: Record "Message Argument ori"; Header: Record "Time Sheet Header"; Entry: JsonToken): Boolean
+    var
+        Line: Record "Time Sheet Line";
+        EntryObject: JsonObject;
+        Token: JsonToken;
+        Day: JsonToken;
+        DayObject: JsonObject;
+        ParameterName: Text;
+        LineNo: Integer;
+        DayDate: Date;
+        Hours: Decimal;
+        IsNew: Boolean;
+    begin
+        if not Entry.IsObject() then
+            exit(BadFormat(Argument, 'lines'));
+        EntryObject := Entry.AsObject();
+        foreach ParameterName in EntryObject.Keys() do
+            if not (ParameterName in ['lineNo', 'type', 'projectNo', 'taskNo', 'workTypeCode', 'description', 'days']) then begin
+                Refuse(Argument, "Bifrost Error Code ori"::UnknownParameter, RefusedMsg, 'lines.' + ParameterName, UnknownNextTxt);
+                exit(false);
+            end;
+        IsNew := not EntryObject.Get('lineNo', Token);
+        if not IsNew then begin
+            if not ReadPositiveInteger(Token, LineNo) then
+                exit(BadFormat(Argument, 'lines.lineNo'));
+            Line.ReadIsolation := IsolationLevel::ReadCommitted;
+            if not Line.Get(Header."No.", LineNo) then begin
+                Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, RefusedMsg, 'lines.lineNo', NotFoundNextTxt);
+                exit(false);
+            end;
+            if not (Line.Status in [Line.Status::Open, Line.Status::Rejected]) then begin
+                Refuse(Argument, "Bifrost Error Code ori"::InvalidLine, LockedLineMsg, 'lines.lineNo', LockedLineNextTxt);
+                exit(false);
+            end;
+        end;
+        if EntryObject.Get('type', Token) then begin
+            if not IsText(Token, 20, false) then
+                exit(BadFormat(Argument, 'lines.type'));
+            if not (Token.AsValue().AsText() in ['Job', 'Resource']) then
+                exit(BadFormat(Argument, 'lines.type'));
+            if not IsNew then
+                if Token.AsValue().AsText() <> Line.Type.Names().Get(Line.Type.Ordinals().IndexOf(Line.Type.AsInteger())) then begin
+                    Refuse(Argument, "Bifrost Error Code ori"::InvalidParameter, RefusedMsg, 'lines.type', TypeChangeNextTxt);
+                    exit(false);
+                end;
+        end else
+            if IsNew then begin
+                Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'lines.type', MissingNextTxt);
+                exit(false);
+            end;
+        // AL does not short-circuit 'and': read the type only for a new line, where it is present.
+        if IsNew then
+            if EntryObject.GetText('type') = 'Job' then begin
+                if not EntryObject.Contains('projectNo') then begin
+                    Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'lines.projectNo', MissingNextTxt);
+                    exit(false);
+                end;
+                if not EntryObject.Contains('taskNo') then begin
+                    Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'lines.taskNo', MissingNextTxt);
+                    exit(false);
+                end;
+            end;
+        if EntryObject.Get('projectNo', Token) then
+            if not IsText(Token, 20, false) then
+                exit(BadFormat(Argument, 'lines.projectNo'));
+        if EntryObject.Get('taskNo', Token) then
+            if not IsText(Token, 20, false) then
+                exit(BadFormat(Argument, 'lines.taskNo'));
+        if EntryObject.Get('workTypeCode', Token) then
+            if not IsText(Token, 10, true) then
+                exit(BadFormat(Argument, 'lines.workTypeCode'));
+        if EntryObject.Get('description', Token) then
+            if not IsText(Token, MaxStrLen(Line.Description), true) then
+                exit(BadFormat(Argument, 'lines.description'));
+        if EntryObject.Get('days', Token) then begin
+            if not Token.IsArray() then
+                exit(BadFormat(Argument, 'lines.days'));
+            foreach Day in Token.AsArray() do begin
+                if not Day.IsObject() then
+                    exit(BadFormat(Argument, 'lines.days'));
+                DayObject := Day.AsObject();
+                if (DayObject.Keys().Count() <> 2) or not DayObject.Get('date', Token) then
+                    exit(BadFormat(Argument, 'lines.days'));
+                if not IsText(Token, 10, false) then
+                    exit(BadFormat(Argument, 'lines.days'));
+                if not Evaluate(DayDate, Token.AsValue().AsText(), 9) then
+                    exit(BadFormat(Argument, 'lines.days'));
+                if not DayObject.Get('hours', Token) then
+                    exit(BadFormat(Argument, 'lines.days'));
+                if not ReadDecimal(Token, Hours) then
+                    exit(BadFormat(Argument, 'lines.days'));
+                if (DayDate < Header."Starting Date") or (DayDate > Header."Ending Date") or (Hours < 0) or (Hours > 24) then begin
+                    Refuse(Argument, "Bifrost Error Code ori"::InvalidParameter, RefusedMsg, 'lines.days', DayRangeNextTxt);
+                    exit(false);
+                end;
+            end;
+        end;
+        exit(true);
+    end;
+
+    local procedure IsText(Token: JsonToken; MaxLength: Integer; AllowEmpty: Boolean): Boolean
+    var
+        Raw: Text;
+    begin
+        if not Token.IsValue() then
+            exit(false);
+        if Token.AsValue().IsNull() then
+            exit(false);
+        Token.WriteTo(Raw);
+        if not Raw.StartsWith('"') then
+            exit(false);
+        if (not AllowEmpty) and (Token.AsValue().AsText() = '') then
+            exit(false);
+        exit(StrLen(Token.AsValue().AsText()) <= MaxLength);
+    end;
+
+    local procedure ReadDecimal(Token: JsonToken; var Value: Decimal): Boolean
+    var
+        Raw: Text;
+    begin
+        if not Token.IsValue() then
+            exit(false);
+        if Token.AsValue().IsNull() then
+            exit(false);
+        Token.WriteTo(Raw);
+        if Raw.StartsWith('"') then
+            exit(false);
+        exit(Evaluate(Value, Raw, 9));
+    end;
+
+    local procedure ReadPositiveInteger(Token: JsonToken; var Value: Integer): Boolean
+    var
+        Number: Decimal;
+    begin
+        if not ReadDecimal(Token, Number) then
+            exit(false);
+        if (Number <> Round(Number, 1)) or (Number <= 0) or (Number > 2147483647) then
+            exit(false);
+        Value := Number;
+        exit(true);
     end;
 
     local procedure ExecuteGet(var Argument: Record "Message Argument ori"; AsApprover: Boolean)

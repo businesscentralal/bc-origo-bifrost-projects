@@ -24,7 +24,7 @@ codeunit 97160 "TS Self Service Tests"
         OtherApproverTok: Label 'XAPPR38', Locked = true;
 
     [Test]
-    procedure AC01_AllFiveTypes_HaveContracts_1033_1039()
+    procedure AC01_AllSixTypes_HaveContracts_1033_1039()
     begin
         // [SCENARIO] Each new type publishes a contract with parameters in both languages.
         AssertContract("Message Type ori"::"Projects.MyTimeSheet.Get");
@@ -32,6 +32,7 @@ codeunit 97160 "TS Self Service Tests"
         AssertContract("Message Type ori"::"Projects.TimeSheetApproval.Get");
         AssertContract("Message Type ori"::"Projects.TimeSheetApproval.Approve");
         AssertContract("Message Type ori"::"Projects.TimeSheetApproval.Reject");
+        AssertContract("Message Type ori"::"Projects.MyTimeSheetLine.Set");
     end;
 
     [Test]
@@ -330,6 +331,234 @@ codeunit 97160 "TS Self Service Tests"
         Request.Add('lineNos', LineNos);
         Execute(TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Reject", Request);
         AssertCode(TempArgument, 'InvalidLine', 'lineNos');
+    end;
+
+    [Test]
+    procedure AC03_LineSet_AddLineWithHours()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Detail: Record "Time Sheet Detail";
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        OwnNo: Code[20];
+    begin
+        // [GIVEN] An own sheet without lines
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        Header.Get(OwnNo);
+        // [WHEN] The owner adds a resource line with two days
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(NewEntry('Resource', 'Workshop', Header."Starting Date", 4, Header."Starting Date" + 1, 3)));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        // [THEN] The line and its hours exist and the answer reports them
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'LineSet should succeed: ' + FullResponse(TempArgument));
+        Assert.IsTrue(ReadText(TempArgument.GetResponseJson(), 'lines').Contains('"created":true'), 'The new line is reported as created.');
+        Line.SetRange("Time Sheet No.", OwnNo);
+        Assert.AreEqual(1, Line.Count(), 'One line is added.');
+        Line.FindFirst();
+        Assert.AreEqual('Workshop', Line.Description, 'Description is stored.');
+        Detail.SetRange("Time Sheet No.", OwnNo);
+        Detail.SetRange("Time Sheet Line No.", Line."Line No.");
+        Detail.CalcSums(Quantity);
+        Assert.AreEqual(7, Detail.Quantity, 'Daily hours are stored.');
+    end;
+
+    [Test]
+    procedure AC03_LineSet_EditOpenLine_ChangesHours()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Detail: Record "Time Sheet Detail";
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        Entry: JsonObject;
+        OwnNo: Code[20];
+    begin
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        CreateLine(OwnNo, 10000, 'Open');
+        Header.Get(OwnNo);
+        Entry := NewEntry('', '', Header."Starting Date", 5, 0D, 0);
+        Entry.Add('lineNo', 10000);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(Entry));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Editing an open line should succeed: ' + FullResponse(TempArgument));
+        Detail.Get(OwnNo, 10000, Header."Starting Date");
+        Assert.AreEqual(5, Detail.Quantity, 'The day is changed from 8 to 5 hours.');
+    end;
+
+    [Test]
+    procedure AC03_LineSet_SubmittedLine_Refused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Detail: Record "Time Sheet Detail";
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        Entry: JsonObject;
+        OwnNo: Code[20];
+    begin
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        CreateLine(OwnNo, 10000, 'Submitted');
+        Header.Get(OwnNo);
+        Entry := NewEntry('', '', Header."Starting Date", 1, 0D, 0);
+        Entry.Add('lineNo', 10000);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(Entry));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        AssertCode(TempArgument, 'InvalidLine', 'lines.lineNo');
+        Detail.Get(OwnNo, 10000, Header."Starting Date");
+        Assert.AreEqual(8, Detail.Quantity, 'A submitted line keeps its hours.');
+    end;
+
+    [Test]
+    procedure AC03_LineSet_RejectedLine_EditReopens()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        Entry: JsonObject;
+        OwnNo: Code[20];
+    begin
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        CreateLine(OwnNo, 10000, 'Rejected');
+        Header.Get(OwnNo);
+        Entry := NewEntry('', '', Header."Starting Date", 6, 0D, 0);
+        Entry.Add('lineNo', 10000);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(Entry));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Editing a rejected line should succeed: ' + FullResponse(TempArgument));
+        Line.Get(OwnNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'An edited rejected line is open again for a new submit.');
+    end;
+
+    [Test]
+    procedure AC02_LineSet_ForeignSheet_Refused_1033()
+    begin
+        LineSetForeignRefused(1033);
+    end;
+
+    [Test]
+    procedure AC02_LineSet_ForeignSheet_Refused_1039()
+    begin
+        LineSetForeignRefused(1039);
+    end;
+
+    [Test]
+    procedure AC03_LineSet_InvalidInput_Refused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        Entry: JsonObject;
+        OwnNo: Code[20];
+    begin
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        Header.Get(OwnNo);
+        // Unknown key on an entry
+        Entry := NewEntry('Resource', 'X', Header."Starting Date", 1, 0D, 0);
+        Entry.Add('status', 'Approved');
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(Entry));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        AssertCode(TempArgument, 'UnknownParameter', 'lines.status');
+        // Day outside the sheet period
+        Clear(Request);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(NewEntry('Resource', 'X', Header."Ending Date" + 1, 1, 0D, 0)));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        AssertCode(TempArgument, 'InvalidParameter', 'lines.days');
+        // New line without a type
+        Clear(Request);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(NewEntry('', 'X', Header."Starting Date", 1, 0D, 0)));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        AssertCode(TempArgument, 'MissingParameter', 'lines.type');
+        // New Job line without a project
+        Clear(Request);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', OneEntry(NewEntry('Job', 'X', Header."Starting Date", 1, 0D, 0)));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        AssertCode(TempArgument, 'MissingParameter', 'lines.projectNo');
+    end;
+
+    [Test]
+    procedure AC03_LineSet_NativeError_RollsBackWholeCall()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        Entries: JsonArray;
+        BadEntry: JsonObject;
+        OwnNo: Code[20];
+    begin
+        // [GIVEN] One valid entry and one entry on a project that does not exist
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        Header.Get(OwnNo);
+        Entries.Add(NewEntry('Resource', 'Valid', Header."Starting Date", 2, 0D, 0));
+        BadEntry := NewEntry('Job', 'Bad', Header."Starting Date", 2, 0D, 0);
+        BadEntry.Add('projectNo', 'XNOPROJ38');
+        BadEntry.Add('taskNo', 'XNOTASK38');
+        Entries.Add(BadEntry);
+        Request.Add('timeSheetNo', OwnNo);
+        Request.Add('lines', Entries);
+        // [WHEN]
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        // [THEN] The call is refused and the valid entry is rolled back too
+        AssertCode(TempArgument, 'BusinessCentralError', 'lines');
+        Line.SetRange("Time Sheet No.", OwnNo);
+        Assert.IsTrue(Line.IsEmpty(), 'No line may remain after a failed call.');
+    end;
+
+    local procedure LineSetForeignRefused(LanguageId: Integer)
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        ForeignNo: Code[20];
+        PreviousLanguage: Integer;
+    begin
+        CreateResource(UserId(), OtherApproverTok);
+        ForeignNo := CreateSheet(CreateResource(OtherEmployeeTok, UserId()), UniqueWeek(), OtherEmployeeTok, UserId());
+        Header.Get(ForeignNo);
+        Request.Add('timeSheetNo', ForeignNo);
+        Request.Add('lines', OneEntry(NewEntry('Resource', 'Intrusion', Header."Starting Date", 8, 0D, 0)));
+        PreviousLanguage := GlobalLanguage();
+        GlobalLanguage(LanguageId);
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request);
+        GlobalLanguage(PreviousLanguage);
+        AssertCode(TempArgument, 'PermissionDenied', 'timeSheetNo');
+        Assert.AreNotEqual('', ReadText(TempArgument.GetResponseJson(), 'nextStep'), 'The refusal names a next step.');
+        Line.SetRange("Time Sheet No.", ForeignNo);
+        Assert.IsTrue(Line.IsEmpty(), 'No line may be added to another employee''s sheet.');
+    end;
+
+    local procedure NewEntry(LineType: Text; Description: Text; Day1: Date; Hours1: Decimal; Day2: Date; Hours2: Decimal) Entry: JsonObject
+    var
+        Days: JsonArray;
+        Day: JsonObject;
+    begin
+        if LineType <> '' then
+            Entry.Add('type', LineType);
+        if Description <> '' then
+            Entry.Add('description', Description);
+        Day.Add('date', Format(Day1, 0, 9));
+        Day.Add('hours', Hours1);
+        Days.Add(Day);
+        if Day2 <> 0D then begin
+            Clear(Day);
+            Day.Add('date', Format(Day2, 0, 9));
+            Day.Add('hours', Hours2);
+            Days.Add(Day);
+        end;
+        Entry.Add('days', Days);
+    end;
+
+    local procedure OneEntry(Entry: JsonObject) Entries: JsonArray
+    begin
+        Entries.Add(Entry);
     end;
 
     local procedure MyGetForeignSheetRefused(LanguageId: Integer)
