@@ -2,6 +2,7 @@ namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Foundation.UOM;
 using Microsoft.Projects.Resources.Resource;
+using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 using System.Security.User;
@@ -24,7 +25,7 @@ codeunit 97160 "TS Self Service Tests"
         OtherApproverTok: Label 'XAPPR38', Locked = true;
 
     [Test]
-    procedure AC01_AllSixTypes_HaveContracts_1033_1039()
+    procedure AC01_AllSevenTypes_HaveContracts_1033_1039()
     begin
         // [SCENARIO] Each new type publishes a contract with parameters in both languages.
         AssertContract("Message Type ori"::"Projects.MyTimeSheet.Get");
@@ -33,6 +34,7 @@ codeunit 97160 "TS Self Service Tests"
         AssertContract("Message Type ori"::"Projects.TimeSheetApproval.Approve");
         AssertContract("Message Type ori"::"Projects.TimeSheetApproval.Reject");
         AssertContract("Message Type ori"::"Projects.MyTimeSheetLine.Set");
+        AssertContract("Message Type ori"::"Projects.MyTimeSheet.Create");
     end;
 
     [Test]
@@ -561,6 +563,85 @@ codeunit 97160 "TS Self Service Tests"
         Entries.Add(Entry);
     end;
 
+    [Test]
+    procedure AC01_MyCreate_CreatesOwnSheet_ThenNoOp()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        StartDate: Date;
+        ResourceNo: Code[20];
+    begin
+        // [GIVEN] The caller owns one time sheet resource; the caller is not a time sheet administrator
+        IsolateOwnResources();
+        ResourceNo := CreateResource(UserId(), OtherApproverTok);
+        StartDate := FirstWeekdayWeek();
+        // [WHEN] The caller creates the own sheet
+        Request.Add('startingDate', Format(StartDate, 0, 9));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        // [THEN] One native sheet exists for the own resource and the caller owns it
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own create should succeed: ' + FullResponse(TempArgument));
+        Assert.AreEqual('true', ReadText(TempArgument.GetResponseJson(), 'created'), 'A new sheet is created.');
+        Header.SetRange("Resource No.", ResourceNo);
+        Header.SetRange("Starting Date", StartDate);
+        Assert.AreEqual(1, Header.Count(), 'Exactly one sheet is created.');
+        Header.FindFirst();
+        Assert.AreEqual(CopyStr(UpperCase(UserId()), 1, 50), Header."Owner User ID", 'The caller owns the new sheet.');
+        // [WHEN] The same call is sent again [THEN] it is a typed no-op
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'A retry should succeed.');
+        Assert.AreEqual('false', ReadText(TempArgument.GetResponseJson(), 'created'), 'A retry creates nothing.');
+        Assert.AreEqual(1, Header.Count(), 'Still exactly one sheet.');
+    end;
+
+    [Test]
+    procedure AC02_MyCreate_ForeignResource_Refused_1033_1039()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        ForeignResourceNo: Code[20];
+        StartDate: Date;
+        PreviousLanguage: Integer;
+    begin
+        CreateResource(UserId(), OtherApproverTok);
+        ForeignResourceNo := CreateResource(OtherEmployeeTok, UserId());
+        StartDate := FirstWeekdayWeek();
+        Request.Add('startingDate', Format(StartDate, 0, 9));
+        Request.Add('resourceNo', ForeignResourceNo);
+        PreviousLanguage := GlobalLanguage();
+        GlobalLanguage(1033);
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        GlobalLanguage(PreviousLanguage);
+        AssertCode(TempArgument, 'PermissionDenied', 'resourceNo');
+        GlobalLanguage(1039);
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        GlobalLanguage(PreviousLanguage);
+        AssertCode(TempArgument, 'PermissionDenied', 'resourceNo');
+        Header.SetRange("Resource No.", ForeignResourceNo);
+        Assert.IsTrue(Header.IsEmpty(), 'No sheet may be created for another employee''s resource.');
+    end;
+
+    [Test]
+    procedure AC01_MyCreate_InvalidInput_Refused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Request: JsonObject;
+    begin
+        IsolateOwnResources();
+        CreateResource(UserId(), OtherApproverTok);
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        AssertCode(TempArgument, 'MissingParameter', 'startingDate');
+        Request.Add('startingDate', Format(FirstWeekdayWeek() + 1, 0, 9));
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        AssertCode(TempArgument, 'InvalidParameter', 'startingDate');
+        Clear(Request);
+        Request.Add('startingDate', Format(FirstWeekdayWeek(), 0, 9));
+        Request.Add('userId', 'SOMEONE');
+        Execute(TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request);
+        AssertCode(TempArgument, 'UnknownParameter', 'userId');
+    end;
+
     local procedure MyGetForeignSheetRefused(LanguageId: Integer)
     var
         TempArgument: Record "Message Argument ori" temporary;
@@ -695,6 +776,41 @@ codeunit 97160 "TS Self Service Tests"
     begin
         // A far-future Monday-based week nobody else uses, so list assertions are not disturbed by demo data.
         exit(DMY2Date(5, 1, 2099) + 7 * Random(2000));
+    end;
+
+    local procedure FirstWeekdayWeek(): Date
+    var
+        ResourcesSetup: Record "Resources Setup";
+        Day: Date;
+    begin
+        EnsureTimeSheetNos(ResourcesSetup);
+        Day := UniqueWeek();
+        while Date2DWY(Day, 1) <> ResourcesSetup."Time Sheet First Weekday" + 1 do
+            Day += 1;
+        exit(Day);
+    end;
+
+    local procedure EnsureTimeSheetNos(var ResourcesSetup: Record "Resources Setup")
+    var
+        LibraryUtility: Codeunit "Library - Utility";
+    begin
+        if not ResourcesSetup.Get() then begin
+            ResourcesSetup.Init();
+            ResourcesSetup.Insert();
+        end;
+        if ResourcesSetup."Time Sheet Nos." = '' then begin
+            ResourcesSetup."Time Sheet Nos." := LibraryUtility.GetGlobalNoSeriesCode();
+            ResourcesSetup.Modify();
+        end;
+    end;
+
+    local procedure IsolateOwnResources()
+    var
+        Resource: Record Resource;
+    begin
+        // The caller may own demo or earlier fixture resources; keep exactly the one the test creates.
+        Resource.SetRange("Time Sheet Owner User ID", CopyStr(UpperCase(UserId()), 1, 50));
+        Resource.ModifyAll("Time Sheet Owner User ID", OtherEmployeeTok, false);
     end;
 
     local procedure RemoveCallerMapping()

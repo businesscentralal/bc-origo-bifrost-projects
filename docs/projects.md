@@ -233,12 +233,13 @@ Business Central permissions remain the caller's responsibility.
 
 ## Self-service and approval time sheets
 
-Six types let an employee work on their own time sheets and an approver work on their queue
+Seven types let an employee work on their own time sheets and an approver work on their queue
 (projects#38). The caller is always the signed-in session user; the request never names a user.
 
 | Type | Who | Effect |
 |---|---|---|
 | `Projects.MyTimeSheet.Get` | Owner | Reads own sheets (Owner User ID = caller) with lines, daily hours (`days`), `totalHours` and `comments`. Optional `timeSheetNo`, `from` + `to`, `status` (Open, Submitted, Rejected, Approved), `take` (1..100), `skip`. |
+| `Projects.MyTimeSheet.Create` | Owner | Creates the own sheet for one period (`startingDate` on the Time Sheet First Weekday; `resourceNo` only when the caller owns several time sheet resources), with the rules of the native Create Time Sheets report. The caller does not need Time Sheet Admin. An existing sheet returns `created` false. |
 | `Projects.MyTimeSheetLine.Set` | Owner | Adds or edits own lines (`timeSheetNo`, `lines` 1..50: optional `lineNo`, `type` Job or Resource, `projectNo`, `taskNo`, `workTypeCode`, `description`, `days` [{`date`, `hours`}]). Only Open or Rejected lines can change; an edited rejected line returns to Open. All entries are one transaction. No delete: zero hours keeps the day. |
 | `Projects.MyTimeSheet.Submit` | Owner | Submits own open lines (`timeSheetNo`, or `resourceNo` + `date`; optional `lineNos`). |
 | `Projects.TimeSheetApproval.Get` | Approver | Reads sheets whose Approver User ID is the caller and that hold submitted lines. The caller's own sheets are never listed. Optional `timeSheetNo`, `from` + `to`, `take`, `skip`. |

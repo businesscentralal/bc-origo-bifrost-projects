@@ -1,6 +1,7 @@
 namespace Origo.Bifrost.Projects;
 
 using Microsoft.Projects.Resources.Resource;
+using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 
@@ -32,6 +33,12 @@ codeunit 70013583 "TS Self Service Mgt ori"
         UnknownNextTxt: Label 'Remove the unknown parameter.', Comment = 'is-IS=Fjarlægðu óþekkta viðfangið.';
         DatesNextTxt: Label 'Supply both from and to, with from <= to.', Comment = 'is-IS=Sendu bæði from og to, með from <= to.';
         NotFoundNextTxt: Label 'Use an existing time sheet number.', Comment = 'is-IS=Notaðu fyrirliggjandi tímaskýrslunúmer.';
+        SetupMsg: Label 'Time sheets are not set up: Resources Setup has no Time Sheet Nos.', Comment = 'is-IS=Tímaskýrslur eru ekki uppsettar: Time Sheet Nos. vantar í Resources Setup.';
+        SetupNextTxt: Label 'Ask an administrator to set Time Sheet Nos. in Resources Setup.', Comment = 'is-IS=Biddu stjórnanda að setja Time Sheet Nos. í Resources Setup.';
+        WeekdayNextTxt: Label 'Use a startingDate on the first weekday of the time sheet period in Resources Setup.', Comment = 'is-IS=Notaðu startingDate á fyrsta vikudegi tímaskýrslutímabils í Resources Setup.';
+        ChooseResourceNextTxt: Label 'You own more than one time sheet resource; send resourceNo.', Comment = 'is-IS=Þú átt fleiri en einn tímaskýrsluforða; sendu resourceNo.';
+        NotOwnResourceNextTxt: Label 'Use a resource whose Time Sheet Owner User ID is your user.', Comment = 'is-IS=Notaðu forða þar sem Time Sheet Owner User ID er notandinn þinn.';
+        NotOwnResourceMsg: Label 'The resource is not a time sheet resource of the caller.', Comment = 'is-IS=Forðinn er ekki tímaskýrsluforði kallanda.';
         LockedLineMsg: Label 'Only open or rejected lines can be changed.', Comment = 'is-IS=Aðeins er hægt að breyta opnum eða höfnuðum línum.';
         LockedLineNextTxt: Label 'Ask the approver to reject the line, then edit it.', Comment = 'is-IS=Biddu samþykkjanda að hafna línunni og breyttu henni síðan.';
         IsolatedMsg: Label 'This operation requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslu.';
@@ -52,6 +59,16 @@ codeunit 70013583 "TS Self Service Mgt ori"
     begin
         exit(Header.ReadPermission() and Line.ReadPermission() and Detail.ReadPermission() and
              CommentLine.ReadPermission() and Resource.ReadPermission());
+    end;
+
+    /// <summary>True when the caller can insert time sheet headers and lines.</summary>
+    procedure CanCreateSheets(): Boolean
+    var
+        Header: Record "Time Sheet Header";
+        Line: Record "Time Sheet Line";
+        ResourcesSetup: Record "Resources Setup";
+    begin
+        exit(Header.WritePermission() and Line.WritePermission() and ResourcesSetup.ReadPermission());
     end;
 
     /// <summary>Reads the caller's own time sheets (Projects.MyTimeSheet.Get).</summary>
@@ -150,6 +167,131 @@ codeunit 70013583 "TS Self Service Mgt ori"
         Header.ReadIsolation := IsolationLevel::ReadCommitted;
         Header.SetRange("Approver User ID", CallerId());
         exit(not Header.IsEmpty());
+    end;
+
+    /// <summary>Creates the caller's own time sheet for one period through the native report (Projects.MyTimeSheet.Create).</summary>
+    procedure ExecuteMyCreate(var Argument: Record "Message Argument ori")
+    var
+        Resource: Record Resource;
+        ResourcesSetup: Record "Resources Setup";
+        Header: Record "Time Sheet Header";
+        TempWriteArgument: Record "Message Argument ori" temporary;
+        CreateContext: Codeunit "TS My Create Context ori";
+        Request: JsonObject;
+        Normalized: JsonObject;
+        Response: JsonObject;
+        SheetNode: JsonObject;
+        ResourceNos: JsonArray;
+        Token: JsonToken;
+        ParameterName: Text;
+        ResourceNo: Code[20];
+        StartingDate: Date;
+        Created: Boolean;
+        Succeeded: Boolean;
+    begin
+        Argument.AssertVersion1();
+        if not CanReadSheets() then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, PermissionMsg, '', PermissionNextTxt);
+            exit;
+        end;
+        Request := Argument.GetRequestJson();
+        foreach ParameterName in Request.Keys() do
+            if not (ParameterName in ['startingDate', 'resourceNo']) then begin
+                Refuse(Argument, "Bifrost Error Code ori"::UnknownParameter, RefusedMsg, ParameterName, UnknownNextTxt);
+                exit;
+            end;
+        if not Request.Get('startingDate', Token) then begin
+            Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'startingDate', MissingNextTxt);
+            exit;
+        end;
+        if not IsText(Token, 10, false) then begin
+            BadFormat(Argument, 'startingDate');
+            exit;
+        end;
+        if not Evaluate(StartingDate, Token.AsValue().AsText(), 9) then begin
+            BadFormat(Argument, 'startingDate');
+            exit;
+        end;
+        // Own resources only: Time Sheet Owner User ID is the caller and the resource uses time sheets.
+        Resource.ReadIsolation := IsolationLevel::ReadCommitted;
+        Resource.SetRange("Time Sheet Owner User ID", CallerId());
+        Resource.SetRange("Use Time Sheet", true);
+        if CallerId() = '' then
+            Resource.SetRange("No.", '');
+        if Request.Get('resourceNo', Token) then begin
+            if not IsText(Token, MaxStrLen(ResourceNo), false) then begin
+                BadFormat(Argument, 'resourceNo');
+                exit;
+            end;
+            ResourceNo := CopyStr(Token.AsValue().AsText(), 1, MaxStrLen(ResourceNo));
+            Resource.SetRange("No.", ResourceNo);
+            if Resource.IsEmpty() then begin
+                Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, NotOwnResourceMsg, 'resourceNo', NotOwnResourceNextTxt);
+                exit;
+            end;
+        end else begin
+            if Resource.IsEmpty() then begin
+                Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, UnmappedOwnerMsg, '', UnmappedOwnerNextTxt);
+                exit;
+            end;
+            if Resource.Count() > 1 then begin
+                Refuse(Argument, "Bifrost Error Code ori"::MissingParameter, RefusedMsg, 'resourceNo', ChooseResourceNextTxt);
+                exit;
+            end;
+            Resource.FindFirst();
+            ResourceNo := Resource."No.";
+        end;
+        if not ResourcesSetup.Get() then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, SetupMsg, '', SetupNextTxt);
+            exit;
+        end;
+        if ResourcesSetup."Time Sheet Nos." = '' then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, SetupMsg, '', SetupNextTxt);
+            exit;
+        end;
+        if Date2DWY(StartingDate, 1) <> ResourcesSetup."Time Sheet First Weekday" + 1 then begin
+            Refuse(Argument, "Bifrost Error Code ori"::InvalidParameter, RefusedMsg, 'startingDate', WeekdayNextTxt);
+            exit;
+        end;
+        if Argument."Omit Commit" then begin
+            Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, IsolatedMsg, '', IsolatedNextTxt);
+            exit;
+        end;
+        Header.ReadIsolation := IsolationLevel::ReadCommitted;
+        Header.SetRange("Resource No.", ResourceNo);
+        Header.SetRange("Starting Date", StartingDate);
+        Header.SetRange("Ending Date", StartingDate + 6);
+        // A sheet that already exists is a typed no-op: return it with created false.
+        Created := Header.IsEmpty();
+        if Created then begin
+            ResourceNos.Add(ResourceNo);
+            Normalized.Add('startingDate', Format(StartingDate, 0, 9));
+            Normalized.Add('numberOfPeriods', 1);
+            Normalized.Add('resourceNos', ResourceNos);
+            Normalized.Add('createLinesFromPlanning', false);
+            TempWriteArgument := Argument;
+            TempWriteArgument.Insert();
+            TempWriteArgument.SetRequestJson(Normalized);
+            if Database.IsInWriteTransaction() then
+                Commit();
+            ClearLastError();
+            CreateContext.SetOwnResource(ResourceNo);
+            Succeeded := Codeunit.Run(Codeunit::"TS Create Writer ori", TempWriteArgument);
+            CreateContext.Clear();
+            if not Succeeded then begin
+                Refuse(Argument, "Bifrost Error Code ori"::BusinessCentralError, CopyStr(GetLastErrorText(), 1, 250), '', RetryNextTxt);
+                exit;
+            end;
+        end;
+        Header.FindFirst();
+        SheetNode.Add('timeSheetNo', Header."No.");
+        SheetNode.Add('resourceNo', Header."Resource No.");
+        SheetNode.Add('startingDate', Format(Header."Starting Date", 0, 9));
+        SheetNode.Add('endingDate', Format(Header."Ending Date", 0, 9));
+        Response.Add('status', 'Success');
+        Response.Add('created', Created);
+        Response.Add('timeSheet', SheetNode);
+        Argument.SetResponseJson(Response);
     end;
 
     /// <summary>Adds or edits lines and daily hours on the caller's own sheet (Projects.MyTimeSheetLine.Set).</summary>
