@@ -1,5 +1,6 @@
 namespace Origo.Bifrost.Projects.Test;
 
+using Microsoft.Finance.Dimension;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
 using Microsoft.Projects.Project.Job;
@@ -109,6 +110,10 @@ codeunit 97154 "TS Usage Perm Tests"
 
     local procedure RunJobPermissionScenario(CanWriteLine: Boolean)
     var
+        Dimension: Record Dimension;
+        DimensionValue: Record "Dimension Value";
+        DefaultDimension: Record "Default Dimension";
+        DimensionEntry: Record "Dimension Set Entry";
         Header: Record "Time Sheet Header";
         SheetLine: Record "Time Sheet Line";
         Usage: Record "TS Usage Line ori";
@@ -132,6 +137,17 @@ codeunit 97154 "TS Usage Perm Tests"
         LibraryJob.CreateJob(Job);
         LibraryJob.CreateJobTask(Job, Task);
         LibraryInventory.CreateItem(Item);
+        // A fresh item dimension forces native dimension-set creation under the reduced role.
+        Dimension.Code := CopyStr('XU52D' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Dimension.Code));
+        Dimension.Insert(true);
+        DimensionValue."Dimension Code" := Dimension.Code;
+        DimensionValue.Code := 'XVALUE';
+        DimensionValue.Insert(true);
+        DefaultDimension."Table ID" := Database::Item;
+        DefaultDimension."No." := Item."No.";
+        DefaultDimension."Dimension Code" := Dimension.Code;
+        DefaultDimension."Dimension Value Code" := DimensionValue.Code;
+        DefaultDimension.Insert(true);
         LibraryJob.CreateJobJournalTemplate(Template);
         LibraryJob.CreateJobJournalBatch(Template.Name, Batch);
         Header."No." := CopyStr('XU52J' + DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Header."No."));
@@ -175,6 +191,8 @@ codeunit 97154 "TS Usage Perm Tests"
             Assert.AreEqual(Usage.Status::Transferred, Usage.Status, 'Transferred.');
             JournalLine.Get(Usage."Journal Template Name", Usage."Journal Batch Name", Usage."Journal Line No.");
             Assert.AreEqual(Job."No.", JournalLine."Job No.", 'Correct job journal line.');
+            Assert.IsTrue(DimensionEntry.Get(JournalLine."Dimension Set ID", Dimension.Code), 'Native item dimension is carried to the journal.');
+            Assert.AreEqual(DimensionValue.Code, DimensionEntry."Dimension Value Code", 'Correct dimension value.');
         end else begin
             Response.Get('code', Token);
             Assert.AreEqual('PermissionDenied', Token.AsValue().AsText(), 'Refusal must be the explicit permission gate.');
