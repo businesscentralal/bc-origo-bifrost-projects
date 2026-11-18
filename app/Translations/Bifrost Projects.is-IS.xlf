@@ -3113,8 +3113,8 @@
         </trans-unit>
         <trans-unit id="Codeunit 205185506 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</note>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Contract ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 205185506 - NamedType 2091803237" size-unit="char" translate="yes" xml:space="preserve">
@@ -3251,8 +3251,8 @@
         </trans-unit>
         <trans-unit id="Codeunit 3637980814 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
           <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</note>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Mgt ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3637980814 - NamedType 3103368700" size-unit="char" translate="yes" xml:space="preserve">

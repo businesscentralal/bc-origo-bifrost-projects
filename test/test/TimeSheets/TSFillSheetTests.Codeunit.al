@@ -519,6 +519,33 @@ codeunit 97146 "TS Fill Sheet Tests"
         end;
     end;
 
+    /// <summary>#65: the Icelandic refusal for both fill types names BIFROST Full ori and PROJ TS ADMIN.</summary>
+    [Test]
+    [TestPermissions(TestPermissions::Restrictive)]
+    procedure Scenario_65_ReadRole_RefusalHintIsIcelandic()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        LowerPermissions: Codeunit "Library - Lower Permissions";
+        MessageType: Enum "Message Type ori";
+        Types: List of [Enum "Message Type ori"];
+        Request: JsonObject;
+        PreviousLanguage: Integer;
+    begin
+        // [GIVEN] Only the Foundation Read role and an Icelandic session.
+        LowerPermissions.PushPermissionSetWithoutDefaults('BIFROST Read ori');
+        Types.Add("Message Type ori"::"Projects.TimeSheetLine.CopyFromPrevious");
+        Types.Add("Message Type ori"::"Projects.TimeSheetLine.CreateFromPlanning");
+        PreviousLanguage := GlobalLanguage();
+        GlobalLanguage(1039);
+        foreach MessageType in Types do begin
+            // [WHEN] The write is executed directly.
+            Execute(TempArgument, MessageType, Request);
+            // [THEN] The localized next step names both permission sets.
+            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.');
+        end;
+        GlobalLanguage(PreviousLanguage);
+    end;
+
     /// <summary>Verifies the issue64 acceptance scenario named by this test.</summary>
     [Test]
     procedure Scenario_AC08_OmitCommit_RefusesBeforeNativeWrites()
