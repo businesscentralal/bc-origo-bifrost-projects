@@ -11,6 +11,8 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
+using Microsoft.Service.Document;
+using Microsoft.Utilities;
 using Origo.Bifrost;
 using System.Security.User;
 
@@ -74,5 +76,12 @@ permissionsetextension 70013580 "Projects TimeSheet Full ori" extends "BIFROST F
         codeunit "TS Absence Reg Impl ori" = X,
         codeunit "TS Sheet Submit Impl ori" = X,
         codeunit "TS Bulk Mgt ori" = X,
-        codeunit "TS Post Confirm ori" = X;
+        codeunit "TS Post Confirm ori" = X,
+        codeunit "TS Line Set Impl ori" = X,
+        codeunit "TS Line Set Contract ori" = X,
+        codeunit "TS Line Set Mgt ori" = X,
+        codeunit "TS Line Set Runner ori" = X,
+        codeunit "TS Line Set Context ori" = X,
+        tabledata "Service Header" = R,
+        tabledata "Work Type" = R;
 }

@@ -230,3 +230,34 @@ missing records and conflicting project/task identifiers return
 read permissions returns `PermissionDenied`, naming BIFROST Read ori and native
 project report permissions. Feature roles grant the report implementation; native
 Business Central permissions remain the caller's responsibility.
+
+## Add or change time sheet lines
+
+`Projects.TimeSheetLine.Set` adds or changes the lines of one time sheet and their
+hours per day, like the lines and day columns of the Time Sheet page. Every value goes
+through Business Central validation, and all lines of the call are written together or
+not at all.
+
+```json
+{"type":"Projects.TimeSheetLine.Set","data":{"timeSheetNo":"TS0001","lines":[
+  {"type":"project","projectNo":"J00010","projectTaskNo":"1010","description":"Design","hours":[{"date":"2026-06-01","quantity":8}]},
+  {"lineNo":20000,"hours":[{"date":"2026-06-03","quantity":2}]}]}}
+```
+
+- Omit `lineNo` to add a line (`type` is then required: `project`, `resource`,
+  `absence` or `service`). Send `lineNo` to change an Open or Rejected line.
+- Project lines send `projectNo` and `projectTaskNo` together; absence lines send
+  `causeOfAbsenceCode` (the resource must be linked to an employee); service lines send
+  `serviceOrderNo`. `workTypeCode`, `description` and `chargeable` are optional.
+- `hours` sets the listed dates only. Other dates keep their hours, and `0` keeps the
+  day with zero hours: this type never deletes a record.
+- Submitted or approved lines are refused with `PreconditionFailed` and the next step
+  "Reopen the line with Projects.TimeSheet.Reopen, then send the change again." Posted
+  lines, a type change on an existing line and new assembly lines are also refused.
+- Other refusals: `MissingParameter`, `InvalidParameterFormat`, `UnknownParameter`
+  (with a path such as `lines[0].hours[1].x`), `RecordNotFound`,
+  `ConflictingIdentifiers` (same `lineNo` twice), `InvalidParameter`, `InvalidLine`
+  (hours dates), `LimitExceeded` (more than 100 lines), `PermissionDenied` and
+  `BusinessCentralError` (a validation failed; nothing is written). Each has a next step.
+- Generic `Data.Records.Set` writes to time sheet lines and details are refused and
+  point to this type.

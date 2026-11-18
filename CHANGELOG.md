@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-18, #50)
+
+- `Projects.TimeSheetLine.Set` adds or changes time sheet lines (`project`, `resource`, `absence`, `service`) and their hours per day in one call, through Business Central validation, like the lines and day columns of the Time Sheet page. Omit `lineNo` to add a line; send it to change an Open or Rejected line. Submitted or approved lines are refused with `PreconditionFailed` and the next step to reopen them with `Projects.TimeSheet.Reopen`; posted lines, a type change on an existing line and new assembly lines are refused too. All lines are committed together or not at all, unknown keys are refused at every level (`lines[0].hours[1].x`), and nothing is deleted: a day set to 0 keeps its row with zero hours. Generic `Data.Records.Set` writes to time sheet lines and details stay blocked, and the dedicated-type hint now names the new type. New objects: codeunits 70013591 `TS Line Set Impl ori`, 70013592 `TS Line Set Contract ori`, 70013593 `TS Line Set Mgt ori`, 70013594 `TS Line Set Runner ori`, 70013595 `TS Line Set Context ori`; enum value 70013548. `Projects TimeSheet Full ori` grants X on the five codeunits and R on `Service Header` and `Work Type`; `Projects TimeSheet Read ori` grants X on the impl, contract and manager for discovery. Help in en-US and is-IS (is-IS units in sync). Tests: new test codeunit 97163 `TS Line Set Tests` (13 tests); the 97100 catalogue census now expects 36 types.
+
 ### Added (2026-11-17, #53)
 
 - Verify the moved `Projects.TimeSheet.Approve` contract with test codeunit 97152 `TS Approve Contract Tests`: English and Icelandic public help and raw parameters exclude `omitCommit`; requests containing either boolean value are refused without approving lines. Valid approval and empty selection remain covered. The product implementation already satisfies this contract after #33; no product object or translation changes.

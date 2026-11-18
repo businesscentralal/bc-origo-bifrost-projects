@@ -60,4 +60,9 @@ enumextension 70013579 "Projects TimeSheet Types ori" extends "Message Type ori"
         Caption = 'Projects.Absence.Register', Locked = true;
         Implementation = "Msg Interface ori" = "TS Absence Reg Impl ori", "Msg Contract ori" = "TS Absence Reg Impl ori", "Msg Discovery ori" = "TS Absence Reg Impl ori";
     }
+    value(70013548; "Projects.TimeSheetLine.Set")
+    {
+        Caption = 'Projects.TimeSheetLine.Set', Locked = true;
+        Implementation = "Msg Interface ori" = "TS Line Set Impl ori", "Msg Contract ori" = "TS Line Set Impl ori", "Msg Discovery ori" = "TS Line Set Impl ori";
+    }
 }
