@@ -4815,6 +4815,126 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Projects.TimeSheet.Create: Býr til tímaskýrslur fyrir valdar auðlindir og vikur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Create Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use timeSheetNo alone, resourceNo with date, or list filters from, to, resourceNo, take and skip.</source>
+          <target>Notaðu timeSheetNo eitt og sér, resourceNo með date eða listasíurnar from, to, resourceNo, take og skip.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu timeSheetNo eitt og sér, resourceNo með date eða listasíurnar from, to, resourceNo, take og skip.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType ConflictLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 1542941690" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use from &lt;= to.</source>
+          <target>Notaðu from &lt;= to.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu from &lt;= to.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType DateLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the parameter type, length and range listed in the help.</source>
+          <target>Notaðu gagnategund, lengd og bil viðfangs sem tilgreind eru í hjálpinni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu gagnategund, lengd og bil viðfangs sem tilgreind eru í hjálpinni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType FormatLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Supply resourceNo with date, or both from and to for a date range.</source>
+          <target>Sendu resourceNo með date eða bæði from og to fyrir dagsetningarbil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu resourceNo með date eða bæði from og to fyrir dagsetningarbil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Read only sheets you own or approve, and request native time sheet read permissions.</source>
+          <target>Lestu aðeins tímaskýrslur sem þú átt eða samþykkir og óskaðu eftir lesheimildum fyrir tímaskýrslur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lestu aðeins tímaskýrslur sem þú átt eða samþykkir og óskaðu eftir lesheimildum fyrir tímaskýrslur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType PermissionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use an existing time sheet number or resource and date.</source>
+          <target>Notaðu fyrirliggjandi tímaskýrslunúmer eða forða og dagsetningu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu fyrirliggjandi tímaskýrslunúmer eða forða og dagsetningu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType RecordLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The time sheet read request cannot be processed.</source>
+          <target>Ekki er hægt að vinna úr lesbeiðni tímaskýrslu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að vinna úr lesbeiðni tímaskýrslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType RefusedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - NamedType 1773691126" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown parameter.</source>
+          <target>Fjarlægðu óþekkta viðfangið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta viðfangið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - NamedType UnknownLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads time sheet headers, lines, daily hours and status for the owner or approver.</source>
+          <target>Les hausa tímaskýrslna, línur, daglegar stundir og stöðu fyrir eiganda eða samþykkjanda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les hausa tímaskýrslna, línur, daglegar stundir og stöðu fyrir eiganda eða samþykkjanda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>time sheet, hours, owner, approver, status</source>
+          <target>tímaskýrsla, stundir, eigandi, samþykkjandi, staða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=tímaskýrsla, stundir, eigandi, samþykkjandi, staða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 2340569551 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads only sheets whose nonblank owner or approver is the authenticated caller. Select by timeSheetNo or resourceNo with date; omit both selectors for a paged list. List date filters select overlapping sheet periods and never trim daily hours. No matching authorized sheets is a successful empty list; an unmapped caller is refused. No records are changed.</source>
+          <target>Les aðeins skýrslur þar sem eigandi eða samþykkjandi er ekki auður og er auðkenndur kallandi. Veldu með timeSheetNo eða resourceNo með date; slepptu báðum valviðföngum fyrir síðuskiptan lista. Dagsetningarsíur lista velja tímabil sem skarast og skerða aldrei daglegar stundir. Engar samsvarandi skýrslur með heimild skila tómun lista; kallanda án tengingar er hafnað. Engum færslum er breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les aðeins skýrslur þar sem eigandi eða samþykkjandi er ekki auður og er auðkenndur kallandi. Veldu með timeSheetNo eða resourceNo með date; slepptu báðum valviðföngum fyrir síðuskiptan lista. Dagsetningarsíur lista velja tímabil sem skarast og skerða aldrei daglegar stundir. Engar samsvarandi skýrslur með heimild skila tómun lista; kallanda án tengingar er hafnað. Engum færslum er breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetOverview - NamedType OverviewLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 3219801116" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Resource number, maximum 20 characters. With date selects a sheet; otherwise filters the list.</source>
+          <target>Forðanúmer, mest 20 stafir. Með date velur það skýrslu; annars síar það listann.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forðanúmer, mest 20 stafir. Með date velur það skýrslu; annars síar það listann.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType ResourceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 4257722151" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time sheet number, maximum 20 characters. Cannot be combined with other selectors or paging.</source>
+          <target>Tímaskýrslunúmer, mest 20 stafir. Ekki má sameina það öðrum valviðföngum eða síðuskiptingu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tímaskýrslunúmer, mest 20 stafir. Ekki má sameina það öðrum valviðföngum eða síðuskiptingu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType ResourceIdLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 901740384" size-unit="char" translate="yes" xml:space="preserve">
+          <source>First included date, YYYY-MM-DD; requires to. Lists sheets whose periods overlap the range; returns all their hours.</source>
+          <target>Fyrsti dagur, YYYY-MM-DD; krefst to. Sýnir skýrslur með tímabil sem skarast við bilið; skilar öllum stundum þeirra.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyrsti dagur, YYYY-MM-DD; krefst to. Sýnir skýrslur með tímabil sem skarast við bilið; skilar öllum stundum þeirra.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType FromLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 806278067" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Last included date, YYYY-MM-DD; requires from.</source>
+          <target>Síðasti dagur, YYYY-MM-DD; krefst from.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Síðasti dagur, YYYY-MM-DD; krefst from.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType ToLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 961827798" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date within the requested sheet period, YYYY-MM-DD. Requires resourceNo; excludes list filters and paging.</source>
+          <target>Dagsetning innan tímabils umbeðinnar skýrslu, YYYY-MM-DD. Krefst resourceNo; útilokar listasíur og síðuskiptingu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning innan tímabils umbeðinnar skýrslu, YYYY-MM-DD. Krefst resourceNo; útilokar listasíur og síðuskiptingu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType TypeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 26742315" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Page size, integer 1..100, default 20. Sheets are ordered by time sheet number.</source>
+          <target>Síðustærð, heiltala 1..100, sjálfgefið 20. Skýrslum er raðað eftir tímaskýrslunúmeri.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Síðustærð, heiltala 1..100, sjálfgefið 20. Skýrslum er raðað eftir tímaskýrslunúmeri.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType TakeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 3615801952 - NamedType 1096104557" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number of authorized matching sheets to skip, integer &gt;= 0, default 0.</source>
+          <target>Fjöldi samsvarandi skýrslna með heimild sem sleppt er, heiltala &gt;= 0, sjálfgefið 0.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjöldi samsvarandi skýrslna með heimild sem sleppt er, heiltala &gt;= 0, sjálfgefið 0.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetParameters - NamedType SkipLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 4268477247 - NamedType 3616618409" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Authorized sheets: timeSheetNo, resourceNo, from, to, ownerUserId, approverUserId, lines [{lineNo,type,description,status,projectNo,taskNo,days [{date,hours,status}],totalHours}]. Status uses stable English enum names.</source>
+          <target>Skýrslur með heimild: timeSheetNo, resourceNo, from, to, ownerUserId, approverUserId, lines [{lineNo,type,description,status,projectNo,taskNo,days [{date,hours,status}],totalHours}]. Staða notar föst ensk upptalningarheiti.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skýrslur með heimild: timeSheetNo, resourceNo, from, to, ownerUserId, approverUserId, lines [{lineNo,type,description,status,projectNo,taskNo,days [{date,hours,status}],totalHours}]. Staða notar föst ensk upptalningarheiti.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetResponse - NamedType LinesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3915644710 - Method 4268477247 - NamedType 1818613969" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Whether more authorized sheets exist after this page. Continue with skip plus the number returned.</source>
+          <target>Hvort fleiri skýrslur með heimild eru á eftir síðunni. Haltu áfram með skip að viðbættum fjölda sem skilað var.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hvort fleiri skýrslur með heimild eru á eftir síðunni. Haltu áfram með skip að viðbættum fjölda sem skilað var.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Get Impl ori - Method GetResponse - NamedType MoreLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1198244512 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Posts approved time sheet lines.</source>
           <target>Bókar samþykktar tímaskýrslulínur.</target>
