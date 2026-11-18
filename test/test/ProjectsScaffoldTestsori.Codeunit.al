@@ -133,6 +133,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.TimeSheetLine.CreateFromPlanning');
         ExpectedTypes.Add('Projects.TimeSheetLine.CopyFromPrevious');
         ExpectedTypes.Add('Projects.Absence.Register');
+        ExpectedTypes.Add('Projects.TimeSheetLine.Set');
         ExpectedTypes.Add('Projects.PendingApproval.Get');
         ExpectedTypes.Add('Projects.MyTimeSheet.Get');
         ExpectedTypes.Add('Projects.MyTimeSheet.Create');
@@ -171,7 +172,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(44, Count, 'Catalogue must contain all forty-four owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read and the #38 self-service types');
+        Assert.AreEqual(45, Count, 'Catalogue must contain all forty-five owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read, the #38 self-service types and Projects.TimeSheetLine.Set');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 

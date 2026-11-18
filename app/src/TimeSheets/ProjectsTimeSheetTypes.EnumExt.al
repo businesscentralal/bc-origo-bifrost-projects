@@ -100,4 +100,9 @@ enumextension 70013579 "Projects TimeSheet Types ori" extends "Message Type ori"
         Caption = 'Projects.TimeSheet.Get', Locked = true;
         Implementation = "Msg Interface ori" = "TS Sheet Get Impl ori", "Msg Contract ori" = "TS Sheet Get Impl ori", "Msg Discovery ori" = "TS Sheet Get Impl ori";
     }
+    value(70013551; "Projects.TimeSheetLine.Set")
+    {
+        Caption = 'Projects.TimeSheetLine.Set', Locked = true;
+        Implementation = "Msg Interface ori" = "TS Line Set Impl ori", "Msg Contract ori" = "TS Line Set Impl ori", "Msg Discovery ori" = "TS Line Set Impl ori";
+    }
 }
