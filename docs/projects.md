@@ -230,3 +230,23 @@ missing records and conflicting project/task identifiers return
 read permissions returns `PermissionDenied`, naming BIFROST Read ori and native
 project report permissions. Feature roles grant the report implementation; native
 Business Central permissions remain the caller's responsibility.
+
+## Self-service and approval time sheets
+
+Five types let an employee work on their own time sheets and an approver work on their queue
+(projects#38). The caller is always the signed-in session user; the request never names a user.
+
+| Type | Who | Effect |
+|---|---|---|
+| `Projects.MyTimeSheet.Get` | Owner | Reads own sheets (Owner User ID = caller) with lines, daily hours (`days`), `totalHours` and `comments`. Optional `timeSheetNo`, `from` + `to`, `status` (Open, Submitted, Rejected, Approved), `take` (1..100), `skip`. |
+| `Projects.MyTimeSheet.Submit` | Owner | Submits own open lines (`timeSheetNo`, or `resourceNo` + `date`; optional `lineNos`). |
+| `Projects.TimeSheetApproval.Get` | Approver | Reads sheets whose Approver User ID is the caller and that hold submitted lines. The caller's own sheets are never listed. Optional `timeSheetNo`, `from` + `to`, `take`, `skip`. |
+| `Projects.TimeSheetApproval.Approve` | Approver | Approves submitted lines, per line (`lineNos`) or for the whole sheet. |
+| `Projects.TimeSheetApproval.Reject` | Approver | Rejects submitted lines with an optional `comment` (80 characters). The comment is returned on the line by `Projects.MyTimeSheet.Get`. |
+
+Every call that names a sheet checks owner or approver before anything is read or written, and
+the native writer checks again. Another user's sheet is refused with `PermissionDenied`, a
+`nextStep` and no record data. An approver cannot approve or reject their own sheet. A caller who
+is not the time sheet owner (or approver) of any resource or sheet is refused. Approve and Reject
+commit on success and roll back every selected line on failure, as the `Projects.TimeSheet.*`
+administrator types do. Item and resource usage lines are not part of these types yet.
