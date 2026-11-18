@@ -515,7 +515,7 @@ codeunit 97146 "TS Fill Sheet Tests"
             // [WHEN/THEN] Discovery and direct execution both refuse the write.
             Assert.IsFalse(Impl.IsEnabled(), 'Read role must not enable a write.');
             Execute(TempArgument, MessageType, Request);
-            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori permission set.');
+            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.');
         end;
     end;
 

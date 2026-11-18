@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Changed (2026-11-18, #65)
+
+- Permissions (AS0110/AA0050 fix, Architect 18.11.2026): the 27 Base Application tabledata grants and the `Create Time Sheets` report grant move out of permission set extension 70013580 `Projects TimeSheet Full ori` into the new assignable permission set 70013589 `PROJ TS ADMIN` (caption "Projects Time Sheet Admin", is-IS "Stjórnun tímaskýrslna verkefna"), at the same direct levels. The extension keeps only X on this app's 29 time-sheet codeunits, so the app compiles without warnings. The time-sheet message types now need `BIFROST Full ori` together with `PROJ TS ADMIN`; their refusal next step, preconditions, Submit notes and `effect.permissionSet` name both sets in 1033 and 1039. The ID comes from the app range 70013500..70013599 on main, next to the #38 role sets 70013586..70013588 (70013400..70013499 is not in the main app range). Tests in 97147: five new #65 scenarios, and the #54 gate test runs under both sets. No grant level is widened.
+
 ### Added (2026-11-17, #53)
 
 - Verify the moved `Projects.TimeSheet.Approve` contract with test codeunit 97152 `TS Approve Contract Tests`: English and Icelandic public help and raw parameters exclude `omitCommit`; requests containing either boolean value are refused without approving lines. Valid approval and empty selection remain covered. The product implementation already satisfies this contract after #33; no product object or translation changes.

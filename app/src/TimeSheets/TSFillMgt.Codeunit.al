@@ -28,7 +28,7 @@ codeunit 70013561 "TS Fill Mgt ori"
         OwnerMsg: Label 'The caller is not the owner of the time sheet.', Comment = 'is-IS=Kallandinn er ekki eigandi tímaskýrslunnar.';
         OwnerNextTxt: Label 'Ask the owner.', Comment = 'is-IS=Biddu eigandann.';
         PermissionMsg: Label 'The caller cannot fill time sheet lines.', Comment = 'is-IS=Kallandinn getur ekki fyllt út tímaskýrslulínur.';
-        PermissionNextTxt: Label 'Assign the BIFROST Full ori permission set.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.';
+        PermissionNextTxt: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.';
         PreviousMsg: Label 'The resource has no previous time sheet.', Comment = 'is-IS=Auðlindin hefur enga fyrri tímaskýrslu.';
         PreviousNextTxt: Label 'Add lines by hand.', Comment = 'is-IS=Bættu við línum handvirkt.';
         TransactionMsg: Label 'This operation requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslumeðhöndlunar.';
