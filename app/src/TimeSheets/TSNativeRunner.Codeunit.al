@@ -8,7 +8,8 @@ using Microsoft.Projects.TimeSheet;
 /// <summary>
 /// Write isolation for the native time-sheet message types. OnRun is started with
 /// Codeunit.Run. A platform error rolls the write back and the caller maps it to a
-/// clean refusal. This codeunit does not re-check the request; the manager did that.
+/// clean refusal. The manager checks the request; this codeunit re-checks only the
+/// owner (Submit) or approver (Approve/Reject) on the locked header before it writes.
 /// </summary>
 codeunit 70013567 "TS Native Runner ori"
 {
@@ -72,7 +73,9 @@ codeunit 70013567 "TS Native Runner ori"
 
     local procedure SelectLines(Context: Codeunit "TS Native Context ori"; var TimeSheetLine: Record "Time Sheet Line")
     begin
-        if Context.GetOperation() <> 1 then
+        if Context.GetOperation() = 1 then
+            CheckOwner(Context.GetSheetNo())
+        else
             CheckApprover(Context.GetSheetNo());
         TimeSheetLine.SetRange("Time Sheet No.", Context.GetSheetNo());
         if Context.GetLineFilter() <> '*' then
@@ -88,6 +91,19 @@ codeunit 70013567 "TS Native Runner ori"
         Header.Get(SheetNo);
         if (Header."Approver User ID" = '') or (Header."Approver User ID" <> UpperCase(UserId())) then
             Error(ErrorInfo.Create(ApproverErr));
+    end;
+
+    local procedure CheckOwner(SheetNo: Code[20])
+    var
+        Header: Record "Time Sheet Header";
+        OwnerErr: Label 'Only the owner named on the time sheet can submit.', Comment = 'is-IS=Aðeins eigandinn sem er nefndur á tímaskýrslunni getur sent inn.';
+    begin
+        // Re-read and lock the header inside the submit transaction: an owner change after the
+        // manager's preflight check must stop the write (projects#38 condition 2).
+        Header.ReadIsolation := IsolationLevel::UpdLock;
+        Header.Get(SheetNo);
+        if (Header."Owner User ID" = '') or (Header."Owner User ID" <> UpperCase(UserId())) then
+            Error(ErrorInfo.Create(OwnerErr));
     end;
 
     local procedure WriteComment(TimeSheetLine: Record "Time Sheet Line"; Comment: Text)
