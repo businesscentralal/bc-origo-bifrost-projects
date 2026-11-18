@@ -265,6 +265,37 @@ who creates sheets with `Projects.MyTimeSheet.Create` likewise needs ordinary re
 reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF`. The owner and approver
 checks in code apply in every role.
 
+## Compare resource capacity with time sheets and usage
+
+```json
+{
+  "type": "Projects.ResourceCapacity.Get",
+  "data": {
+    "resourceNo": "RESOURCE-001",
+    "periodType": "month",
+    "fromDate": "2026-01-01",
+    "toDate": "2026-01-31"
+  }
+}
+```
+
+Returns `status`, `periodType` and `rows`. Each row contains `resourceNo`, `fromDate`, `toDate`, `capacity`, `timeSheetHours` and `usage`.
+
+| Input | Meaning |
+|---|---|
+| `resourceNo` | Optional exact resource number, at most 20 characters. |
+| `resourceGroupNo` | Optional exact resource group; combines with `resourceNo`. Omit both selectors for all visible resources. |
+| `periodType` | Required: `day`, `week`, `month`, `quarter` or `year`. |
+| `fromDate`, `toDate` | Required inclusive ISO dates. Partial periods are clipped; weeks end Sunday. Maximum 53 periods. |
+
+`capacity` sums Res. Capacity Entry quantities. `timeSheetHours` sums active and archived Time Sheet Detail quantities for all statuses and types by work date. `usage` sums Res. Ledger Entry **Usage** quantities in the resource base unit by posting date, including negative corrections; Sale entries are excluded. Capacity and usage use the resource base unit. Time-sheet quantities are native hours. Time-sheet hours can overlap posted usage: do not add them together. Missing entries return zero.
+
+The call changes no business data. It requires Projects to be enabled and the caller to have read access to Resource, Resource Group, Res. Capacity Entry, Res. Ledger Entry, Time Sheet Detail and Time Sheet Detail Archive. Business Central security filters continue to apply.
+
+Invalid period types return `InvalidParameter`; more than 53 periods returns `LimitExceeded`. Missing/invalid/unknown parameters, nonexistent selectors and conflicting resource/group selectors return a Bifröst error code with a localized `nextStep`. Help is available in en-US (1033) and is-IS (1039).
+
+Related: `Projects.ResourceAllocation.Get` uses the same resource/group selectors, calendar boundaries and `rows` identity fields; it reports planned project allocation and availability instead of time-sheet and posted usage quantities.
+
 ## Time sheet usage lines
 
 Usage lines record items and resources a user used on a time sheet line (tools, km driven, bolts). A line belongs to a time sheet and one of its lines, carries a state and goes through approval into a journal. Native time sheet lines have no item type, so the usage sits in its own table (`TS Usage Line ori`). Use the dedicated messages; a generic `Data.Records.Set` of `Status`, `Reversed` or the journal fields is refused with a hint naming them.
