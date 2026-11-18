@@ -145,7 +145,7 @@ codeunit 70013400 "TS Usage Mgt ori"
             exit;
         end;
         if TypeText = 'Item' then begin
-            Item.SetLoadFields("No.", Blocked);
+            Item.SetLoadFields("No.", Blocked, "Base Unit of Measure");
             if not Item.Get(CopyStr(NoText, 1, MaxStrLen(Item."No."))) then begin
                 Fail(Argument, "Bifrost Error Code ori"::RecordNotFound, StrSubstNo(NotFoundMsg, 'no'), 'no', NotFoundNextTxt);
                 exit;
@@ -154,8 +154,10 @@ codeunit 70013400 "TS Usage Mgt ori"
                 Fail(Argument, "Bifrost Error Code ori"::PreconditionFailed, StrSubstNo(BlockedMsg, 'no'), 'no', BlockedNextTxt);
                 exit;
             end;
+            if UnitText = '' then
+                UnitText := Item."Base Unit of Measure";
         end else begin
-            Resource.SetLoadFields("No.", Blocked);
+            Resource.SetLoadFields("No.", Blocked, "Base Unit of Measure");
             if not Resource.Get(CopyStr(NoText, 1, MaxStrLen(Resource."No."))) then begin
                 Fail(Argument, "Bifrost Error Code ori"::RecordNotFound, StrSubstNo(NotFoundMsg, 'no'), 'no', NotFoundNextTxt);
                 exit;
@@ -164,6 +166,8 @@ codeunit 70013400 "TS Usage Mgt ori"
                 Fail(Argument, "Bifrost Error Code ori"::PreconditionFailed, StrSubstNo(BlockedMsg, 'no'), 'no', BlockedNextTxt);
                 exit;
             end;
+            if UnitText = '' then
+                UnitText := Resource."Base Unit of Measure";
         end;
         Params.Add('timeSheetNo', Header."No.");
         Params.Add('lineNo', LineNo);

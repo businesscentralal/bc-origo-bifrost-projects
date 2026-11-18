@@ -29,6 +29,7 @@ codeunit 97153 "TS Usage Tests"
     [Test]
     procedure Register_Item_CreatesOpenLine()
     var
+        Item: Record Item;
         Usage: Record "TS Usage Line ori";
         Response: JsonObject;
         SheetNo: Code[20];
@@ -45,6 +46,8 @@ codeunit 97153 "TS Usage Tests"
         Assert.AreEqual(Usage.Status::Open, Usage.Status, 'Starts Open.');
         Assert.AreEqual(3, Usage.Quantity, 'Quantity.');
         Assert.AreEqual(ItemNo, Usage."No.", 'Item number.');
+        Item.Get(ItemNo);
+        Assert.AreEqual(Item."Base Unit of Measure", Usage."Unit of Measure Code", 'Defaults to the item base unit.');
     end;
 
     [Test]
@@ -503,6 +506,25 @@ codeunit 97153 "TS Usage Tests"
         Assert.IsTrue(IsFieldRestricted(Usage.FieldNo(Reversed), 'writeRestricted'), 'Reversed.');
         Assert.IsTrue(IsFieldRestricted(Usage.FieldNo("Journal Line No."), 'writeRestricted'), 'Journal line.');
         Assert.IsFalse(IsFieldRestricted(Usage.FieldNo(Description), 'writeRestricted'), 'Description is free.');
+    end;
+
+    [Test]
+    procedure Captions_1033_1039_AreTranslated()
+    var
+        Usage: Record "TS Usage Line ori";
+        English: Text;
+        Icelandic: Text;
+        Previous: Integer;
+    begin
+        // [SCENARIO] The page and table captions exist in English and Icelandic.
+        Previous := GlobalLanguage();
+        GlobalLanguage(1033);
+        English := Usage.TableCaption() + '|' + Usage.FieldCaption(Status) + '|' + Format(Usage.Status::Approved);
+        GlobalLanguage(1039);
+        Icelandic := Usage.TableCaption() + '|' + Usage.FieldCaption(Status) + '|' + Format(Usage.Status::Approved);
+        GlobalLanguage(Previous);
+        Assert.AreEqual('Time Sheet Usage Line|Status|Approved', English, 'English captions.');
+        Assert.AreEqual('Notkunarlína tímaskýrslu|Staða|Samþykkt', Icelandic, 'Icelandic captions.');
     end;
 
     [Test]
