@@ -30,6 +30,7 @@ codeunit 97147 "TS Native Bulk Tests"
     var
         Assert: Codeunit "Library Assert";
         GrantTok: Label '%1 %2 %3', Locked = true, Comment = '%1 = object type, %2 = object ID, %3 = granted levels';
+        MovedTablesTok: Label '%1|%2|%3|%4|%5|%6|%7|%8|%9|%10|%11|%12', Locked = true, Comment = '%1..%12 = table IDs';
 
     // [Test]
     // procedure LegacyArchive_WarnsToUseNativeName()
@@ -899,20 +900,27 @@ codeunit 97147 "TS Native Bulk Tests"
         until MetadataPermission.Next() = 0;
     end;
 
-    /// <summary>#65 AC01: the Full extension keeps only grants on this app's own objects (no Base App table data).</summary>
+    /// <summary>#65 AC01: the effective BIFROST Full ori role no longer holds the moved Base App time-sheet, absence and project journal grants; PROJ TS ADMIN holds them.</summary>
     [Test]
-    procedure Scenario_65_FullExtension_GrantsNoBaseAppTableData()
+    procedure Scenario_65_BifrostFull_HoldsNoMovedBaseAppTableData()
     var
-        MetadataPermission: Record "Metadata Permission";
+        ExpandedPermission: Record "Expanded Permission";
+        MovedTables: Text;
     begin
-        // [GIVEN] The Projects grants added to BIFROST Full ori.
-        MetadataPermission.SetRange("App ID", ProjectsAppId());
-        MetadataPermission.SetRange("Role ID", 'BIFROST Full ori');
-        Assert.IsFalse(MetadataPermission.IsEmpty(), 'The Projects extensions add grants to BIFROST Full ori.');
-        // [WHEN] Grants outside the Projects object range are selected.
-        MetadataPermission.SetFilter("Object ID", '<%1|>%2', 70013400, 70013599);
-        // [THEN] There are none: Base App grants live in PROJ TS ADMIN.
-        Assert.RecordIsEmpty(MetadataPermission);
+        // [GIVEN] The Base App tables whose grants moved to PROJ TS ADMIN and that Foundation does not grant itself.
+        MovedTables := StrSubstNo(MovedTablesTok, Database::"Job Journal Line", Database::"Time Sheet Header", Database::"Time Sheet Line",
+            Database::"Time Sheet Detail", Database::"Time Sheet Comment Line", Database::"Time Sheet Header Archive", Database::"Time Sheet Line Archive",
+            Database::"Time Sheet Detail Archive", Database::"Time Sheet Cmt. Line Archive", Database::"Time Sheet Posting Entry",
+            Database::"Employee Absence", Database::"Cause of Absence");
+        ExpandedPermission.SetRange("Object Type", ExpandedPermission."Object Type"::"Table Data");
+        ExpandedPermission.SetFilter("Object ID", MovedTables);
+        // [WHEN] The effective grants of BIFROST Full ori (with every extension merged) are read.
+        ExpandedPermission.SetRange("Role ID", 'BIFROST Full ori');
+        // [THEN] None remains in the extended Foundation role.
+        Assert.RecordIsEmpty(ExpandedPermission);
+        // [THEN] PROJ TS ADMIN grants all twelve.
+        ExpandedPermission.SetRange("Role ID", 'PROJ TS ADMIN');
+        Assert.RecordCount(ExpandedPermission, 12);
     end;
 
     local procedure ProjectsAppId(): Guid

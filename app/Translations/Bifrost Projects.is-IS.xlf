@@ -3556,9 +3556,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Pending Approval ori - NamedType MissingLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ask for the Timesheets permission set.</source>
-          <target>Biddu um heimildasafn tímaskýrslna.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Biddu um heimildasafn tímaskýrslna.</note>
+          <source>Assign the PROJ TS ADMIN permission set together with BIFROST Read ori or BIFROST Full ori.</source>
+          <target>Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Pending Approval ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
