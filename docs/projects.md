@@ -259,5 +259,7 @@ Single-sheet selectors cannot be mixed with paging or range filters. An empty
 list for a mapped caller succeeds; a caller with no resource or sheet mapping
 receives `PermissionDenied`. An unauthorized sheet returns `PermissionDenied`
 without record data. Invalid input and missing records return typed Bifröst
-errors with a localized `nextStep`. Help is available in en-US and is-IS.
+errors with a localized `nextStep`. The help catalogue (description, selection
+text and keywords) follows en-US or is-IS. Foundation publishes machine-readable
+contract chapters in English at every LCID (core #1239).
 Related operations: `Projects.PendingApproval.Get`, `Projects.TimeSheet.Submit`.

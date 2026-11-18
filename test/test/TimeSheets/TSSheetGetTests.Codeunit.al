@@ -7,7 +7,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Projects #49: caller isolation, typed selection, daily hours, paging and localized help.</summary>
-codeunit 97161 "TS Sheet Get Tests"
+codeunit 97164 "TS Sheet Get Tests"
 {
     Subtype = Test;
     TestPermissions = Disabled;

@@ -5,7 +5,7 @@ using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 
 /// <summary>Reads time sheets for their authenticated owner or approver (projects #49).</summary>
-codeunit 70013593 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg Contract ori", "Msg Discovery ori"
+codeunit 70013596 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg Contract ori", "Msg Discovery ori"
 {
     Access = Internal;
 

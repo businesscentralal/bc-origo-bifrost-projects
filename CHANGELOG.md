@@ -4,7 +4,7 @@
 
 ### Added (2026-11-18, #49)
 
-- `Projects.TimeSheet.Get` reads a sheet by number or resource and date, or lists authorized sheets with resource/date filters and paging. It returns headers, lines, daily hours, stable statuses and line totals. Only the authenticated owner or approver can read a sheet; foreign and blank assignments fail closed with `PermissionDenied` and a localized next step. New codeunit 70013593 `TS Sheet Get Impl ori`, enum value 70013549, and test codeunits 97161–97162 cover selection, paging, authorization, invalid input and bilingual help. Icelandic translations and Foundation Read/Full execution grants are included.
+- `Projects.TimeSheet.Get` reads a sheet by number or resource and date, or lists authorized sheets with resource/date filters and paging. It returns headers, lines, daily hours, stable statuses and line totals. Only the authenticated owner or approver can read a sheet; foreign and blank assignments fail closed with `PermissionDenied` and a localized next step. New codeunit 70013596 `TS Sheet Get Impl ori`, enum value 70013549, and test codeunits 97164–97165 cover selection, paging, authorization, invalid input and bilingual help. Icelandic translations and Foundation Read/Full execution grants are included.
 
 
 ### Added (2026-11-17, #53)

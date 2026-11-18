@@ -5,7 +5,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Projects #49: native read permissions remain mandatory even with Foundation Read.</summary>
-codeunit 97162 "TS Sheet Get Permission Tests"
+codeunit 97165 "TS Sheet Get Permission Tests"
 {
     Subtype = Test;
     TestPermissions = Restrictive;
