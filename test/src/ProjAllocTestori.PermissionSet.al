@@ -27,6 +27,8 @@ permissionset 97120 "ProjAllocTest ori"
         codeunit "Proj. WIP Get Impl ori" = X,
         codeunit "Proj. WIP Post Impl ori" = X,
         codeunit "Projects Allocation ori" = X,
+        codeunit "Projects Capacity ori" = X,
+        codeunit "Proj. Capacity Impl ori" = X,
         codeunit "Projects Contract ori" = X,
         codeunit "Projects Followup Input ori" = X,
         codeunit "Projects Gate ori" = X,
