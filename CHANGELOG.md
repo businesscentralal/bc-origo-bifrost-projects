@@ -5,6 +5,10 @@
 ### Added (2026-11-18, #52)
 
 - Item and resource usage registration on time sheets. New table 70013400 `TS Usage Line ori`, enums 70013400 `TS Usage Status ori` and 70013401 `TS Usage Type ori`, page 70013400 `TS Usage Lines ori`, enum extension 70013400 `TS Usage Types ori` (values 70013410..70013416), codeunits 70013400 `TS Usage Mgt ori`, 70013401 `TS Usage Context ori`, 70013402 `TS Usage Journal ori`, 70013403 `TS Usage Runner ori`, 70013404 `TS Usage Contract ori`, 70013405 `TS Usage Restrict ori` and 70013410..70013416 for the seven new message types `Projects.Usage.Register/Submit/Approve/Reject/Transfer/Reverse/List`, and permission set extensions 70013400 (Full) and 70013401 (Read). `app.json` idRanges widened to 70013400-70013599 (Architect ruling 18.11.2026, Gunnar 12.11 #34; usage objects stay in 70013400-70013499). Journal mapping: Item Journal, Resource Journal, or Job Journal when the time sheet line has a project; Transfer creates lines only (never posts) in one transaction. Product decisions on the recommended defaults (sheet approver approves, journal by line type, no post flag); Gunnar's card d-20261104 is still open. Tests: codeunits 97153 `TS Usage Tests` and 97154 `TS Usage Perm Tests`, permission set 97153. Help: docs/projects.md. is-IS units in sync.
+### Added (2026-11-18, #49)
+
+- `Projects.TimeSheet.Get` reads a sheet by number or resource and date, or lists authorized sheets with resource/date filters and paging. It returns headers, lines, daily hours, stable statuses and line totals. Only the authenticated owner or approver can read a sheet; foreign and blank assignments fail closed with `PermissionDenied` and a localized next step. New codeunit 70013596 `TS Sheet Get Impl ori`, enum value 70013549, and test codeunits 97164–97165 cover selection, paging, authorization, invalid input and bilingual help. Icelandic translations and Foundation Read/Full execution grants are included.
+
 
 ### Added (2026-11-17, #53)
 
