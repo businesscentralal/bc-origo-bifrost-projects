@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-18, #51)
+
+- Add `Projects.ResourceCapacity.Get`: read capacity, active and archived time-sheet hours, and net posted resource usage by calendar period. Exact resource/group selectors, inclusive dates, clipped periods and the 53-period limit match ResourceAllocation. New codeunits 70013591 (`Projects Capacity ori`) and 70013592 (`Proj. Capacity Impl ori`), enum value 70013548, and test codeunit 97161. Both Foundation role extensions grant execution; native read permissions remain required. English/Icelandic help and refusal translations are in sync.
+
 ### Added (2026-11-17, #53)
 
 - Verify the moved `Projects.TimeSheet.Approve` contract with test codeunit 97152 `TS Approve Contract Tests`: English and Icelandic public help and raw parameters exclude `omitCommit`; requests containing either boolean value are refused without approving lines. Valid approval and empty selection remain covered. The product implementation already satisfies this contract after #33; no product object or translation changes.

@@ -6,6 +6,8 @@ using Origo.Bifrost;
 permissionsetextension 70013500 "Projects Read ori" extends "BIFROST Read ori"
 {
     Permissions =
+        codeunit "Projects Capacity ori" = X,
+        codeunit "Proj. Capacity Impl ori" = X,
         codeunit "Proj. Item Usage Impl ori" = X,
         codeunit "Proj. Item Usage Process ori" = X,
         codeunit "Proj. Purchase Impl ori" = X,

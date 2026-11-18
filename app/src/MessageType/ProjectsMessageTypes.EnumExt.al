@@ -130,4 +130,10 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Quote.Send', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Quote Send Impl ori", "Msg Discovery ori" = "Proj. Quote Send Impl ori", "Msg Contract ori" = "Proj. Quote Send Impl ori";
     }
+    /// <summary>Reads resource capacity, time-sheet hours and usage per period.</summary>
+    value(70013548; "Projects.ResourceCapacity.Get")
+    {
+        Caption = 'Projects.ResourceCapacity.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Capacity Impl ori", "Msg Discovery ori" = "Proj. Capacity Impl ori", "Msg Contract ori" = "Proj. Capacity Impl ori";
+    }
 }
