@@ -5,6 +5,10 @@
 ### Added (2026-11-18, #51)
 
 - Add `Projects.ResourceCapacity.Get`: read capacity, active and archived time-sheet hours, and net posted resource usage by calendar period. Exact resource/group selectors, inclusive dates, clipped periods and the 53-period limit match ResourceAllocation. New codeunits 70013594 (`Projects Capacity ori`) and 70013595 (`Proj. Capacity Impl ori`), enum value 70013550, and test codeunit 97166. Both Foundation role extensions grant execution; native read permissions remain required. English/Icelandic help and refusal translations are in sync.
+### Added (2026-11-18, #49)
+
+- `Projects.TimeSheet.Get` reads a sheet by number or resource and date, or lists authorized sheets with resource/date filters and paging. It returns headers, lines, daily hours, stable statuses and line totals. Only the authenticated owner or approver can read a sheet; foreign and blank assignments fail closed with `PermissionDenied` and a localized next step. New codeunit 70013596 `TS Sheet Get Impl ori`, enum value 70013549, and test codeunits 97164–97165 cover selection, paging, authorization, invalid input and bilingual help. Icelandic translations and Foundation Read/Full execution grants are included.
+
 
 ### Added (2026-11-17, #53)
 

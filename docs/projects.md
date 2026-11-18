@@ -261,3 +261,36 @@ The call changes no business data. It requires Projects to be enabled and the ca
 Invalid period types return `InvalidParameter`; more than 53 periods returns `LimitExceeded`. Missing/invalid/unknown parameters, nonexistent selectors and conflicting resource/group selectors return a Bifröst error code with a localized `nextStep`. Help is available in en-US (1033) and is-IS (1039).
 
 Related: `Projects.ResourceAllocation.Get` uses the same resource/group selectors, calendar boundaries and `rows` identity fields; it reports planned project allocation and availability instead of time-sheet and posted usage quantities.
+
+## Read a time sheet
+
+```json
+{"type":"Projects.TimeSheet.Get","data":{"timeSheetNo":"TS00001"}}
+```
+
+Returns `timeSheets` with the header, lines, daily hours, line and day statuses,
+and line totals. Only the authenticated owner or approver may read a sheet;
+blank assignments grant no access. Native read permissions are also required.
+Status names remain English enum names in both supported locales.
+
+| Selection | Request data |
+|---|---|
+| One sheet by number | `{"timeSheetNo":"TS00001"}` |
+| One sheet containing a date | `{"resourceNo":"R001","date":"2026-11-18"}` |
+| Paged list | `{"resourceNo":"R001","from":"2026-11-01","to":"2026-11-30","take":20,"skip":0}` |
+
+List filters are optional. `from` and `to` must be supplied together and select
+sheet periods that overlap the inclusive range. All daily hours on each selected
+sheet are returned. `take` is 1–100 (default 20); `skip` is a nonnegative integer
+(default 0). Results are ordered by sheet number and include only authorized
+sheets. When `hasMore` is true, add the number returned to `skip` for the next page.
+Concurrent sheet changes can shift offset-based pages.
+
+Single-sheet selectors cannot be mixed with paging or range filters. An empty
+list for a mapped caller succeeds; a caller with no resource or sheet mapping
+receives `PermissionDenied`. An unauthorized sheet returns `PermissionDenied`
+without record data. Invalid input and missing records return typed Bifröst
+errors with a localized `nextStep`. The help catalogue (description, selection
+text and keywords) follows en-US or is-IS. Foundation publishes machine-readable
+contract chapters in English at every LCID (core #1239).
+Related operations: `Projects.PendingApproval.Get`, `Projects.TimeSheet.Submit`.
