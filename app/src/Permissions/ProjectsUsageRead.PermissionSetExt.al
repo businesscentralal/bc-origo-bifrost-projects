@@ -1,15 +1,12 @@
 namespace Origo.Bifrost.Projects;
 
-using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 
-/// <summary>Grants read access to time sheet usage lines and the List message to the Foundation Read role (projects#52).</summary>
+/// <summary>Grants read access to time sheet usage lines and the List message to the Foundation Read role (projects#52). Base Application data comes from PROJ USAGE (#65).</summary>
 permissionsetextension 70013401 "Projects Usage Read ori" extends "BIFROST Read ori"
 {
     Permissions =
         tabledata "TS Usage Line ori" = R,
-        tabledata "Time Sheet Header" = R,
-        tabledata "Time Sheet Line" = R,
         page "TS Usage Lines ori" = X,
         codeunit "TS Usage Mgt ori" = X,
         codeunit "TS Usage Contract ori" = X,

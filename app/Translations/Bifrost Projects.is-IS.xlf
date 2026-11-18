@@ -33,6 +33,132 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Primary Key - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 675536452 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Sheet Usage Line</source>
+          <target>Notkunarlína tímaskýrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notkunarlína tímaskýrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 1378760138 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approved At</source>
+          <target>Samþykkt þann</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Samþykkt þann</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Approved At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 4041162204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Approved By</source>
+          <target>Samþykkt af</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Samþykkt af</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Approved By - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3192175264 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target>Dagsetning</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Lýsing</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lýsing</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Document No.</source>
+          <target>Skjalanr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skjalanr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Document No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Færslunr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færslunr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 2704330142 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal Batch Name</source>
+          <target>Heiti færslubókarkeyrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heiti færslubókarkeyrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Journal Batch Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3586807204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal Line No.</source>
+          <target>Línunr. færslubókar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Línunr. færslubókar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Journal Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3684440170 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Journal Template Name</source>
+          <target>Heiti færslubókarsniðmáts</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heiti færslubókarsniðmáts</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Journal Template Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3286668834 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ledger Entry No.</source>
+          <target>Færslunr. í höfuðbók</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færslunr. í höfuðbók</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Ledger Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No.</source>
+          <target>Nr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Nr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target>Magn</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Magn</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3031931520 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reject Comment</source>
+          <target>Athugasemd við höfnun</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugasemd við höfnun</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Reject Comment - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3961767479 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Resource No.</source>
+          <target>Aðfangsnr. starfsmanns</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðfangsnr. starfsmanns</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Resource No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 3744289816 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reversed</source>
+          <target>Bakfært</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bakfært</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Reversed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <target>Staða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Staða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 4095902741 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Sheet Line No.</source>
+          <target>Línunr. tímaskýrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Línunr. tímaskýrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Time Sheet Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 2642451359 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Sheet No.</source>
+          <target>Tímaskýrslunr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tímaskýrslunr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Time Sheet No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target>Tegund</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tegund</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 675536452 - Field 2385270358 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unit of Measure Code</source>
+          <target>Einingarkóði</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Einingarkóði</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Unit of Measure Code - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Codeunit 108631167 - NamedType 2277945722" size-unit="char" translate="yes" xml:space="preserve">
           <source>resource no.</source>
           <target>forðanúmer</target>
@@ -2152,15 +2278,15 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Contract ori - NamedType PermissionMessageLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2970237504 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Contract ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2970237504 - NamedType 2530995935" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The caller has the BIFROST Full ori permission set.</source>
-          <target>Kallandinn hefur heimildasamstæðuna BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðuna BIFROST Full ori.</note>
+          <source>The caller has the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Contract ori - NamedType PermissionPreconditionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2970237504 - NamedType 3258586172" size-unit="char" translate="yes" xml:space="preserve">
@@ -2278,9 +2404,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Mgt ori - NamedType AssignSetMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 2461216604 - NamedType 3068500576" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Mgt ori - NamedType AssignSetNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 2461216604 - NamedType 3317384252" size-unit="char" translate="yes" xml:space="preserve">
@@ -2800,9 +2926,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType BulkChangesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2259688482" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The caller has the BIFROST Full ori permission set.</source>
-          <target>Kallandinn hefur heimildasamstæðuna BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðuna BIFROST Full ori.</note>
+          <source>The caller has the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType BulkPreconditionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 454068127" size-unit="char" translate="yes" xml:space="preserve">
@@ -3016,15 +3142,15 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType PermissionHelpLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2091803237" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType PermissionTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 4286997497" size-unit="char" translate="yes" xml:space="preserve">
@@ -3184,9 +3310,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitMissingTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2970168249" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Owner only. Parameters: timeSheetNo, or resourceNo and date; optional lineNos. MissingParameter: Send the missing key. InvalidParameterFormat: Send the key with the documented type. UnknownParameter: Remove the unknown key. RecordNotFound: Use an identifier that exists. ConflictingIdentifiers: Send only one identifier for the time sheet. PermissionDenied: Only the owner can submit; ask the owner. PermissionDenied for missing access: Assign the BIFROST Full ori permission set. PreconditionFailed: Add lines first. InvalidLine: Fix the line and submit again. PreconditionFailed in an uncommitted batch: Submit outside an uncommitted batch. Submitted lines return changed false. Empty lines follow the Business Central submission policy. A successful call commits; a failed submission rolls back every selected line.</source>
-          <target>Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunni BIFROST Full ori. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunni BIFROST Full ori. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</note>
+          <source>Owner only. Parameters: timeSheetNo, or resourceNo and date; optional lineNos. MissingParameter: Send the missing key. InvalidParameterFormat: Send the key with the documented type. UnknownParameter: Remove the unknown key. RecordNotFound: Use an identifier that exists. ConflictingIdentifiers: Send only one identifier for the time sheet. PermissionDenied: Only the owner can submit; ask the owner. PermissionDenied for missing access: Assign the BIFROST Full ori and PROJ TS ADMIN permission sets. PreconditionFailed: Add lines first. InvalidLine: Fix the line and submit again. PreconditionFailed in an uncommitted batch: Submit outside an uncommitted batch. Submitted lines return changed false. Empty lines follow the Business Central submission policy. A successful call commits; a failed submission rolls back every selected line.</source>
+          <target>Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitNotesTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 1201990684" size-unit="char" translate="yes" xml:space="preserve">
@@ -3220,9 +3346,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitOwnerTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 3788801764" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitPermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2743244529" size-unit="char" translate="yes" xml:space="preserve">
@@ -3394,9 +3520,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Create Contract ori - NamedType Text21Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2509343623 - NamedType 533385441" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Create Contract ori - NamedType Text22Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2509343623 - NamedType 3975699074" size-unit="char" translate="yes" xml:space="preserve">
@@ -3658,9 +3784,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Contract ori - NamedType OwnerTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 205185506 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Contract ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 205185506 - NamedType 2091803237" size-unit="char" translate="yes" xml:space="preserve">
@@ -3796,9 +3922,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Mgt ori - NamedType PermissionMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 3637980814 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Mgt ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3637980814 - NamedType 3103368700" size-unit="char" translate="yes" xml:space="preserve">
@@ -4366,9 +4492,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Native Mgt ori - NamedType AssignSetMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 1312572432 - NamedType 3068500576" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Native Mgt ori - NamedType AssignSetNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1312572432 - NamedType 3831865551" size-unit="char" translate="yes" xml:space="preserve">
@@ -4552,9 +4678,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Pending Approval ori - NamedType MissingLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ask for the Timesheets permission set.</source>
-          <target>Biddu um heimildasafn tímaskýrslna.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Biddu um heimildasafn tímaskýrslna.</note>
+          <source>Assign the PROJ TS ADMIN permission set together with BIFROST Read ori or BIFROST Full ori.</source>
+          <target>Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Pending Approval ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
@@ -4936,9 +5062,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Create Impl ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 27495300 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Create Impl ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 27495300 - NamedType 3219801116" size-unit="char" translate="yes" xml:space="preserve">
@@ -5229,168 +5355,6 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Projects.TimeSheet.Submit: Sendir opnar tímaskýrslulínur til samþykktar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Submit Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
         </trans-unit>
-        <trans-unit id="Page 4158522199 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Projects Setup</source>
-          <target>Uppsetning verkefna</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Uppsetning verkefna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4158522199 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>General</source>
-          <target>Almennt</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Almennt</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control General - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Page 4158522199 - Control 2891538263 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Specifies whether Projects message types are enabled for this company.</source>
-          <target>Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control Enabled - Property ToolTip</note>
-        </trans-unit>
-        <trans-unit id="PermissionSet 1217210391 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Projects Time Sheet Approver</source>
-          <target>Verkefni - samþykkjandi tímaskýrslna</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - samþykkjandi tímaskýrslna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS APPROVER - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PermissionSet 505041140 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Projects Time Sheet Post</source>
-          <target>Verkefni - bókun tímaskýrslna</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - bókun tímaskýrslna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS POST - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="PermissionSet 1716411664 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Projects Time Sheet Self</source>
-          <target>Verkefni - eigin tímaskýrslur</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - eigin tímaskýrslur</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS SELF - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Time Sheet Usage Line</source>
-          <target>Notkunarlína tímaskýrslu</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Notkunarlína tímaskýrslu</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 1378760138 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Approved At</source>
-          <target>Samþykkt þann</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Samþykkt þann</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Approved At - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 4041162204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Approved By</source>
-          <target>Samþykkt af</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Samþykkt af</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Approved By - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3192175264 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Date</source>
-          <target>Dagsetning</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Date - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Description</source>
-          <target>Lýsing</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Lýsing</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Description - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 486908828 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Document No.</source>
-          <target>Skjalanr.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Skjalanr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Document No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Entry No.</source>
-          <target>Færslunr.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Færslunr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Entry No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 2704330142 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Journal Batch Name</source>
-          <target>Heiti færslubókarkeyrslu</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Heiti færslubókarkeyrslu</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Journal Batch Name - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3586807204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Journal Line No.</source>
-          <target>Línunr. færslubókar</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Línunr. færslubókar</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Journal Line No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3684440170 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Journal Template Name</source>
-          <target>Heiti færslubókarsniðmáts</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Heiti færslubókarsniðmáts</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Journal Template Name - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3286668834 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ledger Entry No.</source>
-          <target>Færslunr. í höfuðbók</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Færslunr. í höfuðbók</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Ledger Entry No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 4200184881 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>No.</source>
-          <target>Nr.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Nr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Quantity</source>
-          <target>Magn</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Magn</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Quantity - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3031931520 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reject Comment</source>
-          <target>Athugasemd við höfnun</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Athugasemd við höfnun</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Reject Comment - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3961767479 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Resource No.</source>
-          <target>Aðfangsnr. starfsmanns</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðfangsnr. starfsmanns</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Resource No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 3744289816 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Reversed</source>
-          <target>Bakfært</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Bakfært</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Reversed - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Status</source>
-          <target>Staða</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Staða</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Status - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 4095902741 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Time Sheet Line No.</source>
-          <target>Línunr. tímaskýrslu</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Línunr. tímaskýrslu</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Time Sheet Line No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 2642451359 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Time Sheet No.</source>
-          <target>Tímaskýrslunr.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Tímaskýrslunr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Time Sheet No. - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 1878130204 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Type</source>
-          <target>Tegund</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Tegund</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Type - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Table 675536452 - Field 2385270358 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Unit of Measure Code</source>
-          <target>Einingarkóði</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Einingarkóði</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Table TS Usage Line ori - Field Unit of Measure Code - Property Caption</note>
-        </trans-unit>
         <trans-unit id="Codeunit 4254845603 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Approves submitted usage lines of a time sheet.</source>
           <target>Samþykkir innsendar notkunarlínur tímaskýrslu.</target>
@@ -5553,6 +5517,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins samþykktaraðilinn sem er nefndur á tímaskýrslunni, aldrei eigandinn, getur gert þetta.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType ApproverNextTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1715273284 - NamedType 2966915379" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The key %1 names a blocked record.</source>
+          <target>Lykillinn %1 vísar á lokaða færslu.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = key name; is-IS=Lykillinn %1 vísar á lokaða færslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType BlockedMsg</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 171727281" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use a record that is not blocked.</source>
           <target>Notaðu færslu sem er ekki lokuð.</target>
@@ -5583,6 +5553,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn sem vantar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType MissingKeyNextTxt</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1715273284 - NamedType 20121470" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The key %1 does not match an existing record.</source>
+          <target>Lykillinn %1 passar ekki við færslu sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = key name; is-IS=Lykillinn %1 passar ekki við færslu sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType NotFoundMsg</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 2117344776" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use an identifier that exists.</source>
           <target>Notaðu auðkenni sem er til.</target>
@@ -5608,9 +5584,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType PermissionMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori permission set, or the journal permissions the transfer needs.</source>
-          <target>Úthlutaðu heimildasamstæðunni BIFROST Full ori eða færslubókarheimildunum sem flutningurinn þarfnast.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða færslubókarheimildunum sem flutningurinn þarfnast.</note>
+          <source>Assign the BIFROST Full ori and PROJ USAGE permission sets (BIFROST Read ori and PROJ USAGE for List), or the journal permissions the transfer needs.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 747601982" size-unit="char" translate="yes" xml:space="preserve">
@@ -5642,6 +5618,12 @@
           <target>Athugaðu stöðuna með Projects.Usage.List.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Athugaðu stöðuna með Projects.Usage.List.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType StateNextTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1715273284 - NamedType 2778521625" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The key %1 is longer than allowed.</source>
+          <target>Lykillinn %1 er lengri en leyfilegt er.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = key name; is-IS=Lykillinn %1 er lengri en leyfilegt er.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType TooLongMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 3711673115" size-unit="char" translate="yes" xml:space="preserve">
           <source>A key has the wrong JSON type or value.</source>
@@ -5805,6 +5787,24 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Projects.Usage.Transfer: Flytur samþykktar notkunarlínur í vöru-, aðfangs- eða verkbækur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Transfer Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
         </trans-unit>
+        <trans-unit id="Page 4158522199 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Setup</source>
+          <target>Uppsetning verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Uppsetning verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>General</source>
+          <target>Almennt</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Almennt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control General - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 2891538263 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether Projects message types are enabled for this company.</source>
+          <target>Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control Enabled - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 1206416741 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Time Sheet Usage Lines</source>
           <target>Notkunarlínur tímaskýrslna</target>
@@ -5966,6 +5966,36 @@
           <target>Aðfang</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Aðfang</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TS Usage Type ori - EnumValue Resource - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 528379457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Admin</source>
+          <target>Stjórnun tímaskýrslna verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stjórnun tímaskýrslna verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS ADMIN - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 1217210391 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Approver</source>
+          <target>Verkefni - samþykkjandi tímaskýrslna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - samþykkjandi tímaskýrslna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS APPROVER - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 505041140 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Post</source>
+          <target>Verkefni - bókun tímaskýrslna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - bókun tímaskýrslna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS POST - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 1716411664 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Self</source>
+          <target>Verkefni - eigin tímaskýrslur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - eigin tímaskýrslur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS SELF - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 3628692014 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Usage Registration</source>
+          <target>Skráning notkunar verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skráning notkunar verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ USAGE - Property Caption</note>
         </trans-unit>
       </group>
     </body>

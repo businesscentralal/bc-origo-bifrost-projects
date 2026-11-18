@@ -38,7 +38,7 @@ codeunit 70013400 "TS Usage Mgt ori"
         StateMsg: Label 'The usage line is in a state that does not allow this action.', Comment = 'is-IS=Notkunarlínan er í stöðu sem leyfir ekki þessa aðgerð.';
         StateNextTxt: Label 'Check the state with Projects.Usage.List.', Comment = 'is-IS=Athugaðu stöðuna með Projects.Usage.List.';
         PermissionMsg: Label 'The caller lacks permission for this usage action.', Comment = 'is-IS=Kallandi hefur ekki heimild fyrir þessari notkunaraðgerð.';
-        PermissionNextTxt: Label 'Assign the BIFROST Full ori permission set, or the journal permissions the transfer needs.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori eða færslubókarheimildunum sem flutningurinn þarfnast.';
+        PermissionNextTxt: Label 'Assign the BIFROST Full ori and PROJ USAGE permission sets (BIFROST Read ori and PROJ USAGE for List), or the journal permissions the transfer needs.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.';
         IsolatedMsg: Label 'This operation requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslu.';
         IsolatedNextTxt: Label 'Run this action outside an uncommitted batch.', Comment = 'is-IS=Keyrðu þessa aðgerð utan óstaðfestrar lotu.';
         RetryNextTxt: Label 'Correct the Business Central error and retry. Nothing was changed.', Comment = 'is-IS=Leiðréttu Business Central villuna og reyndu aftur. Engu var breytt.';
