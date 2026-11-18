@@ -231,6 +231,24 @@ read permissions returns `PermissionDenied`, naming BIFROST Read ori and native
 project report permissions. Feature roles grant the report implementation; native
 Business Central permissions remain the caller's responsibility.
 
+## Time sheet usage lines
+
+Usage lines record items and resources a user used on a time sheet line (tools, km driven, bolts). A line belongs to a time sheet and one of its lines, carries a state and goes through approval into a journal. Native time sheet lines have no item type, so the usage sits in its own table (`TS Usage Line ori`). Use the dedicated messages; a generic `Data.Records.Set` of `Status`, `Reversed` or the journal fields is refused with a hint naming them.
+
+| Message type | Who | What it does |
+|---|---|---|
+| `Projects.Usage.Register` | owner of the sheet | Creates an Open line. Keys: `timeSheetNo`, `lineNo`, `type` (Item or Resource), `no`, `date` (inside the sheet week), `quantity` (> 0), optional `unitOfMeasure`, `description`. The item or resource must exist and not be blocked. |
+| `Projects.Usage.Submit` | owner | Open or Rejected lines become Submitted. Keys: `timeSheetNo`, optional `entryNos`. |
+| `Projects.Usage.Approve` | approver named on the sheet, never its owner | Submitted lines become Approved. |
+| `Projects.Usage.Reject` | approver | Submitted lines become Rejected, optional `comment` (at most 250 characters). The owner can submit them again. |
+| `Projects.Usage.Transfer` | approver | Creates journal lines for Approved lines, once, in one transaction; nothing is posted. |
+| `Projects.Usage.Reverse` | approver | Flags a Posted line Reversed, once. With `createJournalLine: true` it also creates a journal line with negative quantity. |
+| `Projects.Usage.List` | owner, approver | Read-only, paged (`skip`, `take` at most 200). Filters `timeSheetNo`, `status`, `pending` (Submitted lines addressed to the caller as approver). |
+
+States: Open, Submitted, Approved, Rejected, Transferred, Posted. Transferred means a journal line exists. Posting that journal line sets Posted and stores the ledger entry number; deleting the journal line before posting returns the line to Approved.
+
+Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
+
 ## Read a time sheet
 
 ```json
