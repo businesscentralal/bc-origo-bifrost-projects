@@ -11,6 +11,8 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
+using Microsoft.Service.Document;
+using Microsoft.Utilities;
 using System.Security.User;
 
 /// <summary>
@@ -50,5 +52,7 @@ permissionset 70013589 "PROJ TS ADMIN"
         tabledata "Time Sheet Cmt. Line Archive" = RIMD,
         tabledata "Job Journal Template" = R,
         tabledata "Job Journal Batch" = R,
-        tabledata "Job Journal Line" = RIMD;
+        tabledata "Job Journal Line" = RIMD,
+        tabledata "Service Header" = R,
+        tabledata "Work Type" = R;
 }

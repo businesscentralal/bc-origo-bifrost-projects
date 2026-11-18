@@ -13,6 +13,8 @@ using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
+using Microsoft.Service.Document;
+using Microsoft.Utilities;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.Security.AccessControl;
@@ -873,7 +875,7 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.IsTrue(ArchiveEnabled, 'Archive must be enabled under BIFROST Full ori and PROJ TS ADMIN.');
     end;
 
-    /// <summary>#65 AC02: PROJ TS ADMIN is assignable and holds exactly the 28 grants the Full extension had, at the same levels.</summary>
+    /// <summary>#65 AC02: PROJ TS ADMIN is assignable and holds exactly the 30 grants the Full extension had, including the two #50 read grants, at the same levels.</summary>
     [Test]
     procedure Scenario_65_AdminSet_HoldsMovedGrantsAtSameLevels()
     var
@@ -988,6 +990,8 @@ codeunit 97147 "TS Native Bulk Tests"
         AddGrant(Expected, TableData, Database::"Job Journal Template", 'R');
         AddGrant(Expected, TableData, Database::"Job Journal Batch", 'R');
         AddGrant(Expected, TableData, Database::"Job Journal Line", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Service Header", 'R');
+        AddGrant(Expected, TableData, Database::"Work Type", 'R');
     end;
 
     [TryFunction]
