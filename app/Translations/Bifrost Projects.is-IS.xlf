@@ -4905,6 +4905,24 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control Enabled - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PermissionSet 1217210391 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Approver</source>
+          <target>Verkefni - samþykkjandi tímaskýrslna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - samþykkjandi tímaskýrslna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS APPROVER - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 505041140 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Post</source>
+          <target>Verkefni - bókun tímaskýrslna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - bókun tímaskýrslna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS POST - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 1716411664 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Time Sheet Self</source>
+          <target>Verkefni - eigin tímaskýrslur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - eigin tímaskýrslur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS SELF - Property Caption</note>
+        </trans-unit>
       </group>
     </body>
   </file>

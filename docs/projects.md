@@ -251,4 +251,10 @@ the native writer checks again. Another user's sheet is refused with `Permission
 `nextStep` and no record data. An approver cannot approve or reject their own sheet. A caller who
 is not the time sheet owner (or approver) of any resource or sheet is refused. Line.Set, Approve and Reject
 commit on success and roll back every selected line on failure, as the `Projects.TimeSheet.*`
-administrator types do. Item and resource usage lines are not part of these types yet.
+administrator types do. Item and resource usage lines are not part of these types yet; they come with
+the usage table from #52.
+
+Role sets: assign `PROJ TS SELF` (the four My* types), `PROJ TS APPROVER` (the three Approval types)
+or `PROJ TS POST` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
+sets grant the time-sheet tables indirectly only and do not overlap, so approving and posting can be
+given to different people. The ownership and approver checks in code apply in every role.

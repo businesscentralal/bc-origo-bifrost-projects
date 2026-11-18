@@ -5,6 +5,7 @@ using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
+using System.Security.AccessControl;
 using System.Security.User;
 using System.TestLibraries.Utilities;
 
@@ -23,6 +24,46 @@ codeunit 97160 "TS Self Service Tests"
         OtherEmployeeTok: Label 'XEMPA38', Locked = true;
         SecondEmployeeTok: Label 'XEMPB38', Locked = true;
         OtherApproverTok: Label 'XAPPR38', Locked = true;
+
+    [Test]
+    procedure AC01_RoleSets_GrantOnlyTheirOwnTypes()
+    begin
+        // [SCENARIO] #38 condition 3 (Architect 18.11.2026): Self, Approver and Post are separable role sets.
+        // The implementation codeunits are internal to the app, so they are named by object ID.
+        // [THEN] Self executes the four My* types and none of the Approval or Post types.
+        AssertGrant('PROJ TS SELF', 70013584, true); // TS My Sheet Get Impl ori
+        AssertGrant('PROJ TS SELF', 70013591, true); // TS My Sheet Create Impl ori
+        AssertGrant('PROJ TS SELF', 70013589, true); // TS My Line Set Impl ori
+        AssertGrant('PROJ TS SELF', 70013585, true); // TS My Sheet Submit Impl ori
+        AssertGrant('PROJ TS SELF', 70013586, false); // TS Approval Get Impl ori
+        AssertGrant('PROJ TS SELF', 70013587, false); // TS Approval Approve Impl ori
+        AssertGrant('PROJ TS SELF', 70013588, false); // TS Approval Reject Impl ori
+        AssertGrant('PROJ TS SELF', 70013572, false); // TS Sheet Post Impl ori
+        // [THEN] Approver executes the three Approval types and none of the My* or Post types.
+        AssertGrant('PROJ TS APPROVER', 70013586, true); // TS Approval Get Impl ori
+        AssertGrant('PROJ TS APPROVER', 70013587, true); // TS Approval Approve Impl ori
+        AssertGrant('PROJ TS APPROVER', 70013588, true); // TS Approval Reject Impl ori
+        AssertGrant('PROJ TS APPROVER', 70013584, false); // TS My Sheet Get Impl ori
+        AssertGrant('PROJ TS APPROVER', 70013589, false); // TS My Line Set Impl ori
+        AssertGrant('PROJ TS APPROVER', 70013572, false); // TS Sheet Post Impl ori
+        AssertGrant('PROJ TS APPROVER', 70013570, false); // TS Sheet Archive Impl ori
+    end;
+
+    [Test]
+    procedure AC01_PostRoleSet_IsSeparateFromSelfAndApprover()
+    begin
+        // [SCENARIO] Edge case: the posting role cannot use the employee or approver types.
+        AssertGrant('PROJ TS POST', 70013572, true); // TS Sheet Post Impl ori
+        AssertGrant('PROJ TS POST', 70013570, true); // TS Sheet Archive Impl ori
+        AssertGrant('PROJ TS POST', 70013584, false); // TS My Sheet Get Impl ori
+        AssertGrant('PROJ TS POST', 70013585, false); // TS My Sheet Submit Impl ori
+        AssertGrant('PROJ TS POST', 70013586, false); // TS Approval Get Impl ori
+        AssertGrant('PROJ TS POST', 70013587, false); // TS Approval Approve Impl ori
+        // [THEN] The role sets grant no direct write on the time-sheet tables (indirect only).
+        AssertNoDirectWrite('PROJ TS SELF');
+        AssertNoDirectWrite('PROJ TS APPROVER');
+        AssertNoDirectWrite('PROJ TS POST');
+    end;
 
     [Test]
     procedure AC01_AllSevenTypes_HaveContracts_1033_1039()
@@ -920,5 +961,29 @@ codeunit 97160 "TS Self Service Tests"
         Detail.Quantity := 8;
         Detail.Status := Line.Status;
         Detail.Insert(false);
+    end;
+
+    local procedure AssertGrant(RoleId: Code[20]; CodeunitId: Integer; Expected: Boolean)
+    var
+        ExpandedPermission: Record "Expanded Permission";
+        GrantMsg: Label '%1 execute grant on codeunit %2', Locked = true;
+    begin
+        ExpandedPermission.SetRange("Role ID", RoleId);
+        ExpandedPermission.SetRange("Object Type", ExpandedPermission."Object Type"::Codeunit);
+        ExpandedPermission.SetRange("Object ID", CodeunitId);
+        ExpandedPermission.SetRange("Execute Permission", ExpandedPermission."Execute Permission"::Yes);
+        Assert.AreEqual(Expected, not ExpandedPermission.IsEmpty(), StrSubstNo(GrantMsg, RoleId, CodeunitId));
+    end;
+
+    local procedure AssertNoDirectWrite(RoleId: Code[20])
+    var
+        ExpandedPermission: Record "Expanded Permission";
+    begin
+        ExpandedPermission.SetRange("Role ID", RoleId);
+        ExpandedPermission.SetRange("Object Type", ExpandedPermission."Object Type"::"Table Data");
+        ExpandedPermission.SetRange("Object ID", Database::"Time Sheet Header", Database::"Time Sheet Detail");
+        Assert.IsFalse(ExpandedPermission.IsEmpty(), RoleId + ' must grant the time-sheet tables indirectly');
+        ExpandedPermission.SetRange("Modify Permission", ExpandedPermission."Modify Permission"::Yes);
+        Assert.IsTrue(ExpandedPermission.IsEmpty(), RoleId + ' must not grant direct modify on time-sheet tables');
     end;
 }
