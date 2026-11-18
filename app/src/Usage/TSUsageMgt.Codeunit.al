@@ -243,9 +243,28 @@ codeunit 70013400 "TS Usage Mgt ori"
                 end;
                 Selected.Add(EntryNo);
             end;
+        Params.Add('timeSheetNo', Header."No.");
         Params.Add('entryNos', Selected);
         Params.Add('comment', Comment);
         RunWrite(Argument, Operation, Params);
+    end;
+
+    /// <summary>Revalidates a decision against the locked sheet and current usage state inside the write transaction.</summary>
+    internal procedure ValidateDecision(Usage: Record "TS Usage Line ori"; Operation: Integer; SheetNo: Code[20])
+    var
+        Header: Record "Time Sheet Header";
+    begin
+        Usage.TestField("Time Sheet No.", SheetNo);
+        Header.ReadIsolation := IsolationLevel::UpdLock;
+        Header.Get(SheetNo);
+        if Operation = 2 then begin
+            if not SameUser(Header."Owner User ID") then
+                Error(OwnerMsg);
+        end else
+            if not IsApprover(Header) then
+                Error(ApproverMsg);
+        if not CanDecide(Usage, Operation) then
+            Error(StateMsg);
     end;
 
     local procedure CanDecide(Usage: Record "TS Usage Line ori"; Operation: Integer): Boolean
@@ -380,7 +399,7 @@ codeunit 70013400 "TS Usage Mgt ori"
             JobTemplate.SetLoadFields(Name);
             JobBatch.SetLoadFields(Name);
             Found := JobTemplate.Get(TemplateName) and JobBatch.Get(TemplateName, BatchName);
-            if not (JobTemplate.WritePermission() and JobBatch.ReadPermission()) then
+            if not (CanWriteJobJournal() and JobTemplate.ReadPermission() and JobBatch.ReadPermission()) then
                 exit(DenyJournal(Argument));
         end else
             if Usage.Type = Usage.Type::Item then begin
@@ -401,6 +420,13 @@ codeunit 70013400 "TS Usage Mgt ori"
             exit(false);
         end;
         exit(true);
+    end;
+
+    local procedure CanWriteJobJournal(): Boolean
+    var
+        Line: Record "Job Journal Line";
+    begin
+        exit(Line.WritePermission());
     end;
 
     local procedure CanWriteItemJournal(): Boolean

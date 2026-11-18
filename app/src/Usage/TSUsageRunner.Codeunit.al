@@ -4,7 +4,7 @@ using Microsoft.Projects.TimeSheet;
 
 /// <summary>
 /// Write isolation for the usage message types. OnRun is started with Codeunit.Run, so a
-/// failure rolls back every change of the request. The manager has already validated the request.
+/// failure rolls back every change of the request. The runner revalidates decision eligibility under update locks before writing.
 /// </summary>
 codeunit 70013403 "TS Usage Runner ori"
 {
@@ -72,9 +72,11 @@ codeunit 70013403 "TS Usage Runner ori"
         Operation := Context.GetOperation();
         Params := Context.GetParams();
         Params.Get('entryNos', Token);
+        Usage.ReadIsolation := IsolationLevel::UpdLock;
         for Index := 0 to Token.AsArray().Count() - 1 do begin
             Token.AsArray().Get(Index, Entry);
             Usage.Get(Entry.AsValue().AsInteger());
+            Mgt.ValidateDecision(Usage, Operation, CopyStr(Mgt.GetText(Params, 'timeSheetNo'), 1, MaxStrLen(Usage."Time Sheet No.")));
             case Operation of
                 2:
                     Usage.Status := Usage.Status::Submitted;

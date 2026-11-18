@@ -12,6 +12,7 @@ using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
+using System.Diagnostics;
 using System.TestLibraries.Utilities;
 
 /// <summary>Behavior tests for the Projects.Usage.* message types (projects#52).</summary>
@@ -506,6 +507,208 @@ codeunit 97153 "TS Usage Tests"
         Assert.IsTrue(IsFieldRestricted(Usage.FieldNo(Reversed), 'writeRestricted'), 'Reversed.');
         Assert.IsTrue(IsFieldRestricted(Usage.FieldNo("Journal Line No."), 'writeRestricted'), 'Journal line.');
         Assert.IsFalse(IsFieldRestricted(Usage.FieldNo(Description), 'writeRestricted'), 'Description is free.');
+    end;
+
+    [Test]
+    procedure Scenario_AC09_GenericForeignOpenWrite_Refused()
+    begin
+        AssertGenericBusinessWrites(false, Enum::"TS Usage Status ori"::Open);
+    end;
+
+    [Test]
+    procedure Scenario_AC09_GenericApprovedWrite_Refused()
+    begin
+        AssertGenericBusinessWrites(true, Enum::"TS Usage Status ori"::Approved);
+    end;
+
+    [Test]
+    procedure Scenario_AC09_GenericPostedWrite_Refused()
+    begin
+        AssertGenericBusinessWrites(true, Enum::"TS Usage Status ori"::Posted);
+    end;
+
+    local procedure AssertGenericBusinessWrites(Owned: Boolean; Status: Enum "TS Usage Status ori")
+    var
+        Usage: Record "TS Usage Line ori";
+        Original: Record "TS Usage Line ori";
+        LogTable: Record "Change Log Setup (Table)";
+        Fields: JsonObject;
+        Response: JsonObject;
+        Token: JsonToken;
+        FieldName: Text;
+        SheetNo: Code[20];
+        EntryNo: Integer;
+    begin
+        // [GIVEN] A real usage row and change-log coverage, so the generic guard permits normal writes.
+        // The stored guard is kept ON; no licence state or Licensed Call flag is fabricated.
+        SheetNo := NewSheet(Owned);
+        EntryNo := NewUsage(SheetNo, 'Item', NewItem(), Status);
+        Original.Get(EntryNo);
+        if not LogTable.Get(Database::"TS Usage Line ori") then begin
+            LogTable."Table No." := Database::"TS Usage Line ori";
+            LogTable.Insert();
+        end;
+        LogTable."Log Modification" := LogTable."Log Modification"::"All Fields";
+        LogTable.Modify();
+        Fields.Add('Description', 'X generic write control');
+        Response := GenericWrite(EntryNo, Fields);
+        Assert.AreEqual('Success', Text(Response, 'status'), 'A covered description write reaches the actual generic writer.');
+        Clear(Fields);
+        Fields.Add('Quantity', 99);
+        Fields.Add('Type', 'Resource');
+        Fields.Add('No_', 'XOTHER');
+        Fields.Add('Date', Format(WorkDate() + 1, 0, 9));
+        Fields.Add('UnitOfMeasureCode', 'XOTHER');
+        Fields.Add('TimeSheetNo_', NewSheet(true));
+        Fields.Add('TimeSheetLineNo_', 20000);
+        Fields.Add('ResourceNo_', 'XOTHER');
+        foreach FieldName in Fields.Keys() do begin
+            // [WHEN] A caller uses the public Data.Records.Set dispatcher for each protected field.
+            Fields.Get(FieldName, Token);
+            Clear(Response);
+            Response.Add(FieldName, Token);
+            Response := GenericWrite(EntryNo, Response);
+            // [THEN] The dedicated-path restriction, rather than the change-log guard, refuses it.
+            Assert.AreEqual('Error', Text(Response, 'status'), FieldName + ' must be refused.');
+            Assert.AreEqual('PermissionDenied', Text(Response, 'code'), FieldName + ' is a managed field.');
+            Assert.IsTrue(Text(Response, 'nextStep').Contains('Projects.Usage.'), 'Dedicated operation guidance.');
+        end;
+        Usage.Get(EntryNo);
+        Assert.AreEqual(Original.Quantity, Usage.Quantity, 'Quantity unchanged.');
+        Assert.AreEqual(Original.Type, Usage.Type, 'Type unchanged.');
+        Assert.AreEqual(Original."No.", Usage."No.", 'Number unchanged.');
+        Assert.AreEqual(Original.Date, Usage.Date, 'Date unchanged.');
+        Assert.AreEqual(Original."Unit of Measure Code", Usage."Unit of Measure Code", 'Unit unchanged.');
+        Assert.AreEqual(Original."Time Sheet No.", Usage."Time Sheet No.", 'Sheet unchanged.');
+        Assert.AreEqual(Original."Time Sheet Line No.", Usage."Time Sheet Line No.", 'Line unchanged.');
+        Assert.AreEqual(Original."Resource No.", Usage."Resource No.", 'Resource unchanged.');
+        Assert.AreEqual(Status, Usage.Status, 'Status unchanged.');
+    end;
+
+    local procedure GenericWrite(EntryNo: Integer; Fields: JsonObject) Response: JsonObject
+    var
+        Dispatcher: Codeunit "Dispatcher ori";
+        PrimaryKey: JsonObject;
+        Row: JsonObject;
+        Rows: JsonArray;
+        Request: JsonObject;
+        RequestContent: BigText;
+        ResponseContent: BigText;
+        ContentType: Text[100];
+        RequestText: Text;
+        ResponseText: Text;
+    begin
+        PrimaryKey.Add('EntryNo_', EntryNo);
+        Row.Add('primaryKey', PrimaryKey);
+        Row.Add('fields', Fields);
+        Rows.Add(Row);
+        Request.Add('tableId', Database::"TS Usage Line ori");
+        Request.Add('data', Rows);
+        Request.WriteTo(RequestText);
+        RequestContent.AddText(RequestText);
+        Dispatcher.Execute("Message Type ori"::"Data.Records.Set", "Message Version ori"::"1.0", '', 'XUSAGE52', 'application/json', RequestContent, ResponseContent, ContentType);
+        ResponseContent.GetSubText(ResponseText, 1);
+        Response.ReadFrom(ResponseText);
+    end;
+
+    [Test]
+    procedure Scenario_AC04_StaleRejectAfterTransfer_PreservesJournal()
+    var
+        Usage: Record "TS Usage Line ori";
+        JournalLine: Record "Item Journal Line";
+        SheetNo: Code[20];
+        EntryNo: Integer;
+    begin
+        // [GIVEN] Reject selected a Submitted entry, but an earlier decision already approved and transferred it.
+        SheetNo := NewSheet(false);
+        EntryNo := NewUsage(SheetNo, 'Item', NewItem(), Usage.Status::Approved);
+        Assert.AreEqual('Success', Text(Run("Message Type ori"::"Projects.Usage.Transfer", TransferRequest(SheetNo)), 'status'), 'Competing transfer succeeds.');
+        // [WHEN] The delayed decision resumes inside the actual write runner, after manager preflight.
+        AssertStaleDecisionRefused(SheetNo, EntryNo, 4);
+        // [THEN] Both transferred state and its journal remain intact.
+        Usage.Get(EntryNo);
+        Assert.AreEqual(Usage.Status::Transferred, Usage.Status, 'Delayed rejection cannot overwrite Transferred.');
+        Assert.IsTrue(JournalLine.Get(Usage."Journal Template Name", Usage."Journal Batch Name", Usage."Journal Line No."), 'Journal still exists.');
+        Assert.AreEqual(Usage.Quantity, JournalLine.Quantity, 'Journal quantity unchanged.');
+    end;
+
+    [Test]
+    procedure Scenario_AC03_StaleSubmitAfterApproval_Refused()
+    var
+        Usage: Record "TS Usage Line ori";
+        SheetNo: Code[20];
+        EntryNo: Integer;
+    begin
+        SheetNo := NewSheet(true);
+        EntryNo := NewUsage(SheetNo, 'Item', NewItem(), Usage.Status::Approved);
+        AssertStaleDecisionRefused(SheetNo, EntryNo, 2);
+        Usage.Get(EntryNo);
+        Assert.AreEqual(Usage.Status::Approved, Usage.Status, 'Cannot resubmit approved usage.');
+    end;
+
+    [Test]
+    procedure Scenario_AC04_StaleApproveAfterRejection_Refused()
+    var
+        Usage: Record "TS Usage Line ori";
+        SheetNo: Code[20];
+        EntryNo: Integer;
+    begin
+        SheetNo := NewSheet(false);
+        EntryNo := NewUsage(SheetNo, 'Item', NewItem(), Usage.Status::Rejected);
+        AssertStaleDecisionRefused(SheetNo, EntryNo, 3);
+        Usage.Get(EntryNo);
+        Assert.AreEqual(Usage.Status::Rejected, Usage.Status, 'Cannot approve usage that was rejected meanwhile.');
+    end;
+
+    [Test]
+    procedure Scenario_AC04_ChangedApprover_RefusedInRunner()
+    var
+        Header: Record "Time Sheet Header";
+        Usage: Record "TS Usage Line ori";
+        SheetNo: Code[20];
+        EntryNo: Integer;
+    begin
+        SheetNo := NewSheet(false);
+        EntryNo := NewUsage(SheetNo, 'Item', NewItem(), Usage.Status::Submitted);
+        Header.Get(SheetNo);
+        Header."Approver User ID" := 'XOTHER';
+        Header.Modify();
+        AssertStaleDecisionRefused(SheetNo, EntryNo, 3);
+        Usage.Get(EntryNo);
+        Assert.AreEqual(Usage.Status::Submitted, Usage.Status, 'Changed authorization prevents approval.');
+    end;
+
+    [Test]
+    procedure Scenario_AC04_RelinkedSheet_RefusedInRunner()
+    var
+        Usage: Record "TS Usage Line ori";
+        SheetNo: Code[20];
+        EntryNo: Integer;
+    begin
+        SheetNo := NewSheet(false);
+        EntryNo := NewUsage(NewSheet(false), 'Item', NewItem(), Usage.Status::Submitted);
+        AssertStaleDecisionRefused(SheetNo, EntryNo, 4);
+        Usage.Get(EntryNo);
+        Assert.AreEqual(Usage.Status::Submitted, Usage.Status, 'Cannot decide a line outside the selected sheet.');
+    end;
+
+    local procedure AssertStaleDecisionRefused(SheetNo: Code[20]; EntryNo: Integer; Operation: Integer)
+    var
+        Context: Codeunit "TS Usage Context ori";
+        Params: JsonObject;
+        Entries: JsonArray;
+        Succeeded: Boolean;
+    begin
+        // Exercise the post-preflight transaction directly, deterministically reproducing a delayed decision.
+        Entries.Add(EntryNo);
+        Params.Add('timeSheetNo', SheetNo);
+        Params.Add('entryNos', Entries);
+        Params.Add('comment', 'X stale decision');
+        Context.SetOperation(Operation, Params);
+        Commit();
+        Succeeded := Codeunit.Run(Codeunit::"TS Usage Runner ori");
+        Context.Clear();
+        Assert.IsFalse(Succeeded, 'The write transaction must reject stale state or authorization.');
     end;
 
     [Test]

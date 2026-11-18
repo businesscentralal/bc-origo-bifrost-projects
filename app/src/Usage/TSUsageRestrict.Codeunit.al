@@ -2,7 +2,7 @@ namespace Origo.Bifrost.Projects;
 
 using Origo.Bifrost;
 
-/// <summary>Closes the generic write of usage state fields; the Projects.Usage.* messages own them.</summary>
+/// <summary>Closes the generic write of usage business, link and state fields; the Projects.Usage.* messages own them.</summary>
 codeunit 70013405 "TS Usage Restrict ori"
 {
     Access = Internal;
@@ -37,7 +37,9 @@ codeunit 70013405 "TS Usage Restrict ori"
     begin
         if TableNo <> Database::"TS Usage Line ori" then
             exit(false);
-        exit(FieldNo in [Usage.FieldNo(Status), Usage.FieldNo(Reversed), Usage.FieldNo("Approved By"), Usage.FieldNo("Approved At"),
+        exit(FieldNo in [Usage.FieldNo("Time Sheet No."), Usage.FieldNo("Time Sheet Line No."),
+                         Usage.FieldNo("Resource No."), Usage.FieldNo(Type), Usage.FieldNo("No."), Usage.FieldNo(Date),
+                         Usage.FieldNo(Quantity), Usage.FieldNo("Unit of Measure Code"), Usage.FieldNo(Status), Usage.FieldNo(Reversed), Usage.FieldNo("Approved By"), Usage.FieldNo("Approved At"),
                          Usage.FieldNo("Journal Template Name"), Usage.FieldNo("Journal Batch Name"), Usage.FieldNo("Journal Line No."),
                          Usage.FieldNo("Ledger Entry No."), Usage.FieldNo("Document No."), Usage.FieldNo("Reject Comment")]);
     end;
