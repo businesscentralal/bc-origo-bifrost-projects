@@ -127,6 +127,41 @@ codeunit 97160 "TS Self Service Tests"
         AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Self + Read post');
     end;
 
+    /// <summary>Ruling C: Self + Read (+ read-only D365 READ for the native report's master-data and caption reads) discovers Projects.MyTimeSheet.Create, creates the own sheet and a retry is a typed no-op.</summary>
+    [Test]
+    procedure AC05_SelfRole_MyCreate_Discoverable_Creates_ThenNoOp()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Header: Record "Time Sheet Header";
+        Request: JsonObject;
+        StartDate: Date;
+        ResourceNo: Code[20];
+        IsEnabled: Boolean;
+    begin
+        // [GIVEN] The caller owns one time sheet resource and has no sheet for the week
+        IsolateOwnResources();
+        ResourceNo := CreateResource(UserId(), OtherApproverTok);
+        StartDate := FirstWeekdayWeek();
+        Request.Add('startingDate', Format(StartDate, 0, 9));
+        // [WHEN] Create runs under PROJ TS SELF + BIFROST Read ori (+ D365 READ, read-only)
+        RunAsRoles('PROJ TS SELF', 'D365 READ', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request, IsEnabled);
+        // [THEN] It is discoverable and creates exactly one own sheet
+        Assert.IsTrue(IsEnabled, 'Create must be discoverable for Self + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Create as Self + Read: ' + FullResponse(TempArgument));
+        Assert.AreEqual('true', ReadText(TempArgument.GetResponseJson(), 'created'), 'A new sheet is created.');
+        Header.SetRange("Resource No.", ResourceNo);
+        Header.SetRange("Starting Date", StartDate);
+        Assert.AreEqual(1, Header.Count(), 'Exactly one sheet is created.');
+        Header.FindFirst();
+        Assert.AreEqual(CopyStr(UpperCase(UserId()), 1, 50), Header."Owner User ID", 'The caller owns the new sheet.');
+        // [WHEN] The same call is retried under the same role [THEN] it is a typed no-op
+        RunAsRoles('PROJ TS SELF', 'D365 READ', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Create stays discoverable for Self + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Retry as Self + Read: ' + FullResponse(TempArgument));
+        Assert.AreEqual('false', ReadText(TempArgument.GetResponseJson(), 'created'), 'A retry creates nothing.');
+        Assert.AreEqual(1, Header.Count(), 'Still exactly one sheet.');
+    end;
+
     /// <summary>Ruling C: Approver + Read approves as the sheet's approver and is refused when it is not the approver and on posting.</summary>
     [Test]
     procedure AC05_ApproverRole_ApprovesAsApprover_ForeignAndPostRefused()

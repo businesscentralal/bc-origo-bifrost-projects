@@ -260,7 +260,9 @@ sets are convenience bundles with direct tabledata, so a user who has them can a
 the client, exactly as with native BC time sheets. Role separation for approval is the sheet's approver
 identity (Approver User ID), checked in code. Posting is separated by journal and posting rights: only
 `PROJ TS POST` carries the journal, ledger and register data a post needs. A posting user also needs
-read access to the project's master data (customer, posting groups, prices), for example `D365 READ`. The owner and approver
+read access to the project's master data (customer, posting groups, prices), for example `D365 READ`. A self-service user
+who creates sheets with `Projects.MyTimeSheet.Create` likewise needs ordinary read access (the native Create Time Sheets report
+reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF`. The owner and approver
 checks in code apply in every role.
 
 ## Read a time sheet
