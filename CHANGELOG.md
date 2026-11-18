@@ -2,6 +2,9 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-18, #51)
+
+- Add `Projects.ResourceCapacity.Get`: read capacity, active and archived time-sheet hours, and net posted resource usage by calendar period. Exact resource/group selectors, inclusive dates, clipped periods and the 53-period limit match ResourceAllocation. New codeunits 70013597 (`Projects Capacity ori`) and 70013598 (`Proj. Capacity Impl ori`), enum value 70013550, and test codeunit 97166. Both Foundation role extensions grant execution; native read permissions remain required. English/Icelandic help and refusal translations are in sync.
 ### Fixed (2026-11-18, #52, PR #64 amendment)
 
 - Protect usage business and sheet-link fields from generic writes, revalidate decision state and sheet authorization under update locks in the write transaction, and check Job Journal Line write permission instead of template write permission. Regression tests cover real generic writes on foreign, approved and posted lines, stale decisions and both reduced-permission Job transfer cases.
