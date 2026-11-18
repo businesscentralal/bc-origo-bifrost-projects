@@ -1,16 +1,8 @@
 namespace Origo.Bifrost.Projects;
 
-using Microsoft.Inventory.Item;
-using Microsoft.Inventory.Journal;
-using Microsoft.Inventory.Ledger;
-using Microsoft.Projects.Project.Journal;
-using Microsoft.Projects.Project.Ledger;
-using Microsoft.Projects.Resources.Journal;
-using Microsoft.Projects.Resources.Ledger;
-using Microsoft.Projects.Resources.Resource;
 using Origo.Bifrost;
 
-/// <summary>Grants the time sheet usage objects and the journals they write to the Foundation Full role (projects#52).</summary>
+/// <summary>Grants the time sheet usage objects to the Foundation Full role (projects#52). Base Application data comes from PROJ USAGE (#65).</summary>
 permissionsetextension 70013400 "Projects Usage Full ori" extends "BIFROST Full ori"
 {
     Permissions =
@@ -28,19 +20,5 @@ permissionsetextension 70013400 "Projects Usage Full ori" extends "BIFROST Full 
         codeunit "TS Usage Reject Impl ori" = X,
         codeunit "TS Usage Transfer Impl ori" = X,
         codeunit "TS Usage Reverse Impl ori" = X,
-        codeunit "TS Usage List Impl ori" = X,
-        tabledata Item = R,
-        tabledata Resource = R,
-        tabledata "Item Journal Template" = R,
-        tabledata "Item Journal Batch" = R,
-        tabledata "Item Journal Line" = RIMD,
-        tabledata "Res. Journal Template" = R,
-        tabledata "Res. Journal Batch" = R,
-        tabledata "Res. Journal Line" = RIMD,
-        tabledata "Job Journal Template" = R,
-        tabledata "Job Journal Batch" = R,
-        tabledata "Job Journal Line" = RIMD,
-        tabledata "Item Ledger Entry" = R,
-        tabledata "Res. Ledger Entry" = R,
-        tabledata "Job Ledger Entry" = R;
+        codeunit "TS Usage List Impl ori" = X;
 }

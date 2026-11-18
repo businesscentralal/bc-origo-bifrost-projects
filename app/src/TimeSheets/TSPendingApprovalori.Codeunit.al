@@ -10,7 +10,7 @@ codeunit 70013568 "TS Pending Approval ori" implements "Msg Interface ori", "Msg
     Access = Internal;
 
     var
-        PermissionLbl: Label 'Ask for the BIFROST Full ori permission set for Projects.', Comment = 'is-IS=Biddu um heimildasafnið BIFROST Full ori fyrir Verkefni.';
+        PermissionLbl: Label 'Assign the PROJ TS ADMIN permission set together with BIFROST Read ori or BIFROST Full ori.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.';
         DateLbl: Label 'Use from <= to.', Comment = 'is-IS=Notaðu from <= to.';
         FormatLbl: Label 'Use the parameter type, length and range listed in the help.', Comment = 'is-IS=Notaðu gagnategund, lengd og bil viðfangs sem tilgreind eru í hjálpinni.';
         UnknownLbl: Label 'Remove the unknown parameter.', Comment = 'is-IS=Fjarlægðu óþekkta viðfangið.';

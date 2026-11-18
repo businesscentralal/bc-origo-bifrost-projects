@@ -2,7 +2,8 @@
 
 - Namespace: `Origo.Bifrost.Projects` / `Origo.Bifrost.Projects.Test`
 - Follow OrigoSoftwareSolutions/bc-dev-standards
-- No own assignable permission set; no Setup ori tabledata grants
+- No own assignable permission set; no Setup ori tabledata grants (exception: the three #38 time-sheet role sets, see .claude/CLAUDE.md Deviations)
+- No own assignable permission set; no Setup ori tabledata grants (exceptions: see Deviations in .claude/CLAUDE.md)
 
 ## Preserve the Bifrost build pipeline during system updates
 

@@ -44,7 +44,7 @@ codeunit 70013566 "TS Native Mgt ori"
         OneIdentifierNextTxt: Label 'Send only one identifier for the time sheet.', Comment = 'is-IS=Sendu aðeins eitt auðkenni fyrir tímaskýrsluna.';
         ApproverNextTxt: Label 'Only the approver named on the time sheet can approve.', Comment = 'is-IS=Aðeins samþykktaraðilinn sem er nefndur á tímaskýrslunni getur samþykkt.';
         SubmitFirstNextTxt: Label 'Submit it first with Projects.TimeSheet.Submit.', Comment = 'is-IS=Sendu hana fyrst inn með Projects.TimeSheet.Submit.';
-        AssignSetNextTxt: Label 'Assign the BIFROST Full ori permission set.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunni BIFROST Full ori.';
+        AssignSetNextTxt: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.';
         RetryNextTxt: Label 'Correct the Business Central error and retry.', Comment = 'is-IS=Leiðréttu Business Central villuna og reyndu aftur.';
         MissingKeyMsg: Label 'A required key is missing.', Comment = 'is-IS=Nauðsynlegur lykill vantar.';
         TypeMsg: Label 'A key has the wrong JSON type.', Comment = 'is-IS=Lykill er af röngu JSON-tagi.';
@@ -331,6 +331,7 @@ codeunit 70013566 "TS Native Mgt ori"
         Context: Codeunit "TS Native Context ori";
         Err: Text;
         Response: JsonObject;
+        SheetNo: Code[20];
         IsSubmit: Boolean;
     begin
         IsSubmit := Context.GetOperation() = 1;
@@ -351,17 +352,31 @@ codeunit 70013566 "TS Native Mgt ori"
 
         if not Codeunit.Run(Codeunit::"TS Native Runner ori") then begin
             Err := GetLastErrorText();
+            SheetNo := Context.GetSheetNo();
             Context.Clear();
-            if IsSubmit then
-                Fail(Argument, "Bifrost Error Code ori"::InvalidLine, FixLineMsg, 'lineNos', FixLineNextTxt)
+            if IsSubmit and not IsCurrentOwner(SheetNo) then
+                Fail(Argument, "Bifrost Error Code ori"::PermissionDenied, OwnerSubmitMsg, 'timeSheetNo', OwnerSubmitNextTxt)
             else
-                Fail(Argument, "Bifrost Error Code ori"::BusinessCentralError, CopyStr(Err, 1, 250), '', RetryNextTxt);
+                if IsSubmit then
+                    Fail(Argument, "Bifrost Error Code ori"::InvalidLine, FixLineMsg, 'lineNos', FixLineNextTxt)
+                else
+                    Fail(Argument, "Bifrost Error Code ori"::BusinessCentralError, CopyStr(Err, 1, 250), '', RetryNextTxt);
             exit;
         end;
 
         Response.ReadFrom(Context.GetResult());
         Context.Clear();
         Argument.SetResponseJson(Response);
+    end;
+
+    local procedure IsCurrentOwner(SheetNo: Code[20]): Boolean
+    var
+        Header: Record "Time Sheet Header";
+    begin
+        Header.ReadIsolation := IsolationLevel::ReadCommitted;
+        if not Header.Get(SheetNo) then
+            exit(false);
+        exit(SameUser(Header."Owner User ID"));
     end;
 
     local procedure Deny(var Argument: Record "Message Argument ori"; IsReject: Boolean): Boolean

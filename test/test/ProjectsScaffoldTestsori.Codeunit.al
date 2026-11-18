@@ -114,6 +114,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Usage.Get');
         ExpectedTypes.Add('Projects.Usage.Link');
         ExpectedTypes.Add('Projects.ResourceAllocation.Get');
+        ExpectedTypes.Add('Projects.ResourceCapacity.Get');
         ExpectedTypes.Add('Projects.WIPMethod.Get');
         ExpectedTypes.Add('Projects.WIPMethod.Set');
         ExpectedTypes.Add('Projects.Quote.Send');
@@ -133,6 +134,13 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.TimeSheetLine.CopyFromPrevious');
         ExpectedTypes.Add('Projects.Absence.Register');
         ExpectedTypes.Add('Projects.PendingApproval.Get');
+        ExpectedTypes.Add('Projects.MyTimeSheet.Get');
+        ExpectedTypes.Add('Projects.MyTimeSheet.Create');
+        ExpectedTypes.Add('Projects.MyTimeSheetLine.Set');
+        ExpectedTypes.Add('Projects.MyTimeSheet.Submit');
+        ExpectedTypes.Add('Projects.TimeSheetApproval.Get');
+        ExpectedTypes.Add('Projects.TimeSheetApproval.Approve');
+        ExpectedTypes.Add('Projects.TimeSheetApproval.Reject');
         ExpectedTypes.Add('Projects.TimeSheet.Get');
         OriginalLanguage := GlobalLanguage();
         Names := MessageType.Names();
@@ -163,7 +171,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(36, Count, 'Catalogue must contain all thirty-six owned Projects types, including the typed time-sheet read');
+        Assert.AreEqual(44, Count, 'Catalogue must contain all forty-four owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read and the #38 self-service types');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 

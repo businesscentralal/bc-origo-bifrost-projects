@@ -1,14 +1,21 @@
 namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Foundation.NoSeries;
+using Microsoft.Foundation.Period;
 using Microsoft.Foundation.UOM;
+using Microsoft.HumanResources.Absence;
+using Microsoft.HumanResources.Employee;
+using Microsoft.HumanResources.Setup;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Planning;
 using Microsoft.Projects.Resources.Resource;
+using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
+using System.Security.AccessControl;
 using System.Security.User;
 using System.TestLibraries.Security.AccessControl;
 using System.TestLibraries.Utilities;
@@ -22,6 +29,8 @@ codeunit 97147 "TS Native Bulk Tests"
 
     var
         Assert: Codeunit "Library Assert";
+        GrantTok: Label '%1 %2 %3', Locked = true, Comment = '%1 = object type, %2 = object ID, %3 = granted levels';
+        MovedTablesTok: Label '%1|%2|%3|%4|%5|%6|%7|%8|%9|%10|%11|%12', Locked = true, Comment = '%1..%12 = table IDs';
 
     // [Test]
     // procedure LegacyArchive_WarnsToUseNativeName()
@@ -138,7 +147,7 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.IsTrue(FoundTemplate and FoundBatch, 'Both journal keys are declared.');
         // [THEN] The advertised role is the Foundation role the Projects extension grants.
         Contract.GetEffect(Effect);
-        Assert.AreEqual('BIFROST Full ori', Effect.GetText('permissionSet'), 'The permission set names the actual Foundation role.');
+        Assert.AreEqual('BIFROST Full ori, PROJ TS ADMIN', Effect.GetText('permissionSet'), 'The permission sets name the Foundation role and the Base App data set (#65).');
     end;
 
     /// <summary>Verifies platform posting confirmation reaches typed validation in the caller language without ledger writes.</summary>
@@ -591,7 +600,7 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.AreEqual('InvalidParameterFormat', ReadText(TempArgument.GetResponseJson(), 'code'), 'Code.');
     end;
 
-    /// <summary>#54: under the documented BIFROST Full role alone (no SUPER) the gate runs the counter and answers ConfirmationMismatch with the real count instead of a raw permission error.</summary>
+    /// <summary>#54/#65: under the documented roles BIFROST Full ori and PROJ TS ADMIN (no SUPER) the gate runs the counter and answers ConfirmationMismatch with the real count instead of a raw permission error.</summary>
     [Test]
     procedure Scenario_54_PostGate_RunsUnderBifrostFullRole()
     var
@@ -608,14 +617,15 @@ codeunit 97147 "TS Native Bulk Tests"
         Expected := CountViaGate(1000000, Response);
         Request.Add('expectedCount', Expected + 1);
         InitArgument(TempArgument, Request);
-        // [WHEN] The gate runs for a caller holding only the BIFROST Full ori role.
+        // [WHEN] The gate runs for a caller holding only BIFROST Full ori and PROJ TS ADMIN.
         PermissionsMock.Start();
         PermissionsMock.ClearAssignments();
         PermissionsMock.Assign('BIFROST Full ori');
+        PermissionsMock.Assign('PROJ TS ADMIN');
         Ran := TryRunPostGate(TempArgument, Passed);
         PermissionsMock.Stop();
         // [THEN] Restore permissions first; the counter ran and the mismatch names the real count.
-        Assert.IsTrue(Ran, 'The gate must run under BIFROST Full ori without a permission error: ' + GetLastErrorText());
+        Assert.IsTrue(Ran, 'The gate must run under BIFROST Full ori and PROJ TS ADMIN without a permission error: ' + GetLastErrorText());
         Assert.IsFalse(Passed, 'A wrong count must not pass the gate.');
         Response := TempArgument.GetResponseJson();
         Assert.AreEqual('ConfirmationMismatch', ReadText(Response, 'code'), 'Code.');
@@ -789,6 +799,11 @@ codeunit 97147 "TS Native Bulk Tests"
     end;
 
     local procedure AssertNativePermissionRefusal(MessageType: Enum "Message Type ori")
+    begin
+        AssertNativePermissionRefusal(MessageType, 'All Objects');
+    end;
+
+    local procedure AssertNativePermissionRefusal(MessageType: Enum "Message Type ori"; RoleId: Code[20])
     var
         TempArgument: Record "Message Argument ori" temporary;
         PermissionsMock: Codeunit "Permissions Mock";
@@ -796,10 +811,10 @@ codeunit 97147 "TS Native Bulk Tests"
         IsEnabled: Boolean;
         Executed: Boolean;
     begin
-        // [GIVEN] Object execution permission without any table data grants.
+        // [GIVEN] Object execution permission without the native time-sheet table data grants.
         PermissionsMock.Start();
         PermissionsMock.ClearAssignments();
-        PermissionsMock.Assign('All Objects');
+        PermissionsMock.Assign(RoleId);
         // [WHEN] Discovery and execution check this caller's real effective permissions.
         MsgInterface := MessageType;
         IsEnabled := MsgInterface.IsEnabled();
@@ -808,7 +823,171 @@ codeunit 97147 "TS Native Bulk Tests"
         // [THEN] Restore permissions before asserting either outcome.
         Assert.IsFalse(IsEnabled, 'Write types must be disabled for a caller without data permissions.');
         Assert.IsTrue(Executed, 'Permission refusal must not raise a raw runtime exception.');
-        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori permission set.');
+        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.');
+    end;
+
+    /// <summary>#65 AC03: BIFROST Full ori alone no longer grants Base App time-sheet data, so the write types are disabled and refused with the hint naming both sets.</summary>
+    [Test]
+    procedure Scenario_65_ReopenUnderBifrostFullOnly_IsDenied()
+    begin
+        AssertNativePermissionRefusal("Message Type ori"::"Projects.TimeSheet.Reopen", 'BIFROST Full ori');
+    end;
+
+    /// <summary>#65 AC03: Archive under BIFROST Full ori alone is refused with the hint naming both sets.</summary>
+    [Test]
+    procedure Scenario_65_ArchiveUnderBifrostFullOnly_IsDenied()
+    begin
+        AssertNativePermissionRefusal("Message Type ori"::"Projects.TimeSheet.Archive", 'BIFROST Full ori');
+    end;
+
+    /// <summary>#65 AC03: Post under BIFROST Full ori alone is refused with the hint naming both sets.</summary>
+    [Test]
+    procedure Scenario_65_PostUnderBifrostFullOnly_IsDenied()
+    begin
+        AssertNativePermissionRefusal("Message Type ori"::"Projects.TimeSheet.Post", 'BIFROST Full ori');
+    end;
+
+    /// <summary>#65 AC03: BIFROST Full ori together with PROJ TS ADMIN enables Reopen and Archive again.</summary>
+    [Test]
+    procedure Scenario_65_FullAndAdmin_EnablesReopenAndArchive()
+    var
+        PermissionsMock: Codeunit "Permissions Mock";
+        ReopenType: Interface "Msg Interface ori";
+        ArchiveType: Interface "Msg Interface ori";
+        ReopenEnabled: Boolean;
+        ArchiveEnabled: Boolean;
+    begin
+        // [GIVEN] A caller holding only BIFROST Full ori and PROJ TS ADMIN.
+        ReopenType := "Message Type ori"::"Projects.TimeSheet.Reopen";
+        ArchiveType := "Message Type ori"::"Projects.TimeSheet.Archive";
+        PermissionsMock.Start();
+        PermissionsMock.ClearAssignments();
+        PermissionsMock.Assign('BIFROST Full ori');
+        PermissionsMock.Assign('PROJ TS ADMIN');
+        // [WHEN] Discovery checks the caller's effective permissions.
+        ReopenEnabled := ReopenType.IsEnabled();
+        ArchiveEnabled := ArchiveType.IsEnabled();
+        PermissionsMock.Stop();
+        // [THEN] Restore permissions first; both types are enabled.
+        Assert.IsTrue(ReopenEnabled, 'Reopen must be enabled under BIFROST Full ori and PROJ TS ADMIN.');
+        Assert.IsTrue(ArchiveEnabled, 'Archive must be enabled under BIFROST Full ori and PROJ TS ADMIN.');
+    end;
+
+    /// <summary>#65 AC02: PROJ TS ADMIN is assignable and holds exactly the 28 grants the Full extension had, at the same levels.</summary>
+    [Test]
+    procedure Scenario_65_AdminSet_HoldsMovedGrantsAtSameLevels()
+    var
+        MetadataPermissionSet: Record "Metadata Permission Set";
+        MetadataPermission: Record "Metadata Permission";
+        Expected: List of [Text];
+        Actual: Text;
+    begin
+        // [GIVEN] The grants Projects TimeSheet Full ori had before #65.
+        AddExpectedGrants(Expected);
+        // [WHEN] The platform metadata of the new set is read.
+        MetadataPermissionSet.SetRange("App ID", ProjectsAppId());
+        MetadataPermissionSet.SetRange("Role ID", 'PROJ TS ADMIN');
+        Assert.IsTrue(MetadataPermissionSet.FindFirst(), 'PROJ TS ADMIN must exist in the Projects app.');
+        Assert.IsTrue(MetadataPermissionSet.Assignable, 'PROJ TS ADMIN must be assignable.');
+        MetadataPermission.SetRange("App ID", ProjectsAppId());
+        MetadataPermission.SetRange("Role ID", 'PROJ TS ADMIN');
+        // [THEN] Every grant is one of the moved grants at the same level, and none is missing.
+        Assert.AreEqual(Expected.Count(), MetadataPermission.Count(), 'PROJ TS ADMIN holds exactly the moved grants.');
+        MetadataPermission.FindSet();
+        repeat
+            Actual := FormatGrant(MetadataPermission);
+            Assert.IsTrue(Expected.Contains(Actual), 'Unexpected or widened grant: ' + Actual);
+        until MetadataPermission.Next() = 0;
+    end;
+
+    /// <summary>#65 AC01: the effective BIFROST Full ori role no longer holds the moved Base App time-sheet, absence and project journal grants; PROJ TS ADMIN holds them.</summary>
+    [Test]
+    procedure Scenario_65_BifrostFull_HoldsNoMovedBaseAppTableData()
+    var
+        ExpandedPermission: Record "Expanded Permission";
+        MovedTables: Text;
+    begin
+        // [GIVEN] The Base App tables whose grants moved to PROJ TS ADMIN and that Foundation does not grant itself.
+        MovedTables := StrSubstNo(MovedTablesTok, Database::"Job Journal Line", Database::"Time Sheet Header", Database::"Time Sheet Line",
+            Database::"Time Sheet Detail", Database::"Time Sheet Comment Line", Database::"Time Sheet Header Archive", Database::"Time Sheet Line Archive",
+            Database::"Time Sheet Detail Archive", Database::"Time Sheet Cmt. Line Archive", Database::"Time Sheet Posting Entry",
+            Database::"Employee Absence", Database::"Cause of Absence");
+        ExpandedPermission.SetRange("Object Type", ExpandedPermission."Object Type"::"Table Data");
+        ExpandedPermission.SetFilter("Object ID", MovedTables);
+        // [WHEN] The effective grants of BIFROST Full ori (with every extension merged) are read.
+        ExpandedPermission.SetRange("Role ID", 'BIFROST Full ori');
+        // [THEN] None remains in the extended Foundation role.
+        Assert.RecordIsEmpty(ExpandedPermission);
+        // [THEN] PROJ TS ADMIN grants all twelve.
+        ExpandedPermission.SetRange("Role ID", 'PROJ TS ADMIN');
+        Assert.RecordCount(ExpandedPermission, 12);
+    end;
+
+    local procedure ProjectsAppId(): Guid
+    begin
+        exit('c847bab7-2525-4ff5-93c4-15512b3be1e5');
+    end;
+
+    local procedure FormatGrant(MetadataPermission: Record "Metadata Permission"): Text
+    var
+        ObjectType: Integer;
+        Levels: Text;
+    begin
+        ObjectType := MetadataPermission."Object Type";
+        if MetadataPermission."Read Permission" = MetadataPermission."Read Permission"::Yes then
+            Levels += 'R';
+        if MetadataPermission."Insert Permission" = MetadataPermission."Insert Permission"::Yes then
+            Levels += 'I';
+        if MetadataPermission."Modify Permission" = MetadataPermission."Modify Permission"::Yes then
+            Levels += 'M';
+        if MetadataPermission."Delete Permission" = MetadataPermission."Delete Permission"::Yes then
+            Levels += 'D';
+        if MetadataPermission."Execute Permission" = MetadataPermission."Execute Permission"::Yes then
+            Levels += 'X';
+        exit(StrSubstNo(GrantTok, ObjectType, MetadataPermission."Object ID", Levels));
+    end;
+
+    local procedure AddGrant(var Expected: List of [Text]; ObjectType: Integer; ObjectId: Integer; Levels: Text)
+    begin
+        Expected.Add(StrSubstNo(GrantTok, ObjectType, ObjectId, Levels));
+    end;
+
+    local procedure AddExpectedGrants(var Expected: List of [Text])
+    var
+        MetadataPermission: Record "Metadata Permission";
+        ReportType: Integer;
+        TableData: Integer;
+    begin
+        TableData := MetadataPermission."Object Type"::"Table Data";
+        ReportType := MetadataPermission."Object Type"::Report;
+        AddGrant(Expected, TableData, Database::"Resources Setup", 'R');
+        AddGrant(Expected, TableData, Database::"Job Task", 'R');
+        AddGrant(Expected, TableData, Database::"Job Planning Line", 'R');
+        AddGrant(Expected, TableData, Database::"Time Sheet Header", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Line", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Detail", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Comment Line", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Posting Entry", 'RI');
+        AddGrant(Expected, TableData, Database::"Employee Absence", 'RI');
+        AddGrant(Expected, TableData, Database::"Cause of Absence", 'R');
+        AddGrant(Expected, TableData, Database::"Human Resource Unit of Measure", 'R');
+        AddGrant(Expected, TableData, Database::"Human Resources Setup", 'R');
+        AddGrant(Expected, TableData, Database::Employee, 'R');
+        AddGrant(Expected, TableData, Database::Resource, 'R');
+        AddGrant(Expected, TableData, Database::"User Setup", 'R');
+        AddGrant(Expected, ReportType, Report::"Create Time Sheets", 'X');
+        AddGrant(Expected, TableData, Database::"Resource Group", 'R');
+        AddGrant(Expected, TableData, Database::"No. Series", 'R');
+        AddGrant(Expected, TableData, Database::"No. Series Line", 'RIM');
+        AddGrant(Expected, TableData, Database::"Accounting Period", 'R');
+        AddGrant(Expected, TableData, Database::Job, 'R');
+        AddGrant(Expected, TableData, Database::"Time Sheet Header Archive", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Line Archive", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Detail Archive", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Time Sheet Cmt. Line Archive", 'RIMD');
+        AddGrant(Expected, TableData, Database::"Job Journal Template", 'R');
+        AddGrant(Expected, TableData, Database::"Job Journal Batch", 'R');
+        AddGrant(Expected, TableData, Database::"Job Journal Line", 'RIMD');
     end;
 
     [TryFunction]
@@ -1008,8 +1187,8 @@ codeunit 97147 "TS Native Bulk Tests"
                 exit('Fjarlægðu óþekkta lykilinn.');
             'Use an identifier that exists.':
                 exit('Notaðu auðkenni sem er til.');
-            'Assign the BIFROST Full ori permission set.':
-                exit('Úthlutaðu heimildasamstæðunni BIFROST Full ori.');
+            'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.':
+                exit('Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.');
         end;
         Error('Missing Icelandic test expectation for %1.', EnglishText);
     end;
