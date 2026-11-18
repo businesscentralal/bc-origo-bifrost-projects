@@ -1,14 +1,22 @@
 namespace Origo.Bifrost.Projects;
 
+using Microsoft.Finance.Dimension;
+using Microsoft.Finance.GeneralLedger.Setup;
+using Microsoft.Foundation.NoSeries;
 using Microsoft.Projects.Project.Job;
+using Microsoft.Projects.Project.Ledger;
+using Microsoft.Projects.Project.Planning;
+using Microsoft.Projects.Project.Setup;
 using Microsoft.Projects.Project.Journal;
+using Microsoft.Projects.Resources.Ledger;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
 using System.Security.User;
 
 /// <summary>
-/// Role set for the time-sheet posting role (#38, Architect 18.11.2026), separate from Self and Approver.
+/// Convenience bundle for the time-sheet posting role (#38, Architect ruling C, 18.11.2026). Direct tabledata.
+/// Posting is separated by journal and posting rights: only this set carries the journal, ledger and register data a post needs.
 /// Assign together with BIFROST Read ori. Grants the Projects.TimeSheet.Post and .Archive types; #38 PR (b) adds PreviewPost and the one-call Post here.
 /// </summary>
 permissionset 70013588 "PROJ TS POST"
@@ -24,21 +32,34 @@ permissionset 70013588 "PROJ TS POST"
         codeunit "TS Post Confirm ori" = X,
         codeunit "TS Sheet Post Impl ori" = X,
         codeunit "TS Sheet Archive Impl ori" = X,
-        tabledata "Time Sheet Header" = rimd,
-        tabledata "Time Sheet Line" = rimd,
-        tabledata "Time Sheet Detail" = rimd,
-        tabledata "Time Sheet Comment Line" = rimd,
-        tabledata "Time Sheet Posting Entry" = ri,
-        tabledata "Time Sheet Header Archive" = rimd,
-        tabledata "Time Sheet Line Archive" = rimd,
-        tabledata "Time Sheet Detail Archive" = rimd,
-        tabledata "Time Sheet Cmt. Line Archive" = rimd,
-        tabledata "Job Journal Template" = r,
-        tabledata "Job Journal Batch" = r,
-        tabledata "Job Journal Line" = rimd,
-        tabledata Resource = r,
-        tabledata "Resources Setup" = r,
-        tabledata "User Setup" = r,
-        tabledata Job = r,
-        tabledata "Job Task" = r;
+        tabledata "Time Sheet Header" = RIMD,
+        tabledata "Time Sheet Line" = RIMD,
+        tabledata "Time Sheet Detail" = RIMD,
+        tabledata "Time Sheet Comment Line" = RIMD,
+        tabledata "Time Sheet Posting Entry" = RIMD,
+        tabledata "Time Sheet Header Archive" = RIMD,
+        tabledata "Time Sheet Line Archive" = RIMD,
+        tabledata "Time Sheet Detail Archive" = RIMD,
+        tabledata "Time Sheet Cmt. Line Archive" = RIMD,
+        tabledata "Job Journal Template" = R,
+        tabledata "Job Journal Batch" = R,
+        tabledata "Job Journal Line" = RIMD,
+        tabledata Resource = R,
+        tabledata "Resources Setup" = R,
+        tabledata "User Setup" = R,
+        tabledata Job = RIMD,
+        tabledata "Job Task" = R,
+        tabledata "General Ledger Setup" = R,
+        tabledata "Jobs Setup" = R,
+        tabledata "Job Ledger Entry" = RIMD,
+        tabledata "Job Planning Line" = RIMD,
+        tabledata "Job Register" = RIMD,
+        tabledata "Res. Ledger Entry" = RIMD,
+        tabledata "Resource Register" = RIMD,
+        tabledata "No. Series" = R,
+        tabledata "No. Series Line" = RIMD,
+        tabledata "Job Entry No." = rim,
+        tabledata "Job Usage Link" = RI,
+        tabledata "Dimension Set Entry" = ri,
+        tabledata "Dimension Set Tree Node" = rim;
 }

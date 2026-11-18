@@ -1,6 +1,10 @@
 namespace Origo.Bifrost.Projects.Test;
 
+using Microsoft.Foundation.NoSeries;
 using Microsoft.Foundation.UOM;
+using Microsoft.Projects.Project.Job;
+using Microsoft.Projects.Project.Journal;
+using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.Resources.Setup;
 using Microsoft.Projects.TimeSheet;
@@ -8,6 +12,7 @@ using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.Security.AccessControl;
 using System.Security.User;
+using System.TestLibraries.Security.AccessControl;
 using System.TestLibraries.Utilities;
 
 /// <summary>
@@ -60,10 +65,247 @@ codeunit 97160 "TS Self Service Tests"
         AssertGrant('PROJ TS POST', 70013585, false); // TS My Sheet Submit Impl ori
         AssertGrant('PROJ TS POST', 70013586, false); // TS Approval Get Impl ori
         AssertGrant('PROJ TS POST', 70013587, false); // TS Approval Approve Impl ori
-        // [THEN] The role sets grant no direct write on the time-sheet tables (indirect only).
-        AssertNoDirectWrite('PROJ TS SELF');
-        AssertNoDirectWrite('PROJ TS APPROVER');
-        AssertNoDirectWrite('PROJ TS POST');
+        // [THEN] Ruling C: the sets are direct-tabledata bundles, and only the posting set carries journal and ledger data.
+        AssertBundleShape('PROJ TS SELF', false);
+        AssertBundleShape('PROJ TS APPROVER', false);
+        AssertBundleShape('PROJ TS POST', true);
+    end;
+
+    /// <summary>Ruling C: Self + Read runs the own-sheet types and is refused on another user's sheet, on approval and on posting.</summary>
+    [Test]
+    procedure AC05_SelfRole_OwnTypesRun_ForeignApprovePostRefused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Header: Record "Time Sheet Header";
+        Line: Record "Time Sheet Line";
+        Request: JsonObject;
+        PostRequest: JsonObject;
+        OwnNo: Code[20];
+        ForeignNo: Code[20];
+        QueueNo: Code[20];
+        IsEnabled: Boolean;
+    begin
+        // [GIVEN] An own sheet with an open line, a foreign sheet, a submitted sheet the caller does not approve and a journal
+        IsolateOwnResources();
+        OwnNo := CreateSheet(CreateResource(UserId(), OtherApproverTok), UniqueWeek(), UserId(), OtherApproverTok);
+        CreateLine(OwnNo, 10000, 'Open');
+        ForeignNo := CreateSheet(CreateResource(OtherEmployeeTok, OtherApproverTok), UniqueWeek(), OtherEmployeeTok, OtherApproverTok);
+        CreateLine(ForeignNo, 10000, 'Open');
+        QueueNo := CreateSheet(CreateResource(SecondEmployeeTok, OtherApproverTok), UniqueWeek(), SecondEmployeeTok, OtherApproverTok);
+        CreateLine(QueueNo, 10000, 'Submitted');
+        CreateJournal(PostRequest);
+        Header.Get(OwnNo);
+        // [WHEN/THEN] Own Get, Line.Set and Submit run under PROJ TS SELF + BIFROST Read ori
+        Request.Add('timeSheetNo', OwnNo);
+        RunAsRole('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Get", Request, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Own Get must be discoverable for Self + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Get as Self + Read: ' + FullResponse(TempArgument));
+        Request.Add('lines', OneEntry(NewEntry('Resource', 'Role check', Header."Starting Date", 2, Header."Starting Date" + 1, 1)));
+        RunAsRole('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Own Line.Set must be discoverable for Self + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Line.Set as Self + Read: ' + FullResponse(TempArgument));
+        Clear(Request);
+        Request.Add('timeSheetNo', OwnNo);
+        RunAsRole('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Submit", Request, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Own Submit must be discoverable for Self + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Submit as Self + Read: ' + FullResponse(TempArgument));
+        Line.Get(OwnNo, 10000);
+        Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The own line is submitted.');
+        // [WHEN/THEN] Another user's sheet is refused
+        Clear(Request);
+        Request.Add('timeSheetNo', ForeignNo);
+        AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Submit", Request, 'Self + Read submit of a foreign sheet');
+        Line.Get(ForeignNo, 10000);
+        Assert.AreEqual(Line.Status::Open, Line.Status, 'The foreign line stays open.');
+        // [WHEN/THEN] Approval of a sheet the caller does not approve is refused
+        Clear(Request);
+        Request.Add('timeSheetNo', QueueNo);
+        AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Self + Read approve');
+        Line.Get(QueueNo, 10000);
+        Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The line stays submitted.');
+        // [WHEN/THEN] Posting is refused: the set carries no journal or ledger data
+        AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Self + Read post');
+    end;
+
+    /// <summary>Ruling C: Approver + Read approves as the sheet's approver and is refused when it is not the approver and on posting.</summary>
+    [Test]
+    procedure AC05_ApproverRole_ApprovesAsApprover_ForeignAndPostRefused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Line: Record "Time Sheet Line";
+        Request: JsonObject;
+        PostRequest: JsonObject;
+        QueueNo: Code[20];
+        ForeignNo: Code[20];
+        IsEnabled: Boolean;
+    begin
+        // [GIVEN] A submitted sheet the caller approves, and one another approver owns
+        QueueNo := CreateSheet(CreateResource(OtherEmployeeTok, UserId()), UniqueWeek(), OtherEmployeeTok, UserId());
+        CreateLine(QueueNo, 10000, 'Submitted');
+        ForeignNo := CreateSheet(CreateResource(SecondEmployeeTok, OtherApproverTok), UniqueWeek(), SecondEmployeeTok, OtherApproverTok);
+        CreateLine(ForeignNo, 10000, 'Submitted');
+        CreateJournal(PostRequest);
+        // [WHEN/THEN] The queue and the approval run under PROJ TS APPROVER + BIFROST Read ori
+        RunAsRole('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Get", Request, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Approval Get must be discoverable for Approver + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Approval Get as Approver + Read: ' + FullResponse(TempArgument));
+        Request.Add('timeSheetNo', QueueNo);
+        RunAsRole('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Approve must be discoverable for Approver + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Approve as Approver + Read: ' + FullResponse(TempArgument));
+        Line.Get(QueueNo, 10000);
+        Assert.AreEqual(Line.Status::Approved, Line.Status, 'The queue line is approved.');
+        // [WHEN/THEN] A sheet with another approver is refused by identity
+        Clear(Request);
+        Request.Add('timeSheetNo', ForeignNo);
+        AssertRoleRefused('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Approver + Read approve of another approver''s sheet');
+        Assert.AreEqual('PermissionDenied', ReadText(TempArgument.GetResponseJson(), 'code'), 'Identity refusal code: ' + FullResponse(TempArgument));
+        Line.Get(ForeignNo, 10000);
+        Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The foreign line stays submitted.');
+        // [WHEN/THEN] Posting is refused: the set carries no journal or ledger data
+        AssertRoleRefused('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Approver + Read post');
+    end;
+
+    /// <summary>Ruling C: Post + Read (+ read-only D365 READ for the engine's master data) posts an approved project line and is refused on approval when it is not the approver.</summary>
+    [Test]
+    procedure AC05_PostRole_Posts_ApproveRefused()
+    var
+        TempArgument: Record "Message Argument ori" temporary;
+        Job: Record Job;
+        JobTask: Record "Job Task";
+        LedgerEntry: Record "Job Ledger Entry";
+        Detail: Record "Time Sheet Detail";
+        Line: Record "Time Sheet Line";
+        LibraryJob: Codeunit "Library - Job";
+        Request: JsonObject;
+        PostRequest: JsonObject;
+        SheetNo: Code[20];
+        QueueNo: Code[20];
+        IsEnabled: Boolean;
+    begin
+        // [GIVEN] An approved project line with hours, a journal with a number series, and a submitted sheet of another approver
+        LibraryJob.CreateJob(Job);
+        Job.Validate(Status, Job.Status::Open);
+        Job.Modify(true);
+        LibraryJob.CreateJobTask(Job, JobTask);
+        SheetNo := CreateSheet(CreateResource(OtherEmployeeTok, OtherApproverTok), WorkDate(), OtherEmployeeTok, OtherApproverTok);
+        CreateLine(SheetNo, 10000, 'Approved');
+        Line.Get(SheetNo, 10000);
+        Line.Type := Line.Type::Job;
+        Line."Job No." := Job."No.";
+        Line."Job Task No." := JobTask."Job Task No.";
+        Line.Modify(false);
+        Detail.Get(SheetNo, 10000, WorkDate());
+        Detail.CopyFromTimeSheetLine(Line);
+        Detail.Validate(Quantity, 2);
+        Detail.Modify(true);
+        CreateJournal(PostRequest);
+        QueueNo := CreateSheet(CreateResource(SecondEmployeeTok, OtherApproverTok), UniqueWeek(), SecondEmployeeTok, OtherApproverTok);
+        CreateLine(QueueNo, 10000, 'Submitted');
+        // [WHEN/THEN] Post runs under PROJ TS POST + BIFROST Read ori and posts through the BC engine
+        // The BC posting engine reads master data (customer, posting groups, prices); D365 READ adds read only, so every write right still comes from PROJ TS POST.
+        RunAsRoles('PROJ TS POST', 'D365 READ', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, IsEnabled);
+        Assert.IsTrue(IsEnabled, 'Post must be discoverable for Post + Read.');
+        Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Post as Post + Read: ' + FullResponse(TempArgument) + ' ' + GetLastErrorText());
+        LedgerEntry.SetRange("Job No.", Job."No.");
+        Assert.IsTrue(LedgerEntry.FindFirst(), 'A project ledger entry is posted.');
+        Assert.AreEqual(2, LedgerEntry.Quantity, 'Posted quantity matches the approved hours.');
+        // [WHEN/THEN] Approval of a sheet the caller does not approve is refused
+        Request.Add('timeSheetNo', QueueNo);
+        AssertRoleRefused('PROJ TS POST', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Post + Read approve');
+        Line.Get(QueueNo, 10000);
+        Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The line stays submitted.');
+    end;
+
+    /// <summary>Runs one message type with only RoleId, BIFROST Read ori and All Objects (no tabledata) assigned. Not a TryFunction: the self-service writers commit.</summary>
+    local procedure RunAsRole(RoleId: Code[20]; var TempArgument: Record "Message Argument ori" temporary; MessageType: Enum "Message Type ori"; Request: JsonObject; var IsEnabled: Boolean)
+    begin
+        RunAsRoles(RoleId, '', TempArgument, MessageType, Request, IsEnabled);
+    end;
+
+    /// <summary>As RunAsRole, plus one read-only business role (ReadRoleId, blank for none).</summary>
+    local procedure RunAsRoles(RoleId: Code[20]; ReadRoleId: Code[20]; var TempArgument: Record "Message Argument ori" temporary; MessageType: Enum "Message Type ori"; Request: JsonObject; var IsEnabled: Boolean)
+    var
+        PermissionsMock: Codeunit "Permissions Mock";
+        MsgInterface: Interface "Msg Interface ori";
+    begin
+        PermissionsMock.Start();
+        PermissionsMock.ClearAssignments();
+        PermissionsMock.Assign(RoleId);
+        PermissionsMock.Assign('BIFROST Read ori');
+        PermissionsMock.Assign('All Objects'); // object execution only, no tabledata: separation is data rights + identity
+        if ReadRoleId <> '' then
+            PermissionsMock.Assign(ReadRoleId);
+        MsgInterface := MessageType;
+        IsEnabled := MsgInterface.IsEnabled();
+        Execute(TempArgument, MessageType, Request);
+        PermissionsMock.Stop();
+    end;
+
+    /// <summary>Runs a call that must be refused; returns false on a raw runtime error.</summary>
+    local procedure TryRunAsRole(RoleId: Code[20]; var TempArgument: Record "Message Argument ori" temporary; MessageType: Enum "Message Type ori"; Request: JsonObject; var IsEnabled: Boolean) Executed: Boolean
+    var
+        PermissionsMock: Codeunit "Permissions Mock";
+        MsgInterface: Interface "Msg Interface ori";
+    begin
+        PermissionsMock.Start();
+        PermissionsMock.ClearAssignments();
+        PermissionsMock.Assign(RoleId);
+        PermissionsMock.Assign('BIFROST Read ori');
+        PermissionsMock.Assign('All Objects'); // object execution only, no tabledata: separation is data rights + identity
+        MsgInterface := MessageType;
+        IsEnabled := MsgInterface.IsEnabled();
+        Executed := TryExecute(TempArgument, MessageType, Request);
+        PermissionsMock.Stop();
+    end;
+
+    /// <summary>A refusal is either no discovery, or a typed refusal with no raw error; never a success.</summary>
+    local procedure AssertRoleRefused(RoleId: Code[20]; var TempArgument: Record "Message Argument ori" temporary; MessageType: Enum "Message Type ori"; Request: JsonObject; What: Text)
+    var
+        IsEnabled: Boolean;
+        Executed: Boolean;
+    begin
+        Executed := TryRunAsRole(RoleId, TempArgument, MessageType, Request, IsEnabled);
+        if Executed then
+            Assert.AreNotEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), What + ' must be refused: ' + FullResponse(TempArgument))
+        else
+            Assert.IsFalse(IsEnabled, What + ' raised a raw error while discoverable: ' + GetLastErrorText());
+    end;
+
+    [TryFunction]
+    local procedure TryExecute(var TempArgument: Record "Message Argument ori" temporary; MessageType: Enum "Message Type ori"; Request: JsonObject)
+    begin
+        Execute(TempArgument, MessageType, Request);
+    end;
+
+    local procedure CreateJournal(var Request: JsonObject)
+    var
+        Batch: Record "Job Journal Batch";
+        JournalTemplate: Record "Job Journal Template";
+        Series: Record "No. Series";
+        SeriesLine: Record "No. Series Line";
+    begin
+        JournalTemplate.Init();
+        JournalTemplate.Name := CopyStr(DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(JournalTemplate.Name));
+        JournalTemplate.Insert(true);
+        Series.Init();
+        Series.Code := CopyStr(DelChr(Format(CreateGuid(), 0, 4), '=', '{}-'), 1, MaxStrLen(Series.Code));
+        Series."Default Nos." := true;
+        Series.Insert(true);
+        SeriesLine.Init();
+        SeriesLine."Series Code" := Series.Code;
+        SeriesLine."Line No." := 10000;
+        SeriesLine."Starting No." := 'X38P000001';
+        SeriesLine."Ending No." := 'X38P999999';
+        SeriesLine."Increment-by No." := 1;
+        SeriesLine.Insert(true);
+        Batch.Init();
+        Batch."Journal Template Name" := JournalTemplate.Name;
+        Batch.Name := 'X38ROLE';
+        Batch."No. Series" := Series.Code;
+        Batch.Insert(true);
+        Request.Add('journalTemplate', JournalTemplate.Name);
+        Request.Add('journalBatch', Batch.Name);
     end;
 
     [Test]
@@ -1085,15 +1327,18 @@ codeunit 97160 "TS Self Service Tests"
         Assert.AreEqual(Expected, not ExpandedPermission.IsEmpty(), StrSubstNo(GrantMsg, RoleId, CodeunitId));
     end;
 
-    local procedure AssertNoDirectWrite(RoleId: Code[20])
+    local procedure AssertBundleShape(RoleId: Code[20]; ExpectPosting: Boolean)
     var
         ExpandedPermission: Record "Expanded Permission";
     begin
         ExpandedPermission.SetRange("Role ID", RoleId);
         ExpandedPermission.SetRange("Object Type", ExpandedPermission."Object Type"::"Table Data");
-        ExpandedPermission.SetRange("Object ID", Database::"Time Sheet Header", Database::"Time Sheet Detail");
-        Assert.IsFalse(ExpandedPermission.IsEmpty(), RoleId + ' must grant the time-sheet tables indirectly');
-        ExpandedPermission.SetRange("Modify Permission", ExpandedPermission."Modify Permission"::Yes);
-        Assert.IsTrue(ExpandedPermission.IsEmpty(), RoleId + ' must not grant direct modify on time-sheet tables');
+        ExpandedPermission.SetRange("Object ID", Database::"Time Sheet Line");
+        ExpandedPermission.SetRange("Read Permission", ExpandedPermission."Read Permission"::Yes);
+        Assert.IsFalse(ExpandedPermission.IsEmpty(), RoleId + ' must grant the time-sheet tables directly (ruling C bundle)');
+        ExpandedPermission.SetRange("Read Permission");
+        ExpandedPermission.SetFilter("Object ID", '%1|%2', Database::"Job Journal Line", Database::"Job Ledger Entry");
+        ExpandedPermission.SetRange("Insert Permission", ExpandedPermission."Insert Permission"::Yes);
+        Assert.AreEqual(ExpectPosting, not ExpandedPermission.IsEmpty(), RoleId + ' journal and ledger insert rights');
     end;
 }

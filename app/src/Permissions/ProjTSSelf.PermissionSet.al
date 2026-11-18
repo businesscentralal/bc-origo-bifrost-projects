@@ -10,8 +10,10 @@ using Microsoft.Projects.TimeSheet;
 using System.Security.User;
 
 /// <summary>
-/// Role set for employees who keep their own time sheets through Bifrost (#38, Architect 18.11.2026).
-/// Assign together with BIFROST Read ori. Grants only the four My* types; ownership is still checked in code.
+/// Convenience bundle for employees who keep their own time sheets through Bifrost (#38, Architect ruling C, 18.11.2026).
+/// Direct tabledata, like native BC time sheets: the user can also open time sheets in the client.
+/// Separation is the sheet's owner identity, checked in code; the set carries no approval or posting data.
+/// Assign together with BIFROST Read ori.
 /// </summary>
 permissionset 70013586 "PROJ TS SELF"
 {
@@ -24,19 +26,19 @@ permissionset 70013586 "PROJ TS SELF"
         codeunit "TS Native Runner ori" = X,
         codeunit "TS Contract Parts ori" = X,
         codeunit "TS Bulk Mgt ori" = X,
-        tabledata "Time Sheet Header" = rim,
-        tabledata "Time Sheet Line" = rimd,
-        tabledata "Time Sheet Detail" = rimd,
-        tabledata "Time Sheet Comment Line" = rimd,
-        tabledata Resource = r,
-        tabledata "Resources Setup" = r,
-        tabledata "User Setup" = r,
-        tabledata Job = r,
-        tabledata "Job Task" = r,
-        tabledata "Resource Group" = r,
-        tabledata "No. Series" = r,
-        tabledata "No. Series Line" = rim,
-        tabledata "Accounting Period" = r,
+        tabledata "Time Sheet Header" = RIM,
+        tabledata "Time Sheet Line" = RIMD,
+        tabledata "Time Sheet Detail" = RIMD,
+        tabledata "Time Sheet Comment Line" = RIMD,
+        tabledata Resource = R,
+        tabledata "Resources Setup" = R,
+        tabledata "User Setup" = R,
+        tabledata Job = R,
+        tabledata "Job Task" = R,
+        tabledata "Resource Group" = R,
+        tabledata "No. Series" = R,
+        tabledata "No. Series Line" = RIM,
+        tabledata "Accounting Period" = R,
         report "Create Time Sheets" = X,
         codeunit "TS Create Writer ori" = X,
         codeunit "TS My Sheet Get Impl ori" = X,

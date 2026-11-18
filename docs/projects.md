@@ -256,5 +256,9 @@ the usage table from #52.
 
 Role sets: assign `PROJ TS SELF` (the four My* types), `PROJ TS APPROVER` (the three Approval types)
 or `PROJ TS POST` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
-sets grant the time-sheet tables indirectly only and do not overlap, so approving and posting can be
-given to different people. The ownership and approver checks in code apply in every role.
+sets are convenience bundles with direct tabledata, so a user who has them can also open time sheets in
+the client, exactly as with native BC time sheets. Role separation for approval is the sheet's approver
+identity (Approver User ID), checked in code. Posting is separated by journal and posting rights: only
+`PROJ TS POST` carries the journal, ledger and register data a post needs. A posting user also needs
+read access to the project's master data (customer, posting groups, prices), for example `D365 READ`. The owner and approver
+checks in code apply in every role.

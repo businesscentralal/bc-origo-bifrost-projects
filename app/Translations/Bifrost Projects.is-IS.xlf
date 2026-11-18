@@ -2254,9 +2254,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Approval Approve Impl ori - NamedType MissingParameterNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1363777645 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Approver only, checked here and again by the native writer. Approving absence lines also posts their absence entries.</source>
-          <target>Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Samþykki fjarvistarlína bókar einnig fjarvistarfærslur.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Samþykki fjarvistarlína bókar einnig fjarvistarfærslur.</note>
+          <source>Approver only, checked here and again by the native writer. Approving absence lines also posts their absence entries. Role separation is the sheet's approver identity, not the assigned permission set.</source>
+          <target>Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Samþykki fjarvistarlína bókar einnig fjarvistarfærslur. Aðskilnaður hlutverka byggist á samþykkjanda skýrslunnar, ekki á úthlutuðu heimildasetti.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Samþykki fjarvistarlína bókar einnig fjarvistarfærslur. Aðskilnaður hlutverka byggist á samþykkjanda skýrslunnar, ekki á úthlutuðu heimildasetti.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Approval Approve Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1363777645 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
@@ -2470,9 +2470,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Approval Reject Impl ori - NamedType MissingParameterNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 210161005 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Approver only, checked here and again by the native writer. Every selected line must be Submitted.</source>
-          <target>Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Allar valdar línur verða að vera innsendar.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Allar valdar línur verða að vera innsendar.</note>
+          <source>Approver only, checked here and again by the native writer. Every selected line must be Submitted. Role separation is the sheet's approver identity, not the assigned permission set.</source>
+          <target>Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Allar valdar línur verða að vera innsendar. Aðskilnaður hlutverka byggist á samþykkjanda skýrslunnar, ekki á úthlutuðu heimildasetti.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins samþykkjandi, athugað hér og aftur í innbyggða skrifaranum. Allar valdar línur verða að vera innsendar. Aðskilnaður hlutverka byggist á samþykkjanda skýrslunnar, ekki á úthlutuðu heimildasetti.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Approval Reject Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 210161005 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
