@@ -215,6 +215,7 @@ codeunit 70013593 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg C
         if not ValidateRequest(Argument, Request) then
             exit;
         Header.ReadIsolation := IsolationLevel::ReadCommitted;
+        Resource.ReadIsolation := IsolationLevel::ReadCommitted;
         if Request.Contains('timeSheetNo') then begin
             if not Header.Get(CopyStr(Request.GetText('timeSheetNo'), 1, 20)) then begin
                 Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'timeSheetNo', RecordLbl);
@@ -366,6 +367,8 @@ codeunit 70013593 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg C
         Header: Record "Time Sheet Header";
         Resource: Record Resource;
     begin
+        Header.ReadIsolation := IsolationLevel::ReadCommitted;
+        Resource.ReadIsolation := IsolationLevel::ReadCommitted;
         FilterCaller(Header);
         if ResourceNo <> '' then
             Header.SetRange("Resource No.", ResourceNo);
