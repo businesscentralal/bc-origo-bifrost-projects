@@ -251,8 +251,8 @@ the native writer checks again. Another user's sheet is refused with `Permission
 `nextStep` and no record data. An approver cannot approve or reject their own sheet. A caller who
 is not the time sheet owner (or approver) of any resource or sheet is refused. Line.Set, Approve and Reject
 commit on success and roll back every selected line on failure, as the `Projects.TimeSheet.*`
-administrator types do. Item and resource usage lines are not part of these types yet; they come with
-the usage table from #52.
+administrator types do. Item and resource usage lines are not part of these types; they use the `Projects.Usage.*` types
+below (#52).
 
 Role sets: assign `PROJ TS SELF` (the four My* types), `PROJ TS APPROVER` (the three Approval types)
 or `PROJ TS POST` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
@@ -264,6 +264,24 @@ read access to the project's master data (customer, posting groups, prices), for
 who creates sheets with `Projects.MyTimeSheet.Create` likewise needs ordinary read access (the native Create Time Sheets report
 reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF`. The owner and approver
 checks in code apply in every role.
+
+## Time sheet usage lines
+
+Usage lines record items and resources a user used on a time sheet line (tools, km driven, bolts). A line belongs to a time sheet and one of its lines, carries a state and goes through approval into a journal. Native time sheet lines have no item type, so the usage sits in its own table (`TS Usage Line ori`). Use the dedicated messages; a generic `Data.Records.Set` of `Status`, `Reversed` or the journal fields is refused with a hint naming them.
+
+| Message type | Who | What it does |
+|---|---|---|
+| `Projects.Usage.Register` | owner of the sheet | Creates an Open line. Keys: `timeSheetNo`, `lineNo`, `type` (Item or Resource), `no`, `date` (inside the sheet week), `quantity` (> 0), optional `unitOfMeasure`, `description`. The item or resource must exist and not be blocked. |
+| `Projects.Usage.Submit` | owner | Open or Rejected lines become Submitted. Keys: `timeSheetNo`, optional `entryNos`. |
+| `Projects.Usage.Approve` | approver named on the sheet, never its owner | Submitted lines become Approved. |
+| `Projects.Usage.Reject` | approver | Submitted lines become Rejected, optional `comment` (at most 250 characters). The owner can submit them again. |
+| `Projects.Usage.Transfer` | approver | Creates journal lines for Approved lines, once, in one transaction; nothing is posted. |
+| `Projects.Usage.Reverse` | approver | Flags a Posted line Reversed, once. With `createJournalLine: true` it also creates a journal line with negative quantity. |
+| `Projects.Usage.List` | owner, approver | Read-only, paged (`skip`, `take` at most 200). Filters `timeSheetNo`, `status`, `pending` (Submitted lines addressed to the caller as approver). |
+
+States: Open, Submitted, Approved, Rejected, Transferred, Posted. Transferred means a journal line exists. Posting that journal line sets Posted and stores the ledger entry number; deleting the journal line before posting returns the line to Approved.
+
+Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
 
 ## Read a time sheet
 
