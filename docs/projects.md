@@ -247,7 +247,7 @@ Usage lines record items and resources a user used on a time sheet line (tools, 
 
 States: Open, Submitted, Approved, Rejected, Transferred, Posted. Transferred means a journal line exists. Posting that journal line sets Posted and stores the ledger entry number; deleting the journal line before posting returns the line to Approved.
 
-Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
+Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. The usage message types need `BIFROST Full ori` together with the assignable set `PROJ USAGE` (`BIFROST Read ori` and `PROJ USAGE` for `Projects.Usage.List`); `PROJ USAGE` grants the Base Application time sheet, item, resource, journal and ledger data. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
 
 ## Read a time sheet
 

@@ -69,6 +69,8 @@ Calls require the native BC table permissions in addition to the Foundation role
 
 The time-sheet message types (`Projects.TimeSheet.*`, `Projects.TimeSheetLine.*`, `Projects.Absence.Register`, `Projects.PendingApproval.Get`) need `BIFROST Full ori` together with the assignable set `PROJ TS ADMIN`, which grants the Base Application time-sheet, resource, employee, absence, project journal and number series data. `BIFROST Full ori` alone is refused with `PermissionDenied` and the next step "Assign the BIFROST Full ori and PROJ TS ADMIN permission sets." `Projects.PendingApproval.Get` only reads: `BIFROST Read ori` or `BIFROST Full ori` together with `PROJ TS ADMIN` is enough.
 
+The usage message types (`Projects.Usage.*`, #52) need `BIFROST Full ori` together with the assignable set `PROJ USAGE`, which grants the Base Application time sheet, item, resource, item/resource/project journal and ledger data. `Projects.Usage.List` only reads: `BIFROST Read ori` together with `PROJ USAGE` is enough. Without them the call is refused with `PermissionDenied` and a next step naming the sets.
+
 For WIP methods, Get requires read permission on `Job WIP Method`. Set requires write permission on that table and read permission on `Job WIP Entry` and `Job WIP G/L Entry`. The app's role extensions grant codeunit execution without granting native table permissions.
 
 ## Example scenario
@@ -129,6 +131,7 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | page | 70013500 | `Projects Setup ori` |
 | permissionsetextension | 70013500 | `Projects Read ori` |
 | permissionsetextension | 70013501 | `Projects Full ori` |
+| permissionset | 70013402 | `PROJ USAGE` |
 | permissionset | 70013589 | `PROJ TS ADMIN` |
 | table | 70013500 | `Projects Setup ori` |
 | table | 70013521 | `Proj. Posting ori` |

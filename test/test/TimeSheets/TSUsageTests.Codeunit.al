@@ -588,12 +588,12 @@ codeunit 97153 "TS Usage Tests"
     local procedure GenericWrite(EntryNo: Integer; Fields: JsonObject) Response: JsonObject
     var
         Dispatcher: Codeunit "Dispatcher ori";
+        RequestContent: BigText;
+        ResponseContent: BigText;
         PrimaryKey: JsonObject;
         Row: JsonObject;
         Rows: JsonArray;
         Request: JsonObject;
-        RequestContent: BigText;
-        ResponseContent: BigText;
         ContentType: Text[100];
         RequestText: Text;
         ResponseText: Text;
