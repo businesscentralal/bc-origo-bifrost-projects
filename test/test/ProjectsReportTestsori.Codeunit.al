@@ -329,9 +329,35 @@ codeunit 97126 "Projects Report Tests ori"
         Request.Add('projectNo', Planning.GetText('projectNo'));
         Rows := Adapter.RenderJson(Request);
         Assert.AreEqual(3, Rows.Count(), 'Analysis: one row per task');
+        AssertEveryTaskWithAmount(Rows, Planning.GetText('taskNo'), 'budgetPriceLCY', 'Analysis');
         Request.Replace('report', 'actualToBudget');
         Rows := Adapter.RenderJson(Request);
         Assert.AreEqual(3, Rows.Count(), 'Actual to budget: one row per task');
+        AssertEveryTaskWithAmount(Rows, Planning.GetText('taskNo'), 'budgetCostLCY', 'Actual to budget');
+    end;
+
+    local procedure AssertEveryTaskWithAmount(Rows: JsonArray; FirstTaskNo: Text; AmountKey: Text; Context: Text)
+    var
+        Token: JsonToken;
+        Row: JsonObject;
+        Seen: List of [Text];
+        Expected: List of [Text];
+        TaskNo: Text;
+        i: Integer;
+    begin
+        Expected.Add(FirstTaskNo);
+        Expected.Add('X200');
+        Expected.Add('X300');
+        for i := 0 to Rows.Count() - 1 do begin
+            Rows.Get(i, Token);
+            Row := Token.AsObject();
+            TaskNo := Row.GetText('taskNo');
+            Assert.IsTrue(Expected.Contains(TaskNo), Context + ': unexpected task ' + TaskNo);
+            Assert.IsFalse(Seen.Contains(TaskNo), Context + ': task repeated ' + TaskNo);
+            Seen.Add(TaskNo);
+            Assert.AreNotEqual(0, Row.GetDecimal(AmountKey), Context + ': non-zero ' + AmountKey + ' for ' + TaskNo);
+        end;
+        Assert.AreEqual(3, Seen.Count(), Context + ': three distinct tasks');
     end;
 
     /// <summary>Native actual-to-budget uses the same confirmed project/task filters and buffer quantities.</summary>
