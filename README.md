@@ -8,7 +8,7 @@
 
 Bifrost feature app for project (job) message types that are not covered by Bifrost Foundation: project lifecycle, tasks and planning lines, copy, status, prices, WIP, budget vs actual, project invoicing helpers and project queries. Message types use the `Projects.*.*` pattern.
 
-Time sheets and the Clockify sync belong to **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets), not here. Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
+Native time sheets belong to **Bifrost Projects**: create, submit, approve, reject, reopen, post and archive sheets, create lines from planning or a previous sheet, list pending approvals and register absence. The Clockify sync and Phone Role Center remain in **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets). Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
 
 - Depends only on Bifrost Foundation.
 - Object range: 70013500..70013599 (app; upper part of Public 4 while Shopify still uses 70013400..70013481), 97100..97199 (tests).
@@ -70,6 +70,8 @@ Calls require the native BC table permissions in addition to the Foundation role
 The time-sheet message types (`Projects.TimeSheet.*`, `Projects.TimeSheetLine.*`, `Projects.Absence.Register`, `Projects.PendingApproval.Get`) need `BIFROST Full ori` together with the assignable set `PROJ TS ADMIN`, which grants the Base Application time-sheet, resource, employee, absence, project journal and number series data. `BIFROST Full ori` alone is refused with `PermissionDenied` and the next step "Assign the BIFROST Full ori and PROJ TS ADMIN permission sets." `Projects.PendingApproval.Get` only reads: `BIFROST Read ori` or `BIFROST Full ori` together with `PROJ TS ADMIN` is enough.
 
 The usage message types (`Projects.Usage.*`, #52) need `BIFROST Full ori` together with the assignable set `PROJ USAGE`, which grants the Base Application time sheet, item, resource, item/resource/project journal and ledger data. `Projects.Usage.List` only reads: `BIFROST Read ori` together with `PROJ USAGE` is enough. Without them the call is refused with `PermissionDenied` and a next step naming the sets.
+
+`PROJ TS ADMIN` grants direct RIMD access to time-sheet and archive tables and project journal lines, and RI access to employee absence and time-sheet posting entries. These rights also apply outside message-type calls; the owner and approver checks in message handlers do not restrict direct table access. Assign it only to users who should have those native permissions. The Foundation role extensions grant only Projects-owned objects.
 
 For WIP methods, Get requires read permission on `Job WIP Method`. Set requires write permission on that table and read permission on `Job WIP Entry` and `Job WIP G/L Entry`. The app's role extensions grant codeunit execution without granting native table permissions.
 
