@@ -283,7 +283,12 @@ codeunit 70013535 "Projects Report ori"
         AccountNo: Text;
         AccountName: Text;
     begin
-        Document.SelectNodes('ReportDataSet/DataItems/DataItem', Nodes);
+        // Analysis and actual-to-budget nest one Job Task data item per task inside the Job item (Job > Job Task > Integer);
+        // read every innermost data item so each task yields its own row, with project columns taken from the enclosing items.
+        if ReportName in ['analysis', 'actualToBudget'] then
+            Document.SelectNodes('ReportDataSet//DataItem[not(DataItems/DataItem)]', Nodes)
+        else
+            Document.SelectNodes('ReportDataSet/DataItems/DataItem', Nodes);
         foreach Node in Nodes do begin
             Clear(Row);
             case ReportName of
@@ -444,6 +449,8 @@ codeunit 70013535 "Projects Report ori"
         Column: XmlNode;
     begin
         if Node.SelectSingleNode('.//Column[@name="' + Name + '"]', Column) then
+            exit(Column.AsXmlElement().InnerText());
+        if Node.SelectSingleNode('(ancestor::*/Column[@name="' + Name + '"] | ancestor::*/Columns/Column[@name="' + Name + '"])[last()]', Column) then
             exit(Column.AsXmlElement().InnerText());
         exit('');
     end;

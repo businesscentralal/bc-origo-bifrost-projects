@@ -2,6 +2,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Fixed (2026-11-19, #69)
+
+- `Projects.Report.Get` with `report` analysis or actualToBudget and only `projectNo` now returns one row per task (and per budget line) instead of only the first task: the native dataset nests one Job Task item per task inside the Job item, and the shaper read only the first. No new objects; test `NativeProjectWide_ReturnsEveryTaskWithAmounts` added to codeunit 97126.
+
 ### Added (2026-11-18, #50)
 
 - `Projects.TimeSheetLine.Set` adds or changes time sheet lines (`project`, `resource`, `absence`, `service`) and their hours per day in one call, through Business Central validation, like the lines and day columns of the Time Sheet page. Omit `lineNo` to add a line; send it to change an Open or Rejected line. Submitted or approved lines are refused with `PreconditionFailed` and the next step to reopen them with `Projects.TimeSheet.Reopen`; posted lines, a type change on an existing line and new assembly lines are refused too. All lines are committed together or not at all, unknown keys are refused at every level (`lines[0].hours[1].x`), and nothing is deleted: a day set to 0 keeps its row with zero hours. Generic `Data.Records.Set` writes to time sheet lines and details stay blocked, and the dedicated-type hint now names the new type. New objects: codeunits 70013599 `TS Line Set Impl ori`, 70013521 `TS Line Set Contract ori`, 70013593 `TS Line Set Mgt ori`, 70013594 `TS Line Set Runner ori`, 70013595 `TS Line Set Context ori`; enum value 70013551. `Projects TimeSheet Full ori` grants X on the five codeunits; `PROJ TS ADMIN` grants R on `Service Header` and `Work Type`; `Projects TimeSheet Read ori` grants X on the impl, contract and manager for discovery. Help in en-US and is-IS (is-IS units in sync). Tests: new test codeunit 97163 `TS Line Set Tests` (12 tests); the 97100 catalogue census now expects 45 types.
