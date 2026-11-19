@@ -301,6 +301,65 @@ codeunit 97126 "Projects Report Tests ori"
         Assert.AreEqual(0, Rows.Count(), 'Out-of-range planning quantities do not appear');
     end;
 
+    /// <summary>A project-wide request (no taskNo) returns one row per task with non-zero amounts (#69).</summary>
+    [Test]
+    procedure NativeProjectWide_ReturnsEveryTaskWithAmounts()
+    var
+        Adapter: Codeunit "Projects Report ori";
+        Planning: JsonObject;
+        Second: JsonObject;
+        Task: JsonObject;
+        Request: JsonObject;
+        Rows: JsonArray;
+    begin
+        Planning := Library.NewPlanningRequest('Item');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Planning), 'Success');
+        Task.Add('projectNo', Planning.GetText('projectNo'));
+        Task.Add('taskNo', 'X200');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Task.Create", Task), 'Success');
+        Task.Replace('taskNo', 'X300');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Task.Create", Task), 'Success');
+        Second := Planning.Clone().AsObject();
+        Second.Replace('taskNo', 'X200');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Second), 'Success');
+        Second.Replace('taskNo', 'X300');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Second), 'Success');
+        Request.Add('report', 'analysis');
+        Request.Add('format', 'json');
+        Request.Add('projectNo', Planning.GetText('projectNo'));
+        Rows := Adapter.RenderJson(Request);
+        Assert.AreEqual(3, Rows.Count(), 'Analysis: one row per task');
+        AssertEveryTaskWithAmount(Rows, Planning.GetText('taskNo'), 'budgetPriceLCY', 'Analysis');
+        Request.Replace('report', 'actualToBudget');
+        Rows := Adapter.RenderJson(Request);
+        Assert.AreEqual(3, Rows.Count(), 'Actual to budget: one row per task');
+        AssertEveryTaskWithAmount(Rows, Planning.GetText('taskNo'), 'budgetCostLCY', 'Actual to budget');
+    end;
+
+    local procedure AssertEveryTaskWithAmount(Rows: JsonArray; FirstTaskNo: Text; AmountKey: Text; Context: Text)
+    var
+        Token: JsonToken;
+        Row: JsonObject;
+        Seen: List of [Text];
+        Expected: List of [Text];
+        TaskNo: Text;
+        i: Integer;
+    begin
+        Expected.Add(FirstTaskNo);
+        Expected.Add('X200');
+        Expected.Add('X300');
+        for i := 0 to Rows.Count() - 1 do begin
+            Rows.Get(i, Token);
+            Row := Token.AsObject();
+            TaskNo := Row.GetText('taskNo');
+            Assert.IsTrue(Expected.Contains(TaskNo), Context + ': unexpected task ' + TaskNo);
+            Assert.IsFalse(Seen.Contains(TaskNo), Context + ': task repeated ' + TaskNo);
+            Seen.Add(TaskNo);
+            Assert.AreNotEqual(0, Row.GetDecimal(AmountKey), Context + ': non-zero ' + AmountKey + ' for ' + TaskNo);
+        end;
+        Assert.AreEqual(3, Seen.Count(), Context + ': three distinct tasks');
+    end;
+
     /// <summary>Native actual-to-budget uses the same confirmed project/task filters and buffer quantities.</summary>
     [Test]
     procedure NativeActualToBudget_ProducesOwnedPlanningQuantity()
