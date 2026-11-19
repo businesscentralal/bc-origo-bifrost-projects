@@ -301,6 +301,39 @@ codeunit 97126 "Projects Report Tests ori"
         Assert.AreEqual(0, Rows.Count(), 'Out-of-range planning quantities do not appear');
     end;
 
+    /// <summary>A project-wide request (no taskNo) returns one row per task with non-zero amounts (#69).</summary>
+    [Test]
+    procedure NativeProjectWide_ReturnsEveryTaskWithAmounts()
+    var
+        Adapter: Codeunit "Projects Report ori";
+        Planning: JsonObject;
+        Second: JsonObject;
+        Task: JsonObject;
+        Request: JsonObject;
+        Rows: JsonArray;
+    begin
+        Planning := Library.NewPlanningRequest('Item');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Planning), 'Success');
+        Task.Add('projectNo', Planning.GetText('projectNo'));
+        Task.Add('taskNo', 'X200');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Task.Create", Task), 'Success');
+        Task.Replace('taskNo', 'X300');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.Task.Create", Task), 'Success');
+        Second := Planning.Clone().AsObject();
+        Second.Replace('taskNo', 'X200');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Second), 'Success');
+        Second.Replace('taskNo', 'X300');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.PlanningLine.Create", Second), 'Success');
+        Request.Add('report', 'analysis');
+        Request.Add('format', 'json');
+        Request.Add('projectNo', Planning.GetText('projectNo'));
+        Rows := Adapter.RenderJson(Request);
+        Assert.AreEqual(3, Rows.Count(), 'Analysis: one row per task');
+        Request.Replace('report', 'actualToBudget');
+        Rows := Adapter.RenderJson(Request);
+        Assert.AreEqual(3, Rows.Count(), 'Actual to budget: one row per task');
+    end;
+
     /// <summary>Native actual-to-budget uses the same confirmed project/task filters and buffer quantities.</summary>
     [Test]
     procedure NativeActualToBudget_ProducesOwnedPlanningQuantity()
