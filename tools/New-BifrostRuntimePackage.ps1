@@ -437,6 +437,17 @@ function Assert-BifrostRuntimeAppHasNoSource {
     }
 }
 
+function Assert-BifrostGenuineRuntimePackage {
+    param([Parameter(Mandatory = $true)][string]$AppPath, [switch]$AllowSyntheticPackage)
+    # Production packaging needs the native reader to identify a compiled runtime package; a plain ZIP
+    # with only a manifest is not one. Synthetic ZIP fixtures are accepted only by the self-test.
+    if ($AllowSyntheticPackage) { return }
+    $kind = Get-BifrostAppPackageKind $AppPath
+    if ($kind -ne 'runtime') {
+        throw ("Refusing '{0}': it is not a genuine Business Central runtime package (PackageKind {1}). Export it with Get-NAVAppRuntimePackage." -f [System.IO.Path]::GetFileName($AppPath), $kind)
+    }
+}
+
 function Get-NavxAppIdentity {
     param([string]$AppPath)
     if (Test-BifrostNavxHeader $AppPath) { return (Get-BifrostNativePackageInfo $AppPath).Identity }
@@ -489,12 +500,14 @@ function New-BifrostRuntimePackageZip {
         [Parameter(Mandatory = $true)][string]$ZipPath,
         [Parameter(Mandatory = $true)][string]$InnerAppFileName,
         [Parameter(Mandatory = $true)]$Identity,
-        [Parameter(Mandatory = $true)][string]$ExpectedVersion
+        [Parameter(Mandatory = $true)][string]$ExpectedVersion,
+        [switch]$AllowSyntheticPackage
     )
     if (-not (Test-Path -LiteralPath $RuntimeAppPath)) {
         throw "Runtime package not found: $RuntimeAppPath"
     }
     Assert-BifrostRuntimeAppHasNoSource -AppPath $RuntimeAppPath
+    Assert-BifrostGenuineRuntimePackage -AppPath $RuntimeAppPath -AllowSyntheticPackage:$AllowSyntheticPackage
     $manifest = Get-NavxAppIdentity $RuntimeAppPath
     Assert-BifrostManifestMatch -Manifest $manifest -Identity $Identity -ExpectedVersion $ExpectedVersion
     $directory = Split-Path -Parent $ZipPath
@@ -511,7 +524,7 @@ function New-BifrostRuntimePackageZip {
     }
     finally { $zip.Dispose() }
     $runtimeSha256 = (Get-FileHash -LiteralPath $RuntimeAppPath -Algorithm SHA256).Hash.ToLowerInvariant()
-    $verified = Test-BifrostRuntimePackageZip -ZipPath $ZipPath -InnerAppFileName $InnerAppFileName -ExpectedRuntimeSha256 $runtimeSha256 -Identity $Identity -ExpectedVersion $ExpectedVersion
+    $verified = Test-BifrostRuntimePackageZip -ZipPath $ZipPath -InnerAppFileName $InnerAppFileName -ExpectedRuntimeSha256 $runtimeSha256 -Identity $Identity -ExpectedVersion $ExpectedVersion -AllowSyntheticPackage:$AllowSyntheticPackage
     return [pscustomobject]@{
         ZipPath = $ZipPath
         InnerAppFileName = $InnerAppFileName
@@ -528,7 +541,8 @@ function Test-BifrostRuntimePackageZip {
         [string]$InnerAppFileName,
         [string]$ExpectedRuntimeSha256,
         $Identity,
-        [string]$ExpectedVersion
+        [string]$ExpectedVersion,
+        [switch]$AllowSyntheticPackage
     )
     # Checks a runtime zip as a consumer gets it: one *_runtime.app, and no AL source inside.
     if (-not (Test-Path -LiteralPath $ZipPath)) { throw "Runtime zip not found: $ZipPath" }
@@ -559,6 +573,9 @@ function Test-BifrostRuntimePackageZip {
             throw 'The downloaded runtime package SHA256 does not match the validated export.'
         }
         $packageKind = Get-BifrostAppPackageKind $innerPath
+        if (-not $AllowSyntheticPackage -and $packageKind -ne 'runtime') {
+            throw ("Refusing runtime zip '{0}': the package inside is not a genuine Business Central runtime package (PackageKind {1})." -f [System.IO.Path]::GetFileName($ZipPath), $packageKind)
+        }
         $sources = @(Get-BifrostAppSourceEntry -AppPath $innerPath)
         if ($sources.Count -gt 0) {
             throw ("Runtime zip '{0}' holds {1} with {2} AL source file(s) (for example {3}). The public runtime zip must not carry source (#1269)." -f [System.IO.Path]::GetFileName($ZipPath), $expectedName, $sources.Count, (($sources | Select-Object -First 3) -join ', '))
@@ -937,12 +954,12 @@ function Invoke-BifrostRuntimePackageSelfTest {
             [System.IO.File]::WriteAllBytes($invalidPath, $invalidInputs[$case])
             $invalidZipPath = Join-Path $root ($case + '-packed.zip')
             $refused = $false
-            try { New-BifrostRuntimePackageZip -RuntimeAppPath $invalidPath -ZipPath $invalidZipPath -InnerAppFileName 'invalid_runtime.app' -Identity $identity -ExpectedVersion '28.0.11' | Out-Null } catch { $refused = $true }
+            try { New-BifrostRuntimePackageZip -AllowSyntheticPackage -RuntimeAppPath $invalidPath -ZipPath $invalidZipPath -InnerAppFileName 'invalid_runtime.app' -Identity $identity -ExpectedVersion '28.0.11' | Out-Null } catch { $refused = $true }
             Assert-True $refused "$case must be refused before packaging"
             Assert-True (-not (Test-Path -LiteralPath $invalidZipPath)) "$case must not produce an output zip"
             $invalidReadback = New-BifrostSelfTestZip -ZipPath (Join-Path $root ($case + '-readback.zip')) -Files @{ 'invalid_runtime.app' = $invalidPath }
             $refused = $false
-            try { Test-BifrostRuntimePackageZip -ZipPath $invalidReadback | Out-Null } catch { $refused = $true }
+            try { Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $invalidReadback | Out-Null } catch { $refused = $true }
             Assert-True $refused "$case must also be refused on read-back"
         }
         # NAVX header with a zip hidden deep in the payload is not trusted as a runtime package.
@@ -965,7 +982,7 @@ function Invoke-BifrostRuntimePackageSelfTest {
         Assert-True (@(Get-BifrostAppSourceEntry -AppPath $runtimeApp).Count -eq 0) 'runtime package has no source entries'
 
         $outDir = Join-Path $root 'out'
-        $packed = New-BifrostRuntimePackageZip -RuntimeAppPath $runtimeApp -ZipPath (Join-Path $outDir $layout.ZipFileName) -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.11'
+        $packed = New-BifrostRuntimePackageZip -AllowSyntheticPackage -RuntimeAppPath $runtimeApp -ZipPath (Join-Path $outDir $layout.ZipFileName) -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.11'
         Assert-True (Test-Path -LiteralPath $packed.ZipPath) 'zip exists'
         Assert-True ($packed.AlEntries -eq 0) 'packed zip reports 0 .al entries'
         $zip = [System.IO.Compression.ZipFile]::OpenRead($packed.ZipPath)
@@ -975,7 +992,7 @@ function Invoke-BifrostRuntimePackageSelfTest {
         $sourceRefused = $false
         $sourceZipPath = Join-Path $outDir 'source.zip'
         try {
-            New-BifrostRuntimePackageZip -RuntimeAppPath $sourceApp -ZipPath $sourceZipPath -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.11' | Out-Null
+            New-BifrostRuntimePackageZip -AllowSyntheticPackage -RuntimeAppPath $sourceApp -ZipPath $sourceZipPath -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.11' | Out-Null
         }
         catch {
             $sourceRefused = $true
@@ -988,34 +1005,34 @@ function Invoke-BifrostRuntimePackageSelfTest {
 
         $bad = $false
         try {
-            New-BifrostRuntimePackageZip -RuntimeAppPath $runtimeApp -ZipPath (Join-Path $outDir 'bad.zip') -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.10.0' | Out-Null
+            New-BifrostRuntimePackageZip -AllowSyntheticPackage -RuntimeAppPath $runtimeApp -ZipPath (Join-Path $outDir 'bad.zip') -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.10.0' | Out-Null
         }
         catch { $bad = $true }
         Assert-True $bad 'wrong release version must fail'
 
         # Read-back verification, as the workflow runs it on the anonymous download.
-        $verified = Test-BifrostRuntimePackageZip -ZipPath $packed.ZipPath -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.11'
+        $verified = Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $packed.ZipPath -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.11'
         Assert-True ($verified.Verified -and $verified.AlEntries -eq 0 -and $verified.ManifestVersion -eq '28.0.11.669') 'verify accepts the packed runtime zip'
-        $verifiedAny = Test-BifrostRuntimePackageZip -ZipPath $packed.ZipPath
+        $verifiedAny = Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $packed.ZipPath
         Assert-True ($verifiedAny.InnerAppFileName -eq $layout.InnerAppFileName) 'verify without app.json finds the *_runtime.app'
 
         $leakZip = New-BifrostSelfTestZip -ZipPath (Join-Path $outDir 'leak.zip') -Files @{ $layout.InnerAppFileName = $sourceApp }
         $leakRefused = $false
-        try { Test-BifrostRuntimePackageZip -ZipPath $leakZip -InnerAppFileName $layout.InnerAppFileName | Out-Null }
+        try { Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $leakZip -InnerAppFileName $layout.InnerAppFileName | Out-Null }
         catch { $leakRefused = $_.Exception.Message -match 'AL source' }
         Assert-True $leakRefused 'verify must refuse a published zip whose .app has .al entries (the 28.0.11 blob)'
 
         $twoZip = New-BifrostSelfTestZip -ZipPath (Join-Path $outDir 'two.zip') -Files @{ $layout.InnerAppFileName = $runtimeApp; 'extra.app' = $runtimeApp }
         $twoRefused = $false
-        try { Test-BifrostRuntimePackageZip -ZipPath $twoZip | Out-Null } catch { $twoRefused = $true }
+        try { Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $twoZip | Out-Null } catch { $twoRefused = $true }
         Assert-True $twoRefused 'verify must refuse a zip with more than one entry'
 
         $wrongVersionRefused = $false
-        try { Test-BifrostRuntimePackageZip -ZipPath $packed.ZipPath -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.12' | Out-Null } catch { $wrongVersionRefused = $true }
+        try { Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $packed.ZipPath -InnerAppFileName $layout.InnerAppFileName -Identity $identity -ExpectedVersion '28.0.12' | Out-Null } catch { $wrongVersionRefused = $true }
         Assert-True $wrongVersionRefused 'verify must refuse a zip for another release'
 
         $hashRefused = $false
-        try { Test-BifrostRuntimePackageZip -ZipPath $packed.ZipPath -ExpectedRuntimeSha256 ('0' * 64) | Out-Null } catch { $hashRefused = $true }
+        try { Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $packed.ZipPath -ExpectedRuntimeSha256 ('0' * 64) | Out-Null } catch { $hashRefused = $true }
         Assert-True $hashRefused 'read-back must refuse bytes different from the validated export'
 
         if ($RuntimeFixturePath) {
@@ -1132,8 +1149,14 @@ function Invoke-BifrostRuntimePackageSelfTest {
         # Blocker 2: a dependency must be a genuine runtime package, not a zip with only a manifest.
         $manifestOnlyApp = New-BifrostSelfTestApp -Path (Join-Path $root 'manifest-only.app') -Entries @{ 'NavxManifest.xml' = $manifest } -NoNavxHeader
         $manifestOnlyZip = New-BifrostSelfTestZip -ZipPath (Join-Path $root 'manifest-only-dependency.zip') -Files @{ 'Origo_Bifrost Foundation_runtime.app' = $manifestOnlyApp }
-        $plainVerified = Test-BifrostRuntimePackageZip -ZipPath $manifestOnlyZip
+        $plainVerified = Test-BifrostRuntimePackageZip -AllowSyntheticPackage -ZipPath $manifestOnlyZip
         Assert-True ($plainVerified.Verified -and $plainVerified.AlEntries -eq 0 -and $plainVerified.PackageKind -eq 'zip') 'the manifest-only fixture passes the plain source-free check (the review case)'
+        $manifestOnlyPackRefused = $false
+        try { New-BifrostRuntimePackageZip -RuntimeAppPath $manifestOnlyApp -ZipPath (Join-Path $root 'manifest-only-pack.zip') -InnerAppFileName 'Origo_Bifrost Foundation_runtime.app' -Identity $identity -ExpectedVersion '28.0.11' | Out-Null } catch { $manifestOnlyPackRefused = $_.Exception.Message -match 'not a genuine Business Central runtime package' }
+        Assert-True $manifestOnlyPackRefused 'production packaging refuses a manifest-only zip (not a runtime package)'
+        $manifestOnlyVerifyRefused = $false
+        try { Test-BifrostRuntimePackageZip -ZipPath $manifestOnlyZip | Out-Null } catch { $manifestOnlyVerifyRefused = $_.Exception.Message -match 'not a genuine Business Central runtime package' }
+        Assert-True $manifestOnlyVerifyRefused 'production read-back verification refuses a manifest-only zip'
         $plainRefused = $false
         try { Test-BifrostDependencyRuntimeZip -ZipPath $manifestOnlyZip | Out-Null } catch { $plainRefused = $_.Exception.Message -match 'not a genuine Business Central runtime package' }
         Assert-True $plainRefused 'a manifest-only zip must be refused as a dependency runtime package'
