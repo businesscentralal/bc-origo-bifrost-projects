@@ -56,6 +56,7 @@ codeunit 70013514 "Projects Write ori"
     var
         WIP: Codeunit "Projects WIP ori";
         Count: Integer;
+        NativeErr: Label 'Business Central could not reverse the posted WIP: %1', Comment = '%1 = native posting reason, is-IS=Business Central gat ekki bakfært bókuð verk í vinnslu: %1';
     begin
         if not WIP.ValidateReverse(Argument, Count) then
             exit;
@@ -64,7 +65,7 @@ codeunit 70013514 "Projects Write ori"
             exit;
         end;
         if not Codeunit.Run(Codeunit::"Projects Write Process ori", Argument) then
-            Argument.RespondWithError("Bifrost Error Code ori"::PreconditionFailed, GetLastErrorText(), '', '', '', 'Projects.WIP.Get');
+            Argument.RespondWithError("Bifrost Error Code ori"::PreconditionFailed, StrSubstNo(NativeErr, GetLastErrorText()), '', '', '', 'Projects.WIP.Get');
     end;
 
     [TryFunction]

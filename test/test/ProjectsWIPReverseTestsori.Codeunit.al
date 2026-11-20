@@ -284,6 +284,7 @@ codeunit 97114 "Projects WIP Reverse Tests ori"
         Impl.ExecuteBifrostTask(TempArgument);
         Response := TempArgument.GetResponseJson();
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Refusal precedes licence checks');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Permission refusal gives actionable guidance');
     end;
 
     /// <summary>No native permissions refuses before accessing project data.</summary>
@@ -303,6 +304,7 @@ codeunit 97114 "Projects WIP Reverse Tests ori"
         Impl.ExecuteBifrostTask(TempArgument);
         Response := TempArgument.GetResponseJson();
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Missing native permissions refuse');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('BIFROST Full ori'), 'Native permission refusal gives actionable guidance');
     end;
 
     /// <summary>English chapters stay identical while discovery changes with session language.</summary>

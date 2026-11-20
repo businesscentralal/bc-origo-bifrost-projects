@@ -202,19 +202,16 @@ codeunit 70013406 "Proj. WIP Reverse Impl ori" implements "Msg Interface ori", "
 
     local procedure AssertPermissions(var Argument: Record "Message Argument ori"): Boolean
     var
+        Setup: Record "Projects Setup ori";
         Gate: Codeunit "Projects Gate ori";
-        PostingGate: Codeunit "Proj. Posting Gate ori";
+        DeniedLbl: Label 'You do not have the project and posting permissions required to reverse WIP.', Comment = 'is-IS=Þú hefur ekki verkefna- og bókunarheimildir sem þarf til að bakfæra verk í vinnslu.';
+        PermissionsLbl: Label 'Ask an administrator for BIFROST Full ori and native project and G/L posting permissions.', Comment = 'is-IS=Biddu kerfisstjóra um BIFROST Full ori og innbyggðar verkefna- og fjárhagsbókunarheimildir.';
     begin
-        if not Gate.AssertEnabled(Argument, GetFilterTableNo(), true) then
-            exit(false);
-        if not PostingGate.AssertCanPost(Argument) then
-            exit(false);
-        if not Gate.AssertEnabled(Argument, Database::Job, true) then
-            exit(false);
-        if not Gate.AssertEnabled(Argument, Database::"Job WIP Entry", false) then
-            exit(false);
-        if not Gate.AssertEnabled(Argument, Database::"Job WIP G/L Entry", false) then
-            exit(false);
-        exit(true);
+        if not Setup.IsEnabled() then
+            exit(Gate.AssertEnabled(Argument, GetFilterTableNo(), true));
+        if IsEnabled() then
+            exit(true);
+        Argument.RespondWithError("Bifrost Error Code ori"::PermissionDenied, DeniedLbl, '', '', '', PermissionsLbl);
+        exit(false);
     end;
 }
