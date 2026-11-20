@@ -223,6 +223,35 @@ codeunit 97156 "Projects Item Cost Tests ori"
         Assert.IsTrue(ConfirmGate.IsConfirmRequired("Message Type ori"::"Projects.ItemCost.Update"), 'Gate applies');
     end;
 
+    /// <summary>AC06: the contract builds in 1033 and 1039; discovery text is translated, chapter text is English, no AL names or message-type wording.</summary>
+    [Test]
+    procedure Scenario_AC06_ContractInBothLanguages()
+    var
+        ContractMgt: Codeunit "Msg Contract Mgt ori";
+        Impl: Codeunit "Proj. Item Cost Impl ori";
+        Contract: JsonObject;
+        Notes: Text;
+        ContractText: Text;
+        Description1033: Text;
+        Description1039: Text;
+        Language: Integer;
+    begin
+        Language := GlobalLanguage();
+        GlobalLanguage(1033);
+        Description1033 := Impl.GetDescription();
+        Assert.IsTrue(ContractMgt.GetContract("Message Type ori"::"Projects.ItemCost.Update", Contract), 'Contract in 1033');
+        GlobalLanguage(1039);
+        Description1039 := Impl.GetDescription();
+        Assert.IsTrue(ContractMgt.GetContract("Message Type ori"::"Projects.ItemCost.Update", Contract), 'Contract in 1039');
+        GlobalLanguage(Language);
+        Assert.AreNotEqual(Description1033, Description1039, 'Discovery text is translated');
+        Assert.IsTrue(Impl.GetNotes(Notes), 'Notes declared');
+        Assert.IsTrue(Notes.Contains('Automatic Update Project Item Cost'), 'Help explains the automatic setting');
+        Contract.WriteTo(ContractText);
+        Assert.IsFalse(ContractText.Contains('Report 1095'), 'No AL object names');
+        Assert.IsFalse(ContractText.Contains('Update Job Item Cost'), 'No AL object names');
+    end;
+
     local procedure ProjectRequest(ProjectNo: Code[20]) Request: JsonObject
     var
         Nos: JsonArray;

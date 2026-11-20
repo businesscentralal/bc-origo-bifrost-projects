@@ -144,7 +144,6 @@ codeunit 70013406 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     var
         Contract: Codeunit "Msg Contract Mgt ori";
     begin
-        Related.Add(Contract.RelatedEntry('Inventory.AdjustCost.Run', 'The item cost has not been adjusted yet; run it before this update.'));
         Related.Add(Contract.RelatedEntry('Projects.Statistics.Get', 'You want to read the project profitability after the update.'));
         Related.Add(Contract.RelatedEntry('Projects.BudgetVsActual.Get', 'You want to compare the updated actual cost with the budget.'));
         exit(true);
@@ -156,8 +155,7 @@ codeunit 70013406 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
         Contract: Codeunit "Msg Contract Mgt ori";
         Steps: JsonArray;
     begin
-        Steps.Add(Contract.WorkflowStep('Inventory.AdjustCost.Run', 'Adjust the item cost.'));
-        Steps.Add(Contract.WorkflowStep('Projects.ItemCost.Update', 'Bring the project item cost up to the adjusted cost.'));
+        Steps.Add(Contract.WorkflowStep('Projects.ItemCost.Update', 'After the cost adjustment has run, bring the project item cost up to the adjusted cost.'));
         Steps.Add(Contract.WorkflowStep('Projects.Statistics.Get', 'Read the project profitability.'));
         Workflow.Add('steps', Steps);
         exit(true);
@@ -189,6 +187,7 @@ codeunit 70013406 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     procedure GetNotes(var Notes: Text): Boolean
     begin
         Notes := 'When Automatic Update Project Item Cost is turned on in Projects Setup, Business Central already runs this update for the projects it adjusted at the end of every cost adjustment. ' +
+            'Run the cost adjustment (Adjust Cost - Item Entries) first: this operation only brings the project up to the cost the adjustment has already calculated. ' +
             'This operation is needed only when that setting is off, or for projects that were adjusted earlier. ' +
             'Only usage of items on projects in status Planning, Quote or Open is updated; a Completed project named in projectNos is refused. ' +
             'postingDateFrom and postingDateTo limit the usage entries by posting date. ' +

@@ -118,6 +118,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.WIPMethod.Get');
         ExpectedTypes.Add('Projects.WIPMethod.Set');
         ExpectedTypes.Add('Projects.Quote.Send');
+        ExpectedTypes.Add('Projects.ItemCost.Update');
         ExpectedTypes.Add('Projects.PurchaseLine.Link');
         ExpectedTypes.Add('Projects.ItemUsage.Post');
         ExpectedTypes.Add('Projects.Report.Get');
@@ -172,7 +173,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(45, Count, 'Catalogue must contain all forty-five owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read, the #38 self-service types and Projects.TimeSheetLine.Set');
+        Assert.AreEqual(46, Count, 'Catalogue must contain all forty-six owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read, the #38 self-service types and Projects.TimeSheetLine.Set');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
