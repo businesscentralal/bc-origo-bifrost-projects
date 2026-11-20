@@ -57,6 +57,10 @@ Native time sheets belong to **Bifrost Projects**: create, submit, approve, reje
 - Use native BC validation for project changes, WIP calculation and posting.
 - Read stable recognized cost/sales enum names in either English or Icelandic sessions.
 
+## Task indentation
+
+Call `Projects.Task.Indent` with `{"projectNo":"PROJECT-001"}` after creating or updating the task structure. It runs Indent Project Tasks without confirmation, overwriting indentation on every task and totaling on End-Total tasks. `tasks[]` returns taskNo, taskType (English name), indentation, totaling and changed; `summary` returns taskCount and changedCount. A second call reports zero changed tasks. Unmatched End-Total tasks and nesting beyond ten levels return PreconditionFailed with the native reason and roll back every change. Unknown projects, invalid input and permission refusals are typed and include a next step. The caller needs BIFROST Full ori and native project-task write rights. No Create contracts or UI pages change.
+
 ## Logic flow
 
 `Company switch and native permissions → Foundation licence/version checks → request validation → native transaction → response`
@@ -130,6 +134,8 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013542 | `Projects WIP Methods ori` |
 | codeunit | 70013543 | `Proj. WIP Method Process ori` |
 | enumextension | 70013500 | `Projects Message Types ori` |
+| codeunit | 70013406 | `Proj. Task Indent Impl ori` |
+| enum value | 70013406 | `Projects.Task.Indent` |
 | page | 70013500 | `Projects Setup ori` |
 | permissionsetextension | 70013500 | `Projects Read ori` |
 | permissionsetextension | 70013501 | `Projects Full ori` |

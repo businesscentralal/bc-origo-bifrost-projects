@@ -102,6 +102,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.Project.Update');
         ExpectedTypes.Add('Projects.Task.Create');
         ExpectedTypes.Add('Projects.Task.Update');
+        ExpectedTypes.Add('Projects.Task.Indent');
         ExpectedTypes.Add('Projects.PlanningLine.Create');
         ExpectedTypes.Add('Projects.PlanningLine.Update');
         ExpectedTypes.Add('Projects.Project.Copy');
@@ -155,7 +156,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Assert.IsTrue(Names.Contains('Projects.Project.Archive'), 'Project archive must be registered');
         Assert.IsTrue(Names.Contains('Projects.ProjectArchive.Get'), 'Project archive read must be registered');
         foreach Name in Names do
-            if (Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599) then begin
+            if ((Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599)) or (Name = 'Projects.Task.Indent') then begin
                 Assert.IsTrue(ExpectedTypes.Contains(Name), 'Unexpected Projects type in the exact catalogue: ' + Name);
                 Assert.AreEqual(3, Name.Split('.').Count(), 'Every owned name has exactly three parts');
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
@@ -172,7 +173,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(45, Count, 'Catalogue must contain all forty-five owned Projects types, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read, the #38 self-service types and Projects.TimeSheetLine.Set');
+        Assert.AreEqual(46, Count, 'Catalogue must contain the forty-five existing types and Projects.Task.Indent, including allocation, reports, archives, resource capacity, the moved time-sheet types, the typed time-sheet read, the #38 self-service types and Projects.TimeSheetLine.Set');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
@@ -191,7 +192,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if (Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599) then begin
+            if ((Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599)) or (Name = 'Projects.Task.Indent') then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 Clear(Contract);
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));

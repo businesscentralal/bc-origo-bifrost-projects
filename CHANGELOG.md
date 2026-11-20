@@ -1,5 +1,8 @@
 # Changelog
 
+### Added
+- #78: `Projects.Task.Indent` runs Indent Project Tasks without dialogs, returning each task's indentation, totaling and changed flag plus task/changed counts. A native structural error rolls back all changes; retries are idempotent. Requires Full and native task write rights; no posting gate or new Create flags. New codeunit and enum value 70013406; tests 97114/97115 and test-only permission set 97115. English chapters and Icelandic discovery/refusals are synchronized.
+
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
 ### Added (2026-11-20, #71)

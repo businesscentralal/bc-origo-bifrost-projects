@@ -139,10 +139,8 @@ codeunit 70013508 "Proj. Task Update Impl ori" implements "Msg Interface ori", "
     end;
     /// <summary>Documents nested write behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
-    var
-        NotesLbl: Label 'Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
     begin
-        Notes := NotesLbl;
+        Notes := 'Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. After changing the task structure, call Projects.Task.Indent to recalculate indentation and totaling.';
         exit(true);
     end;
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
