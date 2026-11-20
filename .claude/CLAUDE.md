@@ -15,9 +15,17 @@
 
 ## Issue 78 object ledger
 
-- Codeunit 70013419 `Proj. Task Indent Impl ori` (renumbered from 70013406 after #75 took it; 70013406-70013409 are claimed by PR #88, 70013417-70013418 by PR #89): native task indentation, shared write transaction.
+- Codeunit 70013419 `Proj. Task Indent Impl ori` (renumbered from 70013406 after #75 took it; 70013406-70013409 are claimed by PR #88, 70013417-70013418 belong to #76): native task indentation, shared write transaction.
 - Enum value 70013406 `Projects.Task.Indent` in `Projects Message Types ori`.
 - Test codeunits 97169 `Proj. Task Indent Tests ori` and 97170 `Proj. Indent Perm Tests ori`; test-only permission set 97170 `ProjIndentNative ori` (all renumbered from 97114/97115 after #75 took them). No assignable role added.
+
+## #76 object ledger
+
+- Codeunit 70013417 `Proj. Shift Dates Impl ori`: contract and validation.
+- Codeunit 70013418 `Proj. Shift Dates Process ori`: atomic native date batch.
+- Enum value 70013533 `Projects.PlanningLine.ShiftDates`.
+- Test codeunits 97167 `Proj. Shift Dates Tests ori`, 97168 `Proj Shift Date Perm Tests ori`.
+- Architect ruling 20.11.2026: plain write, no expectedCount; refuse transferred/invoiced lines.
 
 ## Object ledger — issue #75
 

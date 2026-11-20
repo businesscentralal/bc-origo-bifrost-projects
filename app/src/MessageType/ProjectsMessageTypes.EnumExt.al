@@ -148,4 +148,10 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Task.Indent', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Task Indent Impl ori", "Msg Discovery ori" = "Proj. Task Indent Impl ori", "Msg Contract ori" = "Proj. Task Indent Impl ori";
     }
+    /// <summary>Moves dates across a project or task range.</summary>
+    value(70013533; "Projects.PlanningLine.ShiftDates")
+    {
+        Caption = 'Projects.PlanningLine.ShiftDates', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Shift Dates Impl ori", "Msg Discovery ori" = "Proj. Shift Dates Impl ori", "Msg Contract ori" = "Proj. Shift Dates Impl ori";
+    }
 }

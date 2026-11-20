@@ -2,6 +2,11 @@
 
 ### Added
 - #78: `Projects.Task.Indent` runs Indent Project Tasks without dialogs, returning each task's indentation, totaling and changed flag plus task/changed counts. A native structural error rolls back all changes; retries are idempotent. Requires Full and native task write rights; no posting gate or new Create flags. New codeunit and enum value 70013406; tests 97114/97115 and test-only permission set 97115. English chapters and Icelandic discovery/refusals are synchronized.
+## Unreleased — #76
+
+- Add `Projects.PlanningLine.ShiftDates`: shift planning/currency dates by invariant formula or fixed date, filter tasks/line types/date windows, and return every changed date (including native document-date changes). Refuse transferred/invoiced lines atomically. Plain write without expectedCount per the 20 November ruling.
+- Added codeunits 70013417/70013418, enum value 70013533, and test codeunits 97114/97115; Icelandic discovery and refusals, English help.
+
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
