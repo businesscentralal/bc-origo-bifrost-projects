@@ -117,6 +117,11 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013517 | `Proj. WIP Get Impl ori` |
 | codeunit | 70013518 | `Proj. WIP Calc Impl ori` |
 | codeunit | 70013519 | `Proj. WIP Post Impl ori` |
+| codeunit | 70013406 | `Proj. WIP Reverse Impl ori` |
+| enum value | 70013400 | `Projects.WIP.Reverse` |
+| test codeunit | 97114 | `Projects WIP Reverse Tests ori` |
+| test codeunit | 97115 | `Proj. WIP Reverse Fixture ori` |
+| test enum extension/value | 97114 | `Proj. WIP Fixture Types ori` / `Test.WIP75.Seed` |
 | codeunit | 70013520 | `Projects WIP ori` |
 | codeunit | 70013522 | `Proj. Posting Gate ori` |
 | codeunit | 70013524 | `Proj. Statistics Impl ori` |
@@ -159,3 +164,7 @@ Template/workflow restoration from merged PR #10 is integrated. Issues #5 and #6
 
 
 Copyright © 2026 Origo.
+
+### Reverse posted WIP
+
+`Projects.WIP.Reverse` uses the **Reverse Only** option of **Post WIP to G/L**. Send `projectNo`, required ISO `postingDate`, and `documentNo` (1–20 characters). Preview without `expectedCount`, then confirm the number of eligible posted WIP entries. The operation posts correcting G/L entries; it preserves calculated WIP and returns `reversedEntries`, current `wip`, `summary` and `nextStep: Projects.WIP.Calculate`. Completed WIP, an earlier posting date, missing candidates and stale confirmation are refused without changes. Requires **BIFROST Full ori** and native project/posting permissions.
