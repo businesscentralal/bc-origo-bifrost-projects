@@ -308,7 +308,7 @@ codeunit 97156 "Projects Item Cost Tests ori"
     end;
 
     /// <summary>Seeds an own vendor, item and project, uses 2 items at cost 10 through a budget project journal line, invoices the receipt at 12 and adjusts cost natively.</summary>
-    local procedure SeedAdjustedUsage() ProjectNo: Code[20]
+    local procedure SeedAdjustedUsage(): Code[20]
     var
         JobsSetup: Record "Jobs Setup";
         Project: Record Job;

@@ -189,7 +189,7 @@ codeunit 70013408 "Projects Item Cost ori"
     var
         Project: Record Job;
         Ledger: Record "Job Ledger Entry";
-        Before: Record "Job Ledger Entry" temporary;
+        TempBefore: Record "Job Ledger Entry" temporary;
         UpdateCost: Report "Update Job Item Cost";
         Request: JsonObject;
         Response: JsonObject;
@@ -216,8 +216,8 @@ codeunit 70013408 "Projects Item Cost ori"
             SetScope(Ledger, ProjectNo, FromDate, ToDate);
             if Ledger.FindSet() then
                 repeat
-                    Before := Ledger;
-                    Before.Insert();
+                    TempBefore := Ledger;
+                    TempBefore.Insert();
                 until Ledger.Next() = 0;
             if ProjectFilter <> '' then
                 ProjectFilter += '|';
@@ -234,15 +234,15 @@ codeunit 70013408 "Projects Item Cost ori"
             UpdateCost.UseRequestPage(false);
             UpdateCost.Run();
         end;
-        if Before.FindSet() then
+        if TempBefore.FindSet() then
             repeat
-                Ledger.Get(Before."Entry No.");
-                if (Ledger."Total Cost (LCY)" <> Before."Total Cost (LCY)") or (Ledger."Total Cost" <> Before."Total Cost") then begin
-                    Counts.Set(Before."Job No.", Counts.Get(Before."Job No.") + 1);
-                    Changes.Set(Before."Job No.", Changes.Get(Before."Job No.") + Ledger."Total Cost (LCY)" - Before."Total Cost (LCY)");
+                Ledger.Get(TempBefore."Entry No.");
+                if (Ledger."Total Cost (LCY)" <> TempBefore."Total Cost (LCY)") or (Ledger."Total Cost" <> TempBefore."Total Cost") then begin
+                    Counts.Set(TempBefore."Job No.", Counts.Get(TempBefore."Job No.") + 1);
+                    Changes.Set(TempBefore."Job No.", Changes.Get(TempBefore."Job No.") + Ledger."Total Cost (LCY)" - TempBefore."Total Cost (LCY)");
                     Total += 1;
                 end;
-            until Before.Next() = 0;
+            until TempBefore.Next() = 0;
         foreach ProjectNo in Projects do begin
             Clear(Entry);
             Entry.Add('projectNo', ProjectNo);
