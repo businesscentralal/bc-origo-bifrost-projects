@@ -7,7 +7,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Issue #76: date shifts, native filters, atomic refusals and English help.</summary>
-codeunit 97114 "Proj. Shift Dates Tests ori"
+codeunit 97167 "Proj. Shift Dates Tests ori"
 {
     Subtype = Test;
     TestPermissions = Disabled;

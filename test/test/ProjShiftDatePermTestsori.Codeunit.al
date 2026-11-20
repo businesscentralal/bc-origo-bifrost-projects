@@ -5,7 +5,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Issue #76: no native modify rights and read-role refusals before any write.</summary>
-codeunit 97115 "Proj Shift Date Perm Tests ori"
+codeunit 97168 "Proj Shift Date Perm Tests ori"
 {
     Subtype = Test;
     TestPermissions = Restrictive;

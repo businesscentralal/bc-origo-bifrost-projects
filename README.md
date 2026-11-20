@@ -117,6 +117,11 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013517 | `Proj. WIP Get Impl ori` |
 | codeunit | 70013518 | `Proj. WIP Calc Impl ori` |
 | codeunit | 70013519 | `Proj. WIP Post Impl ori` |
+| codeunit | 70013406 | `Proj. WIP Reverse Impl ori` |
+| enum value | 70013400 | `Projects.WIP.Reverse` |
+| test codeunit | 97114 | `Projects WIP Reverse Tests ori` |
+| test codeunit | 97115 | `Proj. WIP Reverse Fixture ori` |
+| test enum extension/value | 97114 | `Proj. WIP Fixture Types ori` / `Test.WIP75.Seed` |
 | codeunit | 70013520 | `Projects WIP ori` |
 | codeunit | 70013522 | `Proj. Posting Gate ori` |
 | codeunit | 70013524 | `Proj. Statistics Impl ori` |
@@ -171,5 +176,8 @@ The operation is a plain write with no `expectedCount` (Architect ruling 20 Nove
 | Codeunit | 70013417 | `Proj. Shift Dates Impl ori` |
 | Codeunit | 70013418 | `Proj. Shift Dates Process ori` |
 | Enum value | 70013533 | `Projects.PlanningLine.ShiftDates` |
-| Test codeunit | 97114 | `Proj. Shift Dates Tests ori` |
-| Test codeunit | 97115 | `Proj. Shift Dates Perm Tests` |
+| Test codeunit | 97167 | `Proj. Shift Dates Tests ori` |
+| Test codeunit | 97168 | `Proj Shift Date Perm Tests ori` |
+### Reverse posted WIP
+
+`Projects.WIP.Reverse` uses the **Reverse Only** option of **Post WIP to G/L**. Send `projectNo`, required ISO `postingDate`, and `documentNo` (1–20 characters). Preview without `expectedCount`, then confirm the number of eligible posted WIP entries. The operation posts correcting G/L entries; it preserves calculated WIP and returns `reversedEntries`, current `wip`, `summary` and `nextStep: Projects.WIP.Calculate`. Completed WIP, an earlier posting date, missing candidates and stale confirmation are refused without changes. Requires **BIFROST Full ori** and native project/posting permissions.

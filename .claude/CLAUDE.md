@@ -18,5 +18,9 @@
 - Codeunit 70013417 `Proj. Shift Dates Impl ori`: contract and validation.
 - Codeunit 70013418 `Proj. Shift Dates Process ori`: atomic native date batch.
 - Enum value 70013533 `Projects.PlanningLine.ShiftDates`.
-- Test codeunits 97114 `Proj. Shift Dates Tests ori`, 97115 `Proj Shift Date Perm Tests ori`.
+- Test codeunits 97167 `Proj. Shift Dates Tests ori`, 97168 `Proj Shift Date Perm Tests ori`.
 - Architect ruling 20.11.2026: plain write, no expectedCount; refuse transferred/invoiced lines.
+## Object ledger — issue #75
+
+- Codeunit 70013406: `Proj. WIP Reverse Impl ori`; enum value 70013400: `Projects.WIP.Reverse`.
+- Tests: codeunit 97114 `Projects WIP Reverse Tests ori`, codeunit 97115 `Proj. WIP Reverse Fixture ori`, enumextension/value 97114 `Proj. WIP Fixture Types ori` / `Test.WIP75.Seed` (test app only; no new delete operation).
