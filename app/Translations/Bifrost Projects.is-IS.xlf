@@ -1275,6 +1275,66 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Fyrir pdf: PDF með innbyggðu staðlaðri útliti, kóðað sem base64, með contentType application/pdf.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Report Impl ori - Method GetResponse - NamedType PdfLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 3571782927 - NamedType 2229569886" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for the Bifrost Full role and permission to modify project planning lines.</source>
+          <target>Biddu kerfisstjóra um fullt Bifrost-hlutverk og heimild til að breyta áætlunarlínum verkefna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um fullt Bifrost-hlutverk og heimild til að breyta áætlunarlínum verkefna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method ExecuteBifrostTask - NamedType PermissionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Shifts planning or currency dates for a project or task range and returns the old and new dates.</source>
+          <target>Færir áætlunar- eða gjaldmiðilsdagsetningar verkefnis eða verkhlutabils og skilar gömlum og nýjum dagsetningum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færir áætlunar- eða gjaldmiðilsdagsetningar verkefnis eða verkhlutabils og skilar gömlum og nýjum dagsetningum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, task, planning date, currency date, shift dates, replan, date formula, fixed date</source>
+          <target>verkefni, verkhluti, áætlunardagsetning, gjaldmiðilsdagsetning, færa dagsetningar, enduráætla, dagsetningarformúla, föst dagsetning</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verkhluti, áætlunardagsetning, gjaldmiðilsdagsetning, færa dagsetningar, enduráætla, dagsetningarformúla, föst dagsetning</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 2389127913 - NamedType 2141525435" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Correct the Business Central error and retry. The entire date batch was rolled back.</source>
+          <target>Leiðréttu villuna í Business Central og reyndu aftur. Allar dagsetningarbreytingar voru afturkallaðar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Leiðréttu villuna í Business Central og reyndu aftur. Allar dagsetningarbreytingar voru afturkallaðar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method ShiftDates - NamedType NativeStepLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 13328322 - NamedType 4280630151" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Supply exactly one of dateFormula or fixedDate.</source>
+          <target>Sendu nákvæmlega annað viðfangið dateFormula eða fixedDate.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu nákvæmlega annað viðfangið dateFormula eða fixedDate.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method ValidateOptions - NamedType DateOptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 13328322 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the declared values, ISO dates and a culture-invariant date formula such as +1W.</source>
+          <target>Notaðu skilgreind gildi, ISO-dagsetningar og menningaróháða dagsetningarformúlu eins og +1W.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu skilgreind gildi, ISO-dagsetningar og menningaróháða dagsetningarformúlu eins og +1W.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method ValidateOptions - NamedType FormatLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 524408830 - Method 13328322 - NamedType 2666638023" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The start of the range must not follow its end.</source>
+          <target>Upphaf bilsins má ekki vera á eftir enda þess.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Upphaf bilsins má ekki vera á eftir enda þess.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Impl ori - Method ValidateOptions - NamedType RangeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3864217283 - Method 2389127913 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select an existing project and task range.</source>
+          <target>Veldu fyrirliggjandi verkefni og verkhlutabil.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Veldu fyrirliggjandi verkefni og verkhlutabil.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Process ori - Method ShiftDates - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3864217283 - Method 2389127913 - NamedType 4221581950" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Unblock the project before changing planning dates.</source>
+          <target>Afblokkun verkefnis er nauðsynleg áður en áætlunardagsetningum er breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Afblokkun verkefnis er nauðsynleg áður en áætlunardagsetningum er breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Process ori - Method ShiftDates - NamedType BlockedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3864217283 - Method 2389127913 - NamedType 2431676065" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Select a range without lines already transferred to an invoice or invoiced. Nothing changed.</source>
+          <target>Veldu bil án lína sem hafa þegar verið fluttar á reikning eða reikningsfærðar. Engu var breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Veldu bil án lína sem hafa þegar verið fluttar á reikning eða reikningsfærðar. Engu var breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Shift Dates Process ori - Method ShiftDates - NamedType InvoicedLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 533419340 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Returns native project budget, actual, billable and invoiced statistics in LCY.</source>
           <target>Skilar innbyggðri áætlun, raunkostnaði, reikningshæfum og reikningsfærðum fjárhæðum verkefnis í heimamynt.</target>

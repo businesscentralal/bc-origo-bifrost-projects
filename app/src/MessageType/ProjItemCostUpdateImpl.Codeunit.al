@@ -8,7 +8,7 @@ using Origo.Bifrost;
 /// planning lines up to the adjusted item cost, as the Update Project Item Cost batch job does. Every refusal is
 /// answered before anything changes; the native batch job runs in "Proj. Item Cost Process ori" so an error rolls back.
 /// </summary>
-codeunit 70013417 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013419 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 

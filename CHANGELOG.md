@@ -1,12 +1,18 @@
 # Changelog
 
+## Unreleased — #76
+
+- Add `Projects.PlanningLine.ShiftDates`: shift planning/currency dates by invariant formula or fixed date, filter tasks/line types/date windows, and return every changed date (including native document-date changes). Refuse transferred/invoiced lines atomically. Plain write without expectedCount per the 20 November ruling.
+- Added codeunits 70013417/70013418, enum value 70013533, and test codeunits 97114/97115; Icelandic discovery and refusals, English help.
+
+
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
 ### Added (2026-11-20, #77)
 
 - `Projects.ItemCost.Update` brings the item cost on project usage entries and planning lines up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Request: `projectNos[]` (1..100) or `allOpen: true`, optional `postingDateFrom`/`postingDateTo`, `expectedCount`. Answers `projects[]` (`projectNo`, `entriesUpdated`, `costChangeLCY`), `totalEntriesUpdated` and `summary`; nothing to update is Success with zeros. Irreversible: `expectedCount` counts the projects in scope (Foundation gate, `Msg Confirm ori`), passes the Projects posting gate, runs in one write boundary and posts nothing to the general ledger. A Completed project is refused (`PreconditionFailed`). Help notes that Automatic Update Project Item Cost in Projects Setup already does this at the end of a cost adjustment. Help chapters are English only; discovery text, refusals and `nextStep` are in the is-IS XLF.
-- New objects: codeunits 70013417 `Proj. Item Cost Impl ori`, 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`; enum value 70013552 on `Projects Message Types ori`; X on the four codeunits in `Projects Full ori` and `Projects Read ori`. Tests: codeunits 97156 and 97157, permission set 97133.
-- Merge main (#91): codeunit 70013406 collided with `Proj. WIP Reverse Impl ori`. `Proj. Item Cost Impl ori` moves to the next free codeunit ID 70013417. The message name `Projects.ItemCost.Update` is unchanged. The scaffold catalogue assertion counts forty-seven owned types.
+- New objects: codeunits 70013419 `Proj. Item Cost Impl ori`, 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`; enum value 70013552 on `Projects Message Types ori`; X on the four codeunits in `Projects Full ori` and `Projects Read ori`. Tests: codeunits 97156 and 97157, permission set 97133.
+- Merge main (#91, then #89): codeunit 70013406 collided with `Proj. WIP Reverse Impl ori`, then 70013417 collided with `Proj. Shift Dates Impl ori`. `Proj. Item Cost Impl ori` is codeunit 70013419. The message name `Projects.ItemCost.Update` is unchanged. The scaffold catalogue assertion counts forty-eight owned types.
 
 ### Fixed (2026-11-20, #77)
 

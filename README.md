@@ -134,7 +134,7 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013540 | `Proj. WIP Method Get ori` |
 | codeunit | 70013541 | `Proj. WIP Method Set ori` |
 | codeunit | 70013542 | `Projects WIP Methods ori` |
-| codeunit | 70013417 | `Proj. Item Cost Impl ori` |
+| codeunit | 70013419 | `Proj. Item Cost Impl ori` |
 | codeunit | 70013407 | `Proj. Item Cost Process ori` |
 | codeunit | 70013408 | `Projects Item Cost ori` |
 | codeunit | 70013409 | `Proj. Item Cost Confirm ori` |
@@ -170,6 +170,19 @@ Template/workflow restoration from merged PR #10 is integrated. Issues #5 and #6
 
 Copyright © 2026 Origo.
 
+### Shift project planning dates (#76)
+
+`Projects.PlanningLine.ShiftDates` applies Change Project Planning Line Dates to a project or inclusive task range. Supply `projectNo`, `lineType` (`Budget`, `Billable`, `Both`) and exactly one of `dateFormula` (for example `+1W`) or `fixedDate` (ISO date). Optional `dateField` selects `planningDate` (default), `currencyDate`, or `both`; `includeFrom`/`includeTo` filter each selected date independently.
+
+The operation is a plain write with no `expectedCount` (Architect ruling 20 November 2026). Transferred or invoiced lines in scope refuse the entire batch. The response lists old/new planning, currency and document dates; preserve the old values for exact restoration, especially for fixed dates and month-end shifts. Currency changes can also recalculate currency amounts. No UI change.
+
+| Object | ID | Name |
+|---|---|---|
+| Codeunit | 70013417 | `Proj. Shift Dates Impl ori` |
+| Codeunit | 70013418 | `Proj. Shift Dates Process ori` |
+| Enum value | 70013533 | `Projects.PlanningLine.ShiftDates` |
+| Test codeunit | 97167 | `Proj. Shift Dates Tests ori` |
+| Test codeunit | 97168 | `Proj Shift Date Perm Tests ori` |
 ### Reverse posted WIP
 
 `Projects.WIP.Reverse` uses the **Reverse Only** option of **Post WIP to G/L**. Send `projectNo`, required ISO `postingDate`, and `documentNo` (1–20 characters). Preview without `expectedCount`, then confirm the number of eligible posted WIP entries. The operation posts correcting G/L entries; it preserves calculated WIP and returns `reversedEntries`, current `wip`, `summary` and `nextStep: Projects.WIP.Calculate`. Completed WIP, an earlier posting date, missing candidates and stale confirmation are refused without changes. Requires **BIFROST Full ori** and native project/posting permissions.
