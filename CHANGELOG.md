@@ -5,7 +5,12 @@
 ### Added (2026-11-20, #77)
 
 - `Projects.ItemCost.Update` brings the item cost on project usage entries and planning lines up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Request: `projectNos[]` (1..100) or `allOpen: true`, optional `postingDateFrom`/`postingDateTo`, `expectedCount`. Answers `projects[]` (`projectNo`, `entriesUpdated`, `costChangeLCY`), `totalEntriesUpdated` and `summary`; nothing to update is Success with zeros. Irreversible: `expectedCount` counts the projects in scope (Foundation gate, `Msg Confirm ori`), passes the Projects posting gate, runs in one write boundary and posts nothing to the general ledger. A Completed project is refused (`PreconditionFailed`). Help notes that Automatic Update Project Item Cost in Projects Setup already does this at the end of a cost adjustment. Help chapters are English only; discovery text, refusals and `nextStep` are in the is-IS XLF.
-- New objects: codeunits 70013406 `Proj. Item Cost Impl ori`, 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`; enum value 70013552 on `Projects Message Types ori`; X on the four codeunits in `Projects Full ori` and `Projects Read ori`. Tests: codeunits 97156 and 97157, permission set 97133.
+- New objects: codeunits 70013417 `Proj. Item Cost Impl ori`, 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`; enum value 70013552 on `Projects Message Types ori`; X on the four codeunits in `Projects Full ori` and `Projects Read ori`. Tests: codeunits 97156 and 97157, permission set 97133.
+- Merge main (#91): codeunit 70013406 collided with `Proj. WIP Reverse Impl ori`. `Proj. Item Cost Impl ori` moves to the next free codeunit ID 70013417. The message name `Projects.ItemCost.Update` is unchanged. The scaffold catalogue assertion counts forty-seven owned types.
+
+### Added (2026-11-20, #75)
+
+- `Projects.WIP.Reverse` reverses eligible posted WIP with native correcting G/L entries, preserves calculated WIP, and confirms the posted-entry count. Required posting date/document number, typed refusals and the existing posting permission gate protect the atomic operation. English help and Icelandic discovery/refusals are included. New codeunit 70013406 `Proj. WIP Reverse Impl ori`, enum value 70013400; test codeunits 97114/97115 and fixture enum extension/value 97114. No UI changes.
 
 ### Added (2026-11-20, #71)
 
