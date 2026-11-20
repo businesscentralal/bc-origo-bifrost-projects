@@ -45,6 +45,7 @@ Native time sheets belong to **Bifrost Projects**: create, submit, approve, reje
 | `Projects.Project.Archive` | `projectNo`, optional `description` | Creates a native archived project version (requires Projects Full and Archive Projects in Jobs Setup). |
 | `Projects.ProjectArchive.Get` | `projectNo`, optional `versionNo` | Lists archived versions or reads one version with tasks and planning lines. |
 | `Projects.Quote.Send` | `projectNo`, optional `documentSendingProfile` | Sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile, as the Send Project Quote action does. Irreversible. |
+| `Projects.ItemCost.Update` | `projectNos[]` or `allOpen`, optional `postingDateFrom`/`postingDateTo`, `expectedCount` | Brings the item cost on project usage entries and planning lines up to the adjusted item cost (the Update Project Item Cost batch job). Irreversible; `expectedCount` counts the projects in scope. |
 
 | `Projects.ResourceAllocation.Get` | `periodType`, `fromDate`, `toDate`; optional project/resource/group selectors | Resource capacity, per-project allocation and availability by period. |
 | `Projects.WIPMethod.Get` | Optional exact `code`; `{}` lists all | Reads native WIP methods, recognized settings and flags. |
@@ -128,8 +129,12 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013540 | `Proj. WIP Method Get ori` |
 | codeunit | 70013541 | `Proj. WIP Method Set ori` |
 | codeunit | 70013542 | `Projects WIP Methods ori` |
+| codeunit | 70013406 | `Proj. Item Cost Impl ori` |
+| codeunit | 70013407 | `Proj. Item Cost Process ori` |
+| codeunit | 70013408 | `Projects Item Cost ori` |
+| codeunit | 70013409 | `Proj. Item Cost Confirm ori` |
 | codeunit | 70013543 | `Proj. WIP Method Process ori` |
-| enumextension | 70013500 | `Projects Message Types ori` |
+| enumextension | 70013500 | `Projects Message Types ori` (adds value 70013552 `Projects.ItemCost.Update`) |
 | page | 70013500 | `Projects Setup ori` |
 | permissionsetextension | 70013500 | `Projects Read ori` |
 | permissionsetextension | 70013501 | `Projects Full ori` |

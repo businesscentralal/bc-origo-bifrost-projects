@@ -8,6 +8,10 @@ permissionsetextension 70013501 "Projects Full ori" extends "BIFROST Full ori"
     Permissions =
         codeunit "Projects Capacity ori" = X,
         codeunit "Proj. Capacity Impl ori" = X,
+        codeunit "Proj. Item Cost Impl ori" = X,
+        codeunit "Proj. Item Cost Process ori" = X,
+        codeunit "Proj. Item Cost Confirm ori" = X,
+        codeunit "Projects Item Cost ori" = X,
         codeunit "Proj. Item Usage Impl ori" = X,
         codeunit "Proj. Item Usage Process ori" = X,
         codeunit "Proj. Purchase Impl ori" = X,
