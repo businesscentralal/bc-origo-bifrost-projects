@@ -3,6 +3,9 @@ namespace Origo.Bifrost.Projects.Test;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
+using Microsoft.Projects.Project.Job;
+using Microsoft.Projects.Project.Planning;
+using Microsoft.Purchases.Document;
 
 /// <summary>Issue #74: no native modify rights and read-role refusals before any write.</summary>
 codeunit 97172 "Proj Plan Purch Perm Tests ori"
@@ -10,13 +13,14 @@ codeunit 97172 "Proj Plan Purch Perm Tests ori"
     Subtype = Test;
     TestPermissions = Restrictive;
 
-    /// <summary>AC06 NoPurchaseRights PermissionDenied.</summary>
+    /// <summary>AC07 Project rights without purchase rights are refused before calculation.</summary>
     [Test]
-    procedure Scenario_AC06_NoPurchaseRights_PermissionDenied()
+    procedure Scenario_AC07_NoPurchaseRights_PermissionDenied()
     var
         Lower: Codeunit "Library - Lower Permissions";
     begin
-        Lower.PushPermissionSetWithoutDefaults('ProjAllocTest ori');
+        Lower.PushPermissionSetWithoutDefaults('Proj Purch NoPurchase ori');
+        AssertProjectRightsWithoutPurchase();
         AssertDenied();
     end;
 
@@ -29,6 +33,18 @@ codeunit 97172 "Proj Plan Purch Perm Tests ori"
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
         Lower.AddPermissionSet('ProjAllocTest ori');
         AssertDenied();
+    end;
+
+    local procedure AssertProjectRightsWithoutPurchase()
+    var
+        Project: Record Job;
+        Planning: Record "Job Planning Line";
+        Purchase: Record "Purchase Header";
+        Assert: Codeunit "Library Assert";
+    begin
+        Assert.IsTrue(Project.ReadPermission(), 'Caller can read projects');
+        Assert.IsTrue(Planning.WritePermission(), 'Caller can maintain planning lines');
+        Assert.IsFalse(Purchase.WritePermission(), 'Caller has no purchase document write rights');
     end;
 
     local procedure AssertDenied()

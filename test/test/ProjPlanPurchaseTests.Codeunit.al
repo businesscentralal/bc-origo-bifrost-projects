@@ -163,7 +163,8 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
         Id := Scratch.SystemId;
         Response := Execute(Request);
         AssertCode(Response, 'PreconditionFailed');
-        Assert.IsTrue(Response.GetText('nextStep').Contains('Order Planning'), 'Names the page to finish');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('Order Planning') or
+            Response.GetText('nextStep').Contains('Pöntunaráætlun'), 'Names the localized page to finish');
         Assert.IsTrue(Scratch.GetBySystemId(Id), 'Caller scratch line survives');
         Scratch.Delete(true);
         Commit();
