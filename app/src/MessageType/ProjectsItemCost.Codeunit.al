@@ -150,7 +150,7 @@ codeunit 70013408 "Projects Item Cost ori"
             exit(Fail(Argument, Refuse, "Bifrost Error Code ori"::ConflictingIdentifiers, 'allOpen', ConflictLbl));
         if not (HasNos or AllOpen) then
             exit(Fail(Argument, Refuse, "Bifrost Error Code ori"::MissingParameter, 'projectNos', MissingLbl));
-        Project.ReadIsolation := IsolationLevel::UpdLock;
+        Project.ReadIsolation := IsolationLevel::ReadCommitted;
         if AllOpen then begin
             Project.SetFilter(Status, '<>%1', Project.Status::Completed);
             if Project.FindSet() then
@@ -232,7 +232,7 @@ codeunit 70013408 "Projects Item Cost ori"
             UpdateCost.SetTableView(Ledger);
             UpdateCost.SetProperties(true);
             UpdateCost.UseRequestPage(false);
-            UpdateCost.RunModal();
+            UpdateCost.Run();
         end;
         if Before.FindSet() then
             repeat
