@@ -37,6 +37,7 @@ codeunit 97114 "Projects WIP Reverse Tests ori"
         Request := PostedRequest();
         Before := ReadWIP(Request);
         Snapshot := CalculationSnapshot(Request);
+        Assert.IsTrue(Before.GetArray('entries').Count() > 0, 'Unposted calculated WIP must exist before testing preservation');
         Request.Add('expectedCount', CandidateCount(Request));
         Request.Replace('documentNo', 'X75-REVERSE');
         Response := Execute(Request);
@@ -345,6 +346,7 @@ codeunit 97114 "Projects WIP Reverse Tests ori"
         Request := NewRequest();
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
         Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Post", Request), 'Success');
+        Library.AssertStatus(Library.ExecuteNative("Message Type ori"::"Projects.WIP.Calculate", Request), 'Success');
         Assert.IsTrue(CandidateCount(Request) > 1, 'Fixture distinguishes entry count from project count');
     end;
 
