@@ -77,27 +77,27 @@ codeunit 70013406 "Proj. WIP Reverse Impl ori" implements "Msg Interface ori", "
     procedure GetResponse(var Response: JsonObject): Boolean
     var
         Fields: JsonArray;
-        Field: JsonObject;
+        ResponseField: JsonObject;
         FieldName: Text;
     begin
         foreach FieldName in 'status,projectNo,reversedEntries,wip,nextStep,summary'.Split(',') do begin
-            Clear(Field);
-            Field.Add('name', FieldName);
+            Clear(ResponseField);
+            ResponseField.Add('name', FieldName);
             case FieldName of
                 'reversedEntries':
                     begin
-                        Field.Add('type', 'array');
-                        Field.Add('description', 'Reversed posted WIP entries: entryNo, accountNo, balanceAccountNo, type and amount.');
+                        ResponseField.Add('type', 'array');
+                        ResponseField.Add('description', 'Reversed posted WIP entries: entryNo, accountNo, balanceAccountNo, type and amount.');
                     end;
                 'wip':
                     begin
-                        Field.Add('type', 'object');
-                        Field.Add('description', 'Current WIP in the Projects.WIP.Get shape: status, projectNo, entries and glEntries.');
+                        ResponseField.Add('type', 'object');
+                        ResponseField.Add('description', 'Current WIP in the Projects.WIP.Get shape: status, projectNo, entries and glEntries.');
                     end;
                 else
-                    Field.Add('type', 'string');
+                    ResponseField.Add('type', 'string');
             end;
-            Fields.Add(Field);
+            Fields.Add(ResponseField);
         end;
         Response.Add('contentType', 'text/json');
         Response.Add('fields', Fields);

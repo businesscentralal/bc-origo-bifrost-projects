@@ -58,7 +58,7 @@ codeunit 70013520 "Projects WIP ori"
         Result.Add(Input.Parameter('expectedCount', 'integer', false, 'Number of posted WIP entries marked for reversal and not yet reversed. Omit to preview when confirmation is required.', 0));
     end;
 
-    /// <summary>Validates reversal input and locks the native candidate set before counting it.</summary>
+    /// <summary>Validates reversal input and counts candidates; the native write caller owns the transaction lock.</summary>
     procedure ValidateReverse(var Argument: Record "Message Argument ori"; var Count: Integer): Boolean
     var
         Project: Record Job;
