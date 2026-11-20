@@ -27,12 +27,12 @@ codeunit 70013418 "Proj. Shift Dates Process ori"
         Batch: Codeunit "Job Calculate Batches";
         Impl: Codeunit "Proj. Shift Dates Impl ori";
         Input: Codeunit "Projects Followup Input ori";
+        PeriodLength: DateFormula;
         Request: JsonObject;
         Response: JsonObject;
         Summary: JsonObject;
         Changes: JsonArray;
         Skipped: JsonArray;
-        PeriodLength: DateFormula;
         FixedDate: Date;
         StartingDate: Date;
         EndingDate: Date;

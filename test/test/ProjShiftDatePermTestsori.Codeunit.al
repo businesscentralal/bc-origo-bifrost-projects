@@ -5,7 +5,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Issue #76: no native modify rights and read-role refusals before any write.</summary>
-codeunit 97115 "Proj. Shift Dates Perm Tests"
+codeunit 97115 "Proj Shift Date Perm Tests ori"
 {
     Subtype = Test;
     TestPermissions = Restrictive;
@@ -33,16 +33,16 @@ codeunit 97115 "Proj. Shift Dates Perm Tests"
 
     local procedure AssertDenied()
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         Impl: Codeunit "Proj. Shift Dates Impl ori";
         Assert: Codeunit "Library Assert";
         Response: JsonObject;
     begin
         Assert.IsFalse(Impl.IsEnabled(), 'Caller cannot modify planning lines');
-        Argument.ID := CreateGuid();
-        Argument.Insert(true);
-        Impl.ExecuteBifrostTask(Argument);
-        Response := Argument.GetResponseJson();
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Impl.ExecuteBifrostTask(TempArgument);
+        Response := TempArgument.GetResponseJson();
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Denied before licensing or input');
         Assert.IsTrue(Response.GetText('nextStep') <> '', 'Actionable next step');
     end;

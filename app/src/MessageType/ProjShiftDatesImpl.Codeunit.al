@@ -205,9 +205,9 @@ codeunit 70013417 "Proj. Shift Dates Impl ori" implements "Msg Interface ori", "
     internal procedure ShiftDates(var Argument: Record "Message Argument ori")
     var
         Input: Codeunit "Projects Followup Input ori";
+        PeriodLength: DateFormula;
         Request: JsonObject;
         Parameters: JsonArray;
-        PeriodLength: DateFormula;
         FixedDate: Date;
         StartingDate: Date;
         EndingDate: Date;

@@ -47,8 +47,8 @@ codeunit 97114 "Proj. Shift Dates Tests ori"
     [Test]
     procedure Scenario_AC02_BillableFixedCurrency_UsesNativeWindow()
     var
-        Request: JsonObject;
         Line: Record "Job Planning Line";
+        Request: JsonObject;
     begin
         Seed();
         Line.Get(ProjectNo, '1000', 30000);
@@ -291,8 +291,8 @@ codeunit 97114 "Proj. Shift Dates Tests ori"
     [Test]
     procedure Scenario_AC02_MonthEndAndNoOp_ReportActualChanges()
     var
-        Request: JsonObject;
         Line: Record "Job Planning Line";
+        Request: JsonObject;
     begin
         Seed();
         Line.SetRange("Job No.", ProjectNo);
@@ -350,17 +350,17 @@ codeunit 97114 "Proj. Shift Dates Tests ori"
 
     local procedure Send(Request: JsonObject) Response: JsonObject
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         Impl: Codeunit "Proj. Shift Dates Impl ori";
     begin
-        Argument.ID := CreateGuid();
-        Argument.Type := "Message Type ori"::"Projects.PlanningLine.ShiftDates";
-        Argument.Version := "Message Version ori"::"1.0";
-        Argument.Insert(true);
-        Argument.SetRequestJson(Request);
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := "Message Type ori"::"Projects.PlanningLine.ShiftDates";
+        TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.Insert(true);
+        TempArgument.SetRequestJson(Request);
         Commit();
-        Impl.ShiftDates(Argument);
-        Response := Argument.GetResponseJson();
+        Impl.ShiftDates(TempArgument);
+        Response := TempArgument.GetResponseJson();
     end;
 
     local procedure AssertSuccess(Response: JsonObject; Lines: Integer; Fields: Integer)
