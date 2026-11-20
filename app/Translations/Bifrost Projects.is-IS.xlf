@@ -6591,6 +6591,66 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Skráning notkunar verkefna</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ USAGE - Property Caption</note>
         </trans-unit>
+      <trans-unit id="Codeunit 767892677 - Method 3507224617 - NamedType 3071622107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>posted project WIP entries to reverse</source>
+          <target state="translated">bókaðar færslur verka í vinnslu sem á að bakfæra</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=bókaðar færslur verka í vinnslu sem á að bakfæra</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Reverse Impl ori - Method GetConfirmCount - NamedType CountLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 767892677 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reverses posted project WIP in the general ledger, keeping calculated WIP unchanged.</source>
+          <target state="translated">Bakfærir bókuð verk í vinnslu í fjárhag án þess að breyta reiknuðum færslum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bakfærir bókuð verk í vinnslu í fjárhag án þess að breyta reiknuðum færslum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Reverse Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 767892677 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, job, work in progress, WIP, reverse</source>
+          <target state="translated">verkefni, verk, verk í vinnslu, VÍV, bakfæra</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, verk, verk í vinnslu, VÍV, bakfæra</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. WIP Reverse Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 505149012 - NamedType 3071622107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>posted project WIP entries to reverse</source>
+          <target state="translated">bókaðar færslur verka í vinnslu sem á að bakfæra</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=bókaðar færslur verka í vinnslu sem á að bakfæra</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method Reverse - NamedType CountLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 505149012 - NamedType 3337375434" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reversed %1 posted WIP entries. Recalculate with Projects.WIP.Calculate before posting again.</source>
+          <target state="translated">Bakfærði %1 bókaðar færslur verka í vinnslu. Endurreiknaðu með Projects.WIP.Calculate áður en þú bókar aftur.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = reversed entry count, is-IS=Bakfærði %1 bókaðar færslur verka í vinnslu. Endurreiknaðu með Projects.WIP.Calculate áður en þú bókar aftur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method Reverse - NamedType SummaryLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 3104878178 - NamedType 369153541" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send data as a JSON object.</source>
+          <target state="translated">Sendu data sem JSON-hlut.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu data sem JSON-hlut.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method ValidateReverse - NamedType InvalidDataLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 3104878178 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The project does not exist.</source>
+          <target state="translated">Verkefnið er ekki til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnið er ekki til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method ValidateReverse - NamedType MissingLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 3104878178 - NamedType 3167316371" size-unit="char" translate="yes" xml:space="preserve">
+          <source>There are no posted WIP entries eligible for reversal.</source>
+          <target state="translated">Engar bókaðar færslur verka í vinnslu eru tiltækar til bakfærslu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Engar bókaðar færslur verka í vinnslu eru tiltækar til bakfærslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method ValidateReverse - NamedType NoEntriesLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 3104878178 - NamedType 2567494677" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Completed project WIP cannot be reversed.</source>
+          <target state="translated">Ekki er hægt að bakfæra lokin verk í vinnslu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að bakfæra lokin verk í vinnslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method ValidateReverse - NamedType CompleteLbl</note>
+        </trans-unit>
+      <trans-unit id="Codeunit 2723953456 - Method 3104878178 - NamedType 2970038953" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check projectNo with Data.Records.Get.</source>
+          <target state="translated">Athugaðu projectNo með Data.Records.Get.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugaðu projectNo með Data.Records.Get.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects WIP ori - Method ValidateReverse - NamedType FindLbl</note>
+        </trans-unit>
       </group>
     </body>
   </file>

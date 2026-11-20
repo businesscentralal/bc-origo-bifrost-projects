@@ -19,6 +19,10 @@ codeunit 70013514 "Projects Write ori"
         MissingChangeErr: Label 'Send status or blocked to change the project state.', Comment = 'is-IS=Sendu status eða blocked til að breyta stöðu verkefnis.';
         SummaryErr: Label 'Correct the invalid Projects parameters.', Comment = 'is-IS=Leiðréttu ógild viðföng verkefnis.';
     begin
+        if (Kind = 'WIP') and (Operation = 'Reverse') then begin
+            ExecuteReverse(Argument);
+            exit;
+        end;
         if not TryReadRequest(Argument, Request) then begin
             ClearLastError();
             Argument.RespondWithError("Bifrost Error Code ori"::InvalidParameterFormat, InvalidErr, 'data', '', 'object', '');
@@ -46,6 +50,21 @@ codeunit 70013514 "Projects Write ori"
         end;
         if not Codeunit.Run(Codeunit::"Projects Write Process ori", Argument) then
             Argument.RespondWithLastError();
+    end;
+
+    local procedure ExecuteReverse(var Argument: Record "Message Argument ori")
+    var
+        WIP: Codeunit "Projects WIP ori";
+        Count: Integer;
+    begin
+        if not WIP.ValidateReverse(Argument, Count) then
+            exit;
+        if Argument."Omit Commit" then begin
+            Codeunit.Run(Codeunit::"Projects Write Process ori", Argument);
+            exit;
+        end;
+        if not Codeunit.Run(Codeunit::"Projects Write Process ori", Argument) then
+            Argument.RespondWithError("Bifrost Error Code ori"::PreconditionFailed, GetLastErrorText(), '', '', '', 'Projects.WIP.Get');
     end;
 
     [TryFunction]
@@ -95,7 +114,7 @@ codeunit 70013514 "Projects Write ori"
             Statistics.Execute(Argument);
             exit;
         end;
-        if Argument.Type in ["Message Type ori"::"Projects.WIP.Get", "Message Type ori"::"Projects.WIP.Calculate", "Message Type ori"::"Projects.WIP.Post"] then begin
+        if Argument.Type in ["Message Type ori"::"Projects.WIP.Get", "Message Type ori"::"Projects.WIP.Calculate", "Message Type ori"::"Projects.WIP.Post", "Message Type ori"::"Projects.WIP.Reverse"] then begin
             WIP.Execute(Argument);
             exit;
         end;
