@@ -4,7 +4,7 @@ using Origo.Bifrost;
 using Microsoft.Projects.Project.Job;
 
 /// <summary>Implements the version 1 Projects.Task.Indent contract.</summary>
-codeunit 70013406 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
     /// <summary>Checks company enablement and native table write permission.</summary>

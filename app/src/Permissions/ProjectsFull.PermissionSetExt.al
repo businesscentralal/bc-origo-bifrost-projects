@@ -41,6 +41,7 @@ permissionsetextension 70013501 "Projects Full ori" extends "BIFROST Full ori"
         codeunit "Projects Statistics ori" = X,
         codeunit "Proj. Posting Gate ori" = X,
         codeunit "Proj. WIP Post Impl ori" = X,
+        codeunit "Proj. WIP Reverse Impl ori" = X,
         codeunit "Proj. WIP Get Impl ori" = X,
         codeunit "Proj. WIP Calc Impl ori" = X,
         codeunit "Projects WIP ori" = X,

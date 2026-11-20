@@ -15,6 +15,11 @@
 
 ## Issue 78 object ledger
 
-- Codeunit 70013406 `Proj. Task Indent Impl ori`: native task indentation, shared write transaction.
+- Codeunit 70013419 `Proj. Task Indent Impl ori` (renumbered from 70013406 after #75 took it; 70013406-70013409 are claimed by PR #88, 70013417-70013418 by PR #89): native task indentation, shared write transaction.
 - Enum value 70013406 `Projects.Task.Indent` in `Projects Message Types ori`.
-- Test codeunits 97114 `Proj. Task Indent Tests ori` and 97115 `Proj. Indent Perm Tests ori`; test-only permission set 97115 `ProjIndentNative ori`. No assignable role added.
+- Test codeunits 97169 `Proj. Task Indent Tests ori` and 97170 `Proj. Indent Perm Tests ori`; test-only permission set 97170 `ProjIndentNative ori` (all renumbered from 97114/97115 after #75 took them). No assignable role added.
+
+## Object ledger — issue #75
+
+- Codeunit 70013406: `Proj. WIP Reverse Impl ori`; enum value 70013400: `Projects.WIP.Reverse`.
+- Tests: codeunit 97114 `Projects WIP Reverse Tests ori`, codeunit 97115 `Proj. WIP Reverse Fixture ori`, enumextension/value 97114 `Proj. WIP Fixture Types ori` / `Test.WIP75.Seed` (test app only; no new delete operation).

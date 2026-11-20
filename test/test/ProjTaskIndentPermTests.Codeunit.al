@@ -6,7 +6,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>AC04: Restrictive role checks refuse indentation before licensing, input or writes.</summary>
-codeunit 97115 "Proj. Indent Perm Tests ori"
+codeunit 97170 "Proj. Indent Perm Tests ori"
 {
     Subtype = Test;
     TestPermissions = Restrictive;

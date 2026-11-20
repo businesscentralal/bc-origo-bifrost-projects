@@ -6,7 +6,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Issue 78: verifies native indentation, atomic failures and the complete request contract with owned data.</summary>
-codeunit 97114 "Proj. Task Indent Tests ori"
+codeunit 97169 "Proj. Task Indent Tests ori"
 {
     Subtype = Test;
     TestPermissions = Disabled;
