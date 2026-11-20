@@ -8,7 +8,9 @@ codeunit 70013502 "Projects Install ori"
     trigger OnInstallAppPerCompany()
     var
         Setup: Record "Projects Setup ori";
+        TSDateMgt: Codeunit "Proj. TS Date Mgt ori";
     begin
         Setup.InsertIfNotExists();
+        TSDateMgt.Backfill();
     end;
 }
