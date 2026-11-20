@@ -19,7 +19,7 @@ codeunit 97172 "Proj Plan Purch Perm Tests ori"
     var
         Lower: Codeunit "Library - Lower Permissions";
     begin
-        Lower.PushPermissionSetWithoutDefaults('Proj Purch NoPurchase ori');
+        Lower.PushPermissionSetWithoutDefaults('ProjNoPurch ori');
         AssertProjectRightsWithoutPurchase();
         AssertDenied();
     end;

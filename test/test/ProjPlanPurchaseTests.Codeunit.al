@@ -426,6 +426,24 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
         AssertNoPurchase(Request);
     end;
 
+    /// <summary>Native errors roll back the entire planning and purchase transaction.</summary>
+    [Test]
+    procedure NativeFailureLeavesNoPurchasesOrScratch()
+    var
+        Request: JsonObject;
+        Setup: Record "Purchases & Payables Setup";
+    begin
+        // [SCENARIO] Native purchase creation fails on missing numbering setup after planning has calculated.
+        Request := Fixture.Seed(true);
+        Setup.Get();
+        Setup."Order Nos." := 'XUNKNOWN74';
+        Setup.Modify(false);
+        Request.Add('expectedCount', 1);
+        AssertCode(Execute(Request), 'BusinessCentralError');
+        AssertScratchEmpty();
+        AssertNoPurchase(Request);
+    end;
+
     local procedure FirstObject(Values: JsonArray): JsonObject
     var
         Token: JsonToken;

@@ -6,7 +6,7 @@ using Microsoft.Inventory.Requisition;
 using Microsoft.Purchases.Vendor;
 
 /// <summary>Test-only project/planning rights without any purchase-document rights.</summary>
-permissionset 97172 "Proj Purch NoPurchase ori"
+permissionset 97172 "ProjNoPurch ori"
 {
     Assignable = false;
     IncludedPermissionSets = "ProjAllocTest ori";

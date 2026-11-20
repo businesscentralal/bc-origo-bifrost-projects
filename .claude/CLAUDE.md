@@ -37,5 +37,5 @@
 
 - Codeunits 70013420 `Proj. Plan Purchase Impl ori`, 70013421 `Proj. Plan Purchase Proc ori`, 70013422 `Proj. Plan Purchase Result ori`, 70013423 `Proj. Plan Purchase Scope ori` (scoped native subscribers).
 - Enum value 70013420 `Projects.PlanningLine.CreatePurchaseOrder`.
-- Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `Proj Purch NoPurchase ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
+- Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `ProjNoPurch ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
 - Gunnar 20.11.2026, comment 7052438484: consume only scratch lines created by this call; refuse before calculation if caller has existing order-planning lines. Architect: one operation with rollback-only preview.

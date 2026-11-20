@@ -109,7 +109,7 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | enum value | 70013420 | `Projects.PlanningLine.CreatePurchaseOrder` |
 | test codeunit | 97171 | `Proj. Plan Purchase Tests ori` |
 | test codeunit | 97172 | `Proj Plan Purch Perm Tests ori` |
-| test permission set | 97172 | `Proj Purch NoPurchase ori` (nonassignable) |
+| test permission set | 97172 | `ProjNoPurch ori` (nonassignable) |
 | test codeunit | 97173 | `Proj. Plan Purch Fixture ori` |
 | test codeunit | 97174 | `Proj. Plan Purch Seed ori` |
 | test enum extension/value | 97173 | `Proj. Plan Purch Types ori` / `Test.PlanPurchase74.Seed` |
