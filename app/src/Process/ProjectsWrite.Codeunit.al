@@ -11,6 +11,7 @@ codeunit 70013514 "Projects Write ori"
     /// <summary>Validates a request before running its transactional native operation.</summary>
     procedure Execute(var Argument: Record "Message Argument ori"; Kind: Text; Operation: Text)
     var
+        Indent: Codeunit "Proj. Task Indent Impl ori";
         Contract: Codeunit "Projects Contract ori";
         Input: Codeunit "Projects Input ori";
         Gate: Codeunit "Projects Gate ori";
@@ -19,6 +20,10 @@ codeunit 70013514 "Projects Write ori"
         MissingChangeErr: Label 'Send status or blocked to change the project state.', Comment = 'is-IS=Sendu status eða blocked til að breyta stöðu verkefnis.';
         SummaryErr: Label 'Correct the invalid Projects parameters.', Comment = 'is-IS=Leiðréttu ógild viðföng verkefnis.';
     begin
+        if Argument.Type = "Message Type ori"::"Projects.Task.Indent" then begin
+            Indent.Execute(Argument);
+            exit;
+        end;
         if (Kind = 'WIP') and (Operation = 'Reverse') then begin
             ExecuteReverse(Argument);
             exit;
@@ -96,6 +101,7 @@ codeunit 70013514 "Projects Write ori"
     /// <summary>Executes validated input inside the process codeunit's rollback boundary.</summary>
     procedure RunNative(var Argument: Record "Message Argument ori")
     var
+        Indent: Codeunit "Proj. Task Indent Impl ori";
         WIP: Codeunit "Projects WIP ori";
         Statistics: Codeunit "Projects Statistics ori";
         Usage: Codeunit "Projects Usage ori";
@@ -105,6 +111,10 @@ codeunit 70013514 "Projects Write ori"
         TaskNo: Code[20];
         LineNo: Integer;
     begin
+        if Argument.Type = "Message Type ori"::"Projects.Task.Indent" then begin
+            Indent.RunNative(Argument);
+            exit;
+        end;
         Request := Argument.GetRequestJson();
         ProjectNo := CopyStr(Request.GetText('projectNo'), 1, MaxStrLen(ProjectNo));
         if Argument.Type in ["Message Type ori"::"Projects.Usage.Get", "Message Type ori"::"Projects.Usage.Link"] then begin
