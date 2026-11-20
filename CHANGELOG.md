@@ -8,6 +8,10 @@
 - New objects: codeunits 70013417 `Proj. Item Cost Impl ori`, 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`; enum value 70013552 on `Projects Message Types ori`; X on the four codeunits in `Projects Full ori` and `Projects Read ori`. Tests: codeunits 97156 and 97157, permission set 97133.
 - Merge main (#91): codeunit 70013406 collided with `Proj. WIP Reverse Impl ori`. `Proj. Item Cost Impl ori` moves to the next free codeunit ID 70013417. The message name `Projects.ItemCost.Update` is unchanged. The scaffold catalogue assertion counts forty-seven owned types.
 
+### Fixed (2026-11-20, #77)
+
+- Shared WIP fixture cleanup removes owned default dimensions without the native line-update confirmation. Item cost tests that call `Library.Initialize` no longer stop before their assertions when a previous WIP fixture left those dimensions in the company. The confirmation on an actual dimension change is unchanged.
+
 ### Added (2026-11-20, #75)
 
 - `Projects.WIP.Reverse` reverses eligible posted WIP with native correcting G/L entries, preserves calculated WIP, and confirms the posted-entry count. Required posting date/document number, typed refusals and the existing posting permission gate protect the atomic operation. English help and Icelandic discovery/refusals are included. New codeunit 70013406 `Proj. WIP Reverse Impl ori`, enum value 70013400; test codeunits 97114/97115 and fixture enum extension/value 97114. No UI changes.
