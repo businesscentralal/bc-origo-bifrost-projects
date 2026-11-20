@@ -136,4 +136,10 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.ResourceCapacity.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Capacity Impl ori", "Msg Discovery ori" = "Proj. Capacity Impl ori", "Msg Contract ori" = "Proj. Capacity Impl ori";
     }
+    /// <summary>Moves dates across a project or task range.</summary>
+    value(70013533; "Projects.PlanningLine.ShiftDates")
+    {
+        Caption = 'Projects.PlanningLine.ShiftDates', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Shift Dates Impl ori", "Msg Discovery ori" = "Proj. Shift Dates Impl ori", "Msg Contract ori" = "Proj. Shift Dates Impl ori";
+    }
 }

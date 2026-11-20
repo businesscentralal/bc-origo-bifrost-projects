@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — #76
+
+- Add `Projects.PlanningLine.ShiftDates`: shift planning/currency dates by invariant formula or fixed date, filter tasks/line types/date windows, and return every changed date (including native document-date changes). Refuse transferred/invoiced lines atomically. Plain write without expectedCount per the 20 November ruling.
+- Added codeunits 70013417/70013418, enum value 70013533, and test codeunits 97114/97115; Icelandic discovery and refusals, English help.
+
+
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
 ### Added (2026-11-20, #71)
