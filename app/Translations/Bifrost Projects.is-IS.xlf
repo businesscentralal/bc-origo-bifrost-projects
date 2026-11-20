@@ -6441,6 +6441,66 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir mælieininguna.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page TS Usage Lines ori - Control Unit of Measure Code - Property ToolTip</note>
         </trans-unit>
+        <trans-unit id="PageExtension 2618994456 - Control 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1257057922">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Pstd. Sales Cr.M. Sub. TSD ori - Control Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 663690281 - Control 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1379883806">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Pstd. Sales Inv. Sub. TSD ori - Control Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 1421697948 - Control 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1056066689">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Cr.Memo Sub. TS Date ori - Control Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 4055059038 - Control 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 3689007477">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Sales Inv. Subform TS Date ori - Control Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1803718864 - Field 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3059602325">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Cr.Memo Line TS Date ori - Field Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1803718864 - Field 2424190774 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 3059602325">
+          <source>Time Sheet Date</source>
+          <target>Dagsetning vinnuskýrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning vinnuskýrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Cr.Memo Line TS Date ori - Field Time Sheet Date ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 699674042 - Field 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2079186865">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Inv. Line TS Date ori - Field Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 699674042 - Field 2424190774 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2079186865">
+          <source>Time Sheet Date</source>
+          <target>Dagsetning vinnuskýrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning vinnuskýrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Inv. Line TS Date ori - Field Time Sheet Date ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1991803395 - Field 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
+          <source>Specifies the date of the time entry that this line invoices.</source>
+          <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line TS Date ori - Field Time Sheet Date ori - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="TableExtension 1991803395 - Field 2424190774 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Table 2574427010">
+          <source>Time Sheet Date</source>
+          <target>Dagsetning vinnuskýrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning vinnuskýrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line TS Date ori - Field Time Sheet Date ori - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 1590439862 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Usage Status</source>
           <target>Staða notkunar</target>
