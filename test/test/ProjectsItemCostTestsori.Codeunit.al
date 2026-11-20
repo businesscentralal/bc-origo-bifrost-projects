@@ -1,6 +1,7 @@
 namespace Origo.Bifrost.Projects.Test;
 
 using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Setup;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
@@ -26,6 +27,7 @@ codeunit 97156 "Projects Item Cost Tests ori"
         LibraryInventory: Codeunit "Library - Inventory";
         LibraryPurchase: Codeunit "Library - Purchase";
         LibraryCosting: Codeunit "Library - Costing";
+        PostingDate: Date;
 
     /// <summary>AC01: usage at 10, later invoice at 12; adjustment leaves 10, the update brings the ledger and the planning line to 12.</summary>
     [Test]
@@ -73,7 +75,7 @@ codeunit 97156 "Projects Item Cost Tests ori"
     begin
         ProjectNo := SeedAdjustedUsage();
         Request := ProjectRequest(ProjectNo);
-        Request.Add('postingDateTo', Format(CalcDate('<-1M>', WorkDate()), 0, 9));
+        Request.Add('postingDateTo', Format(CalcDate('<-1M>', PostingDate), 0, 9));
         Response := Run(Request);
         Library.AssertStatus(Response, 'Success');
         Assert.AreEqual(0, Response.GetInteger('totalEntriesUpdated'), 'Nothing in the window');
@@ -81,8 +83,8 @@ codeunit 97156 "Projects Item Cost Tests ori"
         Assert.AreEqual(20, Ledger."Total Cost (LCY)", 'The excluded usage keeps its cost');
         Clear(Request);
         Request := ProjectRequest(ProjectNo);
-        Request.Add('postingDateFrom', Format(WorkDate(), 0, 9));
-        Request.Add('postingDateTo', Format(WorkDate(), 0, 9));
+        Request.Add('postingDateFrom', Format(PostingDate, 0, 9));
+        Request.Add('postingDateTo', Format(PostingDate, 0, 9));
         Response := Run(Request);
         Assert.AreEqual(1, Response.GetInteger('totalEntriesUpdated'), 'The window that holds the usage updates it');
         FindUsage(ProjectNo, Ledger);
@@ -307,6 +309,20 @@ codeunit 97156 "Projects Item Cost Tests ori"
         Ledger.FindFirst();
     end;
 
+    /// <summary>First date on or after the work date that lies after every closed inventory period, so seeded postings never meet a period closed by earlier data.</summary>
+    local procedure FindOpenPostingDate(): Date
+    var
+        InventoryPeriod: Record "Inventory Period";
+        OpenDate: Date;
+    begin
+        OpenDate := WorkDate();
+        InventoryPeriod.SetRange(Closed, true);
+        if InventoryPeriod.FindLast() then
+            if InventoryPeriod."Ending Date" >= OpenDate then
+                OpenDate := CalcDate('<+1D>', InventoryPeriod."Ending Date");
+        exit(OpenDate);
+    end;
+
     /// <summary>Seeds an own vendor, item and project, uses 2 items at cost 10 through a budget project journal line, invoices the receipt at 12 and adjusts cost natively.</summary>
     local procedure SeedAdjustedUsage(): Code[20]
     var
@@ -329,6 +345,9 @@ codeunit 97156 "Projects Item Cost Tests ori"
         Item.Modify(true);
         LibraryPurchase.CreateVendor(Vendor);
         LibraryPurchase.CreatePurchHeader(PurchaseHeader, PurchaseHeader."Document Type"::Order, Vendor."No.");
+        PostingDate := FindOpenPostingDate();
+        PurchaseHeader.Validate("Posting Date", PostingDate);
+        PurchaseHeader.Modify(true);
         LibraryPurchase.CreatePurchaseLine(PurchaseLine, PurchaseHeader, PurchaseLine.Type::Item, Item."No.", 10);
         PurchaseLine.Validate("Direct Unit Cost", 10);
         PurchaseLine.Modify(true);
@@ -340,6 +359,7 @@ codeunit 97156 "Projects Item Cost Tests ori"
         LibraryJob.CreateJobTask(Project, Task);
         LibraryJob.CreateJobJournalLineForType(JobJournalLine."Line Type"::Budget, JobJournalLine.Type::Item, Task, JobJournalLine);
         JobJournalLine.Validate("No.", Item."No.");
+        JobJournalLine.Validate("Posting Date", PostingDate);
         JobJournalLine.Validate(Quantity, 2);
         JobJournalLine.Modify(true);
         JobPost.RunWithCheck(JobJournalLine);
