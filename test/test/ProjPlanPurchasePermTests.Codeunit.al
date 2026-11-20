@@ -37,6 +37,8 @@ codeunit 97172 "Proj Plan Purch Perm Tests ori"
         Impl: Codeunit "Proj. Plan Purchase Impl ori";
         Assert: Codeunit "Library Assert";
         Response: JsonObject;
+        Count: Integer;
+        Summary: Text;
     begin
         Assert.IsFalse(Impl.IsEnabled(), 'Caller cannot create purchases');
         TempArgument.ID := CreateGuid();
@@ -45,5 +47,11 @@ codeunit 97172 "Proj Plan Purch Perm Tests ori"
         Response := TempArgument.GetResponseJson();
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Denied before licensing or input');
         Assert.IsTrue(Response.GetText('nextStep') <> '', 'Actionable next step');
+        Clear(TempArgument);
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Assert.IsFalse(Impl.GetConfirmCount(TempArgument, Count, Summary), 'Foundation pre-dispatch count is also denied before licensing');
+        Response := TempArgument.GetResponseJson();
+        Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Counter cannot bypass native purchase rights');
     end;
 }

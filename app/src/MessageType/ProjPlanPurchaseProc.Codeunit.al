@@ -67,6 +67,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         if not ValidateOverrides(Argument, Request, Selected) then
             exit;
         ReqLine.LockTable();
+        ReqLine.ReadIsolation := IsolationLevel::UpdLock;
         SetOwnScratch(ReqLine);
         if not ReqLine.IsEmpty() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, '', ScratchLbl);
@@ -137,6 +138,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         FormatLbl: Label 'Use a nonempty array of unique positive whole planning line numbers.', Comment = 'is-IS=Notaðu fylki sem er ekki tómt með einstökum jákvæðum heiltölunúmerum áætlunarlína.';
         AmbiguousLbl: Label 'Select the task instead; the planning line number occurs in more than one task.', Comment = 'is-IS=Veldu verkhlutann í staðinn; númer áætlunarlínunnar kemur fyrir í fleiri en einum verkhluta.';
     begin
+        Planning.ReadIsolation := IsolationLevel::UpdLock;
         Planning.SetRange("Job No.", Request.GetText('projectNo'));
         if Request.Contains('taskNo') then begin
             if not Task.Get(Request.GetText('projectNo'), Request.GetText('taskNo')) then
@@ -335,6 +337,8 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
                 Clear(Lines);
                 Order.Add('number', Header."No.");
                 Order.Add('vendorNo', Header."Buy-from Vendor No.");
+                Line.ReadIsolation := IsolationLevel::ReadCommitted;
+                Line.SetLoadFields("Line No.", "Job No.", "Job Task No.", "Job Planning Line No.");
                 Line.SetRange("Document Type", Line."Document Type"::Order);
                 Line.SetRange("Document No.", Header."No.");
                 Line.SetRange(Type, Line.Type::Item);
