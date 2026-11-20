@@ -13,6 +13,12 @@
 - #33 admin time-sheet types need PROJ TS ADMIN for Base App tabledata (AS0110 fix, Architect 18.11.2026). `PROJ TS ADMIN` (permission set 70013589) is assignable and is assigned together with `BIFROST Full ori`. It holds the 27 Base Application tabledata grants and the `Create Time Sheets` report grant that `Projects TimeSheet Full ori` had, at the same levels; the extension keeps only this app's codeunits (#65).
 - #52 usage types need PROJ USAGE for Base App tabledata (same AS0110 fix, Architect 18.11.2026, PR #66 comment 6980138913). `PROJ USAGE` (permission set 70013402) is assignable and is assigned together with `BIFROST Full ori` (or `BIFROST Read ori` for `Projects.Usage.List`). It holds the 16 Base Application tabledata grants that `Projects Usage Full ori` and `Projects Usage Read ori` had, at the same levels; both extensions keep only this app's objects. No Base App grant lives in a permission set extension anywhere in Projects.
 
+## Issue 78 object ledger
+
+- Codeunit 70013419 `Proj. Task Indent Impl ori` (renumbered from 70013406 after #75 took it; 70013406-70013409 are claimed by PR #88, 70013417-70013418 belong to #76): native task indentation, shared write transaction.
+- Enum value 70013406 `Projects.Task.Indent` in `Projects Message Types ori`.
+- Test codeunits 97169 `Proj. Task Indent Tests ori` and 97170 `Proj. Indent Perm Tests ori`; test-only permission set 97170 `ProjIndentNative ori` (all renumbered from 97114/97115 after #75 took them). No assignable role added.
+
 ## #76 object ledger
 
 - Codeunit 70013417 `Proj. Shift Dates Impl ori`: contract and validation.
@@ -22,7 +28,7 @@
 - Architect ruling 20.11.2026: plain write, no expectedCount; refuse transferred/invoiced lines.
 ## Object ledger — issue #77
 
-- Codeunit 70013419: `Proj. Item Cost Impl ori`. 70013417 stays `Proj. Shift Dates Impl ori` (Architect ruling 20.11.2026). Also 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`.
+- Codeunit 70013420: `Proj. Item Cost Impl ori` (renumbered from 70013419 after Projects.Task.Indent took it on main). 70013417 stays `Proj. Shift Dates Impl ori` (Architect ruling 20.11.2026). Also 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`.
 - Enum value 70013552: `Projects.ItemCost.Update`.
 - Tests: codeunits 97156 `Projects Item Cost Tests ori`, 97157 `Proj. Item Cost Perm Tests ori`.
 

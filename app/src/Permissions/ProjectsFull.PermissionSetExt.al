@@ -6,14 +6,11 @@ using Origo.Bifrost;
 permissionsetextension 70013501 "Projects Full ori" extends "BIFROST Full ori"
 {
     Permissions =
+        codeunit "Proj. Task Indent Impl ori" = X,
         codeunit "Proj. Shift Dates Impl ori" = X,
         codeunit "Proj. Shift Dates Process ori" = X,
         codeunit "Projects Capacity ori" = X,
         codeunit "Proj. Capacity Impl ori" = X,
-        codeunit "Proj. Item Cost Impl ori" = X,
-        codeunit "Proj. Item Cost Process ori" = X,
-        codeunit "Proj. Item Cost Confirm ori" = X,
-        codeunit "Projects Item Cost ori" = X,
         codeunit "Proj. Item Usage Impl ori" = X,
         codeunit "Proj. Item Usage Process ori" = X,
         codeunit "Proj. Purchase Impl ori" = X,
@@ -57,6 +54,9 @@ permissionsetextension 70013501 "Projects Full ori" extends "BIFROST Full ori"
         codeunit "Projects Write ori" = X,
         codeunit "Projects Write Process ori" = X,
         codeunit "Proj. Create Impl ori" = X,
+        codeunit "Proj. Item Cost Confirm ori" = X,
+        codeunit "Proj. Item Cost Impl ori" = X,
+        codeunit "Proj. Item Cost Process ori" = X,
         codeunit "Proj. Update Impl ori" = X,
         codeunit "Proj. Task Create Impl ori" = X,
         codeunit "Proj. Task Update Impl ori" = X,
@@ -64,6 +64,7 @@ permissionsetextension 70013501 "Projects Full ori" extends "BIFROST Full ori"
         codeunit "Proj. Plan Update Impl ori" = X,
         tabledata "Projects Setup ori" = RIMD,
         codeunit "Projects Gate ori" = X,
+        codeunit "Projects Item Cost ori" = X,
         codeunit "Projects Registration ori" = X,
         codeunit "Projects Setup Restrict ori" = X,
         page "Projects Setup ori" = X,
