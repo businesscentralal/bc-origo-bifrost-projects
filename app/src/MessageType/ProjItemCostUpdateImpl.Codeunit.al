@@ -37,7 +37,7 @@ codeunit 70013406 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'update project item cost, project item cost, job item cost, cost adjustment, adjusted cost, project profitability, month end', Comment = 'is-IS=uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, arðsemi verkefna, mánaðarlok';
+        KeywordsLbl: Label 'update project item cost, project item cost, job item cost, cost adjustment, adjusted cost, project profitability, month end', Comment = 'is-IS=uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, vörukostnaður á verkefni, arðsemi verkefna, mánaðarlok';
     begin
         exit(KeywordsLbl);
     end;

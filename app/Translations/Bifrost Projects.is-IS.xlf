@@ -681,6 +681,36 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Create Impl ori - Method GetNotes - NamedType NotesLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 273279443 - Method 3507224617 - NamedType 2679338514" size-unit="char" translate="yes" xml:space="preserve">
+          <source>projects whose item cost is updated</source>
+          <target>verkefni þar sem vörukostnaður er uppfærður</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni þar sem vörukostnaður er uppfærður</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Confirm ori - Method GetConfirmCount - NamedType ProjectsTxt</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4155282669 - Method 3571782927 - NamedType 2229569886" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for BIFROST Full ori and the native permissions to change project ledger entries.</source>
+          <target>Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method ExecuteBifrostTask - NamedType PermissionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4155282669 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Updates the item cost on project usage entries and planning lines to the adjusted item cost.</source>
+          <target>Uppfærir vörukostnað á notkunarfærslum og áætlunarlínum verkefna í leiðréttan vörukostnað.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Uppfærir vörukostnað á notkunarfærslum og áætlunarlínum verkefna í leiðréttan vörukostnað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4155282669 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>update project item cost, project item cost, job item cost, cost adjustment, adjusted cost, project profitability, month end</source>
+          <target>uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, vörukostnaður á verkefni, arðsemi verkefna, mánaðarlok</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, vörukostnaður á verkefni, arðsemi verkefna, mánaðarlok</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4155282669 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Bring the item cost of project usage up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Irreversible. Needed only when Automatic Update Project Item Cost is off in Projects Setup, or for projects adjusted earlier.</source>
+          <target>Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 1439554103 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
           <source>Use identifiers belonging to the same purchase line, project/task, or item/location.</source>
           <target>Notaðu auðkenni sem tilheyra sömu innkaupalínu, verkefni og verkhluta eða vöru og birgðageymslu.</target>
@@ -1700,6 +1730,54 @@
           <target>Nauðsynlegt viðfang verkefnis vantar eða er tómt.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Nauðsynlegt viðfang verkefnis vantar eða er tómt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Input ori - Method AddMissing - NamedType MissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 241708881" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A completed project is not updated. Change its status with Projects.Project.SetStatus first, or leave it out.</source>
+          <target>Lokið verkefni er ekki uppfært. Breyttu stöðu þess með Projects.Project.SetStatus fyrst, eða slepptu því.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lokið verkefni er ekki uppfært. Breyttu stöðu þess með Projects.Project.SetStatus fyrst, eða slepptu því.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType CompletedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send either projectNos or allOpen, not both.</source>
+          <target>Sendu annaðhvort projectNos eða allOpen, ekki bæði.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu annaðhvort projectNos eða allOpen, ekki bæði.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType ConflictLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 3977887535" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send postingDateFrom on or before postingDateTo.</source>
+          <target>Sendu postingDateFrom sama dag og postingDateTo eða fyrr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu postingDateFrom sama dag og postingDateTo eða fyrr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType DatesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send allOpen as true or false and projectNos as an array of at most 100 project numbers of at most 20 characters each.</source>
+          <target>Sendu allOpen sem true eða false og projectNos sem fylki með í mesta lagi 100 verkefnisnúmerum, hvert með í mesta lagi 20 stöfum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu allOpen sem true eða false og projectNos sem fylki með í mesta lagi 100 verkefnisnúmerum, hvert með í mesta lagi 20 stöfum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType FormatLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send projectNos with 1 to 100 project numbers, or allOpen as true.</source>
+          <target>Sendu projectNos með 1 til 100 verkefnisnúmerum, eða allOpen sem true.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu projectNos með 1 til 100 verkefnisnúmerum, eða allOpen sem true.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 704880291" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the numbers of existing projects.</source>
+          <target>Sendu númer verkefna sem eru til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu númer verkefna sem eru til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType NotFoundLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - NamedType 2229569886" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator for BIFROST Full ori and the native permissions to change project ledger entries.</source>
+          <target>Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType PermissionsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3563019872 - Method 1967010076 - NamedType 3337375434" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Updated the item cost on %1 project ledger entries in %2 projects.</source>
+          <target>Vörukostnaður uppfærður á %1 verkefnisfærslum í %2 verkefnum.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = entries, %2 = projects, is-IS=Vörukostnaður uppfærður á %1 verkefnisfærslum í %2 verkefnum.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - Method RunNative - NamedType SummaryLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2811510958 - NamedType 3514698339" size-unit="char" translate="yes" xml:space="preserve">
           <source>Pass existing item, variant, location, bin and unit of measure identifiers belonging together.</source>
@@ -6590,84 +6668,6 @@
           <target>Skráning notkunar verkefna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Skráning notkunar verkefna</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ USAGE - Property Caption</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 273279443 - Method 3507224617 - NamedType 2679338514" size-unit="char" translate="yes" xml:space="preserve">
-          <source>projects whose item cost is updated</source>
-          <target>verkefni þar sem vörukostnaður er uppfærður</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=verkefni þar sem vörukostnaður er uppfærður</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Confirm ori - Method GetConfirmCount - NamedType ProjectsTxt</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4155282669 - Method 3571782927 - NamedType 2229569886" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ask an administrator for BIFROST Full ori and the native permissions to change project ledger entries.</source>
-          <target>Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method ExecuteBifrostTask - NamedType PermissionsLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4155282669 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Updates the item cost on project usage entries and planning lines to the adjusted item cost.</source>
-          <target>Uppfærir vörukostnað á notkunarfærslum og áætlunarlínum verkefna í leiðréttan vörukostnað.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Uppfærir vörukostnað á notkunarfærslum og áætlunarlínum verkefna í leiðréttan vörukostnað.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4155282669 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
-          <source>update project item cost, project item cost, job item cost, cost adjustment, adjusted cost, project profitability, month end</source>
-          <target>uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, arðsemi verkefna, mánaðarlok</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, arðsemi verkefna, mánaðarlok</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 4155282669 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bring the item cost of project usage up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Irreversible. Needed only when Automatic Update Project Item Cost is off in Projects Setup, or for projects adjusted earlier.</source>
-          <target>Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 241708881" size-unit="char" translate="yes" xml:space="preserve">
-          <source>A completed project is not updated. Change its status with Projects.Project.SetStatus first, or leave it out.</source>
-          <target>Lokið verkefni er ekki uppfært. Breyttu stöðu þess með Projects.Project.SetStatus fyrst, eða slepptu því.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Lokið verkefni er ekki uppfært. Breyttu stöðu þess með Projects.Project.SetStatus fyrst, eða slepptu því.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType CompletedLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send either projectNos or allOpen, not both.</source>
-          <target>Sendu annaðhvort projectNos eða allOpen, ekki bæði.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Sendu annaðhvort projectNos eða allOpen, ekki bæði.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType ConflictLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 3977887535" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send postingDateFrom on or before postingDateTo.</source>
-          <target>Sendu postingDateFrom sama dag og postingDateTo eða fyrr.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Sendu postingDateFrom sama dag og postingDateTo eða fyrr.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType DatesLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send allOpen as true or false and projectNos as an array of at most 100 project numbers of at most 20 characters each.</source>
-          <target>Sendu allOpen sem true eða false og projectNos sem fylki með í mesta lagi 100 verkefnisnúmerum, hvert með í mesta lagi 20 stöfum.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Sendu allOpen sem true eða false og projectNos sem fylki með í mesta lagi 100 verkefnisnúmerum, hvert með í mesta lagi 20 stöfum.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType FormatLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send projectNos with 1 to 100 project numbers, or allOpen as true.</source>
-          <target>Sendu projectNos með 1 til 100 verkefnisnúmerum, eða allOpen sem true.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Sendu projectNos með 1 til 100 verkefnisnúmerum, eða allOpen sem true.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType MissingLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 704880291" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send the numbers of existing projects.</source>
-          <target>Sendu númer verkefna sem eru til.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Sendu númer verkefna sem eru til.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType NotFoundLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - NamedType 2229569886" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Ask an administrator for BIFROST Full ori and the native permissions to change project ledger entries.</source>
-          <target>Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - NamedType PermissionsLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 3563019872 - Method 1967010076 - NamedType 3337375434" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Updated the item cost on %1 project ledger entries in %2 projects.</source>
-          <target>Vörukostnaður uppfærður á %1 verkefnisfærslum í %2 verkefnum.</target>
-          <note from="Developer" annotates="general" priority="2">%1 = entries, %2 = projects, is-IS=Vörukostnaður uppfærður á %1 verkefnisfærslum í %2 verkefnum.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Projects Item Cost ori - Method RunNative - NamedType SummaryLbl</note>
         </trans-unit>
       </group>
     </body>
