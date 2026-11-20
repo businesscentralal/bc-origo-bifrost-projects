@@ -149,6 +149,33 @@ codeunit 97112 "Proj. TS Date Tests"
         Assert.AreEqual(WorkDate() - 11, SalesLine."Time Sheet Date ori", 'Open line unchanged by the second run.');
     end;
 
+    [Test]
+    procedure ColumnVisibility_FollowsSubPageLinkDocument()
+    var
+        JobPlanningLine: Record "Job Planning Line";
+        SalesLine: Record "Sales Line";
+        SalesHeader: Record "Sales Header";
+        LinkedLine: Record "Sales Line";
+        TSDateMgt: Codeunit "Proj. TS Date Mgt ori";
+    begin
+        // [SCENARIO] AC4: the column is shown for a project document (SubPageLink filter in group 4) and hidden for a manual one.
+        NewBillableLine(JobPlanningLine, 1, WorkDate() - 1, WorkDate() - 1);
+        CreateDocument(JobPlanningLine, false, SalesLine);
+        LinkedLine.FilterGroup(4);
+        LinkedLine.SetRange("Document Type", SalesLine."Document Type");
+        LinkedLine.SetRange("Document No.", SalesLine."Document No.");
+        LinkedLine.FilterGroup(0);
+        Assert.IsTrue(TSDateMgt.HasProjectLines(LinkedLine), 'Project invoice shows the column.');
+
+        LibrarySales.CreateSalesInvoice(SalesHeader);
+        Clear(LinkedLine);
+        LinkedLine.FilterGroup(4);
+        LinkedLine.SetRange("Document Type", SalesHeader."Document Type");
+        LinkedLine.SetRange("Document No.", SalesHeader."No.");
+        LinkedLine.FilterGroup(0);
+        Assert.IsFalse(TSDateMgt.HasProjectLines(LinkedLine), 'Manual invoice hides the column.');
+    end;
+
     local procedure NewBillableLine(var JobPlanningLine: Record "Job Planning Line"; Quantity: Decimal; DocumentDate: Date; PlanningDate: Date)
     var
         Job: Record Job;
