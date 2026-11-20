@@ -33,3 +33,10 @@ System-defined methods and methods referenced by any calculated or posted WIP en
 Example Set: `{ "code": "CUSTOM", "description": "Custom WIP", "recognizedCosts": "Usage (Total Cost)", "recognizedSales": "Contract (Invoiced Price)", "wipCost": false, "wipSales": false }`. Then Get with `{ "code": "CUSTOM" }`.
 
 Requires enabled Projects setup, Foundation licence/version checks and native WIP Method table permissions; Set additionally requires read permission on WIP Entry and WIP G/L Entry. The Foundation role extensions grant execution of the new codeunits without elevating native table rights. No page or action is changed.
+
+
+## Projects.PlanningLine.CreatePurchaseOrder
+
+Version 1 takes `projectNo`, optional `taskNo` or `planningLineNos` (exclusive), `preview` (false by default), optional `vendorOverrides` (`planningLineNo`, `vendorNo`) and `expectedCount`. Preview has read effect and rolls back its calculation; create is irreversible and uses the Foundation confirmation gate. `expectedCount` counts proposed planning lines, not orders.
+
+Returns `proposals` (planning line, task, item, variant, location, quantity, vendor and receipt date), `skipped` with reasons, `purchaseOrders` with native task/planning links, and summary counts. Caller-owned pending Order Planning lines cause `PreconditionFailed` before calculation. Unknown selectors/vendors, conflicting task/line selectors, malformed or unknown parameters, missing/stale confirmation and native permissions produce structured refusals with `nextStep`. No posting or new deletion operation. Only this call's scratch lines are consumed.

@@ -384,3 +384,8 @@ Invoices and credit memos created from project planning lines (the Create Sales 
 The column is read-only and sits before Description on Sales Invoice Subform, Sales Cr. Memo Subform, Posted Sales Invoice Subform and Posted Sales Cr. Memo Subform. It is shown in companies that have project-invoiced sales lines (lines with a Job Contract Entry No.); Business Central decides repeater column visibility once when the lines part opens, so in those companies ordinary documents show the column with a blank date. Users can hide it through personalization.
 
 The field is an ordinary table field, so `Data.Records.Get` on `Sales Line`, `Sales Invoice Line` or `Sales Cr.Memo Line` returns it as `TimeSheetDateori`; no message type changed. On install and upgrade, blank dates on existing open and posted project lines are filled from the planning line with the same Job Contract Entry No.; running it again changes nothing.
+
+
+## Purchase project demand
+
+Use `Projects.PlanningLine.CreatePurchaseOrder` to preview uncovered item demand on an open project, then confirm the planning-line count to create linked purchase orders by vendor. Finish pending Order Planning work first. Budget and combined budget/billable lines are eligible; covered, text and billable-only lines are reported as skipped. Receiving and invoicing the resulting orders posts native usage on their task. For company-wide supply use the requisition or planning worksheet instead.
