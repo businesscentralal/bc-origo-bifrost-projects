@@ -26,6 +26,11 @@
 - Enum value 70013533 `Projects.PlanningLine.ShiftDates`.
 - Test codeunits 97167 `Proj. Shift Dates Tests ori`, 97168 `Proj Shift Date Perm Tests ori`.
 - Architect ruling 20.11.2026: plain write, no expectedCount; refuse transferred/invoiced lines.
+## Object ledger — issue #77
+
+- Codeunit 70013420: `Proj. Item Cost Impl ori` (renumbered from 70013419 after Projects.Task.Indent took it on main). 70013417 stays `Proj. Shift Dates Impl ori` (Architect ruling 20.11.2026). Also 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`.
+- Enum value 70013552: `Projects.ItemCost.Update`.
+- Tests: codeunits 97156 `Projects Item Cost Tests ori`, 97157 `Proj. Item Cost Perm Tests ori`.
 
 ## Object ledger — issue #75
 

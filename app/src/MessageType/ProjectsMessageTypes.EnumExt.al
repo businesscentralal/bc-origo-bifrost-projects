@@ -154,4 +154,10 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.PlanningLine.ShiftDates', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Shift Dates Impl ori", "Msg Discovery ori" = "Proj. Shift Dates Impl ori", "Msg Contract ori" = "Proj. Shift Dates Impl ori";
     }
+    /// <summary>Brings project item cost up to the adjusted item cost.</summary>
+    value(70013552; "Projects.ItemCost.Update")
+    {
+        Caption = 'Projects.ItemCost.Update', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Item Cost Impl ori", "Msg Discovery ori" = "Proj. Item Cost Impl ori", "Msg Contract ori" = "Proj. Item Cost Impl ori", "Msg Confirm ori" = "Proj. Item Cost Confirm ori";
+    }
 }
