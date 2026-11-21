@@ -3,6 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Tracking;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Resources.Journal;
@@ -34,6 +35,8 @@ permissionset 70013402 "PROJ USAGE"
         tabledata "Job Journal Template" = R,
         tabledata "Job Journal Batch" = R,
         tabledata "Job Journal Line" = RIMD,
+        tabledata "Reservation Entry" = RIMD,
+        tabledata "Item Tracking Code" = R,
         tabledata "Item Ledger Entry" = R,
         tabledata "Res. Ledger Entry" = R,
         tabledata "Job Ledger Entry" = R;
