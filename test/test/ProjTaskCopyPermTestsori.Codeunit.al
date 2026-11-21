@@ -25,8 +25,8 @@ codeunit 97176 "Proj. Task Copy Perm Tests ori"
     [Test]
     procedure AC06_ReadWithNativeModify()
     var
-        Lower: Codeunit "Library - Lower Permissions";
         Task: Record "Job Task";
+        Lower: Codeunit "Library - Lower Permissions";
         Assert: Codeunit "Library Assert";
     begin
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
@@ -39,15 +39,15 @@ codeunit 97176 "Proj. Task Copy Perm Tests ori"
     [Test]
     procedure AC06_FullWithModifyButNoInsert()
     var
+        TempArgument: Record "Message Argument ori" temporary;
+        Task: Record "Job Task";
         Lower: Codeunit "Library - Lower Permissions";
         Library: Codeunit "Projects Test Library ori";
         Fixture: Codeunit "Proj. Task Copy Fixture ori";
         Impl: Codeunit "Proj. Task Copy Impl ori";
-        TempArgument: Record "Message Argument ori" temporary;
-        Manifest: JsonObject;
         Assert: Codeunit "Library Assert";
+        Manifest: JsonObject;
         Response: JsonObject;
-        Task: Record "Job Task";
     begin
         Lower.PushPermissionSetWithoutDefaults('SUPER');
         Manifest := Fixture.Seed();

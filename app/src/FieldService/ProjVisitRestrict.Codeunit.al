@@ -22,6 +22,8 @@ codeunit 70013442 "Proj. Visit Restrict ori"
     begin
         if IsManagedField(TableNo, FieldNo) then
             Hint := HintLbl;
+        if (TableNo = Database::"Proj. Field Visit ori") and (FieldNo in [23 .. 32]) then
+            Hint := 'Projects.Visit.SignOff';
     end;
 
     local procedure IsManagedField(TableNo: Integer; FieldNo: Integer): Boolean
@@ -31,6 +33,16 @@ codeunit 70013442 "Proj. Visit Restrict ori"
         if TableNo <> Database::"Proj. Field Visit ori" then
             exit(false);
         exit(FieldNo in [
+            Visit.FieldNo(Photos),
+            Visit.FieldNo("Signer Name"),
+            Visit.FieldNo("Signed At"),
+            Visit.FieldNo("Signature Id"),
+            Visit.FieldNo(Signed),
+            Visit.FieldNo(Locked),
+            Visit.FieldNo(Signature),
+            Visit.FieldNo("Signature Content Type"),
+            Visit.FieldNo("Signature File Name"),
+            Visit.FieldNo("Sign Request Id"),
             Visit.FieldNo(Status),
             Visit.FieldNo("Started At"),
             Visit.FieldNo("Stopped At"),

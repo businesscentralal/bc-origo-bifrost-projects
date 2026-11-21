@@ -50,10 +50,10 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC02_Brief()
     var
-        Manifest: JsonObject;
-        Response: JsonObject;
         Project: Record Job;
         Task: Record "Job Task";
+        Manifest: JsonObject;
+        Response: JsonObject;
     begin
         Manifest := Fixture.Seed(2);
         Response := Execute(true, Request(Manifest, true));
@@ -74,10 +74,10 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC03_MissingSheet()
     var
-        Manifest: JsonObject;
-        Response: JsonObject;
         Header: Record "Time Sheet Header";
         Line: Record "Time Sheet Line";
+        Manifest: JsonObject;
+        Response: JsonObject;
         BeforeCount: Integer;
     begin
         Manifest := Fixture.Seed(2);
@@ -99,9 +99,9 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC03_MissingLine()
     var
+        Line: Record "Time Sheet Line";
         Manifest: JsonObject;
         Response: JsonObject;
-        Line: Record "Time Sheet Line";
     begin
         Manifest := Fixture.Seed(2);
         Line.Get(Manifest.GetText('timeSheetNo'), 10000);
@@ -154,9 +154,9 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC04_NotFoundAndForeign()
     var
+        Resource: Record Resource;
         Manifest: JsonObject;
         Data: JsonObject;
-        Resource: Record Resource;
     begin
         Manifest := Fixture.Seed(2);
         Data := Request(Manifest, true);
@@ -177,10 +177,10 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC04_OwnerMapping()
     var
+        Resource: Record Resource;
         Manifest: JsonObject;
         Second: JsonObject;
         Data: JsonObject;
-        Resource: Record Resource;
     begin
         // The test transaction restores pre-existing mappings after this test.
         Resource.SetRange("Time Sheet Owner User ID", CopyStr(UpperCase(UserId()), 1, 50));
@@ -199,15 +199,15 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC05_TechnicianRole()
     var
-        Manifest: JsonObject;
-        Data: JsonObject;
-        Response: JsonObject;
-        Lower: Codeunit "Library - Lower Permissions";
-        UsageMgt: Codeunit "TS Usage Mgt ori";
         Journal: Record "Job Journal Line";
         Project: Record Job;
         Task: Record "Job Task";
         Planning: Record "Job Planning Line";
+        Lower: Codeunit "Library - Lower Permissions";
+        UsageMgt: Codeunit "TS Usage Mgt ori";
+        Manifest: JsonObject;
+        Data: JsonObject;
+        Response: JsonObject;
     begin
         Manifest := Fixture.Seed(2);
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
@@ -253,10 +253,10 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure AC07_CompactTenVisits()
     var
+        Blob: Codeunit "Temp Blob";
         Manifest: JsonObject;
         Response: JsonObject;
         Result: Text;
-        Blob: Codeunit "Temp Blob";
         Stream: OutStream;
     begin
         Manifest := Fixture.Seed(10);
@@ -294,11 +294,11 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure IncludeItemsAndCompletedPlan()
     var
+        Planning: Record "Job Planning Line";
         Manifest: JsonObject;
         Data: JsonObject;
         Response: JsonObject;
         Includes: JsonArray;
-        Planning: Record "Job Planning Line";
     begin
         Manifest := Fixture.Seed(2);
         Data := Request(Manifest, false);
@@ -371,9 +371,9 @@ codeunit 97184 "Proj. Field Service Tests ori"
     [Test]
     procedure HistoricTimeMissingCurrentSheet()
     var
+        Header: Record "Time Sheet Header";
         Manifest: JsonObject;
         Response: JsonObject;
-        Header: Record "Time Sheet Header";
     begin
         Manifest := Fixture.Seed(2);
         Header.Get(Manifest.GetText('timeSheetNo'));
@@ -405,29 +405,29 @@ codeunit 97184 "Proj. Field Service Tests ori"
 
     local procedure ExecuteType(MessageType: Enum "Message Type ori"; Data: JsonObject): JsonObject
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         FieldMgt: Codeunit "Proj. Field Service Mgt ori";
         UsageMgt: Codeunit "TS Usage Mgt ori";
     begin
-        Argument.ID := CreateGuid();
-        Argument.Type := MessageType;
-        Argument.Version := Argument.Version::"1.0";
-        Argument.Insert(false);
-        Argument.SetRequestJson(Data);
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := MessageType;
+        TempArgument.Version := TempArgument.Version::"1.0";
+        TempArgument.Insert(false);
+        TempArgument.SetRequestJson(Data);
         // Unit-test the same native entry point as production without fabricating licence state.
         case MessageType of
             "Message Type ori"::"Projects.MyDay.Get":
-                FieldMgt.Execute(Argument, false);
+                FieldMgt.Execute(TempArgument, false);
             "Message Type ori"::"Projects.VisitBrief.Get":
-                FieldMgt.Execute(Argument, true);
+                FieldMgt.Execute(TempArgument, true);
             "Message Type ori"::"Projects.Usage.Register":
-                UsageMgt.Execute(Argument, 1);
+                UsageMgt.Execute(TempArgument, 1);
             "Message Type ori"::"Projects.Usage.Submit":
-                UsageMgt.Execute(Argument, 2);
+                UsageMgt.Execute(TempArgument, 2);
             "Message Type ori"::"Projects.Usage.List":
-                UsageMgt.Execute(Argument, 7);
+                UsageMgt.Execute(TempArgument, 7);
         end;
-        exit(Argument.GetResponseJson());
+        exit(TempArgument.GetResponseJson());
     end;
 
     local procedure AssertStatus(Response: JsonObject; Expected: Text)

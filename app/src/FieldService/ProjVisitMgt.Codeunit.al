@@ -12,6 +12,9 @@ codeunit 70013439 "Proj. Visit Mgt ori"
 {
     Access = Internal;
 
+    var
+        LockedNextLbl: Label 'Ask the project manager to unlock the signed visit before changing it.', Comment = 'is-IS=Biddu verkefnisstjóra að aflæsa undirritaðri heimsókn áður en henni er breytt.';
+
     /// <summary>True when the caller can read the visit context and write a visit, a time sheet line and a usage line.</summary>
     procedure CanRun(): Boolean
     var
@@ -449,6 +452,10 @@ codeunit 70013439 "Proj. Visit Mgt ori"
         end;
         if Any."Resource No." <> ResourceNo then begin
             Fail(Argument, "Bifrost Error Code ori"::PermissionDenied, 'visitId', OtherVisitNext());
+            exit(false);
+        end;
+        if Any.Locked then begin
+            Fail(Argument, "Bifrost Error Code ori"::PreconditionFailed, 'visitId', LockedNextLbl);
             exit(false);
         end;
         Visit := Any;

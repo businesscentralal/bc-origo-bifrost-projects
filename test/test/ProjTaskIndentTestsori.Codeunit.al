@@ -52,8 +52,8 @@ codeunit 97169 "Proj. Task Indent Tests ori"
     [Test]
     procedure AC02_UnmatchedEndTotalRollsBack()
     var
-        ProjectNo: Code[20];
         Task: Record "Job Task";
+        ProjectNo: Code[20];
         Response: JsonObject;
     begin
         ProjectNo := NewProject();
@@ -114,8 +114,8 @@ codeunit 97169 "Proj. Task Indent Tests ori"
     [Test]
     procedure AC02_DepthLimitRollsBack()
     var
-        ProjectNo: Code[20];
         Task: Record "Job Task";
+        ProjectNo: Code[20];
         Index: Integer;
         Response: JsonObject;
     begin
