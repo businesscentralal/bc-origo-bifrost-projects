@@ -3,7 +3,7 @@ namespace Origo.Bifrost.Projects;
 using Origo.Bifrost;
 
 /// <summary>Implements the version 1 Projects.MyDay.Get contract.</summary>
-codeunit 70013427 "Proj. My Day Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
+codeunit 70013431 "Proj. My Day Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori"
 {
     Access = Internal;
 

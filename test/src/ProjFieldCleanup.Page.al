@@ -1,7 +1,7 @@
 namespace Origo.Bifrost.Projects.Test;
 
 /// <summary>Operator-only cleanup for the exact unposted fixture identified by its seed manifest.</summary>
-page 97180 "Proj. Field Cleanup ori"
+page 97185 "Proj. Field Cleanup ori"
 {
     PageType = Card;
     ApplicationArea = All;

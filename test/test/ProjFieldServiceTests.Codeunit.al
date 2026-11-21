@@ -12,7 +12,7 @@ using System.TestLibraries.Security.AccessControl;
 using System.TestLibraries.Utilities;
 
 /// <summary>Issue #82: technician day/brief queries, strict refusals, compact responses and role isolation.</summary>
-codeunit 97179 "Proj. Field Service Tests ori"
+codeunit 97184 "Proj. Field Service Tests ori"
 {
     Subtype = Test;
     TestPermissions = Disabled;

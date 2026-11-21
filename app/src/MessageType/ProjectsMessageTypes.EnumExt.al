@@ -186,4 +186,10 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.VisitBrief.Get', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Visit Brief Impl ori", "Msg Discovery ori" = "Proj. Visit Brief Impl ori", "Msg Contract ori" = "Proj. Visit Brief Impl ori";
     }
+    /// <summary>Creates linked project journal lines from budget planning lines.</summary>
+    value(70013426; "Projects.PlanningLine.TransferToJournal")
+    {
+        Caption = 'Projects.PlanningLine.TransferToJournal', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Plan Journal Impl ori", "Msg Discovery ori" = "Proj. Plan Journal Impl ori", "Msg Contract ori" = "Proj. Plan Journal Impl ori";
+    }
 }

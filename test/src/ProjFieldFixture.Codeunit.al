@@ -11,7 +11,7 @@ using Origo.Bifrost;
 using Origo.Bifrost.Projects;
 
 /// <summary>Own-tenant, raw-data fixtures for technician read tests and MCP. Cleanup is not a message operation.</summary>
-codeunit 97180 "Proj. Field Fixture ori" implements "Msg Interface ori"
+codeunit 97185 "Proj. Field Fixture ori" implements "Msg Interface ori"
 {
     Access = Internal;
 

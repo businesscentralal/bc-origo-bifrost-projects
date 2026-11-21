@@ -16,7 +16,7 @@
 
 - Added owner-scoped `Projects.MyDay.Get` and `Projects.VisitBrief.Get`, with project site snapshots, remaining planned quantities, own time/usage, record systemIds and write-free setup suggestions.
 - Added `PROJ FIELD TECH` (permission set 70013403) with the self-service time-sheet bundle, native project/site/stock reads and usage RIM. Existing PROJ USAGE is unchanged. Updated owner usage permission guidance and documentation.
-- Added codeunits 70013427–70013430, message enum values 70013427/70013428, tests 97179 and fixture codeunit/enumextension/cleanup page 97180. English help chapters, localized discovery/refusals and is-IS captions. Team Member SaaS receipt AC06 remains NOT_RUN until the dedicated test user is available.
+- Added codeunits 70013429–70013432, message enum values 70013427/70013428, tests 97184 and fixture codeunit/enumextension/cleanup page 97185. English help chapters, localized discovery/refusals and is-IS captions. Team Member SaaS receipt AC06 remains NOT_RUN until the dedicated test user is available.
 
 ## Unreleased — #76
 
@@ -25,6 +25,10 @@
 
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
+
+### Added (2026-11-21, #81)
+
+- #81: Add `Projects.PlanningLine.TransferToJournal` to append linked journal lines from budget planning lines without posting or replacing existing lines. Supports partial quantities, atomic refusal, native caller permissions and Icelandic discovery/refusals. Added codeunits 70013427–70013428, enum value 70013426, tests 97179–97180 and test fixtures/cleanup 97181–97183.
 
 ### Added (2026-11-20, #77)
 
