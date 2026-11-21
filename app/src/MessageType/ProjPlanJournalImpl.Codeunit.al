@@ -215,13 +215,13 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
     /// <summary>Validates and runs one rollback boundary without a posting gate.</summary>
     procedure Execute(var Argument: Record "Message Argument ori")
     var
-        Request: JsonObject;
+        RequestJson: JsonObject;
         Reason: Text;
         ErrorCode: Text;
     begin
         if not AssertPermissions(Argument) then
             exit;
-        if not Validate(Argument, Request) then
+        if not Validate(Argument, RequestJson) then
             exit;
         if Argument."Omit Commit" then begin
             Codeunit.Run(Codeunit::"Proj. Plan Journal Proc ori", Argument);
@@ -248,7 +248,7 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
     end;
 
     /// <summary>Revalidates all business preconditions inside the write boundary as well.</summary>
-    internal procedure Validate(var Argument: Record "Message Argument ori"; var Request: JsonObject): Boolean
+    internal procedure Validate(var Argument: Record "Message Argument ori"; var RequestJson: JsonObject): Boolean
     var
         Project: Record Job;
         Task: Record "Job Task";
@@ -264,16 +264,16 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
         SelectionKey: Text;
         Quantity: Decimal;
     begin
-        if not TryReadRequest(Argument, Request) then begin
+        if not TryReadRequest(Argument, RequestJson) then begin
             ClearLastError();
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'data', FormatLbl));
         end;
         GetParameters(Parameters);
-        if not Input.Validate(Argument, Request, Parameters) then
+        if not Input.Validate(Argument, RequestJson, Parameters) then
             exit(false);
-        if Request.GetArray('planningLines').Count() = 0 then
+        if RequestJson.GetArray('planningLines').Count() = 0 then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'planningLines', FormatLbl));
-        foreach Entry in Request.GetArray('planningLines') do begin
+        foreach Entry in RequestJson.GetArray('planningLines') do begin
             if not Entry.IsObject() then
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'planningLines', FormatLbl));
             Line := Entry.AsObject();
@@ -286,16 +286,16 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'planningLines', FormatLbl));
             Selected.Add(SelectionKey);
         end;
-        Request.Get('projectNo', ProjectToken);
+        RequestJson.Get('projectNo', ProjectToken);
         if not Project.Get(ProjectToken.AsValue().AsText()) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'projectNo', FindLbl));
-        if not Template.Get(Request.GetText('templateName')) then
+        if not Template.Get(RequestJson.GetText('templateName')) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'templateName', FindLbl));
-        if not Batch.Get(Template.Name, Request.GetText('batchName')) then
+        if not Batch.Get(Template.Name, RequestJson.GetText('batchName')) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'batchName', FindLbl));
         if (Project.Blocked <> Project.Blocked::" ") or (Project.Status <> Project.Status::Open) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, 'projectNo', BudgetLbl));
-        foreach Entry in Request.GetArray('planningLines') do begin
+        foreach Entry in RequestJson.GetArray('planningLines') do begin
             Line := Entry.AsObject();
             if not Task.Get(Project."No.", Line.GetText('taskNo')) then
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'taskNo', FindLbl));
@@ -315,8 +315,8 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
     end;
 
     [TryFunction]
-    local procedure TryReadRequest(var Argument: Record "Message Argument ori"; var Request: JsonObject)
+    local procedure TryReadRequest(var Argument: Record "Message Argument ori"; var RequestJson: JsonObject)
     begin
-        Request := Argument.GetRequestJson();
+        RequestJson := Argument.GetRequestJson();
     end;
 }

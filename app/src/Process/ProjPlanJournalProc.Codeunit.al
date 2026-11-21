@@ -24,7 +24,7 @@ codeunit 70013428 "Proj. Plan Journal Proc ori"
         JournalLine: Record "Job Journal Line";
         Impl: Codeunit "Proj. Plan Journal Impl ori";
         NativeTransfer: Codeunit "Job Transfer Line";
-        Request: JsonObject;
+        RequestJson: JsonObject;
         Entry: JsonToken;
         Selection: JsonObject;
         ResultLine: JsonObject;
@@ -42,14 +42,14 @@ codeunit 70013428 "Proj. Plan Journal Proc ori"
         Project.LockTable();
         PlanningLine.LockTable();
         JournalLine.LockTable();
-        if not Impl.Validate(Argument, Request) then
+        if not Impl.Validate(Argument, RequestJson) then
             exit;
-        Evaluate(PostingDate, Request.GetText('postingDate'), 9);
-        TemplateName := CopyStr(Request.GetText('templateName'), 1, MaxStrLen(TemplateName));
-        BatchName := CopyStr(Request.GetText('batchName'), 1, MaxStrLen(BatchName));
-        foreach Entry in Request.GetArray('planningLines') do begin
+        Evaluate(PostingDate, RequestJson.GetText('postingDate'), 9);
+        TemplateName := CopyStr(RequestJson.GetText('templateName'), 1, MaxStrLen(TemplateName));
+        BatchName := CopyStr(RequestJson.GetText('batchName'), 1, MaxStrLen(BatchName));
+        foreach Entry in RequestJson.GetArray('planningLines') do begin
             Selection := Entry.AsObject();
-            PlanningLine.Get(Request.GetText('projectNo'), Selection.GetText('taskNo'), Selection.GetInteger('lineNo'));
+            PlanningLine.Get(RequestJson.GetText('projectNo'), Selection.GetText('taskNo'), Selection.GetInteger('lineNo'));
             Quantity := PlanningLine."Remaining Qty.";
             if Selection.Contains('quantity') then
                 Quantity := Selection.GetDecimal('quantity');
