@@ -128,6 +128,9 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | enum value | 70013434 | `Projects.Visit.Stop` |
 | enum value | 70013435 | `Projects.Visit.Complete` |
 | permission set | 70013443 | `PROJ VISIT` |
+| table | 70013470 | `Proj. Technician Setup ori` |
+| page | 70013471 | `Proj. Technician Setup ori` |
+| codeunit | 70013472-70013476 | van parts: `Proj. VisitItem Reg Impl ori`, `Proj. VanStock Get Impl ori`, `Proj. Van Mgt ori`, `Proj. Van Runner ori`, `Proj. Van Contract ori` |
 | test codeunit | 97186 | `Proj. Visit Tests ori` |
 | test codeunit | 97187 | `Proj. Visit Perm Tests ori` |
 | codeunit | 70013424 | `Proj. Plan Purchase Impl ori` |

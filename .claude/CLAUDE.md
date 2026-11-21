@@ -70,6 +70,11 @@
 - Permission set 70013443 `PROJ VISIT`. Tests 97186 `Proj. Visit Tests ori`, 97187 `Proj. Visit Perm Tests ori`.
 - Projects Setup fields: Travel Work Type Code, Mileage Resource No., Rounding Minutes, Client Time Tolerance Hours, Allow Unplanned Tasks. Zero rounding means one minute and zero tolerance means 24 hours, so existing rows keep working. The message path does not insert the setup row.
 
+## Issue #84 object ledger
+
+- Table 70013470 `Proj. Technician Setup ori`, page 70013471, codeunits 70013472-70013476 (`VisitItem Reg Impl`, `VanStock Get Impl`, `Van Mgt`, `Van Runner`, `Van Contract`), enum values 70013470 `Projects.VisitItem.Register` and 70013471 `Projects.VanStock.Get`. Test 97188 `Proj. Van Tests ori`. Stacked on #83 (reuses `Proj. Visit Runner ori` FindOpenLine/CreateJobLine, now internal).
+- `TS Usage Line ori` fields 21-25 are additive. Ambiguous input answers status `Ambiguous` and writes nothing.
+
 ## Issue #86 object ledger
 
 - Codeunits 70013460–70013466: visit report/sign-off implementations, signature manager/transaction, lock guard, contract and native manager unlock. Report 70013460; enum values 70013460/70013461. Fields 23–33 on visit table 70013433. Tests 97194–97196; test-only ownership probe page 97197; test seed enumextension/value 97196.

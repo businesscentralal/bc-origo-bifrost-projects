@@ -49,6 +49,10 @@ codeunit 70013403 "TS Usage Runner ori"
         Evaluate(Usage.Quantity, Mgt.GetText(Params, 'quantity'), 9);
         Usage."Unit of Measure Code" := CopyStr(Mgt.GetText(Params, 'unitOfMeasure'), 1, MaxStrLen(Usage."Unit of Measure Code"));
         Usage.Description := CopyStr(Mgt.GetText(Params, 'description'), 1, MaxStrLen(Usage.Description));
+        Usage."Location Code" := CopyStr(Mgt.GetText(Params, 'locationCode'), 1, MaxStrLen(Usage."Location Code"));
+        Usage."Bin Code" := CopyStr(Mgt.GetText(Params, 'binCode'), 1, MaxStrLen(Usage."Bin Code"));
+        Usage."Lot No." := CopyStr(Mgt.GetText(Params, 'lotNo'), 1, MaxStrLen(Usage."Lot No."));
+        Usage."Serial No." := CopyStr(Mgt.GetText(Params, 'serialNo'), 1, MaxStrLen(Usage."Serial No."));
         Usage.Status := Usage.Status::Open;
         Usage.Insert();
         Lines.Add(Mgt.LineNode(Usage, true));

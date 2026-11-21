@@ -244,7 +244,7 @@ codeunit 70013440 "Proj. Visit Runner ori"
         exit(Usage."Entry No.");
     end;
 
-    local procedure CreateJobLine(Header: Record "Time Sheet Header"; ProjectNo: Code[20]; TaskNo: Code[20]; WorkType: Code[10]; var Line: Record "Time Sheet Line")
+    internal procedure CreateJobLine(Header: Record "Time Sheet Header"; ProjectNo: Code[20]; TaskNo: Code[20]; WorkType: Code[10]; var Line: Record "Time Sheet Line")
     begin
         // Same order as Projects.MyTimeSheetLine.Set: insert the open line, then validate.
         // Validating the work type before insert does not survive Time Sheet Line.OnInsert,
@@ -293,7 +293,7 @@ codeunit 70013440 "Proj. Visit Runner ori"
         Line.Modify(true);
     end;
 
-    local procedure FindOpenLine(SheetNo: Code[20]; ProjectNo: Code[20]; TaskNo: Code[20]; WorkType: Code[10]; var Line: Record "Time Sheet Line"): Boolean
+    internal procedure FindOpenLine(SheetNo: Code[20]; ProjectNo: Code[20]; TaskNo: Code[20]; WorkType: Code[10]; var Line: Record "Time Sheet Line"): Boolean
     begin
         Line.ReadIsolation := IsolationLevel::UpdLock;
         Line.SetRange("Time Sheet No.", SheetNo);

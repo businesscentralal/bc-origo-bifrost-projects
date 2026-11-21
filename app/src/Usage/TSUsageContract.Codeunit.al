@@ -15,6 +15,10 @@ codeunit 70013404 "TS Usage Contract ori"
         DateTxt: Label 'The usage date (YYYY-MM-DD), inside the week of the time sheet.', Comment = 'is-IS=Dagsetning notkunar (ÁÁÁÁ-MM-DD), innan viku tímaskýrslunnar.';
         QuantityTxt: Label 'The quantity used, greater than zero.', Comment = 'is-IS=Magnið sem var notað, stærra en núll.';
         UnitTxt: Label 'Optional unit of measure code.', Comment = 'is-IS=Valfrjáls einingarkóði.';
+        LocationTxt: Label 'Optional location code the item is taken from (Item usage only).', Comment = 'is-IS=Valfrjáls staðsetningarkóði sem varan er tekin úr (aðeins vörunotkun).';
+        BinTxt: Label 'Optional bin code at that location. Needs locationCode.', Comment = 'is-IS=Valfrjáls hólfkóði á þeirri staðsetningu. Krefst locationCode.';
+        LotTxt: Label 'Lot number, required when the item tracking code uses lot numbers.', Comment = 'is-IS=Lotunúmer, krafist þegar rekjanleikakóði vörunnar notar lotunúmer.';
+        SerialTxt: Label 'Serial number, required when the item tracking code uses serial numbers. Quantity must be 1.', Comment = 'is-IS=Raðnúmer, krafist þegar rekjanleikakóði vörunnar notar raðnúmer. Magn verður að vera 1.';
         DescriptionTxt: Label 'Optional description, at most 100 characters.', Comment = 'is-IS=Valfrjáls lýsing, mest 100 stafir.';
         EntryNosTxt: Label 'Optional array of usage entry numbers. Without it every eligible line of the time sheet is used.', Comment = 'is-IS=Valfrjáls listi af færslunúmerum notkunar. Án hans eru allar gjaldgengar línur tímaskýrslunnar notaðar.';
         CommentTxt: Label 'Optional comment, at most 250 characters.', Comment = 'is-IS=Valfrjáls athugasemd, mest 250 stafir.';
@@ -42,6 +46,10 @@ codeunit 70013404 "TS Usage Contract ori"
                     Parameters.Add(C.Parameter('quantity', 'number', true, QuantityTxt));
                     Parameters.Add(C.Parameter('unitOfMeasure', 'string', false, UnitTxt));
                     Parameters.Add(C.Parameter('description', 'string', false, DescriptionTxt));
+                    Parameters.Add(C.Parameter('locationCode', 'string', false, LocationTxt));
+                    Parameters.Add(C.Parameter('binCode', 'string', false, BinTxt));
+                    Parameters.Add(C.Parameter('lotNo', 'string', false, LotTxt));
+                    Parameters.Add(C.Parameter('serialNo', 'string', false, SerialTxt));
                 end;
             2, 3, 4:
                 begin
