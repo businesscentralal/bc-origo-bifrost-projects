@@ -25,8 +25,8 @@ codeunit 97170 "Proj. Indent Perm Tests ori"
     [Test]
     procedure AC04_ReadWithNativeModify()
     var
-        Lower: Codeunit "Library - Lower Permissions";
         Task: Record "Job Task";
+        Lower: Codeunit "Library - Lower Permissions";
         Assert: Codeunit "Library Assert";
     begin
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');

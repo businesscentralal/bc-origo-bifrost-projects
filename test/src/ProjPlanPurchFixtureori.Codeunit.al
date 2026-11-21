@@ -126,10 +126,10 @@ codeunit 97173 "Proj. Plan Purch Fixture ori"
     /// <summary>Seeds raw item demand for one project without borrowing demo master data.</summary>
     internal procedure Seed(AllowPosting: Boolean) Request: JsonObject
     var
-        PlanningRequest: JsonObject;
         Item: Record Item;
         Project: Record Job;
         Planning: Record "Job Planning Line";
+        PlanningRequest: JsonObject;
     begin
         Initialize(AllowPosting);
         PlanningRequest := SeedProjectAndItem();

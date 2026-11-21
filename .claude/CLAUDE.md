@@ -69,3 +69,8 @@
 - Enum values 70013433 `Projects.Visit.Start`, 70013434 `Projects.Visit.Stop`, 70013435 `Projects.Visit.Complete`.
 - Permission set 70013443 `PROJ VISIT`. Tests 97186 `Proj. Visit Tests ori`, 97187 `Proj. Visit Perm Tests ori`.
 - Projects Setup fields: Travel Work Type Code, Mileage Resource No., Rounding Minutes, Client Time Tolerance Hours, Allow Unplanned Tasks. Zero rounding means one minute and zero tolerance means 24 hours, so existing rows keep working. The message path does not insert the setup row.
+
+## Issue #86 object ledger
+
+- Codeunits 70013460–70013466: visit report/sign-off implementations, signature manager/transaction, lock guard, contract and native manager unlock. Report 70013460; enum values 70013460/70013461. Fields 23–33 on visit table 70013433. Tests 97194–97196; test-only ownership probe page 97197; test seed enumextension/value 97196.
+- Foundation floor 28.0.13.0: first merged NormalizeMetadata source (core da140213). No feature-app dependency. PROJ FIELD TECH gains Contact read; native manager unlock checks Projects Setup write capability as well as its Full-only execute grant.
