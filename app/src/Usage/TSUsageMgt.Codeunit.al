@@ -7,6 +7,8 @@ using Microsoft.Projects.Resources.Journal;
 using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
+using System.Security.AccessControl;
+using System.Security.User;
 
 /// <summary>
 /// Request checks, dispatch and reads for the Projects.Usage.* message types. Writes run in
@@ -38,6 +40,7 @@ codeunit 70013400 "TS Usage Mgt ori"
         StateMsg: Label 'The usage line is in a state that does not allow this action.', Comment = 'is-IS=Notkunarlínan er í stöðu sem leyfir ekki þessa aðgerð.';
         StateNextTxt: Label 'Check the state with Projects.Usage.List.', Comment = 'is-IS=Athugaðu stöðuna með Projects.Usage.List.';
         PermissionMsg: Label 'The caller lacks permission for this usage action.', Comment = 'is-IS=Kallandi hefur ekki heimild fyrir þessari notkunaraðgerð.';
+        TechnicianPermissionNextTxt: Label 'Assign BIFROST Read ori and PROJ FIELD TECH for your own usage, or BIFROST Full ori and PROJ USAGE for back-office actions.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.';
         PermissionNextTxt: Label 'Assign the BIFROST Full ori and PROJ USAGE permission sets (BIFROST Read ori and PROJ USAGE for List), or the journal permissions the transfer needs.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.';
         IsolatedMsg: Label 'This operation requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslu.';
         IsolatedNextTxt: Label 'Run this action outside an uncommitted batch.', Comment = 'is-IS=Keyrðu þessa aðgerð utan óstaðfestrar lotu.';
@@ -50,11 +53,20 @@ codeunit 70013400 "TS Usage Mgt ori"
         Header: Record "Time Sheet Header";
         Line: Record "Time Sheet Line";
         Usage: Record "TS Usage Line ori";
+        TempPermission: Record "Expanded Permission" temporary;
+        UserPermissions: Codeunit "User Permissions";
     begin
         if not (Header.ReadPermission() and Line.ReadPermission() and Usage.ReadPermission()) then
             exit(false);
         if Operation = 7 then
             exit(true);
+        // WritePermission requires delete as well; technician actions deliberately have no delete grant.
+        if Operation in [1, 2] then begin
+            TempPermission := UserPermissions.GetEffectivePermission(TempPermission."Object Type"::"Table Data", Database::"TS Usage Line ori");
+            if Operation = 1 then
+                exit(TempPermission."Insert Permission" = TempPermission."Insert Permission"::Yes);
+            exit(TempPermission."Modify Permission" = TempPermission."Modify Permission"::Yes);
+        end;
         exit(Usage.WritePermission());
     end;
 
@@ -62,7 +74,10 @@ codeunit 70013400 "TS Usage Mgt ori"
     procedure Execute(var Argument: Record "Message Argument ori"; Operation: Integer)
     begin
         if not CanUse(Operation) then begin
-            Fail(Argument, "Bifrost Error Code ori"::PermissionDenied, PermissionMsg, '', PermissionNextTxt);
+            if Operation in [1, 2, 7] then
+                Fail(Argument, "Bifrost Error Code ori"::PermissionDenied, PermissionMsg, '', TechnicianPermissionNextTxt)
+            else
+                Fail(Argument, "Bifrost Error Code ori"::PermissionDenied, PermissionMsg, '', PermissionNextTxt);
             exit;
         end;
         case Operation of

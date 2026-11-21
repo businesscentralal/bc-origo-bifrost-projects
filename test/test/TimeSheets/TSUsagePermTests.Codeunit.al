@@ -25,8 +25,8 @@ codeunit 97154 "TS Usage Perm Tests"
     var
         GrantTok: Label '%1 %2 %3', Locked = true, Comment = '%1 = object type, %2 = object ID, %3 = granted levels';
         OperationAvailableMsg: Label 'Operation %1 must be available.', Locked = true, Comment = '%1 = usage operation number';
-        UsageNextStepTxt: Label 'Assign the BIFROST Full ori and PROJ USAGE permission sets (BIFROST Read ori and PROJ USAGE for List), or the journal permissions the transfer needs.', Locked = true;
-        UsageNextStepIsTxt: Label 'Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.', Locked = true;
+        UsageNextStepTxt: Label 'Assign BIFROST Read ori and PROJ FIELD TECH for your own usage, or BIFROST Full ori and PROJ USAGE for back-office actions.', Locked = true;
+        UsageNextStepIsTxt: Label 'Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.', Locked = true;
 
     [Test]
     procedure ReadRole_CanList_CannotRegister()
