@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #79
+
+- Add `Projects.Task.CopyFrom` for copying a task range and planning lines into an existing project, including native posted Usage/Sale conversion. Refuse collisions, invalid target states and malformed requests without changes; require confirmation of the task count.
+- New codeunits 70013425/70013426 and enum value 70013425; tests 97175/97176 and test-only fixtures 97177/97178. Full-role execution only, caller-owned native rights, English help and Icelandic discovery/refusals. Existing new-target copy help points to the new operation. No UI change.
 ### Added — #74
 
 - `Projects.PlanningLine.CreatePurchaseOrder`: rollback-only preview and confirmed native purchase creation for uncovered project item demand, vendor overrides and native task/planning-line links. Preserve existing caller order-planning lines; consume only scratch created by this call (Gunnar 20 November approval).
