@@ -75,3 +75,7 @@
 - Table 70013470 `Proj. Technician Setup ori`, page 70013471, codeunits 70013472-70013476 (`VisitItem Reg Impl`, `VanStock Get Impl`, `Van Mgt`, `Van Runner`, `Van Contract`), enum values 70013470 `Projects.VisitItem.Register` and 70013471 `Projects.VanStock.Get`. Test 97188 `Proj. Van Tests ori`. Stacked on #83 (reuses `Proj. Visit Runner ori` FindOpenLine/CreateJobLine, now internal).
 - `TS Usage Line ori` fields 21-25 are additive. Ambiguous input answers status `Ambiguous` and writes nothing.
 
+## Issue #86 object ledger
+
+- Codeunits 70013460–70013466: visit report/sign-off implementations, signature manager/transaction, lock guard, contract and native manager unlock. Report 70013460; enum values 70013460/70013461. Fields 23–33 on visit table 70013433. Tests 97194–97196; test-only ownership probe page 97197; test seed enumextension/value 97196.
+- Foundation floor 28.0.13.0: first merged NormalizeMetadata source (core da140213). No feature-app dependency. PROJ FIELD TECH gains Contact read; native manager unlock checks Projects Setup write capability as well as its Full-only execute grant.

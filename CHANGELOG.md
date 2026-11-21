@@ -5,6 +5,12 @@
 - Add `Projects.VisitItem.Register` (parts used from the van, resolved by item no., reference or description, written as Open usage lines at the technician's van location; nothing is written when an input is ambiguous; shortages are warnings) and `Projects.VanStock.Get` (van stock after pending usage, below-minimum flag).
 - `Projects.Usage.Register` accepts optional `locationCode`, `binCode`, `lotNo`, `serialNo`; `TS Usage Line ori` gets additive fields 21-25 (location, bin, lot, serial, client request id) and key `Request`; `Transfer` carries location, bin (at bin-mandatory locations) and lot/serial tracking to the journal line. Calls without the new keys answer as before.
 - New objects: table 70013470 `Proj. Technician Setup ori`, page 70013471, codeunits 70013472 `Proj. VisitItem Reg Impl ori`, 70013473 `Proj. VanStock Get Impl ori`, 70013474 `Proj. Van Mgt ori`, 70013475 `Proj. Van Runner ori`, 70013476 `Proj. Van Contract ori`; enum values 70013470/70013471. Tests 97188. `PROJ USAGE` gains Reservation Entry RIMD and Item Tracking Code R; `PROJ FIELD TECH` gains Bin, Item Tracking Code, Item Unit of Measure and technician setup read; `PROJ TS ADMIN` gains technician setup RIMD.
+## Unreleased — #86
+
+- Add `Projects.VisitReport.Get` and `Projects.Visit.SignOff`: quantity-only previews, customer signatures and photos consumed atomically from Foundation staging, and signed-visit locking. Stop, Complete and shared usage registration refuse a locked visit. The manager-only native unlock entry point checks Projects Setup write capability; technician writes cannot unlock.
+- Word report 70013460 renders visit time, usage, outcome and signature in English and Icelandic. Projects references no other feature app. Foundation minimum is 28.0.13.0, the first merged `NormalizeMetadata` version.
+- Added codeunits 70013460–70013466, report 70013460, enum values 70013460/70013461; additive fields 23–33 and an index on table 70013433. Tests 97194–97196; test-only ownership probe page 97197 (97196 also a test-only seed enum extension). Existing test analyzer naming/declaration warnings corrected mechanically, without changing assertions.
+- Team Member SaaS proof remains NOT_RUN pending #82. The exact `Projects.VisitItem.Register` integration test awaits the sibling #84 implementation.
 
 ## Unreleased — #83
 

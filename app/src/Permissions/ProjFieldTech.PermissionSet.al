@@ -1,5 +1,6 @@
 namespace Origo.Bifrost.Projects;
 
+using Microsoft.CRM.Contact;
 using Microsoft.Foundation.NoSeries;
 using Microsoft.Foundation.Period;
 using Microsoft.Inventory.Item.Catalog;
@@ -30,6 +31,7 @@ permissionset 70013403 "PROJ FIELD TECH"
     Caption = 'Projects Field Technician', Comment = 'is-IS=Verkefni - vettvangstæknimaður';
     IncludedPermissionSets = "PROJ TS SELF", "PROJ VISIT";
     Permissions =
+        tabledata Contact = R,
         tabledata "Job Planning Line" = R,
         tabledata Customer = R,
         tabledata "Ship-to Address" = R,

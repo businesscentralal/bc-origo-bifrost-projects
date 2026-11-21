@@ -24,11 +24,11 @@ codeunit 97179 "Proj. Plan Journal Tests ori"
     [Test]
     procedure AC01_TransferAndFoundationPost()
     var
-        Request: JsonObject;
-        Response: JsonObject;
         Plan: Record "Job Planning Line";
         Journal: Record "Job Journal Line";
         Ledger: Record "Job Ledger Entry";
+        Request: JsonObject;
+        Response: JsonObject;
     begin
         // Story #81, AC01 | Time: own open posting date | Risk: Foundation journal posting
         Request := Fixture.Seed();
@@ -59,14 +59,14 @@ codeunit 97179 "Proj. Plan Journal Tests ori"
     [Test]
     procedure AC02_PartialAppendPreservesExisting()
     var
-        Request: JsonObject;
-        Selection: JsonObject;
-        Lines: JsonArray;
-        Response: JsonObject;
         Existing: Record "Job Journal Line";
         After: Record "Job Journal Line";
         BeforeRef: RecordRef;
         AfterRef: RecordRef;
+        Request: JsonObject;
+        Selection: JsonObject;
+        Lines: JsonArray;
+        Response: JsonObject;
         Index: Integer;
     begin
         // Story #81, AC02 | Time: own open posting date | Risk: None
@@ -111,9 +111,9 @@ codeunit 97179 "Proj. Plan Journal Tests ori"
     [Test]
     procedure AC03_BusinessPreconditions()
     var
-        Request: JsonObject;
         Project: Record Job;
         Plan: Record "Job Planning Line";
+        Request: JsonObject;
     begin
         // Story #81, AC03 | Time: own open posting date | Risk: None
         Request := Fixture.Seed();
@@ -255,8 +255,8 @@ codeunit 97179 "Proj. Plan Journal Tests ori"
     [Test]
     procedure AC03_NativeFailureRollsBack()
     var
-        Request: JsonObject;
         Plan: Record "Job Planning Line";
+        Request: JsonObject;
         OriginalLink: Boolean;
         OriginalQty: Decimal;
     begin
@@ -312,11 +312,11 @@ codeunit 97179 "Proj. Plan Journal Tests ori"
     [Test]
     procedure AC03_DispatchedRefusalIsLogged()
     var
+        ResponseBlob: Codeunit "Temp Blob";
+        MessageRef: RecordRef;
         Request: JsonObject;
         Response: JsonObject;
         MessageId: Guid;
-        MessageRef: RecordRef;
-        ResponseBlob: Codeunit "Temp Blob";
         ResponseStream: InStream;
     begin
         // Story #81, AC03 | Time: none | Risk: Foundation dispatch and read-only log inspection
