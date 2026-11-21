@@ -423,7 +423,7 @@ codeunit 70013452 "Proj. Follow-up Mgt ori"
         Header.MarkedOnly(true);
     end;
 
-    local procedure ListRequests(Request: JsonObject) Response: JsonObject
+    local procedure ListRequests(RequestJson: JsonObject) Response: JsonObject
     var
         Header: Record "Proj. Follow-up Request ori";
         Requests: JsonArray;
@@ -431,21 +431,21 @@ codeunit 70013452 "Proj. Follow-up Mgt ori"
         Take: Integer;
     begin
         FilterVisible(Header);
-        if Request.Contains('projectNo') then
-            Header.SetRange("Project No.", TextValue(Request, 'projectNo'));
-        if Request.Contains('resourceNo') then
-            Header.SetRange("Resource No.", TextValue(Request, 'resourceNo'));
-        if Request.Contains('status') then
-            case TextValue(Request, 'status') of
+        if RequestJson.Contains('projectNo') then
+            Header.SetRange("Project No.", TextValue(RequestJson, 'projectNo'));
+        if RequestJson.Contains('resourceNo') then
+            Header.SetRange("Resource No.", TextValue(RequestJson, 'resourceNo'));
+        if RequestJson.Contains('status') then
+            case TextValue(RequestJson, 'status') of
                 'Open': Header.SetRange(Status, Header.Status::Open);
                 'Converted': Header.SetRange(Status, Header.Status::Converted);
                 'Rejected': Header.SetRange(Status, Header.Status::Rejected);
             end;
         Take := 50;
-        if Request.Contains('take') then
-            Take := IntegerValue(Request, 'take');
-        if Request.Contains('skip') then
-            Skip := IntegerValue(Request, 'skip');
+        if RequestJson.Contains('take') then
+            Take := IntegerValue(RequestJson, 'take');
+        if RequestJson.Contains('skip') then
+            Skip := IntegerValue(RequestJson, 'skip');
         if Header.FindSet() then
             repeat
                 if Skip > 0 then
