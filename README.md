@@ -23,6 +23,9 @@ Native time sheets belong to **Bifrost Projects**: create, submit, approve, reje
 
 | Type | Data | Result |
 | --- | --- | --- |
+| `Projects.Visit.Start` | `projectNo`, `taskNo`, `kind` (`travel` or `work`), optional `at`, `autoStop`, `clientRequestId` | Opens one running visit. `autoStop` first adds the running visit's rounded hours. |
+| `Projects.Visit.Stop` | optional `visitId`, `at`, `note`, `clientRequestId` | Stops the running visit and adds the rounded hours to an open job line. |
+| `Projects.Visit.Complete` | `visitId` or `projectNo`+`taskNo`, optional `mileageKm`, `outcome`, `clientRequestId` | Marks the visit completed. Kilometres become an open usage line and nothing is submitted. |
 | `Projects.Project.Create` | `projectNo`, optional fields, `tasks[]` | Creates a project and optional nested tasks/planning lines atomically. |
 | `Projects.Project.Update` | `projectNo`, changed fields, optional `tasks[]` | Updates supplied fields; nested records explicitly create or update. |
 | `Projects.Task.Create` | `projectNo`, `taskNo`, fields, `planningLines[]` | Creates a task and optional planning lines. |
@@ -106,6 +109,22 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 
 | Type | ID | Name |
 | --- | --- | --- |
+| table | 70013433 | `Proj. Field Visit ori` |
+| enum | 70013434 | `Proj. Visit Status ori` |
+| enum | 70013435 | `Proj. Visit Kind ori` |
+| codeunit | 70013436 | `Proj. Visit Start Impl ori` |
+| codeunit | 70013437 | `Proj. Visit Stop Impl ori` |
+| codeunit | 70013438 | `Proj. Visit Complete Impl ori` |
+| codeunit | 70013439 | `Proj. Visit Mgt ori` |
+| codeunit | 70013440 | `Proj. Visit Runner ori` |
+| codeunit | 70013441 | `Proj. Visit Contract ori` |
+| codeunit | 70013442 | `Proj. Visit Restrict ori` |
+| enum value | 70013433 | `Projects.Visit.Start` |
+| enum value | 70013434 | `Projects.Visit.Stop` |
+| enum value | 70013435 | `Projects.Visit.Complete` |
+| permission set | 70013443 | `PROJ VISIT` |
+| test codeunit | 97186 | `Proj. Visit Tests ori` |
+| test codeunit | 97187 | `Proj. Visit Perm Tests ori` |
 | codeunit | 70013424 | `Proj. Plan Purchase Impl ori` |
 | codeunit | 70013421 | `Proj. Plan Purchase Proc ori` |
 | codeunit | 70013422 | `Proj. Plan Purchase Result ori` |

@@ -27,7 +27,7 @@ permissionset 70013403 "PROJ FIELD TECH"
 {
     Assignable = true;
     Caption = 'Projects Field Technician', Comment = 'is-IS=Verkefni - vettvangstæknimaður';
-    IncludedPermissionSets = "PROJ TS SELF";
+    IncludedPermissionSets = "PROJ TS SELF", "PROJ VISIT";
     Permissions =
         tabledata "Job Planning Line" = R,
         tabledata Customer = R,

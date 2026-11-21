@@ -192,4 +192,22 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.PlanningLine.TransferToJournal', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Plan Journal Impl ori", "Msg Discovery ori" = "Proj. Plan Journal Impl ori", "Msg Contract ori" = "Proj. Plan Journal Impl ori";
     }
+    /// <summary>Starts a travel or work visit on the caller's time sheet.</summary>
+    value(70013433; "Projects.Visit.Start")
+    {
+        Caption = 'Projects.Visit.Start', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Visit Start Impl ori", "Msg Discovery ori" = "Proj. Visit Start Impl ori", "Msg Contract ori" = "Proj. Visit Start Impl ori";
+    }
+    /// <summary>Stops a running visit and adds the rounded hours.</summary>
+    value(70013434; "Projects.Visit.Stop")
+    {
+        Caption = 'Projects.Visit.Stop', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Visit Stop Impl ori", "Msg Discovery ori" = "Proj. Visit Stop Impl ori", "Msg Contract ori" = "Proj. Visit Stop Impl ori";
+    }
+    /// <summary>Completes a visit and can write open mileage usage.</summary>
+    value(70013435; "Projects.Visit.Complete")
+    {
+        Caption = 'Projects.Visit.Complete', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Visit Complete Impl ori", "Msg Discovery ori" = "Proj. Visit Complete Impl ori", "Msg Contract ori" = "Proj. Visit Complete Impl ori";
+    }
 }
