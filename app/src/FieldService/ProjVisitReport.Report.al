@@ -9,6 +9,7 @@ report 70013460 "Proj. Visit Report ori"
 {
     Caption = 'Visit Report', Comment = 'is-IS=Heimsóknarskýrsla';
     DefaultRenderingLayout = VisitWord;
+    WordMergeDataItem = Visit;
     UsageCategory = None;
     ApplicationArea = All;
     dataset

@@ -90,7 +90,7 @@ codeunit 97195 "Proj. Visit Sign Fixture ori"
         Visit.Insert();
     end;
 
-    /// <summary>Stages a synthetic one-pixel PNG; never a customer signature.</summary>
+    /// <summary>Stages a synthetic PNG; never a customer signature.</summary>
     procedure StageImage(ContentType: Text; ValidBytes: Boolean): Guid
     var
         Staging: Codeunit "Blob Staging ori";
@@ -125,7 +125,7 @@ codeunit 97195 "Proj. Visit Sign Fixture ori"
         exit(Staging.Create(Input, 'synthetic-visit.pdf', 'application/pdf', 'Projects #86 test'));
     end;
     /// <summary>Checks the actual merged Word document, so a nonempty but blank PDF cannot satisfy report tests.</summary>
-    procedure RenderedWordContains(Visit: Record "Proj. Field Visit ori"; Expected: Text): Boolean
+    procedure RenderedWordText(Visit: Record "Proj. Field Visit ori"): Text
     var
         WordBlob: Codeunit "Temp Blob";
         XmlBlob: Codeunit "Temp Blob";
@@ -133,6 +133,8 @@ codeunit 97195 "Proj. Visit Sign Fixture ori"
         RecRef: RecordRef;
         Output: OutStream;
         Input: InStream;
+        Document: XmlDocument;
+        Root: XmlElement;
         DocumentText: Text;
         LineText: Text;
     begin
@@ -150,7 +152,9 @@ codeunit 97195 "Proj. Visit Sign Fixture ori"
             Input.ReadText(LineText);
             DocumentText += LineText;
         end;
-        exit(DocumentText.Contains(Expected) and DocumentText.Contains('Synthetic equipment repaired') and
-             DocumentText.Contains('Synthetic part 1') and DocumentText.Contains('Synthetic part 2'));
+        XmlDocument.ReadFrom(DocumentText, Document);
+        Document.GetRoot(Root);
+        DocumentText := Root.InnerText();
+        exit(DocumentText);
     end;
 }

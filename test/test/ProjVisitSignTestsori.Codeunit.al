@@ -467,13 +467,20 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         Id: Guid;
         Prefix: Text;
         PreviousLanguage: Integer;
+        ReportText: Text;
     begin
         Fixture.Seed(Visit);
         Assert.AreEqual('Success', TextOf(Run("Message Type ori"::"Projects.Visit.SignOff", SignRequest(Visit, Fixture.StageImage('image/png', true))), 'status'), 'Signed report fixture.');
         Visit.Get(Visit."Entry No.");
         PreviousLanguage := GlobalLanguage();
         GlobalLanguage(LanguageId);
-        Assert.IsTrue(Fixture.RenderedWordContains(Visit, 'Synthetic signer'), 'Merged report contains signer, outcome and both usage lines.');
+        ReportText := Fixture.RenderedWordText(Visit);
+        GlobalLanguage(PreviousLanguage);
+        Assert.IsTrue(ReportText.Contains('Synthetic signer'), 'Merged report contains signer: ' + ReportText);
+        Assert.IsTrue(ReportText.Contains('Synthetic equipment repaired'), 'Merged report contains outcome.');
+        Assert.IsTrue(ReportText.Contains('Synthetic part 1'), 'Merged report contains first usage line.');
+        Assert.IsTrue(ReportText.Contains('Synthetic part 2'), 'Merged report contains second usage line.');
+        GlobalLanguage(LanguageId);
         Id := Fixture.Render(Visit);
         GlobalLanguage(PreviousLanguage);
         Assert.IsTrue(Staging.Take(Id, Blob), 'PDF taken from staging.');

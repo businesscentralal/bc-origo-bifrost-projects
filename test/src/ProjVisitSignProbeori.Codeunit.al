@@ -46,6 +46,7 @@ codeunit 97196 "Proj. Visit Sign Probe ori" implements "Msg Interface ori"
         Base64: Codeunit "Base64 Convert";
         Blob: Codeunit "Temp Blob";
         Input: InStream;
+
         SignatureId: Guid;
         PdfId: Guid;
         Request: JsonObject;
