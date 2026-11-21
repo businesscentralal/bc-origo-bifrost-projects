@@ -103,6 +103,18 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 
 | Type | ID | Name |
 | --- | --- | --- |
+| codeunit | 70013424 | `Proj. Plan Purchase Impl ori` |
+| codeunit | 70013421 | `Proj. Plan Purchase Proc ori` |
+| codeunit | 70013422 | `Proj. Plan Purchase Result ori` |
+| codeunit | 70013423 | `Proj. Plan Purchase Scope ori` |
+| enum value | 70013420 | `Projects.PlanningLine.CreatePurchaseOrder` |
+| test codeunit | 97171 | `Proj. Plan Purchase Tests ori` |
+| test codeunit | 97172 | `Proj Plan Purch Perm Tests ori` |
+| test permission set | 97172 | `ProjNoPurch ori` (nonassignable) |
+| test codeunit | 97173 | `Proj. Plan Purch Fixture ori` |
+| test codeunit | 97174 | `Proj. Plan Purch Seed ori` |
+| test enum extension/value | 97173 | `Proj. Plan Purch Types ori` / `Test.PlanPurchase74.Seed` |
+| test page | 97173 | `Proj. Plan Purch Cleanup ori` |
 | codeunit | 70013500 | `Projects Gate ori` |
 | codeunit | 70013501 | `Projects Registration ori` |
 | codeunit | 70013502 | `Projects Install ori` |
@@ -192,3 +204,10 @@ The operation is a plain write with no `expectedCount` (Architect ruling 20 Nove
 ### Reverse posted WIP
 
 `Projects.WIP.Reverse` uses the **Reverse Only** option of **Post WIP to G/L**. Send `projectNo`, required ISO `postingDate`, and `documentNo` (1–20 characters). Preview without `expectedCount`, then confirm the number of eligible posted WIP entries. The operation posts correcting G/L entries; it preserves calculated WIP and returns `reversedEntries`, current `wip`, `summary` and `nextStep: Projects.WIP.Calculate`. Completed WIP, an earlier posting date, missing candidates and stale confirmation are refused without changes. Requires **BIFROST Full ori** and native project/posting permissions.
+
+
+### Purchase orders from project planning lines (#74)
+
+`Projects.PlanningLine.CreatePurchaseOrder` previews uncovered item demand on one open, unblocked project. Set `preview: true` to calculate without retaining changes. Then create with `expectedCount` equal to the number of proposals. Purchase orders are grouped by vendor and carry native project task and planning-line links; receiving and invoicing posts project usage.
+
+Select an optional exact `taskNo` or `planningLineNos` array, never both. Vendor overrides contain `planningLineNo` and `vendorNo`. Existing caller lines on Order Planning cause refusal before calculation. Only this call's own scratch lines are consumed. Non-item, billable-only and covered lines are returned in `skipped`. No posting or UI change. Company-wide planning belongs in the requisition or planning worksheet.

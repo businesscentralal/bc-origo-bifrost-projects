@@ -1,5 +1,11 @@
 # Changelog
 
+### Added — #74
+
+- `Projects.PlanningLine.CreatePurchaseOrder`: rollback-only preview and confirmed native purchase creation for uncovered project item demand, vendor overrides and native task/planning-line links. Preserve existing caller order-planning lines; consume only scratch created by this call (Gunnar 20 November approval).
+- Codeunits 70013421–70013424, enum value 70013420; tests 97171–97172. English help, translated discovery/refusals, Full-role execution grants only; no UI change.
+
+
 ### Added
 - #78: `Projects.Task.Indent` runs Indent Project Tasks without dialogs, returning each task's indentation, totaling and changed flag plus task/changed counts. A native structural error rolls back all changes; retries are idempotent. Requires Full and native task write rights; no posting gate or new Create flags. New codeunit and enum value 70013406; tests 97114/97115 and test-only permission set 97115. English chapters and Icelandic discovery/refusals are synchronized.
 ## Unreleased — #76

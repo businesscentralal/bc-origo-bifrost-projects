@@ -12,6 +12,13 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Implementation = "Msg Interface ori" = "Proj. WIP Reverse Impl ori", "Msg Discovery ori" = "Proj. WIP Reverse Impl ori", "Msg Contract ori" = "Proj. WIP Reverse Impl ori", "Msg Confirm ori" = "Proj. WIP Reverse Impl ori";
     }
 
+    /// <summary>Creates project-linked purchase orders, or previews without retaining changes.</summary>
+    value(70013420; "Projects.PlanningLine.CreatePurchaseOrder")
+    {
+        Caption = 'Projects.PlanningLine.CreatePurchaseOrder', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Plan Purchase Impl ori", "Msg Discovery ori" = "Proj. Plan Purchase Impl ori", "Msg Contract ori" = "Proj. Plan Purchase Impl ori", "Msg Confirm ori" = "Proj. Plan Purchase Impl ori";
+    }
+
     value(70013500; "Projects.Project.Create")
     {
         Caption = 'Projects.Project.Create', Locked = true;
