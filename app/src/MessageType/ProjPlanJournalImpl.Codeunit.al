@@ -258,6 +258,7 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
         Input: Codeunit "Projects Followup Input ori";
         Parameters: JsonArray;
         Entry: JsonToken;
+        ProjectToken: JsonToken;
         Line: JsonObject;
         Selected: List of [Text];
         SelectionKey: Text;
@@ -285,7 +286,8 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'planningLines', FormatLbl));
             Selected.Add(SelectionKey);
         end;
-        if not Project.Get(Request.GetText('projectNo')) then
+        Request.Get('projectNo', ProjectToken);
+        if not Project.Get(ProjectToken.AsValue().AsText()) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'projectNo', FindLbl));
         if not Template.Get(Request.GetText('templateName')) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'templateName', FindLbl));
