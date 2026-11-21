@@ -217,3 +217,19 @@ The operation is a plain write with no `expectedCount` (Architect ruling 20 Nove
 `Projects.PlanningLine.CreatePurchaseOrder` previews uncovered item demand on one open, unblocked project. Set `preview: true` to calculate without retaining changes. Then create with `expectedCount` equal to the number of proposals. Purchase orders are grouped by vendor and carry native project task and planning-line links; receiving and invoicing posts project usage.
 
 Select an optional exact `taskNo` or `planningLineNos` array, never both. Vendor overrides contain `planningLineNo` and `vendorNo`. Existing caller lines on Order Planning cause refusal before calculation. Only this call's own scratch lines are consumed. Non-item, billable-only and covered lines are returned in `skipped`. No posting or UI change. Company-wide planning belongs in the requisition or planning worksheet.
+
+### Planning line transfer to journal (#81)
+
+`Projects.PlanningLine.TransferToJournal` creates linked project journal lines from budget planning lines. Send `projectNo`, a nonempty `planningLines` array (`taskNo`, `lineNo`, optional positive `quantity`), `templateName`, `batchName`, and `postingDate`. Omitted quantity uses the remaining quantity. Existing journal lines stay unchanged, and nothing is posted. Check with `Projects.ProjectJournal.Check`, then post with `Projects.ProjectJournal.Post`.
+
+| Object | ID | Purpose |
+| --- | --- | --- |
+| Proj. Plan Journal Impl ori | 70013427 | Contract, discovery, validation and permissions |
+| Proj. Plan Journal Proc ori | 70013428 | Atomic native linked journal creation |
+| Projects.PlanningLine.TransferToJournal | 70013426 | Message enum value |
+| Proj. Plan Journal Tests ori | 97179 | Functional and bilingual acceptance tests |
+| Proj. Plan Jnl Perm Tests ori | 97180 | Restrictive permission acceptance tests |
+| ProjJnlNoInsert ori | 97180 | Nonassignable test permissions without journal insert |
+| Proj. Plan Journal Fixture ori / Seed ori | 97181 / 97182 | Raw acceptance data and test-only seed adapter |
+| Proj. Plan Journal Types ori | 97181 | Test-only fixture seed registration |
+| Proj. Plan Jnl Cleanup ori | 97183 | Removes only story-marked acceptance fixtures and their posting entries |
