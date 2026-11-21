@@ -31,3 +31,9 @@
 
 - Codeunit 70013406: `Proj. WIP Reverse Impl ori`; enum value 70013400: `Projects.WIP.Reverse`.
 - Tests: codeunit 97114 `Projects WIP Reverse Tests ori`, codeunit 97115 `Proj. WIP Reverse Fixture ori`, enumextension/value 97114 `Proj. WIP Fixture Types ori` / `Test.WIP75.Seed` (test app only; no new delete operation).
+
+## Issue #79 object ledger
+
+- Codeunits 70013425 `Proj. Task Copy Impl ori`, 70013426 `Proj. Task Copy Process ori`; enum value 70013425 `Projects.Task.CopyFrom`.
+- Tests: 97175 `Proj. Task Copy Tests ori`, 97176 `Proj. Task Copy Perm Tests ori`. Test-only nonassignable permission set 97176 `ProjCopyNoInsert ori`. Fixtures: 97177 codeunit, enumextension/value and cleanup page, 97178 seed codeunit (test app only). No new assignable permission set and no delete operation.
+- Append-only existing-target copy; task conflicts refuse atomically. Foundation floor remains 28.0.5.0.

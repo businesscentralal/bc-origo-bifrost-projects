@@ -5,6 +5,13 @@ using Origo.Bifrost;
 /// <summary>Registers the Projects lifecycle write messages with Foundation.</summary>
 enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
 {
+    /// <summary>Appends tasks and native planning lines into an existing project.</summary>
+    value(70013425; "Projects.Task.CopyFrom")
+    {
+        Caption = 'Projects.Task.CopyFrom', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Task Copy Impl ori", "Msg Discovery ori" = "Proj. Task Copy Impl ori", "Msg Contract ori" = "Proj. Task Copy Impl ori", "Msg Confirm ori" = "Proj. Task Copy Impl ori";
+    }
+
     /// <summary>Reverses posted WIP through correcting general ledger entries.</summary>
     value(70013400; "Projects.WIP.Reverse")
     {

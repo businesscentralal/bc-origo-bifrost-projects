@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — #79
+
+- Add `Projects.Task.CopyFrom` for copying a task range and planning lines into an existing project, including native posted Usage/Sale conversion. Refuse collisions, invalid target states and malformed requests without changes; require confirmation of the task count.
+- New codeunits 70013425/70013426 and enum value 70013425; tests 97175/97176 and test-only fixtures 97177/97178. Full-role execution only, caller-owned native rights, English help and Icelandic discovery/refusals. Existing new-target copy help points to the new operation. No UI change.
+
+
 ### Added
 - #78: `Projects.Task.Indent` runs Indent Project Tasks without dialogs, returning each task's indentation, totaling and changed flag plus task/changed counts. A native structural error rolls back all changes; retries are idempotent. Requires Full and native task write rights; no posting gate or new Create flags. New codeunit and enum value 70013406; tests 97114/97115 and test-only permission set 97115. English chapters and Icelandic discovery/refusals are synchronized.
 ## Unreleased — #76
