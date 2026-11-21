@@ -336,6 +336,68 @@ codeunit 97188 "Proj. Van Tests ori"
         Assert.AreEqual(0, Usage.Count(), 'Refusals write nothing.');
     end;
 
+    /// <summary>AC06: a serial number is one base unit; a box of six with one serial is refused and one base unit succeeds.</summary>
+    [Test]
+    procedure Scenario_AC06_SerialBox_BaseQuantity_Refused()
+    var
+        ItemUoM: Record "Item Unit of Measure";
+        Usage: Record "TS Usage Line ori";
+        Entry: JsonObject;
+        Response: JsonObject;
+        Van: Code[10];
+        ProjectNo: Code[20];
+        TaskNo: Code[20];
+        SheetNo: Code[20];
+        ItemNo: Code[20];
+    begin
+        Prepare(Van, SheetNo, ProjectNo, TaskNo);
+        ItemNo := StockedItem(Van, 'Box ' + Unique(), 10, false);
+        LibraryInventory.CreateItemUnitOfMeasureCode(ItemUoM, ItemNo, 6);
+        Entry := ItemJson(ItemNo, '', 1);
+        Entry.Add('unitOfMeasure', ItemUoM.Code);
+        Entry.Add('serialNo', 'SN84BOX');
+        AssertRefusal(Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, Entry, '')), 'InvalidParameterFormat', 'quantity', 'serial');
+        Usage.SetRange("Time Sheet No.", SheetNo);
+        Assert.AreEqual(0, Usage.Count(), 'The refused box writes nothing.');
+        Clear(Entry);
+        Entry := ItemJson(ItemNo, '', 1);
+        Entry.Add('serialNo', 'SN84ONE');
+        Response := Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, Entry, ''));
+        Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
+        Assert.AreEqual(1, Usage.Count(), 'One base unit with a serial is written.');
+    end;
+
+    /// <summary>AC04: pending usage at zero inventory and no SKU is still reported by VanStock.Get.</summary>
+    [Test]
+    procedure Scenario_AC04_VanStock_PendingOnly_ReportsNegativeAvailable()
+    var
+        Response: JsonObject;
+        Node: JsonObject;
+        Request: JsonObject;
+        Items: JsonArray;
+        Token: JsonToken;
+        Van: Code[10];
+        ProjectNo: Code[20];
+        TaskNo: Code[20];
+        SheetNo: Code[20];
+        ItemNo: Code[20];
+    begin
+        Prepare(Van, SheetNo, ProjectNo, TaskNo);
+        ItemNo := StockedItem(Van, 'Pending ' + Unique(), 0, false);
+        Response := Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, ItemJson(ItemNo, '', 2), ''));
+        Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
+        Request.Add('itemFilter', ItemNo);
+        Response := Run("Message Type ori"::"Projects.VanStock.Get", Request);
+        Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
+        Items := ArrayOf(Response, 'items');
+        Assert.AreEqual(1, Items.Count(), 'The pending-only item is listed.');
+        Items.Get(0, Token);
+        Node := Token.AsObject();
+        Assert.AreEqual(0, DecimalOf(Node, 'inventory'), 'Inventory.');
+        Assert.AreEqual(2, DecimalOf(Node, 'pendingUsage'), 'Pending.');
+        Assert.AreEqual(-2, DecimalOf(Node, 'available'), 'Available.');
+    end;
+
     /// <summary>AC07: BIFROST Read ori with PROJ FIELD TECH registers van parts and reads van stock.</summary>
     [Test]
     procedure Scenario_AC07_FieldTech_RegistersAndReadsVanStock()

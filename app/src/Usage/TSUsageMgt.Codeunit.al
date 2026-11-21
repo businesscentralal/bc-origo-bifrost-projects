@@ -205,7 +205,7 @@ codeunit 70013400 "TS Usage Mgt ori"
             if UnitText = '' then
                 UnitText := Resource."Base Unit of Measure";
         end;
-        if not CheckPlacement(Argument, TypeText, Quantity, LocationText, BinText, LotText, SerialText, NoText) then
+        if not CheckPlacement(Argument, TypeText, Quantity, UnitText, LocationText, BinText, LotText, SerialText, NoText) then
             exit;
         Params.Add('timeSheetNo', Header."No.");
         Params.Add('lineNo', LineNo);
@@ -227,12 +227,14 @@ codeunit 70013400 "TS Usage Mgt ori"
         RunWrite(Argument, 1, Params);
     end;
 
-    local procedure CheckPlacement(var Argument: Record "Message Argument ori"; TypeText: Text; Quantity: Decimal; LocationText: Text; BinText: Text; LotText: Text; SerialText: Text; ItemNo: Text): Boolean
+    local procedure CheckPlacement(var Argument: Record "Message Argument ori"; TypeText: Text; Quantity: Decimal; UnitText: Text; LocationText: Text; BinText: Text; LotText: Text; SerialText: Text; ItemNo: Text): Boolean
     var
         Item: Record Item;
+        ItemUoM: Record "Item Unit of Measure";
         TrackingCode: Record "Item Tracking Code";
         Location: Record Location;
         Bin: Record Bin;
+        BaseQuantity: Decimal;
     begin
         if (LocationText = '') and (BinText = '') and (LotText = '') and (SerialText = '') then
             exit(true);
@@ -254,12 +256,19 @@ codeunit 70013400 "TS Usage Mgt ori"
                 Fail(Argument, "Bifrost Error Code ori"::RecordNotFound, StrSubstNo(NotFoundMsg, 'binCode'), 'binCode', NotFoundNextTxt);
                 exit(false);
             end;
-        if (SerialText <> '') and (Quantity <> 1) then begin
-            Fail(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, SerialQuantityMsg, 'quantity', SerialQuantityNextTxt);
-            exit(false);
-        end;
-        Item.SetLoadFields("No.", "Item Tracking Code");
+        Item.SetLoadFields("No.", "Item Tracking Code", "Base Unit of Measure");
         Item.Get(CopyStr(ItemNo, 1, MaxStrLen(Item."No.")));
+        if SerialText <> '' then begin
+            BaseQuantity := Quantity;
+            if UnitText = '' then
+                UnitText := Item."Base Unit of Measure";
+            if ItemUoM.Get(Item."No.", CopyStr(UnitText, 1, MaxStrLen(ItemUoM.Code))) then
+                BaseQuantity := Quantity * ItemUoM."Qty. per Unit of Measure";
+            if BaseQuantity <> 1 then begin
+                Fail(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, SerialQuantityMsg, 'quantity', SerialQuantityNextTxt);
+                exit(false);
+            end;
+        end;
         if Item."Item Tracking Code" <> '' then begin
             TrackingCode.Get(Item."Item Tracking Code");
             if (TrackingCode."Lot Specific Tracking" and (LotText = '')) or (TrackingCode."SN Specific Tracking" and (SerialText = '')) then begin

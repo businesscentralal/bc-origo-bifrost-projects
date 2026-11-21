@@ -277,7 +277,7 @@ codeunit 70013474 "Proj. Van Mgt ori"
                 Fail(Argument, "Bifrost Error Code ori"::RecordNotFound, 'binCode', VanContract.NotFoundNext());
                 exit(false);
             end;
-        if (SerialText <> '') and (Quantity <> 1) then begin
+        if (SerialText <> '') and (Quantity * ItemUoM."Qty. per Unit of Measure" <> 1) then begin
             Fail(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'quantity', VanContract.SerialNext());
             exit(false);
         end;
@@ -468,6 +468,8 @@ codeunit 70013474 "Proj. Van Mgt ori"
     var
         Item: Record Item;
         Sku: Record "Stockkeeping Unit";
+        PendingItem: Record Item;
+        Usage: Record "TS Usage Line ori";
         Numbers: List of [Code[20]];
         ItemNo: Code[20];
         Response: JsonObject;
@@ -494,6 +496,18 @@ codeunit 70013474 "Proj. Van Mgt ori"
                 if not Numbers.Contains(Sku."Item No.") then
                     Numbers.Add(Sku."Item No.");
             until Sku.Next() = 0;
+        Usage.SetRange(Type, Usage.Type::Item);
+        Usage.SetRange("Location Code", Location);
+        Usage.SetRange(Reversed, false);
+        Usage.SetFilter(Status, '%1|%2|%3|%4', Usage.Status::Open, Usage.Status::Submitted, Usage.Status::Approved, Usage.Status::Transferred);
+        PendingItem.SetLoadFields("No.");
+        Usage.SetLoadFields("No.");
+        if Usage.FindSet() then
+            repeat
+                if (Usage."No." <> '') and not Numbers.Contains(CopyStr(Usage."No.", 1, MaxStrLen(ItemNo))) then
+                    if PendingItem.Get(CopyStr(Usage."No.", 1, MaxStrLen(ItemNo))) then
+                        Numbers.Add(PendingItem."No.");
+            until Usage.Next() = 0;
         foreach ItemNo in Numbers do begin
             Item.Reset();
             Item.SetRange("Location Filter", Location);
