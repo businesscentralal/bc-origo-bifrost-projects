@@ -2,6 +2,8 @@ namespace Origo.Bifrost.Projects;
 
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Location;
+using Microsoft.Inventory.Tracking;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
 using Microsoft.Projects.Resources.Journal;
@@ -69,12 +71,17 @@ codeunit 70013402 "TS Usage Journal ori"
         Line.Validate("Entry Type", Line."Entry Type"::"Negative Adjmt.");
         Line.Validate("Document No.", DocumentNo);
         Line.Validate("Item No.", Usage."No.");
+        if Usage."Location Code" <> '' then
+            Line.Validate("Location Code", Usage."Location Code");
+        if (Usage."Bin Code" <> '') and BinMandatory(Usage."Location Code") then
+            Line.Validate("Bin Code", Usage."Bin Code");
         if Usage."Unit of Measure Code" <> '' then
             Line.Validate("Unit of Measure Code", Usage."Unit of Measure Code");
         Line.Validate(Quantity, Signed(Usage, Reverse));
         Line.Description := Usage.Description;
         Line."Source Code" := ItemJnlTemplate."Source Code";
         Line.Insert(true);
+        CreateTracking(Usage, Database::"Item Journal Line", Line."Entry Type".AsInteger(), Template, Batch, Line."Line No.", Line."Item No.", Line."Variant Code", Line."Location Code", Line.Description, Line."Posting Date", Line."Qty. per Unit of Measure", Line.Quantity, Line."Quantity (Base)");
         exit(Line."Line No.");
     end;
 
@@ -133,13 +140,43 @@ codeunit 70013402 "TS Usage Journal ori"
         else
             Line.Validate(Type, Line.Type::Resource);
         Line.Validate("No.", Usage."No.");
+        if Usage."Location Code" <> '' then
+            Line.Validate("Location Code", Usage."Location Code");
+        if (Usage."Bin Code" <> '') and BinMandatory(Usage."Location Code") then
+            Line.Validate("Bin Code", Usage."Bin Code");
         if Usage."Unit of Measure Code" <> '' then
             Line.Validate("Unit of Measure Code", Usage."Unit of Measure Code");
         Line.Validate(Quantity, Signed(Usage, Reverse));
         Line.Description := Usage.Description;
         Line."Source Code" := JobJnlTemplate."Source Code";
         Line.Insert(true);
+        if Usage.Type = Usage.Type::Item then
+            CreateTracking(Usage, Database::"Job Journal Line", Line."Entry Type".AsInteger(), Template, Batch, Line."Line No.", Line."No.", Line."Variant Code", Line."Location Code", Line.Description, Line."Posting Date", Line."Qty. per Unit of Measure", Line.Quantity, Line."Quantity (Base)");
         exit(Line."Line No.");
+    end;
+
+    local procedure BinMandatory(LocationCode: Code[10]): Boolean
+    var
+        Location: Record Location;
+    begin
+        // A journal line takes a bin only at a bin-mandatory location; the usage line keeps the bin either way.
+        if LocationCode = '' then
+            exit(false);
+        Location.SetLoadFields("Bin Mandatory");
+        exit(Location.Get(LocationCode) and Location."Bin Mandatory");
+    end;
+
+    local procedure CreateTracking(Usage: Record "TS Usage Line ori"; SourceType: Integer; SourceSubtype: Integer; Template: Code[10]; Batch: Code[10]; LineNo: Integer; ItemNo: Code[20]; VariantCode: Code[10]; LocationCode: Code[10]; Description: Text[100]; PostingDate: Date; QtyPerUoM: Decimal; Quantity: Decimal; QuantityBase: Decimal)
+    var
+        Tracking: Record "Reservation Entry";
+        CreateEntry: Codeunit "Create Reserv. Entry";
+    begin
+        if (Usage."Lot No." = '') and (Usage."Serial No." = '') then
+            exit;
+        Tracking."Lot No." := Usage."Lot No.";
+        Tracking."Serial No." := Usage."Serial No.";
+        CreateEntry.CreateReservEntryFor(SourceType, SourceSubtype, Template, Batch, 0, LineNo, QtyPerUoM, Quantity, QuantityBase, Tracking);
+        CreateEntry.CreateEntry(ItemNo, VariantCode, LocationCode, Description, 0D, PostingDate, 0, "Reservation Status"::Surplus);
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Item Ledger Entry", OnAfterInsertEvent, '', false, false)]

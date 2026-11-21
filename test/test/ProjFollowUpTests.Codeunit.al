@@ -8,7 +8,7 @@ using Origo.Bifrost.Projects;
 using System.TestLibraries.Utilities;
 
 /// <summary>Follow-up lifecycle, refusal, preview and generic-write regression tests (#87).</summary>
-codeunit 97188 "Proj. Follow-up Tests ori"
+codeunit 97198 "Proj. Follow-up Tests ori"
 {
     Subtype = Test;
     TestPermissions = Disabled;

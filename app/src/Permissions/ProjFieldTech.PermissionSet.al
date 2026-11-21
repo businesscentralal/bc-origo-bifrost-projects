@@ -7,6 +7,7 @@ using Microsoft.Inventory.Item.Catalog;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Ledger;
 using Microsoft.Inventory.Location;
+using Microsoft.Inventory.Tracking;
 using Microsoft.Inventory.Transfer;
 using Microsoft.Projects.Project.Job;
 using Microsoft.Projects.Project.Journal;
@@ -43,6 +44,15 @@ permissionset 70013403 "PROJ FIELD TECH"
         tabledata "Stockkeeping Unit" = R,
         tabledata "Item Ledger Entry" = R,
         tabledata "TS Usage Line ori" = RIM,
+        tabledata Bin = R,
+        tabledata "Item Tracking Code" = R,
+        tabledata "Item Unit of Measure" = R,
+        tabledata "Proj. Technician Setup ori" = R,
+        codeunit "Proj. VisitItem Reg Impl ori" = X,
+        codeunit "Proj. VanStock Get Impl ori" = X,
+        codeunit "Proj. Van Mgt ori" = X,
+        codeunit "Proj. Van Runner ori" = X,
+        codeunit "Proj. Van Contract ori" = X,
         codeunit "TS Usage Context ori" = X,
         codeunit "TS Usage Runner ori" = X;
 }
