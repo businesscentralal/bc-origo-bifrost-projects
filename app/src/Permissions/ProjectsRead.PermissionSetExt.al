@@ -62,5 +62,13 @@ permissionsetextension 70013500 "Projects Read ori" extends "BIFROST Read ori"
         tabledata "Projects Setup ori" = R,
         codeunit "Projects Gate ori" = X,
         codeunit "Projects Registration ori" = X,
-        codeunit "Projects Setup Restrict ori" = X;
+        codeunit "Projects Setup Restrict ori" = X,
+        tabledata "Proj. Field Visit ori" = R,
+        codeunit "Proj. Visit Start Impl ori" = X,
+        codeunit "Proj. Visit Stop Impl ori" = X,
+        codeunit "Proj. Visit Complete Impl ori" = X,
+        codeunit "Proj. Visit Mgt ori" = X,
+        codeunit "Proj. Visit Runner ori" = X,
+        codeunit "Proj. Visit Contract ori" = X,
+        codeunit "Proj. Visit Restrict ori" = X;
 }

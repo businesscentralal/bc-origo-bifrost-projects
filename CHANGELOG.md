@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — #83
+
+- Add `Projects.Visit.Start`, `Projects.Visit.Stop` and `Projects.Visit.Complete` so a technician can record travel and work on a planned task. Hours are rounded and added to an open time sheet line. Mileage becomes an open usage line and is not submitted. The same `clientRequestId` returns the first result. Generic writes of visit status, times, hours and time sheet keys are refused.
+- New objects: table 70013433 `Proj. Field Visit ori`; enums 70013434 `Proj. Visit Status ori` and 70013435 `Proj. Visit Kind ori`; codeunits 70013436–70013442; enum values 70013433–70013435; assignable permission set 70013443 `PROJ VISIT` (no journal tabledata; assign with `BIFROST Read ori` and `PROJ TS SELF`). Projects Setup gains the field-service fields. Tests 97186 and 97187. AC07 Team Member effective permissions stays NOT_RUN until the #82 spike. IDs 70013429–70013432 stay free for #82.
+
 ## Unreleased — #79
 
 - Add `Projects.Task.CopyFrom` for copying a task range and planning lines into an existing project, including native posted Usage/Sale conversion. Refuse collisions, invalid target states and malformed requests without changes; require confirmation of the task count.

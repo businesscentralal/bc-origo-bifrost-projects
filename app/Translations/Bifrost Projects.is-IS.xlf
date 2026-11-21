@@ -3,6 +3,144 @@
   <file datatype="xml" source-language="en-US" target-language="is-IS" original="Bifrost Projects">
     <body>
       <group id="body">
+        <trans-unit id="Table 4242376970 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field Visit</source>
+          <target>Vettvangsheimsókn</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vettvangsheimsókn</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 367229551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Client Request Id</source>
+          <target>Auðkenni beiðni</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Auðkenni beiðni</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Client Request Id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 3192175264 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target>Dagsetning</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Entry No.</source>
+          <target>Færslunr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færslunr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2362321144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Hours Written</source>
+          <target>Skrifaðar stundir</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skrifaðar stundir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Hours Written - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2882592404 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Kind</source>
+          <target>Tegund</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tegund</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Kind - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2898143332 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Note</source>
+          <target>Athugasemd</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugasemd</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Note - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 320527390 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Outcome</source>
+          <target>Niðurstaða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Niðurstaða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Outcome - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 863923670 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project No.</source>
+          <target>Verkefnisnr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnisnr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Project No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 985146615 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Id 1</source>
+          <target>Beiðniauðkenni 1</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beiðniauðkenni 1</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Request Id 1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2898236466 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Id 2</source>
+          <target>Beiðniauðkenni 2</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beiðniauðkenni 2</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Request Id 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2260539849 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Id 3</source>
+          <target>Beiðniauðkenni 3</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beiðniauðkenni 3</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Request Id 3 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 1304156011 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Result 1</source>
+          <target>Niðurstaða beiðni 1</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Niðurstaða beiðni 1</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Request Result 1 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 3217245862 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Result 2</source>
+          <target>Niðurstaða beiðni 2</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Niðurstaða beiðni 2</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Request Result 2 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2579549245 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request Result 3</source>
+          <target>Niðurstaða beiðni 3</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Niðurstaða beiðni 3</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Request Result 3 - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 3961767479 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Resource No.</source>
+          <target>Aðfangsnr. starfsmanns</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðfangsnr. starfsmanns</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Resource No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2014922888 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Started At</source>
+          <target>Hófst</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hófst</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Started At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <target>Staða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Staða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2994237824 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Stopped At</source>
+          <target>Stöðvaðist</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stöðvaðist</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Stopped At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 3522988966 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Task No.</source>
+          <target>Verkþáttanr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkþáttanr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Task No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 4095902741 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Sheet Line No.</source>
+          <target>Línunr. tímaskýrslu</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Línunr. tímaskýrslu</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Time Sheet Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2642451359 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Time Sheet No.</source>
+          <target>Tímaskýrslunr.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tímaskýrslunr.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Time Sheet No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 2651202554 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Usage Entry No.</source>
+          <target>Færslunr. notkunar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færslunr. notkunar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Usage Entry No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2276660535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Posting Rights</source>
           <target>Bókunarréttindi verkefna</target>
@@ -21,17 +159,47 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Uppsetning verkefna</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 1425620412 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Allow Unplanned Tasks</source>
+          <target>Leyfa óáætlaða verkþætti</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Leyfa óáætlaða verkþætti</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Allow Unplanned Tasks - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 235041858 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Client Time Tolerance Hours</source>
+          <target>Vikmörk biðlaratíma (klst.)</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vikmörk biðlaratíma (klst.)</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Client Time Tolerance Hours - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4158522199 - Field 2891538263 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Enabled</source>
           <target>Virkt</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Virkt</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Enabled - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 2647586093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mileage Resource No.</source>
+          <target>Akstursforði</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Akstursforði</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Mileage Resource No. - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4158522199 - Field 1663593181 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Primary Key</source>
           <target>Aðallykill</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Aðallykill</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Primary Key - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 1236405745 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rounding Minutes</source>
+          <target>Námundun í mínútum</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Námundun í mínútum</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Rounding Minutes - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 1143051568 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Travel Work Type Code</source>
+          <target>Vinnutegund ferðar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vinnutegund ferðar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Travel Work Type Code - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 675536452 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Time Sheet Usage Line</source>
@@ -1730,6 +1898,492 @@
           <target>Get er aðeins til lestrar. Link krefst notkunartengingar á verkefninu. Færslu sem þegar er tengd er hafnað. Núverandi línur verða að passa við notkunina. createPlanningLine notar innbyggðan flutning með Budget sem sjálfgefna línugerð. Engin fjárhagsbókun fer fram.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Get er aðeins til lestrar. Link krefst notkunartengingar á verkefninu. Færslu sem þegar er tengd er hafnað. Núverandi línur verða að passa við notkunina. createPlanningLine notar innbyggðan flutning með Budget sem sjálfgefna línugerð. Engin fjárhagsbókun fer fram.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Usage Link Impl ori - Method GetNotes - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3068235927 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Completes a visit and, with mileage, writes an open usage line on the task.</source>
+          <target>Lýkur heimsókn og skrifar, með akstri, opna notkunarlínu á verkþáttinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lýkur heimsókn og skrifar, með akstri, opna notkunarlínu á verkþáttinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Complete Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3068235927 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>visit, complete, mileage, usage, time sheet, field</source>
+          <target>heimsókn, ljúka, akstur, notkun, tímaskýrsla, vettvangur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=heimsókn, ljúka, akstur, notkun, tímaskýrsla, vettvangur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Complete Impl ori - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3068235927 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.</source>
+          <target>The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Complete Impl ori - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3068235927 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.</source>
+          <target>Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Complete Impl ori - NamedType OverviewLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2305217816" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit is already completed.</source>
+          <target>Heimsókninni er þegar lokið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimsókninni er þegar lokið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType AlreadyDoneLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2627845741" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Start a new visit for more time.</source>
+          <target>Byrjaðu nýja heimsókn fyrir fleiri tíma.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Byrjaðu nýja heimsókn fyrir fleiri tíma.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType AlreadyDoneNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 409865329" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Client time as an ISO date and time. Omitted means now. A time older than the setup tolerance is refused.</source>
+          <target>Tími biðlara á ISO sniði. Ef sleppt er notaður núverandi tími. Tími sem er eldri en vikmörk uppsetningar er hafnað.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tími biðlara á ISO sniði. Ef sleppt er notaður núverandi tími. Tími sem er eldri en vikmörk uppsetningar er hafnað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType AtLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1887508591" size-unit="char" translate="yes" xml:space="preserve">
+          <source>When true, stop the running visit before this one starts.</source>
+          <target>Þegar satt, stöðva heimsóknina sem er í gangi áður en þessi hefst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Þegar satt, stöðva heimsóknina sem er í gangi áður en þessi hefst.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType AutoStopLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1832108085" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The stop time is before the visit started.</source>
+          <target>Stöðvunartíminn er á undan upphafi heimsóknar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stöðvunartíminn er á undan upphafi heimsóknar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType BeforeStartLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2117363168" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send an at time at or after the start.</source>
+          <target>Sendu at tíma á eða eftir upphafi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu at tíma á eða eftir upphafi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType BeforeStartNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 120887118" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Repeat key, maximum 100 characters. The same key returns the first result and writes nothing new.</source>
+          <target>Endurtekningarlykill, mest 100 stafir. Sami lykill skilar fyrstu niðurstöðu og skrifar ekkert nýtt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Endurtekningarlykill, mest 100 stafir. Sami lykill skilar fyrstu niðurstöðu og skrifar ekkert nýtt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType ClientRequestLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 834539354" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project number. With visitId it must be that visit. With taskNo and no visitId it selects the visit.</source>
+          <target>Númer verkefnis. Með visitId verður það að vera sú heimsókn. Með taskNo og án visitId velur það heimsóknina.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer verkefnis. Með visitId verður það að vera sú heimsókn. Með taskNo og án visitId velur það heimsóknina.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType CompleteProjectLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2275387801" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Visit %1 completed.</source>
+          <target>Heimsókn %1 lokið.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = visit no.; is-IS=Heimsókn %1 lokið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType CompleteSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 4080868002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Task number. With visitId it must be that visit. With projectNo and no visitId it selects the visit.</source>
+          <target>Númer verkþáttar. Með visitId verður það að vera sú heimsókn. Með projectNo og án visitId velur það heimsóknina.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer verkþáttar. Með visitId verður það að vera sú heimsókn. Með projectNo og án visitId velur það heimsóknina.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType CompleteTaskLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3299433917" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the visitId of that project and task, or omit the project and task.</source>
+          <target>Sendu visitId þess verkefnis og verkþáttar, eða slepptu verkefni og verkþætti.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu visitId þess verkefnis og verkþáttar, eða slepptu verkefni og verkþætti.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType ConflictNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1858783966" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The day the hours were added to.</source>
+          <target>Dagurinn sem stundunum var bætt við.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagurinn sem stundunum var bætt við.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType DayRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 4063910082" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the key with the documented type and range.</source>
+          <target>Sendu lykilinn með skráðri tegund og bili.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn með skráðri tegund og bili.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType FormatNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2648256271" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rounded hours added for this visit.</source>
+          <target>Námundaðar stundir sem bættust við fyrir þessa heimsókn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Námundaðar stundir sem bættust við fyrir þessa heimsókn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType HoursRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3274056625" size-unit="char" translate="yes" xml:space="preserve">
+          <source>This operation requires an isolated transaction.</source>
+          <target>Þessi aðgerð krefst einangraðrar færslu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Þessi aðgerð krefst einangraðrar færslu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType IsolatedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3505451748" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Run this action outside an uncommitted batch.</source>
+          <target>Keyrðu þessa aðgerð utan óstaðfestrar lotu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Keyrðu þessa aðgerð utan óstaðfestrar lotu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType IsolatedNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2567782990" size-unit="char" translate="yes" xml:space="preserve">
+          <source>travel or work.</source>
+          <target>travel eða work.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=travel eða work.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType KindLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3253201612" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The time sheet line that received the hours.</source>
+          <target>Lína tímaskýrslunnar sem fékk stundirnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lína tímaskýrslunnar sem fékk stundirnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType LineRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2093138091" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use an open or rejected line. Submitted and approved lines stay unchanged.</source>
+          <target>Notaðu opna eða hafnaða línu. Innsendum og samþykktum línum er ekki breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu opna eða hafnaða línu. Innsendum og samþykktum línum er ekki breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType LockedLineNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3184158956" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The caller owns more than one time sheet resource.</source>
+          <target>Kallandi á fleiri en einn tímaskýrsluforða.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandi á fleiri en einn tímaskýrsluforða.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType ManyResourcesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 303851129" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator to leave one resource for field visits.</source>
+          <target>Biddu stjórnanda að skilja einn forða eftir fyrir vettvangsheimsóknir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu stjórnanda að skilja einn forða eftir fyrir vettvangsheimsóknir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType ManyResourcesNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1171924224" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Kilometres as a positive number. Omit it to skip mileage. A usage line stays open.</source>
+          <target>Kílómetrar sem jákvæð tala. Slepptu henni til að sleppa akstri. Notkunarlína helst opin.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kílómetrar sem jákvæð tala. Slepptu henni til að sleppa akstri. Notkunarlína helst opin.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType MileageLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 118154936" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set the mileage resource in Projects Setup.</source>
+          <target>Settu akstursforðann í uppsetningu verkefna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Settu akstursforðann í uppsetningu verkefna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType MileageSetupNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3718857012" size-unit="char" translate="yes" xml:space="preserve">
+          <source> Mileage %1.</source>
+          <target>Akstur %1.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = kilometres; is-IS= Akstur %1.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType MileageSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3129818787" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send the missing key.</source>
+          <target>Sendu lykilinn sem vantar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu lykilinn sem vantar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType MissingNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3470659651" size-unit="char" translate="yes" xml:space="preserve">
+          <source>What the caller can do next.</source>
+          <target>Það sem kallandi getur gert næst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Það sem kallandi getur gert næst.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NextRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 400693700" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send visitId, or both projectNo and taskNo.</source>
+          <target>Sendu visitId, eða bæði projectNo og taskNo.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu visitId, eða bæði projectNo og taskNo.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NoIdentifierLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 120656125" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Create the week with Projects.MyTimeSheet.Create.</source>
+          <target>Stofnaðu vikuna með Projects.MyTimeSheet.Create.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofnaðu vikuna með Projects.MyTimeSheet.Create.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NoSheetNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 4046088670" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Note stored on the visit, maximum 250 characters.</source>
+          <target>Athugasemd sem vistuð er á heimsókninni, mest 250 stafir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugasemd sem vistuð er á heimsókninni, mest 250 stafir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NoteLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2824518802" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a project, task or visit that exists.</source>
+          <target>Notaðu verkefni, verkþátt eða heimsókn sem er til.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu verkefni, verkþátt eða heimsókn sem er til.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NotFoundNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 485308868" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit is not running.</source>
+          <target>Heimsóknin er ekki í gangi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimsóknin er ekki í gangi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NotRunningLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2493610545" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Start a visit, or complete one that is already stopped.</source>
+          <target>Byrjaðu heimsókn, eða ljúktu heimsókn sem er þegar stöðvuð.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Byrjaðu heimsókn, eða ljúktu heimsókn sem er þegar stöðvuð.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType NotRunningNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2753663833" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send an at time within the client time tolerance in Projects Setup.</source>
+          <target>Sendu at tíma innan vikmarka biðlaratíma í uppsetningu verkefna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu at tíma innan vikmarka biðlaratíma í uppsetningu verkefna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType OldTimeNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3024485025" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit belongs to another technician.</source>
+          <target>Heimsóknin tilheyrir öðrum tæknimanni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimsóknin tilheyrir öðrum tæknimanni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType OtherVisitLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3454225428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a visit of your own resource.</source>
+          <target>Notaðu heimsókn á þínum eigin forða.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu heimsókn á þínum eigin forða.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType OtherVisitNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3566087748" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Outcome text stored on the visit, maximum 250 characters.</source>
+          <target>Niðurstaðatexti sem vistaður er á heimsókninni, mest 250 stafir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Niðurstaðatexti sem vistaður er á heimsókninni, mest 250 stafir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType OutcomeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The caller cannot record a visit.</source>
+          <target>Kallandi getur ekki skráð heimsókn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandi getur ekki skráð heimsókn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType PermissionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign BIFROST Read ori together with PROJ TS SELF and PROJ VISIT.</source>
+          <target>Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF og PROJ VISIT.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF og PROJ VISIT.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType PermissionNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1267518538" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project number, maximum 20 characters.</source>
+          <target>Númer verkefnis, mest 20 stafir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer verkefnis, mest 20 stafir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType ProjectNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit request cannot be processed.</source>
+          <target>Ekki er hægt að vinna úr beiðni um heimsókn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að vinna úr beiðni um heimsókn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType RefusedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2325023071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Correct the Business Central error and retry. Nothing was changed.</source>
+          <target>Leiðréttu Business Central villuna og reyndu aftur. Engu var breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Leiðréttu Business Central villuna og reyndu aftur. Engu var breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType RetryNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3405794366" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Stop the running visit with Projects.Visit.Stop, or send autoStop true.</source>
+          <target>Stöðvaðu heimsóknina sem er í gangi með Projects.Visit.Stop, eða sendu autoStop true.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stöðvaðu heimsóknina sem er í gangi með Projects.Visit.Stop, eða sendu autoStop true.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType RunningNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1098440811" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The time sheet that received the hours.</source>
+          <target>Tímaskýrslan sem fékk stundirnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tímaskýrslan sem fékk stundirnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType SheetRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1398953473" size-unit="char" translate="yes" xml:space="preserve">
+          <source>When the visit started.</source>
+          <target>Hvenær heimsóknin hófst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hvenær heimsóknin hófst.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType StartedRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3193096050" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Success or Error.</source>
+          <target>Success eða Error.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Success eða Error.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType StatusLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3701364825" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit that autoStop stopped, when one was running.</source>
+          <target>Heimsóknin sem autoStop stöðvaði, þegar ein var í gangi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimsóknin sem autoStop stöðvaði, þegar ein var í gangi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType StoppedRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1730590978" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 hours written on %2.</source>
+          <target>%1 stundir skrifaðar þann %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = hours; %2 = date; is-IS=%1 stundir skrifaðar þann %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType StopSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1499760790" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A short sentence about what was written.</source>
+          <target>Stutt setning um það sem var skrifað.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stutt setning um það sem var skrifað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType SummaryRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3014261722" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Task number, maximum 20 characters.</source>
+          <target>Númer verkþáttar, mest 20 stafir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer verkþáttar, mest 20 stafir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType TaskNoLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 418797011" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Split the visit so the day stays at 24 hours or less.</source>
+          <target>Skiptu heimsókninni svo dagurinn haldist í 24 stundum eða minna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skiptu heimsókninni svo dagurinn haldist í 24 stundum eða minna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType TooManyHoursNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3585534894" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Set the travel work type in Projects Setup.</source>
+          <target>Settu vinnutegund ferðar í uppsetningu verkefna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Settu vinnutegund ferðar í uppsetningu verkefna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType TravelSetupNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 319532546" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Travel started on project %1, task %2.</source>
+          <target>Ferð hófst á verkefni %1, verkþætti %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = project no.; %2 = task no.; is-IS=Ferð hófst á verkefni %1, verkþætti %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType TravelSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2001379935" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown key.</source>
+          <target>Fjarlægðu óþekkta lykilinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta lykilinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType UnknownNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 4125189568" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The caller is not the time sheet owner of a resource.</source>
+          <target>Kallandi er ekki eigandi tímaskýrslu á forða.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandi er ekki eigandi tímaskýrslu á forða.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType UnmappedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 4060602037" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator to set you as the owner of your resource.</source>
+          <target>Biddu stjórnanda að skrá þig sem eiganda forðans þíns.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu stjórnanda að skrá þig sem eiganda forðans þíns.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType UnmappedNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2497465342" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask a planner to plan you on the task, or turn on Allow Unplanned Tasks in Projects Setup.</source>
+          <target>Biddu skipuleggjanda að skipuleggja þig á verkþáttinn, eða kveiktu á Leyfa óáætlaða verkþætti í uppsetningu verkefna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu skipuleggjanda að skipuleggja þig á verkþáttinn, eða kveiktu á Leyfa óáætlaða verkþætti í uppsetningu verkefna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType UnplannedNextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1226502349" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The open usage line for mileage, when mileageKm was sent.</source>
+          <target>Opna notkunarlína aksturs, þegar mileageKm var sent.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Opna notkunarlína aksturs, þegar mileageKm var sent.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType UsageRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 1731028649" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Visit number. Omit it only when projectNo and taskNo name the visit.</source>
+          <target>Númer heimsóknar. Slepptu því aðeins þegar projectNo og taskNo nefna heimsóknina.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer heimsóknar. Slepptu því aðeins þegar projectNo og taskNo nefna heimsóknina.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType VisitIdCompleteLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2063530126" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit number.</source>
+          <target>Númer heimsóknarinnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer heimsóknarinnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType VisitIdRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 3623722842" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Visit number. Omitted means the running visit.</source>
+          <target>Númer heimsóknar. Ef sleppt er heimsóknin sem er í gangi notuð.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer heimsóknar. Ef sleppt er heimsóknin sem er í gangi notuð.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType VisitIdStopLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 945086761" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The completed visit.</source>
+          <target>Heimsókninni sem lauk.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimsókninni sem lauk.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType VisitRespLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 4129493450 - NamedType 2594415993" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Work started on project %1, task %2.</source>
+          <target>Vinna hófst á verkefni %1, verkþætti %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = project no.; %2 = task no.; is-IS=Vinna hófst á verkefni %1, verkþætti %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType WorkSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 218123524 - NamedType 232473427" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects.Visit.Start, Projects.Visit.Stop or Projects.Visit.Complete</source>
+          <target>Projects.Visit.Start, Projects.Visit.Stop eða Projects.Visit.Complete</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Projects.Visit.Start, Projects.Visit.Stop eða Projects.Visit.Complete</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Restrict ori - NamedType HintLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1797539568 - NamedType 2490822881" size-unit="char" translate="yes" xml:space="preserve">
+          <source>No open time sheet line is available for this task.</source>
+          <target>Engin opin tímaskýrslulína er til fyrir þennan verkþátt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Engin opin tímaskýrslulína er til fyrir þennan verkþátt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Runner ori - NamedType LineMissingErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1797539568 - NamedType 1171924224" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Mileage</source>
+          <target>Akstur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Akstur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Runner ori - NamedType MileageLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1797539568 - NamedType 822569443" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The time sheet does not belong to the caller.</source>
+          <target>Tímaskýrslan tilheyrir ekki kallanda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tímaskýrslan tilheyrir ekki kallanda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Runner ori - NamedType NotOwnerErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1797539568 - NamedType 123601593" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The visit is not running.</source>
+          <target>Heimsóknin er ekki í gangi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Heimsóknin er ekki í gangi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Runner ori - NamedType NotRunningErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1797539568 - NamedType 4024294448" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Another visit is still running.</source>
+          <target>Önnur heimsókn er enn í gangi.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Önnur heimsókn er enn í gangi.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Runner ori - NamedType StillRunningErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1797539568 - NamedType 3558350555" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The day would exceed 24 hours.</source>
+          <target>Dagurinn færi yfir 24 klukkustundir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Dagurinn færi yfir 24 klukkustundir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Runner ori - NamedType TooManyHoursErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3871527384 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Starts a travel or work visit on the caller's own time sheet.</source>
+          <target>Byrjar ferð eða vinnu á eigin tímaskýrslu kallanda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Byrjar ferð eða vinnu á eigin tímaskýrslu kallanda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Start Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3871527384 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>visit, start, travel, work, time sheet, field</source>
+          <target>heimsókn, byrja, ferð, vinna, tímaskýrsla, vettvangur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=heimsókn, byrja, ferð, vinna, tímaskýrsla, vettvangur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Start Impl ori - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3871527384 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A missing week is not created. Rounding uses Projects Setup. The same clientRequestId returns the first result. Nothing is deleted.</source>
+          <target>A missing week is not created. Rounding uses Projects Setup. The same clientRequestId returns the first result. Nothing is deleted.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=A missing week is not created. Rounding uses Projects Setup. The same clientRequestId returns the first result. Nothing is deleted.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Start Impl ori - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3871527384 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Writes one running visit for the caller. Travel and work are separate visits. A second start while one is running is refused unless autoStop is true, which stops the running visit and adds its rounded hours first. Hours stay on an open time sheet line.</source>
+          <target>Writes one running visit for the caller. Travel and work are separate visits. A second start while one is running is refused unless autoStop is true, which stops the running visit and adds its rounded hours first. Hours stay on an open time sheet line.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Writes one running visit for the caller. Travel and work are separate visits. A second start while one is running is refused unless autoStop is true, which stops the running visit and adds its rounded hours first. Hours stay on an open time sheet line.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Start Impl ori - NamedType OverviewLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1686093320 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Stops the caller's running visit and adds the rounded hours to that day.</source>
+          <target>Stöðvar heimsókn kallanda sem er í gangi og bætir námunduðum stundum við þann dag.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stöðvar heimsókn kallanda sem er í gangi og bætir námunduðum stundum við þann dag.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1686093320 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>visit, stop, hours, time sheet, field</source>
+          <target>heimsókn, stöðva, stundir, tímaskýrsla, vettvangur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=heimsókn, stöðva, stundir, tímaskýrsla, vettvangur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1686093320 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Zero hours after rounding keeps the visit and does not create a day. The same clientRequestId returns the first result. Nothing is deleted or submitted.</source>
+          <target>Zero hours after rounding keeps the visit and does not create a day. The same clientRequestId returns the first result. Nothing is deleted or submitted.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Zero hours after rounding keeps the visit and does not create a day. The same clientRequestId returns the first result. Nothing is deleted or submitted.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType NotesLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1686093320 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</source>
+          <target>Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4130552506 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Calculates project work in progress through the native WIP engine.</source>
@@ -6813,6 +7467,42 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Uppsetning verkefna</note>
           <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 2145262137 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Field service</source>
+          <target>Vettvangsþjónusta</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vettvangsþjónusta</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control FieldService - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 1190916852 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies whether a technician can start a visit on a task they are not planned on.</source>
+          <target>Tilgreinir hvort tæknimaður megi hefja heimsókn á verkþætti sem hann er ekki skipulagður á.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvort tæknimaður megi hefja heimsókn á verkþætti sem hann er ekki skipulagður á.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control AllowUnplannedTasks - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 292443306 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how many hours a client time may be in the past. Zero uses 24 hours.</source>
+          <target>Tilgreinir hversu margar klukkustundir tími biðlara má vera aftur í tímann. Núll notar 24 klukkustundir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hversu margar klukkustundir tími biðlara má vera aftur í tímann. Núll notar 24 klukkustundir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control ClientTimeToleranceHours - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 2288789215 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the resource used when a visit records kilometres.</source>
+          <target>Tilgreinir forðann sem notaður er þegar heimsókn skráir kílómetra.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir forðann sem notaður er þegar heimsókn skráir kílómetra.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control MileageResourceNo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 1318424169 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies how visit minutes are rounded. Zero or one uses one minute.</source>
+          <target>Tilgreinir hvernig mínútur heimsóknar eru námundaðar. Núll eða einn notar eina mínútu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir hvernig mínútur heimsóknar eru námundaðar. Núll eða einn notar eina mínútu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control RoundingMinutes - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Page 4158522199 - Control 1944213000 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the work type used when a visit records travel time.</source>
+          <target>Tilgreinir vinnutegundina sem notuð er þegar heimsókn skráir ferðatíma.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir vinnutegundina sem notuð er þegar heimsókn skráir ferðatíma.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Projects Setup ori - Control TravelWorkTypeCode - Property ToolTip</note>
+        </trans-unit>
         <trans-unit id="Page 4158522199 - Control 2445482498 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>General</source>
           <target>Almennt</target>
@@ -6987,6 +7677,48 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning vinnuskýrslu</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line TS Date ori - Field Time Sheet Date ori - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Enum 72876456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Visit Kind</source>
+          <target>Tegund heimsóknar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tegund heimsóknar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Kind ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 72876456 - EnumValue 3933946380 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Travel</source>
+          <target>Ferð</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ferð</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Kind ori - EnumValue Travel - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 72876456 - EnumValue 1844685107 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Work</source>
+          <target>Vinna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vinna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Kind ori - EnumValue Work - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 358921604 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Visit Status</source>
+          <target>Staða heimsóknar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Staða heimsóknar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Status ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 358921604 - EnumValue 3665605423 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Completed</source>
+          <target>Lokið</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lokið</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Status ori - EnumValue Completed - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 358921604 - EnumValue 1752522425 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Running</source>
+          <target>Í gangi</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Í gangi</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Status ori - EnumValue Running - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 358921604 - EnumValue 1092494051 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Stopped</source>
+          <target>Stöðvuð</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stöðvuð</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Visit Status ori - EnumValue Stopped - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Enum 1590439862 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Usage Status</source>
           <target>Staða notkunar</target>
@@ -7076,6 +7808,12 @@
           <target>Skráning notkunar verkefna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Skráning notkunar verkefna</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ USAGE - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 2935969610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Field Visit</source>
+          <target>Verkefni - vettvangsheimsókn</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - vettvangsheimsókn</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ VISIT - Property Caption</note>
         </trans-unit>
       </group>
     </body>

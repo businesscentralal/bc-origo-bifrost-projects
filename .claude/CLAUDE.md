@@ -6,6 +6,7 @@
 - Foundation dependency: Bifrost Foundation 28.0.5.0
 - Permissions: PermissionSetExtension only onto `BIFROST Read ori` / `BIFROST Full ori`
 - No own assignable permission set; no `Setup ori` tabledata grants (exception below)
+- #83 field visits use assignable `PROJ VISIT` (70013443) together with `BIFROST Read ori` and `PROJ TS SELF`. It holds the visit table and the Base App read grants the visit needs (job, task, planning line, work type, resource) plus usage-line RIM. No journal tabledata. `PROJ FIELD TECH` stays owned by #82 and should include `PROJ VISIT` when the branches meet. Do not recreate `PROJ FIELD TECH` here. Object ids 70013429–70013432 and tests 97184–97185 are reserved for #82.
 
 ## Deviations
 
@@ -55,3 +56,11 @@
 - Codeunits 70013427 `Proj. Plan Journal Impl ori` and 70013428 `Proj. Plan Journal Proc ori`; enum value 70013426 `Projects.PlanningLine.TransferToJournal`.
 - Tests 97179 `Proj. Plan Journal Tests ori`, 97180 `Proj. Plan Jnl Perm Tests ori`; nonassignable test permission set 97180 `ProjJnlNoInsert ori`. Fixture codeunits 97181/97182, cleanup test codeunit 97183, test enumextension/value 97181 `Test.PlanJournal81.Seed`.
 - Append-only native journal creation, write effect, no confirmation or posting gate. Enables Usage Link and preserves existing journal lines. Foundation minimum stays 28.0.5.0.
+
+## Issue #83 object ledger
+
+- Table 70013433 `Proj. Field Visit ori`. Enums 70013434 `Proj. Visit Status ori`, 70013435 `Proj. Visit Kind ori`.
+- Codeunits 70013436 `Proj. Visit Start Impl ori`, 70013437 `Proj. Visit Stop Impl ori`, 70013438 `Proj. Visit Complete Impl ori`, 70013439 `Proj. Visit Mgt ori`, 70013440 `Proj. Visit Runner ori`, 70013441 `Proj. Visit Contract ori`, 70013442 `Proj. Visit Restrict ori`.
+- Enum values 70013433 `Projects.Visit.Start`, 70013434 `Projects.Visit.Stop`, 70013435 `Projects.Visit.Complete`.
+- Permission set 70013443 `PROJ VISIT`. Tests 97186 `Proj. Visit Tests ori`, 97187 `Proj. Visit Perm Tests ori`.
+- Projects Setup fields: Travel Work Type Code, Mileage Resource No., Rounding Minutes, Client Time Tolerance Hours, Allow Unplanned Tasks. Zero rounding means one minute and zero tolerance means 24 hours, so existing rows keep working. The message path does not insert the setup row.
