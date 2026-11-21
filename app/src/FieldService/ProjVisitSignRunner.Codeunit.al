@@ -48,6 +48,7 @@ codeunit 70013463 "Proj. Visit Sign Runner ori"
         Output: OutStream;
         PhotoToken: JsonToken;
         PhotoId: Guid;
+        PhotoRequestText: Text;
     begin
         Visit.LockTable();
         if not Visit.Get(VisitId) then
@@ -56,8 +57,9 @@ codeunit 70013463 "Proj. Visit Sign Runner ori"
             Refuse(Failure::PermissionDenied);
         if Resource."Time Sheet Owner User ID" <> UpperCase(UserId()) then
             Refuse(Failure::PermissionDenied);
+        Photos.WriteTo(PhotoRequestText);
         if Visit.Signed and (Visit."Sign Request Id" = RequestId) then begin
-            if (Visit."Signer Name" <> Signer) or (Visit."Signature Id" <> StagingId) then
+            if (Visit."Signer Name" <> Signer) or (Visit."Signature Id" <> StagingId) or (Visit."Sign Photo Requests" <> PhotoRequestText) then
                 Refuse(Failure::ConflictingIdentifiers);
             exit;
         end;
@@ -79,6 +81,7 @@ codeunit 70013463 "Proj. Visit Sign Runner ori"
         Visit."Signer Name" := CopyStr(Signer, 1, MaxStrLen(Visit."Signer Name"));
         Visit."Signed At" := CurrentDateTime();
         Visit."Sign Request Id" := CopyStr(RequestId, 1, MaxStrLen(Visit."Sign Request Id"));
+        Visit."Sign Photo Requests" := CopyStr(PhotoRequestText, 1, MaxStrLen(Visit."Sign Photo Requests"));
         Visit.Signed := true;
         Visit.Locked := true;
         foreach PhotoToken in Photos do begin

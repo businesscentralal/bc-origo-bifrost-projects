@@ -56,6 +56,7 @@ codeunit 97196 "Proj. Visit Sign Probe ori" implements "Msg Interface ori"
             Error('Only synthetic CRONUS test companies are allowed.');
         Fixture.Seed(Visit);
         SignatureId := Fixture.StageImage('image/png', true);
+        Response.Add('fixtureOwnerId', Format(UserSecurityId(), 0, 4));
         Response.Add('visitId', Visit."Entry No.");
         Response.Add('projectNo', Visit."Project No.");
         Response.Add('taskNo', Visit."Task No.");

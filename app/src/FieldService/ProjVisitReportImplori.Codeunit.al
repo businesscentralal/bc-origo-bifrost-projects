@@ -116,10 +116,8 @@ codeunit 70013460 "Proj. Visit Report Impl ori" implements "Msg Interface ori", 
     var
         Contract: Codeunit "Msg Contract Mgt ori";
     begin
+        Related.Add(Contract.RelatedEntry('Projects.VisitReport.Get', KeywordsLbl));
         Related.Add(Contract.RelatedEntry('Projects.Visit.SignOff', KeywordsLbl));
-        Related.Add(Contract.RelatedEntry('Projects.FollowUp.Request', KeywordsLbl));
-        Related.Add(Contract.RelatedEntry('Projects.MyTimeSheet.Submit', KeywordsLbl));
-        Related.Add(Contract.RelatedEntry('Projects.Usage.Submit', KeywordsLbl));
         exit(true);
     end;
 

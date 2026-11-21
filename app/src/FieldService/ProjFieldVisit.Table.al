@@ -143,6 +143,10 @@ table 70013433 "Proj. Field Visit ori"
         {
             Caption = 'Photos', Comment = 'is-IS=Ljósmyndir';
         }
+        field(33; "Sign Photo Requests"; Text[500])
+        {
+            Caption = 'Sign Photo Requests', Comment = 'is-IS=Ljósmyndabeiðnir undirritunar';
+        }
     }
 
     keys

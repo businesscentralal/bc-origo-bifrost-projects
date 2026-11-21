@@ -111,6 +111,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðfangsnr. starfsmanns</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Resource No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 4242376970 - Field 1420747823 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Sign Photo Requests</source>
+          <target>Ljósmyndabeiðnir undirritunar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ljósmyndabeiðnir undirritunar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Sign Photo Requests - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 4242376970 - Field 438546521 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Sign Request Id</source>
           <target>Auðkenni undirritunarbeiðni</target>

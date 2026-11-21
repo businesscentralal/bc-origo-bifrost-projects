@@ -6,6 +6,7 @@ using Microsoft.Projects.Resources.Resource;
 using Microsoft.Projects.TimeSheet;
 using Origo.Bifrost;
 using Origo.Bifrost.Projects;
+using System.IO;
 using System.Text;
 using System.Utilities;
 
@@ -122,5 +123,34 @@ codeunit 97195 "Proj. Visit Sign Fixture ori"
         Report.SaveAs(Report::"Proj. Visit Report ori", '', ReportFormat::Pdf, Output, RecRef);
         Blob.CreateInStream(Input);
         exit(Staging.Create(Input, 'synthetic-visit.pdf', 'application/pdf', 'Projects #86 test'));
+    end;
+    /// <summary>Checks the actual merged Word document, so a nonempty but blank PDF cannot satisfy report tests.</summary>
+    procedure RenderedWordContains(Visit: Record "Proj. Field Visit ori"; Expected: Text): Boolean
+    var
+        WordBlob: Codeunit "Temp Blob";
+        XmlBlob: Codeunit "Temp Blob";
+        Zip: Codeunit "Data Compression";
+        RecRef: RecordRef;
+        Output: OutStream;
+        Input: InStream;
+        DocumentText: Text;
+        LineText: Text;
+    begin
+        Visit.SetRecFilter();
+        RecRef.GetTable(Visit);
+        WordBlob.CreateOutStream(Output);
+        Report.SaveAs(Report::"Proj. Visit Report ori", '', ReportFormat::Word, Output, RecRef);
+        WordBlob.CreateInStream(Input);
+        Zip.OpenZipArchive(Input, false);
+        XmlBlob.CreateOutStream(Output);
+        Zip.ExtractEntry('word/document.xml', Output);
+        Zip.CloseZipArchive();
+        XmlBlob.CreateInStream(Input, TextEncoding::UTF8);
+        while not Input.EOS() do begin
+            Input.ReadText(LineText);
+            DocumentText += LineText;
+        end;
+        exit(DocumentText.Contains(Expected) and DocumentText.Contains('Synthetic equipment repaired') and
+             DocumentText.Contains('Synthetic part 1') and DocumentText.Contains('Synthetic part 2'));
     end;
 }

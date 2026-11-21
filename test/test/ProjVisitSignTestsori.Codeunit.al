@@ -443,6 +443,21 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         Assert.AreEqual(CountBefore, Usage.Count(), 'No new usage.');
     end;
 
+    [Test]
+    procedure Scenario_AC05_NoPermissionsRefused()
+    var
+        Visit: Record "Proj. Field Visit ori";
+        Lower: Codeunit "Library - Lower Permissions";
+        Request: JsonObject;
+    begin
+        Fixture.Seed(Visit);
+        Request := SignRequest(Visit, CreateGuid());
+        Commit();
+        Lower.PushPermissionSetWithoutDefaults('ProjVisit86None ori');
+        Refusal(Run("Message Type ori"::"Projects.Visit.SignOff", Request), 'PermissionDenied');
+        Refusal(Run("Message Type ori"::"Projects.VisitReport.Get", ById(Visit)), 'PermissionDenied');
+    end;
+
     local procedure CheckPdf(LanguageId: Integer)
     var
         Visit: Record "Proj. Field Visit ori";
@@ -458,6 +473,7 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         Visit.Get(Visit."Entry No.");
         PreviousLanguage := GlobalLanguage();
         GlobalLanguage(LanguageId);
+        Assert.IsTrue(Fixture.RenderedWordContains(Visit, 'Synthetic signer'), 'Merged report contains signer, outcome and both usage lines.');
         Id := Fixture.Render(Visit);
         GlobalLanguage(PreviousLanguage);
         Assert.IsTrue(Staging.Take(Id, Blob), 'PDF taken from staging.');
@@ -484,6 +500,7 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
     local procedure Run(MessageType: Enum "Message Type ori"; Request: JsonObject) Response: JsonObject
     var
         TempArgument: Record "Message Argument ori" temporary;
+        UsageManager: Codeunit "TS Usage Mgt ori";
         Handler: Interface "Msg Interface ori";
     begin
         TempArgument.ID := CreateGuid();
@@ -493,7 +510,12 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         TempArgument.SetRequestJson(Request);
         Handler := TempArgument.GetMessageTypeInterface();
         Commit();
-        Handler.ExecuteBifrostTask(TempArgument);
+        // Usage license gating is outside this business-rule test (NOT_RUN per PR).
+        // Exercise the same native manager as the existing usage suite; no licensed flag is fabricated.
+        if MessageType = MessageType::"Projects.Usage.Register" then
+            UsageManager.Execute(TempArgument, 1)
+        else
+            Handler.ExecuteBifrostTask(TempArgument);
         Response := TempArgument.GetResponseJson();
     end;
 

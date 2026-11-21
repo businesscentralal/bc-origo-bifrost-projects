@@ -22,7 +22,7 @@ codeunit 70013442 "Proj. Visit Restrict ori"
     begin
         if IsManagedField(TableNo, FieldNo) then
             Hint := HintLbl;
-        if (TableNo = Database::"Proj. Field Visit ori") and (FieldNo in [23 .. 32]) then
+        if (TableNo = Database::"Proj. Field Visit ori") and (FieldNo in [23 .. 33]) then
             Hint := 'Projects.Visit.SignOff';
     end;
 
@@ -33,6 +33,7 @@ codeunit 70013442 "Proj. Visit Restrict ori"
         if TableNo <> Database::"Proj. Field Visit ori" then
             exit(false);
         exit(FieldNo in [
+            Visit.FieldNo("Sign Photo Requests"),
             Visit.FieldNo(Photos),
             Visit.FieldNo("Signer Name"),
             Visit.FieldNo("Signed At"),

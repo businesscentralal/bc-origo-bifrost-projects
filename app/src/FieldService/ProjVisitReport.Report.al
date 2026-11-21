@@ -18,21 +18,51 @@ report 70013460 "Proj. Visit Report ori"
             RequestFilterFields = "Entry No.";
             column(Title; TitleLbl) { }
             column(VisitNo; "Entry No.") { }
-            column(ProjectNo; "Project No.") { IncludeCaption = true; }
-            column(TaskNo; "Task No.") { IncludeCaption = true; }
-            column(VisitDate; Date) { IncludeCaption = true; }
-            column(Hours; "Hours Written") { IncludeCaption = true; }
-            column(OutcomeText; Outcome) { IncludeCaption = true; }
-            column(Signer; "Signer Name") { IncludeCaption = true; }
-            column(SignedAt; "Signed At") { IncludeCaption = true; }
+            column(ProjectNo; "Project No.")
+            {
+                IncludeCaption = true;
+            }
+            column(TaskNo; "Task No.")
+            {
+                IncludeCaption = true;
+            }
+            column(VisitDate; Date)
+            {
+                IncludeCaption = true;
+            }
+            column(Hours; "Hours Written")
+            {
+                IncludeCaption = true;
+            }
+            column(OutcomeText; Outcome)
+            {
+                IncludeCaption = true;
+            }
+            column(Signer; "Signer Name")
+            {
+                IncludeCaption = true;
+            }
+            column(SignedAt; "Signed At")
+            {
+                IncludeCaption = true;
+            }
             column(SignatureImage; Signature) { }
             column(Recipient; RecipientEmail) { }
             dataitem(Usage; "TS Usage Line ori")
             {
                 DataItemLink = "Time Sheet No." = field("Time Sheet No."), "Time Sheet Line No." = field("Time Sheet Line No."), Date = field(Date), "Resource No." = field("Resource No.");
-                column(Description; Description) { IncludeCaption = true; }
-                column(Quantity; Quantity) { IncludeCaption = true; }
-                column(Unit; "Unit of Measure Code") { IncludeCaption = true; }
+                column(Description; Description)
+                {
+                    IncludeCaption = true;
+                }
+                column(Quantity; Quantity)
+                {
+                    IncludeCaption = true;
+                }
+                column(Unit; "Unit of Measure Code")
+                {
+                    IncludeCaption = true;
+                }
             }
             trigger OnAfterGetRecord()
             var
@@ -40,6 +70,12 @@ report 70013460 "Proj. Visit Report ori"
                 Contact: Record Contact;
             begin
                 CalcFields(Signature);
+                // Unlock retains the historical bytes on the row but must not print them as current approval.
+                if not Signed then begin
+                    Clear(Signature);
+                    Clear("Signer Name");
+                    Clear("Signed At");
+                end;
                 Clear(RecipientEmail);
                 if Job.Get("Project No.") then
                     if Contact.Get(Job."Sell-to Contact No.") then

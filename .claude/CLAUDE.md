@@ -72,5 +72,5 @@
 
 ## Issue #86 object ledger
 
-- Codeunits 70013460–70013466: visit report/sign-off implementations, signature manager/transaction, lock guard, contract and native manager unlock. Report 70013460; enum values 70013460/70013461. Fields 23–32 on visit table 70013433. Tests 97194–97196; test seed enumextension/value 97196.
+- Codeunits 70013460–70013466: visit report/sign-off implementations, signature manager/transaction, lock guard, contract and native manager unlock. Report 70013460; enum values 70013460/70013461. Fields 23–33 on visit table 70013433. Tests 97194–97196; test-only ownership probe page 97197; test seed enumextension/value 97196.
 - Foundation floor 28.0.13.0: first merged NormalizeMetadata source (core da140213). No feature-app dependency. PROJ FIELD TECH gains Contact read; native manager unlock checks Projects Setup write capability as well as its Full-only execute grant.
