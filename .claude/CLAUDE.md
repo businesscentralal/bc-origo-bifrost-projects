@@ -44,3 +44,9 @@
 - Enum value 70013420 `Projects.PlanningLine.CreatePurchaseOrder`.
 - Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `ProjNoPurch ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
 - Gunnar 20.11.2026, comment 7052438484: consume only scratch lines created by this call; refuse before calculation if caller has existing order-planning lines. Architect: one operation with rollback-only preview.
+
+## Issue #82 — technician reads and role
+
+- Gunnar 20.11.2026: assignable PROJ FIELD TECH (70013403), assigned with BIFROST Read ori. Includes the PROJ TS SELF bundle, native project/planning/site/stock reads and TS Usage Line ori RIM; no journal data or Job/Job Task/Job Planning Line writes. PROJ USAGE unchanged.
+- Codeunits 70013427–70013430: MyDay/VisitBrief implementations, shared manager and contract. Message enum values 70013427/70013428. Test 97179; test fixture codeunit, enumextension/value and cleanup page 97180.
+- Architect 21.11.2026: implement and open the PR now; AC06 SaaS Team Member Effective Permissions receipt is NOT_RUN until the user is provisioned on 23 November.

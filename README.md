@@ -74,7 +74,10 @@ Calls require the native BC table permissions in addition to the Foundation role
 
 The time-sheet message types (`Projects.TimeSheet.*`, `Projects.TimeSheetLine.*`, `Projects.Absence.Register`, `Projects.PendingApproval.Get`) need `BIFROST Full ori` together with the assignable set `PROJ TS ADMIN`, which grants the Base Application time-sheet, resource, employee, absence, project journal and number series data. `BIFROST Full ori` alone is refused with `PermissionDenied` and the next step "Assign the BIFROST Full ori and PROJ TS ADMIN permission sets." `Projects.PendingApproval.Get` only reads: `BIFROST Read ori` or `BIFROST Full ori` together with `PROJ TS ADMIN` is enough.
 
-The usage message types (`Projects.Usage.*`, #52) need `BIFROST Full ori` together with the assignable set `PROJ USAGE`, which grants the Base Application time sheet, item, resource, item/resource/project journal and ledger data. `Projects.Usage.List` only reads: `BIFROST Read ori` together with `PROJ USAGE` is enough. Without them the call is refused with `PermissionDenied` and a next step naming the sets.
+Technicians use `BIFROST Read ori` + `PROJ FIELD TECH` for `Projects.MyDay.Get`, `Projects.VisitBrief.Get` and their own `Projects.Usage.Register/Submit/List`. `PROJ FIELD TECH` includes `PROJ TS SELF`, adds read-only project planning/site/stock data and RIM on this app's usage lines, and grants no journal data or project/task/planning writes. `PROJ USAGE` is unchanged for approvers and back office, together with `BIFROST Full ori` (`BIFROST Read ori` suffices for List). Refusals name the appropriate sets. The Team Member SaaS entitlement/Effective Permissions receipt is NOT_RUN until the dedicated test user exists (23 November 2026, issue #82).
+
+`Projects.MyDay.Get` defaults to today and returns each owned Resource planning line in planning-date/task/line order, with project number breaking ties. `include` accepts `items` and `address` (default: address). `Projects.VisitBrief.Get` requires projectNo/taskNo; both accept resourceNo to choose among multiple owned resources. Hours use native resource quantities, so resources should use hours as their unit. Day time is restricted to the requested date; brief time covers the task across all own sheets. Site data is the project's native ship-to snapshot. Missing sheets/task lines return ready-made `nextSteps` without writes. Brief `recordIds` allows assistants to use other apps; Projects reads no attachments and depends on no feature app. `history` and `followUps` remain empty pending #83/#87.
+
 
 `PROJ TS ADMIN` grants direct RIMD access to time-sheet and archive tables and project journal lines, and RI access to employee absence and time-sheet posting entries. These rights also apply outside message-type calls; the owner and approver checks in message handlers do not restrict direct table access. Assign it only to users who should have those native permissions. The Foundation role extensions grant only Projects-owned objects.
 
@@ -162,6 +165,14 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | permissionsetextension | 70013500 | `Projects Read ori` |
 | permissionsetextension | 70013501 | `Projects Full ori` |
 | permissionset | 70013402 | `PROJ USAGE` |
+| codeunit | 70013427 | `Proj. My Day Impl ori` |
+| codeunit | 70013428 | `Proj. Visit Brief Impl ori` |
+| codeunit | 70013429 | `Proj. Field Service Mgt ori` |
+| codeunit | 70013430 | `Proj. Field Contract ori` |
+| permissionset | 70013403 | `PROJ FIELD TECH` |
+| test codeunit | 97179 | `Proj. Field Service Tests ori` |
+| test codeunit | 97180 | `Proj. Field Fixture ori` |
+| test enumextension/value and cleanup page | 97180 | `Proj. Field Fixture Types ori / Test.Field82.Seed` |
 | permissionset | 70013589 | `PROJ TS ADMIN` |
 | table | 70013500 | `Projects Setup ori` |
 | table | 70013521 | `Proj. Posting ori` |

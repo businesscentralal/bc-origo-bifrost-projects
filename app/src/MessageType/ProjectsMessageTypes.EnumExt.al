@@ -167,4 +167,16 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.ItemCost.Update', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Item Cost Impl ori", "Msg Discovery ori" = "Proj. Item Cost Impl ori", "Msg Contract ori" = "Proj. Item Cost Impl ori", "Msg Confirm ori" = "Proj. Item Cost Confirm ori";
     }
+    /// <summary>Reads owner-scoped technician project information.</summary>
+    value(70013427; "Projects.MyDay.Get")
+    {
+        Caption = 'Projects.MyDay.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. My Day Impl ori", "Msg Discovery ori" = "Proj. My Day Impl ori", "Msg Contract ori" = "Proj. My Day Impl ori";
+    }
+    /// <summary>Reads owner-scoped technician project information.</summary>
+    value(70013428; "Projects.VisitBrief.Get")
+    {
+        Caption = 'Projects.VisitBrief.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. Visit Brief Impl ori", "Msg Discovery ori" = "Proj. Visit Brief Impl ori", "Msg Contract ori" = "Proj. Visit Brief Impl ori";
+    }
 }

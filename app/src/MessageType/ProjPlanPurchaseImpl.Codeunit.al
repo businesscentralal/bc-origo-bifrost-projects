@@ -208,7 +208,7 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     /// <summary>Supplies the native proposal count before Foundation dispatch and leaves preview ungated.</summary>
     procedure GetConfirmCount(var Argument: Record "Message Argument ori"; var Count: Integer; var Summary: Text): Boolean
     var
-        PreviewArgument: Record "Message Argument ori" temporary;
+        TempPreviewArgument: Record "Message Argument ori" temporary;
         Input: Codeunit "Projects Followup Input ori";
         DefaultConfirm: Codeunit "Default Confirm ori";
         Request: JsonObject;
@@ -230,15 +230,15 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
                 Summary := DefaultConfirm.NoSubjectText();
                 exit(true);
             end;
-        PreviewArgument := Argument;
-        PreviewArgument.Insert(true);
+        TempPreviewArgument := Argument;
+        TempPreviewArgument.Insert(true);
         if Request.Contains('preview') then
             Request.Replace('preview', true)
         else
             Request.Add('preview', true);
-        PreviewArgument.SetRequestJson(Request);
-        ExecuteNative(PreviewArgument);
-        Response := PreviewArgument.GetResponseJson();
+        TempPreviewArgument.SetRequestJson(Request);
+        ExecuteNative(TempPreviewArgument);
+        Response := TempPreviewArgument.GetResponseJson();
         if Response.GetText('status') <> 'Success' then begin
             Argument.SetResponseJson(Response);
             exit(false);
