@@ -3,6 +3,10 @@
 Projects owns projects, tasks, planning lines and the project lifecycle. Time sheets
 and Clockify stay in Timesheets. The app depends only on Bifrost Foundation.
 
+## Field visits
+
+`Projects.Visit.Start`, `Projects.Visit.Stop` and `Projects.Visit.Complete` record one technician's travel or work. Hours are added to the open job line for that task. Kilometres are an open usage line on the work line and are not submitted. Projects Setup holds the travel work type, the mileage resource, rounding minutes, the client-time tolerance and whether unplanned tasks are allowed. A missing week is not created; the caller uses `Projects.MyTimeSheet.Create`. Help chapters stay English. Discovery, refusals and `nextStep` are translated.
+
 ## Setup and discovery
 
 Open **Projects Setup** from Foundation's registered applications. `Enabled` is on by
