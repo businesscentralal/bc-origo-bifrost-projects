@@ -45,6 +45,7 @@ Native time sheets belong to **Bifrost Projects**: create, submit, approve, reje
 | `Projects.Project.Archive` | `projectNo`, optional `description` | Creates a native archived project version (requires Projects Full and Archive Projects in Jobs Setup). |
 | `Projects.ProjectArchive.Get` | `projectNo`, optional `versionNo` | Lists archived versions or reads one version with tasks and planning lines. |
 | `Projects.Quote.Send` | `projectNo`, optional `documentSendingProfile` | Sends the quote of a project in status Quote to its bill-to customer through a Document Sending Profile, as the Send Project Quote action does. Irreversible. |
+| `Projects.ItemCost.Update` | `projectNos[]` or `allOpen`, optional `postingDateFrom`/`postingDateTo`, `expectedCount` | Brings the item cost on project usage entries and planning lines up to the adjusted item cost (the Update Project Item Cost batch job). Irreversible; `expectedCount` counts the projects in scope. |
 
 | `Projects.ResourceAllocation.Get` | `periodType`, `fromDate`, `toDate`; optional project/resource/group selectors | Resource capacity, per-project allocation and availability by period. |
 | `Projects.WIPMethod.Get` | Optional exact `code`; `{}` lists all | Reads native WIP methods, recognized settings and flags. |
@@ -102,6 +103,18 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 
 | Type | ID | Name |
 | --- | --- | --- |
+| codeunit | 70013424 | `Proj. Plan Purchase Impl ori` |
+| codeunit | 70013421 | `Proj. Plan Purchase Proc ori` |
+| codeunit | 70013422 | `Proj. Plan Purchase Result ori` |
+| codeunit | 70013423 | `Proj. Plan Purchase Scope ori` |
+| enum value | 70013420 | `Projects.PlanningLine.CreatePurchaseOrder` |
+| test codeunit | 97171 | `Proj. Plan Purchase Tests ori` |
+| test codeunit | 97172 | `Proj Plan Purch Perm Tests ori` |
+| test permission set | 97172 | `ProjNoPurch ori` (nonassignable) |
+| test codeunit | 97173 | `Proj. Plan Purch Fixture ori` |
+| test codeunit | 97174 | `Proj. Plan Purch Seed ori` |
+| test enum extension/value | 97173 | `Proj. Plan Purch Types ori` / `Test.PlanPurchase74.Seed` |
+| test page | 97173 | `Proj. Plan Purch Cleanup ori` |
 | codeunit | 70013500 | `Projects Gate ori` |
 | codeunit | 70013501 | `Projects Registration ori` |
 | codeunit | 70013502 | `Projects Install ori` |
@@ -137,11 +150,15 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013540 | `Proj. WIP Method Get ori` |
 | codeunit | 70013541 | `Proj. WIP Method Set ori` |
 | codeunit | 70013542 | `Projects WIP Methods ori` |
+| codeunit | 70013420 | `Proj. Item Cost Impl ori` |
+| codeunit | 70013407 | `Proj. Item Cost Process ori` |
+| codeunit | 70013408 | `Projects Item Cost ori` |
+| codeunit | 70013409 | `Proj. Item Cost Confirm ori` |
 | codeunit | 70013543 | `Proj. WIP Method Process ori` |
-| enumextension | 70013500 | `Projects Message Types ori` |
 | codeunit | 70013425 | `Proj. Task Copy Impl ori` |
 | codeunit | 70013426 | `Proj. Task Copy Process ori` |
 | enum value | 70013425 | `Projects.Task.CopyFrom` |
+| enumextension | 70013500 | `Projects Message Types ori` (adds value 70013552 `Projects.ItemCost.Update`) |
 | codeunit | 70013419 | `Proj. Task Indent Impl ori` |
 | enum value | 70013406 | `Projects.Task.Indent` |
 | page | 70013500 | `Projects Setup ori` |
@@ -194,3 +211,9 @@ The operation is a plain write with no `expectedCount` (Architect ruling 20 Nove
 ### Copy tasks into an existing project
 
 `Projects.Task.CopyFrom` uses Copy Project Tasks to append an inclusive task range and native planning lines, or planning lines converted from posted Usage/Sale entries. Both projects must exist. All colliding task numbers are refused before any copy; completed or fully blocked targets are refused. Omit `expectedCount` to preview the source task count, then repeat with that count. `copyQuantity`, `copyPrices` and `copyDimensions` default to true. No existing tasks or planning lines are replaced or deleted. Requires BIFROST Full ori and the caller's native project permissions. For a new target use `Projects.Project.Copy`.
+
+### Purchase orders from project planning lines (#74)
+
+`Projects.PlanningLine.CreatePurchaseOrder` previews uncovered item demand on one open, unblocked project. Set `preview: true` to calculate without retaining changes. Then create with `expectedCount` equal to the number of proposals. Purchase orders are grouped by vendor and carry native project task and planning-line links; receiving and invoicing posts project usage.
+
+Select an optional exact `taskNo` or `planningLineNos` array, never both. Vendor overrides contain `planningLineNo` and `vendorNo`. Existing caller lines on Order Planning cause refusal before calculation. Only this call's own scratch lines are consumed. Non-item, billable-only and covered lines are returned in `skipped`. No posting or UI change. Company-wide planning belongs in the requisition or planning worksheet.

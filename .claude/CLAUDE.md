@@ -26,6 +26,11 @@
 - Enum value 70013533 `Projects.PlanningLine.ShiftDates`.
 - Test codeunits 97167 `Proj. Shift Dates Tests ori`, 97168 `Proj Shift Date Perm Tests ori`.
 - Architect ruling 20.11.2026: plain write, no expectedCount; refuse transferred/invoiced lines.
+## Object ledger — issue #77
+
+- Codeunit 70013420: `Proj. Item Cost Impl ori` (renumbered from 70013419 after Projects.Task.Indent took it on main). 70013417 stays `Proj. Shift Dates Impl ori` (Architect ruling 20.11.2026). Also 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`.
+- Enum value 70013552: `Projects.ItemCost.Update`.
+- Tests: codeunits 97156 `Projects Item Cost Tests ori`, 97157 `Proj. Item Cost Perm Tests ori`.
 
 ## Object ledger — issue #75
 
@@ -37,3 +42,10 @@
 - Codeunits 70013425 `Proj. Task Copy Impl ori`, 70013426 `Proj. Task Copy Process ori`; enum value 70013425 `Projects.Task.CopyFrom`.
 - Tests: 97175 `Proj. Task Copy Tests ori`, 97176 `Proj. Task Copy Perm Tests ori`. Test-only nonassignable permission set 97176 `ProjCopyNoInsert ori`. Fixtures: 97177 codeunit, enumextension/value and cleanup page, 97178 seed codeunit (test app only). No new assignable permission set and no delete operation.
 - Append-only existing-target copy; task conflicts refuse atomically. Foundation floor remains 28.0.5.0.
+
+## Issue #74 object ledger
+
+- Codeunits 70013424 `Proj. Plan Purchase Impl ori`, 70013421 `Proj. Plan Purchase Proc ori`, 70013422 `Proj. Plan Purchase Result ori`, 70013423 `Proj. Plan Purchase Scope ori` (scoped native subscribers).
+- Enum value 70013420 `Projects.PlanningLine.CreatePurchaseOrder`.
+- Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `ProjNoPurch ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
+- Gunnar 20.11.2026, comment 7052438484: consume only scratch lines created by this call; refuse before calculation if caller has existing order-planning lines. Architect: one operation with rollback-only preview.

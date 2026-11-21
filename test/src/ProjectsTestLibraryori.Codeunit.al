@@ -492,7 +492,11 @@ codeunit 97102 "Projects Test Library ori"
                     DimValuePerAccount.DeleteAll(true);
                 DefaultDimension.SetRange("Dimension Code", Dimension.Code);
                 if not DefaultDimension.IsEmpty() then begin
-                    DefaultDimension.DeleteAll(true);
+                    // OnDelete asks UpdateJobTaskDim to confirm "You have changed a dimension".
+                    // Job tasks still exist, so the question is conditional. A handler that is
+                    // not invoked fails the test runner, and a caller without one fails when
+                    // the question appears. Task dimensions are already removed above.
+                    DefaultDimension.DeleteAll(false);
                     Removed := true;
                 end;
                 // Posted WIP keeps the dimension value in a dimension set, so the value and dimension stay.
