@@ -22,11 +22,11 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     [Test]
     procedure AC01_DefaultOptionsAndInclusiveRange()
     var
-        Manifest: JsonObject;
-        Response: JsonObject;
         Task: Record "Job Task";
         Line: Record "Job Planning Line";
         TaskDimension: Record "Job Task Dimension";
+        Manifest: JsonObject;
+        Response: JsonObject;
     begin
         Manifest := Fixture.Seed();
         Response := Execute(Fixture.Request(Manifest));
@@ -53,11 +53,11 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     [Test]
     procedure AC01_DisabledOptionsBudgetFilter()
     var
+        Line: Record "Job Planning Line";
+        TaskDimension: Record "Job Task Dimension";
         Manifest: JsonObject;
         Request: JsonObject;
         Response: JsonObject;
-        Line: Record "Job Planning Line";
-        TaskDimension: Record "Job Task Dimension";
     begin
         Manifest := Fixture.Seed();
         Request := Fixture.Request(Manifest);
@@ -81,10 +81,10 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     [Test]
     procedure AC01_BillableFilter()
     var
+        Line: Record "Job Planning Line";
         Manifest: JsonObject;
         Request: JsonObject;
         Response: JsonObject;
-        Line: Record "Job Planning Line";
     begin
         Manifest := Fixture.Seed();
         Request := Fixture.Request(Manifest);
@@ -114,10 +114,10 @@ codeunit 97175 "Proj. Task Copy Tests ori"
 
     local procedure CheckLedger(Sale: Boolean)
     var
+        Line: Record "Job Planning Line";
         Manifest: JsonObject;
         Request: JsonObject;
         Response: JsonObject;
-        Line: Record "Job Planning Line";
     begin
         Manifest := Fixture.Seed();
         Fixture.SeedLedger(Manifest, false);
@@ -146,9 +146,9 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     [Test]
     procedure AC03_CollisionsRefuseWholeRange()
     var
+        Task: Record "Job Task";
         Manifest: JsonObject;
         Response: JsonObject;
-        Task: Record "Job Task";
     begin
         Manifest := Fixture.Seed();
         Fixture.AddTask(CopyStr(Manifest.GetText('targetProjectNo'), 1, 20), '1999');
@@ -183,8 +183,8 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     [Test]
     procedure AC04_TargetStateRefusals()
     var
-        Manifest: JsonObject;
         Project: Record Job;
+        Manifest: JsonObject;
     begin
         Manifest := Fixture.Seed();
         Project.Get(Manifest.GetText('targetProjectNo'));
@@ -344,8 +344,8 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     [Test]
     procedure AC04_NativeFailureRollsBackEarlierTask()
     var
-        Manifest: JsonObject;
         Line: Record "Job Planning Line";
+        Manifest: JsonObject;
     begin
         Manifest := Fixture.Seed();
         Line.Get(Manifest.GetText('sourceProjectNo'), '1000', 10000);

@@ -4,6 +4,13 @@
 
 - Effect reclassified by Gunnar's rule that only posting is irreversible: `Projects.PlanningLine.CreatePurchaseOrder`, `Projects.Task.CopyFrom`, `Projects.Quote.Send` and `Projects.ItemCost.Update` now declare `write`. They ask for no confirmation, also with Require Confirmation for Irreversible Messages on; `expectedCount` is still accepted but ignored. Help in 1033 and 1039 says "Writes."/"Skrifar." `Projects.ItemUsage.Post`, `Projects.WIP.Post`, `Projects.WIP.Reverse` and `Projects.TimeSheet.Post` stay `irreversible`. Preview for the purchase type is `preview=true`; `Projects.Task.CopyFrom` has no preview any more. No new objects.
 
+## Unreleased — #86
+
+- Add `Projects.VisitReport.Get` and `Projects.Visit.SignOff`: quantity-only previews, customer signatures and photos consumed atomically from Foundation staging, and signed-visit locking. Stop, Complete and shared usage registration refuse a locked visit. The manager-only native unlock entry point checks Projects Setup write capability; technician writes cannot unlock.
+- Word report 70013460 renders visit time, usage, outcome and signature in English and Icelandic. Projects references no other feature app. Foundation minimum is 28.0.13.0, the first merged `NormalizeMetadata` version.
+- Added codeunits 70013460–70013466, report 70013460, enum values 70013460/70013461; additive fields 23–33 and an index on table 70013433. Tests 97194–97196; test-only ownership probe page 97197 (97196 also a test-only seed enum extension). Existing test analyzer naming/declaration warnings corrected mechanically, without changing assertions.
+- Team Member SaaS proof remains NOT_RUN pending #82. The exact `Projects.VisitItem.Register` integration test awaits the sibling #84 implementation.
+
 ## Unreleased — #83
 
 - Add `Projects.Visit.Start`, `Projects.Visit.Stop` and `Projects.Visit.Complete` so a technician can record travel and work on a planned task. Hours are rounded and added to an open time sheet line. Mileage becomes an open usage line and is not submitted. The same `clientRequestId` returns the first result. Generic writes of visit status, times, hours and time sheet keys are refused.

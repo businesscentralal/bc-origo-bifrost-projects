@@ -103,6 +103,50 @@ table 70013433 "Proj. Field Visit ori"
         {
             Caption = 'Usage Entry No.', Comment = 'is-IS=Færslunr. notkunar';
         }
+        field(23; "Signer Name"; Text[100])
+        {
+            Caption = 'Signer Name', Comment = 'is-IS=Nafn undirritanda';
+        }
+        field(24; "Signed At"; DateTime)
+        {
+            Caption = 'Signed At', Comment = 'is-IS=Undirritað þann';
+        }
+        field(25; "Signature Id"; Guid)
+        {
+            Caption = 'Signature Id', Comment = 'is-IS=Auðkenni undirskriftar';
+        }
+        field(26; "Signed"; Boolean)
+        {
+            Caption = 'Signed', Comment = 'is-IS=Undirritað';
+        }
+        field(27; "Locked"; Boolean)
+        {
+            Caption = 'Locked', Comment = 'is-IS=Læst';
+        }
+        field(28; "Signature"; Blob)
+        {
+            Caption = 'Signature', Comment = 'is-IS=Undirskrift';
+        }
+        field(29; "Signature Content Type"; Text[100])
+        {
+            Caption = 'Signature Content Type', Comment = 'is-IS=Efnisgerð undirskriftar';
+        }
+        field(30; "Signature File Name"; Text[250])
+        {
+            Caption = 'Signature File Name', Comment = 'is-IS=Skráarheiti undirskriftar';
+        }
+        field(31; "Sign Request Id"; Text[100])
+        {
+            Caption = 'Sign Request Id', Comment = 'is-IS=Auðkenni undirritunarbeiðni';
+        }
+        field(32; Photos; MediaSet)
+        {
+            Caption = 'Photos', Comment = 'is-IS=Ljósmyndir';
+        }
+        field(33; "Sign Photo Requests"; Text[500])
+        {
+            Caption = 'Sign Photo Requests', Comment = 'is-IS=Ljósmyndabeiðnir undirritunar';
+        }
     }
 
     keys
@@ -110,6 +154,9 @@ table 70013433 "Proj. Field Visit ori"
         key(PK; "Entry No.")
         {
             Clustered = true;
+        }
+        key(UsageBoundary; "Time Sheet No.", "Time Sheet Line No.", Date)
+        {
         }
         key(ResourceStatus; "Resource No.", Status)
         {

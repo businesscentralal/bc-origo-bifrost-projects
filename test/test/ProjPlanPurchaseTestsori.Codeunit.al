@@ -36,12 +36,12 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure PreviewThenCreateTwoVendors()
     var
-        Request: JsonObject;
-        Response: JsonObject;
         Planning: Record "Job Planning Line";
         Header: Record "Purchase Header";
         Line: Record "Purchase Line";
         Item: Record Item;
+        Request: JsonObject;
+        Response: JsonObject;
         PlanningRequest: JsonObject;
     begin
         // [SCENARIO] A new project needs two different items from different vendors.
@@ -80,12 +80,12 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure ReceiveInvoicePostsProjectUsage()
     var
-        Request: JsonObject;
-        Response: JsonObject;
         Line: Record "Purchase Line";
         Header: Record "Purchase Header";
         Ledger: Record "Job Ledger Entry";
         Post: Codeunit "Purch.-Post";
+        Request: JsonObject;
+        Response: JsonObject;
     begin
         // [SCENARIO] The link created by order planning must work through native posting.
         Request := Fixture.Seed(true);
@@ -112,13 +112,13 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure PostedStockIsSkipped()
     var
-        Request: JsonObject;
-        Response: JsonObject;
         Planning: Record "Job Planning Line";
-        Journal: Record "Item Journal Line" temporary;
-        Post: Codeunit "Item Jnl.-Post Line";
+        TempJournal: Record "Item Journal Line" temporary;
         Item: Record Item;
         Vendor: Record Vendor;
+        Post: Codeunit "Item Jnl.-Post Line";
+        Request: JsonObject;
+        Response: JsonObject;
     begin
         // [SCENARIO] Self-posted stock covers all demand; no proposal or order is made.
         Request := Fixture.Seed(true);
@@ -126,15 +126,15 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
         Planning.FindFirst();
         Item.Get(Planning."No.");
         Vendor.Get(Item."Vendor No.");
-        Journal."Line No." := 10000;
-        Journal."Entry Type" := Journal."Entry Type"::"Positive Adjmt.";
-        Journal.Validate("Posting Date", WorkDate());
-        Journal.Validate("Document No.", Item."No.");
-        Journal.Validate("Item No.", Item."No.");
-        Journal.Validate("Gen. Bus. Posting Group", Vendor."Gen. Bus. Posting Group");
-        Journal.Validate(Quantity, 3);
-        Journal.Validate("Unit Cost", 7);
-        Post.RunWithCheck(Journal);
+        TempJournal."Line No." := 10000;
+        TempJournal."Entry Type" := TempJournal."Entry Type"::"Positive Adjmt.";
+        TempJournal.Validate("Posting Date", WorkDate());
+        TempJournal.Validate("Document No.", Item."No.");
+        TempJournal.Validate("Item No.", Item."No.");
+        TempJournal.Validate("Gen. Bus. Posting Group", Vendor."Gen. Bus. Posting Group");
+        TempJournal.Validate(Quantity, 3);
+        TempJournal.Validate("Unit Cost", 7);
+        Post.RunWithCheck(TempJournal);
         Request.Add('preview', true);
         Response := Execute(Request);
         Library.AssertStatus(Response, 'Success');
@@ -148,9 +148,9 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure ExistingOrderPlanningIsPreserved()
     var
+        Scratch: Record "Requisition Line";
         Request: JsonObject;
         Response: JsonObject;
-        Scratch: Record "Requisition Line";
         Id: Guid;
     begin
         // [SCENARIO] A caller's pending work must never be removed by this operation.
@@ -299,11 +299,11 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure VendorOverrideAndExactSelection()
     var
-        Request: JsonObject;
-        Response: JsonObject;
         Planning: Record "Job Planning Line";
         Item: Record Item;
         OtherItem: Record Item;
+        Request: JsonObject;
+        Response: JsonObject;
         PlanningRequest: JsonObject;
         Numbers: JsonArray;
         Overrides: JsonArray;
@@ -359,8 +359,8 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure BlockedProjectChangesNothing()
     var
-        Request: JsonObject;
         Project: Record Job;
+        Request: JsonObject;
     begin
         // [SCENARIO] Purchasing is unavailable on a blocked project.
         Request := Fixture.Seed(true);
@@ -376,9 +376,9 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure BillableAndTextLinesAreSkipped()
     var
+        Planning: Record "Job Planning Line";
         Request: JsonObject;
         Response: JsonObject;
-        Planning: Record "Job Planning Line";
     begin
         // [SCENARIO] Billing demand and text are never purchased.
         Request := Fixture.Seed(true);
@@ -404,9 +404,9 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure InvalidVendorRollsBackWholeCalculation()
     var
-        Request: JsonObject;
         Item: Record Item;
         Planning: Record "Job Planning Line";
+        Request: JsonObject;
     begin
         // [SCENARIO] A native calculated proposal without a usable vendor must leave no scratch or orders.
         Request := Fixture.Seed(true);
@@ -425,8 +425,8 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
     [Test]
     procedure NativeFailureLeavesNoPurchasesOrScratch()
     var
-        Request: JsonObject;
         Setup: Record "Purchases & Payables Setup";
+        Request: JsonObject;
     begin
         // [SCENARIO] Native purchase creation fails on missing numbering setup after planning has calculated.
         Request := Fixture.Seed(true);
@@ -449,17 +449,17 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
 
     local procedure Execute(Request: JsonObject): JsonObject
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         Impl: Codeunit "Proj. Plan Purchase Impl ori";
     begin
-        Argument.ID := CreateGuid();
-        Argument.Type := "Message Type ori"::"Projects.PlanningLine.CreatePurchaseOrder";
-        Argument.Version := "Message Version ori"::"1.0";
-        Argument.SetRequestJson(Request);
-        Argument.Insert(true);
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := "Message Type ori"::"Projects.PlanningLine.CreatePurchaseOrder";
+        TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.SetRequestJson(Request);
+        TempArgument.Insert(true);
         Commit();
-        Impl.ExecuteNative(Argument);
-        exit(Argument.GetResponseJson());
+        Impl.ExecuteNative(TempArgument);
+        exit(TempArgument.GetResponseJson());
     end;
 
     local procedure AssertCode(Response: JsonObject; CodeValue: Text)
