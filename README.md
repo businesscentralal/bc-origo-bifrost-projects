@@ -11,7 +11,7 @@ Bifrost feature app for project (job) message types that are not covered by Bifr
 Native time sheets belong to **Bifrost Projects**: create, submit, approve, reject, reopen, post and archive sheets, create lines from planning or a previous sheet, list pending approvals and register absence. The Clockify sync and Phone Role Center remain in **Bifrost Timesheets** (businesscentralal/bc-origo-bifrost-timesheets). Project journal and project-to-sales-invoice/credit-memo types live in **Bifrost Foundation**.
 
 - Depends only on Bifrost Foundation.
-- Object range: 70013500..70013599 (app; upper part of Public 4 while Shopify still uses 70013400..70013481), 97100..97199 (tests).
+- Object range: 70013400..70013599 (Projects app, Public 4), 97100..97199 (tests).
 
 ## Functional flow
 
@@ -158,6 +158,9 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 | codeunit | 70013408 | `Projects Item Cost ori` |
 | codeunit | 70013409 | `Proj. Item Cost Confirm ori` |
 | codeunit | 70013543 | `Proj. WIP Method Process ori` |
+| codeunit | 70013425 | `Proj. Task Copy Impl ori` |
+| codeunit | 70013426 | `Proj. Task Copy Process ori` |
+| enum value | 70013425 | `Projects.Task.CopyFrom` |
 | enumextension | 70013500 | `Projects Message Types ori` (adds value 70013552 `Projects.ItemCost.Update`) |
 | codeunit | 70013419 | `Proj. Task Indent Impl ori` |
 | enum value | 70013406 | `Projects.Task.Indent` |
@@ -216,6 +219,9 @@ The operation is a plain write with no `expectedCount` (Architect ruling 20 Nove
 
 `Projects.WIP.Reverse` uses the **Reverse Only** option of **Post WIP to G/L**. Send `projectNo`, required ISO `postingDate`, and `documentNo` (1–20 characters). Preview without `expectedCount`, then confirm the number of eligible posted WIP entries. The operation posts correcting G/L entries; it preserves calculated WIP and returns `reversedEntries`, current `wip`, `summary` and `nextStep: Projects.WIP.Calculate`. Completed WIP, an earlier posting date, missing candidates and stale confirmation are refused without changes. Requires **BIFROST Full ori** and native project/posting permissions.
 
+### Copy tasks into an existing project
+
+`Projects.Task.CopyFrom` uses Copy Project Tasks to append an inclusive task range and native planning lines, or planning lines converted from posted Usage/Sale entries. Both projects must exist. All colliding task numbers are refused before any copy; completed or fully blocked targets are refused. Omit `expectedCount` to preview the source task count, then repeat with that count. `copyQuantity`, `copyPrices` and `copyDimensions` default to true. No existing tasks or planning lines are replaced or deleted. Requires BIFROST Full ori and the caller's native project permissions. For a new target use `Projects.Project.Copy`.
 
 ### Purchase orders from project planning lines (#74)
 
