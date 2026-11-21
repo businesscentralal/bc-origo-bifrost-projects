@@ -336,6 +336,60 @@ codeunit 97188 "Proj. Van Tests ori"
         Assert.AreEqual(0, Usage.Count(), 'Refusals write nothing.');
     end;
 
+    /// <summary>AC07: BIFROST Read ori with PROJ FIELD TECH registers van parts and reads van stock.</summary>
+    [Test]
+    procedure Scenario_AC07_FieldTech_RegistersAndReadsVanStock()
+    var
+        Lower: Codeunit "Library - Lower Permissions";
+        Response: JsonObject;
+        Request: JsonObject;
+        ItemNo: Code[20];
+        Van: Code[10];
+        ProjectNo: Code[20];
+        TaskNo: Code[20];
+        SheetNo: Code[20];
+    begin
+        Prepare(Van, SheetNo, ProjectNo, TaskNo);
+        ItemNo := StockedItem(Van, 'Perm ' + Unique(), 5, false);
+        Commit();
+        Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
+        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Response := Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, ItemJson(ItemNo, '', 1), ''));
+        Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
+        Request.Add('itemFilter', ItemNo);
+        Response := Run("Message Type ori"::"Projects.VanStock.Get", Request);
+        Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
+        Assert.AreEqual(1, ArrayOf(Response, 'items').Count(), 'The technician sees the van item.');
+    end;
+
+    /// <summary>AC07: BIFROST Read ori alone is refused for both types with PermissionDenied and writes nothing.</summary>
+    [Test]
+    procedure Scenario_AC07_ReadOnly_RefusedForBoth()
+    var
+        Usage: Record "TS Usage Line ori";
+        Lower: Codeunit "Library - Lower Permissions";
+        Response: JsonObject;
+        Request: JsonObject;
+        ItemNo: Code[20];
+        Van: Code[10];
+        ProjectNo: Code[20];
+        TaskNo: Code[20];
+        SheetNo: Code[20];
+    begin
+        Prepare(Van, SheetNo, ProjectNo, TaskNo);
+        ItemNo := StockedItem(Van, 'Perm ' + Unique(), 5, false);
+        Commit();
+        Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
+        Response := Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, ItemJson(ItemNo, '', 1), ''));
+        AssertRefusal(Response, 'PermissionDenied', '', 'PROJ FIELD TECH');
+        Request.Add('itemFilter', ItemNo);
+        Response := Run("Message Type ori"::"Projects.VanStock.Get", Request);
+        AssertRefusal(Response, 'PermissionDenied', '', 'PROJ FIELD TECH');
+        Lower.SetO365Full();
+        Usage.SetRange("Time Sheet No.", SheetNo);
+        Assert.RecordIsEmpty(Usage);
+    end;
+
     [Test]
     procedure Scenario_AC09_GenericPlacementWrite_Refused()
     var
@@ -570,8 +624,8 @@ codeunit 97188 "Proj. Van Tests ori"
     local procedure Run(MessageType: Enum "Message Type ori"; Request: JsonObject) Response: JsonObject
     var
         TempArgument: Record "Message Argument ori" temporary;
-        MsgInterface: Interface "Msg Interface ori";
         UsageMgt: Codeunit "TS Usage Mgt ori";
+        MsgInterface: Interface "Msg Interface ori";
     begin
         TempArgument.Init();
         TempArgument.ID := CreateGuid();
@@ -582,13 +636,14 @@ codeunit 97188 "Proj. Van Tests ori"
         MsgInterface := TempArgument.GetMessageTypeInterface();
         Commit();
         // Usage messages are called through the manager: the licence check sits in ExecuteBifrostTask (NOT_RUN per PR).
-        if MessageType = "Message Type ori"::"Projects.Usage.Register" then
-            UsageMgt.Execute(TempArgument, 1)
-        else
-            if MessageType = "Message Type ori"::"Projects.Usage.Transfer" then
-                UsageMgt.Execute(TempArgument, 5)
+        case MessageType of
+            "Message Type ori"::"Projects.Usage.Register":
+                UsageMgt.Execute(TempArgument, 1);
+            "Message Type ori"::"Projects.Usage.Transfer":
+                UsageMgt.Execute(TempArgument, 5);
             else
                 MsgInterface.ExecuteBifrostTask(TempArgument);
+        end;
         Response := TempArgument.GetResponseJson();
     end;
 
@@ -652,23 +707,6 @@ codeunit 97188 "Proj. Van Tests ori"
             if Token.IsValue() then
                 Evaluate(Value, Token.AsValue().AsText(), 9);
         exit(Value);
-    end;
-
-    local procedure NumberOf(Response: JsonObject; Name: Text): Integer
-    var
-        Token: JsonToken;
-    begin
-        if Response.Get(Name, Token) then
-            if Token.IsValue() then
-                exit(Token.AsValue().AsInteger());
-    end;
-
-    local procedure Child(Response: JsonObject; Name: Text) Node: JsonObject
-    var
-        Token: JsonToken;
-    begin
-        Response.Get(Name, Token);
-        Node := Token.AsObject();
     end;
 
     local procedure Isolate()

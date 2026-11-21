@@ -19,11 +19,11 @@ codeunit 70013474 "Proj. Van Mgt ori"
     /// <summary>True when the caller can read the stock context and register usage on a time sheet.</summary>
     procedure CanRun(): Boolean
     var
-        Visit: Codeunit "Proj. Visit Mgt ori";
         Item: Record Item;
         Location: Record Location;
         Setup: Record "Proj. Technician Setup ori";
         Ledger: Record "Item Ledger Entry";
+        Visit: Codeunit "Proj. Visit Mgt ori";
     begin
         exit(Visit.CanRun() and Item.ReadPermission() and Location.ReadPermission() and Setup.ReadPermission() and Ledger.ReadPermission());
     end;
