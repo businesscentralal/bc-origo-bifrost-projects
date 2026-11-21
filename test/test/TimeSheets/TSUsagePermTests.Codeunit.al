@@ -1,5 +1,6 @@
 namespace Origo.Bifrost.Projects.Test;
 
+using Microsoft.Inventory.Tracking;
 using Microsoft.Finance.Dimension;
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
@@ -375,5 +376,8 @@ codeunit 97154 "TS Usage Perm Tests"
         AddGrant(Expected, Database::"Item Ledger Entry", 'R');
         AddGrant(Expected, Database::"Res. Ledger Entry", 'R');
         AddGrant(Expected, Database::"Job Ledger Entry", 'R');
+        // #84: Transfer writes the item tracking entry of a lot or serial usage line.
+        AddGrant(Expected, Database::"Reservation Entry", 'RIMD');
+        AddGrant(Expected, Database::"Item Tracking Code", 'R');
     end;
 }

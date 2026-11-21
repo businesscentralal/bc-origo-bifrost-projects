@@ -9,9 +9,9 @@ codeunit 70013473 "Proj. VanStock Get Impl ori" implements "Msg Interface ori", 
 
     var
         DescriptionLbl: Label 'Shows what is in your van after usage that is not posted yet.', Comment = 'is-IS=Sýnir hvað er í bílnum þínum eftir notkun sem er ekki bókuð enn.';
-        KeywordsLbl: Label 'van, stock, inventory, available, minimum, parts', Comment = 'is-IS=bíll, birgðir, tiltækt, lágmark, vörur';
-        OverviewLbl: Label 'Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.', Comment = 'is-IS=Les birgðir á bílstaðsetningu þinni og dregur frá opnar, innsendar, samþykktar og fluttar notkunarlínur sem eru ekki bókaðar enn. Vörur undir endurpöntunarmörkum eru merktar belowMinimum.';
-        NotesLbl: Label 'Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.', Comment = 'is-IS=Les aðeins. Til að fylla á bílinn notar bakvinnsla flutningspantanir í Inventory. Listinn er styttur við 200 vörur.';
+        KeywordsLbl: Label 'van, stock, inventory, available, minimum, parts', Comment = 'is-IS=bíll, birgðir, tiltækt, lágmark, vörur, hlutir';
+        OverviewLbl: Label 'Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.', Comment = 'is-IS=Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.';
+        NotesLbl: Label 'Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.', Comment = 'is-IS=Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.';
 
     procedure IsEnabled(): Boolean
     var

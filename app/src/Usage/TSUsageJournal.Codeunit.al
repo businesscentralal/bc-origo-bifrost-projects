@@ -2,6 +2,7 @@ namespace Origo.Bifrost.Projects;
 
 using Microsoft.Inventory.Journal;
 using Microsoft.Inventory.Ledger;
+using Microsoft.Inventory.Location;
 using Microsoft.Inventory.Tracking;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Project.Ledger;
@@ -72,7 +73,7 @@ codeunit 70013402 "TS Usage Journal ori"
         Line.Validate("Item No.", Usage."No.");
         if Usage."Location Code" <> '' then
             Line.Validate("Location Code", Usage."Location Code");
-        if Usage."Bin Code" <> '' then
+        if (Usage."Bin Code" <> '') and BinMandatory(Usage."Location Code") then
             Line.Validate("Bin Code", Usage."Bin Code");
         if Usage."Unit of Measure Code" <> '' then
             Line.Validate("Unit of Measure Code", Usage."Unit of Measure Code");
@@ -141,7 +142,7 @@ codeunit 70013402 "TS Usage Journal ori"
         Line.Validate("No.", Usage."No.");
         if Usage."Location Code" <> '' then
             Line.Validate("Location Code", Usage."Location Code");
-        if Usage."Bin Code" <> '' then
+        if (Usage."Bin Code" <> '') and BinMandatory(Usage."Location Code") then
             Line.Validate("Bin Code", Usage."Bin Code");
         if Usage."Unit of Measure Code" <> '' then
             Line.Validate("Unit of Measure Code", Usage."Unit of Measure Code");
@@ -152,6 +153,17 @@ codeunit 70013402 "TS Usage Journal ori"
         if Usage.Type = Usage.Type::Item then
             CreateTracking(Usage, Database::"Job Journal Line", Line."Entry Type".AsInteger(), Template, Batch, Line."Line No.", Line."No.", Line."Variant Code", Line."Location Code", Line.Description, Line."Posting Date", Line."Qty. per Unit of Measure", Line.Quantity, Line."Quantity (Base)");
         exit(Line."Line No.");
+    end;
+
+    local procedure BinMandatory(LocationCode: Code[10]): Boolean
+    var
+        Location: Record Location;
+    begin
+        // A journal line takes a bin only at a bin-mandatory location; the usage line keeps the bin either way.
+        if LocationCode = '' then
+            exit(false);
+        Location.SetLoadFields("Bin Mandatory");
+        exit(Location.Get(LocationCode) and Location."Bin Mandatory");
     end;
 
     local procedure CreateTracking(Usage: Record "TS Usage Line ori"; SourceType: Integer; SourceSubtype: Integer; Template: Code[10]; Batch: Code[10]; LineNo: Integer; ItemNo: Code[20]; VariantCode: Code[10]; LocationCode: Code[10]; Description: Text[100]; PostingDate: Date; QtyPerUoM: Decimal; Quantity: Decimal; QuantityBase: Decimal)

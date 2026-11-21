@@ -2267,20 +2267,20 @@
         </trans-unit>
         <trans-unit id="Codeunit 3251085734 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
           <source>van, stock, inventory, available, minimum, parts</source>
-          <target>bíll, birgðir, tiltækt, lágmark, vörur</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=bíll, birgðir, tiltækt, lágmark, vörur</note>
+          <target>bíll, birgðir, tiltækt, lágmark, vörur, hlutir</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=bíll, birgðir, tiltækt, lágmark, vörur, hlutir</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VanStock Get Impl ori - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3251085734 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.</source>
-          <target>Les aðeins. Til að fylla á bílinn notar bakvinnsla flutningspantanir í Inventory. Listinn er styttur við 200 vörur.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Les aðeins. Til að fylla á bílinn notar bakvinnsla flutningspantanir í Inventory. Listinn er styttur við 200 vörur.</note>
+          <target>Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VanStock Get Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3251085734 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.</source>
-          <target>Les birgðir á bílstaðsetningu þinni og dregur frá opnar, innsendar, samþykktar og fluttar notkunarlínur sem eru ekki bókaðar enn. Vörur undir endurpöntunarmörkum eru merktar belowMinimum.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Les birgðir á bílstaðsetningu þinni og dregur frá opnar, innsendar, samþykktar og fluttar notkunarlínur sem eru ekki bókaðar enn. Vörur undir endurpöntunarmörkum eru merktar belowMinimum.</note>
+          <target>Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VanStock Get Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1859669162 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -2795,20 +2795,20 @@
         </trans-unit>
         <trans-unit id="Codeunit 3430622563 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
           <source>van, parts, items, used, filter, cable, usage, field</source>
-          <target>bíll, vörur, notað, sía, kapall, notkun, vettvangur</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=bíll, vörur, notað, sía, kapall, notkun, vettvangur</note>
+          <target>bíll, hlutir, vörur, notað, sía, kapall, notkun, vettvangur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=bíll, hlutir, vörur, notað, sía, kapall, notkun, vettvangur</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VisitItem Reg Impl ori - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3430622563 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>The same clientRequestId returns the first result. Lot and serial numbers are required for tracked items; a serial number needs quantity 1. A wrong entry is rejected by the approver, then you register it again. Nothing is deleted or submitted. Ask the back office to restock the van with a transfer order.</source>
-          <target>Sama clientRequestId skilar fyrstu niðurstöðu. Lotu- og raðnúmer eru krafin fyrir rekjanlegar vörur; raðnúmer þarf magn 1. Samþykktaraðili hafnar rangri færslu og þú skráir hana aftur. Engu er eytt eða sent inn. Biddu bakvinnslu um að fylla á bílinn með flutningspöntun.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Sama clientRequestId skilar fyrstu niðurstöðu. Lotu- og raðnúmer eru krafin fyrir rekjanlegar vörur; raðnúmer þarf magn 1. Samþykktaraðili hafnar rangri færslu og þú skráir hana aftur. Engu er eytt eða sent inn. Biddu bakvinnslu um að fylla á bílinn með flutningspöntun.</note>
+          <target>The same clientRequestId returns the first result. Lot and serial numbers are required for tracked items; a serial number needs quantity 1. A wrong entry is rejected by the approver, then you register it again. Nothing is deleted or submitted. Ask the back office to restock the van with a transfer order.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=The same clientRequestId returns the first result. Lot and serial numbers are required for tracked items; a serial number needs quantity 1. A wrong entry is rejected by the approver, then you register it again. Nothing is deleted or submitted. Ask the back office to restock the van with a transfer order.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VisitItem Reg Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3430622563 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</source>
-          <target>Finnur tímaskýrslulínuna þína fyrir verkþáttinn, býr hana til ef hún vantar, finnur hverja vöru eftir vörunúmeri, tilvísun eða lýsingu og skrifar opnar notkunarlínur á bílstaðsetningu þína. Ef færsla passar við fleiri en eina vöru er engu skrifað og ambiguous sýnir valkostina. Skortur í bílnum er viðvörun: línan er skrifuð og skráð í shortages.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Finnur tímaskýrslulínuna þína fyrir verkþáttinn, býr hana til ef hún vantar, finnur hverja vöru eftir vörunúmeri, tilvísun eða lýsingu og skrifar opnar notkunarlínur á bílstaðsetningu þína. Ef færsla passar við fleiri en eina vöru er engu skrifað og ambiguous sýnir valkostina. Skortur í bílnum er viðvörun: línan er skrifuð og skráð í shortages.</note>
+          <target>Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VisitItem Reg Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4130552506 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
