@@ -1,5 +1,11 @@
 # Changelog
 
+### Added — #74
+
+- `Projects.PlanningLine.CreatePurchaseOrder`: rollback-only preview and confirmed native purchase creation for uncovered project item demand, vendor overrides and native task/planning-line links. Preserve existing caller order-planning lines; consume only scratch created by this call (Gunnar 20 November approval).
+- Codeunits 70013421–70013424, enum value 70013420; tests 97171–97172. English help, translated discovery/refusals, Full-role execution grants only; no UI change.
+
+
 ### Added
 - #78: `Projects.Task.Indent` runs Indent Project Tasks without dialogs, returning each task's indentation, totaling and changed flag plus task/changed counts. A native structural error rolls back all changes; retries are idempotent. Requires Full and native task write rights; no posting gate or new Create flags. New codeunit and enum value 70013406; tests 97114/97115 and test-only permission set 97115. English chapters and Icelandic discovery/refusals are synchronized.
 ## Unreleased — #76
@@ -9,6 +15,16 @@
 
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
+
+### Added (2026-11-20, #77)
+
+- `Projects.ItemCost.Update` brings the item cost on project usage entries and planning lines up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Request: `projectNos[]` (1..100) or `allOpen: true`, optional `postingDateFrom`/`postingDateTo`, `expectedCount`. Answers `projects[]` (`projectNo`, `entriesUpdated`, `costChangeLCY`), `totalEntriesUpdated` and `summary`; nothing to update is Success with zeros. Irreversible: `expectedCount` counts the projects in scope (Foundation gate, `Msg Confirm ori`), passes the Projects posting gate, runs in one write boundary and posts nothing to the general ledger. A Completed project is refused (`PreconditionFailed`). Help notes that Automatic Update Project Item Cost in Projects Setup already does this at the end of a cost adjustment. Help chapters are English only; discovery text, refusals and `nextStep` are in the is-IS XLF.
+- New objects: codeunits 70013420 `Proj. Item Cost Impl ori`, 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`; enum value 70013552 on `Projects Message Types ori`; X on the four codeunits in `Projects Full ori` and `Projects Read ori`. Tests: codeunits 97156 and 97157, permission set 97133.
+- Merge main (#91, then #89): codeunit 70013406 collided with `Proj. WIP Reverse Impl ori`, then 70013417 collided with `Proj. Shift Dates Impl ori`. `Proj. Item Cost Impl ori` is codeunit 70013419. The message name `Projects.ItemCost.Update` is unchanged. The scaffold catalogue assertion counts forty-eight owned types.
+
+### Fixed (2026-11-20, #77)
+
+- Shared WIP fixture cleanup removes owned default dimensions without the native line-update confirmation. Item cost tests that call `Library.Initialize` no longer stop before their assertions when a previous WIP fixture left those dimensions in the company. The confirmation on an actual dimension change is unchanged.
 
 ### Added (2026-11-20, #75)
 

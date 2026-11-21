@@ -7,7 +7,7 @@ using Origo.Bifrost.Projects;
 permissionset 97120 "ProjAllocTest ori"
 {
     Assignable = false;
-    Permissions = codeunit "Proj. Shift Dates Impl ori" = X,
+    Permissions = codeunit "Proj. Plan Purchase Impl ori" = X, codeunit "Proj. Shift Dates Impl ori" = X,
          tabledata "Projects Setup ori" = R,
         tabledata "Message Argument ori" = RIMD,
         codeunit "Proj. Allocation Impl ori" = X,

@@ -26,8 +26,21 @@
 - Enum value 70013533 `Projects.PlanningLine.ShiftDates`.
 - Test codeunits 97167 `Proj. Shift Dates Tests ori`, 97168 `Proj Shift Date Perm Tests ori`.
 - Architect ruling 20.11.2026: plain write, no expectedCount; refuse transferred/invoiced lines.
+## Object ledger — issue #77
+
+- Codeunit 70013420: `Proj. Item Cost Impl ori` (renumbered from 70013419 after Projects.Task.Indent took it on main). 70013417 stays `Proj. Shift Dates Impl ori` (Architect ruling 20.11.2026). Also 70013407 `Proj. Item Cost Process ori`, 70013408 `Projects Item Cost ori`, 70013409 `Proj. Item Cost Confirm ori`.
+- Enum value 70013552: `Projects.ItemCost.Update`.
+- Tests: codeunits 97156 `Projects Item Cost Tests ori`, 97157 `Proj. Item Cost Perm Tests ori`.
 
 ## Object ledger — issue #75
 
 - Codeunit 70013406: `Proj. WIP Reverse Impl ori`; enum value 70013400: `Projects.WIP.Reverse`.
 - Tests: codeunit 97114 `Projects WIP Reverse Tests ori`, codeunit 97115 `Proj. WIP Reverse Fixture ori`, enumextension/value 97114 `Proj. WIP Fixture Types ori` / `Test.WIP75.Seed` (test app only; no new delete operation).
+
+
+## Issue #74 object ledger
+
+- Codeunits 70013424 `Proj. Plan Purchase Impl ori`, 70013421 `Proj. Plan Purchase Proc ori`, 70013422 `Proj. Plan Purchase Result ori`, 70013423 `Proj. Plan Purchase Scope ori` (scoped native subscribers).
+- Enum value 70013420 `Projects.PlanningLine.CreatePurchaseOrder`.
+- Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `ProjNoPurch ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
+- Gunnar 20.11.2026, comment 7052438484: consume only scratch lines created by this call; refuse before calculation if caller has existing order-planning lines. Architect: one operation with rollback-only preview.
