@@ -355,7 +355,7 @@ codeunit 97179 "Proj. Field Service Tests ori"
     begin
         Data.Add('resourceNo', 'X123456789012345678901');
         AssertCode(Execute(false, Data), 'InvalidParameterFormat');
-        Data.Replace('resourceNo', 'X12345678901234567890');
+        Data.Replace('resourceNo', 'X1234567890123456789');
         AssertCode(Execute(false, Data), 'RecordNotFound');
         Clear(Data);
         NullValue.SetValueToNull();

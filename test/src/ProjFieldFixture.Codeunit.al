@@ -203,7 +203,7 @@ codeunit 97180 "Proj. Field Fixture ori" implements "Msg Interface ori"
     /// <summary>Outbound fixture response.</summary>
     procedure GetMessageDirection(): Enum "Msg Direction ori"
     begin
-        exit("Msg Direction ori"::Outbound);
+        exit("Msg Direction ori"::Inbound);
     end;
 
     /// <summary>Seeds data; cleanup is a direct helper, never a delete operation.</summary>
