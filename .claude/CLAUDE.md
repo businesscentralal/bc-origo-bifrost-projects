@@ -49,3 +49,9 @@
 - Enum value 70013420 `Projects.PlanningLine.CreatePurchaseOrder`.
 - Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `ProjNoPurch ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
 - Gunnar 20.11.2026, comment 7052438484: consume only scratch lines created by this call; refuse before calculation if caller has existing order-planning lines. Architect: one operation with rollback-only preview.
+
+## Issue #81 object ledger
+
+- Codeunits 70013427 `Proj. Plan Journal Impl ori` and 70013428 `Proj. Plan Journal Proc ori`; enum value 70013426 `Projects.PlanningLine.TransferToJournal`.
+- Tests 97179 `Proj. Plan Journal Tests ori`, 97180 `Proj. Plan Jnl Perm Tests ori`; nonassignable test permission set 97180 `ProjJnlNoInsert ori`. Fixture codeunits 97181/97182, cleanup test codeunit 97183, test enumextension/value 97181 `Test.PlanJournal81.Seed`.
+- Append-only native journal creation, write effect, no confirmation or posting gate. Enables Usage Link and preserves existing journal lines. Foundation minimum stays 28.0.5.0.

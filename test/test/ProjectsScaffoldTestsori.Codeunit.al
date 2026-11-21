@@ -108,6 +108,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         ExpectedTypes.Add('Projects.PlanningLine.Update');
         ExpectedTypes.Add('Projects.PlanningLine.ShiftDates');
         ExpectedTypes.Add('Projects.PlanningLine.CreatePurchaseOrder');
+        ExpectedTypes.Add('Projects.PlanningLine.TransferToJournal');
         ExpectedTypes.Add('Projects.Project.Copy');
         ExpectedTypes.Add('Projects.Project.SetStatus');
         ExpectedTypes.Add('Projects.WIP.Get');
@@ -161,7 +162,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Assert.IsTrue(Names.Contains('Projects.Project.Archive'), 'Project archive must be registered');
         Assert.IsTrue(Names.Contains('Projects.ProjectArchive.Get'), 'Project archive read must be registered');
         foreach Name in Names do
-            if ((Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599)) or (Name = 'Projects.Task.CopyFrom') or (Name = 'Projects.Task.Indent') or (Name = 'Projects.WIP.Reverse') or (Name = 'Projects.PlanningLine.CreatePurchaseOrder') then begin
+            if ((Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599)) or (Name = 'Projects.Task.CopyFrom') or (Name = 'Projects.Task.Indent') or (Name = 'Projects.WIP.Reverse') or (Name = 'Projects.PlanningLine.CreatePurchaseOrder') or (Name = 'Projects.PlanningLine.TransferToJournal') then begin
                 Assert.IsTrue(ExpectedTypes.Contains(Name), 'Unexpected Projects type in the exact catalogue: ' + Name);
                 Assert.AreEqual(3, Name.Split('.').Count(), 'Every owned name has exactly three parts');
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
@@ -178,7 +179,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
                 Count += 1;
             end;
         GlobalLanguage(OriginalLanguage);
-        Assert.AreEqual(51, Count, 'Catalogue must contain all fifty-one owned Projects types, including Projects.ItemCost.Update and Projects.PlanningLine.CreatePurchaseOrder');
+        Assert.AreEqual(52, Count, 'Catalogue must contain all fifty-two owned Projects types, including Projects.PlanningLine.TransferToJournal');
         Assert.IsFalse(Names.Contains('Projects.PlanningLine.Delete'), 'Unreleased deletion type must not be registered');
     end;
 
@@ -197,7 +198,7 @@ codeunit 97100 "Projects Scaffold Tests ori"
         Names := MessageType.Names();
         Ordinals := MessageType.Ordinals();
         foreach Name in Names do
-            if ((Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599)) or (Name = 'Projects.Task.CopyFrom') or (Name = 'Projects.Task.Indent') or (Name = 'Projects.WIP.Reverse') or (Name = 'Projects.PlanningLine.CreatePurchaseOrder') then begin
+            if ((Ordinals.Get(Names.IndexOf(Name)) >= 70013500) and (Ordinals.Get(Names.IndexOf(Name)) <= 70013599)) or (Name = 'Projects.Task.CopyFrom') or (Name = 'Projects.Task.Indent') or (Name = 'Projects.WIP.Reverse') or (Name = 'Projects.PlanningLine.CreatePurchaseOrder') or (Name = 'Projects.PlanningLine.TransferToJournal') then begin
                 Assert.IsTrue(Name.StartsWith('Projects.'), 'Every owned enum value must use the Projects prefix');
                 Clear(Contract);
                 MessageType := Enum::"Message Type ori".FromInteger(Ordinals.Get(Names.IndexOf(Name)));

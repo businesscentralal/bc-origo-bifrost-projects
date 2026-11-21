@@ -20,6 +20,10 @@
 
 ## [28.1.0.0] - 2026-11-14 (Unreleased)
 
+### Added (2026-11-21, #81)
+
+- #81: Add `Projects.PlanningLine.TransferToJournal` to append linked journal lines from budget planning lines without posting or replacing existing lines. Supports partial quantities, atomic refusal, native caller permissions and Icelandic discovery/refusals. Added codeunits 70013427–70013428, enum value 70013426, tests 97179–97180 and test fixtures/cleanup 97181–97183.
+
 ### Added (2026-11-20, #77)
 
 - `Projects.ItemCost.Update` brings the item cost on project usage entries and planning lines up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Request: `projectNos[]` (1..100) or `allOpen: true`, optional `postingDateFrom`/`postingDateTo`, `expectedCount`. Answers `projects[]` (`projectNo`, `entriesUpdated`, `costChangeLCY`), `totalEntriesUpdated` and `summary`; nothing to update is Success with zeros. Irreversible: `expectedCount` counts the projects in scope (Foundation gate, `Msg Confirm ori`), passes the Projects posting gate, runs in one write boundary and posts nothing to the general ledger. A Completed project is refused (`PreconditionFailed`). Help notes that Automatic Update Project Item Cost in Projects Setup already does this at the end of a cost adjustment. Help chapters are English only; discovery text, refusals and `nextStep` are in the is-IS XLF.
