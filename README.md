@@ -105,10 +105,46 @@ For WIP methods, Get requires read permission on `Job WIP Method`. Set requires 
 
 Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. Help chapters stay English in every language; discovery, refusal messages and `nextStep` are translated for en-US and is-IS.
 
+## Follow-up work (#87)
+
+Technicians use `Projects.FollowUp.Request` with `BIFROST Read ori` and `PROJ FIELD TECH`. The request retains its project/task, the caller's technician resource, description, optional positive estimated hours, parts, preferred date, urgency and photos from Foundation `stagingIds`. `clientRequestId` replays an existing request owned by the caller. No native project write or notification is performed by Request.
+
+`Projects.FollowUp.List` returns only a technician's own requests. Managers with native project write rights see projects where they are the Project Manager or the owner of the Person Responsible resource. `skip` defaults to 0 and `take` to 50 (1–100). Visit briefs include the caller's follow-up requests.
+
+Managers use `Projects.FollowUp.Convert` with `requestId` and `target: newTask|existingTask`. `preview: true` runs native validation and rolls back every change. Conversion reuses the native task/planning-line writer, stores result keys and changes the retained request to Converted. New task numbers use the Follow-up Task Increment in Projects Setup (zero means one), stay after the source task within its group, or use an explicit `taskNo`. Existing-task conversion defaults to the original task. Resource lines use estimated hours; described parts without an item number become text planning lines, with requested quantities retained on the request. No posting occurs. `Projects.FollowUp.Reject` retains the reason and changes an Open request to Rejected. Neither decision can be repeated.
+
+The response uses Foundation `status: Success|Error`, `requestStatus: Open|Converted|Rejected`, a retained `request`, and a compact `summary`. Conversion includes `created.task`, `created.planningLines`, `preview`, and the manager next step `Projects.Quote.Send`. The technician assistant does not suggest conversion. The **Project Follow-up Requests** page shows visible requests and native result keys. Generic writes cannot change owner/status/decision/result fields; content can be edited only while Open by its owner or responsible manager.
+
+```json
+{"type":"Projects.FollowUp.Request","data":{"projectNo":"P00010","taskNo":"1000","description":"Replace the second pump valve","estimatedHours":3,"items":[{"itemNo":"VALVE","quantity":1}],"clientRequestId":"visit-42-valve"}}
+```
+
+Team Member SaaS effective-permission evidence (AC06) is **NOT_RUN**, explicitly deferred by Gunnar's 21 November stacking decision. The PR stays on hold for the #82 spike. Local permission tests do not establish SaaS licence entitlement.
+
 ## Objects
 
 | Type | ID | Name |
 | --- | --- | --- |
+| table | 70013444 | `Proj. Follow-up Request ori` |
+| table | 70013445 | `Proj. Follow-up Req. Line ori` |
+| enum | 70013446 | `Proj. Follow-up Status ori` |
+| page | 70013447 | `Proj. Follow-ups ori` |
+| codeunit | 70013448 | `Proj. FU Req Impl ori` |
+| codeunit | 70013449 | `Proj. FU List Impl ori` |
+| codeunit | 70013450 | `Proj. FU Conv Impl ori` |
+| codeunit | 70013451 | `Proj. FU Reject Impl ori` |
+| codeunit | 70013452 | `Proj. Follow-up Mgt ori` |
+| codeunit | 70013453 | `Proj. Follow-up Runner ori` |
+| codeunit | 70013454 | `Proj. Follow-up Contract ori` |
+| codeunit | 70013455 | `Proj. Follow-up Restrict ori` |
+| codeunit | 70013456 | `Proj. Follow-up Result ori` |
+| enum value | 70013444 | `Projects.FollowUp.Request` |
+| enum value | 70013445 | `Projects.FollowUp.List` |
+| enum value | 70013446 | `Projects.FollowUp.Convert` |
+| enum value | 70013447 | `Projects.FollowUp.Reject` |
+| test codeunit | 97188 | `Proj. Follow-up Tests ori` |
+| test codeunit | 97189 | `Proj. Follow-up Perm Tests ori` |
+| test codeunit / enumextension | 97190 | `Proj. Follow-up Fixture ori / Test.FollowUp87.Seed` |
 | table | 70013433 | `Proj. Field Visit ori` |
 | enum | 70013434 | `Proj. Visit Status ori` |
 | enum | 70013435 | `Proj. Visit Kind ori` |

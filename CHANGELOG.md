@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — #87
+
+- Add technician follow-up Request/List and manager Convert/Reject, with owner/project scope, retained decisions, idempotent requests, Foundation-staged photos, atomic native conversion and rollback-only preview. Visit briefs include own follow-ups. Generic writes protect decision fields and freeze closed content.
+- Add the Project Follow-up Requests page and Follow-up Task Increment in Projects Setup (field 87). New objects: tables 70013444–70013445, status enum 70013446, page 70013447, codeunits 70013448–70013456; message enum values 70013444–70013447. Tests 97188–97189 and test-only fixture codeunit/enumextension 97190. No new assignable role or delete operation.
+- Team Member SaaS AC06 remains NOT_RUN under the 21 November decision; merge waits for the #82 spike.
+
 ## Unreleased — #83
 
 - Add `Projects.Visit.Start`, `Projects.Visit.Stop` and `Projects.Visit.Complete` so a technician can record travel and work on a planned task. Hours are rounded and added to an open time sheet line. Mileage becomes an open usage line and is not submitted. The same `clientRequestId` returns the first result. Generic writes of visit status, times, hours and time sheet keys are refused.

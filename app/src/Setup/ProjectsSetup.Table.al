@@ -46,6 +46,13 @@ table 70013500 "Projects Setup ori"
         {
             Caption = 'Allow Unplanned Tasks', Comment = 'is-IS=Leyfa óáætlaða verkþætti';
         }
+        field(87; "Follow-up Task Increment"; Integer)
+        {
+            Caption = 'Follow-up Task Increment', Comment = 'is-IS=Hækkun verkþáttanúmers við eftirfylgni';
+            ToolTip = 'Specifies the numbering step for a new follow-up task. Zero uses one; the task stays within the original task group.', Comment = 'is-IS=Tilgreinir númerahækkun nýs eftirfylgniverkþáttar. Núll notar einn; verkþátturinn helst innan upprunalegs hóps.';
+            MinValue = 0;
+            MaxValue = 10000;
+        }
     }
     keys
     {

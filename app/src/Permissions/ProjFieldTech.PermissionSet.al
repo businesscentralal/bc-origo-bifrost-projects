@@ -29,6 +29,8 @@ permissionset 70013403 "PROJ FIELD TECH"
     Caption = 'Projects Field Technician', Comment = 'is-IS=Verkefni - vettvangstæknimaður';
     IncludedPermissionSets = "PROJ TS SELF", "PROJ VISIT";
     Permissions =
+        tabledata "Proj. Follow-up Request ori" = RIM,
+        tabledata "Proj. Follow-up Req. Line ori" = RIM,
         tabledata "Job Planning Line" = R,
         tabledata Customer = R,
         tabledata "Ship-to Address" = R,
