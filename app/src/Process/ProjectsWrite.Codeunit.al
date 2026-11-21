@@ -12,6 +12,7 @@ codeunit 70013514 "Projects Write ori"
     procedure Execute(var Argument: Record "Message Argument ori"; Kind: Text; Operation: Text)
     var
         Indent: Codeunit "Proj. Task Indent Impl ori";
+        CopyTasks: Codeunit "Proj. Task Copy Impl ori";
         Contract: Codeunit "Projects Contract ori";
         Input: Codeunit "Projects Input ori";
         Gate: Codeunit "Projects Gate ori";
@@ -20,6 +21,10 @@ codeunit 70013514 "Projects Write ori"
         MissingChangeErr: Label 'Send status or blocked to change the project state.', Comment = 'is-IS=Sendu status eða blocked til að breyta stöðu verkefnis.';
         SummaryErr: Label 'Correct the invalid Projects parameters.', Comment = 'is-IS=Leiðréttu ógild viðföng verkefnis.';
     begin
+        if Argument.Type = "Message Type ori"::"Projects.Task.CopyFrom" then begin
+            CopyTasks.Execute(Argument);
+            exit;
+        end;
         if Argument.Type = "Message Type ori"::"Projects.Task.Indent" then begin
             Indent.Execute(Argument);
             exit;

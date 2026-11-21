@@ -131,18 +131,16 @@ codeunit 70013515 "Proj. Copy Impl ori" implements "Msg Interface ori", "Msg Dis
     begin
         exit(false);
     end;
-    /// <summary>Provides localized operation help.</summary>
+    /// <summary>Explains copying into a new project.</summary>
     procedure GetOverview(var Overview: Text): Boolean
     begin
-        Overview := GetDescription();
+        Overview := 'Copies a project with its selected tasks and planning lines into a new project. For an existing target use Projects.Task.CopyFrom.';
         exit(true);
     end;
-    /// <summary>Documents nested write behavior.</summary>
+    /// <summary>Documents the native copy and existing-target alternative.</summary>
     procedure GetNotes(var Notes: Text): Boolean
-    var
-        NotesLbl: Label 'Uses Business Central Copy Job and its native options. The target project must be new. No time sheets or postings are created. A native failure rolls back the whole copy.', Comment = 'is-IS=Notar innbyggða afritun verkefna og valkosti hennar. Markverkefnið verður að vera nýtt. Engar tímaskýrslur eða bókanir eru stofnaðar. Innbyggð villa afturkallar alla afritunina.';
     begin
-        Notes := NotesLbl;
+        Notes := 'Uses Copy Project with its native options. The target project must be new. For an existing target use Projects.Task.CopyFrom; that operation refuses any existing task numbers. No time sheets or postings are created. A native failure rolls back the whole copy.';
         exit(true);
     end;
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
