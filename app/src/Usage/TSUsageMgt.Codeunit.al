@@ -2,6 +2,9 @@ namespace Origo.Bifrost.Projects;
 
 using Microsoft.Inventory.Item;
 using Microsoft.Inventory.Journal;
+using Microsoft.Inventory.Location;
+using Microsoft.Inventory.Tracking;
+using Microsoft.Warehouse.Structure;
 using Microsoft.Projects.Project.Journal;
 using Microsoft.Projects.Resources.Journal;
 using Microsoft.Projects.Resources.Resource;
@@ -45,6 +48,11 @@ codeunit 70013400 "TS Usage Mgt ori"
         IsolatedMsg: Label 'This operation requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslu.';
         IsolatedNextTxt: Label 'Run this action outside an uncommitted batch.', Comment = 'is-IS=Keyrðu þessa aðgerð utan óstaðfestrar lotu.';
         RetryNextTxt: Label 'Correct the Business Central error and retry. Nothing was changed.', Comment = 'is-IS=Leiðréttu Business Central villuna og reyndu aftur. Engu var breytt.';
+        PlacementNextTxt: Label 'Location, bin, lot and serial number apply to Item usage only.', Comment = 'is-IS=Staðsetning, hólf, lota og raðnúmer gilda aðeins um vörunotkun.';
+        SerialQuantityMsg: Label 'A serial number needs quantity 1.', Comment = 'is-IS=Raðnúmer þarf magn 1.';
+        SerialQuantityNextTxt: Label 'Send one line per serial number with quantity 1.', Comment = 'is-IS=Sendu eina línu fyrir hvert raðnúmer með magn 1.';
+        TrackedMsg: Label 'The item is tracked and needs a lot or serial number.', Comment = 'is-IS=Varan er rekjanleg og þarf lotu- eða raðnúmer.';
+        TrackedNextTxt: Label 'Send lotNo or serialNo, as the item tracking code requires.', Comment = 'is-IS=Sendu lotNo eða serialNo, eins og rekjanleikakóði vörunnar krefst.';
         TooLongMsg: Label 'The key %1 is longer than allowed.', Comment = '%1 = key name; is-IS=Lykillinn %1 er lengri en leyfilegt er.';
 
     /// <summary>Checks the permissions the message type needs for discovery. List reads; the others write usage lines.</summary>
@@ -110,12 +118,16 @@ codeunit 70013400 "TS Usage Mgt ori"
         SheetNo: Text;
         TypeText: Text;
         UnitText: Text;
+        LocationText: Text;
+        BinText: Text;
+        LotText: Text;
+        SerialText: Text;
         Quantity: Decimal;
         UsageDate: Date;
         LineNo: Integer;
     begin
         Request := Argument.GetRequestJson();
-        Allowed.AddRange('timeSheetNo', 'lineNo', 'type', 'no', 'date', 'quantity', 'unitOfMeasure', 'description');
+        Allowed.AddRange('timeSheetNo', 'lineNo', 'type', 'no', 'date', 'quantity', 'unitOfMeasure', 'description', 'locationCode', 'binCode', 'lotNo', 'serialNo');
         if not AllowOnly(Argument, Request, Allowed) then
             exit;
         if not (ReadString(Argument, Request, 'timeSheetNo', true, 20, SheetNo) and
@@ -125,7 +137,11 @@ codeunit 70013400 "TS Usage Mgt ori"
                 ReadString(Argument, Request, 'date', true, 10, DateText) and
                 ReadNumber(Argument, Request, 'quantity', QuantityText) and
                 ReadString(Argument, Request, 'unitOfMeasure', false, 10, UnitText) and
-                ReadString(Argument, Request, 'description', false, 100, DescriptionText))
+                ReadString(Argument, Request, 'description', false, 100, DescriptionText) and
+                ReadString(Argument, Request, 'locationCode', false, 10, LocationText) and
+                ReadString(Argument, Request, 'binCode', false, 20, BinText) and
+                ReadString(Argument, Request, 'lotNo', false, 50, LotText) and
+                ReadString(Argument, Request, 'serialNo', false, 50, SerialText))
         then
             exit;
         if not (TypeText in ['Item', 'Resource']) then begin
@@ -184,6 +200,8 @@ codeunit 70013400 "TS Usage Mgt ori"
             if UnitText = '' then
                 UnitText := Resource."Base Unit of Measure";
         end;
+        if not CheckPlacement(Argument, TypeText, Quantity, LocationText, BinText, LotText, SerialText, NoText) then
+            exit;
         Params.Add('timeSheetNo', Header."No.");
         Params.Add('lineNo', LineNo);
         Params.Add('resourceNo', Header."Resource No.");
@@ -193,7 +211,58 @@ codeunit 70013400 "TS Usage Mgt ori"
         Params.Add('quantity', Format(Quantity, 0, 9));
         Params.Add('unitOfMeasure', UnitText);
         Params.Add('description', DescriptionText);
+        if LocationText <> '' then
+            Params.Add('locationCode', LocationText);
+        if BinText <> '' then
+            Params.Add('binCode', BinText);
+        if LotText <> '' then
+            Params.Add('lotNo', LotText);
+        if SerialText <> '' then
+            Params.Add('serialNo', SerialText);
         RunWrite(Argument, 1, Params);
+    end;
+
+    local procedure CheckPlacement(var Argument: Record "Message Argument ori"; TypeText: Text; Quantity: Decimal; LocationText: Text; BinText: Text; LotText: Text; SerialText: Text; ItemNo: Text): Boolean
+    var
+        Item: Record Item;
+        TrackingCode: Record "Item Tracking Code";
+        Location: Record Location;
+        Bin: Record Bin;
+    begin
+        if (LocationText = '') and (BinText = '') and (LotText = '') and (SerialText = '') then
+            exit(true);
+        if TypeText <> 'Item' then begin
+            Fail(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, TypeMsg, 'type', PlacementNextTxt);
+            exit(false);
+        end;
+        if (BinText <> '') and (LocationText = '') then begin
+            Fail(Argument, "Bifrost Error Code ori"::MissingParameter, MissingKeyMsg, 'locationCode', MissingKeyNextTxt);
+            exit(false);
+        end;
+        if LocationText <> '' then
+            if not Location.Get(CopyStr(LocationText, 1, MaxStrLen(Location.Code))) then begin
+                Fail(Argument, "Bifrost Error Code ori"::RecordNotFound, StrSubstNo(NotFoundMsg, 'locationCode'), 'locationCode', NotFoundNextTxt);
+                exit(false);
+            end;
+        if BinText <> '' then
+            if not Bin.Get(Location.Code, CopyStr(BinText, 1, MaxStrLen(Bin.Code))) then begin
+                Fail(Argument, "Bifrost Error Code ori"::RecordNotFound, StrSubstNo(NotFoundMsg, 'binCode'), 'binCode', NotFoundNextTxt);
+                exit(false);
+            end;
+        if (SerialText <> '') and (Quantity <> 1) then begin
+            Fail(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, SerialQuantityMsg, 'quantity', SerialQuantityNextTxt);
+            exit(false);
+        end;
+        Item.SetLoadFields("No.", "Item Tracking Code");
+        Item.Get(CopyStr(ItemNo, 1, MaxStrLen(Item."No.")));
+        if Item."Item Tracking Code" <> '' then begin
+            TrackingCode.Get(Item."Item Tracking Code");
+            if (TrackingCode."Lot Specific Tracking" and (LotText = '')) or (TrackingCode."SN Specific Tracking" and (SerialText = '')) then begin
+                Fail(Argument, "Bifrost Error Code ori"::PreconditionFailed, TrackedMsg, 'lotNo', TrackedNextTxt);
+                exit(false);
+            end;
+        end;
+        exit(true);
     end;
 
     local procedure Decide(var Argument: Record "Message Argument ori"; Operation: Integer)
@@ -677,6 +746,14 @@ codeunit 70013400 "TS Usage Mgt ori"
         Node.Add('journalBatch', Usage."Journal Batch Name");
         Node.Add('journalLineNo', Usage."Journal Line No.");
         Node.Add('ledgerEntryNo', Usage."Ledger Entry No.");
+        if Usage."Location Code" <> '' then
+            Node.Add('locationCode', Usage."Location Code");
+        if Usage."Bin Code" <> '' then
+            Node.Add('binCode', Usage."Bin Code");
+        if Usage."Lot No." <> '' then
+            Node.Add('lotNo', Usage."Lot No.");
+        if Usage."Serial No." <> '' then
+            Node.Add('serialNo', Usage."Serial No.");
         Node.Add('changed', Changed);
     end;
 

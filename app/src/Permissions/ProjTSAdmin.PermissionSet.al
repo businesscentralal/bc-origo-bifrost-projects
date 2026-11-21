@@ -28,6 +28,7 @@ permissionset 70013589 "PROJ TS ADMIN"
         tabledata "Resources Setup" = R,
         tabledata "Job Task" = R,
         tabledata "Job Planning Line" = R,
+        tabledata "Proj. Technician Setup ori" = RIMD,
         tabledata "Time Sheet Header" = RIMD,
         tabledata "Time Sheet Line" = RIMD,
         tabledata "Time Sheet Detail" = RIMD,

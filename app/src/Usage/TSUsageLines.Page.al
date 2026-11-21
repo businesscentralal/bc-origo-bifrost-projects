@@ -55,6 +55,22 @@ page 70013400 "TS Usage Lines ori"
                 {
                     ToolTip = 'Specifies the unit of measure.', Comment = 'is-IS=Tilgreinir mælieininguna.';
                 }
+                field("Location Code"; Rec."Location Code")
+                {
+                    ToolTip = 'Specifies the location the item was taken from, for example the technician''s van.', Comment = 'is-IS=Tilgreinir staðsetninguna sem varan var tekin úr, til dæmis bíl tæknimannsins.';
+                }
+                field("Bin Code"; Rec."Bin Code")
+                {
+                    ToolTip = 'Specifies the bin the item was taken from.', Comment = 'is-IS=Tilgreinir hólfið sem varan var tekin úr.';
+                }
+                field("Lot No."; Rec."Lot No.")
+                {
+                    ToolTip = 'Specifies the lot number of the item used.', Comment = 'is-IS=Tilgreinir lotunúmer vörunnar sem var notuð.';
+                }
+                field("Serial No."; Rec."Serial No.")
+                {
+                    ToolTip = 'Specifies the serial number of the item used.', Comment = 'is-IS=Tilgreinir raðnúmer vörunnar sem var notuð.';
+                }
                 field(Description; Rec.Description)
                 {
                     ToolTip = 'Specifies a description of the usage.', Comment = 'is-IS=Tilgreinir lýsingu á notkuninni.';
