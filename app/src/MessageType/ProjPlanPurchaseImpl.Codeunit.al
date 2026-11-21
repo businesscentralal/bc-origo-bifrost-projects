@@ -85,16 +85,13 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     procedure GetParameters(var Parameters: JsonArray): Boolean
     var
         Input: Codeunit "Projects Followup Input ori";
-        Parameter: JsonObject;
     begin
         Parameters.Add(Input.Parameter('projectNo', 'string', true, 'Exact open project number.', 20));
         Parameters.Add(Input.Parameter('taskNo', 'string', false, 'Exact task; exclusive with planningLineNos.', 20));
         Parameters.Add(Input.Parameter('planningLineNos', 'array', false, 'Positive unique planning line numbers. Ambiguous numbers across tasks are refused.', 0));
         Parameters.Add(Input.Parameter('preview', 'boolean', false, 'Default false. True calculates proposals and rolls back every change.', 0));
         Parameters.Add(Input.Parameter('vendorOverrides', 'array', false, 'Objects containing only planningLineNo (positive integer) and vendorNo (exact vendor, max 20 characters).', 0));
-        Parameter := Input.Parameter('expectedCount', 'integer', false, 'expectedCount counts planning lines to order, equal to proposals in preview.', 0);
-        Parameter.Add('expectedCount', true);
-        Parameters.Add(Parameter);
+        Parameters.Add(Input.Parameter('expectedCount', 'integer', false, 'Accepted and ignored: no confirmation is asked. Preview with preview=true.', 0));
         exit(true);
     end;
 
@@ -137,9 +134,9 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     /// <summary>Declares the real effect of create and the read-only preview branch.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
     begin
-        Effect.Add('effect', 'irreversible');
+        Effect.Add('effect', 'write');
         Effect.Add('idempotent', false);
-        Effect.Add('changes', 'Creates purchase orders linked to project planning lines. expectedCount counts planning lines ordered. preview=true has read effect and commits nothing. No posting.');
+        Effect.Add('changes', 'Creates purchase orders linked to project planning lines. expectedCount is accepted and ignored. preview=true has read effect and commits nothing. No posting.');
         exit(true);
     end;
 
@@ -161,7 +158,7 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     /// <summary>Explains preview then confirmation.</summary>
     procedure GetWorkflow(var Workflow: JsonObject): Boolean
     begin
-        Workflow.Add('steps', 'Preview first. Review proposals and vendors, then repeat with preview=false and expectedCount equal to proposals count.');
+        Workflow.Add('steps', 'Preview first. Review proposals and vendors, then repeat with preview=false.');
         exit(true);
     end;
 
@@ -186,7 +183,7 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     /// <summary>Explains scope, scratch safety and company-wide alternatives in user terms.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     begin
-        Notes := 'Finish or clear your existing lines on Order Planning first; the request never removes them. Only Budget or Both Budget and Billable item lines can be ordered. Fully covered demand is skipped. A vendor is required for each proposal. For company-wide purchases use the requisition worksheet; for company-wide purchase, transfer and assembly supply use the planning worksheet. No posting occurs here. expectedCount counts planning lines to order, as returned by preview. Orders cannot be removed through this operation.';
+        Notes := 'Finish or clear your existing lines on Order Planning first; the request never removes them. Only Budget or Both Budget and Billable item lines can be ordered. Fully covered demand is skipped. A vendor is required for each proposal. For company-wide purchases use the requisition worksheet; for company-wide purchase, transfer and assembly supply use the planning worksheet. No posting occurs here. expectedCount is accepted and ignored. Orders cannot be removed through this operation.';
         exit(true);
     end;
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #100
+
+- Effect reclassified by Gunnar's rule that only posting is irreversible: `Projects.PlanningLine.CreatePurchaseOrder`, `Projects.Task.CopyFrom`, `Projects.Quote.Send` and `Projects.ItemCost.Update` now declare `write`. They ask for no confirmation, also with Require Confirmation for Irreversible Messages on; `expectedCount` is still accepted but ignored. Help in 1033 and 1039 says "Writes."/"Skrifar." `Projects.ItemUsage.Post`, `Projects.WIP.Post`, `Projects.WIP.Reverse` and `Projects.TimeSheet.Post` stay `irreversible`. Preview for the purchase type is `preview=true`; `Projects.Task.CopyFrom` has no preview any more. No new objects.
+
 ## Unreleased — #83
 
 - Add `Projects.Visit.Start`, `Projects.Visit.Stop` and `Projects.Visit.Complete` so a technician can record travel and work on a planned task. Hours are rounded and added to an open time sheet line. Mileage becomes an open usage line and is not submitted. The same `clientRequestId` returns the first result. Generic writes of visit status, times, hours and time sheet keys are refused.

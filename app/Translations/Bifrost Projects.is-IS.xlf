@@ -868,9 +868,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4155282669 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Bring the item cost of project usage up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Irreversible. Needed only when Automatic Update Project Item Cost is off in Projects Setup, or for projects adjusted earlier.</source>
-          <target>Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</note>
+          <source>Bring the item cost of project usage up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Writes. Needed only when Automatic Update Project Item Cost is off in Projects Setup, or for projects adjusted earlier.</source>
+          <target>Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Skrifar. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Skrifar. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Item Cost Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1439554103 - NamedType 650235816" size-unit="char" translate="yes" xml:space="preserve">
@@ -1119,12 +1119,6 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Ljúktu eða hreinsaðu línurnar þínar á síðunni Pöntunaráætlun áður en þú reynir aftur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Purchase Proc ori - Method Execute - NamedType ScratchLbl</note>
         </trans-unit>
-        <trans-unit id="Codeunit 2144886845 - Method 1561766673 - NamedType 3071622107" size-unit="char" translate="yes" xml:space="preserve">
-          <source>project planning lines to order</source>
-          <target>áætlunarlínur verkefnis sem á að panta</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=áætlunarlínur verkefnis sem á að panta</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Purchase Proc ori - Method Execute - NamedType CountLbl</note>
-        </trans-unit>
         <trans-unit id="Codeunit 2144886845 - Method 695311439 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
           <source>Select an existing task or planning line in this project.</source>
           <target>Veldu fyrirliggjandi verkhluta eða áætlunarlínu í þessu verkefni.</target>
@@ -1336,9 +1330,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4262836893 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Send the quote of a project in status Quote to its bill-to customer through a document sending profile, as the Send Project Quote action on the project card does. Irreversible. To change the project status first, use Projects.Project.SetStatus.</source>
-          <target>Senda tilboð verkefnis í stöðunni Tilboð til reikningsviðskiptamanns þess með forstillingu skjalasendingar, eins og aðgerðin Senda verkefnistilboð á verkefnaspjaldinu. Óafturkræft. Til að breyta stöðu verkefnisins fyrst, notaðu Projects.Project.SetStatus.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Senda tilboð verkefnis í stöðunni Tilboð til reikningsviðskiptamanns þess með forstillingu skjalasendingar, eins og aðgerðin Senda verkefnistilboð á verkefnaspjaldinu. Óafturkræft. Til að breyta stöðu verkefnisins fyrst, notaðu Projects.Project.SetStatus.</note>
+          <source>Send the quote of a project in status Quote to its bill-to customer through a document sending profile, as the Send Project Quote action on the project card does. Writes. To change the project status first, use Projects.Project.SetStatus.</source>
+          <target>Senda tilboð verkefnis í stöðunni Tilboð til reikningsviðskiptamanns þess með forstillingu skjalasendingar, eins og aðgerðin Senda verkefnistilboð á verkefnaspjaldinu. Skrifar. Til að breyta stöðu verkefnisins fyrst, notaðu Projects.Project.SetStatus.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Senda tilboð verkefnis í stöðunni Tilboð til reikningsviðskiptamanns þess með forstillingu skjalasendingar, eins og aðgerðin Senda verkefnistilboð á verkefnaspjaldinu. Skrifar. Til að breyta stöðu verkefnisins fyrst, notaðu Projects.Project.SetStatus.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Quote Send Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4262836893 - Method 1974426909 - NamedType 2764567509" size-unit="char" translate="yes" xml:space="preserve">

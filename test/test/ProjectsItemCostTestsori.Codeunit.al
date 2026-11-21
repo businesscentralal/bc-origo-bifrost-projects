@@ -184,45 +184,25 @@ codeunit 97156 "Projects Item Cost Tests ori"
         AssertRefusal(Run(Request), 'InvalidParameterFormat');
     end;
 
-    /// <summary>AC04: the gate answers ConfirmationRequired with the project count and ConfirmationMismatch for a wrong count; nothing changes.</summary>
+    /// <summary>AC02: the type is a write; the gate asks for no count and ignores a wrong expectedCount.</summary>
     [Test]
-    procedure Scenario_AC04_Confirmation_RequiredAndMismatch_ChangeNothing()
-    var
-        Ledger: Record "Job Ledger Entry";
-        ProjectNo: Code[20];
-        Request: JsonObject;
-        Response: JsonObject;
-    begin
-        ProjectNo := SeedAdjustedUsage();
-        Request := ProjectRequest(ProjectNo);
-        Assert.IsFalse(Gate(Request, Response), 'No expectedCount is not confirmed');
-        Assert.AreEqual('ConfirmationRequired', Response.GetText('code'), 'Required');
-        Assert.AreEqual('1', Response.GetText('expected'), 'The preview counts the project');
-        Request.Add('expectedCount', 3);
-        Clear(Response);
-        Assert.IsFalse(Gate(Request, Response), 'A wrong count is refused');
-        Assert.AreEqual('ConfirmationMismatch', Response.GetText('code'), 'Mismatch');
-        Clear(Request);
-        Request := ProjectRequest(ProjectNo);
-        Request.Add('expectedCount', 1);
-        Clear(Response);
-        Assert.IsTrue(Gate(Request, Response), 'The right count passes');
-        FindUsage(ProjectNo, Ledger);
-        Assert.AreEqual(20, Ledger."Total Cost (LCY)", 'The gate changed nothing');
-    end;
-
-    /// <summary>AC04: the type is declared irreversible, so the Foundation gate applies.</summary>
-    [Test]
-    procedure Scenario_AC04_EffectIsIrreversible()
+    procedure Scenario_AC02_NoConfirmation_ExpectedCountIgnored()
     var
         ConfirmGate: Codeunit "Confirm Gate ori";
         Impl: Codeunit "Proj. Item Cost Impl ori";
+        ProjectNo: Code[20];
+        Request: JsonObject;
+        Response: JsonObject;
         Effect: JsonObject;
     begin
         Assert.IsTrue(Impl.GetEffect(Effect), 'Effect declared');
-        Assert.AreEqual('irreversible', Effect.GetText('effect'), 'Irreversible');
-        Assert.IsTrue(Effect.GetText('changes').StartsWith('expectedCount counts '), 'The guard marker starts the effect text');
-        Assert.IsTrue(ConfirmGate.IsConfirmRequired("Message Type ori"::"Projects.ItemCost.Update"), 'Gate applies');
+        Assert.AreEqual('write', Effect.GetText('effect'), 'Write');
+        Assert.IsFalse(ConfirmGate.IsConfirmRequired("Message Type ori"::"Projects.ItemCost.Update"), 'No gate');
+        ProjectNo := SeedAdjustedUsage();
+        Request := ProjectRequest(ProjectNo);
+        Assert.IsTrue(Gate(Request, Response), 'No expectedCount passes');
+        Request.Add('expectedCount', 3);
+        Assert.IsTrue(Gate(Request, Response), 'A wrong count is ignored');
     end;
 
     /// <summary>AC06: the contract builds in 1033 and 1039; discovery text is translated, chapter text is English, no AL names or message-type wording.</summary>

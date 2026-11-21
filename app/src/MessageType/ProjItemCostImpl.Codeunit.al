@@ -45,7 +45,7 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Distinguishes this operation during discovery.</summary>
     procedure GetSelectionDescription(): Text
     var
-        SelectionLbl: Label 'Bring the item cost of project usage up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Irreversible. Needed only when Automatic Update Project Item Cost is off in Projects Setup, or for projects adjusted earlier.', Comment = 'is-IS=Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Óafturkræft. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.';
+        SelectionLbl: Label 'Bring the item cost of project usage up to the adjusted item cost after a cost adjustment, as the Update Project Item Cost batch job does. Writes. Needed only when Automatic Update Project Item Cost is off in Projects Setup, or for projects adjusted earlier.', Comment = 'is-IS=Færðu vörukostnað verkefnanotkunar upp í leiðréttan vörukostnað eftir kostnaðarleiðréttingu, eins og keyrslan Uppfæra vörukostnað verkefna gerir. Skrifar. Aðeins nauðsynlegt þegar slökkt er á sjálfvirkri uppfærslu vörukostnaðar verkefna í uppsetningu verkefna, eða fyrir verkefni sem voru leiðrétt áður.';
     begin
         exit(SelectionLbl);
     end;
@@ -119,15 +119,15 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
         exit(true);
     end;
 
-    /// <summary>Documents the irreversible update.</summary>
+    /// <summary>Documents the update.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
     var
         Preconditions: JsonArray;
     begin
         Preconditions.Add('Every named project exists and is not Completed.');
         Preconditions.Add('The cost adjustment has been run for the items used on the projects.');
-        Effect.Add('effect', 'irreversible');
-        Effect.Add('changes', 'expectedCount counts the projects in scope: the projects named in projectNos, or every project in status Planning, Quote or Open for allOpen. Sets the cost of item usage entries to the adjusted cost, updates the planning lines that were created by the system and not yet transferred to an invoice, and moves the project link onto new value entries. Nothing is posted to the general ledger and nothing is deleted. To read the count without a side effect, send the same request without expectedCount while confirmation is enabled and read expected in the ConfirmationRequired answer; nothing is changed.');
+        Effect.Add('effect', 'write');
+        Effect.Add('changes', 'expectedCount is accepted and ignored. Sets the cost of item usage entries to the adjusted cost, updates the planning lines that were created by the system and not yet transferred to an invoice, and moves the project link onto new value entries. Nothing is posted to the general ledger and nothing is deleted.');
         Effect.Add('idempotent', true);
         Effect.Add('preconditions', Preconditions);
         exit(true);
@@ -169,9 +169,9 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
         Examples.Add(Contract.Example('Update two named projects',
             '{"type":"Projects.ItemCost.Update","data":{"projectNos":["JOB00010","JOB00020"],"expectedCount":2}}',
             '{"status":"Success","projects":[{"projectNo":"JOB00010","entriesUpdated":3,"costChangeLCY":24.5},{"projectNo":"JOB00020","entriesUpdated":0,"costChangeLCY":0}],"totalEntriesUpdated":3,"summary":"Updated the item cost on 3 project ledger entries in 2 projects."}'));
-        Examples.Add(Contract.Example('Preview every open project',
+        Examples.Add(Contract.Example('Update every open project',
             '{"type":"Projects.ItemCost.Update","data":{"allOpen":true}}',
-            '{"status":"Error","code":"ConfirmationRequired","parameter":"expectedCount","expected":"12","nextStep":"Send the same request again with expectedCount set to 12."}'));
+            '{"status":"Success","projects":[{"projectNo":"JOB00010","entriesUpdated":3,"costChangeLCY":24.5}],"totalEntriesUpdated":3,"summary":"Updated the item cost on 3 project ledger entries in 1 project."}'));
         exit(true);
     end;
 
@@ -179,7 +179,7 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     procedure GetOverview(var Overview: Text): Boolean
     begin
         Overview := 'Brings the item cost on project usage entries and planning lines up to the adjusted item cost, the way the Update Project Item Cost batch job does. ' +
-            'Use it after a cost adjustment so that project profitability is right. Irreversible.';
+            'Use it after a cost adjustment so that project profitability is right. Writes.';
         exit(true);
     end;
 

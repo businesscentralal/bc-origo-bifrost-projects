@@ -170,35 +170,30 @@ codeunit 97171 "Proj. Plan Purchase Tests ori"
         Commit();
     end;
 
-    /// <summary>AC06 Missing confirmation reports a count and leaves no purchases or scratch.</summary>
+    /// <summary>AC02 The type is a write: no count is asked for, and a wrong expectedCount is ignored.</summary>
     [Test]
-    procedure MissingConfirmationChangesNothing()
+    procedure ExpectedCountIgnored_NoConfirmation()
     var
         Request: JsonObject;
-        Response: JsonObject;
     begin
-        // [SCENARIO] An irreversible request cannot execute without its planning-line count.
+        // [SCENARIO] Creating purchase orders is not posting, so neither a missing nor a wrong count refuses it.
         Request := Fixture.Seed(true);
-        Response := Execute(Request);
-        AssertCode(Response, 'ConfirmationRequired');
+        Request.Add('expectedCount', 99);
+        Library.AssertStatus(Execute(Request), 'Success');
         AssertScratchEmpty();
-        AssertNoPurchase(Request);
     end;
 
-    /// <summary>AC06 Wrong confirmation leaves no purchases or scratch.</summary>
+    /// <summary>AC02 Without expectedCount the request runs at once.</summary>
     [Test]
-    procedure WrongConfirmationChangesNothing()
+    procedure NoExpectedCount_Runs()
     var
         Request: JsonObject;
         Response: JsonObject;
     begin
-        // [SCENARIO] A stale confirmation count must refuse atomically.
         Request := Fixture.Seed(true);
-        Request.Add('expectedCount', 2);
         Response := Execute(Request);
-        AssertCode(Response, 'ConfirmationMismatch');
-        AssertScratchEmpty();
-        AssertNoPurchase(Request);
+        Library.AssertStatus(Response, 'Success');
+        Assert.AreEqual(1, Response.GetArray('purchaseOrders').Count(), 'The order is created');
     end;
 
     /// <summary>AC01 Repeated creation skips demand already supplied by its linked order.</summary>
