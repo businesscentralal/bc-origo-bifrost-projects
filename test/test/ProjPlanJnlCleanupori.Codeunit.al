@@ -48,7 +48,7 @@ codeunit 97183 "Proj. Plan Jnl Cleanup ori"
         JobLedger: Record "Job Ledger Entry";
         Journal: Record "Job Journal Line";
         Batch: Record "Job Journal Batch";
-        Template: Record "Job Journal Template";
+        JournalTemplate: Record "Job Journal Template";
         Customer: Record Customer;
         JobGroup: Record "Job Posting Group";
         GL: Record "G/L Entry";
@@ -68,9 +68,9 @@ codeunit 97183 "Proj. Plan Jnl Cleanup ori"
         Journal.DeleteAll(false);
         Batch.SetRange("Journal Template Name", CopyStr(Project."No.", 1, 10));
         Batch.DeleteAll(false);
-        if Template.Get(CopyStr(Project."No.", 1, 10)) then begin
-            Template.TestField(Description, 'X PlanJournal81 fixture');
-            Template.Delete(false);
+        if JournalTemplate.Get(CopyStr(Project."No.", 1, 10)) then begin
+            JournalTemplate.TestField(Description, 'X PlanJournal81 fixture');
+            JournalTemplate.Delete(false);
         end;
         UsageLink.SetRange("Job No.", Project."No.");
         UsageLink.DeleteAll(false);

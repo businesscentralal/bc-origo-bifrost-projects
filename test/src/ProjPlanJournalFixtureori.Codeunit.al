@@ -21,7 +21,6 @@ codeunit 97181 "Proj. Plan Journal Fixture ori"
     /// <summary>Creates an isolated project and journal, returning its exact request.</summary>
     internal procedure Seed() Request: JsonObject
     var
-        Library: Codeunit "Projects Test Library ori";
         Plan: Record "Job Planning Line";
         Project: Record Job;
         Item: Record Item;
@@ -31,11 +30,12 @@ codeunit 97181 "Proj. Plan Journal Fixture ori"
         InventorySetup: Record "Inventory Posting Setup";
         General: Record "General Posting Setup";
         EmptyBusinessGeneral: Record "General Posting Setup";
-        Template: Record "Job Journal Template";
+        JournalTemplate: Record "Job Journal Template";
         Batch: Record "Job Journal Batch";
-        Stock: Record "Item Journal Line" temporary;
-        PostStock: Codeunit "Item Jnl.-Post Line";
+        TempStock: Record "Item Journal Line" temporary;
         Period: Record "Inventory Period";
+        Library: Codeunit "Projects Test Library ori";
+        PostStock: Codeunit "Item Jnl.-Post Line";
         ResourcePlan: JsonObject;
         ItemPlan: JsonObject;
         Lines: JsonArray;
@@ -92,15 +92,15 @@ codeunit 97181 "Proj. Plan Journal Fixture ori"
         InventorySetup.Insert(true);
         Item.Validate("Inventory Posting Group", ItemNo);
         Item.Modify(true);
-        Stock."Line No." := 10000;
-        Stock."Entry Type" := Stock."Entry Type"::"Positive Adjmt.";
-        Stock.Validate("Posting Date", WorkDate());
-        Stock.Validate("Document No.", ProjectNo);
-        Stock.Validate("Item No.", ItemNo);
-        Stock.Validate("Gen. Bus. Posting Group", ItemNo);
-        Stock.Validate(Quantity, 10);
-        Stock.Validate("Unit Cost", 7);
-        PostStock.RunWithCheck(Stock);
+        TempStock."Line No." := 10000;
+        TempStock."Entry Type" := TempStock."Entry Type"::"Positive Adjmt.";
+        TempStock.Validate("Posting Date", WorkDate());
+        TempStock.Validate("Document No.", ProjectNo);
+        TempStock.Validate("Item No.", ItemNo);
+        TempStock.Validate("Gen. Bus. Posting Group", ItemNo);
+        TempStock.Validate(Quantity, 10);
+        TempStock.Validate("Unit Cost", 7);
+        PostStock.RunWithCheck(TempStock);
         ItemPlan := ResourcePlan.Clone().AsObject();
         ItemPlan.Replace('lineNo', 20000);
         ItemPlan.Replace('type', 'Item');
@@ -112,10 +112,10 @@ codeunit 97181 "Proj. Plan Journal Fixture ori"
                 Plan."Document No." := ProjectNo;
                 Plan.Modify(true);
             until Plan.Next() = 0;
-        Template.Name := CopyStr(ProjectNo, 1, 10);
-        Template.Description := 'X PlanJournal81 fixture';
-        Template.Insert(true);
-        Batch."Journal Template Name" := Template.Name;
+        JournalTemplate.Name := CopyStr(ProjectNo, 1, 10);
+        JournalTemplate.Description := 'X PlanJournal81 fixture';
+        JournalTemplate.Insert(true);
+        Batch."Journal Template Name" := JournalTemplate.Name;
         Batch.Name := 'X81';
         Batch.Description := 'X PlanJournal81 fixture';
         Batch.Insert(true);
@@ -126,7 +126,7 @@ codeunit 97181 "Proj. Plan Journal Fixture ori"
         Lines.Add(Selection.Clone());
         Request.Add('projectNo', ProjectNo);
         Request.Add('planningLines', Lines);
-        Request.Add('templateName', Template.Name);
+        Request.Add('templateName', JournalTemplate.Name);
         Request.Add('batchName', Batch.Name);
         Request.Add('postingDate', Format(WorkDate(), 0, 9));
         Commit();
@@ -135,17 +135,17 @@ codeunit 97181 "Proj. Plan Journal Fixture ori"
     /// <summary>Invokes the Projects transaction boundary with an isolated argument.</summary>
     internal procedure Execute(Request: JsonObject) Response: JsonObject
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         Impl: Codeunit "Proj. Plan Journal Impl ori";
     begin
-        Argument.ID := CreateGuid();
-        Argument.Type := "Message Type ori"::"Projects.PlanningLine.TransferToJournal";
-        Argument.Version := "Message Version ori"::"1.0";
-        Argument.Insert(true);
-        Argument.SetRequestJson(Request);
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := "Message Type ori"::"Projects.PlanningLine.TransferToJournal";
+        TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.Insert(true);
+        TempArgument.SetRequestJson(Request);
         Commit();
-        Impl.Execute(Argument);
-        exit(Argument.GetResponseJson());
+        Impl.Execute(TempArgument);
+        exit(TempArgument.GetResponseJson());
     end;
 
     /// <summary>Posts through Foundation's dispatcher, including its real licence validation.</summary>

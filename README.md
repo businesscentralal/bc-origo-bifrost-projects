@@ -109,6 +109,11 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 
 | Type | ID | Name |
 | --- | --- | --- |
+| report | 70013460 | `Proj. Visit Report ori` |
+| codeunit | 70013460–70013466 | Report/SignOff implementations, signature transaction, contract, lock guard and manager unlock |
+| enum value | 70013460/70013461 | `Projects.VisitReport.Get` / `Projects.Visit.SignOff` |
+| test codeunit | 97194–97196 | Sign-off tests, raw fixture and MCP seed |
+| test enum extension | 97196 | `Test.Visit86.Seed` (test app only) |
 | table | 70013433 | `Proj. Field Visit ori` |
 | enum | 70013434 | `Proj. Visit Status ori` |
 | enum | 70013435 | `Proj. Visit Kind ori` |
@@ -263,3 +268,15 @@ Select an optional exact `taskNo` or `planningLineNos` array, never both. Vendor
 | Proj. Plan Journal Fixture ori / Seed ori | 97181 / 97182 | Raw acceptance data and test-only seed adapter |
 | Proj. Plan Journal Types ori | 97181 | Test-only fixture seed registration |
 | Proj. Plan Jnl Cleanup ori | 97183 | Removes only story-marked acceptance fixtures and their posting entries |
+
+### Customer sign-off and visit report (#86)
+
+`Projects.VisitReport.Get` accepts `visitId` or `projectNo`, `taskNo`, and `date` and returns the caller’s visit, quantity-only usage, photo count, recipient and report id. `Projects.Visit.SignOff` takes `signerName`, `signatureStagingId`, `clientRequestId`, and optional `photoStagingIds` (up to ten). Images must be PNG/JPEG, at most 5 MiB each and 8192 pixels per dimension. The customer supplies the signature; an assistant must never generate it.
+
+Foundation 28.0.13.0 or later supplies `Blob Staging ori.Take` and `NormalizeMetadata`. Metadata and decoded image bytes are checked inside a transaction. Any refusal restores every staging entry and leaves the visit unchanged. The same sign request can be retried with the original signature id.
+
+The native report is **Visit Report**, id **70013460**, filtered to one visit entry. Rendering and sending are chained by the caller through Foundation staging; there is no Projects send operation or feature-app dependency. Show the recipient and obtain explicit consent before any external sender runs.
+
+A signed visit is locked against time and usage-content changes. The native manager unlock entry point is codeunit 70013466, supplied with the visit record, and requires Projects Setup write capability (provided by `Projects Full ori`, absent from `PROJ FIELD TECH`). Unlock marks the signature inactive while retaining its stored bytes and signer details. No page/action is added.
+
+The #84 sibling must route item registration through the same locked-visit usage boundary. Its exact operation is a pending integration check until that branch is available. Team Member SaaS Effective Permissions is NOT_RUN until the #82 spike; on-premises permission tests do not replace it.
