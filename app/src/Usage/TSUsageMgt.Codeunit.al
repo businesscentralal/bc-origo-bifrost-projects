@@ -100,6 +100,7 @@ codeunit 70013400 "TS Usage Mgt ori"
         Item: Record Item;
         Line: Record "Time Sheet Line";
         Resource: Record Resource;
+        VisitGuard: Codeunit "Proj. Visit Lock Guard ori";
         Params: JsonObject;
         Request: JsonObject;
         Allowed: List of [Text];
@@ -157,6 +158,10 @@ codeunit 70013400 "TS Usage Mgt ori"
         end;
         if (UsageDate < Header."Starting Date") or (UsageDate > Header."Ending Date") then begin
             Fail(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, WeekMsg, 'date', WeekNextTxt);
+            exit;
+        end;
+        if VisitGuard.IsUsageLocked(Header."No.", LineNo, UsageDate) then begin
+            Fail(Argument, "Bifrost Error Code ori"::PreconditionFailed, VisitGuard.GetUnlockHint(), 'lineNo', VisitGuard.GetUnlockHint());
             exit;
         end;
         if TypeText = 'Item' then begin

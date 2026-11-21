@@ -1,10 +1,15 @@
 # Changelog
 
-## Unreleased — #87
+## Unreleased — #87 / #86
 
 - Add technician follow-up Request/List and manager Convert/Reject, with owner/project scope, retained decisions, idempotent requests, Foundation-staged photos, atomic native conversion and rollback-only preview. Visit briefs include own follow-ups. Generic writes protect decision fields and freeze closed content.
 - Add the Project Follow-up Requests page and Follow-up Task Increment in Projects Setup (field 87). New objects: tables 70013444–70013445, status enum 70013446, page 70013447, codeunits 70013448–70013456; message enum values 70013444–70013447. Tests 97188–97189 and test-only fixture codeunit/enumextension 97190. No new assignable role or delete operation.
 - Team Member SaaS AC06 remains NOT_RUN under the 21 November decision; merge waits for the #82 spike.
+
+- Add `Projects.VisitReport.Get` and `Projects.Visit.SignOff`: quantity-only previews, customer signatures and photos consumed atomically from Foundation staging, and signed-visit locking. Stop, Complete and shared usage registration refuse a locked visit. The manager-only native unlock entry point checks Projects Setup write capability; technician writes cannot unlock.
+- Word report 70013460 renders visit time, usage, outcome and signature in English and Icelandic. Projects references no other feature app. Foundation minimum is 28.0.13.0, the first merged `NormalizeMetadata` version.
+- Added codeunits 70013460–70013466, report 70013460, enum values 70013460/70013461; additive fields 23–33 and an index on table 70013433. Tests 97194–97196; test-only ownership probe page 97197 (97196 also a test-only seed enum extension). Existing test analyzer naming/declaration warnings corrected mechanically, without changing assertions.
+- Team Member SaaS proof remains NOT_RUN pending #82. The exact `Projects.VisitItem.Register` integration test awaits the sibling #84 implementation.
 
 ## Unreleased — #83
 

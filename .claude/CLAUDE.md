@@ -76,3 +76,8 @@
 - Technician follow-up grants extend the existing PROJ FIELD TECH with RIM on the two app tables, without native task/planning writes. Read/Full extensions grant feature objects; no new assignable role. GetEffectivePermission checks insert/modify without demanding delete.
 - Request/List retain technician ownership; managers use native project rights plus the Project Manager / Person Responsible association. Convert uses the typed Projects Write ori creation helpers inside a single rollback boundary; preview stores only session-local output before intentional rollback.
 - AC06 remains NOT_RUN; the stacked PR targets feat/83-visit-start-stop-complete and receives pr:on-hold for the #82 Team Member spike after hand-over work is complete.
+
+## Issue #86 object ledger
+
+- Codeunits 70013460–70013466: visit report/sign-off implementations, signature manager/transaction, lock guard, contract and native manager unlock. Report 70013460; enum values 70013460/70013461. Fields 23–33 on visit table 70013433. Tests 97194–97196; test-only ownership probe page 97197; test seed enumextension/value 97196.
+- Foundation floor 28.0.13.0: first merged NormalizeMetadata source (core da140213). No feature-app dependency. PROJ FIELD TECH gains Contact read; native manager unlock checks Projects Setup write capability as well as its Full-only execute grant.

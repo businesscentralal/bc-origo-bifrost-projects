@@ -38,11 +38,11 @@ codeunit 97180 "Proj. Plan Jnl Perm Tests ori"
     [Test]
     procedure AC04_ModifyWithoutInsertRefused()
     var
+        TempArgument: Record "Message Argument ori" temporary;
+        Journal: Record "Job Journal Line";
         Lower: Codeunit "Library - Lower Permissions";
         Fixture: Codeunit "Proj. Plan Journal Fixture ori";
         Impl: Codeunit "Proj. Plan Journal Impl ori";
-        Argument: Record "Message Argument ori" temporary;
-        Journal: Record "Job Journal Line";
         Assert: Codeunit "Library Assert";
         Request: JsonObject;
         Response: JsonObject;
@@ -50,11 +50,11 @@ codeunit 97180 "Proj. Plan Jnl Perm Tests ori"
         // Story #81, AC04 | Time: own open posting date | Risk: Permission boundaries
         Lower.PushPermissionSetWithoutDefaults('SUPER');
         Request := Fixture.Seed();
-        Argument.ID := CreateGuid();
-        Argument.Type := "Message Type ori"::"Projects.PlanningLine.TransferToJournal";
-        Argument.Version := "Message Version ori"::"1.0";
-        Argument.Insert(true);
-        Argument.SetRequestJson(Request);
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := "Message Type ori"::"Projects.PlanningLine.TransferToJournal";
+        TempArgument.Version := "Message Version ori"::"1.0";
+        TempArgument.Insert(true);
+        TempArgument.SetRequestJson(Request);
         Journal."Journal Template Name" := CopyStr(Request.GetText('templateName'), 1, 10);
         Journal."Journal Batch Name" := 'X81';
         Journal."Line No." := 12345;
@@ -66,8 +66,8 @@ codeunit 97180 "Proj. Plan Jnl Perm Tests ori"
         Journal.Description := 'X modify permitted without insert';
         Journal.Modify(false);
         Commit();
-        Impl.Execute(Argument);
-        Response := Argument.GetResponseJson();
+        Impl.Execute(TempArgument);
+        Response := TempArgument.GetResponseJson();
         Lower.PushPermissionSetWithoutDefaults('SUPER');
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), Format(Response));
         Journal.SetRange("Journal Template Name", Request.GetText('templateName'));
@@ -78,16 +78,16 @@ codeunit 97180 "Proj. Plan Jnl Perm Tests ori"
 
     local procedure AssertDenied()
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         Impl: Codeunit "Proj. Plan Journal Impl ori";
         Assert: Codeunit "Library Assert";
         Response: JsonObject;
     begin
         Assert.IsFalse(Impl.IsEnabled(), 'Disabled for restricted role');
-        Argument.ID := CreateGuid();
-        Argument.Insert(true);
-        Impl.ExecuteBifrostTask(Argument);
-        Response := Argument.GetResponseJson();
+        TempArgument.ID := CreateGuid();
+        TempArgument.Insert(true);
+        Impl.ExecuteBifrostTask(TempArgument);
+        Response := TempArgument.GetResponseJson();
         Assert.AreEqual('PermissionDenied', Response.GetText('code'), 'Permission checked before licence and input');
         Assert.IsTrue(Response.GetText('nextStep') <> '', 'Actionable refusal');
     end;

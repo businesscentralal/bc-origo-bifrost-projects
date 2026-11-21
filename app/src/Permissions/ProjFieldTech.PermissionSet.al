@@ -1,5 +1,6 @@
 namespace Origo.Bifrost.Projects;
 
+using Microsoft.CRM.Contact;
 using Microsoft.Foundation.NoSeries;
 using Microsoft.Foundation.Period;
 using Microsoft.Inventory.Item.Catalog;
@@ -31,6 +32,7 @@ permissionset 70013403 "PROJ FIELD TECH"
     Permissions =
         tabledata "Proj. Follow-up Request ori" = RIM,
         tabledata "Proj. Follow-up Req. Line ori" = RIM,
+        tabledata Contact = R,
         tabledata "Job Planning Line" = R,
         tabledata Customer = R,
         tabledata "Ship-to Address" = R,
