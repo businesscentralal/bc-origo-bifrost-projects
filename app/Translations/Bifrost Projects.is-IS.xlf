@@ -7815,6 +7815,146 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - vettvangsheimsókn</note>
           <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ VISIT - Property Caption</note>
         </trans-unit>
+        
+        
+        <trans-unit id="Codeunit 2976181351 - Method 272129194 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send preview as true or false.</source>
+          <target>Sendu preview sem true eða false.</target><note from="Developer" annotates="general" priority="2">is-IS=Sendu preview sem true eða false.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Plan Purchase Impl ori - Method ExecuteNative - NamedType FormatLbl</note>
+        </trans-unit>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <trans-unit id="Codeunit 2056570736 - NamedType 1603276784" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Visit brief for project %1, task %2.</source>
+          <target>Yfirlit heimsóknar fyrir verkefni %1, verkhluta %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = project number, %2 = task number; is-IS=Yfirlit heimsóknar fyrir verkefni %1, verkhluta %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType BriefSummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 996825897" size-unit="char" translate="yes" xml:space="preserve">
+          <source>You own more than one resource; send resourceNo.</source>
+          <target>Þú átt fleiri en einn forða; sendu resourceNo.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Þú átt fleiri en einn forða; sendu resourceNo.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType ChooseLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 4279940694" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 planned visits for %2.</source>
+          <target>%1 áætlaðar heimsóknir fyrir %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = visit count, %2 = ISO date; is-IS=%1 áætlaðar heimsóknir fyrir %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType DaySummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 2588563411" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use the parameter type and ISO date documented in help.</source>
+          <target>Notaðu gagnategund viðfangs og ISO-dagsetningu sem skráð eru í hjálp.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu gagnategund viðfangs og ISO-dagsetningu sem skráð eru í hjálp.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType FormatLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 1128910002" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Send projectNo and taskNo.</source>
+          <target>Sendu projectNo og taskNo.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sendu projectNo og taskNo.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType MissingLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 704880291" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use an existing project and task.</source>
+          <target>Notaðu fyrirliggjandi verkefni og verkhluta.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu fyrirliggjandi verkefni og verkhluta.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType NotFoundLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 3433130008" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use a resource whose Time Sheet Owner User ID is your user.</source>
+          <target>Notaðu forða þar sem Time Sheet Owner User ID er notandinn þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu forða þar sem Time Sheet Owner User ID er notandinn þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType OwnLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign BIFROST Read ori and PROJ FIELD TECH.</source>
+          <target>Úthlutaðu BIFROST Read ori og PROJ FIELD TECH.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType PermissionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The technician request cannot be processed.</source>
+          <target>Ekki er hægt að vinna úr beiðni tæknimanns.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki er hægt að vinna úr beiðni tæknimanns.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType RefusedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 1773691126" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Remove the unknown parameter.</source>
+          <target>Fjarlægðu óþekkta viðfangið.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjarlægðu óþekkta viðfangið.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType UnknownLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2056570736 - NamedType 4125189568" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Ask an administrator to set your user as Time Sheet Owner User ID on your resource.</source>
+          <target>Biddu stjórnanda að skrá notandann þinn sem Time Sheet Owner User ID á forðann þinn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Biddu stjórnanda að skrá notandann þinn sem Time Sheet Owner User ID á forðann þinn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType UnmappedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2732426303 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads the caller&#x27;s planned project visits for a day.</source>
+          <target>Les áætlaðar verkefnaheimsóknir kallanda fyrir dag.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les áætlaðar verkefnaheimsóknir kallanda fyrir dag.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. My Day Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2732426303 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>technician, project, day, visits</source>
+          <target>tæknimaður, verkefni, dagur, heimsóknir</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=tæknimaður, verkefni, dagur, heimsóknir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. My Day Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2732426303 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects.MyDay.Get: Reads the caller&#x27;s planned project visits for a day.</source>
+          <target>Projects.MyDay.Get: Les áætlaðar verkefnaheimsóknir kallanda fyrir dag.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Projects.MyDay.Get: Les áætlaðar verkefnaheimsóknir kallanda fyrir dag.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. My Day Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1859669162 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reads the caller&#x27;s project visit brief.</source>
+          <target>Les yfirlit verkefnaheimsóknar kallanda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les yfirlit verkefnaheimsóknar kallanda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Brief Impl ori - Method GetDescription - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1859669162 - Method 1027590672 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>technician, project, visit, brief</source>
+          <target>tæknimaður, verkefni, heimsókn, yfirlit</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=tæknimaður, verkefni, heimsókn, yfirlit</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Brief Impl ori - Method GetKeywords - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1859669162 - Method 79446908 - NamedType 895773054" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects.VisitBrief.Get: Reads the caller&#x27;s project visit brief.</source>
+          <target>Projects.VisitBrief.Get: Les yfirlit verkefnaheimsóknar kallanda.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Projects.VisitBrief.Get: Les yfirlit verkefnaheimsóknar kallanda.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Brief Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1715273284 - NamedType 3454296656" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Assign BIFROST Read ori and PROJ FIELD TECH for your own usage, or BIFROST Full ori and PROJ USAGE for back-office actions.</source>
+          <target>Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType TechnicianPermissionNextTxt</note>
+        </trans-unit>
+        <trans-unit id="PermissionSet 3104963193 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Projects Field Technician</source>
+          <target>Verkefni - vettvangstæknimaður</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - vettvangstæknimaður</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ FIELD TECH - Property Caption</note>
+        </trans-unit>
       </group>
     </body>
   </file>

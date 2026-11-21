@@ -10,8 +10,8 @@ codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
-        Gate: Codeunit "Projects Gate ori";
         FullRole: Record "Proj. Posting ori";
+        Gate: Codeunit "Projects Gate ori";
     begin
         // The existing feature-role token separates Read and Full; no posting action or gate runs.
         exit(FullRole.WritePermission() and Gate.IsEnabled(Database::"Job Task", true));
@@ -205,7 +205,7 @@ codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "
     var
         Project: Record Job;
         Task: Record "Job Task";
-        BeforeTask: Record "Job Task" temporary;
+        TempBeforeTask: Record "Job Task" temporary;
         Indent: Codeunit "Job Task-Indent";
         Request: JsonObject;
         Response: JsonObject;
@@ -230,16 +230,16 @@ codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "
         Task.SetRange("Job No.", ProjectNo);
         if Task.FindSet() then
             repeat
-                BeforeTask := Task;
-                BeforeTask.Insert(false);
+                TempBeforeTask := Task;
+                TempBeforeTask.Insert(false);
             until Task.Next() = 0;
         Indent.Indent(ProjectNo, true);
         TaskTypes := Task."Job Task Type".Names();
         TaskOrdinals := Task."Job Task Type".Ordinals();
         if Task.FindSet() then
             repeat
-                BeforeTask.Get(ProjectNo, Task."Job Task No.");
-                Changed := (Task.Indentation <> BeforeTask.Indentation) or (Task.Totaling <> BeforeTask.Totaling);
+                TempBeforeTask.Get(ProjectNo, Task."Job Task No.");
+                Changed := (Task.Indentation <> TempBeforeTask.Indentation) or (Task.Totaling <> TempBeforeTask.Totaling);
                 if Changed then
                     ChangedCount += 1;
                 Clear(Row);

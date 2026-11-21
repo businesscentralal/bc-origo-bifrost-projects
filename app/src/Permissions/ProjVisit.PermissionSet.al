@@ -7,7 +7,7 @@ using Microsoft.Utilities;
 
 /// <summary>
 /// Assignable delta for field visits (projects#83). Assign together with BIFROST Read ori and PROJ TS SELF.
-/// PROJ FIELD TECH stays owned by #82 and should include this set when the branches meet.
+/// PROJ FIELD TECH includes this set.
 /// No project journal tabledata. Delete is included because Record.WritePermission is false without it.
 /// </summary>
 permissionset 70013443 "PROJ VISIT"

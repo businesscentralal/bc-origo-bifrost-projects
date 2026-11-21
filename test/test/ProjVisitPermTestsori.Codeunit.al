@@ -59,8 +59,7 @@ codeunit 97187 "Proj. Visit Perm Tests ori"
         Prepare(ResourceNo, SheetNo, ProjectNo, TaskNo);
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ TS SELF');
-        Lower.AddPermissionSet('PROJ VISIT');
+        Lower.AddPermissionSet('PROJ FIELD TECH');
         Assert.AreEqual('', MissingGrants(), MissingGrants());
         Response := Run("Message Type ori"::"Projects.Visit.Start", ProjectNo, TaskNo);
         Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
@@ -71,11 +70,13 @@ codeunit 97187 "Proj. Visit Perm Tests ori"
     var
         Expanded: Record "Expanded Permission";
     begin
-        Expanded.SetRange("Role ID", 'PROJ VISIT');
         Expanded.SetRange("Object Type", Expanded."Object Type"::"Table Data");
         Expanded.SetFilter("Object ID", '%1|%2|%3', Database::"Job Journal Line", Database::"Job Ledger Entry", Database::"Res. Journal Line");
         Expanded.SetRange("Insert Permission", Expanded."Insert Permission"::Yes);
+        Expanded.SetRange("Role ID", 'PROJ VISIT');
         Assert.IsTrue(Expanded.IsEmpty(), 'PROJ VISIT grants no journal or ledger insert.');
+        Expanded.SetRange("Role ID", 'PROJ FIELD TECH');
+        Assert.IsTrue(Expanded.IsEmpty(), 'PROJ FIELD TECH grants no journal or ledger insert.');
     end;
 
     local procedure ClearVisitChangeLog()

@@ -3,7 +3,7 @@
 ## Unreleased — #83
 
 - Add `Projects.Visit.Start`, `Projects.Visit.Stop` and `Projects.Visit.Complete` so a technician can record travel and work on a planned task. Hours are rounded and added to an open time sheet line. Mileage becomes an open usage line and is not submitted. The same `clientRequestId` returns the first result. Generic writes of visit status, times, hours and time sheet keys are refused.
-- New objects: table 70013433 `Proj. Field Visit ori`; enums 70013434 `Proj. Visit Status ori` and 70013435 `Proj. Visit Kind ori`; codeunits 70013436–70013442; enum values 70013433–70013435; assignable permission set 70013443 `PROJ VISIT` (no journal tabledata; assign with `BIFROST Read ori` and `PROJ TS SELF`). Projects Setup gains the field-service fields. Tests 97186 and 97187. AC07 Team Member effective permissions stays NOT_RUN until the #82 spike. IDs 70013429–70013432 stay free for #82.
+- New objects: table 70013433 `Proj. Field Visit ori`; enums 70013434 `Proj. Visit Status ori` and 70013435 `Proj. Visit Kind ori`; codeunits 70013436–70013442; enum values 70013433–70013435; assignable permission set 70013443 `PROJ VISIT` (no journal tabledata; assign with `BIFROST Read ori` and `PROJ TS SELF`). `PROJ FIELD TECH` includes `PROJ VISIT`. Projects Setup gains the field-service fields. Tests 97186 and 97187. AC07 Team Member effective permissions stays NOT_RUN until the Team Member user exists (provisioned 23 November, #82). IDs 70013429–70013432 belong to #82.
 
 ## Unreleased — #79
 
@@ -17,6 +17,12 @@
 
 ### Added
 - #78: `Projects.Task.Indent` runs Indent Project Tasks without dialogs, returning each task's indentation, totaling and changed flag plus task/changed counts. A native structural error rolls back all changes; retries are idempotent. Requires Full and native task write rights; no posting gate or new Create flags. New codeunit and enum value 70013406; tests 97114/97115 and test-only permission set 97115. English chapters and Icelandic discovery/refusals are synchronized.
+## Unreleased — issue #82
+
+- Added owner-scoped `Projects.MyDay.Get` and `Projects.VisitBrief.Get`, with project site snapshots, remaining planned quantities, own time/usage, record systemIds and write-free setup suggestions.
+- Added `PROJ FIELD TECH` (permission set 70013403) with the self-service time-sheet bundle, native project/site/stock reads and usage RIM. Existing PROJ USAGE is unchanged. Updated owner usage permission guidance and documentation.
+- Added codeunits 70013429–70013432, message enum values 70013427/70013428, tests 97184 and fixture codeunit/enumextension/cleanup page 97185. English help chapters, localized discovery/refusals and is-IS captions. Team Member SaaS receipt AC06 remains NOT_RUN until the dedicated test user is available.
+
 ## Unreleased — #76
 
 - Add `Projects.PlanningLine.ShiftDates`: shift planning/currency dates by invariant formula or fixed date, filter tasks/line types/date windows, and return every changed date (including native document-date changes). Refuse transferred/invoiced lines atomically. Plain write without expectedCount per the 20 November ruling.

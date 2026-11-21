@@ -21,8 +21,8 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
     /// <summary>Checks the company switch, feature role and caller-owned native rights.</summary>
     procedure IsEnabled(): Boolean
     var
-        Gate: Codeunit "Projects Gate ori";
         FullRole: Record "Proj. Posting ori";
+        Gate: Codeunit "Projects Gate ori";
     begin
         exit(FullRole.WritePermission() and Gate.IsEnabled(Database::Job, false) and
             Gate.IsEnabled(Database::"Job Task", false) and Gate.IsEnabled(Database::"Job Planning Line", true) and
@@ -253,7 +253,7 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
         Project: Record Job;
         Task: Record "Job Task";
         PlanningLine: Record "Job Planning Line";
-        Template: Record "Job Journal Template";
+        JournalTemplate: Record "Job Journal Template";
         Batch: Record "Job Journal Batch";
         Input: Codeunit "Projects Followup Input ori";
         Parameters: JsonArray;
@@ -289,9 +289,9 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
         RequestJson.Get('projectNo', ProjectToken);
         if not Project.Get(ProjectToken.AsValue().AsText()) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'projectNo', FindLbl));
-        if not Template.Get(RequestJson.GetText('templateName')) then
+        if not JournalTemplate.Get(RequestJson.GetText('templateName')) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'templateName', FindLbl));
-        if not Batch.Get(Template.Name, RequestJson.GetText('batchName')) then
+        if not Batch.Get(JournalTemplate.Name, RequestJson.GetText('batchName')) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'batchName', FindLbl));
         if (Project.Blocked <> Project.Blocked::" ") or (Project.Status <> Project.Status::Open) then
             exit(Input.Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, 'projectNo', BudgetLbl));

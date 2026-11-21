@@ -26,7 +26,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
     var
         Project: Record Job;
         Planning: Record "Job Planning Line";
-        Selected: Record "Job Planning Line" temporary;
+        TempSelected: Record "Job Planning Line" temporary;
         ReqLine: Record "Requisition Line";
         TempDemand: Record "Unplanned Demand" temporary;
         Demand: Codeunit "Get Unplanned Demand";
@@ -62,9 +62,9 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
             exit;
         end;
         Planning.LockTable();
-        if not SelectLines(Argument, Request, Selected) then
+        if not SelectLines(Argument, Request, TempSelected) then
             exit;
-        if not ValidateOverrides(Argument, Request, Selected) then
+        if not ValidateOverrides(Argument, Request, TempSelected) then
             exit;
         ReqLine.LockTable();
         ReqLine.ReadIsolation := IsolationLevel::UpdLock;
@@ -73,10 +73,10 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
             Input.Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, '', ScratchLbl);
             exit;
         end;
-        if Selected.FindSet() then
+        if TempSelected.FindSet() then
             repeat
-                HasItems := HasItems or ((Selected.Type = Selected.Type::Item) and Selected."Schedule Line");
-            until Selected.Next() = 0;
+                HasItems := HasItems or ((TempSelected.Type = TempSelected.Type::Item) and TempSelected."Schedule Line");
+            until TempSelected.Next() = 0;
         if HasItems then begin
             // The native planner throws when all demand already has supply. Ask its demand reader first.
             Demand.SetIncludeMetDemandForSpecificJobNo(Project."No.");
@@ -88,7 +88,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
             if not TempDemand.IsEmpty() then
                 OrderPlanning.PlanSpecificJob(ReqLine, Project."No.");
         end;
-        if not BuildProposals(Argument, Request, Selected, Proposals, Skipped) then begin
+        if not BuildProposals(Argument, Request, TempSelected, Proposals, Skipped) then begin
             Result.Rollback(Argument);
             exit;
         end;
@@ -126,7 +126,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         ReqLine.SetRange("User ID", UserId());
     end;
 
-    local procedure SelectLines(var Argument: Record "Message Argument ori"; Request: JsonObject; var Selected: Record "Job Planning Line" temporary): Boolean
+    local procedure SelectLines(var Argument: Record "Message Argument ori"; Request: JsonObject; var TempSelected: Record "Job Planning Line" temporary): Boolean
     var
         Planning: Record "Job Planning Line";
         Task: Record "Job Task";
@@ -165,8 +165,8 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         if Planning.FindSet() then
             repeat
                 if (not Request.Contains('planningLineNos')) or Numbers.Contains(Planning."Line No.") then begin
-                    Selected := Planning;
-                    Selected.Insert();
+                    TempSelected := Planning;
+                    TempSelected.Insert();
                 end;
             until Planning.Next() = 0;
         exit(true);
@@ -190,7 +190,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         exit(true);
     end;
 
-    local procedure ValidateOverrides(var Argument: Record "Message Argument ori"; Request: JsonObject; var Selected: Record "Job Planning Line" temporary): Boolean
+    local procedure ValidateOverrides(var Argument: Record "Message Argument ori"; Request: JsonObject; var TempSelected: Record "Job Planning Line" temporary): Boolean
     var
         Vendor: Record Vendor;
         Input: Codeunit "Projects Followup Input ori";
@@ -231,17 +231,17 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::InvalidParameterFormat, 'vendorNo', FormatLbl));
             if not Vendor.Get(ValueToken.AsValue().AsText()) then
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'vendorNo', MissingLbl));
-            Selected.SetRange("Line No.", NumberValue);
-            if Selected.IsEmpty() then
+            TempSelected.SetRange("Line No.", NumberValue);
+            if TempSelected.IsEmpty() then
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::RecordNotFound, 'planningLineNo', MissingLbl));
-            if Selected.Count() > 1 then
+            if TempSelected.Count() > 1 then
                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::ConflictingIdentifiers, 'planningLineNo', FormatLbl));
-            Selected.SetRange("Line No.");
+            TempSelected.SetRange("Line No.");
         end;
         exit(true);
     end;
 
-    local procedure BuildProposals(var Argument: Record "Message Argument ori"; Request: JsonObject; var Selected: Record "Job Planning Line" temporary; var Proposals: JsonArray; var Skipped: JsonArray): Boolean
+    local procedure BuildProposals(var Argument: Record "Message Argument ori"; Request: JsonObject; var TempSelected: Record "Job Planning Line" temporary; var Proposals: JsonArray; var Skipped: JsonArray): Boolean
     var
         ReqLine: Record "Requisition Line";
         Vendor: Record Vendor;
@@ -255,19 +255,19 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
     begin
         SetOwnScratch(ReqLine);
         ReqLine.ModifyAll("Accept Action Message", false);
-        Selected.Reset();
-        if Selected.FindSet() then
+        TempSelected.Reset();
+        if TempSelected.FindSet() then
             repeat
                 Clear(Reason);
-                if Selected.Type <> Selected.Type::Item then
+                if TempSelected.Type <> TempSelected.Type::Item then
                     Reason := 'notItem'
                 else
-                    if not Selected."Schedule Line" then
+                    if not TempSelected."Schedule Line" then
                         Reason := 'billableOnly'
                     else begin
                         ReqLine.SetRange("Demand Type", Database::"Job Planning Line");
-                        ReqLine.SetRange("Demand Order No.", Selected."Job No.");
-                        ReqLine.SetRange("Demand Line No.", Selected."Job Contract Entry No.");
+                        ReqLine.SetRange("Demand Order No.", TempSelected."Job No.");
+                        ReqLine.SetRange("Demand Line No.", TempSelected."Job Contract Entry No.");
                         ReqLine.SetFilter(Quantity, '>0');
                         if not ReqLine.FindFirst() then
                             Reason := 'coveredByStockOrSupply'
@@ -275,7 +275,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
                             VendorNo := ReqLine."Vendor No.";
                             if Request.Contains('vendorOverrides') then
                                 foreach Token in Request.GetArray('vendorOverrides') do
-                                    if Token.AsObject().GetInteger('planningLineNo') = Selected."Line No." then
+                                    if Token.AsObject().GetInteger('planningLineNo') = TempSelected."Line No." then
                                         VendorNo := CopyStr(Token.AsObject().GetText('vendorNo'), 1, MaxStrLen(VendorNo));
                             if not Vendor.Get(VendorNo) then
                                 exit(Input.Refuse(Argument, "Bifrost Error Code ori"::PreconditionFailed, 'vendorNo', VendorLbl));
@@ -287,8 +287,8 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
                             ReqLine."Accept Action Message" := true;
                             ReqLine.Modify(true);
                             Clear(Proposal);
-                            Proposal.Add('planningLineNo', Selected."Line No.");
-                            Proposal.Add('taskNo', Selected."Job Task No.");
+                            Proposal.Add('planningLineNo', TempSelected."Line No.");
+                            Proposal.Add('taskNo', TempSelected."Job Task No.");
                             Proposal.Add('itemNo', ReqLine."No.");
                             Proposal.Add('variantCode', ReqLine."Variant Code");
                             Proposal.Add('locationCode', ReqLine."Location Code");
@@ -300,12 +300,12 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
                     end;
                 if Reason <> '' then begin
                     Clear(Skip);
-                    Skip.Add('planningLineNo', Selected."Line No.");
-                    Skip.Add('taskNo', Selected."Job Task No.");
+                    Skip.Add('planningLineNo', TempSelected."Line No.");
+                    Skip.Add('taskNo', TempSelected."Job Task No.");
                     Skip.Add('reason', Reason);
                     Skipped.Add(Skip);
                 end;
-            until Selected.Next() = 0;
+            until TempSelected.Next() = 0;
         exit(true);
     end;
 
@@ -313,7 +313,7 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
     var
         Header: Record "Purchase Header";
         Line: Record "Purchase Line";
-        Documents: Record "Document Entry" temporary;
+        TempDocuments: Record "Document Entry" temporary;
         MakeOrders: Codeunit "Req. Wksh.-Make Order";
         Order: JsonObject;
         OrderLine: JsonObject;
@@ -328,11 +328,11 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         Header."Posting Date" := WorkDate();
         MakeOrders.Set(Header, WorkDate(), false);
         MakeOrders.SetSuppressCommit(true);
-        MakeOrders.SetCreatedDocumentBuffer(Documents);
+        MakeOrders.SetCreatedDocumentBuffer(TempDocuments);
         MakeOrders.CarryOutBatchAction(ReqLine);
-        if Documents.FindSet() then
+        if TempDocuments.FindSet() then
             repeat
-                Header.Get(Header."Document Type"::Order, Documents."Document No.");
+                Header.Get(Header."Document Type"::Order, TempDocuments."Document No.");
                 Clear(Order);
                 Clear(Lines);
                 Order.Add('number', Header."No.");
@@ -355,6 +355,6 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
                     until Line.Next() = 0;
                 Order.Add('lines', Lines);
                 Orders.Add(Order);
-            until Documents.Next() = 0;
+            until TempDocuments.Next() = 0;
     end;
 }

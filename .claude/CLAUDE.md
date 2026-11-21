@@ -6,7 +6,7 @@
 - Foundation dependency: Bifrost Foundation 28.0.5.0
 - Permissions: PermissionSetExtension only onto `BIFROST Read ori` / `BIFROST Full ori`
 - No own assignable permission set; no `Setup ori` tabledata grants (exception below)
-- #83 field visits use assignable `PROJ VISIT` (70013443) together with `BIFROST Read ori` and `PROJ TS SELF`. It holds the visit table and the Base App read grants the visit needs (job, task, planning line, work type, resource) plus usage-line RIM. No journal tabledata. `PROJ FIELD TECH` stays owned by #82 and should include `PROJ VISIT` when the branches meet. Do not recreate `PROJ FIELD TECH` here. Object ids 70013429–70013432 and tests 97184–97185 are reserved for #82.
+- #83 field visits use assignable `PROJ VISIT` (70013443) together with `BIFROST Read ori` and `PROJ TS SELF`. It holds the visit table and the Base App read grants the visit needs (job, task, planning line, work type, resource) plus usage-line RIM. No journal tabledata. `PROJ FIELD TECH` (owned by #82) includes `PROJ VISIT`. Do not recreate `PROJ FIELD TECH` here. Object ids 70013429–70013432 and tests 97184–97185 belong to #82.
 
 ## Deviations
 
@@ -51,6 +51,11 @@
 - Tests 97171 `Proj. Plan Purchase Tests ori`, 97172 `Proj Plan Purch Perm Tests ori`. Test-only nonassignable permission set 97172 `ProjNoPurch ori` isolates purchase-right refusals. Test fixtures: codeunits 97173/97174, enumextension/value 97173 (seed only) and cleanup page 97173. No new assignable role.
 - Gunnar 20.11.2026, comment 7052438484: consume only scratch lines created by this call; refuse before calculation if caller has existing order-planning lines. Architect: one operation with rollback-only preview.
 
+## Issue #82 — technician reads and role
+
+- Gunnar 20.11.2026: assignable PROJ FIELD TECH (70013403), assigned with BIFROST Read ori. Includes the PROJ TS SELF bundle, native project/planning/site/stock reads and TS Usage Line ori RIM; no journal data or Job/Job Task/Job Planning Line writes. PROJ USAGE unchanged.
+- Codeunits 70013429–70013432: MyDay/VisitBrief implementations, shared manager and contract. Message enum values 70013427/70013428. Test 97184; test fixture codeunit, enumextension/value and cleanup page 97185.
+- Architect 21.11.2026: implement and open the PR now; AC06 SaaS Team Member Effective Permissions receipt is NOT_RUN until the user is provisioned on 23 November.
 ## Issue #81 object ledger
 
 - Codeunits 70013427 `Proj. Plan Journal Impl ori` and 70013428 `Proj. Plan Journal Proc ori`; enum value 70013426 `Projects.PlanningLine.TransferToJournal`.
