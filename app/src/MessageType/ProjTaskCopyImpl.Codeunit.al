@@ -12,8 +12,8 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Requires the feature Full role and the caller's native project permissions.</summary>
     procedure IsEnabled(): Boolean
     var
-        Gate: Codeunit "Projects Gate ori";
         FullRole: Record "Proj. Posting ori";
+        Gate: Codeunit "Projects Gate ori";
     begin
         exit(FullRole.WritePermission() and Gate.IsEnabled(Database::Job, false) and
             Gate.IsEnabled(Database::"Job Task", true) and Gate.IsEnabled(Database::"Job Planning Line", true));
