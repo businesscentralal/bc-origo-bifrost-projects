@@ -5,6 +5,7 @@ using Microsoft.Finance.GeneralLedger.Ledger;
 using Microsoft.Finance.GeneralLedger.Setup;
 using Microsoft.Foundation.UOM;
 using Microsoft.Inventory.Item;
+using Microsoft.Inventory.Costing;
 using Microsoft.Inventory.Ledger;
 using Microsoft.Inventory.Setup;
 using Microsoft.Projects.Project.Job;
@@ -124,6 +125,7 @@ codeunit 97183 "Proj. Plan Jnl Cleanup ori"
         Unit: Record "Unit of Measure";
         ItemLedger: Record "Item Ledger Entry";
         ValueEntry: Record "Value Entry";
+        PendingCost: Record "Post Value Entry to G/L";
         Relation: Record "G/L - Item Ledger Relation";
         Application: Record "Item Application Entry";
         InventorySetup: Record "Inventory Posting Setup";
@@ -132,6 +134,8 @@ codeunit 97183 "Proj. Plan Jnl Cleanup ori"
     begin
         Item.Get(ItemNo);
         Item.TestField(Description, 'X Projects item');
+        PendingCost.SetRange("Item No.", ItemNo);
+        PendingCost.DeleteAll(false);
         ValueEntry.SetRange("Item No.", ItemNo);
         ValueEntry.SetLoadFields("Entry No.");
         if ValueEntry.FindSet() then
