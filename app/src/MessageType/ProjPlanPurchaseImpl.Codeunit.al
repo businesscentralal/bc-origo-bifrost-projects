@@ -8,7 +8,7 @@ using Microsoft.Purchases.Vendor;
 using Origo.Bifrost;
 
 /// <summary>Previews and creates project-linked purchase orders through native order planning.</summary>
-codeunit 70013420 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori", "Msg Confirm ori"
+codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori", "Msg Discovery ori", "Msg Contract ori", "Msg Confirm ori"
 {
     Access = Internal;
 
