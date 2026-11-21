@@ -210,6 +210,18 @@ enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
         Caption = 'Projects.Visit.Complete', Locked = true;
         Implementation = "Msg Interface ori" = "Proj. Visit Complete Impl ori", "Msg Discovery ori" = "Proj. Visit Complete Impl ori", "Msg Contract ori" = "Proj. Visit Complete Impl ori";
     }
+    /// <summary>Registers van parts as open usage lines for a task.</summary>
+    value(70013470; "Projects.VisitItem.Register")
+    {
+        Caption = 'Projects.VisitItem.Register', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. VisitItem Reg Impl ori", "Msg Discovery ori" = "Proj. VisitItem Reg Impl ori", "Msg Contract ori" = "Proj. VisitItem Reg Impl ori";
+    }
+    /// <summary>Shows van stock after pending usage.</summary>
+    value(70013471; "Projects.VanStock.Get")
+    {
+        Caption = 'Projects.VanStock.Get', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. VanStock Get Impl ori", "Msg Discovery ori" = "Proj. VanStock Get Impl ori", "Msg Contract ori" = "Proj. VanStock Get Impl ori";
+    }
     /// <summary>Customer sign-off and visit report.</summary>
     value(70013460; "Projects.VisitReport.Get")
     {

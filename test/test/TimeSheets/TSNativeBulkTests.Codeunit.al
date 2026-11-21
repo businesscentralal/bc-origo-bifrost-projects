@@ -875,7 +875,7 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.IsTrue(ArchiveEnabled, 'Archive must be enabled under BIFROST Full ori and PROJ TS ADMIN.');
     end;
 
-    /// <summary>#65 AC02: PROJ TS ADMIN is assignable and holds exactly the 30 grants the Full extension had, including the two #50 read grants, at the same levels.</summary>
+    /// <summary>#65 AC02: PROJ TS ADMIN is assignable and holds exactly the 30 grants the Full extension had, including the two #50 read grants, at the same levels, plus the #84 Technician Setup table and page grants.</summary>
     [Test]
     procedure Scenario_65_AdminSet_HoldsMovedGrantsAtSameLevels()
     var
@@ -957,11 +957,13 @@ codeunit 97147 "TS Native Bulk Tests"
     local procedure AddExpectedGrants(var Expected: List of [Text])
     var
         MetadataPermission: Record "Metadata Permission";
+        PageType: Integer;
         ReportType: Integer;
         TableData: Integer;
     begin
         TableData := MetadataPermission."Object Type"::"Table Data";
         ReportType := MetadataPermission."Object Type"::Report;
+        PageType := MetadataPermission."Object Type"::Page;
         AddGrant(Expected, TableData, Database::"Resources Setup", 'R');
         AddGrant(Expected, TableData, Database::"Job Task", 'R');
         AddGrant(Expected, TableData, Database::"Job Planning Line", 'R');
@@ -992,6 +994,9 @@ codeunit 97147 "TS Native Bulk Tests"
         AddGrant(Expected, TableData, Database::"Job Journal Line", 'RIMD');
         AddGrant(Expected, TableData, Database::"Service Header", 'R');
         AddGrant(Expected, TableData, Database::"Work Type", 'R');
+        // #84: the technician van setup is administered from this set.
+        AddGrant(Expected, TableData, Database::"Proj. Technician Setup ori", 'RIMD');
+        AddGrant(Expected, PageType, Page::"Proj. Technician Setup ori", 'X');
     end;
 
     [TryFunction]

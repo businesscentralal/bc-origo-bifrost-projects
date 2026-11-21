@@ -1,5 +1,8 @@
 namespace Origo.Bifrost.Projects;
 
+using Microsoft.Inventory.Location;
+using Microsoft.Warehouse.Structure;
+
 /// <summary>
 /// Item or resource usage registered by a user on a time sheet line (tools, km driven, bolts).
 /// Status, Reversed and the journal fields change only through the Projects.Usage.* messages.
@@ -95,6 +98,28 @@ table 70013400 "TS Usage Line ori"
         {
             Caption = 'Document No.', Comment = 'is-IS=Skjalanr.';
         }
+        field(21; "Location Code"; Code[10])
+        {
+            Caption = 'Location Code', Comment = 'is-IS=Staðsetningarkóði';
+            TableRelation = Location;
+        }
+        field(22; "Bin Code"; Code[20])
+        {
+            Caption = 'Bin Code', Comment = 'is-IS=Hólfkóði';
+            TableRelation = Bin.Code where("Location Code" = field("Location Code"));
+        }
+        field(23; "Lot No."; Code[50])
+        {
+            Caption = 'Lot No.', Comment = 'is-IS=Lotunr.';
+        }
+        field(24; "Serial No."; Code[50])
+        {
+            Caption = 'Serial No.', Comment = 'is-IS=Raðnr.';
+        }
+        field(25; "Client Request Id"; Text[100])
+        {
+            Caption = 'Client Request Id', Comment = 'is-IS=Endurtekningarlykill biðlara';
+        }
     }
 
     keys
@@ -107,6 +132,9 @@ table 70013400 "TS Usage Line ori"
         {
         }
         key(Document; "Document No.")
+        {
+        }
+        key(Request; "Resource No.", "Client Request Id")
         {
         }
         key(Journal; Type, "Journal Template Name", "Journal Batch Name", "Journal Line No.")
