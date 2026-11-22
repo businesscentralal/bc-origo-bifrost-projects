@@ -34,7 +34,6 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         Scope: Codeunit "Proj. Plan Purchase Scope ori";
         Input: Codeunit "Projects Followup Input ori";
         Result: Codeunit "Proj. Plan Purchase Result ori";
-        ConfirmGate: Codeunit "Confirm Gate ori";
         Request: JsonObject;
         Response: JsonObject;
         Summary: JsonObject;
@@ -46,7 +45,6 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
         MissingLbl: Label 'Select an existing project, task, planning line and vendor.', Comment = 'is-IS=Veldu fyrirliggjandi verkefni, verkhluta, áætlunarlínu og lánardrottin.';
         StatusLbl: Label 'Use an open, unblocked project.', Comment = 'is-IS=Notaðu opið verkefni sem er ekki lokað.';
         ScratchLbl: Label 'Finish or clear your lines on the Order Planning page before retrying.', Comment = 'is-IS=Ljúktu eða hreinsaðu línurnar þínar á síðunni Pöntunaráætlun áður en þú reynir aftur.';
-        CountLbl: Label 'project planning lines to order', Comment = 'is-IS=áætlunarlínur verkefnis sem á að panta';
     begin
         BindSubscription(Scope);
         Request := Argument.GetRequestJson();
@@ -92,11 +90,6 @@ codeunit 70013421 "Proj. Plan Purchase Proc ori"
             Result.Rollback(Argument);
             exit;
         end;
-        if not Preview then
-            if not ConfirmGate.Confirm(Argument, Proposals.Count(), CountLbl) then begin
-                Result.Rollback(Argument);
-                exit;
-            end;
         if not Preview and (Proposals.Count() > 0) then
             CreateOrders(ReqLine, Project."No.", Orders);
         Summary.Add('planningLineCount', Proposals.Count());

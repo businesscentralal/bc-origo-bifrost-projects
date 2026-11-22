@@ -26,6 +26,38 @@ codeunit 97111 "Projects Effect Tests ori"
         Assert.IsTrue(CheckGate("Message Type ori"::"Projects.Usage.Link", 0, Response), 'A write type passes the gate with any expectedCount');
     end;
 
+    /// <summary>AC01: walks every Projects message type; only the posting types are irreversible.</summary>
+    [Test]
+    procedure OnlyPostingTypesAreIrreversible()
+    var
+        Contract: Interface "Msg Contract ori";
+        MessageType: Enum "Message Type ori";
+        Effect: JsonObject;
+        Posting: List of [Text];
+        Ordinal: Integer;
+        Name: Text;
+        Walked: Integer;
+    begin
+        Posting.Add('Projects.ItemUsage.Post');
+        Posting.Add('Projects.WIP.Post');
+        Posting.Add('Projects.WIP.Reverse');
+        Posting.Add('Projects.TimeSheet.Post');
+        Posting.Add('Projects.ProjectJournal.Post');
+        foreach Ordinal in MessageType.Ordinals() do begin
+            MessageType := Enum::"Message Type ori".FromInteger(Ordinal);
+            Name := Format(MessageType);
+            if Name.StartsWith('Projects.') then begin
+                Clear(Effect);
+                Contract := MessageType;
+                if Contract.GetEffect(Effect) then begin
+                    Walked += 1;
+                    Assert.AreEqual(Posting.Contains(Name), Effect.GetText('effect') = 'irreversible', Name + ': irreversible only when it posts');
+                end;
+            end;
+        end;
+        Assert.IsTrue(Walked > 20, 'The walk covered the Projects types');
+    end;
+
     /// <summary>Every type of #42 that is irreversible declares it, so Foundation requires confirmation.</summary>
     [Test]
     procedure IrreversibleTypes_RequireConfirmation()
@@ -105,7 +137,6 @@ codeunit 97111 "Projects Effect Tests ori"
     begin
         Types.Add("Message Type ori"::"Projects.ItemUsage.Post");
         Types.Add("Message Type ori"::"Projects.WIP.Post");
-        Types.Add("Message Type ori"::"Projects.Quote.Send");
     end;
 
     local procedure DeclaredEffect(MessageType: Enum "Message Type ori"): Text
