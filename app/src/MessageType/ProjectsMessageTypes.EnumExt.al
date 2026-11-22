@@ -5,6 +5,31 @@ using Origo.Bifrost;
 /// <summary>Registers the Projects lifecycle write messages with Foundation.</summary>
 enumextension 70013500 "Projects Message Types ori" extends "Message Type ori"
 {
+    /// <summary>Follow-up request operation.</summary>
+    value(70013444; "Projects.FollowUp.Request")
+    {
+        Caption = 'Projects.FollowUp.Request', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. FU Req Impl ori", "Msg Discovery ori" = "Proj. FU Req Impl ori", "Msg Contract ori" = "Proj. FU Req Impl ori";
+    }
+    /// <summary>Follow-up list operation.</summary>
+    value(70013445; "Projects.FollowUp.List")
+    {
+        Caption = 'Projects.FollowUp.List', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. FU List Impl ori", "Msg Discovery ori" = "Proj. FU List Impl ori", "Msg Contract ori" = "Proj. FU List Impl ori";
+    }
+    /// <summary>Follow-up convert operation.</summary>
+    value(70013446; "Projects.FollowUp.Convert")
+    {
+        Caption = 'Projects.FollowUp.Convert', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. FU Conv Impl ori", "Msg Discovery ori" = "Proj. FU Conv Impl ori", "Msg Contract ori" = "Proj. FU Conv Impl ori";
+    }
+    /// <summary>Follow-up reject operation.</summary>
+    value(70013447; "Projects.FollowUp.Reject")
+    {
+        Caption = 'Projects.FollowUp.Reject', Locked = true;
+        Implementation = "Msg Interface ori" = "Proj. FU Reject Impl ori", "Msg Discovery ori" = "Proj. FU Reject Impl ori", "Msg Contract ori" = "Proj. FU Reject Impl ori";
+    }
+
     /// <summary>Appends tasks and native planning lines into an existing project.</summary>
     value(70013425; "Projects.Task.CopyFrom")
     {

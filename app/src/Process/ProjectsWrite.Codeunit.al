@@ -247,6 +247,33 @@ codeunit 70013514 "Projects Write ori"
         exit(Token.AsValue().AsText() = 'Create');
     end;
 
+    /// <summary>Creates one task using the same native validation as Projects.Task.Create.</summary>
+    internal procedure CreateTask(ProjectNo: Code[20]; TaskNo: Code[20]; Description: Text; Indentation: Integer)
+    var
+        NativeFields: JsonObject;
+    begin
+        NativeFields.Add('taskType', 'Posting');
+        NativeFields.Add('description', Description);
+        NativeFields.Add('indentation', Indentation);
+        WriteTask(NativeFields, ProjectNo, TaskNo, true);
+    end;
+
+    /// <summary>Creates one planning line using the native Projects.PlanningLine.Create field validation.</summary>
+    internal procedure CreatePlanningLine(ProjectNo: Code[20]; TaskNo: Code[20]; LineNo: Integer; Kind: Text; No: Code[20]; Description: Text; Quantity: Decimal; PlanningDate: Date)
+    var
+        NativeFields: JsonObject;
+    begin
+        NativeFields.Add('type', Kind);
+        NativeFields.Add('lineType', 'Budget');
+        if No <> '' then
+            NativeFields.Add('no', No);
+        NativeFields.Add('description', Description);
+        NativeFields.Add('planningDate', Format(PlanningDate, 0, 9));
+        if Kind <> 'Text' then
+            NativeFields.Add('quantity', Quantity);
+        WritePlanningLine(NativeFields, ProjectNo, TaskNo, LineNo, "Message Type ori"::"Projects.PlanningLine.Create");
+    end;
+
     local procedure WriteProject(Request: JsonObject; ProjectNo: Code[20]; CreateNew: Boolean)
     var
         Project: Record Job;
