@@ -207,6 +207,342 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Færslunr. notkunar</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Field Visit ori - Field Usage Entry No. - Property Caption</note>
         </trans-unit>
+        <trans-unit id="Table 1193369230 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project Follow-up Line</source>
+          <target>Eftirfylgnilína verkefnis</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Eftirfylgnilína verkefnis</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 1303376715 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies content type.</source>
+          <target>Tilgreinir efnistegund.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir efnistegund.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Content Type - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 1303376715 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Content Type</source>
+          <target>Efnistegund</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Efnistegund</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Content Type - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies description.</source>
+          <target>Tilgreinir lýsing.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir lýsing.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Lýsing</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lýsing</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 804481195 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies file name.</source>
+          <target>Tilgreinir skráarheiti.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir skráarheiti.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field File Name - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 804481195 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>File Name</source>
+          <target>Skráarheiti</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skráarheiti</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field File Name - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 1645955258 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies is photo.</source>
+          <target>Tilgreinir er ljósmynd.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir er ljósmynd.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Is Photo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 1645955258 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Is Photo</source>
+          <target>Er ljósmynd</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Er ljósmynd</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Is Photo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 568743302 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies item no..</source>
+          <target>Tilgreinir vörunúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir vörunúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Item No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 568743302 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Item No.</source>
+          <target>Vörunúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vörunúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Item No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 3320823955 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies line no..</source>
+          <target>Tilgreinir línunúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir línunúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 3320823955 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Line No.</source>
+          <target>Línunúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Línunúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 2922682000 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies photo.</source>
+          <target>Tilgreinir ljósmynd.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir ljósmynd.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Photo - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 2922682000 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Photo</source>
+          <target>Ljósmynd</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ljósmynd</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Photo - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 620124568 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies planning line no..</source>
+          <target>Tilgreinir áætlunarlínunúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir áætlunarlínunúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Planning Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 620124568 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Planning Line No.</source>
+          <target>Áætlunarlínunúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Áætlunarlínunúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Planning Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 2704404533 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies quantity.</source>
+          <target>Tilgreinir magn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir magn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Quantity - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 2704404533 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Quantity</source>
+          <target>Magn</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Magn</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Quantity - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 2704404533 - Method 2126772001 - NamedType 2660910107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The requested quantity must be greater than zero.</source>
+          <target>Umbeðið magn verður að vera stærra en núll.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbeðið magn verður að vera stærra en núll.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Quantity - Method OnValidate - NamedType PositiveLbl</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 3959455890 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies request no..</source>
+          <target>Tilgreinir beiðninúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir beiðninúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Request No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 1193369230 - Field 3959455890 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request No.</source>
+          <target>Beiðninúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beiðninúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Req. Line ori - Field Request No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project Follow-up Request</source>
+          <target>Eftirfylgnibeiðni verkefnis</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Eftirfylgnibeiðni verkefnis</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 367229551 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies client request id..</source>
+          <target>Tilgreinir auðkenni beiðni biðlara.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir auðkenni beiðni biðlara.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Client Request Id - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 367229551 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Client Request Id.</source>
+          <target>Auðkenni beiðni biðlara</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Auðkenni beiðni biðlara</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Client Request Id - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 1094580960 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies converted task no..</source>
+          <target>Tilgreinir stofnaður verkþáttur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir stofnaður verkþáttur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Converted Task No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 1094580960 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Converted Task No.</source>
+          <target>Stofnaður verkþáttur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stofnaður verkþáttur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Converted Task No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2657395909 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies decided at.</source>
+          <target>Tilgreinir ákvörðunartími.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir ákvörðunartími.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Decided At - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2657395909 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Decided At</source>
+          <target>Ákvörðunartími</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ákvörðunartími</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Decided At - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2680742207 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies decided by.</source>
+          <target>Tilgreinir ákveðið af.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir ákveðið af.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Decided By - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2680742207 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Decided By</source>
+          <target>Ákveðið af</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ákveðið af</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Decided By - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 3461834954 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies description.</source>
+          <target>Tilgreinir lýsing.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir lýsing.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Description - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 3461834954 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Description</source>
+          <target>Lýsing</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lýsing</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Description - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 883711285 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies request no..</source>
+          <target>Tilgreinir beiðninúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir beiðninúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Entry No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 883711285 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Request No.</source>
+          <target>Beiðninúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beiðninúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Entry No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2999614507 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies estimated hours.</source>
+          <target>Tilgreinir áætlaðar stundir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir áætlaðar stundir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Estimated Hours - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2999614507 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Estimated Hours</source>
+          <target>Áætlaðar stundir</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Áætlaðar stundir</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Estimated Hours - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2999614507 - Method 2126772001 - NamedType 2660910107" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Estimated hours must be greater than zero.</source>
+          <target>Áætlaðar stundir verða að vera stærri en núll.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Áætlaðar stundir verða að vera stærri en núll.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Estimated Hours - Method OnValidate - NamedType PositiveLbl</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 4030603259 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies preferred date.</source>
+          <target>Tilgreinir óskadagsetning.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir óskadagsetning.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Preferred Date - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 4030603259 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Preferred Date</source>
+          <target>Óskadagsetning</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Óskadagsetning</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Preferred Date - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 863923670 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies project no..</source>
+          <target>Tilgreinir verkefnisnúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir verkefnisnúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Project No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 863923670 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project No.</source>
+          <target>Verkefnisnúmer</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnisnúmer</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Project No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 128273549 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies rejection reason.</source>
+          <target>Tilgreinir ástæða höfnunar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir ástæða höfnunar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Rejection Reason - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 128273549 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rejection Reason</source>
+          <target>Ástæða höfnunar</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ástæða höfnunar</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Rejection Reason - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 79791429 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies requested by.</source>
+          <target>Tilgreinir beðið um af.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir beðið um af.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Requested By - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 79791429 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Requested By</source>
+          <target>Beðið um af</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Beðið um af</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Requested By - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 3961767479 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies technician resource no..</source>
+          <target>Tilgreinir forði tæknimanns.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir forði tæknimanns.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Resource No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 3961767479 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Technician Resource No.</source>
+          <target>Forði tæknimanns</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forði tæknimanns</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Resource No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2067063874 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies resource planning line no..</source>
+          <target>Tilgreinir áætlunarlína forða.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir áætlunarlína forða.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Resource Planning Line No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 2067063874 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Resource Planning Line No.</source>
+          <target>Áætlunarlína forða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Áætlunarlína forða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Resource Planning Line No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 513339096 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies status.</source>
+          <target>Tilgreinir staða.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir staða.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Status - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 513339096 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Status</source>
+          <target>Staða</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Staða</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Status - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 3522988966 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies original task no..</source>
+          <target>Tilgreinir upprunalegur verkþáttur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir upprunalegur verkþáttur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Task No. - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 3522988966 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Original Task No.</source>
+          <target>Upprunalegur verkþáttur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Upprunalegur verkþáttur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Task No. - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 880044851 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies urgency.</source>
+          <target>Tilgreinir forgangur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir forgangur.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Urgency - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 2883339039 - Field 880044851 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Urgency</source>
+          <target>Forgangur</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forgangur</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Proj. Follow-up Request ori - Field Urgency - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Table 2276660535 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Posting Rights</source>
           <target>Bókunarréttindi verkefna</target>
@@ -266,6 +602,18 @@
           <target>Virkt</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Virkt</note>
           <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Enabled - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 898575143 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Specifies the numbering step for a new follow-up task. Zero uses one; the task stays within the original task group.</source>
+          <target>Tilgreinir númerahækkun nýs eftirfylgniverkþáttar. Núll notar einn; verkþátturinn helst innan upprunalegs hóps.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tilgreinir númerahækkun nýs eftirfylgniverkþáttar. Núll notar einn; verkþátturinn helst innan upprunalegs hóps.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Follow-up Task Increment - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="Table 4158522199 - Field 898575143 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Follow-up Task Increment</source>
+          <target>Hækkun verkþáttanúmers við eftirfylgni</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hækkun verkþáttanúmers við eftirfylgni</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Table Projects Setup ori - Field Follow-up Task Increment - Property Caption</note>
         </trans-unit>
         <trans-unit id="Table 4158522199 - Field 2647586093 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Mileage Resource No.</source>
@@ -1028,6 +1376,276 @@
           <target>Biddu stjórnanda að skrá notandann þinn sem Time Sheet Owner User ID á forðann þinn.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Biddu stjórnanda að skrá notandann þinn sem Time Sheet Owner User ID á forðann þinn.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType UnmappedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2524263349" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Optional idempotency key for this technician, up to 100 characters.</source>
+          <target>Valfrjáls endurtekningarlykill þessa tæknimanns, allt að 100 stafir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Valfrjáls endurtekningarlykill þessa tæknimanns, allt að 100 stafir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType ClientLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 1542941690" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Preferred date as YYYY-MM-DD.</source>
+          <target>Óskadagsetning sem YYYY-MM-DD.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Óskadagsetning sem YYYY-MM-DD.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType DateLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Work or part description.</source>
+          <target>Lýsing vinnu eða varahlutar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Lýsing vinnu eða varahlutar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 1479948027" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Estimated hours, greater than zero when supplied.</source>
+          <target>Áætlaðar stundir, stærri en núll ef gefnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Áætlaðar stundir, stærri en núll ef gefnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType HoursLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2272053225" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Follow-up request number.</source>
+          <target>Númer eftirfylgnibeiðni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Númer eftirfylgnibeiðni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType IdLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2359003977" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Existing item number, or leave empty for a descriptive planning line.</source>
+          <target>Fyrirliggjandi vörunúmer, eða tómt fyrir lýsandi áætlunarlínu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fyrirliggjandi vörunúmer, eða tómt fyrir lýsandi áætlunarlínu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType ItemLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 1569653016" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Parts requested, each with itemNo or description and positive quantity.</source>
+          <target>Umbeðnir varahlutir, hver með itemNo eða description og jákvætt magn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbeðnir varahlutir, hver með itemNo eða description og jákvætt magn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType ItemsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2029447175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Check the request fields and your project permissions, then retry. Nothing was changed.</source>
+          <target>Athugaðu reiti beiðninnar og verkefnaheimildir þínar og reyndu aftur. Engu var breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Athugaðu reiti beiðninnar og verkefnaheimildir þínar og reyndu aftur. Engu var breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType NextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2236474175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Up to 10 own Foundation upload ids. Bytes are retained with the request.</source>
+          <target>Allt að 10 eigin innhleðsluauðkenni Foundation. Innihald er vistað með beiðninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Allt að 10 eigin innhleðsluauðkenni Foundation. Innihald er vistað með beiðninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType PhotosLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2544287428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>True validates conversion and returns the proposed work without retaining any writes.</source>
+          <target>True sannreynir umbreytingu og skilar fyrirhugaðri vinnu án þess að vista breytingar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=True sannreynir umbreytingu og skilar fyrirhugaðri vinnu án þess að vista breytingar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType PreviewLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 341724697" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project number.</source>
+          <target>Verkefnisnúmer.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Verkefnisnúmer.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType ProjectLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 3259830970" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Requested quantity, greater than zero.</source>
+          <target>Umbeðið magn, stærra en núll.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbeðið magn, stærra en núll.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType QtyLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 3131523370" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Reason for rejecting the open request.</source>
+          <target>Ástæða höfnunar opinnar beiðni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ástæða höfnunar opinnar beiðni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType ReasonLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The follow-up request could not be processed.</source>
+          <target>Ekki tókst að vinna úr eftirfylgnibeiðninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki tókst að vinna úr eftirfylgnibeiðninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType RefusedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 3219801116" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Technician resource. List defaults to your resource for technicians; Convert defaults to the request resource.</source>
+          <target>Forði tæknimanns. List notar sjálfgefið eigin forða tæknimanns; Convert notar forða beiðninnar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forði tæknimanns. List notar sjálfgefið eigin forða tæknimanns; Convert notar forða beiðninnar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType ResourceLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 1096104557" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number to skip, default zero.</source>
+          <target>Fjöldi sem á að sleppa, sjálfgefið núll.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjöldi sem á að sleppa, sjálfgefið núll.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType SkipLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 3193096050" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open, Converted or Rejected.</source>
+          <target>Open, Converted eða Rejected.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Open, Converted eða Rejected.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType StatusLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 3337375434" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A short description of the result.</source>
+          <target>Stutt lýsing á niðurstöðu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stutt lýsing á niðurstöðu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType SummaryLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 26742315" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Number to return, from 1 to 100; default 50.</source>
+          <target>Fjöldi til að skila, frá 1 til 100; sjálfgefið 50.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Fjöldi til að skila, frá 1 til 100; sjálfgefið 50.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType TakeLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 16173077" size-unit="char" translate="yes" xml:space="preserve">
+          <source>newTask or existingTask. The manager decides where work belongs.</source>
+          <target>newTask eða existingTask. Stjórnandi ákveður hvar vinnan á heima.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=newTask eða existingTask. Stjórnandi ákveður hvar vinnan á heima.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType TargetLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 2412533929" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Original or destination task number. A new task number defaults to the next unused number after the original task.</source>
+          <target>Upprunalegur eða nýr verkþáttur. Nýr verkþáttur fær sjálfgefið næsta lausa númer á eftir upprunalegum verkþætti.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Upprunalegur eða nýr verkþáttur. Nýr verkþáttur fær sjálfgefið næsta lausa númer á eftir upprunalegum verkþætti.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType TaskLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 340884522 - NamedType 4105035509" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Urgency: low, normal or high. Default normal.</source>
+          <target>Forgangur: low, normal eða high. Sjálfgefið normal.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forgangur: low, normal eða high. Sjálfgefið normal.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Contract ori - NamedType UrgencyLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 639390534 - NamedType 662185940" size-unit="char" translate="yes" xml:space="preserve">
+          <source>%1 follow-up requests returned.</source>
+          <target>%1 eftirfylgnibeiðnum skilað.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = count; is-IS=%1 eftirfylgnibeiðnum skilað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType ListLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 639390534 - NamedType 2029447175" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Correct the indicated field and retry. Nothing was changed.</source>
+          <target>Leiðréttu tilgreindan reit og reyndu aftur. Engu var breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Leiðréttu tilgreindan reit og reyndu aftur. Engu var breytt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType NextLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 639390534 - NamedType 4013669850" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use an open request on an unblocked, unfinished project.</source>
+          <target>Notaðu opna beiðni á óloknu verkefni sem er ekki lokað.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu opna beiðni á óloknu verkefni sem er ekki lokað.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType OpenLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 639390534 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use BIFROST Read with PROJ FIELD TECH for your own requests. Managers need BIFROST Full, native project rights and responsibility for the project.</source>
+          <target>Notaðu BIFROST Read með PROJ FIELD TECH fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu BIFROST Read með PROJ FIELD TECH fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType PermissionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 639390534 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The follow-up request could not be processed.</source>
+          <target>Ekki tókst að vinna úr eftirfylgnibeiðninni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ekki tókst að vinna úr eftirfylgnibeiðninni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType RefusedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3598135396 - NamedType 2218982884" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only an open follow-up request can be edited.</source>
+          <target>Aðeins er hægt að breyta opinni eftirfylgnibeiðni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins er hægt að breyta opinni eftirfylgnibeiðni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Restrict ori - NamedType ClosedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3598135396 - NamedType 232473427" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Use Projects.FollowUp.Request, Projects.FollowUp.Convert or Projects.FollowUp.Reject.</source>
+          <target>Notaðu Projects.FollowUp.Request, Projects.FollowUp.Convert eða Projects.FollowUp.Reject.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu Projects.FollowUp.Request, Projects.FollowUp.Convert eða Projects.FollowUp.Reject.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Restrict ori - NamedType HintLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3598135396 - NamedType 3230719157" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only the requesting technician or the responsible manager can edit this request.</source>
+          <target>Aðeins tæknimaðurinn sem sendi beiðnina eða ábyrgur stjórnandi getur breytt henni.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins tæknimaðurinn sem sendi beiðnina eða ábyrgur stjórnandi getur breytt henni.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Restrict ori - NamedType OwnerLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 3544315664" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Converted</source>
+          <target>Umbreytt</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbreytt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType ConvertedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 676181506" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Choose an unused task number within the original task group.</source>
+          <target>Veldu laust verkþáttanúmer innan hóps upprunalega verkþáttarins.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Veldu laust verkþáttanúmer innan hóps upprunalega verkþáttarins.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType NumberErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 4013669850" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <target>Opin</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Opin</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType OpenLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 2465440803" size-unit="char" translate="yes" xml:space="preserve">
+          <source>The photo upload no longer belongs to this caller or has already been consumed.</source>
+          <target>Innhlaðna ljósmyndin tilheyrir ekki lengur þessum kallanda eða hefur þegar verið sótt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Innhlaðna ljósmyndin tilheyrir ekki lengur þessum kallanda eða hefur þegar verið sótt.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType PhotoErr</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 2544287428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Preview completed; no changes were saved.</source>
+          <target>Forskoðun lokið; engar breytingar voru vistaðar.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Forskoðun lokið; engar breytingar voru vistaðar.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType PreviewLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 1738703616" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rejected</source>
+          <target>Hafnað</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hafnað</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType RejectedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1915595728 - NamedType 1728239473" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Follow-up request %1 is %2.</source>
+          <target>Eftirfylgnibeiðni %1 er %2.</target>
+          <note from="Developer" annotates="general" priority="2">%1 = request number; %2 = status; is-IS=Eftirfylgnibeiðni %1 er %2.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Runner ori - NamedType SavedLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2513863662 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Converts a request to project work, with a preview.</source>
+          <target>Breytir beiðni í verkefnavinnu með forskoðun.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Breytir beiðni í verkefnavinnu með forskoðun.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU Conv Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 2513863662 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, follow-up, request, technician, manager</source>
+          <target>verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU Conv Impl ori - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3002041544 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Lists visible follow-up requests.</source>
+          <target>Sýnir aðgengilegar eftirfylgnibeiðnir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sýnir aðgengilegar eftirfylgnibeiðnir.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU List Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3002041544 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, follow-up, request, technician, manager</source>
+          <target>verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU List Impl ori - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3925826547 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rejects an open request and keeps the reason.</source>
+          <target>Hafnar opinni beiðni og vistar ástæðuna.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hafnar opinni beiðni og vistar ástæðuna.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU Reject Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 3925826547 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, follow-up, request, technician, manager</source>
+          <target>verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU Reject Impl ori - NamedType KeywordsLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1190000676 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Records follow-up work for the technician.</source>
+          <target>Skráir eftirfylgnivinnu fyrir tæknimann.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skráir eftirfylgnivinnu fyrir tæknimann.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU Req Impl ori - NamedType DescriptionLbl</note>
+        </trans-unit>
+        <trans-unit id="Codeunit 1190000676 - NamedType 1290244428" size-unit="char" translate="yes" xml:space="preserve">
+          <source>project, follow-up, request, technician, manager</source>
+          <target>verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=verkefni, eftirfylgni, beiðni, tæknimaður, stjórnandi</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. FU Req Impl ori - NamedType KeywordsLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 273279443 - Method 3507224617 - NamedType 2679338514" size-unit="char" translate="yes" xml:space="preserve">
           <source>projects whose item cost is updated</source>
@@ -2979,6 +3597,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 1750344968 - Method 1665861916 - NamedType 286034047" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Only a project manager can unlock a signed visit.</source>
+          <target>Aðeins verkefnisstjóri getur aflæst undirritaðri heimsókn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins verkefnisstjóri getur aflæst undirritaðri heimsókn.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Unlock ori - Method OnRun - NamedType DeniedLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 3430622563 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Registers parts used from the van on a task as open usage lines.</source>
           <target>Skráir vörur sem notaðar eru úr bílnum á verkþátt sem opnar notkunarlínur.</target>
@@ -3002,12 +3626,6 @@
           <target>Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VisitItem Reg Impl ori - NamedType OverviewLbl</note>
-        </trans-unit>
-        <trans-unit id="Codeunit 1750344968 - Method 1665861916 - NamedType 286034047" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Only a project manager can unlock a signed visit.</source>
-          <target>Aðeins verkefnisstjóri getur aflæst undirritaðri heimsókn.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins verkefnisstjóri getur aflæst undirritaðri heimsókn.</note>
-          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Unlock ori - Method OnRun - NamedType DeniedLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4130552506 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
           <source>Calculates project work in progress through the native WIP engine.</source>
@@ -8145,6 +8763,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Projects.Usage.Transfer: Flytur samþykktar notkunarlínur í vöru-, aðfangs- eða verkbækur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Transfer Impl ori - Method GetSelectionDescription - NamedType SelectionLbl</note>
         </trans-unit>
+        <trans-unit id="Page 2299049313 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Project Follow-up Requests</source>
+          <target>Eftirfylgnibeiðnir verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Eftirfylgnibeiðnir verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Page Proj. Follow-ups ori - Property Caption</note>
+        </trans-unit>
         <trans-unit id="Page 4186125254 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Technician Setup</source>
           <target>Uppsetning tæknimanna</target>
@@ -8444,6 +9068,24 @@
           <target>Dagsetning vinnuskýrslu</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Dagsetning vinnuskýrslu</note>
           <note from="Xliff Generator" annotates="general" priority="3">TableExtension Sales Line TS Date ori - Field Time Sheet Date ori - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 463696100 - EnumValue 6247114 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Converted</source>
+          <target>Umbreytt</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Umbreytt</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Follow-up Status ori - EnumValue Converted - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 463696100 - EnumValue 4259830144 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Open</source>
+          <target>Opin</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Opin</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Follow-up Status ori - EnumValue Open - Property Caption</note>
+        </trans-unit>
+        <trans-unit id="Enum 463696100 - EnumValue 496445946 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+          <source>Rejected</source>
+          <target>Hafnað</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Hafnað</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Enum Proj. Follow-up Status ori - EnumValue Rejected - Property Caption</note>
         </trans-unit>
         <trans-unit id="Enum 72876456 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Visit Kind</source>

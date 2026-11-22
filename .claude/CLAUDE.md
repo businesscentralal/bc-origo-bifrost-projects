@@ -70,6 +70,12 @@
 - Permission set 70013443 `PROJ VISIT`. Tests 97186 `Proj. Visit Tests ori`, 97187 `Proj. Visit Perm Tests ori`.
 - Projects Setup fields: Travel Work Type Code, Mileage Resource No., Rounding Minutes, Client Time Tolerance Hours, Allow Unplanned Tasks. Zero rounding means one minute and zero tolerance means 24 hours, so existing rows keep working. The message path does not insert the setup row.
 
+## Issue #87 object ledger
+
+- Tables 70013444–70013445; status enum 70013446; page 70013447; codeunits 70013448–70013456; message enum values 70013444–70013447. Tests 97198 (follow-up), 97189 (permissions), fixture codeunit and enumextension 97190. Setup field 87 is Follow-up Task Increment.
+- Technician follow-up grants extend the existing PROJ FIELD TECH with RIM on the two app tables, without native task/planning writes. Read/Full extensions grant feature objects; no new assignable role. GetEffectivePermission checks insert/modify without demanding delete.
+- Request/List retain technician ownership; managers use native project rights plus the Project Manager / Person Responsible association. Convert uses the typed Projects Write ori creation helpers inside a single rollback boundary; preview stores only session-local output before intentional rollback.
+- AC06 remains NOT_RUN; the stacked PR targets feat/83-visit-start-stop-complete and receives pr:on-hold for the #82 Team Member spike after hand-over work is complete.
 ## Issue #84 object ledger
 
 - Table 70013470 `Proj. Technician Setup ori`, page 70013471, codeunits 70013472-70013476 (`VisitItem Reg Impl`, `VanStock Get Impl`, `Van Mgt`, `Van Runner`, `Van Contract`), enum values 70013470 `Projects.VisitItem.Register` and 70013471 `Projects.VanStock.Get`. Test 97188 `Proj. Van Tests ori`. Stacked on #83 (reuses `Proj. Visit Runner ori` FindOpenLine/CreateJobLine, now internal).

@@ -52,7 +52,7 @@ codeunit 70013430 "Proj. Field Contract ori"
             Fields.Add(Contract.ResponseField('myUsage', 'array', 'Own task usage: entryNo, timeSheetNo, lineNo, type, no, date, quantity, unitOfMeasure, status, reversed and journal/ledger references.'));
             Fields.Add(Contract.ResponseField('recordIds', 'object', 'project and task systemIds for related apps.'));
             Fields.Add(Contract.ResponseField('history', 'array', 'Reserved for visit history; currently empty.'));
-            Fields.Add(Contract.ResponseField('followUps', 'array', 'Reserved for follow-ups; currently empty.'));
+            Fields.Add(Contract.ResponseField('followUps', 'array', 'Your follow-up requests for this task, with retained decision and planning keys.'));
         end else begin
             Fields.Add(Contract.ResponseField('technician', 'object', 'resourceNo and name of the caller.'));
             Fields.Add(Contract.ResponseField('visits', 'array', 'Each Resource planning line: projectNo, taskNo, description, customerName, phone, planningDate, lineNo, plannedHours, loggedHours, timeSheetNo, nullable timeSheetLineNo, openUsage; optional address and items.'));
