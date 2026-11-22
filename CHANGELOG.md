@@ -1,10 +1,17 @@
 # Changelog
 
+## Unreleased — #87 / #86
+
+- Add technician follow-up Request/List and manager Convert/Reject, with owner/project scope, retained decisions, idempotent requests, Foundation-staged photos, atomic native conversion and rollback-only preview. Visit briefs include own follow-ups. Generic writes protect decision fields and freeze closed content.
+- Add the Project Follow-up Requests page and Follow-up Task Increment in Projects Setup (field 87). New objects: tables 70013444–70013445, status enum 70013446, page 70013447, codeunits 70013448–70013456; message enum values 70013444–70013447. Tests 97198 (follow-up), 97189 (permissions) and test-only fixture codeunit/enumextension 97190. No new assignable role or delete operation.
+- Team Member SaaS AC06 remains NOT_RUN under the 21 November decision; merge waits for the #82 spike.
+
 ## Unreleased — #84
 
 - Add `Projects.VisitItem.Register` (parts used from the van, resolved by item no., reference or description, written as Open usage lines at the technician's van location; nothing is written when an input is ambiguous; shortages are warnings) and `Projects.VanStock.Get` (van stock after pending usage, below-minimum flag).
 - `Projects.Usage.Register` accepts optional `locationCode`, `binCode`, `lotNo`, `serialNo`; `TS Usage Line ori` gets additive fields 21-25 (location, bin, lot, serial, client request id) and key `Request`; `Transfer` carries location, bin (at bin-mandatory locations) and lot/serial tracking to the journal line. Calls without the new keys answer as before.
 - New objects: table 70013470 `Proj. Technician Setup ori`, page 70013471, codeunits 70013472 `Proj. VisitItem Reg Impl ori`, 70013473 `Proj. VanStock Get Impl ori`, 70013474 `Proj. Van Mgt ori`, 70013475 `Proj. Van Runner ori`, 70013476 `Proj. Van Contract ori`; enum values 70013470/70013471. Tests 97188. `PROJ USAGE` gains Reservation Entry RIMD and Item Tracking Code R; `PROJ FIELD TECH` gains Bin, Item Tracking Code, Item Unit of Measure and technician setup read; `PROJ TS ADMIN` gains technician setup RIMD.
+
 ## Unreleased — #86
 
 - Add `Projects.VisitReport.Get` and `Projects.Visit.SignOff`: quantity-only previews, customer signatures and photos consumed atomically from Foundation staging, and signed-visit locking. Stop, Complete and shared usage registration refuse a locked visit. The manager-only native unlock entry point checks Projects Setup write capability; technician writes cannot unlock.

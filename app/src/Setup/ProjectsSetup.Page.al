@@ -24,6 +24,10 @@ page 70013500 "Projects Setup ori"
             group(FieldService)
             {
                 Caption = 'Field service', Comment = 'is-IS=Vettvangsþjónusta';
+                field(FollowUpTaskIncrement; Rec."Follow-up Task Increment")
+                {
+                    ApplicationArea = All;
+                }
                 field(TravelWorkTypeCode; Rec."Travel Work Type Code")
                 {
                     ToolTip = 'Specifies the work type used when a visit records travel time.', Comment = 'is-IS=Tilgreinir vinnutegundina sem notuð er þegar heimsókn skráir ferðatíma.';

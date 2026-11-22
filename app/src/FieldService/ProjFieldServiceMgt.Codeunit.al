@@ -219,6 +219,7 @@ codeunit 70013429 "Proj. Field Service Mgt ori"
 
     local procedure BuildBrief(Project: Record Job; Task: Record "Job Task"; Resource: Record Resource) Response: JsonObject
     var
+        FollowUp: Codeunit "Proj. Follow-up Mgt ori";
         ProjectNode: JsonObject;
         TaskNode: JsonObject;
         Ids: JsonObject;
@@ -241,7 +242,7 @@ codeunit 70013429 "Proj. Field Service Mgt ori"
         Response.Add('myTime', TimeNode);
         Response.Add('myUsage', MyUsage(Resource, Project."No.", Task."Job Task No."));
         Response.Add('history', Empty);
-        Response.Add('followUps', Empty);
+        Response.Add('followUps', FollowUp.Brief(Project."No.", Task."Job Task No."));
         Response.Add('recordIds', Ids);
         Response.Add('summary', StrSubstNo(BriefSummaryLbl, Project."No.", Task."Job Task No."));
         Response.Add('nextSteps', Steps);

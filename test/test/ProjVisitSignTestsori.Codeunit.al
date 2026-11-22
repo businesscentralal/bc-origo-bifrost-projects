@@ -232,6 +232,9 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
     procedure Scenario_AC03_StopCompleteAndUnlock()
     var
         Resource: Record Resource;
+        OtherNos: List of [Code[20]];
+        OtherOwners: List of [Text];
+        i: Integer;
         Visit: Record "Proj. Field Visit ori";
         Lower: Codeunit "Library - Lower Permissions";
         Response: JsonObject;
@@ -240,16 +243,30 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         Fixture.Seed(Visit);
         Assert.AreEqual('Success', TextOf(Run("Message Type ori"::"Projects.Visit.SignOff", SignRequest(Visit, Fixture.StageImage('image/png', true))), 'status'), 'Sign.');
         Request := ById(Visit);
-        Resource.SetFilter("No.", 'X86*');
-        Resource.SetFilter("No.", '<>%1&X86*', Visit."Resource No.");
-        Resource.SetRange("Time Sheet Owner User ID", CopyStr(UpperCase(UserId()), 1, 50));
-        Resource.ModifyAll("Time Sheet Owner User ID", 'X86OTHER', false);
+        Resource.SetFilter("No.", '<>%1', Visit."Resource No.");
+        Resource.SetRange("Use Time Sheet", true);
+        Resource.SetFilter("Time Sheet Owner User ID", '<>%1', '');
+        if Resource.FindSet() then
+            repeat
+                OtherNos.Add(Resource."No.");
+                OtherOwners.Add(Resource."Time Sheet Owner User ID");
+            until Resource.Next() = 0;
+        for i := 1 to OtherNos.Count() do
+            if Resource.Get(OtherNos.Get(i)) then begin
+                Resource."Time Sheet Owner User ID" := 'X86OTHER';
+                Resource.Modify(false);
+            end;
         Response := Run("Message Type ori"::"Projects.Visit.Stop", Request);
         Refusal(Response, 'PreconditionFailed');
-        Assert.IsTrue(TextOf(Response, 'nextStep').Contains('unlock'), 'Stop refuses because signed visit is locked.');
+        Assert.IsTrue(TextOf(Response, 'nextStep').Contains('unlock'), 'Stop refuses because signed visit is locked: ' + Format(Response));
         Response := Run("Message Type ori"::"Projects.Visit.Complete", Request);
         Refusal(Response, 'PreconditionFailed');
         Assert.IsTrue(TextOf(Response, 'nextStep').Contains('unlock'), 'Complete refuses because signed visit is locked.');
+        for i := 1 to OtherNos.Count() do
+            if Resource.Get(OtherNos.Get(i)) then begin
+                Resource."Time Sheet Owner User ID" := CopyStr(OtherOwners.Get(i), 1, MaxStrLen(Resource."Time Sheet Owner User ID"));
+                Resource.Modify(false);
+            end;
         Visit.Get(Visit."Entry No.");
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');

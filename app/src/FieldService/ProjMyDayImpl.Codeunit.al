@@ -135,7 +135,7 @@ codeunit 70013431 "Proj. My Day Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Documents the rules of this operation.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     begin
-        Notes := 'Dates are ISO 8601; date defaults to today. Visits sort by planning date, task and line number, with project number breaking ties. Hours use native resource units; use hours as the resource unit of measure. include is an array containing items and/or address; the default includes address. Remaining planned quantities include resources and items. Missing sheets or task lines return ready-made nextSteps without writing. Brief time totals cover all own sheets; day totals cover the requested date. history and followUps are empty until visit and follow-up features ship. Files are not read; use recordIds with other apps.';
+        Notes := 'Dates are ISO 8601; date defaults to today. Visits sort by planning date, task and line number, with project number breaking ties. Hours use native resource units; use hours as the resource unit of measure. include is an array containing items and/or address; the default includes address. Remaining planned quantities include resources and items. Missing sheets or task lines return ready-made nextSteps without writing. Brief time totals cover all own sheets; day totals cover the requested date. history is reserved for visit history. followUps contains your own follow-up requests for the task. Files are not read; use recordIds with other apps.';
         exit(true);
     end;
 
