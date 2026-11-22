@@ -2,7 +2,7 @@
   "id": "f8c2c4ed-28c1-4a34-af45-61d25968298b",
   "name": "Bifrost Projects - Tests",
   "publisher": "Origo",
-  "version": "28.1.0.0",
+  "version": "28.1.1.0",
   "brief": "Bifrost Projects - Tests",
   "description": "Bifrost Projects - Tests",
   "privacyStatement": "https://www.origo.is/um-origo/stefnur/personuverndarstefna",
@@ -51,7 +51,7 @@
       "id": "c847bab7-2525-4ff5-93c4-15512b3be1e5",
       "name": "Bifrost Projects",
       "publisher": "Origo",
-      "version": "28.1.0.0"
+      "version": "28.1.1.0"
     }
   ],
   "screenshots": [],
