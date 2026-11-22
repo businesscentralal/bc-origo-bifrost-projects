@@ -56,5 +56,6 @@
     "tools/Test-SharedAlpacaContainer.ps1",
     ".github/workflows/**",
     "tools/Test-BifrostPipeline.ps1"
-  ]
+  ],
+  "repoVersion": "1.0.1"
 }
