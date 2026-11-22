@@ -50,7 +50,7 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
     /// <summary>Distinguishes this operation during discovery.</summary>
     procedure GetSelectionDescription(): Text
     var
-        SelectionLbl: Label 'Send the quote of a project in status Quote to its bill-to customer through a document sending profile, as the Send Project Quote action on the project card does. Irreversible. To change the project status first, use Projects.Project.SetStatus.', Comment = 'is-IS=Senda tilboð verkefnis í stöðunni Tilboð til reikningsviðskiptamanns þess með forstillingu skjalasendingar, eins og aðgerðin Senda verkefnistilboð á verkefnaspjaldinu. Óafturkræft. Til að breyta stöðu verkefnisins fyrst, notaðu Projects.Project.SetStatus.';
+        SelectionLbl: Label 'Send the quote of a project in status Quote to its bill-to customer through a document sending profile, as the Send Project Quote action on the project card does. Writes. To change the project status first, use Projects.Project.SetStatus.', Comment = 'is-IS=Senda tilboð verkefnis í stöðunni Tilboð til reikningsviðskiptamanns þess með forstillingu skjalasendingar, eins og aðgerðin Senda verkefnistilboð á verkefnaspjaldinu. Skrifar. Til að breyta stöðu verkefnisins fyrst, notaðu Projects.Project.SetStatus.';
     begin
         exit(SelectionLbl);
     end;
@@ -87,7 +87,7 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
     procedure GetParameters(var Parameters: JsonArray): Boolean
     var
         ContractMgt: Codeunit "Msg Contract Mgt ori";
-        ExpectedCountTxt: Label 'expectedCount counts the one project named by projectNo whose quote is sent: always 1. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', Locked = true;
+        ExpectedCountTxt: Label 'expectedCount counts the one project named by projectNo whose quote is sent: always 1. Accepted and ignored: no confirmation is asked.', Locked = true;
     begin
         Parameters := RequestSchema();
         Parameters.Add(ContractMgt.Parameter('expectedCount', 'integer', false, ExpectedCountTxt));
@@ -172,16 +172,16 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
         exit(true);
     end;
 
-    /// <summary>Documents the irreversible send.</summary>
+    /// <summary>Documents the send.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
     var
         Preconditions: JsonArray;
-        ExpectedCountUnitTxt: Label 'expectedCount counts the one project named by projectNo whose quote is sent, so it is always 1. To read it without a side effect, send the same request without expectedCount while confirmation is enabled and read expected in the ConfirmationRequired answer; nothing is sent.', Locked = true;
+        ExpectedCountUnitTxt: Label 'expectedCount counts the one project named by projectNo whose quote is sent, so it is always 1. It is accepted and ignored: no confirmation is asked.', Locked = true;
     begin
         Preconditions.Add('The project exists, is in status Quote and has an existing bill-to customer.');
         Preconditions.Add('A Document Sending Profile resolves: documentSendingProfile, the bill-to customer''s profile or the Default profile. A profile with a Disk channel or an e-mail settings prompt is refused before anything is sent.');
         Preconditions.Add('E-Mail: an e-mail account, a customer e-mail address and a report for the Report Selection usage Project Quote are set up.');
-        Effect.Add('effect', 'irreversible');
+        Effect.Add('effect', 'write');
         Effect.Add('changes', 'Sends the project quote with the resolved profile, as the Send Project Quote action does: the quote goes out through every channel the profile enables. Afterwards Business Central archives the project when Projects Setup, Archive Projects, is Always or Question. ' + ExpectedCountUnitTxt);
         Effect.Add('idempotent', false);
         Effect.Add('preconditions', Preconditions);
@@ -236,7 +236,7 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
     procedure GetOverview(var Overview: Text): Boolean
     begin
         Overview := 'Sends the quote of a project in status Quote to its bill-to customer the way the Send Project Quote action on the project card does, through a Document Sending Profile: ' +
-            'the one named in the request, else the bill-to customer''s, else the profile marked Default. Irreversible.';
+            'the one named in the request, else the bill-to customer''s, else the profile marked Default. Writes.';
         exit(true);
     end;
 

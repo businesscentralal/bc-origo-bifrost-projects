@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased — #100
+
+- Effect reclassified by Gunnar's rule that only posting is irreversible: `Projects.PlanningLine.CreatePurchaseOrder`, `Projects.Task.CopyFrom`, `Projects.Quote.Send` and `Projects.ItemCost.Update` now declare `write`. They ask for no confirmation, also with Require Confirmation for Irreversible Messages on; `expectedCount` is still accepted but ignored. Help in 1033 and 1039 says "Writes."/"Skrifar." `Projects.ItemUsage.Post`, `Projects.WIP.Post`, `Projects.WIP.Reverse` and `Projects.TimeSheet.Post` stay `irreversible`. Preview for the purchase type is `preview=true`; `Projects.Task.CopyFrom` has no preview any more. No new objects.
 ## Unreleased — #87 / #86
 
 - Add technician follow-up Request/List and manager Convert/Reject, with owner/project scope, retained decisions, idempotent requests, Foundation-staged photos, atomic native conversion and rollback-only preview. Visit briefs include own follow-ups. Generic writes protect decision fields and freeze closed content.

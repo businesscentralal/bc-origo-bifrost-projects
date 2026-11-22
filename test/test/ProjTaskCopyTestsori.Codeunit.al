@@ -279,9 +279,9 @@ codeunit 97175 "Proj. Task Copy Tests ori"
         Fixture.Cleanup(Manifest);
     end;
 
-    /// <summary>AC05: omitted and incorrect expectedCount change nothing.</summary>
+    /// <summary>AC02: a write type asks for no confirmation; expectedCount is accepted and ignored.</summary>
     [Test]
-    procedure AC05_ConfirmationPreviewAndMismatch()
+    procedure AC02_ExpectedCountIgnored_NoConfirmation()
     var
         Manifest: JsonObject;
         Request: JsonObject;
@@ -289,13 +289,15 @@ codeunit 97175 "Proj. Task Copy Tests ori"
     begin
         Manifest := Fixture.Seed();
         Request := Fixture.Request(Manifest);
-        Request.Remove('expectedCount');
+        Request.Replace('expectedCount', 7);
         Response := Execute(Request);
-        AssertCode(Response, 'ConfirmationRequired');
-        Assert.AreEqual('2', Response.GetText('expected'), 'Counts tasks, not lines');
-        Request.Add('expectedCount', 1);
-        AssertCode(Execute(Request), 'ConfirmationMismatch');
-        AssertTargetUnchanged(Manifest);
+        Library.AssertStatus(Response, 'Success');
+        Assert.AreEqual(2, Response.GetArray('copiedTasks').Count(), 'The copy runs whatever expectedCount says');
+        Fixture.Cleanup(Manifest);
+        Manifest := Fixture.Seed();
+        Request := Fixture.Request(Manifest);
+        Request.Remove('expectedCount');
+        Library.AssertStatus(Execute(Request), 'Success');
         Fixture.Cleanup(Manifest);
     end;
 
@@ -390,7 +392,7 @@ codeunit 97175 "Proj. Task Copy Tests ori"
         Parameters.WriteTo(IcelandicParameters);
         Assert.AreEqual(EnglishParameters, IcelandicParameters, 'English parameter chapter');
         Impl.GetEffect(Effect);
-        Assert.AreEqual('irreversible', Effect.GetText('effect'), 'Effect classification');
+        Assert.AreEqual('write', Effect.GetText('effect'), 'Effect classification');
         CopyProject.GetOverview(Overview);
         Assert.IsTrue(Overview.Contains('Projects.Task.CopyFrom'), 'New-target help names existing-target alternative');
         GlobalLanguage(OriginalLanguage);

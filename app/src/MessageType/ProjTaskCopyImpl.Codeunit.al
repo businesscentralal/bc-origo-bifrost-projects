@@ -83,7 +83,7 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
         Parameters.Add(Input.Parameter('copyQuantity', 'boolean', false, 'Copy quantities; default true.', 0));
         Parameters.Add(Input.Parameter('copyPrices', 'boolean', false, 'Copy prices; default true, with native ledger conversion rules.', 0));
         Parameters.Add(Input.Parameter('copyDimensions', 'boolean', false, 'Copy task dimensions; default true.', 0));
-        Parameters.Add(Input.Parameter('expectedCount', 'integer', false, 'Number of source tasks in the range; omit to preview.', 0));
+        Parameters.Add(Input.Parameter('expectedCount', 'integer', false, 'Accepted and ignored: no confirmation is asked.', 0));
         exit(true);
     end;
     /// <summary>Declares the stable success response.</summary>
@@ -121,8 +121,8 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Documents transactional native writes.</summary>
     procedure GetEffect(var Effect: JsonObject): Boolean
     begin
-        Effect.Add('effect', 'irreversible');
-        Effect.Add('changes', 'Adds tasks and planning lines to an existing project; expectedCount counts source tasks in the inclusive range.');
+        Effect.Add('effect', 'write');
+        Effect.Add('changes', 'Adds tasks and planning lines to an existing project; expectedCount is accepted and ignored.');
         Effect.Add('idempotent', false);
         exit(true);
     end;
@@ -168,7 +168,7 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Documents the English-only copy options and confirmation behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     begin
-        Notes := 'Omit expectedCount for a preview, then repeat with the reported source task count. Task bounds are inclusive and may be omitted. Any task number already in the target refuses the entire copy; nothing is overwritten or deleted. Completed targets and targets blocked for all activity are refused. Quantity, price and dimension defaults are true. Both includes every planning line type; ledgerEntries defaults to Usage and follows native posted-entry conversion. A native failure rolls back all tasks and lines. Empty ranges may be confirmed with zero. Requires BIFROST Full ori plus native project read, task and planning line insert rights; ledgerEntries also requires posted project entry read rights.';
+        Notes := 'expectedCount is accepted and ignored; the copy runs at once. Task bounds are inclusive and may be omitted. Any task number already in the target refuses the entire copy; nothing is overwritten or deleted. Completed targets and targets blocked for all activity are refused. Quantity, price and dimension defaults are true. Both includes every planning line type; ledgerEntries defaults to Usage and follows native posted-entry conversion. A native failure rolls back all tasks and lines. Requires BIFROST Full ori plus native project read, task and planning line insert rights; ledgerEntries also requires posted project entry read rights.';
         exit(true);
     end;
     /// <summary>Checks caller permissions before licensing and validation.</summary>
@@ -327,7 +327,6 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
         TargetProject: Record Job;
         Task: Record "Job Task";
         Line: Record "Job Planning Line";
-        ConfirmGate: Codeunit "Confirm Gate ori";
         CopyJob: Codeunit "Copy Job";
         Input: Codeunit "Projects Followup Input ori";
         Request: JsonObject;
@@ -347,8 +346,6 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
         if not Validate(Argument, Request, SourceProject, TargetProject, Task) then
             exit;
         TaskCount := Task.Count();
-        if not ConfirmGate.Confirm(Argument, TaskCount, CountLbl) then
-            exit;
         ConfigureCopy(Request, CopyJob);
         CopyJob.SetJobTaskRange(CopyStr(Input.TextValue(Request, 'fromTaskNo'), 1, 20), CopyStr(Input.TextValue(Request, 'toTaskNo'), 1, 20));
         CopyJob.CopyJobTasks(SourceProject, TargetProject);

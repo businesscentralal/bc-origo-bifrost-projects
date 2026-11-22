@@ -28,7 +28,7 @@ codeunit 70013408 "Projects Item Cost ori"
         Result.Add(Input.Parameter('allOpen', 'boolean', false, 'true updates every project in status Planning, Quote or Open. Send either projectNos or allOpen.', 0));
         Result.Add(Input.Parameter('postingDateFrom', 'date', false, 'Optional ISO date (YYYY-MM-DD): only usage with this posting date or later is updated.', 0));
         Result.Add(Input.Parameter('postingDateTo', 'date', false, 'Optional ISO date (YYYY-MM-DD): only usage with this posting date or earlier is updated.', 0));
-        Result.Add(Input.Parameter('expectedCount', 'integer', false, 'expectedCount counts the projects in scope: the projects named in projectNos, or every project in status Planning, Quote or Open for allOpen. Required only when Require Confirmation for Irreversible Messages is enabled in Bifrost Setup; always checked when sent. Preview without a side effect: send the request without expectedCount and read expected.', 0));
+        Result.Add(Input.Parameter('expectedCount', 'integer', false, 'Accepted and ignored: no confirmation is asked.', 0));
     end;
 
     /// <summary>Checks the posting token and the native rights to read and change the project ledger.</summary>
