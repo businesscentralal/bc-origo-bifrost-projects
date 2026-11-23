@@ -133,6 +133,47 @@ codeunit 97111 "Projects Effect Tests ori"
         Assert.IsTrue(ExpectedCountDescription("Message Type ori"::"Projects.ItemUsage.Post").Contains('whatever the number of lines'), 'Item usage parameter');
     end;
 
+    /// <summary>projects#104 AC01/AC02: no Projects type that declares effect read is Inbound; the three former Inbound reads are named.</summary>
+    [Test]
+    procedure ReadTypes_AreOutbound()
+    var
+        Contract: Interface "Msg Contract ori";
+        Message: Interface "Msg Interface ori";
+        MessageType: Enum "Message Type ori";
+        Effect: JsonObject;
+        Ordinal: Integer;
+        Name: Text;
+        Reads: Integer;
+    begin
+        foreach Ordinal in MessageType.Ordinals() do begin
+            MessageType := Enum::"Message Type ori".FromInteger(Ordinal);
+            Name := Format(MessageType);
+            if Name.StartsWith('Projects.') then begin
+                Clear(Effect);
+                Contract := MessageType;
+                Message := MessageType;
+                if Contract.GetEffect(Effect) then
+                    if Effect.GetText('effect') = 'read' then begin
+                        Reads += 1;
+                        Assert.AreNotEqual(Format("Msg Direction ori"::Inbound), Format(Message.GetMessageDirection()), Name + ': a read type is never Inbound');
+                    end;
+            end;
+        end;
+        Assert.IsTrue(Reads >= 3, 'The walk covered the Projects read types');
+        AssertReadOutbound("Message Type ori"::"Projects.VanStock.Get");
+        AssertReadOutbound("Message Type ori"::"Projects.VisitReport.Get");
+        AssertReadOutbound("Message Type ori"::"Projects.FollowUp.List");
+    end;
+
+    local procedure AssertReadOutbound(MessageType: Enum "Message Type ori")
+    var
+        Message: Interface "Msg Interface ori";
+    begin
+        Message := MessageType;
+        Assert.AreEqual(Format("Msg Direction ori"::Outbound), Format(Message.GetMessageDirection()), Format(MessageType) + ' direction');
+        Assert.AreEqual('read', DeclaredEffect(MessageType), Format(MessageType) + ' effect');
+    end;
+
     local procedure IrreversibleTypes() Types: List of [Enum "Message Type ori"]
     begin
         Types.Add("Message Type ori"::"Projects.ItemUsage.Post");

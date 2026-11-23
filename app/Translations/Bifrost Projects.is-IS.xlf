@@ -2883,6 +2883,12 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Vörur í bílnum með birgðir, biðnotkun, tiltækt magn, hólf og merki um undir lágmarki.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Van Contract ori - NamedType StockRespLbl</note>
         </trans-unit>
+        <trans-unit id="Codeunit 2948011578 - NamedType 2632349030" size-unit="char" translate="yes" xml:space="preserve">
+          <source>A short sentence about what was read: the van location and the number of stock lines.</source>
+          <target>Stutt setning um það sem var lesið: bílstaðsetninguna og fjölda birgðalína.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stutt setning um það sem var lesið: bílstaðsetninguna og fjölda birgðalína.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Van Contract ori - NamedType StockSummaryRespLbl</note>
+        </trans-unit>
         <trans-unit id="Codeunit 2948011578 - NamedType 1499760790" size-unit="char" translate="yes" xml:space="preserve">
           <source>A short sentence about what was written.</source>
           <target>Stutt setning um það sem var skrifað.</target>

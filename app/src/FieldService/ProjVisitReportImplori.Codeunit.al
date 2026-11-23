@@ -48,7 +48,7 @@ codeunit 70013460 "Proj. Visit Report Impl ori" implements "Msg Interface ori", 
     /// <summary>Implements the visit sign-off and report contract.</summary>
     procedure GetMessageDirection(): Enum "Msg Direction ori"
     begin
-        exit("Msg Direction ori"::Inbound);
+        exit("Msg Direction ori"::Outbound);
     end;
 
     /// <summary>Implements the visit sign-off and report contract.</summary>

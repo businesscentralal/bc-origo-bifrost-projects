@@ -38,6 +38,7 @@ codeunit 70013476 "Proj. Van Contract ori"
         AmbiguousRespLbl: Label 'Inputs with more than one match and their candidates. When present nothing was written.', Comment = 'is-IS=Færslur með fleiri en eina samsvörun og valkostir þeirra. Þegar til staðar var engu skrifað.';
         ShortagesRespLbl: Label 'Items where the request is more than the van holds after pending usage. The lines are still written.', Comment = 'is-IS=Vörur þar sem beiðnin er meiri en bíllinn á eftir biðnotkun. Línurnar eru samt skrifaðar.';
         SummaryRespLbl: Label 'A short sentence about what was written.', Comment = 'is-IS=Stutt setning um það sem var skrifað.';
+        StockSummaryRespLbl: Label 'A short sentence about what was read: the van location and the number of stock lines.', Comment = 'is-IS=Stutt setning um það sem var lesið: bílstaðsetninguna og fjölda birgðalína.';
         NextRespLbl: Label 'What the caller can do next.', Comment = 'is-IS=Það sem kallandi getur gert næst.';
         LocationRespLbl: Label 'The van location.', Comment = 'is-IS=Bílstaðsetningin.';
         StockRespLbl: Label 'Items at the van with inventory, pending usage, available quantity, bin and below-minimum flag.', Comment = 'is-IS=Vörur í bílnum með birgðir, biðnotkun, tiltækt magn, hólf og merki um undir lágmarki.';
@@ -88,7 +89,7 @@ codeunit 70013476 "Proj. Van Contract ori"
         Fields.Add(Contract.ResponseField('status', 'string', StatusLbl));
         Fields.Add(Contract.ResponseField('location', 'string', LocationRespLbl));
         Fields.Add(Contract.ResponseField('items', 'array', StockRespLbl));
-        Fields.Add(Contract.ResponseField('summary', 'string', SummaryRespLbl));
+        Fields.Add(Contract.ResponseField('summary', 'string', StockSummaryRespLbl));
         Response.Add('contentType', 'text/json');
         Response.Add('fields', Fields);
     end;

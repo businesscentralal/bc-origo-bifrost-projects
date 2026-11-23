@@ -42,7 +42,7 @@ codeunit 70013473 "Proj. VanStock Get Impl ori" implements "Msg Interface ori", 
 
     procedure GetMessageDirection(): Enum "Msg Direction ori"
     begin
-        exit("Msg Direction ori"::Inbound);
+        exit("Msg Direction ori"::Outbound);
     end;
 
     procedure GetEnvelope(var Envelope: JsonObject): Boolean
