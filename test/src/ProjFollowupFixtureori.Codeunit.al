@@ -32,12 +32,12 @@ codeunit 97190 "Proj. Follow-up Fixture ori" implements "Msg Interface ori"
         Project: Record Job;
         Task: Record "Job Task";
         Item: Record Item;
-        Prior: JsonArray;
-        Owner: JsonObject;
-        Prefix: Code[20];
         Staging: Codeunit "Blob Staging ori";
         TempBlob: Codeunit "Temp Blob";
         Base64: Codeunit "Base64 Convert";
+        Prior: JsonArray;
+        Owner: JsonObject;
+        Prefix: Code[20];
         InStr: InStream;
         OutStr: OutStream;
         StagingId: Guid;
@@ -131,10 +131,10 @@ codeunit 97190 "Proj. Follow-up Fixture ori" implements "Msg Interface ori"
         BusinessGroup: Record "Gen. Business Posting Group";
         ResourceUnit: Record "Resource Unit of Measure";
         ItemUnit: Record "Item Unit of Measure";
-        Token: JsonToken;
-        Prefix: Code[20];
         Staging: Codeunit "Blob Staging ori";
         TempBlob: Codeunit "Temp Blob";
+        Token: JsonToken;
+        Prefix: Code[20];
         StagingId: Guid;
     begin
         Prefix := CopyStr(Manifest.GetText('projectNo'), 1, 20);

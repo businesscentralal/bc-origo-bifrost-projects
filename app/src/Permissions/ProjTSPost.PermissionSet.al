@@ -19,7 +19,7 @@ using System.Security.User;
 /// Posting is separated by journal and posting rights: only this set carries the journal, ledger and register data a post needs.
 /// Assign together with BIFROST Read ori. Grants the Projects.TimeSheet.Post and .Archive types; #38 PR (b) adds PreviewPost and the one-call Post here.
 /// </summary>
-permissionset 70013588 "PROJ TS POST"
+permissionset 70013588 "PROJ TS POST ori"
 {
     Assignable = true;
     Caption = 'Projects Time Sheet Post', Comment = 'is-IS=Verkefni - bókun tímaskýrslna';

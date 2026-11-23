@@ -5,6 +5,7 @@ page 70013400 "TS Usage Lines ori"
 {
     Caption = 'Time Sheet Usage Lines', Comment = 'is-IS=Notkunarlínur tímaskýrslna';
     PageType = List;
+    ContextSensitiveHelpPage = 'ts-usage-lines';
     ApplicationArea = All;
     UsageCategory = Lists;
     SourceTable = "TS Usage Line ori";

@@ -15,7 +15,7 @@ using System.Security.User;
 /// Separation is the sheet's owner identity, checked in code; the set carries no approval or posting data.
 /// Assign together with BIFROST Read ori.
 /// </summary>
-permissionset 70013586 "PROJ TS SELF"
+permissionset 70013586 "PROJ TS SELF ori"
 {
     Assignable = true;
     Caption = 'Projects Time Sheet Self', Comment = 'is-IS=Verkefni - eigin tímaskýrslur';

@@ -75,14 +75,14 @@ Write failures roll back the native transaction. Native WIP method validation fa
 
 Calls require the native BC table permissions in addition to the Foundation role. WIP posting also requires the Projects Full role extension (via `BIFROST Full ori`); Projects Read does not grant posting. Projects Setup is a company-wide switch; generic `Data.Records.Set` cannot change it.
 
-The time-sheet message types (`Projects.TimeSheet.*`, `Projects.TimeSheetLine.*`, `Projects.Absence.Register`, `Projects.PendingApproval.Get`) need `BIFROST Full ori` together with the assignable set `PROJ TS ADMIN`, which grants the Base Application time-sheet, resource, employee, absence, project journal and number series data. `BIFROST Full ori` alone is refused with `PermissionDenied` and the next step "Assign the BIFROST Full ori and PROJ TS ADMIN permission sets." `Projects.PendingApproval.Get` only reads: `BIFROST Read ori` or `BIFROST Full ori` together with `PROJ TS ADMIN` is enough.
+The time-sheet message types (`Projects.TimeSheet.*`, `Projects.TimeSheetLine.*`, `Projects.Absence.Register`, `Projects.PendingApproval.Get`) need `BIFROST Full ori` together with the assignable set `PROJ TS ADMIN ori`, which grants the Base Application time-sheet, resource, employee, absence, project journal and number series data. `BIFROST Full ori` alone is refused with `PermissionDenied` and the next step "Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets." `Projects.PendingApproval.Get` only reads: `BIFROST Read ori` or `BIFROST Full ori` together with `PROJ TS ADMIN ori` is enough.
 
-Technicians use `BIFROST Read ori` + `PROJ FIELD TECH` for `Projects.MyDay.Get`, `Projects.VisitBrief.Get` and their own `Projects.Usage.Register/Submit/List`. `PROJ FIELD TECH` includes `PROJ TS SELF`, adds read-only project planning/site/stock data and RIM on this app's usage lines, and grants no journal data or project/task/planning writes. `PROJ USAGE` is unchanged for approvers and back office, together with `BIFROST Full ori` (`BIFROST Read ori` suffices for List). Refusals name the appropriate sets. The Team Member SaaS entitlement/Effective Permissions receipt is NOT_RUN until the dedicated test user exists (23 November 2026, issue #82).
+Technicians use `BIFROST Read ori` + `PROJ FIELD TECH ori` for `Projects.MyDay.Get`, `Projects.VisitBrief.Get` and their own `Projects.Usage.Register/Submit/List`. `PROJ FIELD TECH ori` includes `PROJ TS SELF ori`, adds read-only project planning/site/stock data and RIM on this app's usage lines, and grants no journal data or project/task/planning writes. `PROJ USAGE ori` is unchanged for approvers and back office, together with `BIFROST Full ori` (`BIFROST Read ori` suffices for List). Refusals name the appropriate sets. The Team Member SaaS entitlement/Effective Permissions receipt is NOT_RUN until the dedicated test user exists (23 November 2026, issue #82).
 
 `Projects.MyDay.Get` defaults to today and returns each owned Resource planning line in planning-date/task/line order, with project number breaking ties. `include` accepts `items` and `address` (default: address). `Projects.VisitBrief.Get` requires projectNo/taskNo; both accept resourceNo to choose among multiple owned resources. Hours use native resource quantities, so resources should use hours as their unit. Day time is restricted to the requested date; brief time covers the task across all own sheets. Site data is the project's native ship-to snapshot. Missing sheets/task lines return ready-made `nextSteps` without writes. Brief `recordIds` allows assistants to use other apps; Projects reads no attachments and depends on no feature app. `history` and `followUps` remain empty pending #83/#87.
 
 
-`PROJ TS ADMIN` grants direct RIMD access to time-sheet and archive tables and project journal lines, and RI access to employee absence and time-sheet posting entries. These rights also apply outside message-type calls; the owner and approver checks in message handlers do not restrict direct table access. Assign it only to users who should have those native permissions. The Foundation role extensions grant only Projects-owned objects.
+`PROJ TS ADMIN ori` grants direct RIMD access to time-sheet and archive tables and project journal lines, and RI access to employee absence and time-sheet posting entries. These rights also apply outside message-type calls; the owner and approver checks in message handlers do not restrict direct table access. Assign it only to users who should have those native permissions. The Foundation role extensions grant only Projects-owned objects.
 
 For WIP methods, Get requires read permission on `Job WIP Method`. Set requires write permission on that table and read permission on `Job WIP Entry` and `Job WIP G/L Entry`. The app's role extensions grant codeunit execution without granting native table permissions.
 
@@ -107,7 +107,7 @@ Read the saved method with `Projects.WIPMethod.Get` and `{ "code": "CUSTOM" }`. 
 
 ## Follow-up work (#87)
 
-Technicians use `Projects.FollowUp.Request` with `BIFROST Read ori` and `PROJ FIELD TECH`. The request retains its project/task, the caller's technician resource, description, optional positive estimated hours, parts, preferred date, urgency and photos from Foundation `stagingIds`. `clientRequestId` replays an existing request owned by the caller. No native project write or notification is performed by Request.
+Technicians use `Projects.FollowUp.Request` with `BIFROST Read ori` and `PROJ FIELD TECH ori`. The request retains its project/task, the caller's technician resource, description, optional positive estimated hours, parts, preferred date, urgency and photos from Foundation `stagingIds`. `clientRequestId` replays an existing request owned by the caller. No native project write or notification is performed by Request.
 
 `Projects.FollowUp.List` returns only a technician's own requests. Managers with native project write rights see projects where they are the Project Manager or the owner of the Person Responsible resource. `skip` defaults to 0 and `take` to 50 (1–100). Visit briefs include the caller's follow-up requests.
 
@@ -163,7 +163,7 @@ Team Member SaaS effective-permission evidence (AC06) is **NOT_RUN**, explicitly
 | enum value | 70013433 | `Projects.Visit.Start` |
 | enum value | 70013434 | `Projects.Visit.Stop` |
 | enum value | 70013435 | `Projects.Visit.Complete` |
-| permission set | 70013443 | `PROJ VISIT` |
+| permission set | 70013443 | `PROJ VISIT ori` |
 | table | 70013470 | `Proj. Technician Setup ori` |
 | page | 70013471 | `Proj. Technician Setup ori` |
 | codeunit | 70013472-70013476 | van parts: `Proj. VisitItem Reg Impl ori`, `Proj. VanStock Get Impl ori`, `Proj. Van Mgt ori`, `Proj. Van Runner ori`, `Proj. Van Contract ori` |
@@ -230,16 +230,16 @@ Team Member SaaS effective-permission evidence (AC06) is **NOT_RUN**, explicitly
 | page | 70013500 | `Projects Setup ori` |
 | permissionsetextension | 70013500 | `Projects Read ori` |
 | permissionsetextension | 70013501 | `Projects Full ori` |
-| permissionset | 70013402 | `PROJ USAGE` |
+| permissionset | 70013402 | `PROJ USAGE ori` |
 | codeunit | 70013431 | `Proj. My Day Impl ori` |
 | codeunit | 70013432 | `Proj. Visit Brief Impl ori` |
 | codeunit | 70013429 | `Proj. Field Service Mgt ori` |
 | codeunit | 70013430 | `Proj. Field Contract ori` |
-| permissionset | 70013403 | `PROJ FIELD TECH` |
+| permissionset | 70013403 | `PROJ FIELD TECH ori` |
 | test codeunit | 97184 | `Proj. Field Service Tests ori` |
 | test codeunit | 97185 | `Proj. Field Fixture ori` |
 | test enumextension/value and cleanup page | 97185 | `Proj. Field Fixture Types ori / Test.Field82.Seed` |
-| permissionset | 70013589 | `PROJ TS ADMIN` |
+| permissionset | 70013589 | `PROJ TS ADMIN ori` |
 | table | 70013500 | `Projects Setup ori` |
 | table | 70013521 | `Proj. Posting ori` |
 
@@ -316,6 +316,6 @@ Foundation 28.0.13.0 or later supplies `Blob Staging ori.Take` and `NormalizeMet
 
 The native report is **Visit Report**, id **70013460**, filtered to one visit entry. Rendering and sending are chained by the caller through Foundation staging; there is no Projects send operation or feature-app dependency. Show the recipient and obtain explicit consent before any external sender runs.
 
-A signed visit is locked against time and usage-content changes. The native manager unlock entry point is codeunit 70013466, supplied with the visit record, and requires Projects Setup write capability (provided by `Projects Full ori`, absent from `PROJ FIELD TECH`). Unlock marks the signature inactive while retaining its stored bytes and signer details. No page/action is added.
+A signed visit is locked against time and usage-content changes. The native manager unlock entry point is codeunit 70013466, supplied with the visit record, and requires Projects Setup write capability (provided by `Projects Full ori`, absent from `PROJ FIELD TECH ori`). Unlock marks the signature inactive while retaining its stored bytes and signer details. No page/action is added.
 
 The #84 sibling must route item registration through the same locked-visit usage boundary. Its exact operation is a pending integration check until that branch is available. Team Member SaaS Effective Permissions is NOT_RUN until the #82 spike; on-premises permission tests do not replace it.

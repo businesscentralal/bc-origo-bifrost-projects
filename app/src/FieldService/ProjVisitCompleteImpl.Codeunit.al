@@ -10,8 +10,8 @@ codeunit 70013438 "Proj. Visit Complete Impl ori" implements "Msg Interface ori"
     var
         DescriptionLbl: Label 'Completes a visit and, with mileage, writes an open usage line on the task.', Comment = 'is-IS=Lýkur heimsókn og skrifar, með akstri, opna notkunarlínu á verkþáttinn.';
         KeywordsLbl: Label 'visit, complete, mileage, usage, time sheet, field', Comment = 'is-IS=heimsókn, ljúka, akstur, notkun, tímaskýrsla, vettvangur';
-        OverviewLbl: Label 'Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.', Comment = 'is-IS=Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.';
-        NotesLbl: Label 'The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.', Comment = 'is-IS=The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.';
+        OverviewLbl: Label 'Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.', Comment = 'is-IS=Stöðvar fyrst heimsókn sem er í gangi og merkir hana síðan lokið. Akstur er skráður sem opin aðfanganotkunarlína á verkþáttarlínuna með akstursaðfangi og einingu þess úr uppsetningu verkefna. Engu er skilað inn.';
+        NotesLbl: Label 'The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.', Comment = 'is-IS=Sama clientRequestId skilar fyrstu niðurstöðunni. Vinnustundir og notkunarlínur sem eru þegar opnar haldast. Engu er eytt.';
 
     procedure IsEnabled(): Boolean
     var

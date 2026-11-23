@@ -17,7 +17,7 @@ using Microsoft.Projects.TimeSheet;
 /// permission set extension may not add for objects of another app (AS0110/AA0050, #65); the levels are those the
 /// Projects Usage Full ori and Projects Usage Read ori extensions had.
 /// </summary>
-permissionset 70013402 "PROJ USAGE"
+permissionset 70013402 "PROJ USAGE ori"
 {
     Assignable = true;
     Caption = 'Projects Usage Registration', Comment = 'is-IS=Skráning notkunar verkefna';

@@ -15,7 +15,7 @@ codeunit 70013452 "Proj. Follow-up Mgt ori"
     var
         RefusedLbl: Label 'The follow-up request could not be processed.', Comment = 'is-IS=Ekki tókst að vinna úr eftirfylgnibeiðninni.';
         NextLbl: Label 'Correct the indicated field and retry. Nothing was changed.', Comment = 'is-IS=Leiðréttu tilgreindan reit og reyndu aftur. Engu var breytt.';
-        PermissionLbl: Label 'Use BIFROST Read with PROJ FIELD TECH for your own requests. Managers need BIFROST Full, native project rights and responsibility for the project.', Comment = 'is-IS=Notaðu BIFROST Read með PROJ FIELD TECH fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.';
+        PermissionLbl: Label 'Use BIFROST Read with PROJ FIELD TECH ori for your own requests. Managers need BIFROST Full, native project rights and responsibility for the project.', Comment = 'is-IS=Notaðu BIFROST Read með PROJ FIELD TECH ori fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.';
         OpenLbl: Label 'Use an open request on an unblocked, unfinished project.', Comment = 'is-IS=Notaðu opna beiðni á óloknu verkefni sem er ekki lokað.';
         ListLbl: Label '%1 follow-up requests returned.', Comment = '%1 = count; is-IS=%1 eftirfylgnibeiðnum skilað.';
 
@@ -42,12 +42,12 @@ codeunit 70013452 "Proj. Follow-up Mgt ori"
 
     local procedure CanWrite(TableId: Integer): Boolean
     var
-        Permission: Record "Expanded Permission" temporary;
+        TempPermission: Record "Expanded Permission" temporary;
         UserPermissions: Codeunit "User Permissions";
     begin
         // WritePermission also requires delete; follow-up roles deliberately grant only RIM.
-        Permission := UserPermissions.GetEffectivePermission(Permission."Object Type"::"Table Data", TableId);
-        exit((Permission."Insert Permission" = Permission."Insert Permission"::Yes) and (Permission."Modify Permission" = Permission."Modify Permission"::Yes));
+        TempPermission := UserPermissions.GetEffectivePermission(TempPermission."Object Type"::"Table Data", TableId);
+        exit((TempPermission."Insert Permission" = TempPermission."Insert Permission"::Yes) and (TempPermission."Modify Permission" = TempPermission."Modify Permission"::Yes));
     end;
 
     /// <summary>Tests effective manager write rights, not licence entitlement.</summary>
@@ -62,9 +62,9 @@ codeunit 70013452 "Proj. Follow-up Mgt ori"
     /// <summary>Executes a read or starts one atomic write boundary.</summary>
     procedure Execute(var Argument: Record "Message Argument ori"; Operation: Integer)
     var
+        Result: Codeunit "Proj. Follow-up Result ori";
         Request: JsonObject;
         Response: JsonObject;
-        Result: Codeunit "Proj. Follow-up Result ori";
     begin
         Argument.AssertVersion1();
         if not CanRun(Operation) then begin

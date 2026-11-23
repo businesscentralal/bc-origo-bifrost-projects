@@ -36,10 +36,10 @@ codeunit 97189 "Proj. Follow-up Perm Tests ori"
     var
         Header: Record "Proj. Follow-up Request ori";
         Line: Record "Proj. Follow-up Req. Line ori";
-        Mgt: Codeunit "Proj. Follow-up Mgt ori";
-        Lower: Codeunit "Library - Lower Permissions";
         Task: Record "Job Task";
         Planning: Record "Job Planning Line";
+        Mgt: Codeunit "Proj. Follow-up Mgt ori";
+        Lower: Codeunit "Library - Lower Permissions";
         Manifest: JsonObject;
         Response: JsonObject;
         Request: JsonObject;
@@ -49,7 +49,7 @@ codeunit 97189 "Proj. Follow-up Perm Tests ori"
         Manifest := Fixture.Seed();
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Lower.AddPermissionSet('PROJ FIELD TECH ori');
         Assert.IsTrue(Header.ReadPermission(), 'Header read.');
         Assert.IsFalse(Header.WritePermission(), 'Technician has no delete grant.');
         Assert.IsTrue(Line.ReadPermission(), 'Line read.');

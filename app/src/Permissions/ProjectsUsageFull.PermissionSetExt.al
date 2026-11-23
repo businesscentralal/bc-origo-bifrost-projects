@@ -2,7 +2,7 @@ namespace Origo.Bifrost.Projects;
 
 using Origo.Bifrost;
 
-/// <summary>Grants the time sheet usage objects to the Foundation Full role (projects#52). Base Application data comes from PROJ USAGE (#65).</summary>
+/// <summary>Grants the time sheet usage objects to the Foundation Full role (projects#52). Base Application data comes from PROJ USAGE ori (#65).</summary>
 permissionsetextension 70013400 "Projects Usage Full ori" extends "BIFROST Full ori"
 {
     Permissions =

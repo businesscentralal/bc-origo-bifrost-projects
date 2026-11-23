@@ -361,6 +361,28 @@ codeunit 97144 "TS Create Tests"
         Assert.IsTrue(Icelandic.Contains('tímaskýrslur'), 'Icelandic purpose.');
     end;
 
+    /// <summary>The create response describes success in the selected language (#106).</summary>
+    [Test]
+    procedure Scenario_106_ResponseStatus_IsTranslated()
+    var
+        Contract: Codeunit "TS Create Contract ori";
+        Response: JsonObject;
+        Field: JsonToken;
+        PreviousLanguage: Integer;
+    begin
+        PreviousLanguage := GlobalLanguage();
+        GlobalLanguage(1033);
+        Assert.IsTrue(Contract.GetResponse(Response), 'English response chapter.');
+        Response.GetArray('fields').Get(0, Field);
+        Assert.AreEqual('Success.', Field.AsObject().GetText('description'), 'English status description.');
+        Clear(Response);
+        GlobalLanguage(1039);
+        Assert.IsTrue(Contract.GetResponse(Response), 'Icelandic response chapter.');
+        Response.GetArray('fields').Get(0, Field);
+        GlobalLanguage(PreviousLanguage);
+        Assert.AreEqual('Tókst.', Field.AsObject().GetText('description'), 'Icelandic status description.');
+    end;
+
     local procedure Initialize()
     var
         ResourcesSetup: Record "Resources Setup";

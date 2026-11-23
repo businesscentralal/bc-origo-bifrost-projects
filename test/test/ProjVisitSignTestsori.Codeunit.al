@@ -223,7 +223,7 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         Request := SignRequest(Visit, Fixture.StageImage('image/png', true));
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Lower.AddPermissionSet('PROJ FIELD TECH ori');
         Assert.AreEqual('Success', TextOf(Run("Message Type ori"::"Projects.Visit.SignOff", Request), 'status'), 'Technician sign.');
         Assert.AreEqual('Success', TextOf(Run("Message Type ori"::"Projects.VisitReport.Get", ById(Visit)), 'status'), 'Technician preview.');
     end;
@@ -232,11 +232,11 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
     procedure Scenario_AC03_StopCompleteAndUnlock()
     var
         Resource: Record Resource;
+        Visit: Record "Proj. Field Visit ori";
+        Lower: Codeunit "Library - Lower Permissions";
         OtherNos: List of [Code[20]];
         OtherOwners: List of [Text];
         i: Integer;
-        Visit: Record "Proj. Field Visit ori";
-        Lower: Codeunit "Library - Lower Permissions";
         Response: JsonObject;
         Request: JsonObject;
     begin
@@ -270,7 +270,7 @@ codeunit 97194 "Proj. Visit Sign Tests ori"
         Visit.Get(Visit."Entry No.");
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Lower.AddPermissionSet('PROJ FIELD TECH ori');
         asserterror Codeunit.Run(Codeunit::"Proj. Visit Unlock ori", Visit);
         Clear(Lower);
         Lower.PushPermissionSetWithoutDefaults('BIFROST Full ori');

@@ -26,8 +26,8 @@ codeunit 97154 "TS Usage Perm Tests"
     var
         GrantTok: Label '%1 %2 %3', Locked = true, Comment = '%1 = object type, %2 = object ID, %3 = granted levels';
         OperationAvailableMsg: Label 'Operation %1 must be available.', Locked = true, Comment = '%1 = usage operation number';
-        UsageNextStepTxt: Label 'Assign BIFROST Read ori and PROJ FIELD TECH for your own usage, or BIFROST Full ori and PROJ USAGE for back-office actions.', Locked = true;
-        UsageNextStepIsTxt: Label 'Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.', Locked = true;
+        UsageNextStepTxt: Label 'Assign BIFROST Read ori and PROJ FIELD TECH ori for your own usage, or BIFROST Full ori and PROJ USAGE ori for back-office actions.', Locked = true;
+        UsageNextStepIsTxt: Label 'Úthlutaðu BIFROST Read ori og PROJ FIELD TECH ori fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE ori fyrir bakvinnsluaðgerðir.', Locked = true;
 
     [Test]
     procedure ReadRole_CanList_CannotRegister()
@@ -39,9 +39,9 @@ codeunit 97154 "TS Usage Perm Tests"
         Response: JsonObject;
         Token: JsonToken;
     begin
-        // #65: the Base App time sheet reads come from PROJ USAGE, assigned together with BIFROST Read ori.
+        // #65: the Base App time sheet reads come from PROJ USAGE ori, assigned together with BIFROST Read ori.
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ USAGE');
+        Lower.AddPermissionSet('PROJ USAGE ori');
         Assert.IsTrue(Mgt.CanUse(7), 'A read-only role sees List.');
         Assert.IsFalse(Mgt.CanUse(1), 'A read-only role cannot register.');
         Assert.IsFalse(Mgt.CanUse(5), 'A read-only role cannot transfer.');
@@ -220,7 +220,7 @@ codeunit 97154 "TS Usage Perm Tests"
         end;
     end;
 
-    /// <summary>#65 (Architect 6980138913): PROJ USAGE is assignable and holds exactly the 16 Base App grants the usage extensions had, at the same levels.</summary>
+    /// <summary>#65 (Architect 6980138913): PROJ USAGE ori is assignable and holds exactly the 16 Base App grants the usage extensions had, at the same levels.</summary>
     [Test]
     procedure Scenario_65_UsageSet_HoldsMovedGrantsAtSameLevels()
     var
@@ -234,13 +234,13 @@ codeunit 97154 "TS Usage Perm Tests"
         AddExpectedUsageGrants(Expected);
         // [WHEN] The platform metadata of the new set is read.
         MetadataPermissionSet.SetRange("App ID", ProjectsAppId());
-        MetadataPermissionSet.SetRange("Role ID", 'PROJ USAGE');
-        Assert.IsTrue(MetadataPermissionSet.FindFirst(), 'PROJ USAGE must exist in the Projects app.');
-        Assert.IsTrue(MetadataPermissionSet.Assignable, 'PROJ USAGE must be assignable.');
+        MetadataPermissionSet.SetRange("Role ID", 'PROJ USAGE ori');
+        Assert.IsTrue(MetadataPermissionSet.FindFirst(), 'PROJ USAGE ori must exist in the Projects app.');
+        Assert.IsTrue(MetadataPermissionSet.Assignable, 'PROJ USAGE ori must be assignable.');
         MetadataPermission.SetRange("App ID", ProjectsAppId());
-        MetadataPermission.SetRange("Role ID", 'PROJ USAGE');
+        MetadataPermission.SetRange("Role ID", 'PROJ USAGE ori');
         // [THEN] Every grant is one of the moved grants at the same level, and none is missing.
-        Assert.AreEqual(Expected.Count(), MetadataPermission.Count(), 'PROJ USAGE holds exactly the moved grants.');
+        Assert.AreEqual(Expected.Count(), MetadataPermission.Count(), 'PROJ USAGE ori holds exactly the moved grants.');
         MetadataPermission.FindSet();
         repeat
             Actual := FormatGrant(MetadataPermission);
@@ -268,7 +268,7 @@ codeunit 97154 "TS Usage Perm Tests"
         Assert.RecordIsEmpty(ExpandedPermission);
     end;
 
-    /// <summary>#65: BIFROST Full ori alone is refused with a next step naming PROJ USAGE, in English and Icelandic.</summary>
+    /// <summary>#65: BIFROST Full ori alone is refused with a next step naming PROJ USAGE ori, in English and Icelandic.</summary>
     [Test]
     procedure Scenario_65_FullWithoutUsageSet_RefusedNamesProjUsage()
     var
@@ -308,7 +308,7 @@ codeunit 97154 "TS Usage Perm Tests"
         Assert.AreEqual(UsageNextStepIsTxt, Token.AsValue().AsText(), 'Icelandic next step names both sets.');
     end;
 
-    /// <summary>#65: BIFROST Full ori together with PROJ USAGE enables every usage type again.</summary>
+    /// <summary>#65: BIFROST Full ori together with PROJ USAGE ori enables every usage type again.</summary>
     [Test]
     procedure Scenario_65_FullAndUsageSet_EnablesUsageTypes()
     var
@@ -317,9 +317,9 @@ codeunit 97154 "TS Usage Perm Tests"
         Assert: Codeunit "Library Assert";
         Operation: Integer;
     begin
-        // [GIVEN] A caller with BIFROST Full ori and PROJ USAGE.
+        // [GIVEN] A caller with BIFROST Full ori and PROJ USAGE ori.
         Lower.PushPermissionSetWithoutDefaults('BIFROST Full ori');
-        Lower.AddPermissionSet('PROJ USAGE');
+        Lower.AddPermissionSet('PROJ USAGE ori');
         // [THEN] Register, Submit, Approve, Reject, Transfer, Reverse and List are available.
         for Operation := 1 to 7 do
             Assert.IsTrue(Mgt.CanUse(Operation), StrSubstNo(OperationAvailableMsg, Operation));

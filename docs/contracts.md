@@ -43,7 +43,7 @@ Returns `proposals` (planning line, task, item, variant, location, quantity, ven
 
 ## Projects.MyDay.Get / Projects.VisitBrief.Get (#82)
 
-Version 1, outbound/read-only, subject unused. Both require BIFROST Read ori + PROJ FIELD TECH and resolve resource ownership from the authenticated BC user. Optional resourceNo disambiguates multiple owned resources; it cannot select another technician. MyDay accepts optional ISO date (today), include array (items/address; default address) and detail full. VisitBrief requires projectNo and taskNo, with optional detail full.
+Version 1, outbound/read-only, subject unused. Both require BIFROST Read ori + PROJ FIELD TECH ori and resolve resource ownership from the authenticated BC user. Optional resourceNo disambiguates multiple owned resources; it cannot select another technician. MyDay accepts optional ISO date (today), include array (items/address; default address) and detail full. VisitBrief requires projectNo and taskNo, with optional detail full.
 
 MyDay returns technician{resourceNo,name}, visits[] with project/task/line/date, description, customerName, phone, plannedHours, own date-scoped loggedHours, nullable timeSheetNo/timeSheetLineNo, openUsage and optional address/items; nextVisit is the first ordered visit or null. Brief returns project{}, task{}, site{}, planned{resources[],items[]} with positive remaining quantities, myTime{} (own all-date task total), myUsage[], recordIds{project,task}, empty history[]/followUps[], summary and nextSteps[]. Site is the project's native ship-to snapshot. No feature-app calls, attachment reads, writes or confirmation are involved.
 

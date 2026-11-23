@@ -75,7 +75,7 @@ codeunit 70013430 "Proj. Field Contract ori"
         Errors.Add(Contract.ErrorEntry("Bifrost Error Code ori"::UnknownParameter, 'An unknown key was supplied.', 'Remove the unknown parameter.'));
         Errors.Add(Contract.ErrorEntry("Bifrost Error Code ori"::RecordNotFound, 'The resource, project or task does not exist.', 'Use an existing identifier.'));
         Errors.Add(Contract.ErrorEntry("Bifrost Error Code ori"::ConflictingIdentifiers, 'The caller owns several resources.', 'Send resourceNo.'));
-        Errors.Add(Contract.ErrorEntry("Bifrost Error Code ori"::PermissionDenied, 'Missing rights or another owner.', 'Assign BIFROST Read ori and PROJ FIELD TECH; use an owned resource.'));
+        Errors.Add(Contract.ErrorEntry("Bifrost Error Code ori"::PermissionDenied, 'Missing rights or another owner.', 'Assign BIFROST Read ori and PROJ FIELD TECH ori; use an owned resource.'));
         Errors.Add(Contract.ErrorEntry("Bifrost Error Code ori"::PreconditionFailed, 'No resource is mapped to the caller.', 'Ask an administrator to set your user as Time Sheet Owner User ID on your resource.'));
         exit(true);
     end;

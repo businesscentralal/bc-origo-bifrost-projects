@@ -33,8 +33,8 @@ codeunit 70013454 "Proj. Follow-up Contract ori"
     /// <summary>Builds the schema for one of the four operations.</summary>
     procedure AddParameters(var Parameters: JsonArray; Operation: Integer)
     var
-        Children: JsonArray;
         Input: Codeunit "Projects Followup Input ori";
+        Children: JsonArray;
         Parameter: JsonObject;
     begin
         case Operation of

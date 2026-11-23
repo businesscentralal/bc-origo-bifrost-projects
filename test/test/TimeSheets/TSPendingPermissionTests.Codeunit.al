@@ -15,7 +15,7 @@ codeunit 97150 "TS Pending Permission Tests"
     procedure Scenario_AC05_EnglishNoNativeRead_NamesProjectsRole()
     begin
         // Story #59, AC05 | Time: independent of dates | Risk: None
-        AssertPermissionHint(1033, 'Assign the PROJ TS ADMIN permission set together with BIFROST Read ori or BIFROST Full ori.');
+        AssertPermissionHint(1033, 'Assign the PROJ TS ADMIN ori permission set together with BIFROST Read ori or BIFROST Full ori.');
     end;
 
     /// <summary>Names the same role in the Icelandic native permission refusal.</summary>
@@ -23,7 +23,7 @@ codeunit 97150 "TS Pending Permission Tests"
     procedure Scenario_AC05_IcelandicNoNativeRead_NamesProjectsRole()
     begin
         // Story #59, AC05 | Time: independent of dates | Risk: None
-        AssertPermissionHint(1039, 'Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.');
+        AssertPermissionHint(1039, 'Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ori ásamt BIFROST Read ori eða BIFROST Full ori.');
     end;
 
     local procedure AssertPermissionHint(LanguageId: Integer; ExpectedHint: Text)
@@ -51,7 +51,7 @@ codeunit 97150 "TS Pending Permission Tests"
         Assert.AreEqual(ExpectedHint, Response.GetText('nextStep'), 'Localized Projects permission hint.');
     end;
 
-    /// <summary>#65: BIFROST Read ori together with PROJ TS ADMIN enables the pending-approval read again.</summary>
+    /// <summary>#65: BIFROST Read ori together with PROJ TS ADMIN ori enables the pending-approval read again.</summary>
     [Test]
     procedure Scenario_65_ReadAndAdmin_EnablesPendingApproval()
     var
@@ -61,9 +61,9 @@ codeunit 97150 "TS Pending Permission Tests"
     begin
         // [GIVEN] The Foundation Read role and the Base App data set.
         LowerPermissions.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        LowerPermissions.AddPermissionSet('PROJ TS ADMIN');
+        LowerPermissions.AddPermissionSet('PROJ TS ADMIN ori');
         // [WHEN] Discovery checks the native read permissions.
         // [THEN] The type is enabled.
-        Assert.IsTrue(Impl.IsEnabled(), 'BIFROST Read ori and PROJ TS ADMIN grant every native read the type needs.');
+        Assert.IsTrue(Impl.IsEnabled(), 'BIFROST Read ori and PROJ TS ADMIN ori grant every native read the type needs.');
     end;
 }

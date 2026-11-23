@@ -20,7 +20,7 @@ using System.Security.User;
 /// Assign it together with BIFROST Full ori. It holds the grants that a permission set extension may not add for
 /// objects of another app (AS0110/AA0050, #65); the levels are those the Projects TimeSheet Full ori extension had.
 /// </summary>
-permissionset 70013589 "PROJ TS ADMIN"
+permissionset 70013589 "PROJ TS ADMIN ori"
 {
     Assignable = true;
     Caption = 'Projects Time Sheet Admin', Comment = 'is-IS=Stjórnun tímaskýrslna verkefna';

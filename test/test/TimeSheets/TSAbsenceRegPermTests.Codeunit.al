@@ -44,6 +44,6 @@ codeunit 97139 "TS Absence Reg Perm Tests"
         TempArgument.GetResponseJson().Get('code', Token);
         Assert.AreEqual('PermissionDenied', Token.AsValue().AsText(), 'Refusal code.');
         TempArgument.GetResponseJson().Get('nextStep', Token);
-        Assert.AreEqual('Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Token.AsValue().AsText(), 'Refusal next step.');
+        Assert.AreEqual('Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.', Token.AsValue().AsText(), 'Refusal next step.');
     end;
 }
