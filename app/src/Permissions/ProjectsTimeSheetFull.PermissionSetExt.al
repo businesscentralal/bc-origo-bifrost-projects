@@ -2,7 +2,7 @@ namespace Origo.Bifrost.Projects;
 
 using Origo.Bifrost;
 
-/// <summary>Grants the moved time-sheet codeunits to the Foundation Full role. Base Application data comes from PROJ TS ADMIN (#65).</summary>
+/// <summary>Grants the moved time-sheet codeunits to the Foundation Full role. Base Application data comes from PROJ TS ADMIN ori (#65).</summary>
 permissionsetextension 70013580 "Projects TimeSheet Full ori" extends "BIFROST Full ori"
 {
     Permissions =

@@ -16,7 +16,7 @@ codeunit 70013476 "Proj. Van Contract ori"
         ItemFilterLbl: Label 'Optional text. Keeps items whose number or description contains it.', Comment = 'is-IS=Valfrjáls texti. Heldur vörum sem númer eða lýsing inniheldur hann.';
         BelowMinimumLbl: Label 'When true, list only items below their reorder point.', Comment = 'is-IS=Þegar satt, aðeins vörur undir endurpöntunarmörkum.';
         RefusedLbl: Label 'The van parts request cannot be processed.', Comment = 'is-IS=Ekki er hægt að vinna úr beiðni um vörur úr bíl.';
-        PermissionNextLbl: Label 'Assign BIFROST Read ori together with PROJ FIELD TECH.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ FIELD TECH.';
+        PermissionNextLbl: Label 'Assign BIFROST Read ori together with PROJ FIELD TECH ori.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ FIELD TECH ori.';
         MissingNextLbl: Label 'Send the missing key.', Comment = 'is-IS=Sendu lykilinn sem vantar.';
         FormatNextLbl: Label 'Send the key with the documented type and range.', Comment = 'is-IS=Sendu lykilinn með skráðri tegund og bili.';
         UnknownNextLbl: Label 'Remove the unknown key.', Comment = 'is-IS=Fjarlægðu óþekkta lykilinn.';

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — #106
+
+- Complete context-sensitive help slugs for pages 70013400, 70013447 and 70013471; translate the eleven remaining English is-IS help/status labels.
+- Rename all seven assignable Projects permission sets with the ` ori` affix before the first AppSource release; update included roles, permission hints, tests and current documentation. IDs and grants are unchanged.
+- Resolve existing follow-up and visit test analyzer warnings without changing behavior.
+- Raise the Foundation dependency to 28.0.15.0 in both apps; retain the Projects version. No new objects.
+
 ## Unreleased — #104
 
 - `Projects.VanStock.Get`, `Projects.VisitReport.Get` and `Projects.FollowUp.List` are now registered Outbound (they only read, effect stays `read`), so clients call them as reads without the inbound production confirmation. The `summary` description of `Projects.VanStock.Get` now says what was read (EN and is-IS). New test `ReadTypes_AreOutbound` in codeunit 97111 asserts no Projects read type is Inbound. No new objects.

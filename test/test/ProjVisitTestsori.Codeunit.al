@@ -307,7 +307,7 @@ codeunit 97186 "Proj. Visit Tests ori"
         Fields: JsonObject;
     begin
         // Do not turn change logging on here. The platform caches that choice for the session,
-        // and the later PROJ VISIT test cannot insert change log entries.
+        // and the later PROJ VISIT ori test cannot insert change log entries.
         ClearVisitChangeLog();
         Visit.Init();
         Visit."Resource No." := 'X83HINT';
@@ -323,7 +323,7 @@ codeunit 97186 "Proj. Visit Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC09_Help_EnglishChapters_TranslatedDiscovery()
+    procedure Scenario_AC09_Help_TranslatedChapters_TranslatedDiscovery()
     begin
         AssertHelp("Message Type ori"::"Projects.Visit.Start");
         AssertHelp("Message Type ori"::"Projects.Visit.Stop");
@@ -342,6 +342,7 @@ codeunit 97186 "Proj. Visit Tests ori"
         Overview: Text;
         IcelandicOverview: Text;
         Notes: Text;
+        IcelandicNotes: Text;
         Previous: Integer;
     begin
         Api := MessageType;
@@ -361,7 +362,9 @@ codeunit 97186 "Proj. Visit Tests ori"
         Assert.IsTrue(Contract.GetOverview(IcelandicOverview), 'Icelandic overview.');
         Assert.AreNotEqual(English, Icelandic, 'Discovery is translated.');
         Assert.AreEqual(EnglishKeywords.Split(',').Count(), IcelandicKeywords.Split(',').Count(), 'Keyword counts match.');
-        Assert.AreEqual(Overview, IcelandicOverview, 'Chapters stay English.');
+        Assert.AreNotEqual(Overview, IcelandicOverview, 'Overview is translated (#106).');
+        Assert.IsTrue(Contract.GetNotes(IcelandicNotes), 'Icelandic notes.');
+        Assert.AreNotEqual(Notes, IcelandicNotes, 'Notes are translated (#106).');
         GlobalLanguage(Previous);
     end;
 

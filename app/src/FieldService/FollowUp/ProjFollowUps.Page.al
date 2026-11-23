@@ -4,7 +4,7 @@ namespace Origo.Bifrost.Projects;
 page 70013447 "Proj. Follow-ups ori"
 {
     PageType = List;
-    ContextSensitiveHelpPage = 'projects';
+    ContextSensitiveHelpPage = 'follow-up-requests';
     SourceTable = "Proj. Follow-up Request ori";
     ApplicationArea = All;
     UsageCategory = Lists;

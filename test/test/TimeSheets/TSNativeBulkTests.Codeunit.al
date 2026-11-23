@@ -149,7 +149,7 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.IsTrue(FoundTemplate and FoundBatch, 'Both journal keys are declared.');
         // [THEN] The advertised role is the Foundation role the Projects extension grants.
         Contract.GetEffect(Effect);
-        Assert.AreEqual('BIFROST Full ori, PROJ TS ADMIN', Effect.GetText('permissionSet'), 'The permission sets name the Foundation role and the Base App data set (#65).');
+        Assert.AreEqual('BIFROST Full ori, PROJ TS ADMIN ori', Effect.GetText('permissionSet'), 'The permission sets name the Foundation role and the Base App data set (#65).');
     end;
 
     /// <summary>Verifies platform posting confirmation reaches typed validation in the caller language without ledger writes.</summary>
@@ -602,7 +602,7 @@ codeunit 97147 "TS Native Bulk Tests"
         Assert.AreEqual('InvalidParameterFormat', ReadText(TempArgument.GetResponseJson(), 'code'), 'Code.');
     end;
 
-    /// <summary>#54/#65: under the documented roles BIFROST Full ori and PROJ TS ADMIN (no SUPER) the gate runs the counter and answers ConfirmationMismatch with the real count instead of a raw permission error.</summary>
+    /// <summary>#54/#65: under the documented roles BIFROST Full ori and PROJ TS ADMIN ori (no SUPER) the gate runs the counter and answers ConfirmationMismatch with the real count instead of a raw permission error.</summary>
     [Test]
     procedure Scenario_54_PostGate_RunsUnderBifrostFullRole()
     var
@@ -619,15 +619,15 @@ codeunit 97147 "TS Native Bulk Tests"
         Expected := CountViaGate(1000000, Response);
         Request.Add('expectedCount', Expected + 1);
         InitArgument(TempArgument, Request);
-        // [WHEN] The gate runs for a caller holding only BIFROST Full ori and PROJ TS ADMIN.
+        // [WHEN] The gate runs for a caller holding only BIFROST Full ori and PROJ TS ADMIN ori.
         PermissionsMock.Start();
         PermissionsMock.ClearAssignments();
         PermissionsMock.Assign('BIFROST Full ori');
-        PermissionsMock.Assign('PROJ TS ADMIN');
+        PermissionsMock.Assign('PROJ TS ADMIN ori');
         Ran := TryRunPostGate(TempArgument, Passed);
         PermissionsMock.Stop();
         // [THEN] Restore permissions first; the counter ran and the mismatch names the real count.
-        Assert.IsTrue(Ran, 'The gate must run under BIFROST Full ori and PROJ TS ADMIN without a permission error: ' + GetLastErrorText());
+        Assert.IsTrue(Ran, 'The gate must run under BIFROST Full ori and PROJ TS ADMIN ori without a permission error: ' + GetLastErrorText());
         Assert.IsFalse(Passed, 'A wrong count must not pass the gate.');
         Response := TempArgument.GetResponseJson();
         Assert.AreEqual('ConfirmationMismatch', ReadText(Response, 'code'), 'Code.');
@@ -825,7 +825,7 @@ codeunit 97147 "TS Native Bulk Tests"
         // [THEN] Restore permissions before asserting either outcome.
         Assert.IsFalse(IsEnabled, 'Write types must be disabled for a caller without data permissions.');
         Assert.IsTrue(Executed, 'Permission refusal must not raise a raw runtime exception.');
-        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.');
+        AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.');
     end;
 
     /// <summary>#65 AC03: BIFROST Full ori alone no longer grants Base App time-sheet data, so the write types are disabled and refused with the hint naming both sets.</summary>
@@ -849,7 +849,7 @@ codeunit 97147 "TS Native Bulk Tests"
         AssertNativePermissionRefusal("Message Type ori"::"Projects.TimeSheet.Post", 'BIFROST Full ori');
     end;
 
-    /// <summary>#65 AC03: BIFROST Full ori together with PROJ TS ADMIN enables Reopen and Archive again.</summary>
+    /// <summary>#65 AC03: BIFROST Full ori together with PROJ TS ADMIN ori enables Reopen and Archive again.</summary>
     [Test]
     procedure Scenario_65_FullAndAdmin_EnablesReopenAndArchive()
     var
@@ -859,23 +859,23 @@ codeunit 97147 "TS Native Bulk Tests"
         ReopenEnabled: Boolean;
         ArchiveEnabled: Boolean;
     begin
-        // [GIVEN] A caller holding only BIFROST Full ori and PROJ TS ADMIN.
+        // [GIVEN] A caller holding only BIFROST Full ori and PROJ TS ADMIN ori.
         ReopenType := "Message Type ori"::"Projects.TimeSheet.Reopen";
         ArchiveType := "Message Type ori"::"Projects.TimeSheet.Archive";
         PermissionsMock.Start();
         PermissionsMock.ClearAssignments();
         PermissionsMock.Assign('BIFROST Full ori');
-        PermissionsMock.Assign('PROJ TS ADMIN');
+        PermissionsMock.Assign('PROJ TS ADMIN ori');
         // [WHEN] Discovery checks the caller's effective permissions.
         ReopenEnabled := ReopenType.IsEnabled();
         ArchiveEnabled := ArchiveType.IsEnabled();
         PermissionsMock.Stop();
         // [THEN] Restore permissions first; both types are enabled.
-        Assert.IsTrue(ReopenEnabled, 'Reopen must be enabled under BIFROST Full ori and PROJ TS ADMIN.');
-        Assert.IsTrue(ArchiveEnabled, 'Archive must be enabled under BIFROST Full ori and PROJ TS ADMIN.');
+        Assert.IsTrue(ReopenEnabled, 'Reopen must be enabled under BIFROST Full ori and PROJ TS ADMIN ori.');
+        Assert.IsTrue(ArchiveEnabled, 'Archive must be enabled under BIFROST Full ori and PROJ TS ADMIN ori.');
     end;
 
-    /// <summary>#65 AC02: PROJ TS ADMIN is assignable and holds exactly the 30 grants the Full extension had, including the two #50 read grants, at the same levels, plus the #84 Technician Setup table and page grants.</summary>
+    /// <summary>#65 AC02: PROJ TS ADMIN ori is assignable and holds exactly the 30 grants the Full extension had, including the two #50 read grants, at the same levels, plus the #84 Technician Setup table and page grants.</summary>
     [Test]
     procedure Scenario_65_AdminSet_HoldsMovedGrantsAtSameLevels()
     var
@@ -888,13 +888,13 @@ codeunit 97147 "TS Native Bulk Tests"
         AddExpectedGrants(Expected);
         // [WHEN] The platform metadata of the new set is read.
         MetadataPermissionSet.SetRange("App ID", ProjectsAppId());
-        MetadataPermissionSet.SetRange("Role ID", 'PROJ TS ADMIN');
-        Assert.IsTrue(MetadataPermissionSet.FindFirst(), 'PROJ TS ADMIN must exist in the Projects app.');
-        Assert.IsTrue(MetadataPermissionSet.Assignable, 'PROJ TS ADMIN must be assignable.');
+        MetadataPermissionSet.SetRange("Role ID", 'PROJ TS ADMIN ori');
+        Assert.IsTrue(MetadataPermissionSet.FindFirst(), 'PROJ TS ADMIN ori must exist in the Projects app.');
+        Assert.IsTrue(MetadataPermissionSet.Assignable, 'PROJ TS ADMIN ori must be assignable.');
         MetadataPermission.SetRange("App ID", ProjectsAppId());
-        MetadataPermission.SetRange("Role ID", 'PROJ TS ADMIN');
+        MetadataPermission.SetRange("Role ID", 'PROJ TS ADMIN ori');
         // [THEN] Every grant is one of the moved grants at the same level, and none is missing.
-        Assert.AreEqual(Expected.Count(), MetadataPermission.Count(), 'PROJ TS ADMIN holds exactly the moved grants.');
+        Assert.AreEqual(Expected.Count(), MetadataPermission.Count(), 'PROJ TS ADMIN ori holds exactly the moved grants.');
         MetadataPermission.FindSet();
         repeat
             Actual := FormatGrant(MetadataPermission);
@@ -902,14 +902,14 @@ codeunit 97147 "TS Native Bulk Tests"
         until MetadataPermission.Next() = 0;
     end;
 
-    /// <summary>#65 AC01: the effective BIFROST Full ori role no longer holds the moved Base App time-sheet, absence and project journal grants; PROJ TS ADMIN holds them.</summary>
+    /// <summary>#65 AC01: the effective BIFROST Full ori role no longer holds the moved Base App time-sheet, absence and project journal grants; PROJ TS ADMIN ori holds them.</summary>
     [Test]
     procedure Scenario_65_BifrostFull_HoldsNoMovedBaseAppTableData()
     var
         ExpandedPermission: Record "Expanded Permission";
         MovedTables: Text;
     begin
-        // [GIVEN] The Base App tables whose grants moved to PROJ TS ADMIN and that Foundation does not grant itself.
+        // [GIVEN] The Base App tables whose grants moved to PROJ TS ADMIN ori and that Foundation does not grant itself.
         MovedTables := StrSubstNo(MovedTablesTok, Database::"Job Journal Line", Database::"Time Sheet Header", Database::"Time Sheet Line",
             Database::"Time Sheet Detail", Database::"Time Sheet Comment Line", Database::"Time Sheet Header Archive", Database::"Time Sheet Line Archive",
             Database::"Time Sheet Detail Archive", Database::"Time Sheet Cmt. Line Archive", Database::"Time Sheet Posting Entry",
@@ -920,8 +920,8 @@ codeunit 97147 "TS Native Bulk Tests"
         ExpandedPermission.SetRange("Role ID", 'BIFROST Full ori');
         // [THEN] None remains in the extended Foundation role.
         Assert.RecordIsEmpty(ExpandedPermission);
-        // [THEN] PROJ TS ADMIN grants all twelve.
-        ExpandedPermission.SetRange("Role ID", 'PROJ TS ADMIN');
+        // [THEN] PROJ TS ADMIN ori grants all twelve.
+        ExpandedPermission.SetRange("Role ID", 'PROJ TS ADMIN ori');
         Assert.RecordCount(ExpandedPermission, 12);
     end;
 
@@ -1196,8 +1196,8 @@ codeunit 97147 "TS Native Bulk Tests"
                 exit('Fjarlægðu óþekkta lykilinn.');
             'Use an identifier that exists.':
                 exit('Notaðu auðkenni sem er til.');
-            'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.':
-                exit('Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.');
+            'Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.':
+                exit('Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.');
         end;
         Error('Missing Icelandic test expectation for %1.', EnglishText);
     end;

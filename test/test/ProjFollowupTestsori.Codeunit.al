@@ -408,18 +408,18 @@ codeunit 97198 "Proj. Follow-up Tests ori"
     /// <summary>Runs the public implementation boundary after committing only test setup.</summary>
     procedure Run(MessageType: Enum "Message Type ori"; Request: JsonObject) Response: JsonObject
     var
-        Argument: Record "Message Argument ori" temporary;
+        TempArgument: Record "Message Argument ori" temporary;
         Impl: Interface "Msg Interface ori";
     begin
-        Argument.ID := CreateGuid();
-        Argument.Type := MessageType;
-        Argument.Version := Argument.Version::"1.0";
-        Argument.Insert();
-        Argument.SetRequestJson(Request);
-        Impl := Argument.GetMessageTypeInterface();
+        TempArgument.ID := CreateGuid();
+        TempArgument.Type := MessageType;
+        TempArgument.Version := TempArgument.Version::"1.0";
+        TempArgument.Insert();
+        TempArgument.SetRequestJson(Request);
+        Impl := TempArgument.GetMessageTypeInterface();
         Commit();
-        Impl.ExecuteBifrostTask(Argument);
-        exit(Argument.GetResponseJson());
+        Impl.ExecuteBifrostTask(TempArgument);
+        exit(TempArgument.GetResponseJson());
     end;
 
     /// <summary>Builds a request with one item and three resource hours.</summary>

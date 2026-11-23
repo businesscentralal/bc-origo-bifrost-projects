@@ -37,38 +37,38 @@ codeunit 97160 "TS Self Service Tests"
         // [SCENARIO] #38 condition 3 (Architect 18.11.2026): Self, Approver and Post are separable role sets.
         // The implementation codeunits are internal to the app, so they are named by object ID.
         // [THEN] Self executes the four My* types and none of the Approval or Post types.
-        AssertGrant('PROJ TS SELF', 70013584, true); // TS My Sheet Get Impl ori
-        AssertGrant('PROJ TS SELF', 70013591, true); // TS My Sheet Create Impl ori
-        AssertGrant('PROJ TS SELF', 70013589, true); // TS My Line Set Impl ori
-        AssertGrant('PROJ TS SELF', 70013585, true); // TS My Sheet Submit Impl ori
-        AssertGrant('PROJ TS SELF', 70013586, false); // TS Approval Get Impl ori
-        AssertGrant('PROJ TS SELF', 70013587, false); // TS Approval Approve Impl ori
-        AssertGrant('PROJ TS SELF', 70013588, false); // TS Approval Reject Impl ori
-        AssertGrant('PROJ TS SELF', 70013572, false); // TS Sheet Post Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013584, true); // TS My Sheet Get Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013591, true); // TS My Sheet Create Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013589, true); // TS My Line Set Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013585, true); // TS My Sheet Submit Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013586, false); // TS Approval Get Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013587, false); // TS Approval Approve Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013588, false); // TS Approval Reject Impl ori
+        AssertGrant('PROJ TS SELF ori', 70013572, false); // TS Sheet Post Impl ori
         // [THEN] Approver executes the three Approval types and none of the My* or Post types.
-        AssertGrant('PROJ TS APPROVER', 70013586, true); // TS Approval Get Impl ori
-        AssertGrant('PROJ TS APPROVER', 70013587, true); // TS Approval Approve Impl ori
-        AssertGrant('PROJ TS APPROVER', 70013588, true); // TS Approval Reject Impl ori
-        AssertGrant('PROJ TS APPROVER', 70013584, false); // TS My Sheet Get Impl ori
-        AssertGrant('PROJ TS APPROVER', 70013589, false); // TS My Line Set Impl ori
-        AssertGrant('PROJ TS APPROVER', 70013572, false); // TS Sheet Post Impl ori
-        AssertGrant('PROJ TS APPROVER', 70013570, false); // TS Sheet Archive Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013586, true); // TS Approval Get Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013587, true); // TS Approval Approve Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013588, true); // TS Approval Reject Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013584, false); // TS My Sheet Get Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013589, false); // TS My Line Set Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013572, false); // TS Sheet Post Impl ori
+        AssertGrant('PROJ TS APPROVER ori', 70013570, false); // TS Sheet Archive Impl ori
     end;
 
     [Test]
     procedure AC01_PostRoleSet_IsSeparateFromSelfAndApprover()
     begin
         // [SCENARIO] Edge case: the posting role cannot use the employee or approver types.
-        AssertGrant('PROJ TS POST', 70013572, true); // TS Sheet Post Impl ori
-        AssertGrant('PROJ TS POST', 70013570, true); // TS Sheet Archive Impl ori
-        AssertGrant('PROJ TS POST', 70013584, false); // TS My Sheet Get Impl ori
-        AssertGrant('PROJ TS POST', 70013585, false); // TS My Sheet Submit Impl ori
-        AssertGrant('PROJ TS POST', 70013586, false); // TS Approval Get Impl ori
-        AssertGrant('PROJ TS POST', 70013587, false); // TS Approval Approve Impl ori
+        AssertGrant('PROJ TS POST ori', 70013572, true); // TS Sheet Post Impl ori
+        AssertGrant('PROJ TS POST ori', 70013570, true); // TS Sheet Archive Impl ori
+        AssertGrant('PROJ TS POST ori', 70013584, false); // TS My Sheet Get Impl ori
+        AssertGrant('PROJ TS POST ori', 70013585, false); // TS My Sheet Submit Impl ori
+        AssertGrant('PROJ TS POST ori', 70013586, false); // TS Approval Get Impl ori
+        AssertGrant('PROJ TS POST ori', 70013587, false); // TS Approval Approve Impl ori
         // [THEN] Ruling C: the sets are direct-tabledata bundles, and only the posting set carries journal and ledger data.
-        AssertBundleShape('PROJ TS SELF', false);
-        AssertBundleShape('PROJ TS APPROVER', false);
-        AssertBundleShape('PROJ TS POST', true);
+        AssertBundleShape('PROJ TS SELF ori', false);
+        AssertBundleShape('PROJ TS APPROVER ori', false);
+        AssertBundleShape('PROJ TS POST ori', true);
     end;
 
     /// <summary>Ruling C: Self + Read runs the own-sheet types and is refused on another user's sheet, on approval and on posting.</summary>
@@ -95,18 +95,18 @@ codeunit 97160 "TS Self Service Tests"
         CreateLine(QueueNo, 10000, 'Submitted');
         CreateJournal(PostRequest);
         Header.Get(OwnNo);
-        // [WHEN/THEN] Own Get, Line.Set and Submit run under PROJ TS SELF + BIFROST Read ori
+        // [WHEN/THEN] Own Get, Line.Set and Submit run under PROJ TS SELF ori + BIFROST Read ori
         Request.Add('timeSheetNo', OwnNo);
-        RunAsRole('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Get", Request, IsEnabled);
+        RunAsRole('PROJ TS SELF ori', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Get", Request, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Own Get must be discoverable for Self + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Get as Self + Read: ' + FullResponse(TempArgument));
         Request.Add('lines', OneEntry(NewEntry('Resource', 'Role check', Header."Starting Date", 2, Header."Starting Date" + 1, 1)));
-        RunAsRole('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request, IsEnabled);
+        RunAsRole('PROJ TS SELF ori', TempArgument, "Message Type ori"::"Projects.MyTimeSheetLine.Set", Request, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Own Line.Set must be discoverable for Self + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Line.Set as Self + Read: ' + FullResponse(TempArgument));
         Clear(Request);
         Request.Add('timeSheetNo', OwnNo);
-        RunAsRole('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Submit", Request, IsEnabled);
+        RunAsRole('PROJ TS SELF ori', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Submit", Request, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Own Submit must be discoverable for Self + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Submit as Self + Read: ' + FullResponse(TempArgument));
         Line.Get(OwnNo, 10000);
@@ -114,17 +114,17 @@ codeunit 97160 "TS Self Service Tests"
         // [WHEN/THEN] Another user's sheet is refused
         Clear(Request);
         Request.Add('timeSheetNo', ForeignNo);
-        AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Submit", Request, 'Self + Read submit of a foreign sheet');
+        AssertRoleRefused('PROJ TS SELF ori', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Submit", Request, 'Self + Read submit of a foreign sheet');
         Line.Get(ForeignNo, 10000);
         Assert.AreEqual(Line.Status::Open, Line.Status, 'The foreign line stays open.');
         // [WHEN/THEN] Approval of a sheet the caller does not approve is refused
         Clear(Request);
         Request.Add('timeSheetNo', QueueNo);
-        AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Self + Read approve');
+        AssertRoleRefused('PROJ TS SELF ori', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Self + Read approve');
         Line.Get(QueueNo, 10000);
         Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The line stays submitted.');
         // [WHEN/THEN] Posting is refused: the set carries no journal or ledger data
-        AssertRoleRefused('PROJ TS SELF', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Self + Read post');
+        AssertRoleRefused('PROJ TS SELF ori', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Self + Read post');
     end;
 
     /// <summary>Ruling C: Self + Read (+ read-only D365 READ for the native report's master-data and caption reads) discovers Projects.MyTimeSheet.Create, creates the own sheet and a retry is a typed no-op.</summary>
@@ -143,8 +143,8 @@ codeunit 97160 "TS Self Service Tests"
         ResourceNo := CreateResource(UserId(), OtherApproverTok);
         StartDate := FirstWeekdayWeek();
         Request.Add('startingDate', Format(StartDate, 0, 9));
-        // [WHEN] Create runs under PROJ TS SELF + BIFROST Read ori (+ D365 READ, read-only)
-        RunAsRoles('PROJ TS SELF', 'D365 READ', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request, IsEnabled);
+        // [WHEN] Create runs under PROJ TS SELF ori + BIFROST Read ori (+ D365 READ, read-only)
+        RunAsRoles('PROJ TS SELF ori', 'D365 READ', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request, IsEnabled);
         // [THEN] It is discoverable and creates exactly one own sheet
         Assert.IsTrue(IsEnabled, 'Create must be discoverable for Self + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Own Create as Self + Read: ' + FullResponse(TempArgument));
@@ -155,7 +155,7 @@ codeunit 97160 "TS Self Service Tests"
         Header.FindFirst();
         Assert.AreEqual(CopyStr(UpperCase(UserId()), 1, 50), Header."Owner User ID", 'The caller owns the new sheet.');
         // [WHEN] The same call is retried under the same role [THEN] it is a typed no-op
-        RunAsRoles('PROJ TS SELF', 'D365 READ', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request, IsEnabled);
+        RunAsRoles('PROJ TS SELF ori', 'D365 READ', TempArgument, "Message Type ori"::"Projects.MyTimeSheet.Create", Request, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Create stays discoverable for Self + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Retry as Self + Read: ' + FullResponse(TempArgument));
         Assert.AreEqual('false', ReadText(TempArgument.GetResponseJson(), 'created'), 'A retry creates nothing.');
@@ -180,12 +180,12 @@ codeunit 97160 "TS Self Service Tests"
         ForeignNo := CreateSheet(CreateResource(SecondEmployeeTok, OtherApproverTok), UniqueWeek(), SecondEmployeeTok, OtherApproverTok);
         CreateLine(ForeignNo, 10000, 'Submitted');
         CreateJournal(PostRequest);
-        // [WHEN/THEN] The queue and the approval run under PROJ TS APPROVER + BIFROST Read ori
-        RunAsRole('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Get", Request, IsEnabled);
+        // [WHEN/THEN] The queue and the approval run under PROJ TS APPROVER ori + BIFROST Read ori
+        RunAsRole('PROJ TS APPROVER ori', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Get", Request, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Approval Get must be discoverable for Approver + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Approval Get as Approver + Read: ' + FullResponse(TempArgument));
         Request.Add('timeSheetNo', QueueNo);
-        RunAsRole('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, IsEnabled);
+        RunAsRole('PROJ TS APPROVER ori', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Approve must be discoverable for Approver + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Approve as Approver + Read: ' + FullResponse(TempArgument));
         Line.Get(QueueNo, 10000);
@@ -193,12 +193,12 @@ codeunit 97160 "TS Self Service Tests"
         // [WHEN/THEN] A sheet with another approver is refused by identity
         Clear(Request);
         Request.Add('timeSheetNo', ForeignNo);
-        AssertRoleRefused('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Approver + Read approve of another approver''s sheet');
+        AssertRoleRefused('PROJ TS APPROVER ori', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Approver + Read approve of another approver''s sheet');
         Assert.AreEqual('PermissionDenied', ReadText(TempArgument.GetResponseJson(), 'code'), 'Identity refusal code: ' + FullResponse(TempArgument));
         Line.Get(ForeignNo, 10000);
         Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The foreign line stays submitted.');
         // [WHEN/THEN] Posting is refused: the set carries no journal or ledger data
-        AssertRoleRefused('PROJ TS APPROVER', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Approver + Read post');
+        AssertRoleRefused('PROJ TS APPROVER ori', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, 'Approver + Read post');
     end;
 
     /// <summary>Ruling C: Post + Read (+ read-only D365 READ for the engine's master data) posts an approved project line and is refused on approval when it is not the approver.</summary>
@@ -237,9 +237,9 @@ codeunit 97160 "TS Self Service Tests"
         CreateJournal(PostRequest);
         QueueNo := CreateSheet(CreateResource(SecondEmployeeTok, OtherApproverTok), UniqueWeek(), SecondEmployeeTok, OtherApproverTok);
         CreateLine(QueueNo, 10000, 'Submitted');
-        // [WHEN/THEN] Post runs under PROJ TS POST + BIFROST Read ori and posts through the BC engine
-        // The BC posting engine reads master data (customer, posting groups, prices); D365 READ adds read only, so every write right still comes from PROJ TS POST.
-        RunAsRoles('PROJ TS POST', 'D365 READ', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, IsEnabled);
+        // [WHEN/THEN] Post runs under PROJ TS POST ori + BIFROST Read ori and posts through the BC engine
+        // The BC posting engine reads master data (customer, posting groups, prices); D365 READ adds read only, so every write right still comes from PROJ TS POST ori.
+        RunAsRoles('PROJ TS POST ori', 'D365 READ', TempArgument, "Message Type ori"::"Projects.TimeSheet.Post", PostRequest, IsEnabled);
         Assert.IsTrue(IsEnabled, 'Post must be discoverable for Post + Read.');
         Assert.AreEqual('Success', ReadText(TempArgument.GetResponseJson(), 'status'), 'Post as Post + Read: ' + FullResponse(TempArgument) + ' ' + GetLastErrorText());
         LedgerEntry.SetRange("Job No.", Job."No.");
@@ -247,7 +247,7 @@ codeunit 97160 "TS Self Service Tests"
         Assert.AreEqual(2, LedgerEntry.Quantity, 'Posted quantity matches the approved hours.');
         // [WHEN/THEN] Approval of a sheet the caller does not approve is refused
         Request.Add('timeSheetNo', QueueNo);
-        AssertRoleRefused('PROJ TS POST', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Post + Read approve');
+        AssertRoleRefused('PROJ TS POST ori', TempArgument, "Message Type ori"::"Projects.TimeSheetApproval.Approve", Request, 'Post + Read approve');
         Line.Get(QueueNo, 10000);
         Assert.AreEqual(Line.Status::Submitted, Line.Status, 'The line stays submitted.');
     end;

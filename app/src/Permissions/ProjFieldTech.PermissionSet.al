@@ -25,11 +25,11 @@ using System.Security.User;
 /// Separation is the sheet's owner identity, checked in code; the set carries no approval or posting data.
 /// Assign together with BIFROST Read ori.
 /// </summary>
-permissionset 70013403 "PROJ FIELD TECH"
+permissionset 70013403 "PROJ FIELD TECH ori"
 {
     Assignable = true;
     Caption = 'Projects Field Technician', Comment = 'is-IS=Verkefni - vettvangstæknimaður';
-    IncludedPermissionSets = "PROJ TS SELF", "PROJ VISIT";
+    IncludedPermissionSets = "PROJ TS SELF ori", "PROJ VISIT ori";
     Permissions =
         tabledata "Proj. Follow-up Request ori" = RIM,
         tabledata "Proj. Follow-up Req. Line ori" = RIM,

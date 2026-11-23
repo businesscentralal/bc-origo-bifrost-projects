@@ -46,14 +46,14 @@ codeunit 70013552 "TS Absence Contract ori"
         InvalidHoursNextLbl: Label 'Send each date once and keep every date inside the time sheet period.', Comment = 'is-IS=Sendu hverja dagsetningu einu sinni og haltu öllum dagsetningum innan tímabils tímaskýrslunnar.';
         PermissionMessageLbl: Label 'The caller cannot run this type.', Comment = 'is-IS=Kallandinn getur ekki keyrt þessa tegund.';
         PermissionDescriptionLbl: Label 'This type needs write access to time sheets.', Comment = 'is-IS=Þessi tegund þarf skrifheimild á tímaskýrslum.';
-        PermissionNextLbl: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.';
+        PermissionNextLbl: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.';
         EmployeeMessageLbl: Label 'The resource is not linked to an employee.', Comment = 'is-IS=Auðlindin er ekki tengd við starfsmann.';
         EmployeeDescriptionLbl: Label 'No employee has this resource number. Nothing is written.', Comment = 'is-IS=Enginn starfsmaður hefur þetta auðlindarnúmer. Ekkert er skráð.';
         EmployeeNextLbl: Label 'Link the resource to an employee in BC.', Comment = 'is-IS=Tengdu auðlindina við starfsmann í BC.';
         CauseMessageLbl: Label 'The cause of absence was not found.', Comment = 'is-IS=Fjarvistarástæðan fannst ekki.';
         CauseMissingDescriptionLbl: Label 'The code is not in Causes of Absence.', Comment = 'is-IS=Kóðinn er ekki í fjarvistarástæðum.';
         CauseNextLbl: Label 'Use a code from Causes of Absence.', Comment = 'is-IS=Notaðu kóða úr fjarvistarástæðum.';
-        PermissionPreconditionLbl: Label 'The caller has the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.';
+        PermissionPreconditionLbl: Label 'The caller has the BIFROST Full ori and PROJ TS ADMIN ori permission sets.', Comment = 'is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN ori.';
         ChangesDescriptionLbl: Label 'Adds an absence line and its daily hours to a time sheet. The write is committed when the call succeeds. A refused call writes nothing.', Comment = 'is-IS=Bætir fjarvistarlínu og klukkustundum eftir dögum við tímaskýrslu. Skráning er staðfest þegar kallið tekst. Kall sem er hafnað skráir ekkert.';
         RelatedDescriptionLbl: Label 'The type is also listed with the other message types.', Comment = 'is-IS=Tegundin birtist einnig með öðrum skilaboðategundum.';
         WorkflowStepDescriptionLbl: Label 'Register the absence line and its hours.', Comment = 'is-IS=Skráðu fjarvistarlínuna og klukkustundir hennar.';
@@ -153,7 +153,7 @@ codeunit 70013552 "TS Absence Contract ori"
         Effect.Add('effect', 'write');
         Effect.Add('changes', ChangesDescriptionLbl);
         Effect.Add('idempotent', false);
-        Effect.Add('permissionSet', 'BIFROST Full ori, PROJ TS ADMIN');
+        Effect.Add('permissionSet', 'BIFROST Full ori, PROJ TS ADMIN ori');
         Effect.Add('preconditions', Preconditions);
         exit(true);
     end;

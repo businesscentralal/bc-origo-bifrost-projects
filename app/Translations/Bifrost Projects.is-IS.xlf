@@ -1354,9 +1354,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType OwnLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2056570736 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign BIFROST Read ori and PROJ FIELD TECH.</source>
-          <target>Úthlutaðu BIFROST Read ori og PROJ FIELD TECH.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH.</note>
+          <source>Assign BIFROST Read ori and PROJ FIELD TECH ori.</source>
+          <target>Úthlutaðu BIFROST Read ori og PROJ FIELD TECH ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Field Service Mgt ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2056570736 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
@@ -1528,9 +1528,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType OpenLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 639390534 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Use BIFROST Read with PROJ FIELD TECH for your own requests. Managers need BIFROST Full, native project rights and responsibility for the project.</source>
-          <target>Notaðu BIFROST Read með PROJ FIELD TECH fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu BIFROST Read með PROJ FIELD TECH fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.</note>
+          <source>Use BIFROST Read with PROJ FIELD TECH ori for your own requests. Managers need BIFROST Full, native project rights and responsibility for the project.</source>
+          <target>Notaðu BIFROST Read með PROJ FIELD TECH ori fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Notaðu BIFROST Read með PROJ FIELD TECH ori fyrir eigin beiðnir. Stjórnendur þurfa BIFROST Full, innbyggðar verkefnaheimildir og ábyrgð á verkefninu.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Follow-up Mgt ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 639390534 - NamedType 953218120" size-unit="char" translate="yes" xml:space="preserve">
@@ -2830,9 +2830,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Van Contract ori - NamedType NoVanNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2948011578 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign BIFROST Read ori together with PROJ FIELD TECH.</source>
-          <target>Úthlutaðu BIFROST Read ori ásamt PROJ FIELD TECH.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ FIELD TECH.</note>
+          <source>Assign BIFROST Read ori together with PROJ FIELD TECH ori.</source>
+          <target>Úthlutaðu BIFROST Read ori ásamt PROJ FIELD TECH ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ FIELD TECH ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Van Contract ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2948011578 - NamedType 4238554883" size-unit="char" translate="yes" xml:space="preserve">
@@ -2957,14 +2957,14 @@
         </trans-unit>
         <trans-unit id="Codeunit 3251085734 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.</source>
-          <target>Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.</note>
+          <target>Aðeins lestur. Skrifstofan notar skilaboðategundir birgða fyrir flutningspantanir til að fylla á bílinn. Listinn takmarkast við 200 vörur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins lestur. Skrifstofan notar skilaboðategundir birgða fyrir flutningspantanir til að fylla á bílinn. Listinn takmarkast við 200 vörur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VanStock Get Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3251085734 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.</source>
-          <target>Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.</note>
+          <target>Les birgðir í birgðageymslu bílsins þíns og dregur frá opnar, innsendar, samþykktar og fluttar notkunarlínur sem hafa ekki enn verið bókaðar. Vörur undir endurpöntunarmarki eru merktar belowMinimum.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Les birgðir í birgðageymslu bílsins þíns og dregur frá opnar, innsendar, samþykktar og fluttar notkunarlínur sem hafa ekki enn verið bókaðar. Vörur undir endurpöntunarmarki eru merktar belowMinimum.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VanStock Get Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1859669162 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -2999,14 +2999,14 @@
         </trans-unit>
         <trans-unit id="Codeunit 3068235927 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.</source>
-          <target>The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=The same clientRequestId returns the first result. Hours and usage lines that are already open stay. Nothing is deleted.</note>
+          <target>Sama clientRequestId skilar fyrstu niðurstöðunni. Vinnustundir og notkunarlínur sem eru þegar opnar haldast. Engu er eytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sama clientRequestId skilar fyrstu niðurstöðunni. Vinnustundir og notkunarlínur sem eru þegar opnar haldast. Engu er eytt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Complete Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3068235927 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.</source>
-          <target>Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Stops a running visit first, then marks it completed. Mileage is an open resource usage line on the task line, using the mileage resource and its unit from Projects Setup. Nothing is submitted.</note>
+          <target>Stöðvar fyrst heimsókn sem er í gangi og merkir hana síðan lokið. Akstur er skráður sem opin aðfanganotkunarlína á verkþáttarlínuna með akstursaðfangi og einingu þess úr uppsetningu verkefna. Engu er skilað inn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Stöðvar fyrst heimsókn sem er í gangi og merkir hana síðan lokið. Akstur er skráður sem opin aðfanganotkunarlína á verkþáttarlínuna með akstursaðfangi og einingu þess úr uppsetningu verkefna. Engu er skilað inn.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Complete Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4129493450 - NamedType 2305217816" size-unit="char" translate="yes" xml:space="preserve">
@@ -3232,9 +3232,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4129493450 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign BIFROST Read ori together with PROJ TS SELF and PROJ VISIT.</source>
-          <target>Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF og PROJ VISIT.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF og PROJ VISIT.</note>
+          <source>Assign BIFROST Read ori together with PROJ TS SELF ori and PROJ VISIT ori.</source>
+          <target>Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF ori og PROJ VISIT ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF ori og PROJ VISIT ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Contract ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4129493450 - NamedType 1267518538" size-unit="char" translate="yes" xml:space="preserve">
@@ -3569,14 +3569,14 @@
         </trans-unit>
         <trans-unit id="Codeunit 3871527384 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>A missing week is not created. Rounding uses Projects Setup. The same clientRequestId returns the first result. Nothing is deleted.</source>
-          <target>A missing week is not created. Rounding uses Projects Setup. The same clientRequestId returns the first result. Nothing is deleted.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=A missing week is not created. Rounding uses Projects Setup. The same clientRequestId returns the first result. Nothing is deleted.</note>
+          <target>Vika sem vantar er ekki stofnuð. Námundun fylgir uppsetningu verkefna. Sama clientRequestId skilar fyrstu niðurstöðunni. Engu er eytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Vika sem vantar er ekki stofnuð. Námundun fylgir uppsetningu verkefna. Sama clientRequestId skilar fyrstu niðurstöðunni. Engu er eytt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Start Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3871527384 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Writes one running visit for the caller. Travel and work are separate visits. A second start while one is running is refused unless autoStop is true, which stops the running visit and adds its rounded hours first. Hours stay on an open time sheet line.</source>
-          <target>Writes one running visit for the caller. Travel and work are separate visits. A second start while one is running is refused unless autoStop is true, which stops the running visit and adds its rounded hours first. Hours stay on an open time sheet line.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Writes one running visit for the caller. Travel and work are separate visits. A second start while one is running is refused unless autoStop is true, which stops the running visit and adds its rounded hours first. Hours stay on an open time sheet line.</note>
+          <target>Skráir eina heimsókn í gangi fyrir þann sem kallar. Ferð og vinna eru aðskildar heimsóknir. Önnur byrjun meðan heimsókn er í gangi er ekki leyfð nema autoStop sé true; þá er heimsókninni í gangi fyrst lokið og námunduðum vinnustundum hennar bætt við. Vinnustundirnar haldast á opinni tímaskýrslulínu.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Skráir eina heimsókn í gangi fyrir þann sem kallar. Ferð og vinna eru aðskildar heimsóknir. Önnur byrjun meðan heimsókn er í gangi er ekki leyfð nema autoStop sé true; þá er heimsókninni í gangi fyrst lokið og námunduðum vinnustundum hennar bætt við. Vinnustundirnar haldast á opinni tímaskýrslulínu.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Start Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1686093320 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -3593,14 +3593,14 @@
         </trans-unit>
         <trans-unit id="Codeunit 1686093320 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>Zero hours after rounding keeps the visit and does not create a day. The same clientRequestId returns the first result. Nothing is deleted or submitted.</source>
-          <target>Zero hours after rounding keeps the visit and does not create a day. The same clientRequestId returns the first result. Nothing is deleted or submitted.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Zero hours after rounding keeps the visit and does not create a day. The same clientRequestId returns the first result. Nothing is deleted or submitted.</note>
+          <target>Ef vinnustundir eru núll eftir námundun er heimsókninni haldið en enginn dagur stofnaður. Sama clientRequestId skilar fyrstu niðurstöðunni. Engu er eytt eða skilað inn.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Ef vinnustundir eru núll eftir námundun er heimsókninni haldið en enginn dagur stofnaður. Sama clientRequestId skilar fyrstu niðurstöðunni. Engu er eytt eða skilað inn.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1686093320 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</source>
-          <target>Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Adds rounded hours to the open job line for the task. Travel uses the travel work type from Projects Setup. Work uses the task line without that work type. A missing line is created when the caller is planned on the task. Submitted and approved lines are left unchanged.</note>
+          <target>Bætir námunduðum vinnustundum við opna verkefnalínu fyrir verkþáttinn. Ferð notar vinnugerð fyrir ferð úr uppsetningu verkefna. Vinna notar verkþáttarlínuna án þeirrar vinnugerðar. Lína sem vantar er stofnuð ef aðfang þess sem kallar er áætlað á verkþáttinn. Innsendum og samþykktum línum er ekki breytt.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Bætir námunduðum vinnustundum við opna verkefnalínu fyrir verkþáttinn. Ferð notar vinnugerð fyrir ferð úr uppsetningu verkefna. Vinna notar verkþáttarlínuna án þeirrar vinnugerðar. Lína sem vantar er stofnuð ef aðfang þess sem kallar er áætlað á verkþáttinn. Innsendum og samþykktum línum er ekki breytt.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. Visit Stop Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 1750344968 - Method 1665861916 - NamedType 286034047" size-unit="char" translate="yes" xml:space="preserve">
@@ -3623,14 +3623,14 @@
         </trans-unit>
         <trans-unit id="Codeunit 3430622563 - NamedType 2344026547" size-unit="char" translate="yes" xml:space="preserve">
           <source>The same clientRequestId returns the first result. Lot and serial numbers are required for tracked items; a serial number needs quantity 1. A wrong entry is rejected by the approver, then you register it again. Nothing is deleted or submitted. Ask the back office to restock the van with a transfer order.</source>
-          <target>The same clientRequestId returns the first result. Lot and serial numbers are required for tracked items; a serial number needs quantity 1. A wrong entry is rejected by the approver, then you register it again. Nothing is deleted or submitted. Ask the back office to restock the van with a transfer order.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=The same clientRequestId returns the first result. Lot and serial numbers are required for tracked items; a serial number needs quantity 1. A wrong entry is rejected by the approver, then you register it again. Nothing is deleted or submitted. Ask the back office to restock the van with a transfer order.</note>
+          <target>Sama clientRequestId skilar fyrstu niðurstöðunni. Lotu- og raðnúmer eru nauðsynleg fyrir raktar vörur; magn verður að vera 1 fyrir raðnúmer. Samþykkjandi hafnar rangri færslu og síðan skráir þú hana aftur. Engu er eytt eða skilað inn. Biddu skrifstofuna um að fylla á bílinn með flutningspöntun.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Sama clientRequestId skilar fyrstu niðurstöðunni. Lotu- og raðnúmer eru nauðsynleg fyrir raktar vörur; magn verður að vera 1 fyrir raðnúmer. Samþykkjandi hafnar rangri færslu og síðan skráir þú hana aftur. Engu er eytt eða skilað inn. Biddu skrifstofuna um að fylla á bílinn með flutningspöntun.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VisitItem Reg Impl ori - NamedType NotesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3430622563 - NamedType 3593894611" size-unit="char" translate="yes" xml:space="preserve">
           <source>Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</source>
-          <target>Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Finds your time sheet line for the task, creating it when it is missing, resolves each part by item number, reference or description, and writes open usage lines at your van location. When any input matches more than one item nothing is written and ambiguous lists the candidates. A shortage at the van is a warning: the line is written and listed in shortages.</note>
+          <target>Finnur tímaskýrslulínuna þína fyrir verkþáttinn, stofnar hana ef hana vantar, finnur hvern varahlut eftir vörunúmeri, tilvísun eða lýsingu og skráir opnar notkunarlínur á birgðageymslu bílsins þíns. Ef eitthvert inntak samsvarar fleiri en einni vöru er ekkert skráð og ambiguous sýnir mögulegar vörur. Skortur í bílnum er viðvörun: línan er skráð og birt í shortages.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Finnur tímaskýrslulínuna þína fyrir verkþáttinn, stofnar hana ef hana vantar, finnur hvern varahlut eftir vörunúmeri, tilvísun eða lýsingu og skráir opnar notkunarlínur á birgðageymslu bílsins þíns. Ef eitthvert inntak samsvarar fleiri en einni vöru er ekkert skráð og ambiguous sýnir mögulegar vörur. Skortur í bílnum er viðvörun: línan er skráð og birt í shortages.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit Proj. VisitItem Reg Impl ori - NamedType OverviewLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 4130552506 - Method 4077369804 - NamedType 3569966352" size-unit="char" translate="yes" xml:space="preserve">
@@ -4666,15 +4666,15 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Contract ori - NamedType PermissionMessageLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2970237504 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Contract ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2970237504 - NamedType 2530995935" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The caller has the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>The caller has the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Contract ori - NamedType PermissionPreconditionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2970237504 - NamedType 3258586172" size-unit="char" translate="yes" xml:space="preserve">
@@ -4792,9 +4792,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Mgt ori - NamedType AssignSetMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 2461216604 - NamedType 3068500576" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Absence Mgt ori - NamedType AssignSetNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 2461216604 - NamedType 3317384252" size-unit="char" translate="yes" xml:space="preserve">
@@ -5314,9 +5314,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType BulkChangesLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2259688482" size-unit="char" translate="yes" xml:space="preserve">
-          <source>The caller has the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>The caller has the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Kallandinn hefur heimildasamstæðurnar BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType BulkPreconditionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 454068127" size-unit="char" translate="yes" xml:space="preserve">
@@ -5530,15 +5530,15 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType PermissionHelpLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2091803237" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType PermissionTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 4286997497" size-unit="char" translate="yes" xml:space="preserve">
@@ -5698,9 +5698,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitMissingTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2970168249" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Owner only. Parameters: timeSheetNo, or resourceNo and date; optional lineNos. MissingParameter: Send the missing key. InvalidParameterFormat: Send the key with the documented type. UnknownParameter: Remove the unknown key. RecordNotFound: Use an identifier that exists. ConflictingIdentifiers: Send only one identifier for the time sheet. PermissionDenied: Only the owner can submit; ask the owner. PermissionDenied for missing access: Assign the BIFROST Full ori and PROJ TS ADMIN permission sets. PreconditionFailed: Add lines first. InvalidLine: Fix the line and submit again. PreconditionFailed in an uncommitted batch: Submit outside an uncommitted batch. Submitted lines return changed false. Empty lines follow the Business Central submission policy. A successful call commits; a failed submission rolls back every selected line.</source>
-          <target>Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</note>
+          <source>Owner only. Parameters: timeSheetNo, or resourceNo and date; optional lineNos. MissingParameter: Send the missing key. InvalidParameterFormat: Send the key with the documented type. UnknownParameter: Remove the unknown key. RecordNotFound: Use an identifier that exists. ConflictingIdentifiers: Send only one identifier for the time sheet. PermissionDenied: Only the owner can submit; ask the owner. PermissionDenied for missing access: Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets. PreconditionFailed: Add lines first. InvalidLine: Fix the line and submit again. PreconditionFailed in an uncommitted batch: Submit outside an uncommitted batch. Submitted lines return changed false. Empty lines follow the Business Central submission policy. A successful call commits; a failed submission rolls back every selected line.</source>
+          <target>Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Aðeins eigandinn getur sent inn. Færibreytur: timeSheetNo eða resourceNo og date; valfrjáls lineNos. MissingParameter: Sendu lykilinn sem vantar. InvalidParameterFormat: Sendu lykilinn með skráðu tagi. UnknownParameter: Fjarlægðu óþekkta lykilinn. RecordNotFound: Notaðu auðkenni sem er til. ConflictingIdentifiers: Sendu aðeins eitt auðkenni fyrir tímaskýrsluna. PermissionDenied: Aðeins eigandinn getur sent inn. Biddu eigandann. PermissionDenied vegna aðgangs: Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori. PreconditionFailed: Bættu við línum fyrst. InvalidLine: Lagfærðu línuna og sendu aftur inn. PreconditionFailed í óstaðfestri lotu: Sendu inn utan óstaðfestrar lotu. Innsendar línur skila changed false. Tómar línur fylgja innsendingarstefnu Business Central. Heppnað kall staðfestir breytingar; misheppnuð innsending afturkallar allar valdar línur.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitNotesTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 1201990684" size-unit="char" translate="yes" xml:space="preserve">
@@ -5734,9 +5734,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitOwnerTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 3788801764" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Contract Parts ori - NamedType SubmitPermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 932309119 - NamedType 2743244529" size-unit="char" translate="yes" xml:space="preserve">
@@ -5908,9 +5908,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Create Contract ori - NamedType Text21Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2509343623 - NamedType 533385441" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Create Contract ori - NamedType Text22Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2509343623 - NamedType 3975699074" size-unit="char" translate="yes" xml:space="preserve">
@@ -6053,8 +6053,8 @@
         </trans-unit>
         <trans-unit id="Codeunit 2509343623 - NamedType 542861257" size-unit="char" translate="yes" xml:space="preserve">
           <source>Success.</source>
-          <target>Success.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Success.</note>
+          <target>Tókst.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Tókst.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Create Contract ori - NamedType Text8Lbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 2509343623 - NamedType 3642888234" size-unit="char" translate="yes" xml:space="preserve">
@@ -6172,9 +6172,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Contract ori - NamedType OwnerTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 205185506 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Contract ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 205185506 - NamedType 2091803237" size-unit="char" translate="yes" xml:space="preserve">
@@ -6310,9 +6310,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Mgt ori - NamedType PermissionMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 3637980814 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Fill Mgt ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 3637980814 - NamedType 3103368700" size-unit="char" translate="yes" xml:space="preserve">
@@ -7414,9 +7414,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Native Mgt ori - NamedType AssignSetMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 1312572432 - NamedType 3068500576" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Native Mgt ori - NamedType AssignSetNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1312572432 - NamedType 3831865551" size-unit="char" translate="yes" xml:space="preserve">
@@ -7600,9 +7600,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Pending Approval ori - NamedType MissingLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 2009142491" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the PROJ TS ADMIN permission set together with BIFROST Read ori or BIFROST Full ori.</source>
-          <target>Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ásamt BIFROST Read ori eða BIFROST Full ori.</note>
+          <source>Assign the PROJ TS ADMIN ori permission set together with BIFROST Read ori or BIFROST Full ori.</source>
+          <target>Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ori ásamt BIFROST Read ori eða BIFROST Full ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunni PROJ TS ADMIN ori ásamt BIFROST Read ori eða BIFROST Full ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Pending Approval ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 3471428701 - NamedType 672541161" size-unit="char" translate="yes" xml:space="preserve">
@@ -7984,9 +7984,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Create Impl ori - NamedType PermissionLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 27495300 - NamedType 3932376842" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.</note>
+          <source>Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Sheet Create Impl ori - NamedType PermissionNextLbl</note>
         </trans-unit>
         <trans-unit id="Codeunit 27495300 - NamedType 3219801116" size-unit="char" translate="yes" xml:space="preserve">
@@ -8530,9 +8530,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType PermissionMsg</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 1738233936" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign the BIFROST Full ori and PROJ USAGE permission sets (BIFROST Read ori and PROJ USAGE for List), or the journal permissions the transfer needs.</source>
-          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE (BIFROST Read ori og PROJ USAGE fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.</note>
+          <source>Assign the BIFROST Full ori and PROJ USAGE ori permission sets (BIFROST Read ori and PROJ USAGE ori for List), or the journal permissions the transfer needs.</source>
+          <target>Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE ori (BIFROST Read ori og PROJ USAGE ori fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ USAGE ori (BIFROST Read ori og PROJ USAGE ori fyrir List) eða færslubókarheimildunum sem flutningurinn þarfnast.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType PermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 4178130626" size-unit="char" translate="yes" xml:space="preserve">
@@ -8584,9 +8584,9 @@
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType StateNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 3454296656" size-unit="char" translate="yes" xml:space="preserve">
-          <source>Assign BIFROST Read ori and PROJ FIELD TECH for your own usage, or BIFROST Full ori and PROJ USAGE for back-office actions.</source>
-          <target>Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.</target>
-          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE fyrir bakvinnsluaðgerðir.</note>
+          <source>Assign BIFROST Read ori and PROJ FIELD TECH ori for your own usage, or BIFROST Full ori and PROJ USAGE ori for back-office actions.</source>
+          <target>Úthlutaðu BIFROST Read ori og PROJ FIELD TECH ori fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE ori fyrir bakvinnsluaðgerðir.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH ori fyrir eigin notkun eða BIFROST Full ori og PROJ USAGE ori fyrir bakvinnsluaðgerðir.</note>
           <note from="Xliff Generator" annotates="general" priority="3">Codeunit TS Usage Mgt ori - NamedType TechnicianPermissionNextTxt</note>
         </trans-unit>
         <trans-unit id="Codeunit 1715273284 - NamedType 2778521625" size-unit="char" translate="yes" xml:space="preserve">
@@ -9195,47 +9195,47 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Aðfang</note>
           <note from="Xliff Generator" annotates="general" priority="3">Enum TS Usage Type ori - EnumValue Resource - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 3104963193 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 2249927725 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Field Technician</source>
           <target>Verkefni - vettvangstæknimaður</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - vettvangstæknimaður</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ FIELD TECH - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ FIELD TECH ori - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 528379457 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 3702689845 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Time Sheet Admin</source>
           <target>Stjórnun tímaskýrslna verkefna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Stjórnun tímaskýrslna verkefna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS ADMIN - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS ADMIN ori - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 1217210391 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 3485155307 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Time Sheet Approver</source>
           <target>Verkefni - samþykkjandi tímaskýrslna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - samþykkjandi tímaskýrslna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS APPROVER - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS APPROVER ori - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 505041140 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 3436400448 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Time Sheet Post</source>
           <target>Verkefni - bókun tímaskýrslna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - bókun tímaskýrslna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS POST - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS POST ori - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 1716411664 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 1957998372 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Time Sheet Self</source>
           <target>Verkefni - eigin tímaskýrslur</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - eigin tímaskýrslur</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS SELF - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ TS SELF ori - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 3628692014 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 1059053594 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Usage Registration</source>
           <target>Skráning notkunar verkefna</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Skráning notkunar verkefna</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ USAGE - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ USAGE ori - Property Caption</note>
         </trans-unit>
-        <trans-unit id="PermissionSet 2935969610 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
+        <trans-unit id="PermissionSet 1439880958 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve">
           <source>Projects Field Visit</source>
           <target>Verkefni - vettvangsheimsókn</target>
           <note from="Developer" annotates="general" priority="2">is-IS=Verkefni - vettvangsheimsókn</note>
-          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ VISIT - Property Caption</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PermissionSet PROJ VISIT ori - Property Caption</note>
         </trans-unit>
       </group>
     </body>

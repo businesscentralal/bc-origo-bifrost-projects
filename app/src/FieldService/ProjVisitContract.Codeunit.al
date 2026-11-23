@@ -23,7 +23,7 @@ codeunit 70013441 "Proj. Visit Contract ori"
         CompleteTaskLbl: Label 'Task number. With visitId it must be that visit. With projectNo and no visitId it selects the visit.', Comment = 'is-IS=Númer verkþáttar. Með visitId verður það að vera sú heimsókn. Með projectNo og án visitId velur það heimsóknina.';
         RefusedLbl: Label 'The visit request cannot be processed.', Comment = 'is-IS=Ekki er hægt að vinna úr beiðni um heimsókn.';
         PermissionLbl: Label 'The caller cannot record a visit.', Comment = 'is-IS=Kallandi getur ekki skráð heimsókn.';
-        PermissionNextLbl: Label 'Assign BIFROST Read ori together with PROJ TS SELF and PROJ VISIT.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF og PROJ VISIT.';
+        PermissionNextLbl: Label 'Assign BIFROST Read ori together with PROJ TS SELF ori and PROJ VISIT ori.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori ásamt PROJ TS SELF ori og PROJ VISIT ori.';
         MissingNextLbl: Label 'Send the missing key.', Comment = 'is-IS=Sendu lykilinn sem vantar.';
         FormatNextLbl: Label 'Send the key with the documented type and range.', Comment = 'is-IS=Sendu lykilinn með skráðri tegund og bili.';
         UnknownNextLbl: Label 'Remove the unknown key.', Comment = 'is-IS=Fjarlægðu óþekkta lykilinn.';

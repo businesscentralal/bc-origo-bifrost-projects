@@ -39,8 +39,8 @@ codeunit 97187 "Proj. Visit Perm Tests ori"
         TempArgument.Insert();
         Mgt.ExecuteStart(TempArgument);
         Response := TempArgument.GetResponseJson();
-        Assert.AreEqual('PermissionDenied', TextOf(Response, 'code'), 'Missing PROJ VISIT is PermissionDenied.');
-        Assert.IsTrue(TextOf(Response, 'nextStep').Contains('PROJ VISIT'), 'The next step names PROJ VISIT.');
+        Assert.AreEqual('PermissionDenied', TextOf(Response, 'code'), 'Missing PROJ VISIT ori is PermissionDenied.');
+        Assert.IsTrue(TextOf(Response, 'nextStep').Contains('PROJ VISIT ori'), 'The next step names PROJ VISIT ori.');
     end;
 
     [Test]
@@ -59,7 +59,7 @@ codeunit 97187 "Proj. Visit Perm Tests ori"
         Prepare(ResourceNo, SheetNo, ProjectNo, TaskNo);
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Lower.AddPermissionSet('PROJ FIELD TECH ori');
         Assert.AreEqual('', MissingGrants(), MissingGrants());
         Response := Run("Message Type ori"::"Projects.Visit.Start", ProjectNo, TaskNo);
         Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
@@ -73,10 +73,10 @@ codeunit 97187 "Proj. Visit Perm Tests ori"
         Expanded.SetRange("Object Type", Expanded."Object Type"::"Table Data");
         Expanded.SetFilter("Object ID", '%1|%2|%3', Database::"Job Journal Line", Database::"Job Ledger Entry", Database::"Res. Journal Line");
         Expanded.SetRange("Insert Permission", Expanded."Insert Permission"::Yes);
-        Expanded.SetRange("Role ID", 'PROJ VISIT');
-        Assert.IsTrue(Expanded.IsEmpty(), 'PROJ VISIT grants no journal or ledger insert.');
-        Expanded.SetRange("Role ID", 'PROJ FIELD TECH');
-        Assert.IsTrue(Expanded.IsEmpty(), 'PROJ FIELD TECH grants no journal or ledger insert.');
+        Expanded.SetRange("Role ID", 'PROJ VISIT ori');
+        Assert.IsTrue(Expanded.IsEmpty(), 'PROJ VISIT ori grants no journal or ledger insert.');
+        Expanded.SetRange("Role ID", 'PROJ FIELD TECH ori');
+        Assert.IsTrue(Expanded.IsEmpty(), 'PROJ FIELD TECH ori grants no journal or ledger insert.');
     end;
 
     local procedure ClearVisitChangeLog()
@@ -87,7 +87,7 @@ codeunit 97187 "Proj. Visit Perm Tests ori"
     begin
         // AC08 can leave All Fields logging on this table. The change log keeps that choice
         // in a single-instance codeunit for the session, so a later restricted start still tries
-        // to insert a change log entry. PROJ VISIT does not include that table.
+        // to insert a change log entry. PROJ VISIT ori does not include that table.
         LogField.SetRange("Table No.", Database::"Proj. Field Visit ori");
         if not LogField.IsEmpty() then
             LogField.DeleteAll();

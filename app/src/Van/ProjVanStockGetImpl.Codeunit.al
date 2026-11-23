@@ -10,8 +10,8 @@ codeunit 70013473 "Proj. VanStock Get Impl ori" implements "Msg Interface ori", 
     var
         DescriptionLbl: Label 'Shows what is in your van after usage that is not posted yet.', Comment = 'is-IS=Sýnir hvað er í bílnum þínum eftir notkun sem er ekki bókuð enn.';
         KeywordsLbl: Label 'van, stock, inventory, available, minimum, parts', Comment = 'is-IS=bíll, birgðir, tiltækt, lágmark, vörur, hlutir';
-        OverviewLbl: Label 'Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.', Comment = 'is-IS=Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.';
-        NotesLbl: Label 'Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.', Comment = 'is-IS=Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.';
+        OverviewLbl: Label 'Reads the stock at your van location and subtracts open, submitted, approved and transferred usage lines that are not posted yet. Items below their reorder point are flagged belowMinimum.', Comment = 'is-IS=Les birgðir í birgðageymslu bílsins þíns og dregur frá opnar, innsendar, samþykktar og fluttar notkunarlínur sem hafa ekki enn verið bókaðar. Vörur undir endurpöntunarmarki eru merktar belowMinimum.';
+        NotesLbl: Label 'Read only. To restock the van the back office uses the Inventory transfer order message types. The list is cut at 200 items.', Comment = 'is-IS=Aðeins lestur. Skrifstofan notar skilaboðategundir birgða fyrir flutningspantanir til að fylla á bílinn. Listinn takmarkast við 200 vörur.';
 
     procedure IsEnabled(): Boolean
     var

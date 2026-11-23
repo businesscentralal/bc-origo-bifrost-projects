@@ -211,7 +211,7 @@ codeunit 97184 "Proj. Field Service Tests ori"
     begin
         Manifest := Fixture.Seed(2);
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Lower.AddPermissionSet('PROJ FIELD TECH ori');
         Assert.IsFalse(Journal.WritePermission(), 'No project journal writes');
         Assert.IsFalse(Project.WritePermission(), 'No project writes');
         Assert.IsFalse(Task.WritePermission(), 'No task writes');
@@ -245,7 +245,7 @@ codeunit 97184 "Proj. Field Service Tests ori"
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
         Response := Execute(false, Data);
         AssertCode(Response, 'PermissionDenied');
-        Assert.IsTrue(Response.GetText('nextStep').Contains('PROJ FIELD TECH'), 'Assignable set named');
+        Assert.IsTrue(Response.GetText('nextStep').Contains('PROJ FIELD TECH ori'), 'Assignable set named');
         AssertCode(Execute(true, Data), 'PermissionDenied');
     end;
 

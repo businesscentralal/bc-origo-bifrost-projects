@@ -128,7 +128,7 @@ codeunit 70013431 "Proj. My Day Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Provides localized operation help.</summary>
     procedure GetOverview(var Overview: Text): Boolean
     begin
-        Overview := 'Read-only technician self-service. Requires BIFROST Read ori and PROJ FIELD TECH. The authenticated user owns the selected resource. No dispatcher access or writes.';
+        Overview := 'Read-only technician self-service. Requires BIFROST Read ori and PROJ FIELD TECH ori. The authenticated user owns the selected resource. No dispatcher access or writes.';
         exit(true);
     end;
 

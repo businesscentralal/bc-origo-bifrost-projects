@@ -5,6 +5,7 @@ page 70013471 "Proj. Technician Setup ori"
 {
     Caption = 'Technician Setup', Comment = 'is-IS=Uppsetning tæknimanna';
     PageType = List;
+    ContextSensitiveHelpPage = 'technician-setup';
     ApplicationArea = All;
     UsageCategory = Administration;
     SourceTable = "Proj. Technician Setup ori";

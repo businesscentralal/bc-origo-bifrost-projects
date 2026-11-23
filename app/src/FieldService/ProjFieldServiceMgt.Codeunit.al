@@ -14,7 +14,7 @@ codeunit 70013429 "Proj. Field Service Mgt ori"
 
     var
         RefusedLbl: Label 'The technician request cannot be processed.', Comment = 'is-IS=Ekki er hægt að vinna úr beiðni tæknimanns.';
-        PermissionLbl: Label 'Assign BIFROST Read ori and PROJ FIELD TECH.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH.';
+        PermissionLbl: Label 'Assign BIFROST Read ori and PROJ FIELD TECH ori.', Comment = 'is-IS=Úthlutaðu BIFROST Read ori og PROJ FIELD TECH ori.';
         FormatLbl: Label 'Use the parameter type and ISO date documented in help.', Comment = 'is-IS=Notaðu gagnategund viðfangs og ISO-dagsetningu sem skráð eru í hjálp.';
         MissingLbl: Label 'Send projectNo and taskNo.', Comment = 'is-IS=Sendu projectNo og taskNo.';
         UnknownLbl: Label 'Remove the unknown parameter.', Comment = 'is-IS=Fjarlægðu óþekkta viðfangið.';

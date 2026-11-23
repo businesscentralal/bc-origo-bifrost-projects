@@ -515,11 +515,11 @@ codeunit 97146 "TS Fill Sheet Tests"
             // [WHEN/THEN] Discovery and direct execution both refuse the write.
             Assert.IsFalse(Impl.IsEnabled(), 'Read role must not enable a write.');
             Execute(TempArgument, MessageType, Request);
-            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.');
+            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.');
         end;
     end;
 
-    /// <summary>#65: the Icelandic refusal for both fill types names BIFROST Full ori and PROJ TS ADMIN.</summary>
+    /// <summary>#65: the Icelandic refusal for both fill types names BIFROST Full ori and PROJ TS ADMIN ori.</summary>
     [Test]
     [TestPermissions(TestPermissions::Restrictive)]
     procedure Scenario_65_ReadRole_RefusalHintIsIcelandic()
@@ -541,7 +541,7 @@ codeunit 97146 "TS Fill Sheet Tests"
             // [WHEN] The write is executed directly.
             Execute(TempArgument, MessageType, Request);
             // [THEN] The localized next step names both permission sets.
-            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.');
+            AssertRefusal(TempArgument, 'PermissionDenied', '', 'Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.');
         end;
         GlobalLanguage(PreviousLanguage);
     end;

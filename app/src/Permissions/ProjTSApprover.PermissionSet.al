@@ -17,7 +17,7 @@ using System.Security.User;
 /// Direct tabledata. Role separation for approval is the sheet's approver identity, checked in code; the set carries no posting data.
 /// Assign together with BIFROST Read ori.
 /// </summary>
-permissionset 70013587 "PROJ TS APPROVER"
+permissionset 70013587 "PROJ TS APPROVER ori"
 {
     Assignable = true;
     Caption = 'Projects Time Sheet Approver', Comment = 'is-IS=Verkefni - samþykkjandi tímaskýrslna';

@@ -288,15 +288,15 @@ commit on success and roll back every selected line on failure, as the `Projects
 administrator types do. Item and resource usage lines are not part of these types; they use the `Projects.Usage.*` types
 below (#52).
 
-Role sets: assign `PROJ TS SELF` (the four My* types), `PROJ TS APPROVER` (the three Approval types)
-or `PROJ TS POST` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
+Role sets: assign `PROJ TS SELF ori` (the four My* types), `PROJ TS APPROVER ori` (the three Approval types)
+or `PROJ TS POST ori` (`Projects.TimeSheet.Post` and `.Archive`) together with `BIFROST Read ori`. The
 sets are convenience bundles with direct tabledata, so a user who has them can also open time sheets in
 the client, exactly as with native BC time sheets. Role separation for approval is the sheet's approver
 identity (Approver User ID), checked in code. Posting is separated by journal and posting rights: only
-`PROJ TS POST` carries the journal, ledger and register data a post needs. A posting user also needs
+`PROJ TS POST ori` carries the journal, ledger and register data a post needs. A posting user also needs
 read access to the project's master data (customer, posting groups, prices), for example `D365 READ`. A self-service user
 who creates sheets with `Projects.MyTimeSheet.Create` likewise needs ordinary read access (the native Create Time Sheets report
-reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF`. The owner and approver
+reads dimension and setup captions), for example `D365 READ`; every write right still comes from `PROJ TS SELF ori`. The owner and approver
 checks in code apply in every role.
 
 ## Compare resource capacity with time sheets and usage
@@ -346,7 +346,7 @@ Usage lines record items and resources a user used on a time sheet line (tools, 
 
 States: Open, Submitted, Approved, Rejected, Transferred, Posted. Transferred means a journal line exists. Posting that journal line sets Posted and stores the ledger entry number; deleting the journal line before posting returns the line to Approved.
 
-Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. Owner `Projects.Usage.Register/Submit/List` calls accept `BIFROST Read ori` + `PROJ FIELD TECH` without journal permissions. Approver and back-office actions use `BIFROST Full ori` + `PROJ USAGE` (`BIFROST Read ori` + `PROJ USAGE` suffices for List); `PROJ USAGE` grants the Base Application time sheet, item, resource, journal and ledger data. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
+Journal mapping: an item line goes to the Item Journal (negative adjustment), a resource line to the Resource Journal (usage). A line whose time sheet line has a project goes to the Job Journal. Send `itemTemplate`/`itemBatch`, `resourceTemplate`/`resourceBatch` or `jobTemplate`/`jobBatch` for each kind present. Transfer and Reverse need write access to those journal tables and are refused with a next step otherwise. Owner `Projects.Usage.Register/Submit/List` calls accept `BIFROST Read ori` + `PROJ FIELD TECH ori` without journal permissions. Approver and back-office actions use `BIFROST Full ori` + `PROJ USAGE ori` (`BIFROST Read ori` + `PROJ USAGE ori` suffices for List); `PROJ USAGE ori` grants the Base Application time sheet, item, resource, journal and ledger data. The journal document number is `TSU` plus the entry number (`TSR` for a reversal).
 
 ## Read a time sheet
 
@@ -396,7 +396,7 @@ Use `Projects.PlanningLine.CreatePurchaseOrder` to preview uncovered item demand
 
 ## Technician day plan and visit brief (#82)
 
-Assign `BIFROST Read ori` together with `PROJ FIELD TECH`. The role includes the time-sheet self-service bundle and read-only project/site/stock data, with RIM (no delete) on usage lines and no project journal or project/task/planning writes. The dedicated Team Member SaaS Effective Permissions check is NOT_RUN until the test user exists on 23 November 2026.
+Assign `BIFROST Read ori` together with `PROJ FIELD TECH ori`. The role includes the time-sheet self-service bundle and read-only project/site/stock data, with RIM (no delete) on usage lines and no project journal or project/task/planning writes. The dedicated Team Member SaaS Effective Permissions check is NOT_RUN until the test user exists on 23 November 2026.
 
 Ask `Projects.MyDay.Get` with optional ISO `date` (today by default), `resourceNo` when the caller owns multiple resources, and `include: ["items", "address"]` (default: address). The response contains `technician`, ordered `visits`, `nextVisit` or null, a one-sentence `summary`, and ready-made `nextSteps`. Each visit is a Resource planning line for the selected resource and date; ties sort by task, line and project. Resource quantities are reported as plannedHours; configure resource units as hours. Logged hours come from the caller's own sheet details on the requested date, and openUsage counts unreversed Open usage on that task/date. `detail: "full"` includes the optional sections by default.
 

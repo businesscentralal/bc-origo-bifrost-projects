@@ -2,7 +2,7 @@ namespace Origo.Bifrost.Projects;
 
 using Origo.Bifrost;
 
-/// <summary>Grants read access to time sheet usage lines and the List message to the Foundation Read role (projects#52). Base Application data comes from PROJ USAGE (#65).</summary>
+/// <summary>Grants read access to time sheet usage lines and the List message to the Foundation Read role (projects#52). Base Application data comes from PROJ USAGE ori (#65).</summary>
 permissionsetextension 70013401 "Projects Usage Read ori" extends "BIFROST Read ori"
 {
     Permissions =

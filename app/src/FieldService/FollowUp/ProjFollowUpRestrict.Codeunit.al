@@ -19,7 +19,7 @@ codeunit 70013455 "Proj. Follow-up Restrict ori"
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Message Argument ori", OnGetDedicatedMessageTypeHintForField, '', false, false)]
-    local procedure Hint(TableNo: Integer; FieldNo: Integer; var Hint: Text)
+    local procedure SetDedicatedHint(TableNo: Integer; FieldNo: Integer; var Hint: Text)
     begin
         if Managed(TableNo, FieldNo) then
             Hint := HintLbl;

@@ -398,7 +398,7 @@ codeunit 97188 "Proj. Van Tests ori"
         Assert.AreEqual(-2, DecimalOf(Node, 'available'), 'Available.');
     end;
 
-    /// <summary>AC07: BIFROST Read ori with PROJ FIELD TECH registers van parts and reads van stock.</summary>
+    /// <summary>AC07: BIFROST Read ori with PROJ FIELD TECH ori registers van parts and reads van stock.</summary>
     [Test]
     procedure Scenario_AC07_FieldTech_RegistersAndReadsVanStock()
     var
@@ -415,7 +415,7 @@ codeunit 97188 "Proj. Van Tests ori"
         ItemNo := StockedItem(Van, 'Perm ' + Unique(), 5, false);
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ FIELD TECH');
+        Lower.AddPermissionSet('PROJ FIELD TECH ori');
         Response := Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, ItemJson(ItemNo, '', 1), ''));
         Assert.AreEqual('Success', TextOf(Response, 'status'), Dump(Response));
         Request.Add('itemFilter', ItemNo);
@@ -443,10 +443,10 @@ codeunit 97188 "Proj. Van Tests ori"
         Commit();
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
         Response := Run("Message Type ori"::"Projects.VisitItem.Register", Register(ProjectNo, TaskNo, ItemJson(ItemNo, '', 1), ''));
-        AssertRefusal(Response, 'PermissionDenied', '', 'PROJ FIELD TECH');
+        AssertRefusal(Response, 'PermissionDenied', '', 'PROJ FIELD TECH ori');
         Request.Add('itemFilter', ItemNo);
         Response := Run("Message Type ori"::"Projects.VanStock.Get", Request);
-        AssertRefusal(Response, 'PermissionDenied', '', 'PROJ FIELD TECH');
+        AssertRefusal(Response, 'PermissionDenied', '', 'PROJ FIELD TECH ori');
         Lower.SetO365Full();
         Usage.SetRange("Time Sheet No.", SheetNo);
         Assert.RecordIsEmpty(Usage);
@@ -477,7 +477,7 @@ codeunit 97188 "Proj. Van Tests ori"
     end;
 
     [Test]
-    procedure Scenario_AC10_Help_EnglishChapters_TranslatedDiscovery()
+    procedure Scenario_AC10_Help_TranslatedChapters_TranslatedDiscovery()
     begin
         AssertHelp("Message Type ori"::"Projects.VisitItem.Register");
         AssertHelp("Message Type ori"::"Projects.VanStock.Get");
@@ -660,6 +660,7 @@ codeunit 97188 "Proj. Van Tests ori"
         Overview: Text;
         IcelandicOverview: Text;
         Notes: Text;
+        IcelandicNotes: Text;
         Previous: Integer;
     begin
         Api := MessageType;
@@ -679,7 +680,9 @@ codeunit 97188 "Proj. Van Tests ori"
         Assert.IsTrue(Contract.GetOverview(IcelandicOverview), 'Icelandic overview.');
         Assert.AreNotEqual(English, Icelandic, 'Discovery is translated.');
         Assert.AreEqual(EnglishKeywords.Split(',').Count(), IcelandicKeywords.Split(',').Count(), 'Keyword counts match.');
-        Assert.AreEqual(Overview, IcelandicOverview, 'Chapters stay English.');
+        Assert.AreNotEqual(Overview, IcelandicOverview, 'Overview is translated (#106).');
+        Assert.IsTrue(Contract.GetNotes(IcelandicNotes), 'Icelandic notes.');
+        Assert.AreNotEqual(Notes, IcelandicNotes, 'Notes are translated (#106).');
         GlobalLanguage(Previous);
     end;
 

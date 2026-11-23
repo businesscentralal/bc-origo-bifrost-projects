@@ -30,7 +30,7 @@ codeunit 70013560 "TS Fill Contract ori"
         ConflictNextTxt: Label 'Send only one identifier for the time sheet.', Comment = 'is-IS=Sendu aðeins eitt auðkenni fyrir tímaskýrsluna.';
         OwnerTxt: Label 'The caller is not the owner.', Comment = 'is-IS=Kallandinn er ekki eigandinn.';
         OwnerNextTxt: Label 'Ask the owner.', Comment = 'is-IS=Biddu eigandann.';
-        PermissionNextTxt: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.';
+        PermissionNextTxt: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.';
         PreviousTxt: Label 'There is no previous time sheet for the resource.', Comment = 'is-IS=Engin fyrri tímaskýrsla er til fyrir auðlindina.';
         PreviousNextTxt: Label 'Add lines by hand.', Comment = 'is-IS=Bættu við línum handvirkt.';
         TransactionTxt: Label 'This action requires an isolated transaction.', Comment = 'is-IS=Þessi aðgerð krefst einangraðrar færslu.';
@@ -132,7 +132,7 @@ codeunit 70013560 "TS Fill Contract ori"
         Effect.Add('effect', 'write');
         Effect.Add('changes', EffectTxt);
         Effect.Add('idempotent', MessageType = MessageType::"Projects.TimeSheetLine.CreateFromPlanning");
-        Effect.Add('permissionSet', 'BIFROST Full ori, PROJ TS ADMIN');
+        Effect.Add('permissionSet', 'BIFROST Full ori, PROJ TS ADMIN ori');
         Effect.Add('preconditions', Preconditions);
         exit(true);
     end;

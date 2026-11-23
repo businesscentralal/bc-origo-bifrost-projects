@@ -6,11 +6,11 @@ using Microsoft.Projects.Resources.Resource;
 using Microsoft.Utilities;
 
 /// <summary>
-/// Assignable delta for field visits (projects#83). Assign together with BIFROST Read ori and PROJ TS SELF.
-/// PROJ FIELD TECH includes this set.
+/// Assignable delta for field visits (projects#83). Assign together with BIFROST Read ori and PROJ TS SELF ori.
+/// PROJ FIELD TECH ori includes this set.
 /// No project journal tabledata. Delete is included because Record.WritePermission is false without it.
 /// </summary>
-permissionset 70013443 "PROJ VISIT"
+permissionset 70013443 "PROJ VISIT ori"
 {
     Assignable = true;
     Caption = 'Projects Field Visit', Comment = 'is-IS=Verkefni - vettvangsheimsókn';

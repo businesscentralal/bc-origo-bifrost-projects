@@ -132,7 +132,7 @@ codeunit 70013557 "TS Create Contract ori"
         Text5Lbl: Label 'Nonempty list of literal resource numbers. Duplicates are processed once; every resource must exist and use time sheets.', Comment = 'is-IS=Listi auðlindanúmera sem má ekki vera tómur. Tvítekningar eru unnar einu sinni; allar auðlindir verða að vera til og nota tímaskýrslur.';
         Text6Lbl: Label 'Resource group number. Every selected resource must be unblocked and use time sheets.', Comment = 'is-IS=Númer auðlindaflokks. Allar valdar auðlindir verða að vera ólæstar og nota tímaskýrslur.';
         Text7Lbl: Label 'Create lines from project planning for new sheets. Default: false. Existing sheets are not changed.', Comment = 'is-IS=Búa til línur úr verkáætlun fyrir nýjar skýrslur. Sjálfgefið: false. Fyrirliggjandi skýrslum er ekki breytt.';
-        Text8Lbl: Label 'Success.', Comment = 'is-IS=Success.';
+        Text8Lbl: Label 'Success.', Comment = 'is-IS=Tókst.';
         Text9Lbl: Label 'New sheets with timeSheetNo, resourceNo, startingDate and endingDate.', Comment = 'is-IS=Nýjar skýrslur með timeSheetNo, resourceNo, startingDate og endingDate.';
         Text10Lbl: Label 'Existing sheets with the same resource and period, in the same shape as created.', Comment = 'is-IS=Fyrirliggjandi skýrslur fyrir sömu auðlind og tímabil, á sama sniði og created.';
         Text11Lbl: Label 'A required key is missing.', Comment = 'is-IS=Nauðsynlegur lykill vantar.';
@@ -146,7 +146,7 @@ codeunit 70013557 "TS Create Contract ori"
         Text19Lbl: Label 'More than one resource selector was supplied.', Comment = 'is-IS=Fleiri en ein leið var notuð til að velja auðlindir.';
         Text20Lbl: Label 'Send only one of resourceNo, resourceNos or resourceGroup.', Comment = 'is-IS=Sendu aðeins eitt af resourceNo, resourceNos eða resourceGroup.';
         Text21Lbl: Label 'The caller lacks permission to create time sheets.', Comment = 'is-IS=Kallandinn hefur ekki heimild til að búa til tímaskýrslur.';
-        Text22Lbl: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN.';
+        Text22Lbl: Label 'Assign the BIFROST Full ori and PROJ TS ADMIN ori permission sets.', Comment = 'is-IS=Úthlutaðu heimildasamstæðunum BIFROST Full ori og PROJ TS ADMIN ori.';
         Text23Lbl: Label 'startingDate is not the configured first weekday. Nothing is written.', Comment = 'is-IS=startingDate er ekki stilltur fyrsti vikudagur. Ekkert er skrifað.';
         Text24Lbl: Label 'Use the first weekday named in the refusal.', Comment = 'is-IS=Notaðu fyrsta vikudaginn sem höfnunin nefnir.';
         Text25Lbl: Label 'Numbering is missing or the caller is not a time sheet administrator.', Comment = 'is-IS=Númeraröð vantar eða kallandinn er ekki stjórnandi tímaskýrslna.';

@@ -19,7 +19,7 @@ codeunit 97180 "Proj. Plan Jnl Perm Tests ori"
     begin
         // Story #81, AC04 | Time: none | Risk: Permission boundaries
         Lower.PushPermissionSetWithoutDefaults('BIFROST Read ori');
-        Lower.AddPermissionSet('PROJ USAGE');
+        Lower.AddPermissionSet('PROJ USAGE ori');
         AssertDenied();
     end;
 
