@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #104
+
+- `Projects.VanStock.Get`, `Projects.VisitReport.Get` and `Projects.FollowUp.List` are now registered Outbound (they only read, effect stays `read`), so clients call them as reads without the inbound production confirmation. The `summary` description of `Projects.VanStock.Get` now says what was read (EN and is-IS). New test `ReadTypes_AreOutbound` in codeunit 97111 asserts no Projects read type is Inbound. No new objects.
+
 ## Unreleased — #100
 
 - Effect reclassified by Gunnar's rule that only posting is irreversible: `Projects.PlanningLine.CreatePurchaseOrder`, `Projects.Task.CopyFrom`, `Projects.Quote.Send` and `Projects.ItemCost.Update` now declare `write`. They ask for no confirmation, also with Require Confirmation for Irreversible Messages on; `expectedCount` is still accepted but ignored. Help in 1033 and 1039 says "Writes."/"Skrifar." `Projects.ItemUsage.Post`, `Projects.WIP.Post`, `Projects.WIP.Reverse` and `Projects.TimeSheet.Post` stay `irreversible`. Preview for the purchase type is `preview=true`; `Projects.Task.CopyFrom` has no preview any more. No new objects.

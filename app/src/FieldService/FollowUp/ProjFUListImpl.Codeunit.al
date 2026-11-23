@@ -48,7 +48,7 @@ codeunit 70013449 "Proj. FU List Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Implements the follow-up contract.</summary>
     procedure GetMessageDirection(): Enum "Msg Direction ori"
     begin
-        exit("Msg Direction ori"::Inbound);
+        exit("Msg Direction ori"::Outbound);
     end;
 
     /// <summary>Implements the follow-up contract.</summary>
