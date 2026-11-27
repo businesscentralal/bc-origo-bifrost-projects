@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #110
+
+- `Projects.Report.Get` with `report=register` returns every job ledger entry from From to To Entry No., one row per entry of any line type, instead of only the first entry. No new objects.
+
 ## Unreleased — #106
 
 - Complete context-sensitive help slugs for pages 70013400, 70013447 and 70013471; translate the eleven remaining English is-IS help/status labels.

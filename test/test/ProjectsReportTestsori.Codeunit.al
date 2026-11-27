@@ -191,6 +191,78 @@ codeunit 97126 "Projects Report Tests ori"
         Assert.AreEqual(-15.25, Row.GetDecimal('totalCostLCY'), 'Native signed cost');
     end;
 
+    /// <summary>A register with several ledger entries of mixed types yields one row per entry (#110).</summary>
+    [Test]
+    procedure RegisterDataset_NestedEntries_ReturnsEveryEntry()
+    var
+        Adapter: Codeunit "Projects Report ori";
+        Document: XmlDocument;
+        Rows: JsonArray;
+        Token: JsonToken;
+        Row: JsonObject;
+    begin
+        XmlDocument.ReadFrom('<ReportDataSet><DataItems><DataItem name="Job_Register"><Columns><Column name="Job_Register__No__">9</Column></Columns><DataItems>' +
+            '<DataItem name="Job_Ledger_Entry"><Columns><Column name="Job_Ledger_Entry__Entry_No__">72</Column><Column name="Job_Ledger_Entry_Type">Resource</Column></Columns></DataItem>' +
+            '<DataItem name="Job_Ledger_Entry"><Columns><Column name="Job_Ledger_Entry__Entry_No__">73</Column><Column name="Job_Ledger_Entry_Type">Item</Column></Columns></DataItem>' +
+            '</DataItems></DataItem></DataItems></ReportDataSet>', Document);
+        Rows := Adapter.ShapeDataset('register', Document);
+        Assert.AreEqual(2, Rows.Count(), 'Every ledger entry of the register');
+        Rows.Get(1, Token);
+        Row := Token.AsObject();
+        Assert.AreEqual(73, Row.GetInteger('entryNo'), 'Second entry present');
+        Assert.AreEqual('Item', Row.GetText('type'), 'Item line present');
+        Assert.AreEqual(9, Row.GetInteger('registerNo'), 'Register number taken from the enclosing item');
+    end;
+
+    /// <summary>Native register report over raw register and entries returns the full From..To range (#110).</summary>
+    [Test]
+    procedure NativeRegister_ReturnsFullEntryRange()
+    var
+        Register: Record "Job Register";
+        Ledger: Record "Job Ledger Entry";
+        Adapter: Codeunit "Projects Report ori";
+        Request: JsonObject;
+        Rows: JsonArray;
+        FirstEntry: Integer;
+        Index: Integer;
+    begin
+        Library.Initialize();
+        Ledger.ReadIsolation := IsolationLevel::ReadCommitted;
+        if Ledger.FindLast() then
+            FirstEntry := Ledger."Entry No." + 1
+        else
+            FirstEntry := 1;
+        for Index := 0 to 2 do begin
+            Clear(Ledger);
+            Ledger."Entry No." := FirstEntry + Index;
+            Ledger."Job No." := 'ZZ110P';
+            Ledger."Job Task No." := '100';
+            Ledger."Posting Date" := 20261101D;
+            Ledger."Document No." := 'ZZ110';
+            Ledger."Entry Type" := Ledger."Entry Type"::Usage;
+            if Index = 1 then
+                Ledger.Type := Ledger.Type::Item
+            else
+                Ledger.Type := Ledger.Type::Resource;
+            Ledger."No." := 'ZZ110';
+            Ledger.Quantity := Index + 1;
+            Ledger.Insert(false);
+        end;
+        Register.ReadIsolation := IsolationLevel::ReadCommitted;
+        if Register.FindLast() then
+            Register."No." += 1
+        else
+            Register."No." := 1;
+        Register."From Entry No." := FirstEntry;
+        Register."To Entry No." := FirstEntry + 2;
+        Register.Insert(true);
+        Request.Add('report', 'register');
+        Request.Add('format', 'json');
+        Request.Add('registerNo', Register."No.");
+        Rows := Adapter.RenderJson(Request);
+        Assert.AreEqual(3, Rows.Count(), 'All three entries From..To, any line type');
+    end;
+
     /// <summary>Empty datasets and header/totals-only datasets answer an empty shaped list.</summary>
     [Test]
     procedure EmptyAndCaptionDatasets_ReturnEmptyList()

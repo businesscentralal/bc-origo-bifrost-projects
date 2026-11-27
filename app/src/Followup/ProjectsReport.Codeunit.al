@@ -285,7 +285,8 @@ codeunit 70013535 "Projects Report ori"
     begin
         // Analysis and actual-to-budget nest one Job Task data item per task inside the Job item (Job > Job Task > Integer);
         // read every innermost data item so each task yields its own row, with project columns taken from the enclosing items.
-        if ReportName in ['analysis', 'actualToBudget'] then
+        // The Register report nests one Job Ledger Entry data item per entry inside the Job Register item (#110).
+        if ReportName in ['analysis', 'actualToBudget', 'register'] then
             Document.SelectNodes('ReportDataSet//DataItem[not(DataItems/DataItem)]', Nodes)
         else
             Document.SelectNodes('ReportDataSet/DataItems/DataItem', Nodes);
