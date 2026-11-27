@@ -45,7 +45,7 @@ codeunit 70013569 "TS Sheet Approve Impl ori" implements "Msg Interface ori", "M
     /// <summary>GetSelectionDescription for the time sheet decision contract.</summary>
     procedure GetSelectionDescription(): Text
     var
-        SelectionLbl: Label 'Projects.TimeSheet.Approve: Approves submitted time sheet lines.', Comment = 'is-IS=Projects.TimeSheet.Approve: Samþykkir innsendar tímaskýrslulínur.';
+        SelectionLbl: Label 'Projects.TimeSheet.Approve: Approves submitted time sheet lines.', Comment = 'is-IS=Projects.TimeSheet.Approve: Samþykkir innsendar tímaskýrslur og tímaskýrslulínur.';
     begin
         exit(SelectionLbl);
     end;

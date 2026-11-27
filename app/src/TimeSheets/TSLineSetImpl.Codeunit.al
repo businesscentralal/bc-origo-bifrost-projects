@@ -45,7 +45,7 @@ codeunit 70013599 "TS Line Set Impl ori" implements "Msg Interface ori", "Msg Co
     /// <summary>Implements GetSelectionDescription for the time-sheet line set message.</summary>
     procedure GetSelectionDescription(): Text
     var
-        SelectionLbl: Label 'Projects.TimeSheetLine.Set: Adds or changes time sheet lines and hours per day.', Comment = 'is-IS=Projects.TimeSheetLine.Set: Bætir við eða breytir línum tímaskýrslu og klukkustundum eftir dögum.';
+        SelectionLbl: Label 'Projects.TimeSheetLine.Set: Adds or changes time sheet lines and hours per day.', Comment = 'is-IS=Projects.TimeSheetLine.Set: Bætir við eða breytir línum tímaskýrslu og skráir klukkustundir eftir dögum.';
     begin
         exit(SelectionLbl);
     end;
