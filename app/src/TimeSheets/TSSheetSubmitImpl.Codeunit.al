@@ -29,7 +29,7 @@ codeunit 70013575 "TS Sheet Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Returns GetDescription for the Submit message contract.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Submits open time sheet lines for approval.', Comment = 'is-IS=Sendir opnar tímaskýrslulínur til samþykktar.';
+        DescriptionLbl: Label 'Submits open time sheet lines for approval.', Comment = 'is-IS=Sendir inn opnar tímaskýrslulínur til samþykktar.';
     begin
         exit(DescriptionLbl);
     end;
@@ -37,7 +37,7 @@ codeunit 70013575 "TS Sheet Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Returns GetKeywords for the Submit message contract.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'time sheet, submit, timesheets', Comment = 'is-IS=tímaskýrsla, senda inn, tímaskýrslur';
+        KeywordsLbl: Label 'time sheet, submit, timesheets', Comment = 'is-IS=tímaskýrsla, senda inn, tímaskýrslur, sendir inn';
     begin
         exit(KeywordsLbl);
     end;
@@ -45,7 +45,7 @@ codeunit 70013575 "TS Sheet Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Returns GetSelectionDescription for the Submit message contract.</summary>
     procedure GetSelectionDescription(): Text
     var
-        SelectionLbl: Label 'Projects.TimeSheet.Submit: Submits open time sheet lines for approval.', Comment = 'is-IS=Projects.TimeSheet.Submit: Sendir opnar tímaskýrslulínur til samþykktar.';
+        SelectionLbl: Label 'Projects.TimeSheet.Submit: Submits open time sheet lines for approval.', Comment = 'is-IS=Projects.TimeSheet.Submit: Sendir inn opnar tímaskýrslulínur til samþykktar.';
     begin
         exit(SelectionLbl);
     end;

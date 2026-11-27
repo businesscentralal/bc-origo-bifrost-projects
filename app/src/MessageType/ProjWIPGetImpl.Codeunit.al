@@ -34,7 +34,7 @@ codeunit 70013517 "Proj. WIP Get Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, work in progress, WIP, get', Comment = 'is-IS=verkefni, verk, verk í vinnslu, VÍV, lesa';
+        KeywordsLbl: Label 'project, job, work in progress, WIP, get', Comment = 'is-IS=verkefni, verk, verk í vinnslu, VÍV, lesa, verka í vinnslu';
     begin
         exit(KeywordsLbl);
     end;

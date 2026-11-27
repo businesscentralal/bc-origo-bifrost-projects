@@ -29,7 +29,7 @@ codeunit 70013569 "TS Sheet Approve Impl ori" implements "Msg Interface ori", "M
     /// <summary>GetDescription for the time sheet decision contract.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Approves submitted time sheet lines.', Comment = 'is-IS=Samþykkir innsendar tímaskýrslulínur.';
+        DescriptionLbl: Label 'Approves submitted time sheet lines.', Comment = 'is-IS=Samþykkir innsendar tímaskýrslur og tímaskýrslulínur.';
     begin
         exit(DescriptionLbl);
     end;
@@ -37,7 +37,7 @@ codeunit 70013569 "TS Sheet Approve Impl ori" implements "Msg Interface ori", "M
     /// <summary>GetKeywords for the time sheet decision contract.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'time sheet, approve, timesheets', Comment = 'is-IS=tímaskýrsla, samþykkja, tímaskýrslur';
+        KeywordsLbl: Label 'time sheet, approve, timesheets', Comment = 'is-IS=tímaskýrsla, samþykkja, tímaskýrslur, innsendar tímaskýrslur';
     begin
         exit(KeywordsLbl);
     end;
@@ -45,7 +45,7 @@ codeunit 70013569 "TS Sheet Approve Impl ori" implements "Msg Interface ori", "M
     /// <summary>GetSelectionDescription for the time sheet decision contract.</summary>
     procedure GetSelectionDescription(): Text
     var
-        SelectionLbl: Label 'Projects.TimeSheet.Approve: Approves submitted time sheet lines.', Comment = 'is-IS=Projects.TimeSheet.Approve: Samþykkir innsendar tímaskýrslulínur.';
+        SelectionLbl: Label 'Projects.TimeSheet.Approve: Approves submitted time sheet lines.', Comment = 'is-IS=Projects.TimeSheet.Approve: Samþykkir innsendar tímaskýrslur og tímaskýrslulínur.';
     begin
         exit(SelectionLbl);
     end;

@@ -28,7 +28,7 @@ codeunit 70013539 "Proj. Archive Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Returns the localized purpose.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Creates a new native project archive version.', Comment = 'is-IS=Vistar nýja innbyggða útgáfu verkefnis.';
+        DescriptionLbl: Label 'Creates a new native project archive version.', Comment = 'is-IS=Vistar nýja innbyggða útgáfu verkefnis, afrit af verkefni.';
     begin
         exit(DescriptionLbl);
     end;
@@ -36,7 +36,7 @@ codeunit 70013539 "Proj. Archive Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Returns localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, archive, version, task, snapshot', Comment = 'is-IS=verkefni, safn, útgáfa, verkhluti, afrit';
+        KeywordsLbl: Label 'project, archive, version, task, snapshot', Comment = 'is-IS=verkefni, safn, útgáfa, verkhluti, afrit, afrit af verkefni, vista verkefni';
     begin
         exit(KeywordsLbl);
     end;

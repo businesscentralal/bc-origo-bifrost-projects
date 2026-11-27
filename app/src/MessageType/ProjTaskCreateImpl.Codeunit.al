@@ -26,14 +26,14 @@ codeunit 70013507 "Proj. Task Create Impl ori" implements "Msg Interface ori", "
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Creates project tasks with optional planning lines.', Comment = 'is-IS=Býr til verkhluta og valfrjálsar áætlunarlínur.';
+        DescriptionLbl: Label 'Creates project tasks with optional planning lines.', Comment = 'is-IS=Stofnar nýja verkhluta og valfrjálsar áætlunarlínur.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, create', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, stofna';
+        KeywordsLbl: Label 'project, job, task, planning line, create', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, stofna, nýja verkhluta';
     begin
         exit(KeywordsLbl);
     end;

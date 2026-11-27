@@ -28,7 +28,7 @@ codeunit 70013550 "Proj. Archive Get Impl ori" implements "Msg Interface ori", "
     /// <summary>Returns the localized purpose.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Lists archived project versions or reads one version with tasks and planning lines.', Comment = 'is-IS=Sýnir vistaðar verkefnisútgáfur eða les eina útgáfu með verkhlutum og áætlunarlínum.';
+        DescriptionLbl: Label 'Lists archived project versions or reads one version with tasks and planning lines.', Comment = 'is-IS=Sýnir vistaðar útgáfur verkefnis eða les eina útgáfu með verkhlutum og áætlunarlínum.';
     begin
         exit(DescriptionLbl);
     end;
@@ -36,7 +36,7 @@ codeunit 70013550 "Proj. Archive Get Impl ori" implements "Msg Interface ori", "
     /// <summary>Returns localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, archive, version, task, snapshot', Comment = 'is-IS=verkefni, safn, útgáfa, verkhluti, afrit';
+        KeywordsLbl: Label 'project, archive, version, task, snapshot', Comment = 'is-IS=verkefni, safn, útgáfa, verkhluti, afrit, vistaðar útgáfur, útgáfa verkefnis, afrit af verkefni';
     begin
         exit(KeywordsLbl);
     end;

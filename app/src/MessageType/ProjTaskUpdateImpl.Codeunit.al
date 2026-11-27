@@ -26,14 +26,14 @@ codeunit 70013508 "Proj. Task Update Impl ori" implements "Msg Interface ori", "
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Updates project tasks with optional planning lines.', Comment = 'is-IS=Uppfærir verkhluta og valfrjálsar áætlunarlínur.';
+        DescriptionLbl: Label 'Updates project tasks with optional planning lines.', Comment = 'is-IS=Uppfærir verkhluta verkefnis og valfrjálsar áætlunarlínur.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra';
+        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra, verkhluta verkefnis';
     begin
         exit(KeywordsLbl);
     end;

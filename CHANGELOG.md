@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #115
+
+- Put everyday is-IS search phrases into the is-IS catalogue descriptions (max 250 characters) and keyword labels of 17 Projects message types whose description held none of their keywords, so `list_message_types` finds them by Icelandic phrases (for example `nýtt verkefni`, `loka verkefni`, `sendir inn`). English text unchanged. New test codeunit 97199 `Proj. Is-IS Search Test ori` fails when a type has no is-IS keywords, copies the English list, or has none of them in the is-IS description. No new app objects.
+
 ## Unreleased — #113
 
 - Add the **Set up Bifrost Projects** guide (Assisted Setup, Projects Setup action and Foundation's registered applications): Welcome, HTTP (reads and enables Allow HttpClient Requests for Projects), Access, Domains, Field service and Finish.

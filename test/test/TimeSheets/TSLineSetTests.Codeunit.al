@@ -323,7 +323,7 @@ codeunit 97163 "TS Line Set Tests"
         Response.SelectToken('result[0]', Token);
         IcelandicRow := Token.AsObject();
         Assert.AreEqual('Adds or changes time sheet lines and hours per day.', ReadText(EnglishRow, 'description'), 'English catalogue.');
-        Assert.AreEqual('Bætir við eða breytir línum tímaskýrslu og klukkustundum eftir dögum.', ReadText(IcelandicRow, 'description'), 'Icelandic catalogue.');
+        Assert.AreEqual('Bætir við eða breytir línum tímaskýrslu og skráir klukkustundir eftir dögum.', ReadText(IcelandicRow, 'description'), 'Icelandic catalogue.');
         Assert.IsTrue(ReadText(EnglishRow, 'errors').Contains('PreconditionFailed'), 'Help documents PreconditionFailed.');
         Assert.AreEqual(ReadText(EnglishRow, 'parameters'), ReadText(IcelandicRow, 'parameters'), 'Help chapters remain English at both LCIDs.');
     end;
