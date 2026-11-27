@@ -235,6 +235,20 @@ codeunit 97191 "Projects Domain Tests ori"
         Assert.IsTrue(CanChange, 'An administrator can change the HTTP setting');
     end;
 
+    [Test]
+    procedure Issue113_AC2_EnableHttp_TurnsOnOwnSetting()
+    var
+        WizardMgt: Codeunit "Projects Wizard Mgt ori";
+        Enabled: Boolean;
+        CanChange: Boolean;
+    begin
+        // [WHEN] An administrator chooses Enable HTTP (rolled back by test isolation).
+        WizardMgt.EnableHttp();
+        // [THEN] Allow HttpClient Requests is on for Bifrost Projects.
+        WizardMgt.ReadHttpStatus(Enabled, CanChange);
+        Assert.IsTrue(Enabled, 'Enable HTTP must turn on Allow HttpClient Requests for Projects');
+    end;
+
     local procedure AssertDomainRefusal(Domain: Enum "Projects Domain ori"; MessageType: Enum "Message Type ori"; DomainCaption: Text)
     var
         Setup: Record "Projects Setup ori";

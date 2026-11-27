@@ -9,7 +9,8 @@ codeunit 70013481 "Projects Domain Gate ori"
     InherentPermissions = X;
     InherentEntitlements = X;
 
-    /// <summary>Reports whether the domain of this message type is on in this company.</summary>
+    /// <summary>Reports whether the domain of this message type is on in this company. Reading the company switch needs no Projects Setup grant, so every role (also lowered test roles) gets the domain answer instead of a permission error.</summary>
+    [InherentPermissions(PermissionObjectType::TableData, Database::"Projects Setup ori", 'R')]
     procedure IsTypeEnabled(MessageType: Enum "Message Type ori"): Boolean
     var
         Setup: Record "Projects Setup ori";
