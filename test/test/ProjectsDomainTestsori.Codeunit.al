@@ -125,11 +125,11 @@ codeunit 97191 "Projects Domain Tests ori"
         Index: Integer;
         Counts: array[6] of Integer;
     begin
-        // [THEN] The 72 Projects types map to the six domains as decided on the card.
+        // [THEN] The 72 Projects types of this app (test fixtures excluded) map to the six domains as decided on the card.
         Names := Enum::"Message Type ori".Names();
         Ordinals := Enum::"Message Type ori".Ordinals();
         for Index := 1 to Names.Count() do
-            if Names.Get(Index).StartsWith('Projects.') then
+            if Names.Get(Index).StartsWith('Projects.') and (Ordinals.Get(Index) in [70013400 .. 70013599]) then
                 Counts[DomainGate.DomainOf(Enum::"Message Type ori".FromInteger(Ordinals.Get(Index))).AsInteger() + 1] += 1;
         Assert.AreEqual(27, Counts[1], 'Project operations');
         Assert.AreEqual(20, Counts[2], 'Time sheets');
