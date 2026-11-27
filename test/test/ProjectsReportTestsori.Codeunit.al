@@ -218,9 +218,9 @@ codeunit 97126 "Projects Report Tests ori"
     [Test]
     procedure NativeRegister_ReturnsFullEntryRange()
     var
-        Adapter: Codeunit "Projects Report ori";
         Register: Record "Job Register";
         Ledger: Record "Job Ledger Entry";
+        Adapter: Codeunit "Projects Report ori";
         Request: JsonObject;
         Rows: JsonArray;
         FirstEntry: Integer;
