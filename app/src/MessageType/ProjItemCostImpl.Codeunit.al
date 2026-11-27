@@ -29,7 +29,7 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Updates the item cost on project usage entries and planning lines to the adjusted item cost.', Comment = 'is-IS=Uppfærir vörukostnað á notkunarfærslum og áætlunarlínum verkefna í leiðréttan vörukostnað.';
+        DescriptionLbl: Label 'Updates the item cost on project usage entries and planning lines to the adjusted item cost.', Comment = 'is-IS=Uppfærir vörukostnað verkefna á notkunarfærslum og áætlunarlínum í leiðréttan vörukostnað.';
     begin
         exit(DescriptionLbl);
     end;
@@ -37,7 +37,7 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'update project item cost, project item cost, job item cost, cost adjustment, adjusted cost, project profitability, month end', Comment = 'is-IS=uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, vörukostnaður á verkefni, arðsemi verkefna, mánaðarlok';
+        KeywordsLbl: Label 'update project item cost, project item cost, job item cost, cost adjustment, adjusted cost, project profitability, month end', Comment = 'is-IS=uppfæra vörukostnað verkefna, vörukostnaður verkefna, kostnaðarleiðrétting, leiðréttur kostnaður, vörukostnaður á verkefni, arðsemi verkefna, mánaðarlok, vörukostnað verkefna';
     begin
         exit(KeywordsLbl);
     end;

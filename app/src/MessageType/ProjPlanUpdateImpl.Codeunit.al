@@ -30,7 +30,7 @@ codeunit 70013510 "Proj. Plan Update Impl ori" implements "Msg Interface ori", "
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra';
+        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra, áætlunarlínur verkefna';
     begin
         exit(KeywordsLbl);
     end;

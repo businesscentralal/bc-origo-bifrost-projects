@@ -30,7 +30,7 @@ codeunit 70013509 "Proj. Plan Create Impl ori" implements "Msg Interface ori", "
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, create', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, stofna';
+        KeywordsLbl: Label 'project, job, task, planning line, create', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, stofna, áætlunarlínur verkefna';
     begin
         exit(KeywordsLbl);
     end;

@@ -34,7 +34,7 @@ codeunit 70013574 "TS Sheet Reopen Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Implements the message interface chapter GetKeywords.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'time sheet, reopen, timesheets', Comment = 'is-IS=tímaskýrsla, opna aftur, tímaskýrslur';
+        KeywordsLbl: Label 'time sheet, reopen, timesheets', Comment = 'is-IS=tímaskýrsla, opna aftur, tímaskýrslur, opnar aftur';
     begin
         exit(KeywordsLbl);
     end;

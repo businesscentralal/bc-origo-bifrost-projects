@@ -24,14 +24,14 @@ codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Indents project tasks and recalculates their totaling ranges.', Comment = 'is-IS=Inndregur verkhluta og endurreiknar samtölubil þeirra.';
+        DescriptionLbl: Label 'Indents project tasks and recalculates their totaling ranges.', Comment = 'is-IS=Býr til inndrátt verkhluta og endurreiknar samtölubil þeirra.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, task, indent, totaling, begin-total, end-total', Comment = 'is-IS=verkefni, verkhluti, inndráttur, samtala, upphaf samtölu, lok samtölu';
+        KeywordsLbl: Label 'project, task, indent, totaling, begin-total, end-total', Comment = 'is-IS=verkefni, verkhluti, inndráttur, samtala, upphaf samtölu, lok samtölu, inndrátt verkhluta';
     begin
         exit(KeywordsLbl);
     end;

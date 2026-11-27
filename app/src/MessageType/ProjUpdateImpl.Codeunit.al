@@ -23,14 +23,14 @@ codeunit 70013506 "Proj. Update Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Updates project headers with optional tasks and planning lines.', Comment = 'is-IS=Uppfærir verkefni, valfrjálsa verkhluta og áætlunarlínur.';
+        DescriptionLbl: Label 'Updates project headers with optional tasks and planning lines.', Comment = 'is-IS=Breytir verkefnishaus og uppfærir valfrjálsa verkhluta og áætlunarlínur.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra';
+        KeywordsLbl: Label 'project, job, task, planning line, update', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, uppfæra, verkefnishaus';
     begin
         exit(KeywordsLbl);
     end;

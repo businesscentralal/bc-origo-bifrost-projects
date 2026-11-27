@@ -26,7 +26,7 @@ codeunit 70013599 "TS Line Set Impl ori" implements "Msg Interface ori", "Msg Co
     /// <summary>Implements GetDescription for the time-sheet line set message.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Adds or changes time sheet lines and hours per day.', Comment = 'is-IS=Bætir við eða breytir línum tímaskýrslu og klukkustundum eftir dögum.';
+        DescriptionLbl: Label 'Adds or changes time sheet lines and hours per day.', Comment = 'is-IS=Bætir við eða breytir línum tímaskýrslu og skráir klukkustundir eftir dögum.';
     begin
         exit(DescriptionLbl);
     end;

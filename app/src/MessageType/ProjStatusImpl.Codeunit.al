@@ -23,14 +23,14 @@ codeunit 70013516 "Proj. Status Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Changes project status or blocking through native Business Central validation.', Comment = 'is-IS=Breytir stöðu eða lokun verkefnis með innbyggðri sannprófun Business Central.';
+        DescriptionLbl: Label 'Changes project status or blocking through native Business Central validation.', Comment = 'is-IS=Breytir stöðu verkefnis eða lokar verkefni með innbyggðri sannprófun Business Central.';
     begin
         exit(DescriptionLbl);
     end;
     /// <summary>Provides localized discovery terms.</summary>
     procedure GetKeywords(): Text
     var
-        KeywordsLbl: Label 'project, job, task, planning line, status, block, unblock', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, staða, loka, opna';
+        KeywordsLbl: Label 'project, job, task, planning line, status, block, unblock', Comment = 'is-IS=verkefni, verk, verkhluti, áætlunarlína, staða, loka, opna, stöðu verkefnis, loka verkefni';
     begin
         exit(KeywordsLbl);
     end;

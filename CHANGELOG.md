@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #115
+
+- Put everyday is-IS search phrases into the is-IS catalogue descriptions (max 250 characters) and keyword labels of 17 Projects message types whose description held none of their keywords, so `list_message_types` finds them by Icelandic phrases (for example `nýtt verkefni`, `loka verkefni`, `sendir inn`). English text unchanged. New test codeunit 97199 `Proj. Is-IS Search Test ori` fails when a type has no is-IS keywords, copies the English list, or has none of them in the is-IS description. No new app objects.
+
 ## Unreleased — #109
 
 - Set the Microsoft AppSource offer (`deliverToAppSource.productId` 944fc172-4cb2-419a-ba01-6b452b637f83, confirmed by Gunnar 27.11.2026) so later Projects versions can be submitted by the Publish To AppSource workflow. Continuous delivery stays off. No app changes.
