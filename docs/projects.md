@@ -9,6 +9,10 @@ and Clockify stay in Timesheets. The app depends only on Bifrost Foundation.
 
 ## Setup and discovery
 
+Open **Projects Setup** from **Bifröst → Related**, immediately after **Bifrost Setup**.
+In Icelandic, choose **Uppsetning verkefna** after **Uppsetning Bifröst**.
+The action uses the same setup page and permissions as search.
+
 Open **Set up Bifrost Projects** from Assisted Setup, from the action on **Projects Setup**
 or from Foundation's registered applications (#113). The guide has five steps: Welcome,
 HTTP (shows and, for an administrator, enables Allow HttpClient Requests for Bifrost
