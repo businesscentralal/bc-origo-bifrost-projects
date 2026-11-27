@@ -10,9 +10,12 @@ codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         FullRole: Record "Proj. Posting ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Task.Indent") then
+            exit(false);
         // The existing feature-role token separates Read and Full; no posting action or gate runs.
         exit(FullRole.WritePermission() and Gate.IsEnabled(Database::"Job Task", true));
     end;
@@ -153,9 +156,12 @@ codeunit 70013419 "Proj. Task Indent Impl ori" implements "Msg Interface ori", "
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Input: Codeunit "Projects Followup Input ori";
         PermissionLbl: Label 'Ask an administrator for BIFROST Full ori and permission to modify project tasks.', Comment = 'is-IS=Biddu kerfisstjóra um BIFROST Full ori og heimild til að breyta verkhlutum.';
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Task.Indent") then
+            exit;
         if not IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionLbl);
             exit;

@@ -10,8 +10,11 @@ codeunit 70013411 "TS Usage Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Checks the permissions this message type needs.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "TS Usage Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Usage.Submit") then
+            exit(false);
         exit(Mgt.CanUse(2));
     end;
 
@@ -141,8 +144,11 @@ codeunit 70013411 "TS Usage Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Runs the operation after the license and version checks.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "TS Usage Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Usage.Submit") then
+            exit;
         Argument.AssertIsLicensed();
         Argument.AssertVersion1();
         Mgt.Execute(Argument, 2);

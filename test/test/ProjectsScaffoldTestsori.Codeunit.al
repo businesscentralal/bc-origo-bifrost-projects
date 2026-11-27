@@ -243,10 +243,10 @@ codeunit 97100 "Projects Scaffold Tests ori"
         // [WHEN] Foundation builds the registry through its actual subscriber event.
         Registry.GetApps(TempApps);
         Evaluate(ProjectsAppId, 'c847bab7-2525-4ff5-93c4-15512b3be1e5');
-        // [THEN] The Projects module resolves to its own setup page.
+        // [THEN] The Projects module resolves to its own setup guide (#113 AC1).
         Assert.IsTrue(TempApps.Get(ProjectsAppId), 'Projects must register with Foundation');
         Assert.AreEqual('Bifrost Projects', TempApps."App Name", 'Registry must expose this module name');
-        Assert.AreEqual(Page::"Projects Setup ori", TempApps."Setup Page Id", 'Registry must expose the owned setup page');
+        Assert.AreEqual(Page::"Projects Setup Wizard ori", TempApps."Setup Page Id", 'Registry must expose the owned setup guide');
     end;
 
     [Test]

@@ -12,8 +12,11 @@ codeunit 70013573 "TS Sheet Reject Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>IsEnabled for the time sheet decision contract.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheet.Reject") then
+            exit(false);
         exit(NativeMgt.CanMaintainSheets(true));
     end;
 
@@ -155,8 +158,11 @@ codeunit 70013573 "TS Sheet Reject Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>ExecuteBifrostTask for the time sheet decision contract.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheet.Reject") then
+            exit;
         Argument.AssertVersion1();
         NativeMgt.ExecuteReject(Argument);
     end;

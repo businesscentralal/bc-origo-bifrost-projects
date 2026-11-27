@@ -12,9 +12,12 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Requires the feature Full role and the caller's native project permissions.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         FullRole: Record "Proj. Posting ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Task.CopyFrom") then
+            exit(false);
         exit(FullRole.WritePermission() and Gate.IsEnabled(Database::Job, false) and
             Gate.IsEnabled(Database::"Job Task", true) and Gate.IsEnabled(Database::"Job Planning Line", true));
     end;
@@ -173,7 +176,11 @@ codeunit 70013425 "Proj. Task Copy Impl ori" implements "Msg Interface ori", "Ms
     end;
     /// <summary>Checks caller permissions before licensing and validation.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Task.CopyFrom") then
+            exit;
         if not AssertPermissions(Argument) then
             exit;
         Argument.AssertIsLicensed();

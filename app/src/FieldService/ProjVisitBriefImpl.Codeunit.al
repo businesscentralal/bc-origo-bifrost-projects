@@ -10,8 +10,11 @@ codeunit 70013432 "Proj. Visit Brief Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks the permissions this message type needs.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "Proj. Field Service Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.VisitBrief.Get") then
+            exit(false);
         exit(Mgt.CanRead());
     end;
 
@@ -142,8 +145,11 @@ codeunit 70013432 "Proj. Visit Brief Impl ori" implements "Msg Interface ori", "
     /// <summary>Runs the operation after the license and version checks.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "Proj. Field Service Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.VisitBrief.Get") then
+            exit;
         Argument.AssertIsLicensed();
         Argument.AssertVersion1();
         Mgt.Execute(Argument, true);

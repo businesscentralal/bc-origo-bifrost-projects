@@ -21,6 +21,28 @@ page 70013500 "Projects Setup ori"
                     ToolTip = 'Specifies whether Projects message types are enabled for this company.', Comment = 'is-IS=Tilgreinir hvort verkefnaskilaboð séu virk fyrir þetta fyrirtæki.';
                 }
             }
+            group(Domains)
+            {
+                Caption = 'Domains', Comment = 'is-IS=Svið';
+                field(ProjectOperations; Rec."Project Operations")
+                {
+                }
+                field(TimeSheets; Rec."Time Sheets")
+                {
+                }
+                field(TimeSheetUsage; Rec."Time Sheet Usage")
+                {
+                }
+                field(FieldServiceAndVan; Rec."Field Service and Van")
+                {
+                }
+                field(FollowUpRequests; Rec."Follow-up Requests")
+                {
+                }
+                field(ReportsAndStatistics; Rec."Reports and Statistics")
+                {
+                }
+            }
             group(FieldService)
             {
                 Caption = 'Field service', Comment = 'is-IS=Vettvangsþjónusta';
@@ -48,6 +70,26 @@ page 70013500 "Projects Setup ori"
                 {
                     ToolTip = 'Specifies whether a technician can start a visit on a task they are not planned on.', Comment = 'is-IS=Tilgreinir hvort tæknimaður megi hefja heimsókn á verkþætti sem hann er ekki skipulagður á.';
                 }
+            }
+        }
+    }
+    actions
+    {
+        area(Processing)
+        {
+            action(SetupWizard)
+            {
+                ApplicationArea = All;
+                Caption = 'Set up Bifrost Projects', Comment = 'is-IS=Setja upp Bifröst verkefni';
+                ToolTip = 'Opens the guide for HTTP, access and the Projects domains.', Comment = 'is-IS=Opnar leiðarvísinn fyrir HTTP, aðgang og verkefnasviðin.';
+                Image = Setup;
+                RunObject = page "Projects Setup Wizard ori";
+            }
+        }
+        area(Promoted)
+        {
+            actionref(SetupWizard_Promoted; SetupWizard)
+            {
             }
         }
     }

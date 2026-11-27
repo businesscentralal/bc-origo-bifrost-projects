@@ -22,11 +22,14 @@ codeunit 70013596 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg C
     /// <summary>Checks all native tables used by the query.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Header: Record "Time Sheet Header";
         Line: Record "Time Sheet Line";
         Detail: Record "Time Sheet Detail";
         Resource: Record Resource;
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheet.Get") then
+            exit(false);
         exit(Header.ReadPermission() and Line.ReadPermission() and Detail.ReadPermission() and Resource.ReadPermission());
     end;
 
@@ -192,6 +195,7 @@ codeunit 70013596 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg C
     /// <summary>Validates selectors and authorizes the caller before returning any sheet data.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Header: Record "Time Sheet Header";
         Resource: Record Resource;
         Request: JsonObject;
@@ -206,6 +210,8 @@ codeunit 70013596 "TS Sheet Get Impl ori" implements "Msg Interface ori", "Msg C
         HasMore: Boolean;
         SingleSheet: Boolean;
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheet.Get") then
+            exit;
         Argument.AssertVersion1();
         if not IsEnabled() or (UserId() = '') then begin
             Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionLbl);

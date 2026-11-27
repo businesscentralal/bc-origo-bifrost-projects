@@ -12,8 +12,11 @@ codeunit 70013518 "Proj. WIP Calc Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.WIP.Calculate") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job WIP Entry", true) and Gate.IsEnabled(Database::Job, true) and Gate.IsEnabled(Database::"Job WIP Entry", false) and Gate.IsEnabled(Database::"Job WIP G/L Entry", false));
     end;
     /// <summary>Returns the native target table for discovery.</summary>
@@ -152,9 +155,12 @@ codeunit 70013518 "Proj. WIP Calc Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
         Dispatch: Codeunit "Projects Write ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.WIP.Calculate") then
+            exit;
         if not Gate.AssertEnabled(Argument, GetFilterTableNo(), true) then
             exit;
         if not Gate.AssertEnabled(Argument, Database::Job, true) then

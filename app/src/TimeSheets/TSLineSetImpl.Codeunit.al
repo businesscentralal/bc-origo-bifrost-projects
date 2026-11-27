@@ -12,8 +12,11 @@ codeunit 70013599 "TS Line Set Impl ori" implements "Msg Interface ori", "Msg Co
     /// <summary>Implements IsEnabled for the time-sheet line set message.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         LineSetMgt: Codeunit "TS Line Set Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheetLine.Set") then
+            exit(false);
         exit(LineSetMgt.CanMaintainSheets());
     end;
 
@@ -150,8 +153,11 @@ codeunit 70013599 "TS Line Set Impl ori" implements "Msg Interface ori", "Msg Co
     /// <summary>Implements ExecuteBifrostTask for the time-sheet line set message.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         LineSetMgt: Codeunit "TS Line Set Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheetLine.Set") then
+            exit;
         Argument.AssertVersion1();
         LineSetMgt.Execute(Argument);
     end;

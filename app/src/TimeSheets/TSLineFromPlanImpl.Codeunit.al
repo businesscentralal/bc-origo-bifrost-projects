@@ -12,8 +12,11 @@ codeunit 70013564 "TS Line FromPlan Impl ori" implements "Msg Interface ori", "M
     /// <summary>Implements IsEnabled for the time-sheet line message.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Fill Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheetLine.CreateFromPlanning") then
+            exit(false);
         exit(NativeMgt.CanFillLines(true));
     end;
 
@@ -155,8 +158,11 @@ codeunit 70013564 "TS Line FromPlan Impl ori" implements "Msg Interface ori", "M
     /// <summary>Implements ExecuteBifrostTask for the time-sheet line message.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Fill Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheetLine.CreateFromPlanning") then
+            exit;
         Argument.AssertVersion1();
         NativeMgt.ExecutePlanning(Argument);
     end;
