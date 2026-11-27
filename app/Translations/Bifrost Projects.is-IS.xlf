@@ -9405,6 +9405,18 @@
           <note from="Developer" annotates="general" priority="2">is-IS=Heimsóknarskýrsla</note>
           <note from="Xliff Generator" annotates="general" priority="3">Report Proj. Visit Report ori - ReportLayout VisitWord - Property Caption</note>
         </trans-unit>
+        <trans-unit id="PageExtension 4255452238 - Action 221116467 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 859178725">
+          <source>Open the Projects setup for this company.</source>
+          <target>Opna uppsetningu verkefna fyrir þetta fyrirtæki.</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Opna uppsetningu verkefna fyrir þetta fyrirtæki.</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Projects Setup ori - Action ProjectsSetup - Property ToolTip</note>
+        </trans-unit>
+        <trans-unit id="PageExtension 4255452238 - Action 221116467 - Property 2879900210" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 859178725">
+          <source>Projects Setup</source>
+          <target>Uppsetning verkefna</target>
+          <note from="Developer" annotates="general" priority="2">is-IS=Uppsetning verkefna</note>
+          <note from="Xliff Generator" annotates="general" priority="3">PageExtension Bifrost Projects Setup ori - Action ProjectsSetup - Property Caption</note>
+        </trans-unit>
         <trans-unit id="PageExtension 2618994456 - Control 2424190774 - Property 1295455071" size-unit="char" translate="yes" xml:space="preserve" al-object-target="Page 1257057922">
           <source>Specifies the date of the time entry that this line invoices.</source>
           <target>Tilgreinir dagsetningu tímafærslunnar sem þessi lína reikningsfærir.</target>

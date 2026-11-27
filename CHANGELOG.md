@@ -1,5 +1,9 @@
 # Changelog
 
+## [28.1.1.0] — Unreleased — #117
+
+- Add page extension 70013504 `Bifrost Projects Setup ori`: **Projects Setup** in the Bifröst Related menu after **Bifrost Setup**, with English/Icelandic captions and ToolTips and the existing setup permissions. Require Foundation 28.0.17.0, which provides the extensible Bifröst page. Document the entry point and add TestPage coverage in codeunit 97193 `Proj. Setup Nav. Tests ori`.
+
 ## Unreleased — #115
 
 - Put everyday is-IS search phrases into the is-IS catalogue descriptions (max 250 characters) and keyword labels of 17 Projects message types whose description held none of their keywords, so `list_message_types` finds them by Icelandic phrases (for example `nýtt verkefni`, `loka verkefni`, `sendir inn`). English text unchanged. New test codeunit 97199 `Proj. Is-IS Search Test ori` fails when a type has no is-IS keywords, copies the English list, or has none of them in the is-IS description. No new app objects.
