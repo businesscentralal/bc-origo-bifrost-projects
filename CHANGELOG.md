@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — #117
+## [28.1.1.0] — Unreleased — #117
 
 - Add page extension 70013504 `Bifrost Projects Setup ori`: **Projects Setup** in the Bifröst Related menu after **Bifrost Setup**, with English/Icelandic captions and ToolTips and the existing setup permissions. Require Foundation 28.0.17.0, which provides the extensible Bifröst page. Document the entry point and add TestPage coverage in codeunit 97193 `Proj. Setup Nav. Tests ori`.
 
