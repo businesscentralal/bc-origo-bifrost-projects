@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #109
+
+- Set the Microsoft AppSource offer (`deliverToAppSource.productId` 944fc172-4cb2-419a-ba01-6b452b637f83, confirmed by Gunnar 27.11.2026) so later Projects versions can be submitted by the Publish To AppSource workflow. Continuous delivery stays off. No app changes.
+
 ## Unreleased — #110
 
 - `Projects.Report.Get` with `report=register` returns every job ledger entry from From to To Entry No., one row per entry of any line type, instead of only the first entry. No new objects.

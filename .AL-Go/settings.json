@@ -57,5 +57,13 @@
     ".github/workflows/**",
     "tools/Test-BifrostPipeline.ps1"
   ],
+  "deliverToAppSource": {
+    "productId": "944fc172-4cb2-419a-ba01-6b452b637f83",
+    "mainAppFolder": "app",
+    "branches": [
+      "main"
+    ],
+    "continuousDelivery": false
+  },
   "repoVersion": "1.0.1"
 }
