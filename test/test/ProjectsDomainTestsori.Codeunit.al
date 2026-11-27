@@ -224,29 +224,42 @@ codeunit 97191 "Projects Domain Tests ori"
     end;
 
     [Test]
-    procedure Issue113_AC2_HttpStatus_ReadsOwnSetting()
+    procedure Issue113_AC2_HttpStatus_ReadsOwnSettingWithoutWriting()
     var
+        AppSetting: Record "NAV App Setting";
         WizardMgt: Codeunit "Projects Wizard Mgt ori";
+        Module: ModuleInfo;
+        Expected: Boolean;
+        RowExisted: Boolean;
         Enabled: Boolean;
-        CanChange: Boolean;
     begin
-        // [THEN] The guide can read this app's HTTP setting and an administrator can change it.
-        Assert.IsTrue(WizardMgt.ReadHttpStatus(Enabled, CanChange), 'An administrator can read the HTTP setting');
-        Assert.IsTrue(CanChange, 'An administrator can change the HTTP setting');
+        // [GIVEN] This app's own HTTP setting, read directly.
+        NavApp.GetCurrentModuleInfo(Module);
+        RowExisted := AppSetting.Get(Module.Id());
+        if RowExisted then
+            Expected := AppSetting."Allow HttpClient Requests";
+        // [WHEN] The guide reads the HTTP status.
+        Assert.IsTrue(WizardMgt.ReadHttpStatus(Enabled), 'An administrator can read the HTTP setting');
+        // [THEN] It reports the stored value and creates no setting row (HTTP is enabled in Foundation's wizard).
+        Assert.AreEqual(Expected, Enabled, 'The guide must report this app''s Allow HttpClient Requests');
+        Assert.AreEqual(RowExisted, AppSetting.Get(Module.Id()), 'Reading the HTTP status must not create a NAV App Setting row');
     end;
 
     [Test]
-    procedure Issue113_AC2_EnableHttp_TurnsOnOwnSetting()
+    procedure Issue113_AC2_HttpStep_PointsToBifrostSetupWizardWhenOff()
     var
         WizardMgt: Codeunit "Projects Wizard Mgt ori";
+        Wizard: TestPage "Projects Setup Wizard ori";
         Enabled: Boolean;
-        CanChange: Boolean;
     begin
-        // [WHEN] An administrator chooses Enable HTTP (rolled back by test isolation).
-        WizardMgt.EnableHttp();
-        // [THEN] Allow HttpClient Requests is on for Bifrost Projects.
-        WizardMgt.ReadHttpStatus(Enabled, CanChange);
-        Assert.IsTrue(Enabled, 'Enable HTTP must turn on Allow HttpClient Requests for Projects');
+        Library.Initialize();
+        WizardMgt.ReadHttpStatus(Enabled);
+        // [WHEN] The guide shows the HTTP step.
+        Wizard.OpenEdit();
+        Wizard.NextStep.Invoke();
+        // [THEN] The only HTTP action is the pointer to Foundation's Bifrost Setup Wizard, shown while HTTP is off.
+        Assert.AreEqual(not Enabled, Wizard.OpenBifrostSetupWizard.Visible(), 'Open Bifrost Setup Wizard must show exactly when HTTP is off');
+        Wizard.Close();
     end;
 
     local procedure AssertDomainRefusal(Domain: Enum "Projects Domain ori"; MessageType: Enum "Message Type ori"; DomainCaption: Text)

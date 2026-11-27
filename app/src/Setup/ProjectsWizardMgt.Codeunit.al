@@ -1,5 +1,6 @@
 namespace Origo.Bifrost.Projects;
 
+using Origo.Bifrost;
 using System.Apps;
 using System.Environment.Configuration;
 using System.Media;
@@ -30,14 +31,13 @@ codeunit 70013483 "Projects Wizard Mgt ori"
             '', Enum::"Video Category"::Uncategorized, '', false);
     end;
 
-    /// <summary>Reads only this extension's Allow HttpClient Requests. False means the caller cannot read it.</summary>
-    procedure ReadHttpStatus(var Enabled: Boolean; var CanChange: Boolean): Boolean
+    /// <summary>Reads only this extension's Allow HttpClient Requests. False means the caller cannot read it. Never writes the setting.</summary>
+    procedure ReadHttpStatus(var Enabled: Boolean): Boolean
     var
         AppSetting: Record "NAV App Setting";
         Module: ModuleInfo;
     begin
         Enabled := false;
-        CanChange := AppSetting.WritePermission();
         if not AppSetting.ReadPermission() then
             exit(false);
         NavApp.GetCurrentModuleInfo(Module);
@@ -46,26 +46,10 @@ codeunit 70013483 "Projects Wizard Mgt ori"
         exit(true);
     end;
 
-    /// <summary>Turns on Allow HttpClient Requests for Bifrost Projects when the user may change extension settings.</summary>
-    procedure EnableHttp(): Boolean
-    var
-        AppSetting: Record "NAV App Setting";
-        Module: ModuleInfo;
-        NoPermissionErr: Label 'You do not have permission to change extension settings. Ask an administrator with the SUPER permission set (or write permission on table NAV App Setting) to enable Allow HttpClient Requests for Bifrost Projects.', Comment = 'is-IS=Þú hefur ekki heimild til að breyta stillingum viðbóta. Biddu kerfisstjóra sem hefur SUPER heimildasamstæðuna (eða skrifheimild á töfluna NAV App Setting) um að virkja Leyfa HttpClient-beiðnir fyrir Bifröst verkefni.';
+    /// <summary>Opens the Bifrost Setup Wizard of Bifrost Foundation, which owns the HTTP step.</summary>
+    procedure OpenBifrostSetupWizard()
     begin
-        if not AppSetting.WritePermission() then
-            Error(NoPermissionErr);
-        NavApp.GetCurrentModuleInfo(Module);
-        if not AppSetting.Get(Module.Id()) then begin
-            AppSetting.Init();
-            AppSetting."App ID" := Module.Id();
-            AppSetting."Allow HttpClient Requests" := true;
-            exit(AppSetting.Insert());
-        end;
-        if AppSetting."Allow HttpClient Requests" then
-            exit(false);
-        AppSetting."Allow HttpClient Requests" := true;
-        exit(AppSetting.Modify());
+        Page.RunModal(Page::"Setup Wizard ori");
     end;
 
     /// <summary>Loads the company setup into the guide's buffer; a missing row shows every domain off.</summary>

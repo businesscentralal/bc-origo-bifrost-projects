@@ -35,18 +35,18 @@ page 70013482 "Projects Setup Wizard ori"
             {
                 Caption = 'HTTP', Comment = 'is-IS=HTTP';
                 Visible = CurrentStep = 2;
-                InstructionalText = 'Bifrost Projects needs outbound HTTP for licensing. Choose Enable HTTP to allow it for this extension.', Comment = 'is-IS=Bifröst verkefni þurfa útleið HTTP fyrir leyfisveitingar. Veldu Virkja HTTP til að leyfa það fyrir þessa viðbót.';
+                InstructionalText = 'Bifrost Projects needs outbound HTTP for licensing. HTTP is enabled in the Bifrost Setup Wizard of Bifrost Foundation; this guide only shows the status.', Comment = 'is-IS=Bifröst verkefni þurfa útleið HTTP fyrir leyfisveitingar. HTTP er virkjað í uppsetningarleiðsögn Bifröst í Bifröst Foundation; þessi leiðsögn sýnir aðeins stöðuna.';
                 field(HttpStatus; HttpStatusText)
                 {
                     Caption = 'Allow HttpClient Requests', Comment = 'is-IS=Leyfa HttpClient-beiðnir';
                     ToolTip = 'Shows whether the Bifrost Projects extension may make outbound HTTP requests.', Comment = 'is-IS=Sýnir hvort Bifröst verkefnaviðbótin megi senda HTTP-beiðnir út.';
                     Editable = false;
                 }
-                group(Administrator)
+                group(HttpOff)
                 {
                     ShowCaption = false;
-                    Visible = not CanChangeHttp;
-                    InstructionalText = 'You do not have permission to change extension settings. Ask an administrator with the SUPER permission set (or write permission on table NAV App Setting) to enable Allow HttpClient Requests for Bifrost Projects.', Comment = 'is-IS=Þú hefur ekki heimild til að breyta stillingum viðbóta. Biddu kerfisstjóra sem hefur SUPER heimildasamstæðuna (eða skrifheimild á töfluna NAV App Setting) um að virkja Leyfa HttpClient-beiðnir fyrir Bifröst verkefni.';
+                    Visible = not HttpEnabled;
+                    InstructionalText = 'Open the Bifrost Setup Wizard to enable HTTP.', Comment = 'is-IS=Opnaðu uppsetningarleiðsögn Bifröst til að virkja HTTP.';
                 }
             }
             group(AccessStep)
@@ -144,16 +144,16 @@ page 70013482 "Projects Setup Wizard ori"
                     Page.RunModal(Page::"Message Type List ori");
                 end;
             }
-            action(EnableHttp)
+            action(OpenBifrostSetupWizard)
             {
-                Caption = 'Enable HTTP', Comment = 'is-IS=Virkja HTTP';
-                ToolTip = 'Turns on Allow HttpClient Requests for Bifrost Projects.', Comment = 'is-IS=Virkjar Leyfa HttpClient-beiðnir fyrir Bifröst verkefni.';
+                Caption = 'Open Bifrost Setup Wizard', Comment = 'is-IS=Opna uppsetningarleiðsögn Bifröst';
+                ToolTip = 'Opens the Bifrost Setup Wizard of Bifrost Foundation, where HTTP is enabled.', Comment = 'is-IS=Opnar uppsetningarleiðsögn Bifröst í Bifröst Foundation, þar sem HTTP er virkjað.';
                 Image = Setup;
                 InFooterBar = true;
-                Visible = (CurrentStep = 2) and CanChangeHttp and not HttpEnabled;
+                Visible = (CurrentStep = 2) and not HttpEnabled;
                 trigger OnAction()
                 begin
-                    WizardMgt.EnableHttp();
+                    WizardMgt.OpenBifrostSetupWizard();
                     RefreshStatus();
                 end;
             }
@@ -229,7 +229,6 @@ page 70013482 "Projects Setup Wizard ori"
     var
         WizardMgt: Codeunit "Projects Wizard Mgt ori";
         CurrentStep: Integer;
-        CanChangeHttp: Boolean;
         HttpEnabled: Boolean;
         HttpStatusText: Text;
         DomainSummaryText: Text;
@@ -256,7 +255,7 @@ page 70013482 "Projects Setup Wizard ori"
         Ordinal: Integer;
         OnCount: Integer;
     begin
-        if WizardMgt.ReadHttpStatus(HttpEnabled, CanChangeHttp) then begin
+        if WizardMgt.ReadHttpStatus(HttpEnabled) then begin
             if HttpEnabled then
                 HttpStatusText := EnabledLbl
             else
