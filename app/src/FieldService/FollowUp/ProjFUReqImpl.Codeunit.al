@@ -16,8 +16,11 @@ codeunit 70013448 "Proj. FU Req Impl ori" implements "Msg Interface ori", "Msg C
     /// <summary>Implements the follow-up contract.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "Proj. Follow-up Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.FollowUp.Request") then
+            exit(false);
         exit(Mgt.CanRun(1));
     end;
 
@@ -152,8 +155,11 @@ codeunit 70013448 "Proj. FU Req Impl ori" implements "Msg Interface ori", "Msg C
     /// <summary>Implements the follow-up contract.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "Proj. Follow-up Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.FollowUp.Request") then
+            exit;
         Mgt.Execute(Argument, 1);
     end;
 }

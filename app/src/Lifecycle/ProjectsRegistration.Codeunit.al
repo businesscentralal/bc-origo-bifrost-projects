@@ -2,7 +2,7 @@ namespace Origo.Bifrost.Projects;
 
 using Origo.Bifrost;
 
-/// <summary>Registers the Projects setup page in Foundation's application registry.</summary>
+/// <summary>Registers the Projects setup guide in Foundation's application registry.</summary>
 codeunit 70013501 "Projects Registration ori"
 {
     Access = Internal;
@@ -15,6 +15,6 @@ codeunit 70013501 "Projects Registration ori"
         AppInfo: ModuleInfo;
     begin
         NavApp.GetCurrentModuleInfo(AppInfo);
-        Registry.AddApp(Apps, AppInfo.Id(), CopyStr(AppInfo.Name(), 1, 250), Page::"Projects Setup ori");
+        Registry.AddApp(Apps, AppInfo.Id(), CopyStr(AppInfo.Name(), 1, 250), Page::"Projects Setup Wizard ori");
     end;
 }

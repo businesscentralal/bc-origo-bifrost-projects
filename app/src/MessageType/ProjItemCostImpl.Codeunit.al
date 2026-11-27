@@ -15,8 +15,11 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Checks the posting token and the native rights before advertising availability.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         ItemCost: Codeunit "Projects Item Cost ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.ItemCost.Update") then
+            exit(false);
         exit(ItemCost.IsEnabled());
     end;
 
@@ -199,10 +202,13 @@ codeunit 70013420 "Proj. Item Cost Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Checks rights, licence and version, then updates the item cost.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         ItemCost: Codeunit "Projects Item Cost ori";
         Input: Codeunit "Projects Followup Input ori";
         PermissionsLbl: Label 'Ask an administrator for BIFROST Full ori and the native permissions to change project ledger entries.', Comment = 'is-IS=Biddu kerfisstjóra um BIFROST Full ori og innbyggðar heimildir til að breyta verkefnisfærslum.';
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.ItemCost.Update") then
+            exit;
         if not ItemCost.IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionsLbl);
             exit;

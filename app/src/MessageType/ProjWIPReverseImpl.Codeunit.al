@@ -11,9 +11,12 @@ codeunit 70013406 "Proj. WIP Reverse Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
         PostingGate: Codeunit "Proj. Posting Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.WIP.Reverse") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job WIP G/L Entry", true) and PostingGate.HasPostingPermission() and Gate.IsEnabled(Database::Job, true) and Gate.IsEnabled(Database::"Job WIP Entry", false) and Gate.IsEnabled(Database::"Job WIP G/L Entry", false));
     end;
     /// <summary>Returns the native target table for discovery.</summary>
@@ -179,8 +182,11 @@ codeunit 70013406 "Proj. WIP Reverse Impl ori" implements "Msg Interface ori", "
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Dispatch: Codeunit "Projects Write ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.WIP.Reverse") then
+            exit;
         if not AssertPermissions(Argument) then
             exit;
         Argument.AssertIsLicensed();

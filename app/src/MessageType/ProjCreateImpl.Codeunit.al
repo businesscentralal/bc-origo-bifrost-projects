@@ -11,8 +11,11 @@ codeunit 70013505 "Proj. Create Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Project.Create") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job", true));
     end;
     /// <summary>Returns the native target table for discovery.</summary>
@@ -143,9 +146,12 @@ codeunit 70013505 "Proj. Create Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
         Dispatch: Codeunit "Projects Write ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Project.Create") then
+            exit;
         if not Gate.AssertEnabled(Argument, GetFilterTableNo(), true) then
             exit;
         Argument.AssertIsLicensed();

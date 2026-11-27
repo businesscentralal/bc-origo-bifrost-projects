@@ -11,8 +11,11 @@ codeunit 70013550 "Proj. Archive Get Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks company enablement and every required native read permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Allocation: Codeunit "Projects Archive ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.ProjectArchive.Get") then
+            exit(false);
         exit(Allocation.IsEnabled(false));
     end;
 
@@ -176,10 +179,13 @@ codeunit 70013550 "Proj. Archive Get Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks effective permissions before licensing and executes the read-only request.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Archive: Codeunit "Projects Archive ori";
         Input: Codeunit "Projects Followup Input ori";
         PermissionsLbl: Label 'Ask an administrator for BIFROST Full ori to archive, or BIFROST Read ori to read archives, and the native project permissions.', Comment = 'is-IS=Biddu kerfisstjóra um BIFROST Full ori til að vista útgáfu eða BIFROST Read ori til að lesa vistaðar útgáfur og innbyggðar verkefnaheimildir.';
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.ProjectArchive.Get") then
+            exit;
         if not Archive.IsEnabled(false) then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionsLbl);
             exit;

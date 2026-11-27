@@ -20,8 +20,11 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
     /// <summary>Checks company enablement and native project read permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Quote.Send") then
+            exit(false);
         exit(Gate.IsEnabled(Database::Job, false));
     end;
 
@@ -254,6 +257,7 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
     /// <summary>Checks enablement, licence and version, then sends the quote.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Setup: Record "Projects Setup ori";
         Gate: Codeunit "Projects Gate ori";
         DisabledErr: Label 'Projects messages are disabled for this company.', Comment = 'is-IS=Verkefnaskilaboð eru óvirk fyrir þetta fyrirtæki.';
@@ -261,6 +265,8 @@ codeunit 70013548 "Proj. Quote Send Impl ori" implements "Msg Interface ori", "M
         DeniedErr: Label 'Permission denied for this Projects message type.', Comment = 'is-IS=Heimild hafnað fyrir þessa verkefnaskilaboðategund.';
         DeniedNextStepLbl: Label 'Ask an administrator for a Business Central role that can read projects.', Comment = 'is-IS=Biddu kerfisstjóra um hlutverk í Business Central sem getur lesið verkefni.';
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Quote.Send") then
+            exit;
         if not Setup.IsEnabled() then begin
             Argument.RespondWithError("Bifrost Error Code ori"::InvalidParameter, DisabledErr, '', '', '', EnableLbl);
             exit;

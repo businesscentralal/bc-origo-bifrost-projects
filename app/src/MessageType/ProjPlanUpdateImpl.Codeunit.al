@@ -11,8 +11,11 @@ codeunit 70013510 "Proj. Plan Update Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.PlanningLine.Update") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job Planning Line", true));
     end;
     /// <summary>Returns the native target table for discovery.</summary>
@@ -153,9 +156,12 @@ codeunit 70013510 "Proj. Plan Update Impl ori" implements "Msg Interface ori", "
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
         Dispatch: Codeunit "Projects Write ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.PlanningLine.Update") then
+            exit;
         if not Gate.AssertEnabled(Argument, GetFilterTableNo(), true) then
             exit;
         Argument.AssertIsLicensed();

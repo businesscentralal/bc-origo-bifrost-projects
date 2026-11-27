@@ -15,8 +15,11 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     /// <summary>Checks the company switch and caller-owned project and purchase rights.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.PlanningLine.CreatePurchaseOrder") then
+            exit(false);
         exit(Gate.IsEnabled(Database::Job, false) and
             Gate.IsEnabled(Database::"Job Planning Line", true) and
             Gate.IsEnabled(Database::"Purchase Header", true) and
@@ -190,9 +193,12 @@ codeunit 70013424 "Proj. Plan Purchase Impl ori" implements "Msg Interface ori",
     /// <summary>Checks permissions before licensing, validation and native work.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Input: Codeunit "Projects Followup Input ori";
         PermissionsLbl: Label 'Ask an administrator for BIFROST Full ori and permission to read projects and vendors and maintain purchase, planning and order-planning lines.', Comment = 'is-IS=Biddu kerfisstjóra um BIFROST Full ori og heimild til að lesa verkefni og lánardrottna og viðhalda innkaupa-, áætlunar- og pöntunaráætlunarlínum.';
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.PlanningLine.CreatePurchaseOrder") then
+            exit;
         if not IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionsLbl);
             exit;

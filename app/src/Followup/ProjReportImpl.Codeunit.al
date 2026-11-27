@@ -21,8 +21,11 @@ codeunit 70013546 "Proj. Report Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Checks every native data read before advertising availability.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Adapter: Codeunit "Projects Report ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Report.Get") then
+            exit(false);
         exit(Adapter.IsEnabled());
     end;
 
@@ -205,9 +208,12 @@ codeunit 70013546 "Proj. Report Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Checks effective read rights before licensing and executes only a validated standard report.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Adapter: Codeunit "Projects Report ori";
         Input: Codeunit "Projects Followup Input ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Report.Get") then
+            exit;
         if not IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionLbl);
             exit;

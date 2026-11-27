@@ -35,8 +35,11 @@ codeunit 70013523 "Proj. Allocation Impl ori" implements "Msg Interface ori", "M
     /// <summary>Checks company enablement and every required native read permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Allocation: Codeunit "Projects Allocation ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.ResourceAllocation.Get") then
+            exit(false);
         exit(Allocation.IsEnabled());
     end;
 
@@ -220,9 +223,12 @@ codeunit 70013523 "Proj. Allocation Impl ori" implements "Msg Interface ori", "M
     /// <summary>Checks effective permissions before licensing and executes the read-only request.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Allocation: Codeunit "Projects Allocation ori";
         Input: Codeunit "Projects Followup Input ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.ResourceAllocation.Get") then
+            exit;
         if not Allocation.IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', Text5Lbl);
             exit;

@@ -4,6 +4,12 @@
 
 - Put everyday is-IS search phrases into the is-IS catalogue descriptions (max 250 characters) and keyword labels of 17 Projects message types whose description held none of their keywords, so `list_message_types` finds them by Icelandic phrases (for example `nýtt verkefni`, `loka verkefni`, `sendir inn`). English text unchanged. New test codeunit 97199 `Proj. Is-IS Search Test ori` fails when a type has no is-IS keywords, copies the English list, or has none of them in the is-IS description. No new app objects.
 
+## Unreleased — #113
+
+- Add the **Set up Bifrost Projects** guide (Assisted Setup, Projects Setup action and Foundation's registered applications): Welcome, HTTP (reads and enables Allow HttpClient Requests for Projects), Access, Domains, Field service and Finish.
+- Add six per-company domains (Gunnar 27.11.2026): Project operations, Time sheets, Time sheet usage, Field service and van, Follow-up requests, Reports and statistics. A new company starts with all off. A type of a disabled domain is hidden and refused with `PreconditionFailed` and a nextStep. Upgrade from 28.1.1 keeps every domain on for companies that had Projects enabled.
+- New objects: enum 70013480 `Projects Domain ori`, codeunit 70013481 `Projects Domain Gate ori`, page 70013482 `Projects Setup Wizard ori`, codeunit 70013483 `Projects Wizard Mgt ori`, upgrade codeunit 70013484 `Projects Upgrade ori`; Projects Setup fields 30–35. Tests: codeunit 97191 `Projects Domain Tests ori`, test install codeunit 97192 `Projects Test Install ori` (turns every domain on in the test company).
+
 ## Unreleased — #109
 
 - Set the Microsoft AppSource offer (`deliverToAppSource.productId` 944fc172-4cb2-419a-ba01-6b452b637f83, confirmed by Gunnar 27.11.2026) so later Projects versions can be submitted by the Publish To AppSource workflow. Continuous delivery stays off. No app changes.

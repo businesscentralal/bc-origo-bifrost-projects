@@ -15,8 +15,11 @@ codeunit 70013437 "Proj. Visit Stop Impl ori" implements "Msg Interface ori", "M
 
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "Proj. Visit Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Visit.Stop") then
+            exit(false);
         exit(Mgt.CanRun());
     end;
 
@@ -135,8 +138,11 @@ codeunit 70013437 "Proj. Visit Stop Impl ori" implements "Msg Interface ori", "M
 
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Mgt: Codeunit "Proj. Visit Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Visit.Stop") then
+            exit;
         Mgt.ExecuteStop(Argument);
     end;
 }

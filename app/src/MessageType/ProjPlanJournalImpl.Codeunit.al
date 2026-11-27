@@ -21,9 +21,12 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
     /// <summary>Checks the company switch, feature role and caller-owned native rights.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         FullRole: Record "Proj. Posting ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.PlanningLine.TransferToJournal") then
+            exit(false);
         exit(FullRole.WritePermission() and Gate.IsEnabled(Database::Job, false) and
             Gate.IsEnabled(Database::"Job Task", false) and Gate.IsEnabled(Database::"Job Planning Line", true) and
             Gate.IsEnabled(Database::"Job Journal Line", true) and Gate.IsEnabled(Database::"Job Journal Template", false) and
@@ -204,7 +207,11 @@ codeunit 70013427 "Proj. Plan Journal Impl ori" implements "Msg Interface ori", 
 
     /// <summary>Checks native permissions before Foundation licensing and version checks.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.PlanningLine.TransferToJournal") then
+            exit;
         if not AssertPermissions(Argument) then
             exit;
         Argument.AssertIsLicensed();

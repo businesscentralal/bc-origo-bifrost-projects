@@ -12,8 +12,11 @@ codeunit 70013554 "TS Absence Reg Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks the caller permissions required for absence registration.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Absence Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.Absence.Register") then
+            exit(false);
         exit(NativeMgt.CanMaintainSheets());
     end;
 
@@ -155,8 +158,11 @@ codeunit 70013554 "TS Absence Reg Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Validates the message version and dispatches isolated absence registration.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Absence Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.Absence.Register") then
+            exit;
         Argument.AssertVersion1();
         NativeMgt.ExecuteAbsence(Argument);
     end;
