@@ -30,8 +30,11 @@ codeunit 70013586 "TS Approval Get Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Shows the type only to callers with the tables it uses.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         SelfMgt: Codeunit "TS Self Service Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheetApproval.Get") then
+            exit(false);
         exit(SelfMgt.CanReadSheets());
     end;
 
@@ -179,8 +182,11 @@ codeunit 70013586 "TS Approval Get Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Runs the own-only or approver-only check, then the call.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         SelfMgt: Codeunit "TS Self Service Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheetApproval.Get") then
+            exit;
         Argument.AssertVersion1();
         SelfMgt.ExecuteApprovalGet(Argument);
     end;

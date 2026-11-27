@@ -12,8 +12,11 @@ codeunit 70013572 "TS Sheet Post Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Implements the message interface chapter IsEnabled.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheet.Post") then
+            exit(false);
         exit(NativeMgt.CanPostSheets());
     end;
 
@@ -155,8 +158,11 @@ codeunit 70013572 "TS Sheet Post Impl ori" implements "Msg Interface ori", "Msg 
     /// <summary>Implements the message interface chapter ExecuteBifrostTask.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheet.Post") then
+            exit;
         Argument.AssertVersion1();
         NativeMgt.ExecutePost(Argument);
     end;

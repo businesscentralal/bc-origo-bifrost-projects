@@ -12,9 +12,12 @@ codeunit 70013519 "Proj. WIP Post Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks company enablement and native table write permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
         PostingGate: Codeunit "Proj. Posting Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.WIP.Post") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job WIP G/L Entry", true) and PostingGate.HasPostingPermission() and Gate.IsEnabled(Database::Job, true) and Gate.IsEnabled(Database::"Job WIP Entry", false) and Gate.IsEnabled(Database::"Job WIP G/L Entry", false));
     end;
     /// <summary>Returns the native target table for discovery.</summary>
@@ -158,10 +161,13 @@ codeunit 70013519 "Proj. WIP Post Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Guards licensing and permissions before transactional execution.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
         Dispatch: Codeunit "Projects Write ori";
         PostingGate: Codeunit "Proj. Posting Gate ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.WIP.Post") then
+            exit;
         if not Gate.AssertEnabled(Argument, GetFilterTableNo(), true) then
             exit;
         if not PostingGate.AssertCanPost(Argument) then

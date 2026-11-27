@@ -35,6 +35,7 @@ codeunit 97102 "Projects Test Library ori"
         DeleteOwnedWIPDimensions();
         Setup.InsertIfNotExists();
         Setup.Enabled := true;
+        Setup.SetAllDomains(true);
         Setup.Modify(true);
     end;
     local procedure AllowPostingAroundWorkDate()

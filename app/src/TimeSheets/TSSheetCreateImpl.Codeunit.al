@@ -19,7 +19,11 @@ codeunit 70013571 "TS Sheet Create Impl ori" implements "Msg Interface ori", "Ms
 
     /// <summary>Provides IsEnabled for time sheet creation.</summary>
     procedure IsEnabled(): Boolean
+    var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheet.Create") then
+            exit(false);
         exit(CanCreate());
     end;
 
@@ -151,7 +155,11 @@ codeunit 70013571 "TS Sheet Create Impl ori" implements "Msg Interface ori", "Ms
 
     /// <summary>Provides ExecuteBifrostTask for time sheet creation.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
+    var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheet.Create") then
+            exit;
         Argument.AssertVersion1();
         ExecuteCreate(Argument);
     end;

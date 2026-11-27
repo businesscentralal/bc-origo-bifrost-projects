@@ -30,9 +30,12 @@ codeunit 70013589 "TS My Line Set Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Shows the type only to callers with the tables it uses.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         SelfMgt: Codeunit "TS Self Service Mgt ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.MyTimeSheetLine.Set") then
+            exit(false);
         exit(SelfMgt.CanReadSheets() and NativeMgt.CanMaintainSheets());
     end;
 
@@ -180,8 +183,11 @@ codeunit 70013589 "TS My Line Set Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Runs the own-only or approver-only check, then the call.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         SelfMgt: Codeunit "TS Self Service Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.MyTimeSheetLine.Set") then
+            exit;
         Argument.AssertVersion1();
         SelfMgt.ExecuteMyLineSet(Argument);
     end;

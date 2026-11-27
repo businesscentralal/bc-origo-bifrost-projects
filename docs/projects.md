@@ -9,7 +9,33 @@ and Clockify stay in Timesheets. The app depends only on Bifrost Foundation.
 
 ## Setup and discovery
 
-Open **Projects Setup** from Foundation's registered applications. `Enabled` is on by
+Open **Set up Bifrost Projects** from Assisted Setup, from the action on **Projects Setup**
+or from Foundation's registered applications (#113). The guide has five steps: Welcome,
+HTTP (shows and, for an administrator, enables Allow HttpClient Requests for Bifrost
+Projects), Access (the Projects role sets), Domains, Field service (only when that domain
+is on) and Finish. Finish saves the domains and field service settings; closing the guide
+saves nothing.
+
+### Domains
+
+Each company turns on the domains it uses (Gunnar 27.11.2026). A new company starts with
+every domain off. A type whose domain is off is not listed and a call to it is refused
+with `PreconditionFailed`, `parameter` `domain` and a `nextStep` that names the domain.
+Upgrading from 28.1.1 turns every domain on for a company that had Projects enabled (or
+had no setup row) and leaves a switched-off company off.
+
+| Domain | Message types |
+|---|---|
+| Project operations | `Projects.Project.*`, `Projects.Task.*`, `Projects.PlanningLine.*`, `Projects.WIP.*`, `Projects.WIPMethod.*`, `Projects.Usage.Get`, `Projects.Usage.Link`, `Projects.PurchaseLine.Link`, `Projects.ItemUsage.Post`, `Projects.ItemCost.Update`, `Projects.Quote.Send`, `Projects.ProjectArchive.Get` (27) |
+| Time sheets | `Projects.TimeSheet.*`, `Projects.TimeSheetLine.*`, `Projects.MyTimeSheet.*`, `Projects.MyTimeSheetLine.Set`, `Projects.TimeSheetApproval.*`, `Projects.PendingApproval.Get`, `Projects.Absence.Register` (20) |
+| Time sheet usage | `Projects.Usage.Register`, `.Submit`, `.Approve`, `.Reject`, `.Transfer`, `.Reverse`, `.List` (7) |
+| Field service and van | `Projects.MyDay.Get`, `Projects.VisitBrief.Get`, `Projects.Visit.*`, `Projects.VisitItem.Register`, `Projects.VanStock.Get`, `Projects.VisitReport.Get` (9) |
+| Follow-up requests | `Projects.FollowUp.*` (4) |
+| Reports and statistics | `Projects.Statistics.Get`, `Projects.BudgetVsActual.Get`, `Projects.Report.Get`, `Projects.ResourceAllocation.Get`, `Projects.ResourceCapacity.Get` (5) |
+
+### Company switch
+
+`Enabled` is on by
 default. Disabling it hides enabled write operations and returns an explicit error
 when a caller invokes one. Setup is company-specific. The Read role can read the
 switch; the Full role can administer it. Neither extension grants Foundation Setup

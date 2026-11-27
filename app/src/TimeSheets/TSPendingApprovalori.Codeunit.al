@@ -22,11 +22,14 @@ codeunit 70013568 "TS Pending Approval ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks all native tables used by the query.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Header: Record "Time Sheet Header";
         Line: Record "Time Sheet Line";
         Detail: Record "Time Sheet Detail";
         Resource: Record Resource;
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.PendingApproval.Get") then
+            exit(false);
         exit(Header.ReadPermission() and Line.ReadPermission() and Detail.ReadPermission() and Resource.ReadPermission());
     end;
 
@@ -192,6 +195,7 @@ codeunit 70013568 "TS Pending Approval ori" implements "Msg Interface ori", "Msg
     /// <summary>Validates all input and permissions before reading matching submitted lines.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Request: JsonObject;
         Response: JsonObject;
         Lines: JsonArray;
@@ -203,6 +207,8 @@ codeunit 70013568 "TS Pending Approval ori" implements "Msg Interface ori", "Msg
         SkipCount: Integer;
         HasMore: Boolean;
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.PendingApproval.Get") then
+            exit;
         Argument.AssertVersion1();
         if not IsEnabled() then begin
             Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionLbl);

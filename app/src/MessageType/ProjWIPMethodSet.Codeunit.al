@@ -10,8 +10,11 @@ codeunit 70013541 "Proj. WIP Method Set ori" implements "Msg Interface ori", "Ms
     /// <summary>Checks company enablement and the native table permissions used by this operation.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.WIPMethod.Set") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job WIP Method", true) and Gate.IsEnabled(Database::"Job WIP Entry", false) and Gate.IsEnabled(Database::"Job WIP G/L Entry", false));
     end;
     /// <summary>Returns the native target table for discovery.</summary>
@@ -147,8 +150,11 @@ codeunit 70013541 "Proj. WIP Method Set ori" implements "Msg Interface ori", "Ms
     /// <summary>Checks company, permissions, licence and version before processing WIP methods.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Methods: Codeunit "Projects WIP Methods ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.WIPMethod.Set") then
+            exit;
         if not Methods.AssertEnabled(Argument, true) then
             exit;
         Argument.AssertIsLicensed();

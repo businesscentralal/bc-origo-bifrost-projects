@@ -12,8 +12,11 @@ codeunit 70013575 "TS Sheet Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Handles IsEnabled for the Submit message contract.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.TimeSheet.Submit") then
+            exit(false);
         exit(NativeMgt.CanMaintainSheets());
     end;
 
@@ -155,8 +158,11 @@ codeunit 70013575 "TS Sheet Submit Impl ori" implements "Msg Interface ori", "Ms
     /// <summary>Handles ExecuteBifrostTask for the Submit message contract.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         NativeMgt: Codeunit "TS Native Mgt ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.TimeSheet.Submit") then
+            exit;
         Argument.AssertVersion1();
         NativeMgt.ExecuteSubmit(Argument);
     end;

@@ -22,8 +22,11 @@ codeunit 70013531 "Proj. Purchase Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks native operation permissions before advertising availability.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Adapter: Codeunit "Projects Purchase ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.PurchaseLine.Link") then
+            exit(false);
         exit(Adapter.IsEnabled());
     end;
 
@@ -196,9 +199,12 @@ codeunit 70013531 "Proj. Purchase Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks effective native rights before licensing and dispatches validated isolated processing.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Adapter: Codeunit "Projects Purchase ori";
         Input: Codeunit "Projects Followup Input ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.PurchaseLine.Link") then
+            exit;
         if not IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', PermissionLbl);
             exit;

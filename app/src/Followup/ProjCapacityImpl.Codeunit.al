@@ -33,8 +33,11 @@ codeunit 70013598 "Proj. Capacity Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks company enablement and every required native read permission.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Capacity: Codeunit "Projects Capacity ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.ResourceCapacity.Get") then
+            exit(false);
         exit(Capacity.IsEnabled());
     end;
 
@@ -211,9 +214,12 @@ codeunit 70013598 "Proj. Capacity Impl ori" implements "Msg Interface ori", "Msg
     /// <summary>Checks effective permissions before licensing and executes the read-only request.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Capacity: Codeunit "Projects Capacity ori";
         Input: Codeunit "Projects Followup Input ori";
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.ResourceCapacity.Get") then
+            exit;
         if not Capacity.IsEnabled() then begin
             Input.Refuse(Argument, "Bifrost Error Code ori"::PermissionDenied, '', Text5Lbl);
             exit;

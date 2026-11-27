@@ -12,8 +12,11 @@ codeunit 70013417 "Proj. Shift Dates Impl ori" implements "Msg Interface ori", "
     /// <summary>Checks the company switch and the caller's native permissions.</summary>
     procedure IsEnabled(): Boolean
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Gate: Codeunit "Projects Gate ori";
     begin
+        if not ProjectsDomainGate.IsTypeEnabled("Message Type ori"::"Projects.PlanningLine.ShiftDates") then
+            exit(false);
         exit(Gate.IsEnabled(Database::"Job Planning Line", true) and
             Gate.IsEnabled(Database::Job, false) and Gate.IsEnabled(Database::"Job Task", false) and
             Gate.IsEnabled(Database::"Job Planning Line Invoice", false));
@@ -183,11 +186,14 @@ codeunit 70013417 "Proj. Shift Dates Impl ori" implements "Msg Interface ori", "
     /// <summary>Guards native rights, licensing and version before input and transactional writes.</summary>
     procedure ExecuteBifrostTask(var Argument: Record "Message Argument ori")
     var
+        ProjectsDomainGate: Codeunit "Projects Domain Gate ori";
         Setup: Record "Projects Setup ori";
         Gate: Codeunit "Projects Gate ori";
         Input: Codeunit "Projects Followup Input ori";
         PermissionsLbl: Label 'Ask an administrator for the Bifrost Full role and permission to modify project planning lines.', Comment = 'is-IS=Biddu kerfisstjóra um fullt Bifrost-hlutverk og heimild til að breyta áætlunarlínum verkefna.';
     begin
+        if not ProjectsDomainGate.AssertTypeEnabled(Argument, "Message Type ori"::"Projects.PlanningLine.ShiftDates") then
+            exit;
         if not Setup.IsEnabled() then begin
             Gate.AssertEnabled(Argument, Database::"Job Planning Line", true);
             exit;
