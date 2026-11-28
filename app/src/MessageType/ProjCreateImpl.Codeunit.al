@@ -26,7 +26,7 @@ codeunit 70013505 "Proj. Create Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Describes this operation in the session language.</summary>
     procedure GetDescription(): Text[250]
     var
-        DescriptionLbl: Label 'Creates project headers with optional tasks and planning lines.', Comment = 'is-IS=Stofnar nýtt verkefni með valfrjálsum verkhlutum og áætlunarlínum.';
+        DescriptionLbl: Label 'Creates project headers with optional tasks and planning lines. Business Central requires a bill-to customer (billToCustomerNo).', Comment = 'is-IS=Stofnar nýtt verkefni með valfrjálsum verkhlutum og áætlunarlínum. Business Central krefst reikningsviðskiptavinar (billToCustomerNo).';
     begin
         exit(DescriptionLbl);
     end;
@@ -126,8 +126,11 @@ codeunit 70013505 "Proj. Create Impl ori" implements "Msg Interface ori", "Msg D
     end;
     /// <summary>Provides a minimal request example.</summary>
     procedure GetExamples(var Examples: JsonArray): Boolean
+    var
+        Contract: Codeunit "Msg Contract Mgt ori";
     begin
-        exit(false);
+        Examples.Add(Contract.Example('Projects.Project.Create', '{"type":"Projects.Project.Create","version":"1.0","data":{"projectNo":"XPROJECT","billToCustomerNo":"XCUSTOMER","description":"Example project"}}', '{"status":"Success","projectNo":"XPROJECT"}'));
+        exit(true);
     end;
     /// <summary>Provides localized operation help.</summary>
     procedure GetOverview(var Overview: Text): Boolean
@@ -138,7 +141,7 @@ codeunit 70013505 "Proj. Create Impl ori" implements "Msg Interface ori", "Msg D
     /// <summary>Documents nested write behavior.</summary>
     procedure GetNotes(var Notes: Text): Boolean
     var
-        NotesLbl: Label 'Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
+        NotesLbl: Label 'billToCustomerNo is required on Create: the native Project table refuses a project without a bill-to customer (Business Central validation, returned as BusinessCentralError, not a Bifrost MissingParameter check). Expected native message: Bill-to Customer No. must have a value in Project: No.=<projectNo>. It cannot be zero or empty. In an is-IS session Business Central returns its own translation. Only supplied fields change. Nested records default to Create; operation Update explicitly changes an existing task or planning line. All changes roll back on a native error. No time sheets are processed.', Comment = 'is-IS=billToCustomerNo er nauðsynlegt við Create: innbyggða verkefnataflan hafnar verkefni án reikningsviðskiptavinar (villa frá Business Central, skilað sem BusinessCentralError, ekki MissingParameter-athugun Bifrost). Væntanleg innbyggð villa: Bill-to Customer No. must have a value in Project: No.=<projectNo>. It cannot be zero or empty. Í is-IS lotu skilar Business Central eigin þýðingu. Aðeins innsendar upplýsingar breytast. Innfelldar færslur eru sjálfgefið stofnaðar; aðgerðin Update breytir fyrirliggjandi verkhluta eða áætlunarlínu. Allar breytingar eru afturkallaðar við innbyggða villu. Tímaskýrslur eru ekki unnar.';
     begin
         Notes := NotesLbl;
         exit(true);

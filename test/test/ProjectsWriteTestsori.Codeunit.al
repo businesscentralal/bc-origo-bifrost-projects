@@ -149,6 +149,37 @@ codeunit 97101 "Projects Write Tests ori"
     end;
 
     [Test]
+    procedure Scenario_AC119_OmittedBillTo_ReturnsBCError()
+    var
+        Project: Record Job;
+        Request: JsonObject;
+        Response: JsonObject;
+    begin
+        // Story #119 | Time: no date dependency | Risk: None
+        Request := Library.NewProjectRequest();
+        Request.Remove('billToCustomerNo');
+        Response := Library.ExecuteNative("Message Type ori"::"Projects.Project.Create", Request);
+        Library.AssertStatus(Response, 'Error');
+        Assert.AreEqual('BusinessCentralError', Response.GetText('code'), 'A missing bill-to customer is a BC validation error, not MissingParameter');
+        Assert.IsFalse(Project.Get(Request.GetText('projectNo')), 'Failed validation must not insert a project');
+    end;
+
+    [Test]
+    procedure Scenario_AC119_CreateHelp_NamesBillToRequirement()
+    var
+        CreateImpl: Codeunit "Proj. Create Impl ori";
+        Examples: JsonArray;
+        Notes: Text;
+    begin
+        // Story #119 | Time: no date dependency | Risk: None
+        Assert.IsTrue(CreateImpl.GetDescription().Contains('billToCustomerNo'), 'Description must name billToCustomerNo');
+        Assert.IsTrue(CreateImpl.GetNotes(Notes), 'Notes expected');
+        Assert.IsTrue(Notes.Contains('BusinessCentralError') and Notes.Contains('must have a value'), 'Notes must name the BC error and native text');
+        Assert.IsTrue(CreateImpl.GetExamples(Examples), 'Example expected');
+        Assert.IsTrue(Format(Examples).Contains('billToCustomerNo'), 'Example must include billToCustomerNo');
+    end;
+
+    [Test]
     procedure Scenario_AC01_DuplicateNestedTask_RollsBackProject()
     var
         Project: Record Job;
