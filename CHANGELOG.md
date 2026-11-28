@@ -2,7 +2,7 @@
 
 ## Unreleased — #119
 
-- Help and docs only: `Projects.Project.Create` help (description, notes, new example), the shared `billToCustomerNo` parameter text, `docs/projects.md` and the README now state that Business Central requires a bill-to customer on Create (native validation, returned as `BusinessCentralError`, not a Bifrost `MissingParameter`), with the expected native message. Update keeps the parameter optional. is-IS translations updated. No new objects, no behaviour change.
+- Help and docs only: `Projects.Project.Create` help (description, notes, new example), the shared `billToCustomerNo` parameter text, `docs/projects.md` and the README now tell callers to always send `billToCustomerNo` on Create because Business Central may refuse a project without a bill-to customer (native validation, returned as `BusinessCentralError`, not a Bifrost `MissingParameter`). The omission could not be reproduced on BC 29 W1 or IS, so the wording is "may", not "required". Update keeps the parameter optional. is-IS translations updated. No new objects, no behaviour change.
 
 ## Unreleased — #115
 

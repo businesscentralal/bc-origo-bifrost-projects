@@ -70,10 +70,9 @@ update key or duplicate create key produces a native error and rolls back the en
 BC validates task totaling/indentation and resource, item and G/L planning fields.
 Normal BC prerequisites still apply.
 
-`Projects.Project.Create` needs `billToCustomerNo`: Business Central's own Project
-(Job) validation refuses a project without a bill-to customer. Bifrost does not check this
-itself, so there is no `MissingParameter`; the refusal comes back as `BusinessCentralError`
-with BC's native text (ENU: `Bill-to Customer No. must have a value in Project: No.=<projectNo>.
+Always send `billToCustomerNo` on `Projects.Project.Create`: Business Central may refuse a project
+without a bill-to customer. Bifrost does not check this itself, so there is no `MissingParameter`;
+a refusal comes back as `BusinessCentralError` with BC's native text (ENU: `Bill-to Customer No. must have a value in Project: No.=<projectNo>.
 It cannot be zero or empty.`; an is-IS session gets BC's own translation). On
 `Projects.Project.Update` the parameter stays optional: omitted preserves the current value.
 
@@ -94,7 +93,7 @@ outer dispatcher rather than forcing a nested commit.
 
 ## Example
 
-After creating your own customer `XCUSTOMER` (required as `billToCustomerNo`), send:
+After creating your own customer `XCUSTOMER` (send it as `billToCustomerNo`), send:
 
 ```json
 {

@@ -62,7 +62,7 @@ codeunit 70013504 "Projects Contract ori"
             'Project':
                     if Operation <> 'Delete' then begin
                         Result.Add(DecorateParameter(ContractMgt.Parameter('description', 'string', false, 'Native description; omitted on update preserves the current value.'), 'string', 100, ''));
-                        Result.Add(DecorateParameter(ContractMgt.Parameter('billToCustomerNo', 'string', false, 'Native bill-to customer number. Business Central requires it on Projects.Project.Create (native validation returned as BusinessCentralError, not MissingParameter); optional on Update, where omitted preserves the current value.'), 'string', 20, ''));
+                        Result.Add(DecorateParameter(ContractMgt.Parameter('billToCustomerNo', 'string', false, 'Native bill-to customer number. Always send it on Projects.Project.Create because Business Central may refuse a project without one (returned as BusinessCentralError, not MissingParameter); optional on Update, where omitted preserves the current value.'), 'string', 20, ''));
                         Result.Add(DecorateParameter(ContractMgt.Parameter('personResponsible', 'string', false, 'Native person responsible code.'), 'string', 20, ''));
                         Result.Add(DecorateParameter(ContractMgt.Parameter('startingDate', 'date', false, 'Native starting date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
                         Result.Add(DecorateParameter(ContractMgt.Parameter('endingDate', 'date', false, 'Native ending date in ISO format YYYY-MM-DD.'), 'date', 0, ''));
