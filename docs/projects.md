@@ -68,7 +68,13 @@ parent keys. Nested `operation` defaults to `Create`. Use `operation: "Update"` 
 change an existing nested task or planning line atomically with the parent. A missing
 update key or duplicate create key produces a native error and rolls back the entire operation.
 BC validates task totaling/indentation and resource, item and G/L planning fields.
-Normal BC prerequisites (including a bill-to customer for tasks) still apply.
+Normal BC prerequisites still apply.
+
+Always send `billToCustomerNo` on `Projects.Project.Create`: Business Central may refuse a project
+without a bill-to customer. Bifrost does not check this itself, so there is no `MissingParameter`;
+a refusal comes back as `BusinessCentralError` with BC's native text (ENU: `Bill-to Customer No. must have a value in Project: No.=<projectNo>.
+It cannot be zero or empty.`; an is-IS session gets BC's own translation). On
+`Projects.Project.Update` the parameter stays optional: omitted preserves the current value.
 
 ## Responses and errors
 
@@ -87,7 +93,7 @@ outer dispatcher rather than forcing a nested commit.
 
 ## Example
 
-After creating your own customer `XCUSTOMER`, send:
+After creating your own customer `XCUSTOMER` (send it as `billToCustomerNo`), send:
 
 ```json
 {

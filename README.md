@@ -26,7 +26,7 @@ Native time sheets belong to **Bifrost Projects**: create, submit, approve, reje
 | `Projects.Visit.Start` | `projectNo`, `taskNo`, `kind` (`travel` or `work`), optional `at`, `autoStop`, `clientRequestId` | Opens one running visit. `autoStop` first adds the running visit's rounded hours. |
 | `Projects.Visit.Stop` | optional `visitId`, `at`, `note`, `clientRequestId` | Stops the running visit and adds the rounded hours to an open job line. |
 | `Projects.Visit.Complete` | `visitId` or `projectNo`+`taskNo`, optional `mileageKm`, `outcome`, `clientRequestId` | Marks the visit completed. Kilometres become an open usage line and nothing is submitted. |
-| `Projects.Project.Create` | `projectNo`, optional fields, `tasks[]` | Creates a project and optional nested tasks/planning lines atomically. |
+| `Projects.Project.Create` | `projectNo`, `billToCustomerNo` (send it; BC may refuse without), optional fields, `tasks[]` | Creates a project and optional nested tasks/planning lines atomically. |
 | `Projects.Project.Update` | `projectNo`, changed fields, optional `tasks[]` | Updates supplied fields; nested records explicitly create or update. |
 | `Projects.Task.Create` | `projectNo`, `taskNo`, fields, `planningLines[]` | Creates a task and optional planning lines. |
 | `Projects.Task.Update` | `projectNo`, `taskNo`, changed fields, optional `planningLines[]` | Updates a task; preserves omitted fields. |

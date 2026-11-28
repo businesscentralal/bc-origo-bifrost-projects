@@ -149,6 +149,21 @@ codeunit 97101 "Projects Write Tests ori"
     end;
 
     [Test]
+    procedure Scenario_AC119_CreateHelp_NamesBillToRequirement()
+    var
+        CreateImpl: Codeunit "Proj. Create Impl ori";
+        Examples: JsonArray;
+        Notes: Text;
+    begin
+        // Story #119 | Time: no date dependency | Risk: None
+        Assert.IsTrue(CreateImpl.GetDescription().Contains('billToCustomerNo'), 'Description must name billToCustomerNo');
+        Assert.IsTrue(CreateImpl.GetNotes(Notes), 'Notes expected');
+        Assert.IsTrue(Notes.Contains('BusinessCentralError') and Notes.Contains('must have a value'), 'Notes must name the BC error and native text');
+        Assert.IsTrue(CreateImpl.GetExamples(Examples), 'Example expected');
+        Assert.IsTrue(Format(Examples).Contains('billToCustomerNo'), 'Example must include billToCustomerNo');
+    end;
+
+    [Test]
     procedure Scenario_AC01_DuplicateNestedTask_RollsBackProject()
     var
         Project: Record Job;

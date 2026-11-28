@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — #119
+
+- Help and docs only: `Projects.Project.Create` help (description, notes, new example), the shared `billToCustomerNo` parameter text, `docs/projects.md` and the README now tell callers to always send `billToCustomerNo` on Create because Business Central may refuse a project without a bill-to customer (native validation, returned as `BusinessCentralError`, not a Bifrost `MissingParameter`). The omission could not be reproduced on BC 29 W1 or IS, so the wording is "may", not "required". Update keeps the parameter optional. is-IS translations updated. No new objects, no behaviour change.
+
 ## Unreleased — #115
 
 - Put everyday is-IS search phrases into the is-IS catalogue descriptions (max 250 characters) and keyword labels of 17 Projects message types whose description held none of their keywords, so `list_message_types` finds them by Icelandic phrases (for example `nýtt verkefni`, `loka verkefni`, `sendir inn`). English text unchanged. New test codeunit 97199 `Proj. Is-IS Search Test ori` fails when a type has no is-IS keywords, copies the English list, or has none of them in the is-IS description. No new app objects.
